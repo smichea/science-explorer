@@ -1,0 +1,17 @@
+id: place.padua
+anchorNode: mission.galileo.inclined_plane
+importance: 2
+tags: [vertical-slice]
+title: { fr: Padoue, en: Padua }
+shortPurpose:
+  fr: "La ville universitaire où Galilée étudie le mouvement de 1592 à 1610."
+  en: "The university town where Galileo studied motion from 1592 to 1610."
+modernName: { fr: "Padoue (Italie)", en: "Padua (Italy)" }
+coordinates: { lat: 45.4064, lon: 11.8768 }
+locationCertainty: exact
+context:
+  fr: |
+    L'université de Padoue, fondée en 1222, est à l'époque de Galilée celle de la République de Venise, qui la protège et y attire des maîtres de toute l'Europe. Galilée y occupe la chaire de mathématiques de 1592 à 1610 ; sa maison, où logent des étudiants pensionnaires, abrite aussi l'atelier où l'artisan Marcantonio Mazzoleni fabrique ses instruments, et c'est dans ce cadre que se placent, selon Stillman Drake, ses expériences sur le mouvement.
+  en: |
+    The University of Padua, founded in 1222, was in Galileo's time the university of the Republic of Venice, which protected it and drew masters from all over Europe. Galileo held its chair of mathematics from 1592 to 1610; his house, where student boarders lodged, also held the workshop where the craftsman Marcantonio Mazzoleni made his instruments, and it is in this setting that, according to Stillman Drake, his experiments on motion took place.
+sources: [source.drake.1978]

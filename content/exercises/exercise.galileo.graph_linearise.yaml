@@ -1,0 +1,124 @@
+# Galilée — quel graphique aligne les mesures ? (choix unique avec justification)
+id: exercise.galileo.graph_linearise
+type: choice
+nodeId: concept.graph
+phenomenonId: phenomenon.motion.uniformly_accelerated
+depth: 1
+evidenceDimension: recognition_explanation
+context:
+  fr: |-
+    Padoue, vers 1604 (reconstruction pédagogique). Une bille descend une rainure taillée dans un plan incliné à 10° ; on marque sa position à des instants régulièrement espacés, mesurés à l'horloge à eau.
+  en: |-
+    Padua, c. 1604 (pedagogical reconstruction). A ball runs down a groove cut into a plane inclined at 10°; its position is marked at regularly spaced instants measured with a water clock.
+prompt:
+  fr: |-
+    Voici les distances $d$ parcourues par la bille depuis son point de départ, relevées aux instants $t = 1, 2, 3, 4$ (en secondes, après conversion des pesées d'eau de l'horloge) :
+
+    | $t$ (s) | 1 | 2 | 3 | 4 |
+    |:--|--:|--:|--:|--:|
+    | $d$ (m) | 0.60 | 2.40 | 5.40 | 9.60 |
+
+    On veut représenter ces mesures par un graphique sur lequel **les points sont alignés sur une droite passant par l'origine**. Quel graphique faut-il tracer ? Justifiez votre réponse en une ou deux phrases (que calcule-t-on pour le vérifier ?).
+  en: |-
+    Here are the distances $d$ travelled by the ball from its starting point, recorded at the instants $t = 1, 2, 3, 4$ (in seconds, after converting the weighings of water from the clock):
+
+    | $t$ (s) | 1 | 2 | 3 | 4 |
+    |:--|--:|--:|--:|--:|
+    | $d$ (m) | 0.60 | 2.40 | 5.40 | 9.60 |
+
+    We want to represent these measurements by a graph on which **the points line up on a straight line through the origin**. Which graph should be drawn? Justify your answer in one or two sentences (what do you compute to check it?).
+choice:
+  multiple: false
+  requireReasoning: true
+  choices:
+    - id: d_vs_t
+      text: { fr: "$d$ en fonction de $t$", en: "$d$ against $t$" }
+      feedback:
+        fr: |-
+          Avec $d$ proportionnel à $t^2$, les points $(t, d)$ dessinent une parabole : la pente augmente d'un point au suivant (0.60 puis 1.80, 3.00, 4.20 m par seconde). Ce n'est pas une droite.
+        en: |-
+          With $d$ proportional to $t^2$, the points $(t, d)$ draw a parabola: the slope grows from one point to the next (0.60 then 1.80, 3.00, 4.20 m per second). It is not a straight line.
+    - id: d_vs_t2
+      text: { fr: "$d$ en fonction de $t^2$", en: "$d$ against $t^2$" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : $d/t^2$ vaut 0.60 pour les quatre mesures, donc $d = 0.60\,t^2$. En portant $t^2$ en abscisse, les points $(1, 0.60)$, $(4, 2.40)$, $(9, 5.40)$, $(16, 9.60)$ sont alignés sur la droite de pente 0.60 passant par l'origine.
+        en: |-
+          Correct: $d/t^2$ equals 0.60 for all four measurements, so $d = 0.60\,t^2$. With $t^2$ on the horizontal axis, the points $(1, 0.60)$, $(4, 2.40)$, $(9, 5.40)$, $(16, 9.60)$ line up on the straight line of slope 0.60 through the origin.
+    - id: d_vs_sqrt_t
+      text:
+        fr: |-
+          $d$ en fonction de $\sqrt{t}$
+        en: |-
+          $d$ against $\sqrt{t}$
+      feedback:
+        fr: |-
+          Si $d = 0.60\,t^2$, alors en fonction de $u = \sqrt{t}$ on a $d = 0.60\,u^4$ : la courbe est encore plus incurvée qu'une parabole. Cette transformation conviendrait à une loi en $\sqrt{t}$, pas à une loi en $t^2$.
+        en: |-
+          If $d = 0.60\,t^2$, then as a function of $u = \sqrt{t}$ we get $d = 0.60\,u^4$: the curve bends even more than a parabola. This transformation would suit a law in $\sqrt{t}$, not a law in $t^2$.
+    - id: d2_vs_t
+      text: { fr: "$d^2$ en fonction de $t$", en: "$d^2$ against $t$" }
+      feedback:
+        fr: |-
+          $d^2 = 0.36\,t^4$ : élever au carré une loi en $t^2$ donne une loi en $t^4$, toujours pas une droite. Vérifiez : $d^2$ vaut 0.36, 5.76, 29.16, 92.16 pour $t = 1, 2, 3, 4$, et $d^2/t$ n'est pas constant.
+        en: |-
+          $d^2 = 0.36\,t^4$: squaring a law in $t^2$ gives a law in $t^4$, still not a straight line. Check: $d^2$ equals 0.36, 5.76, 29.16, 92.16 for $t = 1, 2, 3, 4$, and $d^2/t$ is not constant.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Pour chaque mesure, calculez $d/t$, puis $d/t^2$. Lequel de ces quotients ne change pas d'une ligne à l'autre ?
+      en: |-
+        For each measurement, compute $d/t$, then $d/t^2$. Which of these quotients stays the same from one row to the next?
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $d/t^2 = 0.60$ pour les quatre lignes : $d$ est donc proportionnel à $t^2$. Une proportionnalité $y = k\,x$ se traduit par une droite passant par l'origine sur le graphique de $y$ en fonction de $x$.
+      en: |-
+        $d/t^2 = 0.60$ for all four rows: $d$ is therefore proportional to $t^2$. A proportionality $y = k\,x$ shows up as a straight line through the origin on the graph of $y$ against $x$.
+solution:
+  fr: |-
+    **Chercher une proportionnalité.** Une droite passant par l'origine traduit une relation $y = k\,x$ : il faut trouver quelle grandeur construite à partir de $t$ est proportionnelle à $d$.
+
+    | $t$ (s) | $d$ (m) | $d/t$ | $d/t^2$ |
+    |--:|--:|--:|--:|
+    | 1 | 0.60 | 0.60 | 0.60 |
+    | 2 | 2.40 | 1.20 | 0.60 |
+    | 3 | 5.40 | 1.80 | 0.60 |
+    | 4 | 9.60 | 2.40 | 0.60 |
+
+    Le quotient $d/t$ double quand $t$ double : $d$ n'est pas proportionnel à $t$ (le graphique de $d$ en fonction de $t$ est une parabole). En revanche $d/t^2 = 0.60$ pour toutes les mesures : $d = 0.60\,t^2$.
+
+    **Conclusion.** Sur le graphique de $d$ en fonction de $t^2$, les points $(1, 0.60)$, $(4, 2.40)$, $(9, 5.40)$, $(16, 9.60)$ sont alignés sur la droite $d = 0.60\,t^2$, de pente $0.60\ \mathrm{m/s^2}$ et passant par l'origine (à $t = 0$, la bille n'a pas encore bougé).
+
+    Les deux autres transformations empirent les choses : en fonction de $\sqrt{t}$, $d$ varie comme la puissance quatrième ; et $d^2$ varie comme $t^4$.
+
+    *Remarque historique.* Galilée n'a pas tracé ce graphique. Il a remarqué que les distances parcourues pendant des intervalles successifs égaux sont entre elles comme $1, 3, 5, 7$ (ici $0.60$, $1.80$, $3.00$, $4.20$ m) : la « loi des nombres impairs », équivalente à $d \propto t^2$ puisque $1 + 3 + 5 + 7 = 16 = 4^2$.
+  en: |-
+    **Look for a proportionality.** A straight line through the origin expresses a relation $y = k\,x$: we must find which quantity built from $t$ is proportional to $d$.
+
+    | $t$ (s) | $d$ (m) | $d/t$ | $d/t^2$ |
+    |--:|--:|--:|--:|
+    | 1 | 0.60 | 0.60 | 0.60 |
+    | 2 | 2.40 | 1.20 | 0.60 |
+    | 3 | 5.40 | 1.80 | 0.60 |
+    | 4 | 9.60 | 2.40 | 0.60 |
+
+    The quotient $d/t$ doubles when $t$ doubles: $d$ is not proportional to $t$ (the graph of $d$ against $t$ is a parabola). On the other hand $d/t^2 = 0.60$ for every measurement: $d = 0.60\,t^2$.
+
+    **Conclusion.** On the graph of $d$ against $t^2$, the points $(1, 0.60)$, $(4, 2.40)$, $(9, 5.40)$, $(16, 9.60)$ line up on the straight line $d = 0.60\,t^2$, of slope $0.60\ \mathrm{m/s^2}$ and passing through the origin (at $t = 0$ the ball has not moved yet).
+
+    The two other transformations make things worse: as a function of $\sqrt{t}$, $d$ varies like the fourth power; and $d^2$ varies like $t^4$.
+
+    *Historical note.* Galileo did not draw this graph. He noticed that the distances covered during successive equal intervals are to one another as $1, 3, 5, 7$ (here $0.60$, $1.80$, $3.00$, $4.20$ m): the "odd-number rule", equivalent to $d \propto t^2$ since $1 + 3 + 5 + 7 = 16 = 4^2$.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 2
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

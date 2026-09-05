@@ -1,0 +1,52 @@
+id: method.modelling
+type: method
+region: bridge.modelling
+importance: 3
+tags: [vertical-slice]
+title: { fr: Modélisation, en: Modelling }
+shortPurpose:
+  fr: Choisir un système, des hypothèses et des variables ; approximer, calculer, puis critiquer le résultat.
+  en: Choose a system, assumptions and variables; approximate, compute, then criticise the result.
+aliases:
+  fr: ["démarche de modélisation", "hypothèses d'un modèle", "mise en équation", "validité d'un modèle"]
+  en: ["modelling process", "model assumptions", "setting up equations", "validity of a model"]
+description:
+  fr: |
+    **Modéliser**, c'est remplacer une situation réelle, toujours trop riche, par une description simplifiée que l'on sait traiter mathématiquement. La démarche a des étapes reconnaissables : délimiter le **système** (la bille, pas la table ni l'air), choisir des **hypothèses** (point matériel, pas de frottement, champ uniforme), nommer des **variables** et des paramètres ($x(t)$, $g$, $\theta$), écrire les relations qui les lient (lois, définitions), résoudre, puis **confronter** la prédiction aux mesures. Le dernier pas, la **critique**, décide si les hypothèses tiennent ou s'il faut en relâcher une.
+
+    Un modèle n'est ni vrai ni faux : il est *adapté* ou non à une question et à une précision. La chute libre sans frottement prédit très bien une bille de plomb sur un mètre et très mal une feuille de papier ; le point matériel décrit une bille qui glisse mais rate le facteur $5/7$ d'une bille qui roule. Savoir énoncer ce qu'un modèle néglige est aussi important que savoir le résoudre : c'est ce que les blocs « hypothèses » et « limites » des modèles de cet atlas rendent explicite.
+
+    La modélisation est le pont entre les mondes : les mathématiques fournissent les outils (fonctions, dérivées, équations différentielles), la physique et la chimie les lois et les mesures. Choisir le bon outil pour un phénomène (« lequel des outils de mon sac décrit cette courbe ? ») est un acte de modélisation, et c'est celui que les missions de l'atlas entraînent.
+  en: |
+    **Modelling** means replacing a real situation, always too rich, with a simplified description that can be handled mathematically. The process has recognisable steps: delimit the **system** (the ball, not the table nor the air), choose **assumptions** (point mass, no friction, uniform field), name **variables** and parameters ($x(t)$, $g$, $\theta$), write the relations that link them (laws, definitions), solve, then **confront** the prediction with measurements. The last step, **critique**, decides whether the assumptions hold or whether one of them must be relaxed.
+
+    A model is neither true nor false: it is *suited* or not to a question and to a precision. Frictionless free fall predicts a lead ball over one metre very well and a sheet of paper very badly; the point mass describes a sliding ball but misses the factor $5/7$ of a rolling ball. Being able to state what a model neglects is as important as being able to solve it: this is what the "assumptions" and "limits" blocks of the models in this atlas make explicit.
+
+    Modelling is the bridge between the worlds: mathematics provides the tools (functions, derivatives, differential equations), physics and chemistry the laws and the measurements. Choosing the right tool for a phenomenon ("which of the tools in my backpack describes this curve?") is an act of modelling, and it is the one the missions of the atlas train.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "définir le système étudié et le référentiel, et énumérer les hypothèses simplificatrices"
+        - "identifier variables, paramètres et conditions initiales avant de mettre en équation"
+        - "choisir l'outil mathématique adapté à une courbe ou à une loi (dérivée, exponentielle, équation différentielle)"
+        - "confronter une prédiction à des mesures et proposer une hypothèse à relâcher en cas de désaccord"
+      en:
+        - "define the system under study and the frame of reference, and list the simplifying assumptions"
+        - "identify variables, parameters and initial conditions before setting up equations"
+        - "choose the mathematical tool suited to a curve or a law (derivative, exponential, differential equation)"
+        - "confront a prediction with measurements and propose an assumption to relax in case of disagreement"
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "hiérarchiser les effets par des ordres de grandeur et justifier une approximation (linéarisation, régime quasi stationnaire)"
+        - "écrire un modèle sous forme adimensionnée et identifier ses temps caractéristiques"
+        - "résoudre un modèle numériquement quand la solution analytique manque, et discuter la sensibilité aux paramètres"
+      en:
+        - "rank effects by orders of magnitude and justify an approximation (linearisation, quasi-stationary regime)"
+        - "write a model in dimensionless form and identify its characteristic times"
+        - "solve a model numerically when the analytical solution is missing, and discuss sensitivity to parameters"

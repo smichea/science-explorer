@@ -1,0 +1,55 @@
+id: concept.function
+type: mathematical_concept
+world: world.mathematics
+region: region.math.functions_analysis
+importance: 2
+tags: [vertical-slice]
+title: { fr: Fonction, en: Function }
+shortPurpose:
+  fr: Associer à chaque valeur d'une variable une valeur et une seule, pour dire comment une grandeur dépend d'une autre.
+  en: Assign exactly one value to each value of a variable, to say how one quantity depends on another.
+aliases:
+  fr: ["fonction numérique", "application", "fonction d'une variable réelle", "loi de dépendance"]
+  en: ["numerical function", "map", "function of one real variable", "dependence law"]
+description:
+  fr: |
+    Une **fonction** $f$ définie sur un ensemble $D \subset \mathbb{R}$ associe à tout réel $x$ de $D$ un unique réel noté $f(x)$. On écrit $f : x \mapsto f(x)$ ; $x$ est la variable, $D$ l'ensemble de définition, $f(x)$ l'image de $x$. En sciences, la variable est très souvent le temps $t$ et la fonction décrit une grandeur qui évolue : position $x(t)$ d'un mobile, tension $u_C(t)$ aux bornes d'un condensateur, concentration $[A](t)$ d'un réactif.
+
+    Le problème que résout la notion de fonction est celui de la **dépendance** : dire précisément comment une grandeur dépend d'une autre, afin de pouvoir calculer, comparer et prévoir. Une fonction peut être donnée par une formule ($x \mapsto 3x^2 + 1$), par un tableau de mesures, par une courbe ou par une équation qu'elle vérifie ; ces quatre visages sont la même idée, et savoir passer de l'un à l'autre est l'essentiel du travail de modélisation.
+
+    En Terminale, on travaille surtout avec des fonctions de référence (puissances, exponentielle, logarithme, sinus, cosinus) et leurs combinaisons, en étudiant limites, continuité et variations. En MPSI, la fonction devient un objet dont on précise rigoureusement les propriétés (régularité, bijection réciproque, comportement asymptotique) et que l'on manipule aussi à valeurs complexes.
+  en: |
+    A **function** $f$ defined on a set $D \subset \mathbb{R}$ assigns to every real number $x$ in $D$ a single real number written $f(x)$. We write $f : x \mapsto f(x)$; $x$ is the variable, $D$ the domain, $f(x)$ the image of $x$. In science the variable is very often time $t$ and the function describes a quantity that evolves: position $x(t)$ of a moving body, voltage $u_C(t)$ across a capacitor, concentration $[A](t)$ of a reactant.
+
+    The problem the notion of function solves is that of **dependence**: saying precisely how one quantity depends on another, so that we can compute, compare and predict. A function can be given by a formula ($x \mapsto 3x^2 + 1$), by a table of measurements, by a curve, or by an equation it satisfies; these four faces are one and the same idea, and moving from one to another is the heart of modelling work.
+
+    In Terminale, work centres on reference functions (powers, exponential, logarithm, sine, cosine) and their combinations, through limits, continuity and variations. In MPSI, the function becomes an object whose properties are stated rigorously (regularity, inverse bijection, asymptotic behaviour) and which is also handled with complex values.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "reconnaître une fonction sous ses quatre formes : formule, tableau de valeurs, courbe, équation"
+        - "déterminer un ensemble de définition et calculer des images et des antécédents"
+        - "composer deux fonctions et lire une expression de la forme $v \\circ u$"
+        - "étudier les variations et les limites d'une fonction de référence et de ses combinaisons"
+      en:
+        - "recognise a function in its four forms: formula, table of values, curve, equation"
+        - "determine a domain and compute images and preimages"
+        - "compose two functions and read an expression of the form $v \\circ u$"
+        - "study the variations and limits of a reference function and of its combinations"
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "manipuler les notions d'injection, de surjection, de bijection et de fonction réciproque"
+        - "utiliser les fonctions usuelles (puissances, exponentielle, logarithme, hyperboliques, circulaires réciproques) et leurs propriétés"
+        - "travailler avec des fonctions à valeurs complexes et des fonctions définies par morceaux"
+        - "caractériser la régularité d'une fonction : continuité, classe $\\mathcal{C}^k$"
+      en:
+        - "handle injections, surjections, bijections and inverse functions"
+        - "use the standard functions (powers, exponential, logarithm, hyperbolic, inverse trigonometric) and their properties"
+        - "work with complex-valued functions and piecewise-defined functions"
+        - "characterise the regularity of a function: continuity, class $\\mathcal{C}^k$"

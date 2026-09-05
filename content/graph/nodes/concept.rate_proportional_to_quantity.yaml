@@ -1,0 +1,56 @@
+id: concept.rate_proportional_to_quantity
+type: mathematical_concept
+region: bridge.modelling
+importance: 3
+tags: [vertical-slice]
+title:
+  fr: Vitesse proportionnelle à la quantité restante
+  en: Rate proportional to the remaining quantity
+shortPurpose:
+  fr: Le schéma commun à la charge d'un condensateur, à la réaction d'ordre 1, à la décroissance radioactive et à la chute freinée ; il mène toujours à une exponentielle.
+  en: The pattern shared by capacitor charging, first-order reactions, radioactive decay and fall with drag; it always leads to an exponential.
+aliases:
+  fr: ["processus du premier ordre", "relaxation exponentielle", "loi exponentielle universelle", "système sans mémoire"]
+  en: ["first-order process", "exponential relaxation", "universal exponential law", "memoryless system"]
+description:
+  fr: |
+    Quatre phénomènes de trois mondes différents obéissent à la même phrase : **« la vitesse de variation d'une grandeur est proportionnelle à ce qu'il lui reste à varier »**. Le condensateur se charge d'autant plus vite qu'il est loin de la tension finale ($u_C' = (E - u_C)/RC$) ; un réactif d'ordre 1 disparaît d'autant plus vite qu'il en reste ($[A]' = -k\,[A]$) ; un échantillon radioactif se désintègre d'autant plus vite qu'il compte de noyaux ($N' = -\lambda N$) ; une bille freinée par l'air accélère d'autant moins qu'elle approche de sa vitesse limite ($v' = (v_{\lim} - v)/\tau$). Dans chaque cas, la dérivée traduit la phrase en équation, et l'équation est la même :
+    $$\frac{\mathrm{d}y}{\mathrm{d}t} = -\frac{y - y_\infty}{\tau}, \qquad y(t) = y_\infty + (y_0 - y_\infty)\,e^{-t/\tau}.$$
+
+    C'est pourquoi l'**exponentielle** est partout : elle est la seule fonction dont la vitesse de variation soit proportionnelle à elle-même. La constante de temps $\tau$ change de nom d'un monde à l'autre ($RC$, $1/k$, $1/\lambda$, $m/k$) mais joue le même rôle : au bout de $\tau$, il reste $37\,\%$ de l'écart initial ; au bout de $\tau \ln 2$, la moitié (demi-vie) ; au bout de $5\tau$, le système est arrivé. Reconnaître ce schéma, c'est pouvoir **transférer** : ce que l'on a compris sur le circuit RC s'applique sans nouveau calcul à la cinétique ou à la radioactivité, et réciproquement.
+
+    Le schéma a des cousins : avec un signe $+$ ($y' = +ky$) on obtient la croissance exponentielle (population, intérêts composés, épidémie à ses débuts) ; avec une source constante on obtient un régime permanent non nul ; avec un terme en $y^2$ la loi cesse d'être exponentielle (ordre 2, frottement quadratique). Savoir d'un coup d'œil si l'on est dans le schéma ou hors du schéma est la première décision de modélisation devant une courbe qui « sature » ou qui « décroît ».
+  en: |
+    Four phenomena from three different worlds obey the same sentence: **"the rate of change of a quantity is proportional to what it still has to change"**. The capacitor charges faster the further it is from the final voltage ($u_C' = (E - u_C)/RC$); a first-order reactant disappears faster the more of it remains ($[A]' = -k\,[A]$); a radioactive sample disintegrates faster the more nuclei it contains ($N' = -\lambda N$); a ball slowed by the air accelerates less the closer it gets to its terminal velocity ($v' = (v_{\lim} - v)/\tau$). In each case, the derivative turns the sentence into an equation, and the equation is the same:
+    $$\frac{\mathrm{d}y}{\mathrm{d}t} = -\frac{y - y_\infty}{\tau}, \qquad y(t) = y_\infty + (y_0 - y_\infty)\,e^{-t/\tau}.$$
+
+    This is why the **exponential** is everywhere: it is the only function whose rate of change is proportional to itself. The time constant $\tau$ changes name from one world to the next ($RC$, $1/k$, $1/\lambda$, $m/k$) but plays the same role: after $\tau$, $37\,\%$ of the initial gap remains; after $\tau \ln 2$, half of it (half-life); after $5\tau$, the system has arrived. Recognising this pattern is being able to **transfer**: what has been understood about the RC circuit applies without any new computation to kinetics or radioactivity, and conversely.
+
+    The pattern has cousins: with a $+$ sign ($y' = +ky$) one gets exponential growth (population, compound interest, an epidemic in its early days); with a constant source one gets a non-zero steady state; with a $y^2$ term the law stops being exponential (order 2, quadratic drag). Knowing at a glance whether one is inside or outside the pattern is the first modelling decision when facing a curve that "saturates" or "decays".
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "reconnaître, dans une situation physique ou chimique, que la vitesse de variation est proportionnelle à l'écart à la valeur finale"
+        - "écrire l'équation $y' = -(y - y_\\infty)/\\tau$ et sa solution exponentielle dans chacun des quatre phénomènes"
+        - "identifier la constante de temps ($RC$, $1/k$, $1/\\lambda$, $m/k$) et la demi-vie correspondante"
+        - "transférer un raisonnement d'un phénomène à un autre en changeant seulement le sens des lettres"
+      en:
+        - "recognise, in a physical or chemical situation, that the rate of change is proportional to the gap to the final value"
+        - "write the equation $y' = -(y - y_\\infty)/\\tau$ and its exponential solution in each of the four phenomena"
+        - "identify the time constant ($RC$, $1/k$, $1/\\lambda$, $m/k$) and the corresponding half-life"
+        - "transfer a line of reasoning from one phenomenon to another by changing only the meaning of the letters"
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "écrire tout système du premier ordre sous la forme canonique $\\tau\\,\\dot y + y = y_\\infty$ et interpréter régime libre et régime forcé"
+        - "distinguer les processus du premier ordre (exponentiels) des processus d'ordre supérieur ou non linéaires par la forme des courbes"
+        - "interpréter la loi exponentielle comme la loi d'un processus sans mémoire (probabilité constante par unité de temps)"
+      en:
+        - "write any first-order system in the canonical form $\\tau\\,\\dot y + y = y_\\infty$ and interpret free and forced regimes"
+        - "distinguish first-order (exponential) processes from higher-order or non-linear processes by the shape of the curves"
+        - "interpret the exponential law as the law of a memoryless process (constant probability per unit time)"

@@ -1,0 +1,79 @@
+# Atelier — remettre en ordre la méthode du taux instantané (ordonnancement)
+id: exercise.workshop.method_order
+type: ordering
+nodeId: tool.derivative
+depth: 1
+evidenceDimension: recognition_explanation
+context:
+  fr: |-
+    Atelier mathématique : la méthode, résumée en cinq étapes, avant d'en faire un outil.
+  en: |-
+    Mathematics workshop: the method, summarised in five steps, before turning it into a tool.
+prompt:
+  fr: |-
+    Voici, dans le désordre, les étapes de la méthode qui définit un taux de variation instantané (la vitesse à un instant donné) à partir d'une loi horaire $x(t)$. Remettez-les dans l'ordre.
+  en: |-
+    Here, out of order, are the steps of the method that defines an instantaneous rate of change (the speed at a given instant) from a position law $x(t)$. Put them back in order.
+ordering:
+  items:
+    - id: s3
+      text:
+        fr: "Diviser par $h$ pour obtenir le taux moyen sur $[t_0 ; t_0 + h]$"
+        en: "Divide by $h$ to obtain the average rate on $[t_0, t_0 + h]$"
+    - id: s1
+      text:
+        fr: "Choisir l'instant $t_0$ et une petite durée $h$"
+        en: "Choose the instant $t_0$ and a small duration $h$"
+    - id: s5
+      text:
+        fr: "Lire la limite : c'est le taux instantané $x'(t_0)$"
+        en: "Read the limit: it is the instantaneous rate $x'(t_0)$"
+    - id: s2
+      text:
+        fr: "Calculer le déplacement $x(t_0 + h) - x(t_0)$"
+        en: "Compute the displacement $x(t_0 + h) - x(t_0)$"
+    - id: s4
+      text:
+        fr: "Rendre $h$ de plus en plus petit"
+        en: "Make $h$ smaller and smaller"
+  correctOrder: [s1, s2, s3, s4, s5]
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Commencez par ce qu'il faut fixer avant tout calcul ; terminez par ce que l'on lit à la fin. Entre les deux, on construit un quotient, puis on le fait évoluer.
+      en: |-
+        Start with what must be fixed before any computation; end with what is read at the end. In between, a quotient is built, then made to evolve.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        L'ordre est celui de la formule $x'(t_0) = \lim_{h \to 0} \dfrac{x(t_0+h) - x(t_0)}{h}$, lue de l'intérieur vers l'extérieur : le numérateur, la division, puis la limite.
+      en: |-
+        The order is that of the formula $x'(t_0) = \lim_{h \to 0} \dfrac{x(t_0+h) - x(t_0)}{h}$, read from the inside out: the numerator, the division, then the limit.
+solution:
+  fr: |-
+    1. **Choisir l'instant $t_0$ et une petite durée $h$** : on fixe où l'on regarde et l'échelle de la loupe.
+    2. **Calculer le déplacement $x(t_0 + h) - x(t_0)$** : le numérateur.
+    3. **Diviser par $h$** : le taux de variation moyen $\dfrac{x(t_0+h) - x(t_0)}{h}$, pente d'une corde de la courbe.
+    4. **Rendre $h$ de plus en plus petit** : la corde pivote vers la tangente.
+    5. **Lire la limite** : le nombre dérivé $x'(t_0) = \lim_{h \to 0} \dfrac{x(t_0+h) - x(t_0)}{h}$, pente de la tangente et taux instantané.
+
+    C'est exactement ce qui manquait sur le plan incliné : les étapes 1 à 3 (vitesses moyennes) étaient à la portée de Galilée ; les étapes 4 et 5 sont l'apport du calcul différentiel.
+  en: |-
+    1. **Choose the instant $t_0$ and a small duration $h$**: we fix where we look and the scale of the magnifying glass.
+    2. **Compute the displacement $x(t_0 + h) - x(t_0)$**: the numerator.
+    3. **Divide by $h$**: the average rate of change $\dfrac{x(t_0+h) - x(t_0)}{h}$, slope of a chord of the curve.
+    4. **Make $h$ smaller and smaller**: the chord pivots towards the tangent.
+    5. **Read the limit**: the derivative $x'(t_0) = \lim_{h \to 0} \dfrac{x(t_0+h) - x(t_0)}{h}$, slope of the tangent and instantaneous rate.
+
+    This is exactly what was missing on the inclined plane: steps 1 to 3 (average speeds) were within Galileo's reach; steps 4 and 5 are the contribution of differential calculus.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

@@ -1,0 +1,44 @@
+# Prerequisite edges: from the prerequisite TO the dependent node (CONTENT_AUTHORING.md).
+# Essential prerequisites must stay acyclic; recommended ones can be supplied just in time.
+edges:
+  # --- requires_essentially -------------------------------------------------
+  - { from: concept.function, to: concept.rate_of_change, type: requires_essentially, weight: 1 }
+  - { from: concept.rate_of_change, to: tool.derivative, type: requires_essentially, weight: 1 }
+  - { from: concept.function, to: tool.derivative, type: requires_essentially, weight: 1 }
+  - { from: tool.derivative, to: tool.exponential, type: requires_essentially, weight: 0.9,
+      note: { fr: "L'exponentielle est définie comme la fonction égale à sa dérivée.", en: "The exponential is defined as the function equal to its own derivative." } }
+  - { from: tool.derivative, to: tool.ode_first_order, type: requires_essentially, weight: 1 }
+  - { from: tool.exponential, to: tool.ode_first_order, type: requires_essentially, weight: 1 }
+  - { from: concept.initial_condition, to: tool.ode_first_order, type: requires_essentially, weight: 1 }
+  - { from: tool.derivative, to: tool.gradient, type: requires_essentially, weight: 1, depthRange: [2, 3],
+      note: { fr: "Le gradient demande la dérivée au niveau MPSI (approximation locale, développement limité à l'ordre 1).", en: "The gradient requires the derivative at MPSI level (local approximation, first-order Taylor expansion)." } }
+  - { from: tool.vector, to: tool.gradient, type: requires_essentially, weight: 1 }
+  - { from: tool.derivative, to: model.kinematics_point, type: requires_essentially, weight: 1 }
+  - { from: model.kinematics_point, to: phenomenon.motion.uniformly_accelerated, type: requires_essentially, weight: 1 }
+  - { from: tool.derivative, to: law.newton_second, type: requires_essentially, weight: 1 }
+  - { from: model.kinematics_point, to: law.newton_second, type: requires_essentially, weight: 1 }
+  - { from: law.newton_second, to: phenomenon.motion.with_drag, type: requires_essentially, weight: 1 }
+  - { from: tool.derivative, to: concept.rate_proportional_to_quantity, type: requires_essentially, weight: 1 }
+  # --- requires_recommended -------------------------------------------------
+  - { from: concept.graph, to: tool.derivative, type: requires_recommended, weight: 0.8 }
+  - { from: concept.function, to: tool.exponential, type: requires_recommended, weight: 0.7 }
+  - { from: concept.dimension_unit, to: model.kinematics_point, type: requires_recommended, weight: 0.7 }
+  - { from: tool.vector, to: model.kinematics_point, type: requires_recommended, weight: 0.9 }
+  - { from: tool.vector, to: phenomenon.motion.inclined_plane, type: requires_recommended, weight: 0.8 }
+  - { from: phenomenon.motion.uniformly_accelerated, to: phenomenon.motion.free_fall, type: requires_recommended, weight: 0.9 }
+  - { from: phenomenon.motion.uniformly_accelerated, to: phenomenon.motion.inclined_plane, type: requires_recommended, weight: 0.9 }
+  - { from: method.measurement, to: phenomenon.motion.inclined_plane, type: requires_recommended, weight: 0.7 }
+  - { from: method.modelling, to: model.kinematics_point, type: requires_recommended, weight: 0.7 }
+  - { from: method.modelling, to: model.rc_circuit, type: requires_recommended, weight: 0.8 }
+  - { from: method.modelling, to: model.reaction_order_one, type: requires_recommended, weight: 0.8 }
+  - { from: tool.ode_first_order, to: model.rc_circuit, type: requires_recommended, weight: 0.9 }
+  - { from: tool.ode_first_order, to: model.reaction_order_one, type: requires_recommended, weight: 0.9 }
+  - { from: tool.ode_first_order, to: phenomenon.motion.with_drag, type: requires_recommended, weight: 0.9 }
+  - { from: tool.exponential, to: phenomenon.circuit.capacitor_charging, type: requires_recommended, weight: 0.8 }
+  - { from: tool.exponential, to: phenomenon.chemistry.first_order_reaction, type: requires_recommended, weight: 0.8 }
+  - { from: tool.exponential, to: phenomenon.nuclear.radioactive_decay, type: requires_recommended, weight: 0.8 }
+  - { from: tool.exponential, to: concept.rate_proportional_to_quantity, type: requires_recommended, weight: 0.9 }
+  - { from: model.rc_circuit, to: phenomenon.circuit.capacitor_charging, type: requires_recommended, weight: 0.8 }
+  - { from: model.reaction_order_one, to: phenomenon.chemistry.first_order_reaction, type: requires_recommended, weight: 0.8 }
+  - { from: phenomenon.chemistry.concentration_over_time, to: phenomenon.chemistry.first_order_reaction, type: requires_recommended, weight: 0.8 }
+  - { from: concept.dimension_unit, to: method.measurement, type: requires_recommended, weight: 0.6 }

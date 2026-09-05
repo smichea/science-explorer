@@ -1,0 +1,17 @@
+id: place.pisa
+anchorNode: person.galileo_galilei
+importance: 1
+tags: [vertical-slice]
+title: { fr: Pise, en: Pisa }
+shortPurpose:
+  fr: "Ville natale de Galilée et lieu de son premier poste de professeur."
+  en: "Galileo's birthplace and the seat of his first professorship."
+modernName: { fr: "Pise (Italie)", en: "Pisa (Italy)" }
+coordinates: { lat: 43.7228, lon: 10.4017 }
+locationCertainty: exact
+context:
+  fr: |
+    Galilée naît à Pise le 15 février 1564, y étudie à l'université à partir de 1581 et y enseigne les mathématiques de 1589 à 1592. La célèbre anecdote des poids lâchés du haut de la tour penchée ne repose que sur le récit de Vincenzo Viviani, rédigé en 1654 ; aucun document contemporain ne la confirme et la plupart des historiens la tiennent pour douteuse.
+  en: |
+    Galileo was born in Pisa on 15 February 1564, studied at its university from 1581 and taught mathematics there from 1589 to 1592. The famous anecdote of weights dropped from the Leaning Tower rests only on Vincenzo Viviani's account, written in 1654; no contemporary document confirms it and most historians regard it as doubtful.
+sources: [source.drake.1978, source.viviani.1717]

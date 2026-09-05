@@ -1,0 +1,304 @@
+# The three worlds and their major regions (PRODUCT_SPECIFICATION §9.1) and the bridge hubs (§9.2).
+# The complete structure is visible from the first session; regions without nodes are silhouettes.
+worlds:
+  - id: world.mathematics
+    title:
+      fr: "Mathématiques"
+      en: "Mathematics"
+    purpose:
+      fr: Construire les outils et les structures qui servent à raisonner et à modéliser.
+      en: Construct the tools and structures used to reason and to model.
+    color: '#7f9cff'
+    regions:
+      - id: region.math.numbers_algebra
+        title:
+          fr: "Nombres et algèbre"
+          en: "Numbers and algebra"
+        summary:
+          fr: "Entiers, réels, calcul algébrique, équations."
+          en: "Integers, reals, algebraic manipulation, equations."
+      - id: region.math.functions_analysis
+        title:
+          fr: "Fonctions et analyse"
+          en: "Functions and analysis"
+        summary:
+          fr: "Fonctions, limites, continuité, dérivation, intégration."
+          en: "Functions, limits, continuity, differentiation, integration."
+      - id: region.math.geometry
+        title:
+          fr: "Géométrie"
+          en: "Geometry"
+        summary:
+          fr: "Vecteurs, produit scalaire, figures et espace."
+          en: "Vectors, dot product, figures and space."
+      - id: region.math.sequences_series
+        title:
+          fr: "Suites et séries"
+          en: "Sequences and series"
+        summary:
+          fr: "Suites, récurrence, convergence, séries."
+          en: "Sequences, induction, convergence, series."
+      - id: region.math.complex_numbers
+        title:
+          fr: "Nombres complexes"
+          en: "Complex numbers"
+        summary:
+          fr: "Forme algébrique, exponentielle, rotations et oscillations."
+          en: "Algebraic and exponential forms, rotations and oscillations."
+      - id: region.math.linear_algebra
+        title:
+          fr: "Algèbre linéaire et matrices"
+          en: "Linear algebra and matrices"
+        summary:
+          fr: "Espaces vectoriels, applications linéaires, matrices, réduction."
+          en: "Vector spaces, linear maps, matrices, diagonalisation."
+      - id: region.math.probability_statistics
+        title:
+          fr: "Probabilités et statistiques"
+          en: "Probability and statistics"
+        summary:
+          fr: "Dénombrement, variables aléatoires, grands nombres."
+          en: "Counting, random variables, large numbers."
+      - id: region.math.differential_equations
+        title:
+          fr: "Équations différentielles"
+          en: "Differential equations"
+        summary:
+          fr: "Modéliser une évolution par sa vitesse de variation."
+          en: "Modelling change through its rate of variation."
+      - id: region.math.multivariable_analysis
+        title:
+          fr: "Analyse à plusieurs variables"
+          en: "Multivariable analysis"
+        summary:
+          fr: "Dérivées partielles, gradient, optimisation."
+          en: "Partial derivatives, gradient, optimisation."
+      - id: region.math.numerical_methods
+        title:
+          fr: "Méthodes numériques"
+          en: "Numerical methods"
+        summary:
+          fr: "Approcher, simuler, calculer avec une machine."
+          en: "Approximating, simulating and computing with a machine."
+  - id: world.physics
+    title:
+      fr: "Physique"
+      en: "Physics"
+    purpose:
+      fr: Observer, modéliser, prédire et expliquer les phénomènes.
+      en: Observe, model, predict and explain phenomena.
+    color: '#ffb347'
+    regions:
+      - id: region.physics.measurement_dimensions
+        title:
+          fr: "Mesure et dimensions"
+          en: "Measurement and dimensions"
+        summary:
+          fr: "Grandeurs, unités, incertitudes, ordres de grandeur."
+          en: "Quantities, units, uncertainties, orders of magnitude."
+      - id: region.physics.motion_mechanics
+        title:
+          fr: "Mouvement et mécanique"
+          en: "Motion and mechanics"
+        summary:
+          fr: "Cinématique, forces, lois de Newton, énergie."
+          en: "Kinematics, forces, Newton's laws, energy."
+      - id: region.physics.gravitation
+        title:
+          fr: "Gravitation"
+          en: "Gravitation"
+        summary:
+          fr: "Chute, orbites, lois de Kepler."
+          en: "Falling bodies, orbits, Kepler's laws."
+      - id: region.physics.oscillations
+        title:
+          fr: "Oscillations"
+          en: "Oscillations"
+        summary:
+          fr: "Oscillateur harmonique, amortissement, résonance."
+          en: "Harmonic oscillator, damping, resonance."
+      - id: region.physics.waves
+        title:
+          fr: "Ondes"
+          en: "Waves"
+        summary:
+          fr: "Propagation, interférences, diffraction, effet Doppler."
+          en: "Propagation, interference, diffraction, Doppler effect."
+      - id: region.physics.optics
+        title:
+          fr: "Optique"
+          en: "Optics"
+        summary:
+          fr: "Lumière, lentilles, instruments, optique ondulatoire."
+          en: "Light, lenses, instruments, wave optics."
+      - id: region.physics.electricity_circuits
+        title:
+          fr: "Électricité et circuits"
+          en: "Electricity and circuits"
+        summary:
+          fr: "Circuits, condensateurs, régimes transitoires, filtrage."
+          en: "Circuits, capacitors, transients, filtering."
+      - id: region.physics.fields_electromagnetism
+        title:
+          fr: "Champs et électromagnétisme"
+          en: "Fields and electromagnetism"
+        summary:
+          fr: "Champs électrique et magnétique, induction, équations de Maxwell."
+          en: "Electric and magnetic fields, induction, Maxwell's equations."
+      - id: region.physics.thermodynamics
+        title:
+          fr: "Thermodynamique"
+          en: "Thermodynamics"
+        summary:
+          fr: "Énergie, chaleur, entropie, machines."
+          en: "Energy, heat, entropy, engines."
+      - id: region.physics.quantum
+        title:
+          fr: "Physique quantique"
+          en: "Quantum physics"
+        summary:
+          fr: "Photons, fonction d'onde, quantification."
+          en: "Photons, wave function, quantisation."
+  - id: world.chemistry
+    title:
+      fr: "Chimie"
+      en: "Chemistry"
+    purpose:
+      fr: Comprendre la matière et ses transformations.
+      en: Understand matter and its transformations.
+    color: '#5ee6a8'
+    regions:
+      - id: region.chemistry.atomic_molecular_structure
+        title:
+          fr: "Structure atomique et moléculaire"
+          en: "Atomic and molecular structure"
+        summary:
+          fr: "Atomes, molécules, liaisons, géométrie."
+          en: "Atoms, molecules, bonds, geometry."
+      - id: region.chemistry.amount_measurement
+        title:
+          fr: "Quantité de matière et mesure"
+          en: "Amount of substance and measurement"
+        summary:
+          fr: "Mole, concentration, dosages, spectroscopies."
+          en: "Mole, concentration, titrations, spectroscopy."
+      - id: region.chemistry.reactions_stoichiometry
+        title:
+          fr: "Réactions et stœchiométrie"
+          en: "Reactions and stoichiometry"
+        summary:
+          fr: "Équations de réaction, avancement, bilans de matière."
+          en: "Reaction equations, extent of reaction, mass balances."
+      - id: region.chemistry.kinetics
+        title:
+          fr: "Cinétique"
+          en: "Kinetics"
+        summary:
+          fr: "Vitesse de réaction, ordre, catalyse, temps de demi-réaction."
+          en: "Reaction rate, order, catalysis, half-life."
+      - id: region.chemistry.equilibria
+        title:
+          fr: "Équilibres"
+          en: "Equilibria"
+        summary:
+          fr: "Quotient de réaction, constante d'équilibre, évolution spontanée."
+          en: "Reaction quotient, equilibrium constant, spontaneous evolution."
+      - id: region.chemistry.acid_base
+        title:
+          fr: "Acides et bases"
+          en: "Acid-base chemistry"
+        summary:
+          fr: "pH, constante d'acidité, diagrammes, titrages."
+          en: "pH, acidity constant, diagrams, titrations."
+      - id: region.chemistry.redox
+        title:
+          fr: "Oxydoréduction"
+          en: "Oxidation-reduction"
+        summary:
+          fr: "Nombres d'oxydation, couples, piles."
+          en: "Oxidation numbers, redox couples, cells."
+      - id: region.chemistry.thermochemistry
+        title:
+          fr: "Thermochimie"
+          en: "Thermochemistry"
+        summary:
+          fr: "Enthalpie de réaction, énergie de liaison, enthalpie libre."
+          en: "Reaction enthalpy, bond energies, free enthalpy."
+      - id: region.chemistry.electrochemistry
+        title:
+          fr: "Électrochimie"
+          en: "Electrochemistry"
+        summary:
+          fr: "Piles, électrolyse, diagrammes potentiel-pH."
+          en: "Cells, electrolysis, potential-pH diagrams."
+      - id: region.chemistry.micro_macro
+        title:
+          fr: "Du microscopique au macroscopique"
+          en: "Microscopic to macroscopic"
+        summary:
+          fr: "Relier les molécules aux grandeurs mesurables."
+          en: "Linking molecules to measurable quantities."
+bridges:
+  - id: bridge.modelling
+    title:
+      fr: "Modélisation"
+      en: "Modelling"
+    summary:
+      fr: "Choisir un système, des hypothèses, des variables ; approximer et critiquer."
+      en: "Choose a system, assumptions and variables; approximate and criticise."
+  - id: bridge.measurement
+    title:
+      fr: "Mesure"
+      en: "Measurement"
+    summary:
+      fr: "Produire, lire et critiquer une mesure."
+      en: "Produce, read and criticise a measurement."
+  - id: bridge.orders_of_magnitude
+    title:
+      fr: "Ordres de grandeur"
+      en: "Orders of magnitude"
+    summary:
+      fr: "Estimer avant de calculer."
+      en: "Estimate before calculating."
+  - id: bridge.energy
+    title:
+      fr: "Énergie"
+      en: "Energy"
+    summary:
+      fr: "La grandeur qui se conserve à travers tous les domaines."
+      en: "The quantity conserved across every domain."
+  - id: bridge.symmetry
+    title:
+      fr: "Symétrie"
+      en: "Symmetry"
+    summary:
+      fr: "Invariances, groupes, lois de conservation."
+      en: "Invariances, groups, conservation laws."
+  - id: bridge.information
+    title:
+      fr: "Information"
+      en: "Information"
+    summary:
+      fr: "Coder, transmettre, calculer."
+      en: "Encoding, transmitting, computing."
+  - id: bridge.experiment
+    title:
+      fr: "Expérience"
+      en: "Experiment"
+    summary:
+      fr: "Concevoir une expérience qui peut trancher."
+      en: "Designing an experiment that can decide."
+  - id: bridge.uncertainty
+    title:
+      fr: "Incertitude"
+      en: "Uncertainty"
+    summary:
+      fr: "Ce qu'une mesure ne dit pas."
+      en: "What a measurement does not say."
+  - id: bridge.statistics
+    title:
+      fr: "Statistiques"
+      en: "Statistics"
+    summary:
+      fr: "Des données aux conclusions."
+      en: "From data to conclusions."

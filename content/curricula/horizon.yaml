@@ -1,0 +1,41 @@
+# Age → default stage inference and curriculum paths (TECHNICAL_ARCHITECTURE §5.2). Data, not code.
+# Age selects a lens, not a prison: the highlighted route never locks a destination.
+id: horizon.fr.reference.2026
+ageConfirmationDays: 180
+stages:
+  - { id: seconde,   order: 0, title: { fr: Seconde, en: Seconde (year 10) },            short: { fr: 2de, en: 2de } }
+  - { id: premiere,  order: 1, title: { fr: Première, en: Première (year 11) },          short: { fr: 1re, en: 1re } }
+  - { id: terminale, order: 2, title: { fr: Terminale, en: Terminale (final year) },     short: { fr: Tle, en: Tle } }
+  - { id: mpsi,      order: 3, title: { fr: MPSI (première année de CPGE), en: MPSI (first preparatory year) }, short: { fr: MPSI, en: MPSI } }
+  - { id: mp,        order: 4, title: { fr: MP (deuxième année de CPGE), en: MP (second preparatory year) },   short: { fr: MP, en: MP } }
+  - { id: beyond,    order: 5, title: { fr: Au-delà du programme, en: Beyond the programme }, short: { fr: Au-delà, en: Beyond } }
+rules:
+  - { ageMin: 5,  ageMax: 15,  currentStage: seconde,   defaultHorizonYears: 3, pathId: fr-seconde-premiere-terminale,
+      note: { fr: Les régions détaillées de cet atlas commencent en Terminale ; tout reste visible., en: Detailed regions of this atlas start in Terminale; everything remains visible. } }
+  - { ageMin: 16, ageMax: 16,  currentStage: premiere,  defaultHorizonYears: 3, pathId: fr-premiere-terminale-mpsi }
+  - { ageMin: 17, ageMax: 17,  currentStage: terminale, defaultHorizonYears: 3, pathId: fr-terminale-mpsi-mp }
+  - { ageMin: 18, ageMax: 18,  currentStage: mpsi,      defaultHorizonYears: 2, pathId: fr-mpsi-mp }
+  - { ageMin: 19, ageMax: 120, currentStage: mp,        defaultHorizonYears: 2, pathId: fr-mp-beyond,
+      note: { fr: Le guide peut choisir une autre étape courante à tout moment., en: The guide can pick another current stage at any time. } }
+paths:
+  - id: fr-seconde-premiere-terminale
+    title: { fr: Seconde → Première → Terminale, en: Seconde → Première → Terminale }
+    stages: [seconde, premiere, terminale]
+  - id: fr-premiere-terminale-mpsi
+    title: { fr: Première → Terminale → MPSI, en: Première → Terminale → MPSI }
+    stages: [premiere, terminale, mpsi]
+  - id: fr-terminale-mpsi-mp
+    title: { fr: Terminale → MPSI → MP, en: Terminale → MPSI → MP }
+    stages: [terminale, mpsi, mp]
+    targets:
+      - { id: ens, title: { fr: Concours des ENS, en: ENS entrance examinations } }
+      - { id: polytechnique, title: { fr: Concours de l'École polytechnique, en: École polytechnique entrance examinations } }
+  - id: fr-mpsi-mp
+    title: { fr: MPSI → MP, en: MPSI → MP }
+    stages: [mpsi, mp]
+    targets:
+      - { id: ens, title: { fr: Concours des ENS, en: ENS entrance examinations } }
+      - { id: polytechnique, title: { fr: Concours de l'École polytechnique, en: École polytechnique entrance examinations } }
+  - id: fr-mp-beyond
+    title: { fr: MP → au-delà, en: MP → beyond }
+    stages: [mp, beyond]

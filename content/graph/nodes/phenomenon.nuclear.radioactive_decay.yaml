@@ -1,0 +1,54 @@
+id: phenomenon.nuclear.radioactive_decay
+type: phenomenon
+world: world.chemistry
+region: region.chemistry.atomic_molecular_structure
+importance: 2
+tags: [vertical-slice]
+title: { fr: Décroissance radioactive, en: Radioactive decay }
+shortPurpose:
+  fr: Des noyaux instables se désintègrent au hasard ; leur nombre décroît exponentiellement, avec une demi-vie caractéristique.
+  en: Unstable nuclei disintegrate at random; their number decays exponentially, with a characteristic half-life.
+aliases:
+  fr: ["radioactivité", "loi de décroissance radioactive", "demi-vie radioactive", "activité d'une source"]
+  en: ["radioactivity", "radioactive decay law", "radioactive half-life", "activity of a source"]
+description:
+  fr: |
+    Un noyau radioactif se désintègre à un instant imprévisible, mais avec une probabilité par unité de temps fixe, $\lambda$ (constante radioactive, en $\mathrm{s^{-1}}$), indépendante de son âge, de la température et de son environnement chimique. Pour un échantillon de $N$ noyaux, le nombre moyen de désintégrations pendant $\mathrm{d}t$ est $\lambda N\,\mathrm{d}t$, d'où
+    $$\frac{\mathrm{d}N}{\mathrm{d}t} = -\lambda N \qquad \Longrightarrow \qquad N(t) = N_0\,e^{-\lambda t}.$$
+    La **demi-vie** $t_{1/2} = \dfrac{\ln 2}{\lambda}$ est la durée au bout de laquelle la moitié des noyaux s'est désintégrée ; elle va de fractions de seconde à des milliards d'années ($5\,730$ ans pour le carbone 14, $4{,}5$ milliards d'années pour l'uranium 238).
+
+    L'**activité** $A = -\dfrac{\mathrm{d}N}{\mathrm{d}t} = \lambda N$, en becquerels (désintégrations par seconde), est ce que mesure un compteur ; elle décroît suivant la même loi, $A(t) = A_0\,e^{-\lambda t}$. La datation au carbone 14 inverse la formule : mesurer $A/A_0$ donne l'âge $t = \dfrac{1}{\lambda}\ln\dfrac{A_0}{A}$.
+
+    La loi est **statistique** : elle décrit un grand nombre de noyaux, pas le destin d'un noyau donné, et les fluctuations relatives sont de l'ordre de $1/\sqrt{N}$. Mathématiquement, c'est exactement la réaction d'ordre 1 et la décharge d'un condensateur : « vitesse de variation proportionnelle à la quantité restante ». Le hasard microscopique produit une loi macroscopique déterministe.
+  en: |
+    A radioactive nucleus disintegrates at an unpredictable instant, but with a fixed probability per unit time, $\lambda$ (decay constant, in $\mathrm{s^{-1}}$), independent of its age, of temperature and of its chemical environment. For a sample of $N$ nuclei, the mean number of disintegrations during $\mathrm{d}t$ is $\lambda N\,\mathrm{d}t$, hence
+    $$\frac{\mathrm{d}N}{\mathrm{d}t} = -\lambda N \qquad \Longrightarrow \qquad N(t) = N_0\,e^{-\lambda t}.$$
+    The **half-life** $t_{1/2} = \dfrac{\ln 2}{\lambda}$ is the time after which half of the nuclei have disintegrated; it ranges from fractions of a second to billions of years ($5\,730$ years for carbon-14, $4.5$ billion years for uranium-238).
+
+    The **activity** $A = -\dfrac{\mathrm{d}N}{\mathrm{d}t} = \lambda N$, in becquerels (disintegrations per second), is what a counter measures; it decays according to the same law, $A(t) = A_0\,e^{-\lambda t}$. Carbon-14 dating inverts the formula: measuring $A/A_0$ gives the age $t = \dfrac{1}{\lambda}\ln\dfrac{A_0}{A}$.
+
+    The law is **statistical**: it describes a large number of nuclei, not the fate of a given nucleus, and the relative fluctuations are of order $1/\sqrt{N}$. Mathematically, it is exactly the first-order reaction and the discharge of a capacitor: "rate of change proportional to the remaining quantity". Microscopic randomness produces a deterministic macroscopic law.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "établir la loi de décroissance $N(t) = N_0 e^{-\\lambda t}$ à partir du caractère aléatoire et sans mémoire de la désintégration"
+        - "définir la demi-vie, la relier à $\\lambda$ et l'utiliser pour des calculs de datation"
+        - "définir l'activité, son unité, et l'exploiter sur une courbe expérimentale"
+        - "reconnaître l'analogie avec la cinétique d'ordre 1 et la décharge d'un condensateur"
+      en:
+        - "establish the decay law $N(t) = N_0 e^{-\\lambda t}$ from the random, memoryless nature of disintegration"
+        - "define the half-life, relate it to $\\lambda$ and use it for dating calculations"
+        - "define the activity, its unit, and use it on an experimental curve"
+        - "recognise the analogy with first-order kinetics and capacitor discharge"
+    lesson:
+      fr: |
+        **Loi de décroissance.** Chaque noyau a une probabilité $\lambda\,\mathrm{d}t$ de se désintégrer pendant $\mathrm{d}t$, indépendamment de son passé. Pour $N$ noyaux, la variation moyenne est $\mathrm{d}N = -\lambda N\,\mathrm{d}t$, soit $\dfrac{\mathrm{d}N}{\mathrm{d}t} = -\lambda N$ : une équation $y' = ay$ avec $a = -\lambda$, dont la solution est $N(t) = N_0\,e^{-\lambda t}$. La demi-vie vérifie $e^{-\lambda t_{1/2}} = \tfrac12$, d'où $t_{1/2} = \dfrac{\ln 2}{\lambda}$ ; après $n$ demi-vies il reste $N_0/2^n$ noyaux.
+
+        **Activité et datation.** L'activité $A(t) = \lambda N(t) = A_0\,e^{-\lambda t}$ se mesure en becquerels ($\mathrm{Bq}$). Pour le carbone 14, $t_{1/2} = 5\,730$ ans, donc $\lambda = \dfrac{\ln 2}{5\,730} \approx 1{,}21\cdot10^{-4}\ \mathrm{an^{-1}}$ ; un échantillon dont l'activité vaut le quart de celle d'un organisme vivant a environ $2 \times 5\,730 = 11\,460$ ans. Le nombre de désintégrations mesuré pendant une durée donnée fluctue d'environ $\sqrt{N}$ autour de sa moyenne : c'est la limite statistique de la précision.
+      en: |
+        **Decay law.** Each nucleus has a probability $\lambda\,\mathrm{d}t$ of disintegrating during $\mathrm{d}t$, independently of its past. For $N$ nuclei, the mean change is $\mathrm{d}N = -\lambda N\,\mathrm{d}t$, that is $\dfrac{\mathrm{d}N}{\mathrm{d}t} = -\lambda N$: an equation $y' = ay$ with $a = -\lambda$, whose solution is $N(t) = N_0\,e^{-\lambda t}$. The half-life satisfies $e^{-\lambda t_{1/2}} = \tfrac12$, hence $t_{1/2} = \dfrac{\ln 2}{\lambda}$; after $n$ half-lives, $N_0/2^n$ nuclei remain.
+
+        **Activity and dating.** The activity $A(t) = \lambda N(t) = A_0\,e^{-\lambda t}$ is measured in becquerels ($\mathrm{Bq}$). For carbon-14, $t_{1/2} = 5\,730$ years, so $\lambda = \dfrac{\ln 2}{5\,730} \approx 1.21\cdot10^{-4}\ \mathrm{yr^{-1}}$; a sample whose activity is a quarter of that of a living organism is about $2 \times 5\,730 = 11\,460$ years old. The number of disintegrations counted during a given duration fluctuates by about $\sqrt{N}$ around its mean: this is the statistical limit of precision.

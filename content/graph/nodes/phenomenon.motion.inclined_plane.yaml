@@ -1,0 +1,72 @@
+id: phenomenon.motion.inclined_plane
+type: phenomenon
+world: world.physics
+region: region.physics.motion_mechanics
+importance: 2
+tags: [vertical-slice]
+title: { fr: Mouvement sur un plan incliné, en: Motion on an inclined plane }
+shortPurpose:
+  fr: Ralentir la pesanteur pour pouvoir chronométrer la chute sans en changer la loi.
+  en: Slow gravity down so that fall can be timed without changing its law.
+aliases:
+  fr: ["plan incliné", "descente d'un plan incliné", "bille sur un plan incliné", "expérience du plan incliné de Galilée"]
+  en: ["inclined plane", "descent of an inclined plane", "ball on an inclined plane", "Galileo's inclined plane experiment"]
+description:
+  fr: |
+    Sur un plan incliné d'angle $\theta$, seule la composante du poids parallèle au plan, $mg\sin\theta$, met l'objet en mouvement ; la composante normale $mg\cos\theta$ est compensée par la réaction du support. Pour un objet qui **glisse sans frottement**, la deuxième loi de Newton donne
+    $$a = g\sin\theta,$$
+    accélération constante, donc mouvement uniformément accéléré, mais d'autant plus lent que l'angle est faible. Pour une **bille qui roule sans glisser**, une partie de l'énergie part en rotation et l'accélération vaut $a = \tfrac57\,g\sin\theta$ (sphère pleine) : la loi du mouvement reste la même, seule la constante change.
+
+    C'est le génie du dispositif de Galilée : la chute verticale est trop rapide pour une horloge à eau, mais en inclinant le plan on « dilue » la pesanteur autant que l'on veut sans changer la *forme* de la loi. Sur une planche d'une douzaine de coudées, en relevant la position de la bille à des instants réguliers, on trouve des distances dans les rapports $1 : 4 : 9 : 16$ : les espaces sont comme les carrés des temps. En faisant varier l'angle et la longueur parcourue, Galilée a vérifié que le rapport se maintenait, ce qui lui a permis d'extrapoler à la chute libre.
+
+    Aujourd'hui, le plan incliné reste l'expérience de référence pour *mesurer* une accélération, discuter des incertitudes (temps de réaction, frottements, roulement) et confronter un modèle à des données : le rapport entre l'accélération mesurée et $g\sin\theta$ dit si la bille glisse, roule ou frotte.
+  en: |
+    On an inclined plane of angle $\theta$, only the component of the weight parallel to the plane, $mg\sin\theta$, sets the object in motion; the normal component $mg\cos\theta$ is balanced by the reaction of the support. For an object that **slides without friction**, Newton's second law gives
+    $$a = g\sin\theta,$$
+    a constant acceleration, hence a uniformly accelerated motion, but slower as the angle gets smaller. For a **ball rolling without slipping**, part of the energy goes into rotation and the acceleration is $a = \tfrac57\,g\sin\theta$ (solid sphere): the law of motion stays the same, only the constant changes.
+
+    This is the genius of Galileo's set-up: vertical fall is too fast for a water clock, but tilting the plane "dilutes" gravity as much as one wishes without changing the *form* of the law. On a board about twelve cubits long, recording the position of the ball at regular instants gives distances in the ratios $1 : 4 : 9 : 16$: the spaces are as the squares of the times. By varying the angle and the distance covered, Galileo checked that the ratio held, which allowed him to extrapolate to free fall.
+
+    Today the inclined plane remains the reference experiment for *measuring* an acceleration, discussing uncertainties (reaction time, friction, rolling) and confronting a model with data: the ratio between the measured acceleration and $g\sin\theta$ tells whether the ball slides, rolls or rubs.
+history:
+  summary:
+    fr: "Galilée décrit dans la troisième journée des *Discorsi* (1638) une expérience de plan incliné : une bille de bronze roule dans une rainure taillée dans une planche d'une douzaine de coudées, la durée étant mesurée par la masse d'eau écoulée d'un vase ; il rapporte que les espaces parcourus sont entre eux comme les carrés des temps, pour toutes les inclinaisons essayées. Les manuscrits de travail conservés à Florence, analysés par Stillman Drake, sont généralement datés de la période padouane (vers 1604)."
+    en: "Galileo describes in the Third Day of the *Discorsi* (1638) an inclined-plane experiment: a bronze ball rolls in a groove cut into a board about twelve cubits long, the time being measured by the mass of water flowing out of a vessel; he reports that the spaces covered are to one another as the squares of the times, for every inclination tried. The working manuscripts kept in Florence, analysed by Stillman Drake, are generally dated to the Paduan period (around 1604)."
+  status: attested
+  sources: [source.galileo.discorsi.1638, source.drake.1978]
+depths:
+  - depth: 1
+    stage: terminale
+    role: extension_and_application
+    outcomes:
+      fr:
+        - "projeter le poids sur un axe parallèle au plan et établir $a = g\\sin\\theta$ pour un glissement sans frottement"
+        - "mesurer une accélération à partir d'un relevé de positions et de dates, et vérifier la loi des carrés des temps"
+        - "comparer l'accélération mesurée à $g\\sin\\theta$ et interpréter l'écart (roulement, frottements, incertitudes)"
+        - "expliquer pourquoi incliner le plan permet de chronométrer la chute sans changer la forme de la loi"
+      en:
+        - "project the weight onto an axis parallel to the plane and derive $a = g\\sin\\theta$ for frictionless sliding"
+        - "measure an acceleration from a record of positions and times, and check the times-squared law"
+        - "compare the measured acceleration with $g\\sin\\theta$ and interpret the gap (rolling, friction, uncertainties)"
+        - "explain why tilting the plane makes it possible to time the fall without changing the form of the law"
+    lesson:
+      fr: |
+        **Mise en équation.** Système : la bille, de masse $m$ ; référentiel terrestre ; forces : le poids $\vec P$ et la réaction $\vec R$ du plan, normale au plan en l'absence de frottement. Axe $(Ox)$ le long du plan, vers le bas ; axe $(Oy)$ normal au plan. Projection de la deuxième loi de Newton : $m\,\ddot x = mg\sin\theta$ et $0 = R - mg\cos\theta$. D'où $a = g\sin\theta$, indépendante de la masse, puis $x(t) = \tfrac12\,g\sin\theta\,t^2$ pour un départ sans vitesse. Pour $\theta = 10^\circ$, $a \approx 1{,}7\ \mathrm{m\cdot s^{-2}}$ : parcourir $2\ \mathrm{m}$ prend environ $1{,}5\ \mathrm{s}$, durée que l'on sait mesurer.
+
+        **Exploitation.** On relève les positions $x_i$ aux dates $t_i$ et l'on trace $x$ en fonction de $t^2$ : les points s'alignent sur une droite de pente $a/2$. Si la bille roule sans glisser, la pente mesurée est proche de $\tfrac57\,g\sin\theta \approx 0{,}71\,g\sin\theta$ plutôt que de $g\sin\theta$ : l'écart n'est pas une erreur, c'est la signature de la rotation, que le modèle du point matériel ignore.
+      en: |
+        **Setting up the equation.** System: the ball, of mass $m$; terrestrial frame; forces: the weight $\vec P$ and the reaction $\vec R$ of the plane, normal to the plane in the absence of friction. Axis $(Ox)$ along the plane, downwards; axis $(Oy)$ normal to the plane. Projecting Newton's second law: $m\,\ddot x = mg\sin\theta$ and $0 = R - mg\cos\theta$. Hence $a = g\sin\theta$, independent of the mass, then $x(t) = \tfrac12\,g\sin\theta\,t^2$ for a start from rest. For $\theta = 10^\circ$, $a \approx 1.7\ \mathrm{m\cdot s^{-2}}$: covering $2\ \mathrm{m}$ takes about $1.5\ \mathrm{s}$, a duration one can measure.
+
+        **Using the data.** Record the positions $x_i$ at times $t_i$ and plot $x$ against $t^2$: the points line up on a straight line of slope $a/2$. If the ball rolls without slipping, the measured slope is close to $\tfrac57\,g\sin\theta \approx 0.71\,g\sin\theta$ rather than $g\sin\theta$: the gap is not an error, it is the signature of rotation, which the point-mass model ignores.
+  - depth: 2
+    stage: mpsi
+    role: extension_and_application
+    outcomes:
+      fr:
+        - "traiter le plan incliné avec frottement solide (lois de Coulomb) et déterminer la condition de glissement"
+        - "retrouver l'accélération par un bilan d'énergie mécanique"
+        - "estimer les incertitudes sur $a$ et sur $g$ déduites d'une série de mesures"
+      en:
+        - "handle the inclined plane with solid friction (Coulomb's laws) and determine the sliding condition"
+        - "recover the acceleration through a mechanical energy balance"
+        - "estimate the uncertainties on $a$ and on $g$ deduced from a series of measurements"

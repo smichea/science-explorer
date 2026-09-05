@@ -1,0 +1,17 @@
+# Mission edges: appears_in_mission goes from the node TO the mission; introduces / uses / assesses
+# go from the mission TO the node.
+edges:
+  # --- appears_in_mission --------------------------------------------------
+  - { from: tool.derivative, to: mission.galileo.inclined_plane, type: appears_in_mission, weight: 1 }
+  - { from: concept.rate_of_change, to: mission.galileo.inclined_plane, type: appears_in_mission, weight: 1 }
+  - { from: phenomenon.motion.inclined_plane, to: mission.galileo.inclined_plane, type: appears_in_mission, weight: 1 }
+  - { from: phenomenon.motion.uniformly_accelerated, to: mission.galileo.inclined_plane, type: appears_in_mission, weight: 1 }
+  - { from: phenomenon.circuit.capacitor_charging, to: mission.galileo.inclined_plane, type: appears_in_mission, weight: 0.8 }
+  - { from: phenomenon.chemistry.first_order_reaction, to: mission.galileo.inclined_plane, type: appears_in_mission, weight: 0.8 }
+  - { from: method.measurement, to: mission.galileo.inclined_plane, type: appears_in_mission, weight: 0.9 }
+  - { from: concept.rate_proportional_to_quantity, to: mission.galileo.inclined_plane, type: appears_in_mission, weight: 0.7 }
+  # --- introduces / uses / assesses -----------------------------------------
+  - { from: mission.galileo.inclined_plane, to: tool.derivative, type: introduces, weight: 1 }
+  - { from: mission.galileo.inclined_plane, to: method.measurement, type: uses, weight: 1 }
+  - { from: mission.galileo.inclined_plane, to: tool.derivative, type: uses, weight: 1 }
+  - { from: mission.galileo.inclined_plane, to: tool.derivative, type: assesses, weight: 1 }

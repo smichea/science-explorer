@@ -1,0 +1,66 @@
+id: phenomenon.motion.free_fall
+type: phenomenon
+world: world.physics
+region: region.physics.gravitation
+importance: 3
+tags: [vertical-slice]
+title: { fr: Chute libre, en: Free fall }
+shortPurpose:
+  fr: Un corps soumis à son seul poids tombe avec la même accélération quelle que soit sa masse.
+  en: A body subject to its weight alone falls with the same acceleration whatever its mass.
+aliases:
+  fr: ["chute des corps", "chute dans le champ de pesanteur", "mouvement dans un champ de pesanteur uniforme", "chute verticale"]
+  en: ["falling bodies", "fall in the gravitational field", "motion in a uniform gravitational field", "vertical fall"]
+description:
+  fr: |
+    Lâché sans vitesse initiale et en l'absence de résistance de l'air, un corps tombe avec une accélération constante $\vec g$, dirigée vers le bas, de norme $g \approx 9{,}8\ \mathrm{m\cdot s^{-2}}$ à la surface de la Terre, **indépendamment de sa masse** : une bille de plomb et une bille de bois lâchées ensemble touchent le sol en même temps (dans le vide). En prenant l'axe $(Oz)$ vertical ascendant :
+    $$\ddot z = -g, \qquad \dot z = -g\,t + v_0, \qquad z(t) = -\tfrac12\,g\,t^2 + v_0\,t + z_0.$$
+    La chute libre est donc un mouvement uniformément accéléré dont l'accélération est fixée par le champ de pesanteur ; avec une vitesse initiale non verticale, la trajectoire est une parabole (mouvement d'un projectile).
+
+    Le mot « libre » signifie que le corps n'est soumis qu'à son poids : c'est une idéalisation. Dans l'air, la résistance croît avec la vitesse ; elle est négligeable pour une bille dense qui tombe d'un mètre, décisive pour une plume ou un parachutiste. Comparer chute libre et chute avec frottement, c'est apprendre à décider quand une hypothèse simplificatrice est acceptable.
+
+    Historiquement, la chute est trop rapide pour être chronométrée au début du XVII<sup>e</sup> siècle : Galilée l'a « diluée » sur un plan incliné pour la mesurer, puis a extrapolé au cas vertical. Newton en a ensuite donné la cause avec la gravitation universelle : $g = \dfrac{G\,M_T}{R_T^2}$.
+  en: |
+    Released without initial velocity and in the absence of air resistance, a body falls with a constant acceleration $\vec g$, directed downwards, of magnitude $g \approx 9.8\ \mathrm{m\cdot s^{-2}}$ at the surface of the Earth, **independently of its mass**: a lead ball and a wooden ball released together hit the ground at the same time (in a vacuum). Taking the axis $(Oz)$ vertical and upwards:
+    $$\ddot z = -g, \qquad \dot z = -g\,t + v_0, \qquad z(t) = -\tfrac12\,g\,t^2 + v_0\,t + z_0.$$
+    Free fall is therefore a uniformly accelerated motion whose acceleration is set by the gravitational field; with a non-vertical initial velocity, the trajectory is a parabola (projectile motion).
+
+    The word "free" means that the body is subject to its weight only: it is an idealisation. In air, resistance grows with speed; it is negligible for a dense ball falling one metre, decisive for a feather or a parachutist. Comparing free fall with fall under drag is learning to decide when a simplifying assumption is acceptable.
+
+    Historically, fall is too fast to be timed at the beginning of the 17th century: Galileo "diluted" it on an inclined plane in order to measure it, then extrapolated to the vertical case. Newton later gave its cause with universal gravitation: $g = \dfrac{G\,M_T}{R_T^2}$.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "établir les équations horaires d'une chute libre à partir de $\\vec a = \\vec g$ et des conditions initiales"
+        - "montrer que la durée de chute et la vitesse d'arrivée ne dépendent pas de la masse"
+        - "traiter le mouvement d'un projectile en séparant les composantes horizontale et verticale"
+        - "discuter la validité du modèle sans frottement selon l'objet et la hauteur de chute"
+      en:
+        - "derive the equations of free fall from $\\vec a = \\vec g$ and the initial conditions"
+        - "show that the fall duration and the arrival speed do not depend on the mass"
+        - "handle projectile motion by separating the horizontal and vertical components"
+        - "discuss the validity of the frictionless model according to the object and the height of fall"
+    lesson:
+      fr: |
+        **Mise en équation.** Système : le corps, de masse $m$ ; référentiel terrestre supposé galiléen ; seule force : le poids $\vec P = m\,\vec g$. La deuxième loi de Newton donne $m\,\vec a = m\,\vec g$, soit $\vec a = \vec g$ : la masse disparaît. Avec $(Oz)$ vertical ascendant et un lâcher sans vitesse depuis $z_0 = h$ : $z(t) = h - \tfrac12 g t^2$. Le sol est atteint à $t_c = \sqrt{2h/g}$ avec la vitesse $v_c = \sqrt{2gh}$ ; pour $h = 1\ \mathrm{m}$, $t_c \approx 0{,}45\ \mathrm{s}$, ce qui explique pourquoi Galilée a eu besoin d'un plan incliné pour chronométrer.
+
+        **Projectile.** Avec une vitesse initiale $\vec v_0$ faisant l'angle $\alpha$ avec l'horizontale : $x(t) = v_0\cos\alpha\, t$ (mouvement uniforme) et $z(t) = -\tfrac12 g t^2 + v_0\sin\alpha\, t$ (mouvement uniformément accéléré). L'élimination de $t$ donne l'équation de la trajectoire, une parabole $z = -\dfrac{g}{2 v_0^2\cos^2\alpha}\,x^2 + x\tan\alpha$.
+      en: |
+        **Setting up the equation.** System: the body, of mass $m$; terrestrial frame assumed Galilean; only force: the weight $\vec P = m\,\vec g$. Newton's second law gives $m\,\vec a = m\,\vec g$, that is $\vec a = \vec g$: the mass disappears. With $(Oz)$ vertical upwards and a release without velocity from $z_0 = h$: $z(t) = h - \tfrac12 g t^2$. The ground is reached at $t_c = \sqrt{2h/g}$ with speed $v_c = \sqrt{2gh}$; for $h = 1\ \mathrm{m}$, $t_c \approx 0.45\ \mathrm{s}$, which explains why Galileo needed an inclined plane to time the fall.
+
+        **Projectile.** With an initial velocity $\vec v_0$ making the angle $\alpha$ with the horizontal: $x(t) = v_0\cos\alpha\, t$ (uniform motion) and $z(t) = -\tfrac12 g t^2 + v_0\sin\alpha\, t$ (uniformly accelerated motion). Eliminating $t$ gives the equation of the trajectory, a parabola $z = -\dfrac{g}{2 v_0^2\cos^2\alpha}\,x^2 + x\tan\alpha$.
+  - depth: 2
+    stage: mpsi
+    role: review
+    outcomes:
+      fr:
+        - "reprendre la chute libre comme cas limite de la chute avec frottement fluide aux temps courts"
+        - "relier $g$ à la gravitation universelle et discuter l'hypothèse de champ uniforme"
+        - "utiliser l'approche énergétique pour retrouver la vitesse d'arrivée"
+      en:
+        - "revisit free fall as the short-time limit of fall with fluid drag"
+        - "relate $g$ to universal gravitation and discuss the uniform-field assumption"
+        - "use the energy approach to recover the arrival speed"

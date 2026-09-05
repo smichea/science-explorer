@@ -1,0 +1,62 @@
+# Retour au phénomène — extrapolation à la chute libre (réponse numérique, transfert)
+id: exercise.return.free_fall_extrapolation
+type: numeric
+nodeId: tool.derivative
+phenomenonId: phenomenon.motion.free_fall
+depth: 1
+evidenceDimension: transfer
+context:
+  fr: |-
+    Le plan incliné de Galilée « dilue » la pesanteur pour rendre la chute mesurable. Redressons-le jusqu'à la verticale.
+  en: |-
+    Galileo's inclined plane "dilutes" gravity to make the fall measurable. Let us raise it all the way to the vertical.
+prompt:
+  fr: |-
+    Sur un plan incliné d'angle $\theta$, l'accélération d'un mobile qui glisse sans frottement vaut $a = g \sin\theta$. Pour $\theta = 90^\circ$ le plan est vertical : c'est la **chute libre**, avec $a = g = 9.81\ \mathrm{m/s^2}$ (on néglige l'air).
+
+    Une bille lâchée sans vitesse initiale depuis $10\ \mathrm{m}$ de hauteur touche le sol après $1.43\ \mathrm{s}$. En utilisant $x(t) = \tfrac{1}{2} g t^2$ et la dérivée, calculez sa vitesse à l'instant où elle touche le sol, en $\mathrm{m/s}$.
+  en: |-
+    On a plane inclined at an angle $\theta$, the acceleration of a body sliding without friction is $a = g \sin\theta$. For $\theta = 90^\circ$ the plane is vertical: this is **free fall**, with $a = g = 9.81\ \mathrm{m/s^2}$ (air is neglected).
+
+    A ball released with no initial speed from a height of $10\ \mathrm{m}$ hits the ground after $1.43\ \mathrm{s}$. Using $x(t) = \tfrac{1}{2} g t^2$ and the derivative, compute its speed at the instant it hits the ground, in $\mathrm{m/s}$.
+numeric:
+  value: 14.0
+  unit: "m/s"
+  tolerance: { kind: relative, value: 0.03 }
+  inputLabel: { fr: "Vitesse à l'arrivée au sol", en: "Speed on reaching the ground" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Même méthode que sur le plan incliné : $v(t) = x'(t)$. Seule la valeur de l'accélération change.
+      en: |-
+        Same method as on the inclined plane: $v(t) = x'(t)$. Only the value of the acceleration changes.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $v(t) = g\,t$, avec $g = 9.81\ \mathrm{m/s^2}$ et $t = 1.43\ \mathrm{s}$.
+      en: |-
+        $v(t) = g\,t$, with $g = 9.81\ \mathrm{m/s^2}$ and $t = 1.43\ \mathrm{s}$.
+solution:
+  fr: |-
+    La chute libre est le cas limite du plan incliné ($\sin 90^\circ = 1$) : la loi horaire garde la même forme, $x(t) = \tfrac{1}{2} g t^2$, donc
+    $$v(t) = x'(t) = g\,t, \qquad v(1.43) = 9.81 \times 1.43 \approx 14.0\ \mathrm{m/s}.$$
+    Soit environ $50\ \mathrm{km/h}$. Vérification de cohérence : $x(1.43) = \tfrac{1}{2} \times 9.81 \times 1.43^2 \approx 10.0\ \mathrm{m}$, c'est bien la hauteur de départ ; la durée de $1.43\ \mathrm{s}$ vient de $t = \sqrt{2h/g}$.
+
+    **Transfert.** Le même outil, dériver la loi horaire, s'applique sans changement à une chute que Galilée ne pouvait pas chronométrer directement : c'est tout l'intérêt du plan incliné, qui ralentit le mouvement sans changer sa nature.
+  en: |-
+    Free fall is the limiting case of the inclined plane ($\sin 90^\circ = 1$): the position law keeps the same form, $x(t) = \tfrac{1}{2} g t^2$, hence
+    $$v(t) = x'(t) = g\,t, \qquad v(1.43) = 9.81 \times 1.43 \approx 14.0\ \mathrm{m/s}.$$
+    That is about $50\ \mathrm{km/h}$. Consistency check: $x(1.43) = \tfrac{1}{2} \times 9.81 \times 1.43^2 \approx 10.0\ \mathrm{m}$, which is indeed the starting height; the duration of $1.43\ \mathrm{s}$ comes from $t = \sqrt{2h/g}$.
+
+    **Transfer.** The same tool, differentiating the position law, applies unchanged to a fall that Galileo could not time directly: that is the whole point of the inclined plane, which slows the motion down without changing its nature.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 2
+  linkedConcepts: 2
+  transfer: 3
+  autonomy: 3

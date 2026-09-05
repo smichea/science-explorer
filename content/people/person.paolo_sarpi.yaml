@@ -1,0 +1,36 @@
+id: person.paolo_sarpi
+anchorNode: mission.galileo.inclined_plane
+importance: 1
+tags: [vertical-slice]
+title: { fr: Paolo Sarpi, en: Paolo Sarpi }
+shortPurpose:
+  fr: "Ami vénitien de Galilée, destinataire de la lettre de 1604 sur la loi de la chute."
+  en: "Galileo's Venetian friend, recipient of the 1604 letter on the law of fall."
+names:
+  display: { fr: Paolo Sarpi, en: Paolo Sarpi }
+  original: Paolo Sarpi
+born:
+  certainty: exact
+  from: "1552-08-14"
+  display: { fr: "14 août 1552, Venise", en: "14 August 1552, Venice" }
+died:
+  certainty: exact
+  from: "1623-01-15"
+  display: { fr: "15 janvier 1623, Venise", en: "15 January 1623, Venice" }
+roles:
+  fr:
+    - "frère servite, théologien et érudit"
+    - "consulteur (théologien d'État) de la République de Venise à partir de 1606"
+    - "ami et correspondant de Galilée"
+  en:
+    - "Servite friar, theologian and scholar"
+    - "consultore (state theologian) of the Republic of Venice from 1606"
+    - "Galileo's friend and correspondent"
+places: []
+biography:
+  fr: |
+    Entré chez les Servites à Venise, Paolo Sarpi devient théologien, historien du concile de Trente et, à partir de 1606, consulteur de la République de Venise, dont il défend les droits contre Rome pendant l'Interdit. Curieux de mathématiques, d'optique et de magnétisme, il fréquente Galilée dès l'arrivée de celui-ci à Padoue et reçoit, le 16 octobre 1604, la lettre où Galilée énonce que les espaces parcourus en chute naturelle sont comme les carrés des temps. En 1609, il appuie encore auprès du Sénat la lunette que Galilée offre à la République.
+  en: |
+    Having entered the Servite order in Venice, Paolo Sarpi became a theologian, the historian of the Council of Trent and, from 1606, consultore of the Republic of Venice, whose rights he defended against Rome during the Interdict. Interested in mathematics, optics and magnetism, he kept company with Galileo from the latter's arrival in Padua and received, on 16 October 1604, the letter in which Galileo states that the spaces passed in natural fall are as the squares of the times. In 1609 he again backed, before the Senate, the telescope Galileo offered to the Republic.
+evidenceStatus: attested
+sources: [source.drake.1978]

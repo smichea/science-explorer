@@ -1,0 +1,68 @@
+id: phenomenon.chemistry.first_order_reaction
+type: phenomenon
+world: world.chemistry
+region: region.chemistry.kinetics
+importance: 3
+tags: [vertical-slice]
+title: { fr: Réaction d'ordre 1, en: First-order reaction }
+shortPurpose:
+  fr: Une réaction dont la vitesse est proportionnelle à la concentration du réactif ; la concentration décroît exponentiellement.
+  en: A reaction whose rate is proportional to the reactant concentration; the concentration decays exponentially.
+aliases:
+  fr: ["cinétique d'ordre 1", "loi de vitesse d'ordre 1", "décroissance exponentielle d'une concentration", "temps de demi-réaction"]
+  en: ["first-order kinetics", "first-order rate law", "exponential decay of a concentration", "reaction half-life"]
+description:
+  fr: |
+    Pour une réaction $A \to \text{produits}$ d'**ordre 1**, la vitesse de disparition est proportionnelle à la concentration : $-\dfrac{\mathrm{d}[A]}{\mathrm{d}t} = k\,[A]$. Cette équation différentielle a pour solution
+    $$[A](t) = [A]_0\,e^{-kt},$$
+    où $k$ (en $\mathrm{s^{-1}}$) est la constante de vitesse. La concentration décroît d'autant plus vite qu'il reste beaucoup de réactif, puis de plus en plus lentement : la courbe est une exponentielle décroissante, et $\ln[A]$ est une fonction affine du temps, de pente $-k$.
+
+    Le **temps de demi-réaction** $t_{1/2}$, durée au bout de laquelle la moitié du réactif initial a disparu, vaut $t_{1/2} = \dfrac{\ln 2}{k}$ : il est **indépendant de la concentration initiale**. C'est le test expérimental de l'ordre 1 : si les demi-réactions successives durent toutes le même temps, l'ordre est 1. Les décompositions unimoléculaires (pentoxyde d'azote, eau oxygénée en présence d'un catalyseur), l'hydrolyse d'un ester en grand excès d'eau (ordre 1 apparent) et la désintégration radioactive suivent cette loi.
+
+    Mathématiquement, c'est la même équation que la décharge d'un condensateur ($RC$ joue le rôle de $1/k$) ou que la décroissance radioactive ($\lambda$ joue le rôle de $k$). En Terminale, on établit la loi et l'on exploite $t_{1/2}$ ; en MPSI, on la replace dans la théorie des ordres, on l'utilise pour déterminer un ordre et l'on relie $k$ à la température par la loi d'Arrhenius.
+  en: |
+    For a reaction $A \to \text{products}$ of **order 1**, the rate of disappearance is proportional to the concentration: $-\dfrac{\mathrm{d}[A]}{\mathrm{d}t} = k\,[A]$. This differential equation has the solution
+    $$[A](t) = [A]_0\,e^{-kt},$$
+    where $k$ (in $\mathrm{s^{-1}}$) is the rate constant. The concentration decreases faster while much reactant remains, then more and more slowly: the curve is a decaying exponential, and $\ln[A]$ is an affine function of time, with slope $-k$.
+
+    The **half-life** $t_{1/2}$, the time after which half of the initial reactant has disappeared, is $t_{1/2} = \dfrac{\ln 2}{k}$: it is **independent of the initial concentration**. This is the experimental test for order 1: if successive half-lives all last the same time, the order is 1. Unimolecular decompositions (dinitrogen pentoxide, hydrogen peroxide with a catalyst), the hydrolysis of an ester in a large excess of water (apparent first order) and radioactive decay follow this law.
+
+    Mathematically, it is the same equation as the discharge of a capacitor ($RC$ plays the role of $1/k$) or as radioactive decay ($\lambda$ plays the role of $k$). In Terminale, the law is established and $t_{1/2}$ is used; in MPSI, it is placed within the theory of reaction orders, used to determine an order, and $k$ is related to temperature by the Arrhenius law.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "écrire la loi de vitesse d'ordre 1 et l'équation différentielle $\\mathrm{d}[A]/\\mathrm{d}t = -k[A]$"
+        - "vérifier que $[A](t) = [A]_0 e^{-kt}$ est solution et relier $k$ à la pente de $\\ln[A]$ en fonction de $t$"
+        - "calculer et utiliser le temps de demi-réaction $t_{1/2} = \\ln 2 / k$"
+        - "reconnaître un ordre 1 sur des données expérimentales (demi-réactions successives égales)"
+      en:
+        - "write the first-order rate law and the differential equation $\\mathrm{d}[A]/\\mathrm{d}t = -k[A]$"
+        - "check that $[A](t) = [A]_0 e^{-kt}$ is a solution and relate $k$ to the slope of $\\ln[A]$ against $t$"
+        - "compute and use the half-life $t_{1/2} = \\ln 2 / k$"
+        - "recognise a first order in experimental data (equal successive half-lives)"
+    lesson:
+      fr: |
+        **Loi de vitesse et résolution.** Pour une réaction d'ordre 1 par rapport à $A$, $v = k\,[A]$ avec $v = -\dfrac{\mathrm{d}[A]}{\mathrm{d}t}$ (réaction $A \to \text{produits}$ de nombre stœchiométrique 1). L'équation $\dfrac{\mathrm{d}[A]}{\mathrm{d}t} = -k\,[A]$ est de la forme $y' = ay$ avec $a = -k$ : ses solutions sont $[A](t) = K\,e^{-kt}$, et la condition initiale donne $K = [A]_0$. Vérification : $\dfrac{\mathrm{d}}{\mathrm{d}t}\left([A]_0 e^{-kt}\right) = -k\,[A]_0 e^{-kt} = -k\,[A]$. Homogénéité : $k$ s'exprime en $\mathrm{s^{-1}}$.
+
+        **Temps de demi-réaction.** $[A](t_{1/2}) = \dfrac{[A]_0}{2}$ donne $e^{-k t_{1/2}} = \dfrac12$, soit $t_{1/2} = \dfrac{\ln 2}{k}$, indépendant de $[A]_0$. Après $n$ demi-réactions il reste $[A]_0 / 2^n$. Sur des données expérimentales, tracer $\ln[A]$ en fonction de $t$ : une droite de pente $-k$ confirme l'ordre 1, une courbure l'infirme. Un catalyseur ou une élévation de température augmentent $k$ et raccourcissent $t_{1/2}$ sans changer la forme de la loi.
+      en: |
+        **Rate law and solution.** For a reaction of order 1 with respect to $A$, $v = k\,[A]$ with $v = -\dfrac{\mathrm{d}[A]}{\mathrm{d}t}$ (reaction $A \to \text{products}$ with stoichiometric number 1). The equation $\dfrac{\mathrm{d}[A]}{\mathrm{d}t} = -k\,[A]$ is of the form $y' = ay$ with $a = -k$: its solutions are $[A](t) = K\,e^{-kt}$, and the initial condition gives $K = [A]_0$. Check: $\dfrac{\mathrm{d}}{\mathrm{d}t}\left([A]_0 e^{-kt}\right) = -k\,[A]_0 e^{-kt} = -k\,[A]$. Homogeneity: $k$ is expressed in $\mathrm{s^{-1}}$.
+
+        **Half-life.** $[A](t_{1/2}) = \dfrac{[A]_0}{2}$ gives $e^{-k t_{1/2}} = \dfrac12$, that is $t_{1/2} = \dfrac{\ln 2}{k}$, independent of $[A]_0$. After $n$ half-lives there remains $[A]_0 / 2^n$. On experimental data, plot $\ln[A]$ against $t$: a straight line of slope $-k$ confirms order 1, a curvature refutes it. A catalyst or a rise in temperature increase $k$ and shorten $t_{1/2}$ without changing the form of the law.
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "établir la loi intégrée d'ordre 1 dans le cadre général des ordres (0, 1, 2) et comparer les temps de demi-réaction"
+        - "déterminer $k$ et son incertitude par régression linéaire sur $\\ln[A]$"
+        - "appliquer la loi d'Arrhenius $k = A\\,e^{-E_a/RT}$ pour relier la constante de vitesse à la température"
+        - "reconnaître un ordre 1 apparent par dégénérescence de l'ordre"
+      en:
+        - "establish the integrated first-order law within the general framework of orders (0, 1, 2) and compare half-lives"
+        - "determine $k$ and its uncertainty by linear regression on $\\ln[A]$"
+        - "apply the Arrhenius law $k = A\\,e^{-E_a/RT}$ to relate the rate constant to temperature"
+        - "recognise an apparent first order through the isolation method"

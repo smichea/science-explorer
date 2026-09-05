@@ -1,0 +1,93 @@
+# Atelier — lire la pente d'une tangente (choix unique)
+id: exercise.workshop.tangent_reading
+type: choice
+nodeId: tool.derivative
+depth: 1
+evidenceDimension: recognition_explanation
+context:
+  fr: |-
+    Atelier mathématique : la limite des taux moyens a une traduction graphique, la tangente à la courbe.
+  en: |-
+    Mathematics workshop: the limit of the average rates has a graphical counterpart, the tangent to the curve.
+prompt:
+  fr: |-
+    Décrivons un graphique (il n'y a pas d'image). Dans un repère, l'axe horizontal porte le temps $t$ (en secondes) et l'axe vertical la position $x$ (en mètres). La courbe de $x(t) = 2t^2$ est une parabole qui part de l'origine et monte de plus en plus vite. Au point $A(1 ; 2)$ de cette courbe, on a tracé la **tangente** : une droite qui touche la parabole en $A$ sans la traverser et qui, de part et d'autre de $A$, reste sous la courbe. On lit sur le graphique que cette tangente passe aussi par le point $B(2 ; 6)$.
+
+    Quelle est la pente de cette tangente ?
+  en: |-
+    Let us describe a graph (there is no picture). In a coordinate system, the horizontal axis carries the time $t$ (in seconds) and the vertical axis the position $x$ (in metres). The curve of $x(t) = 2t^2$ is a parabola starting from the origin and rising faster and faster. At the point $A(1, 2)$ of this curve, the **tangent** has been drawn: a straight line that touches the parabola at $A$ without crossing it and which, on either side of $A$, stays below the curve. One reads on the graph that this tangent also passes through the point $B(2, 6)$.
+
+    What is the slope of this tangent?
+choice:
+  multiple: false
+  requireReasoning: false
+  choices:
+    - id: two
+      text: { fr: "2 m/s", en: "2 m/s" }
+      feedback:
+        fr: |-
+          2 est la pente de la corde $OA$ joignant l'origine à $A$ (c'est $x(1)/1$, la vitesse moyenne depuis le départ), pas celle de la tangente. Utilisez les deux points connus de la tangente, $A$ et $B$.
+        en: |-
+          2 is the slope of the chord $OA$ joining the origin to $A$ (it is $x(1)/1$, the average speed since the start), not that of the tangent. Use the two known points of the tangent, $A$ and $B$.
+    - id: four
+      text: { fr: "4 m/s", en: "4 m/s" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : pente $= \dfrac{6 - 2}{2 - 1} = 4$. C'est aussi $x'(1) = 4 \times 1 = 4\ \mathrm{m/s}$, la vitesse instantanée à $t = 1\ \mathrm{s}$ trouvée par passage à la limite.
+        en: |-
+          Correct: slope $= \dfrac{6 - 2}{2 - 1} = 4$. It is also $x'(1) = 4 \times 1 = 4\ \mathrm{m/s}$, the instantaneous speed at $t = 1\ \mathrm{s}$ found by passing to the limit.
+    - id: six
+      text: { fr: "6 m/s", en: "6 m/s" }
+      feedback:
+        fr: |-
+          6 est l'ordonnée du point $B$, pas une pente. Une pente est un quotient de deux différences : $\dfrac{x_B - x_A}{t_B - t_A}$.
+        en: |-
+          6 is the vertical coordinate of point $B$, not a slope. A slope is a quotient of two differences: $\dfrac{x_B - x_A}{t_B - t_A}$.
+    - id: eight
+      text: { fr: "8 m/s", en: "8 m/s" }
+      feedback:
+        fr: |-
+          8 est la valeur de $x(2)$ sur la courbe (et aussi la pente de la tangente au point d'abscisse 2, pas en $A$). La tangente en $A$ reste sous la courbe : en $t = 2$ elle vaut 6, pas 8 ; sa pente se lit entre $A$ et $B$.
+        en: |-
+          8 is the value of $x(2)$ on the curve (and also the slope of the tangent at the point of abscissa 2, not at $A$). The tangent at $A$ stays below the curve: at $t = 2$ it is worth 6, not 8; its slope is read between $A$ and $B$.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La pente d'une droite se calcule à partir de deux de ses points : $\dfrac{\Delta x}{\Delta t}$. Vous connaissez $A$ et $B$.
+      en: |-
+        The slope of a straight line is computed from two of its points: $\dfrac{\Delta x}{\Delta t}$. You know $A$ and $B$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\Delta x = 6 - 2$ et $\Delta t = 2 - 1$.
+      en: |-
+        $\Delta x = 6 - 2$ and $\Delta t = 2 - 1$.
+solution:
+  fr: |-
+    La tangente est une droite : sa pente se lit entre deux quelconques de ses points, ici $A(1 ; 2)$ et $B(2 ; 6)$ :
+    $$\text{pente} = \frac{x_B - x_A}{t_B - t_A} = \frac{6 - 2}{2 - 1} = 4\ \mathrm{m/s}.$$
+    Cette pente est exactement le nombre dérivé $x'(1)$ : la tangente est la position limite des cordes $[AM]$ lorsque le point $M$ de la courbe se rapproche de $A$, et sa pente est la limite des taux de variation moyens, $4\ \mathrm{m/s}$, comme dans l'exercice précédent.
+
+    Vérification : l'équation de la tangente est $x = 4t - 2$ ; pour $t = 2$ elle donne bien $6$, alors que la parabole donne $x(2) = 8$ : la tangente reste sous la courbe.
+
+    Lire la pente d'une tangente sur un graphique, c'est lire une vitesse instantanée.
+  en: |-
+    The tangent is a straight line: its slope is read between any two of its points, here $A(1, 2)$ and $B(2, 6)$:
+    $$\text{slope} = \frac{x_B - x_A}{t_B - t_A} = \frac{6 - 2}{2 - 1} = 4\ \mathrm{m/s}.$$
+    This slope is exactly the derivative $x'(1)$: the tangent is the limiting position of the chords $[AM]$ as the point $M$ of the curve moves towards $A$, and its slope is the limit of the average rates of change, $4\ \mathrm{m/s}$, as in the previous exercise.
+
+    Check: the equation of the tangent is $x = 4t - 2$; for $t = 2$ it does give $6$, whereas the parabola gives $x(2) = 8$: the tangent stays below the curve.
+
+    Reading the slope of a tangent on a graph is reading an instantaneous speed.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

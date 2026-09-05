@@ -1,0 +1,92 @@
+# Débrief — explication libre évaluée par la rubrique rubric.derivative.reflection
+id: exercise.debrief.reflection
+type: free_explanation
+nodeId: tool.derivative
+depth: 1
+evidenceDimension: recognition_explanation
+context:
+  fr: |-
+    Débrief historique, « alors et maintenant » : ce que la mission vous a permis de dire, et ce que Galilée ne pouvait pas dire.
+  en: |-
+    Historical debrief, "then and now": what the mission has enabled you to say, and what Galileo could not say.
+prompt:
+  fr: |-
+    Avec vos propres mots : que pouvez-vous dire aujourd'hui de la vitesse d'un corps qui tombe que Galilée ne pouvait pas dire ?
+
+    Pensez à ce qui manquait au début de la mission (les vitesses moyennes ne suffisaient pas), à la règle qui a résolu le problème, à ce que signifie $v = a\,t$ physiquement, et aux outils dont Galilée ne disposait pas.
+  en: |-
+    In your own words: what can you now say about the speed of a falling body that Galileo could not say?
+
+    Think about what was missing at the start of the mission (average speeds were not enough), the rule that solved the problem, what $v = a\,t$ means physically, and the tools Galileo did not have.
+rubric:
+  id: rubric.derivative.reflection
+  criteria:
+    - id: recognises
+      weight: 1
+      text:
+        fr: "Nomme la dérivée comme l'outil qui donne la vitesse instantanée"
+        en: "Names the derivative as the tool that gives the instantaneous speed"
+    - id: explains_need
+      weight: 1
+      text:
+        fr: "Explique pourquoi une vitesse moyenne ne suffit pas (elle dépend de l'intervalle choisi)"
+        en: "Explains why an average speed is not enough (it depends on the chosen interval)"
+    - id: limit_idea
+      weight: 1
+      text:
+        fr: "Décrit la limite obtenue en faisant tendre la durée de l'intervalle vers zéro"
+        en: "Describes the limit obtained by letting the duration of the interval shrink to zero"
+    - id: interprets
+      weight: 1
+      text:
+        fr: "Interprète physiquement $v = a\\,t$ : la vitesse croît proportionnellement au temps, l'accélération est constante"
+        en: "Interprets $v = a\\,t$ physically: the speed grows proportionally to time, the acceleration is constant"
+    - id: historical
+      weight: 1
+      text:
+        fr: "Dit ce qui manquait à Galilée : la notation des fonctions, l'écriture algébrique des lois horaires, l'opération « dériver »"
+        en: "Says what Galileo lacked: function notation, algebraic writing of position laws, the operation of differentiation"
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Reprenez les étapes de la mission : vitesses moyennes, intervalle qui rétrécit, limite, dérivée, puis $v = a\,t$. Une phrase par étape suffit.
+      en: |-
+        Go back over the steps of the mission: average speeds, shrinking interval, limit, derivative, then $v = a\,t$. One sentence per step is enough.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Galilée écrivait des proportions entre longueurs et durées (« les distances sont comme les carrés des temps ») ; il n'avait ni la notation $x(t)$, ni l'opération « dériver ». Que gagnez-vous avec elles ?
+      en: |-
+        Galileo wrote proportions between lengths and durations ("the distances are as the squares of the times"); he had neither the notation $x(t)$ nor the operation of differentiation. What do you gain with them?
+solution:
+  fr: |-
+    *Réponse modèle (une parmi d'autres).*
+
+    Galilée savait, par ses mesures sur le plan incliné, que les distances parcourues sont proportionnelles aux carrés des temps, et il posait que la vitesse croît proportionnellement au temps. Mais il ne pouvait calculer que des vitesses **moyennes** : une distance divisée par une durée. Or ces moyennes changent selon l'intervalle choisi ; aucune d'elles n'est « la » vitesse à un instant précis.
+
+    Ce qui manquait, c'est une règle pour passer à la limite : on calcule le taux moyen sur $[t ; t + h]$, on fait tendre $h$ vers zéro, et le nombre dont ces taux se rapprochent est la vitesse instantanée. Cette règle est la **dérivée** : $v(t) = x'(t)$. Avec elle, la vitesse à l'instant $t$ est définie sans ambiguïté et se calcule à partir de n'importe quelle loi horaire.
+
+    Pour la chute, $x(t) = \tfrac{1}{2} g t^2$ donne $v(t) = g\,t$ : la vitesse augmente de $9.81\ \mathrm{m/s}$ à chaque seconde, elle est proportionnelle au temps écoulé, et sa propre dérivée, l'accélération, est constante. Ce que Galilée avait posé comme hypothèse devient une conséquence calculée, et l'on peut prédire la vitesse à n'importe quel instant, par exemple $14.0\ \mathrm{m/s}$ après $1.43\ \mathrm{s}$.
+
+    Galilée ne disposait ni de la notation des fonctions ($x(t)$, $x'(t)$), ni de l'écriture algébrique des lois horaires, ni de l'opération générale « dériver » : le calcul différentiel de Newton et de Leibniz est postérieur d'un demi-siècle. Il raisonnait par proportions et par figures géométriques. Aujourd'hui, la même dérivée sert aussi à écrire la charge d'un condensateur ou la vitesse d'une réaction chimique : c'est un outil général, pas seulement un résultat sur la chute des corps.
+  en: |-
+    *Model answer (one among others).*
+
+    Galileo knew, from his measurements on the inclined plane, that the distances travelled are proportional to the squares of the times, and he posited that the speed grows proportionally to time. But he could only compute **average** speeds: a distance divided by a duration. Yet these averages change with the chosen interval; none of them is "the" speed at one precise instant.
+
+    What was missing is a rule for passing to the limit: compute the average rate on $[t, t + h]$, let $h$ tend to zero, and the number these rates approach is the instantaneous speed. That rule is the **derivative**: $v(t) = x'(t)$. With it, the speed at the instant $t$ is defined without ambiguity and can be computed from any position law.
+
+    For the fall, $x(t) = \tfrac{1}{2} g t^2$ gives $v(t) = g\,t$: the speed increases by $9.81\ \mathrm{m/s}$ every second, it is proportional to the elapsed time, and its own derivative, the acceleration, is constant. What Galileo had posited as a hypothesis becomes a computed consequence, and the speed can be predicted at any instant, for example $14.0\ \mathrm{m/s}$ after $1.43\ \mathrm{s}$.
+
+    Galileo had neither function notation ($x(t)$, $x'(t)$), nor the algebraic writing of position laws, nor the general operation of differentiation: the differential calculus of Newton and Leibniz came half a century later. He reasoned with proportions and geometric figures. Today, the same derivative also serves to write the charge of a capacitor or the rate of a chemical reaction: it is a general tool, not only a result about falling bodies.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 3
+  calculationLength: 1
+  modellingOpenness: 4
+  linkedConcepts: 4
+  transfer: 2
+  autonomy: 4

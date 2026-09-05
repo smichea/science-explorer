@@ -1,0 +1,39 @@
+id: person.galileo_galilei
+anchorNode: mission.galileo.inclined_plane
+importance: 3
+tags: [vertical-slice]
+title: { fr: Galilée, en: Galileo Galilei }
+shortPurpose:
+  fr: "Fonder l'étude mathématique du mouvement par l'expérience du plan incliné."
+  en: "Found the mathematical study of motion through the inclined-plane experiment."
+description:
+  fr: "Mathématicien, physicien et astronome toscan (1564–1642), auteur des *Discorsi* de 1638 sur le mouvement."
+  en: "Tuscan mathematician, physicist and astronomer (1564–1642), author of the 1638 *Discorsi* on motion."
+names:
+  display: { fr: Galilée, en: Galileo Galilei }
+  original: Galileo Galilei
+born:
+  certainty: exact
+  from: "1564-02-15"
+  display: { fr: "15 février 1564, Pise", en: "15 February 1564, Pisa" }
+died:
+  certainty: exact
+  from: "1642-01-08"
+  display: { fr: "8 janvier 1642, Arcetri", en: "8 January 1642, Arcetri" }
+roles:
+  fr:
+    - "professeur de mathématiques à l'université de Pise (1589–1592)"
+    - "professeur de mathématiques à l'université de Padoue (1592–1610)"
+    - "mathématicien et philosophe du grand-duc de Toscane (à partir de 1610)"
+  en:
+    - "professor of mathematics at the University of Pisa (1589–1592)"
+    - "professor of mathematics at the University of Padua (1592–1610)"
+    - "mathematician and philosopher to the Grand Duke of Tuscany (from 1610)"
+places: [place.padua, place.pisa]
+biography:
+  fr: |
+    Né à Pise, Galilée y enseigne les mathématiques de 1589 à 1592 avant d'obtenir la chaire de Padoue, dans la République de Venise, où il reste dix-huit ans. C'est là qu'il transforme l'étude du mouvement : le 16 octobre 1604, il annonce à son ami Paolo Sarpi que les espaces parcourus par un corps en chute sont entre eux comme les carrés des temps et, selon la datation de Stillman Drake, c'est à cette époque qu'il fait rouler des boules de bronze le long de plans inclinés afin de ralentir la chute et de la mesurer. Rappelé à Florence en 1610 comme mathématicien et philosophe du grand-duc, il rassemble ces résultats, après sa condamnation de 1633, dans les *Discorsi* publiés à Leyde en 1638 : la Troisième Journée y expose le mouvement naturellement accéléré, la loi des nombres impairs et l'expérience du plan incliné chronométrée à l'horloge à eau.
+  en: |
+    Born in Pisa, Galileo taught mathematics there from 1589 to 1592 before obtaining the chair at Padua, in the Republic of Venice, where he stayed eighteen years. There he transformed the study of motion: on 16 October 1604 he announced to his friend Paolo Sarpi that the spaces passed by a falling body are to one another as the squares of the times and, on Stillman Drake's dating, it was in these years that he rolled bronze balls along inclined planes to slow the fall down and measure it. Recalled to Florence in 1610 as mathematician and philosopher to the Grand Duke, he gathered these results, after his condemnation of 1633, in the *Discorsi* published in Leiden in 1638: its Third Day sets out naturally accelerated motion, the odd-number law and the inclined-plane experiment timed with a water clock.
+evidenceStatus: attested
+sources: [source.drake.1978]

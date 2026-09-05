@@ -1,0 +1,70 @@
+# Atelier — dériver 3t² + 2t (réponse symbolique)
+id: exercise.workshop.power_rule
+type: symbolic
+nodeId: tool.derivative
+depth: 1
+evidenceDimension: procedural_execution
+context:
+  fr: |-
+    Atelier mathématique : une fois la limite comprise, des règles de calcul évitent de la refaire à chaque fois.
+  en: |-
+    Mathematics workshop: once the limit is understood, calculation rules avoid redoing it every time.
+prompt:
+  fr: |-
+    Un mobile a pour loi horaire $x(t) = 3t^2 + 2t$ ($x$ en mètres, $t$ en secondes).
+
+    Donnez l'expression de sa vitesse instantanée $x'(t)$ en fonction de $t$, en utilisant les règles de dérivation : $(t^n)' = n\,t^{n-1}$, dérivée d'une somme, dérivée d'un produit par une constante.
+
+    Écrivez votre réponse comme une expression en $t$, par exemple `5*t+1`.
+  en: |-
+    A moving body has the position law $x(t) = 3t^2 + 2t$ ($x$ in metres, $t$ in seconds).
+
+    Give the expression of its instantaneous speed $x'(t)$ as a function of $t$, using the differentiation rules: $(t^n)' = n\,t^{n-1}$, derivative of a sum, derivative of a product by a constant.
+
+    Write your answer as an expression in $t$, for example `5*t+1`.
+symbolic:
+  variable: t
+  accepted: ["6*t+2", "2+6*t", "6t+2"]
+  display: "x'(t) ="
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Dérivez chaque terme séparément : la dérivée de $3t^2$, puis la dérivée de $2t$, et additionnez.
+      en: |-
+        Differentiate each term separately: the derivative of $3t^2$, then the derivative of $2t$, and add them.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $(3t^2)' = 3 \times 2t = 6t$ et $(2t)' = 2$.
+      en: |-
+        $(3t^2)' = 3 \times 2t = 6t$ and $(2t)' = 2$.
+solution:
+  fr: |-
+    On dérive terme à terme (la dérivée d'une somme est la somme des dérivées, et une constante multiplicative se conserve) :
+    $$x'(t) = (3t^2)' + (2t)' = 3 \times 2t + 2 = 6t + 2.$$
+
+    **Vérification par la définition.** Le taux de variation moyen sur $[t ; t + h]$ vaut
+    $$\frac{3(t+h)^2 + 2(t+h) - 3t^2 - 2t}{h} = \frac{6th + 3h^2 + 2h}{h} = 6t + 2 + 3h,$$
+    qui tend vers $6t + 2$ quand $h \to 0$. La règle $(t^n)' = n\,t^{n-1}$ résume ce calcul une fois pour toutes.
+
+    **Interprétation.** À $t = 0$ le mobile a déjà la vitesse $2\ \mathrm{m/s}$, puis sa vitesse augmente de $6\ \mathrm{m/s}$ à chaque seconde : l'accélération $x''(t) = 6\ \mathrm{m/s^2}$ est constante, comme sur le plan incliné.
+  en: |-
+    Differentiate term by term (the derivative of a sum is the sum of the derivatives, and a multiplicative constant is kept):
+    $$x'(t) = (3t^2)' + (2t)' = 3 \times 2t + 2 = 6t + 2.$$
+
+    **Check from the definition.** The average rate of change on $[t, t + h]$ is
+    $$\frac{3(t+h)^2 + 2(t+h) - 3t^2 - 2t}{h} = \frac{6th + 3h^2 + 2h}{h} = 6t + 2 + 3h,$$
+    which tends to $6t + 2$ as $h \to 0$. The rule $(t^n)' = n\,t^{n-1}$ sums up this computation once and for all.
+
+    **Interpretation.** At $t = 0$ the body already has the speed $2\ \mathrm{m/s}$, then its speed increases by $6\ \mathrm{m/s}$ every second: the acceleration $x''(t) = 6\ \mathrm{m/s^2}$ is constant, as on the inclined plane.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 3

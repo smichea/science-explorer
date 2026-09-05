@@ -1,0 +1,131 @@
+id: tool.derivative
+type: mathematical_tool
+world: world.mathematics
+region: region.math.functions_analysis
+importance: 3
+backpack: true
+tags: [vertical-slice]
+title: { fr: Dérivée, en: Derivative }
+shortPurpose:
+  fr: Décrire une variation instantanée et la pente d'une courbe en un point.
+  en: Describe an instantaneous rate of change and the slope of a curve at a point.
+aliases:
+  fr: ["nombre dérivé", "fonction dérivée", "taux de variation instantané", "dérivation"]
+  en: ["differential coefficient", "derived function", "instantaneous rate of change", "differentiation"]
+description:
+  fr: |
+    La **dérivée** répond à une question que les mesures seules ne peuvent pas trancher : à quelle vitesse une grandeur change-t-elle *à un instant donné* ? Une horloge et une règle donnent une vitesse moyenne entre deux relevés ; la dérivée est la limite de cette vitesse moyenne quand l'intervalle se referme sur l'instant :
+    $$f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}.$$
+    Géométriquement, les sécantes de la courbe se rabattent sur la **tangente** au point d'abscisse $a$, et $f'(a)$ en est la pente. Physiquement, si $x(t)$ est une position, $x'(t)$ est la vitesse et $x''(t)$ l'accélération.
+
+    La dérivée est l'outil central de l'atlas parce qu'elle traduit toute loi d'évolution en équation : « la vitesse de disparition est proportionnelle à la quantité restante » devient $y' = -ky$ ; « la force impose l'accélération » devient $m\,x'' = F$. Une fois la dérivée maîtrisée, le même geste s'applique à la chute d'une bille, à la charge d'un condensateur, à la disparition d'un réactif ou à la désintégration d'un noyau : seule l'interprétation des lettres change.
+
+    Sa construction progresse avec les années. En Terminale, on apprend la définition par la limite, les formules de dérivation et la lecture cinématique. En MPSI, on précise la notion de dérivabilité, l'approximation locale $f(a+h) \approx f(a) + f'(a)\,h$ et les théorèmes qui relient le signe de la dérivée aux variations (Rolle, accroissements finis). En MP, la dérivée devient différentielle et gradient pour les fonctions de plusieurs variables, avec l'optimisation en ligne de mire.
+  en: |
+    The **derivative** answers a question that measurements alone cannot settle: how fast is a quantity changing *at a given instant*? A clock and a ruler give an average velocity between two readings; the derivative is the limit of that average velocity as the interval closes in on the instant:
+    $$f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}.$$
+    Geometrically, the secants of the graph fold down onto the **tangent** at the point of abscissa $a$, and $f'(a)$ is its slope. Physically, if $x(t)$ is a position, $x'(t)$ is the velocity and $x''(t)$ the acceleration.
+
+    The derivative is the central tool of the atlas because it turns every law of evolution into an equation: "the rate of disappearance is proportional to the remaining quantity" becomes $y' = -ky$; "force dictates acceleration" becomes $m\,x'' = F$. Once the derivative is mastered, the same move applies to a rolling ball, a charging capacitor, a disappearing reactant or a decaying nucleus: only the meaning of the letters changes.
+
+    Its construction grows over the years. In Terminale, one learns the definition by a limit, the differentiation rules and the kinematic reading. In MPSI, the notion of differentiability is made precise, together with the local approximation $f(a+h) \approx f(a) + f'(a)\,h$ and the theorems linking the sign of the derivative to variations (Rolle, mean value). In MP, the derivative becomes differential and gradient for functions of several variables, with optimisation in view.
+tool:
+  problemSolved:
+    fr: "Connaître la vitesse instantanée de variation d'une grandeur, et donc la pente d'une courbe en un point, alors que l'on ne sait mesurer que des variations moyennes sur un intervalle."
+    en: "Know the instantaneous rate of change of a quantity, hence the slope of a curve at a point, when only average changes over an interval can be measured."
+  construction:
+    fr: "On calcule le taux de variation $\\frac{f(a+h)-f(a)}{h}$ sur un intervalle de longueur $h$, puis on fait tendre $h$ vers $0$ : la limite, lorsqu'elle existe, est le nombre dérivé $f'(a)$, pente de la tangente."
+    en: "Compute the rate of change $\\frac{f(a+h)-f(a)}{h}$ over an interval of length $h$, then let $h$ tend to $0$: the limit, when it exists, is the derivative $f'(a)$, the slope of the tangent."
+  icon: slope
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "interpréter un nombre dérivé comme un taux de variation instantané et comme la pente d'une tangente"
+        - "relier position, vitesse et accélération par dérivation"
+        - "dériver les fonctions de référence, une somme, un produit, un quotient et une composée $v \\circ u$"
+        - "déterminer l'équation d'une tangente et le sens de variation d'une fonction à partir du signe de sa dérivée"
+        - "reconnaître une accélération constante dans une position quadratique en $t$"
+      en:
+        - "interpret a derivative as an instantaneous rate of change and as the slope of a tangent"
+        - "connect position, velocity and acceleration by differentiation"
+        - "differentiate reference functions, a sum, a product, a quotient and a composite $v \\circ u$"
+        - "find the equation of a tangent and the variations of a function from the sign of its derivative"
+        - "recognise a constant acceleration in a position that is quadratic in $t$"
+    lesson:
+      fr: |
+        **Nombre dérivé.** Soit $f$ une fonction définie sur un intervalle contenant $a$. On dit que $f$ est **dérivable en $a$** si le taux de variation $\dfrac{f(a+h)-f(a)}{h}$ admet une limite finie quand $h$ tend vers $0$ ; cette limite est le nombre dérivé
+        $$f'(a) = \lim_{h\to 0}\frac{f(a+h)-f(a)}{h}.$$
+        La droite passant par le point $A(a,\, f(a))$ et de coefficient directeur $f'(a)$ est la **tangente** à la courbe en $A$ ; son équation est $y = f'(a)(x - a) + f(a)$. Lorsque $f$ est dérivable en tout point, la fonction $x \mapsto f'(x)$ est la **fonction dérivée**, notée $f'$ (ou $\dfrac{\mathrm{d}f}{\mathrm{d}x}$ en physique).
+
+        **Formules.** $(x^n)' = n\,x^{n-1}$ pour $n$ entier, $(\sqrt{x})' = \dfrac{1}{2\sqrt{x}}$, $\left(\dfrac1x\right)' = -\dfrac{1}{x^2}$, $(e^x)' = e^x$, $(\ln x)' = \dfrac1x$, $(\sin x)' = \cos x$, $(\cos x)' = -\sin x$. Pour des fonctions dérivables $u$ et $v$ : $(u+v)' = u' + v'$, $(k\,u)' = k\,u'$, $(uv)' = u'v + uv'$, $\left(\dfrac{u}{v}\right)' = \dfrac{u'v - uv'}{v^2}$ et, pour la composée, $(v \circ u)' = (v' \circ u) \times u'$. En particulier $(e^{u})' = u'\,e^{u}$, $(u^n)' = n\,u'\,u^{n-1}$, $(\sqrt{u})' = \dfrac{u'}{2\sqrt{u}}$ et $(\ln u)' = \dfrac{u'}{u}$.
+
+        **Lecture cinématique.** Si $x(t)$ est l'abscisse d'un mobile à l'instant $t$, sa vitesse est $v(t) = x'(t)$ et son accélération $a(t) = v'(t) = x''(t)$. Pour $x(t) = \tfrac12\,a\,t^2 + v_0\,t + x_0$, on obtient $v(t) = a\,t + v_0$ puis $x''(t) = a$ : une position quadratique en $t$ signifie une accélération constante, c'est la loi de la chute que Galilée a lue sur son plan incliné. Enfin, le signe de $f'$ donne le sens de variation de $f$ : si $f' > 0$ sur un intervalle, $f$ y est strictement croissante ; si $f'$ s'annule en changeant de signe, $f$ admet un extremum.
+      en: |
+        **Derivative at a point.** Let $f$ be a function defined on an interval containing $a$. We say that $f$ is **differentiable at $a$** if the rate of change $\dfrac{f(a+h)-f(a)}{h}$ has a finite limit as $h$ tends to $0$; that limit is the derivative
+        $$f'(a) = \lim_{h\to 0}\frac{f(a+h)-f(a)}{h}.$$
+        The line through the point $A(a,\, f(a))$ with slope $f'(a)$ is the **tangent** to the graph at $A$; its equation is $y = f'(a)(x - a) + f(a)$. When $f$ is differentiable at every point, the function $x \mapsto f'(x)$ is the **derived function**, written $f'$ (or $\dfrac{\mathrm{d}f}{\mathrm{d}x}$ in physics).
+
+        **Rules.** $(x^n)' = n\,x^{n-1}$ for integer $n$, $(\sqrt{x})' = \dfrac{1}{2\sqrt{x}}$, $\left(\dfrac1x\right)' = -\dfrac{1}{x^2}$, $(e^x)' = e^x$, $(\ln x)' = \dfrac1x$, $(\sin x)' = \cos x$, $(\cos x)' = -\sin x$. For differentiable functions $u$ and $v$: $(u+v)' = u' + v'$, $(k\,u)' = k\,u'$, $(uv)' = u'v + uv'$, $\left(\dfrac{u}{v}\right)' = \dfrac{u'v - uv'}{v^2}$ and, for the composite, $(v \circ u)' = (v' \circ u) \times u'$. In particular $(e^{u})' = u'\,e^{u}$, $(u^n)' = n\,u'\,u^{n-1}$, $(\sqrt{u})' = \dfrac{u'}{2\sqrt{u}}$ and $(\ln u)' = \dfrac{u'}{u}$.
+
+        **Kinematic reading.** If $x(t)$ is the position of a moving body at time $t$, its velocity is $v(t) = x'(t)$ and its acceleration $a(t) = v'(t) = x''(t)$. For $x(t) = \tfrac12\,a\,t^2 + v_0\,t + x_0$ we get $v(t) = a\,t + v_0$ and then $x''(t) = a$: a position quadratic in $t$ means a constant acceleration, which is the law of fall that Galileo read on his inclined plane. Finally, the sign of $f'$ gives the variations of $f$: if $f' > 0$ on an interval, $f$ is strictly increasing there; if $f'$ vanishes and changes sign, $f$ has an extremum.
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "raisonner sur la dérivabilité d'une fonction en un point, à droite, à gauche, et sur un intervalle"
+        - "utiliser l'approximation locale $f(a+h) \\approx f(a) + f'(a)\\,h$ et le développement limité à l'ordre 1"
+        - "appliquer le théorème de Rolle et l'égalité ou l'inégalité des accroissements finis"
+        - "caractériser la monotonie et les extremums par le signe et les zéros de la dérivée"
+        - "utiliser la dérivée pour écrire et résoudre des modèles différentiels"
+      en:
+        - "reason about differentiability of a function at a point, from the right, from the left, and on an interval"
+        - "use the local approximation $f(a+h) \\approx f(a) + f'(a)\\,h$ and the first-order Taylor expansion"
+        - "apply Rolle's theorem and the mean value equality or inequality"
+        - "characterise monotonicity and extrema through the sign and zeros of the derivative"
+        - "use the derivative to write and solve differential models"
+    lesson:
+      fr: |
+        **Dérivabilité.** $f$ est dérivable en $a$ si et seulement s'il existe un réel $\ell$ et une fonction $\varepsilon$ de limite $0$ en $0$ tels que $f(a+h) = f(a) + \ell\,h + h\,\varepsilon(h)$ : c'est le **développement limité à l'ordre 1**, et $\ell = f'(a)$. La dérivabilité en $a$ entraîne la continuité en $a$ ; la réciproque est fausse ($x \mapsto |x|$ en $0$). On distingue dérivées à droite et à gauche, et l'on définit les fonctions de classe $\mathcal{C}^1$ (dérivables, à dérivée continue), puis de classe $\mathcal{C}^k$. Les règles de calcul s'étendent aux fonctions à valeurs complexes, en dérivant partie réelle et partie imaginaire.
+
+        **Approximation locale.** L'écriture $f(a+h) \approx f(a) + f'(a)\,h$ est le cœur de l'usage de la dérivée en physique : pendant une petite durée $\mathrm{d}t$, une grandeur varie de $\mathrm{d}y \approx y'(t)\,\mathrm{d}t$. C'est cette approximation qui justifie les bilans « entre $t$ et $t + \mathrm{d}t$ » conduisant aux équations différentielles ($\mathrm{d}q = i\,\mathrm{d}t$ pour un condensateur, $\mathrm{d}N = -\lambda N\,\mathrm{d}t$ pour un échantillon radioactif).
+
+        **Théorèmes.** Si $f$ est dérivable sur un intervalle ouvert et admet un extremum local en $c$, alors $f'(c) = 0$ ($c$ est un point critique). **Théorème de Rolle** : si $f$ est continue sur $[a,b]$, dérivable sur $]a,b[$ et $f(a) = f(b)$, il existe $c \in\, ]a,b[$ tel que $f'(c) = 0$. **Égalité des accroissements finis** : sous les mêmes hypothèses de régularité, il existe $c \in\, ]a,b[$ tel que $f(b) - f(a) = f'(c)\,(b-a)$. On en déduit l'**inégalité des accroissements finis**, $|f(b)-f(a)| \le M\,|b-a|$ si $|f'| \le M$, et la caractérisation des fonctions monotones par le signe de la dérivée. Ces résultats font passer d'une information locale (le signe de $f'$) à une information globale (les variations de $f$), et fondent l'unicité des solutions des équations différentielles linéaires.
+      en: |
+        **Differentiability.** $f$ is differentiable at $a$ if and only if there exist a real number $\ell$ and a function $\varepsilon$ with limit $0$ at $0$ such that $f(a+h) = f(a) + \ell\,h + h\,\varepsilon(h)$: this is the **first-order Taylor expansion**, and $\ell = f'(a)$. Differentiability at $a$ implies continuity at $a$; the converse is false ($x \mapsto |x|$ at $0$). One distinguishes right and left derivatives, and defines functions of class $\mathcal{C}^1$ (differentiable, with continuous derivative), then of class $\mathcal{C}^k$. The computation rules extend to complex-valued functions, differentiating real and imaginary parts.
+
+        **Local approximation.** The formula $f(a+h) \approx f(a) + f'(a)\,h$ is the heart of how physics uses the derivative: during a short duration $\mathrm{d}t$, a quantity changes by $\mathrm{d}y \approx y'(t)\,\mathrm{d}t$. This approximation justifies the balances "between $t$ and $t + \mathrm{d}t$" that lead to differential equations ($\mathrm{d}q = i\,\mathrm{d}t$ for a capacitor, $\mathrm{d}N = -\lambda N\,\mathrm{d}t$ for a radioactive sample).
+
+        **Theorems.** If $f$ is differentiable on an open interval and has a local extremum at $c$, then $f'(c) = 0$ ($c$ is a critical point). **Rolle's theorem**: if $f$ is continuous on $[a,b]$, differentiable on $]a,b[$ and $f(a) = f(b)$, there exists $c \in\, ]a,b[$ such that $f'(c) = 0$. **Mean value theorem**: under the same regularity assumptions, there exists $c \in\, ]a,b[$ such that $f(b) - f(a) = f'(c)\,(b-a)$. From it follow the **mean value inequality**, $|f(b)-f(a)| \le M\,|b-a|$ if $|f'| \le M$, and the characterisation of monotone functions by the sign of the derivative. These results move from local information (the sign of $f'$) to global information (the variations of $f$), and underpin the uniqueness of solutions of linear differential equations.
+  - depth: 3
+    stage: mp
+    role: extension_and_application
+    outcomes:
+      fr:
+        - "calculer des dérivées partielles et écrire la différentielle d'une fonction de classe $\\mathcal{C}^1$"
+        - "interpréter le gradient comme direction de plus forte pente et vecteur normal aux lignes de niveau"
+        - "appliquer la règle de la chaîne le long d'un arc paramétré"
+        - "chercher les extremums d'une fonction de plusieurs variables par ses points critiques"
+        - "utiliser la dérivation dans les systèmes différentiels linéaires"
+      en:
+        - "compute partial derivatives and write the differential of a $\\mathcal{C}^1$ function"
+        - "interpret the gradient as the direction of steepest ascent and as a normal vector to level sets"
+        - "apply the chain rule along a parametrised arc"
+        - "look for the extrema of a function of several variables through its critical points"
+        - "use differentiation in linear differential systems"
+    lesson:
+      fr: |
+        **Dérivées partielles et différentielle.** Pour $f : U \subset \mathbb{R}^n \to \mathbb{R}$, la dérivée partielle $\dfrac{\partial f}{\partial x_i}(a)$ est la dérivée en $0$ de la fonction d'une variable $t \mapsto f(a + t\,e_i)$. Si $f$ est de classe $\mathcal{C}^1$ (dérivées partielles continues), elle est **différentiable** : $f(a+h) = f(a) + \mathrm{d}f_a(h) + o(\|h\|)$, où $\mathrm{d}f_a$ est l'application linéaire $h \mapsto \sum_i \dfrac{\partial f}{\partial x_i}(a)\,h_i$. La dérivée d'une variable est le cas $n = 1$ : $\mathrm{d}f_a(h) = f'(a)\,h$.
+
+        **Gradient et règle de la chaîne.** Dans $\mathbb{R}^n$ euclidien, $\mathrm{d}f_a(h) = \langle \nabla f(a),\, h\rangle$ avec $\nabla f(a) = \left(\dfrac{\partial f}{\partial x_1}(a), \dots, \dfrac{\partial f}{\partial x_n}(a)\right)$. Le gradient est orthogonal aux lignes de niveau et indique la direction de plus forte croissance. Pour un arc $\gamma$ de classe $\mathcal{C}^1$, $(f\circ\gamma)'(t) = \langle \nabla f(\gamma(t)),\, \gamma'(t)\rangle$ (règle de la chaîne), ce qui redonne la dérivée d'une grandeur le long d'une trajectoire.
+
+        **Systèmes et optimisation.** Un système différentiel $X' = AX$ se traite avec les mêmes outils que $y' = ay$, la dérivée agissant coordonnée par coordonnée. En un extremum local d'une fonction $\mathcal{C}^1$ sur un ouvert, le gradient s'annule : les points critiques sont les candidats, et la matrice hessienne (dérivées secondes) permet de conclure dans les cas usuels. En physique, $\vec F = -\nabla E_p$ : les positions d'équilibre sont les points critiques de l'énergie potentielle.
+      en: |
+        **Partial derivatives and differential.** For $f : U \subset \mathbb{R}^n \to \mathbb{R}$, the partial derivative $\dfrac{\partial f}{\partial x_i}(a)$ is the derivative at $0$ of the one-variable function $t \mapsto f(a + t\,e_i)$. If $f$ is of class $\mathcal{C}^1$ (continuous partial derivatives), it is **differentiable**: $f(a+h) = f(a) + \mathrm{d}f_a(h) + o(\|h\|)$, where $\mathrm{d}f_a$ is the linear map $h \mapsto \sum_i \dfrac{\partial f}{\partial x_i}(a)\,h_i$. The one-variable derivative is the case $n = 1$: $\mathrm{d}f_a(h) = f'(a)\,h$.
+
+        **Gradient and chain rule.** In Euclidean $\mathbb{R}^n$, $\mathrm{d}f_a(h) = \langle \nabla f(a),\, h\rangle$ with $\nabla f(a) = \left(\dfrac{\partial f}{\partial x_1}(a), \dots, \dfrac{\partial f}{\partial x_n}(a)\right)$. The gradient is orthogonal to the level sets and points in the direction of steepest ascent. For a $\mathcal{C}^1$ arc $\gamma$, $(f\circ\gamma)'(t) = \langle \nabla f(\gamma(t)),\, \gamma'(t)\rangle$ (chain rule), which recovers the derivative of a quantity along a trajectory.
+
+        **Systems and optimisation.** A differential system $X' = AX$ is handled with the same tools as $y' = ay$, the derivative acting coordinate by coordinate. At a local extremum of a $\mathcal{C}^1$ function on an open set, the gradient vanishes: the critical points are the candidates, and the Hessian matrix (second derivatives) settles the usual cases. In physics, $\vec F = -\nabla E_p$: equilibrium positions are the critical points of the potential energy.

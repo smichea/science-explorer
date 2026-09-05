@@ -1,0 +1,73 @@
+# Le plan incliné de Galilée : bille qui roule, horloge à eau imparfaite, mesures à intervalles égaux.
+id: simulation.galileo.inclined_plane
+engine: motion_2d
+title: { fr: "Le plan incliné de Galilée", en: "Galileo's inclined plane" }
+description:
+  fr: |-
+    Une bille roule sans glisser le long d'un plan incliné de 7 m, sans vitesse initiale. On marque sa position à intervalles de temps égaux, mesurés avec une horloge à eau que l'on peut rendre imparfaite, puis on compare les distances parcourues aux carrés des temps. L'accélération le long du plan vaut $a = \tfrac{5}{7}\, g \sin\theta$, soit environ $1.22\ \mathrm{m/s^2}$ pour $\theta = 10^\circ$ : la bille met environ $3.4\ \mathrm{s}$ pour parcourir les 7 m.
+  en: |-
+    A ball rolls without slipping down a 7 m inclined plane, with no initial speed. Its position is marked at equal time intervals, measured with a water clock that can be made imperfect, and the distances travelled are compared with the squares of the times. The acceleration along the plane is $a = \tfrac{5}{7}\, g \sin\theta$, about $1.22\ \mathrm{m/s^2}$ for $\theta = 10^\circ$: the ball takes about $3.4\ \mathrm{s}$ to cover the 7 m.
+seedPolicy: deterministic
+seed: 1604
+config:
+  scene: inclined_plane
+  g: 9.81
+  mass: 0.1
+  angle: 10
+  length: 7
+  linearDrag: 0
+  rolling: true
+  dt: 0.001
+  clockNoise: 0
+controls:
+  - { variable: angle, label: { fr: "Angle du plan", en: "Plane angle" }, min: 3, max: 30, step: 1, unit: "°", default: 10 }
+  - { variable: clockNoise, label: { fr: "Bruit de l'horloge à eau", en: "Water-clock noise" }, min: 0, max: 0.05, step: 0.01, default: 0 }
+observables: [position, velocity, acceleration, energy]
+views: [world, position_time_graph, velocity_time_graph, table]
+modelNode: model.kinematics_point
+assumptions:
+  fr:
+    - |-
+      Sphère rigide et homogène qui roule sans glisser : la rotation absorbe $2/7$ de l'énergie et l'accélération le long du plan vaut $a = \tfrac{5}{7}\, g \sin\theta$.
+    - "Aucune résistance de l'air : la seule force motrice est la composante du poids le long du plan."
+    - "Plan rigide, parfaitement plan, incliné d'un angle constant."
+    - "Contact ponctuel entre la bille et le plan (pas de déformation, pas de largeur de rainure)."
+    - "Champ de pesanteur uniforme, $g = 9.81\\ \\mathrm{m/s^2}$."
+  en:
+    - |-
+      Rigid, homogeneous sphere rolling without slipping: rotation absorbs $2/7$ of the energy and the acceleration along the plane is $a = \tfrac{5}{7}\, g \sin\theta$.
+    - "No air resistance: the only driving force is the component of the weight along the plane."
+    - "Rigid, perfectly flat plane, inclined at a constant angle."
+    - "Point-like contact between the ball and the plane (no deformation, no groove width)."
+    - "Uniform gravitational field, $g = 9.81\\ \\mathrm{m/s^2}$."
+validity:
+  fr: |-
+    Angles de 3° à 30°, vitesses inférieures à quelques mètres par seconde et bille dense (0.1 kg) : dans ce domaine, l'air et le frottement de roulement modifient les distances de moins de 1 %, et la condition de roulement sans glissement est satisfaite pour une rainure ordinaire (elle exigerait un coefficient de frottement supérieur à $\tfrac{2}{7}\tan\theta$, soit 0.16 à 30°). Au-delà de 30°, ou pour une bille légère, le glissement et la traînée ne sont plus négligeables.
+  en: |-
+    Angles from 3° to 30°, speeds below a few metres per second and a dense ball (0.1 kg): in this range, air and rolling friction change the distances by less than 1%, and the rolling-without-slipping condition holds for an ordinary groove (it would require a friction coefficient above $\tfrac{2}{7}\tan\theta$, i.e. 0.16 at 30°). Beyond 30°, or for a light ball, slipping and drag are no longer negligible.
+numericalMethod:
+  fr: |-
+    Runge-Kutta d'ordre 4, pas fixe de 1 ms. Pour une accélération constante la solution numérique coïncide avec la solution exacte $x = \tfrac{1}{2} a t^2$ à la précision machine ; le bruit de l'horloge (paramètre `clockNoise`) est un bruit relatif ajouté aux instants de mesure, tiré de façon déterministe à partir de la graine.
+  en: |-
+    Fourth-order Runge-Kutta, fixed 1 ms step. For a constant acceleration the numerical solution matches the exact solution $x = \tfrac{1}{2} a t^2$ to machine precision; the clock noise (`clockNoise` parameter) is a relative noise added to the measurement instants, drawn deterministically from the seed.
+ignoredEffects:
+  fr:
+    - "Résistance de l'air (traînée)."
+    - "Frottement de roulement (déformation de la bille et du plan au contact)."
+    - "Géométrie de la rainure (une bille dans une rainure en V roule sur un rayon effectif plus petit, ce qui réduit encore l'accélération)."
+    - "Temps de réaction de l'expérimentateur qui ouvre et ferme l'horloge à eau."
+  en:
+    - "Air resistance (drag)."
+    - "Rolling friction (deformation of the ball and of the plane at the contact)."
+    - "Groove geometry (a ball in a V-shaped groove rolls on a smaller effective radius, which reduces the acceleration further)."
+    - "Reaction time of the experimenter opening and closing the water clock."
+learningUse:
+  fr: |-
+    Étape « observation » de la mission : relever au moins trois positions à instants égaux, vérifier que $d(2)/d(1) = 4$ et $d(3)/d(1) = 9$, puis chercher le graphique qui aligne les points ($d$ en fonction de $t^2$). L'angle permet de vérifier que la loi en $t^2$ ne dépend pas de la pente ; le bruit de l'horloge montre pourquoi une meilleure horloge ne suffit pas à définir une vitesse instantanée.
+  en: |-
+    "Observation" step of the mission: record at least three positions at equal instants, check that $d(2)/d(1) = 4$ and $d(3)/d(1) = 9$, then look for the graph that lines the points up ($d$ against $t^2$). The angle lets you check that the $t^2$ law does not depend on the slope; the clock noise shows why a better clock is not enough to define an instantaneous speed.
+a11y:
+  fr: |-
+    Représentation alternative : un tableau des positions, vitesses et énergies à chaque instant de mesure, lisible par un lecteur d'écran, et une description textuelle de la courbe (« la distance croît comme le carré du temps : 0.6 m, 2.4 m, 5.5 m à 1, 2, 3 s »). Les curseurs d'angle et de bruit sont manipulables au clavier ; chaque mesure est annoncée sous forme de phrase.
+  en: |-
+    Alternative representation: a table of positions, speeds and energies at each measurement instant, readable by a screen reader, and a textual description of the curve ("the distance grows as the square of the time: 0.6 m, 2.4 m, 5.5 m at 1, 2, 3 s"). The angle and noise sliders are keyboard-operable; each measurement is announced as a sentence.

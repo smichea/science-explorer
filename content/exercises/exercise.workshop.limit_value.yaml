@@ -1,0 +1,67 @@
+# Atelier — limite du taux moyen quand h tend vers 0 (réponse numérique)
+id: exercise.workshop.limit_value
+type: numeric
+nodeId: tool.derivative
+depth: 1
+evidenceDimension: procedural_execution
+context:
+  fr: |-
+    Atelier mathématique : la règle « faire tendre l'intervalle vers zéro », appliquée à une loi horaire exacte.
+  en: |-
+    Mathematics workshop: the rule "let the interval shrink to zero", applied to an exact position law.
+prompt:
+  fr: |-
+    Toujours pour $x(t) = 2t^2$ ($x$ en mètres, $t$ en secondes), on considère le taux de variation moyen sur l'intervalle $[1 ; 1 + h]$, où $h > 0$ est une durée que l'on va faire tendre vers zéro :
+    $$m(h) = \frac{x(1+h) - x(1)}{h}.$$
+    1. Développez $x(1+h)$ et simplifiez l'expression de $m(h)$.
+    2. Quelle est la limite de $m(h)$ lorsque $h \to 0$ ? Donnez cette valeur en $\mathrm{m/s}$ : c'est la vitesse instantanée à $t = 1\ \mathrm{s}$.
+  en: |-
+    Still for $x(t) = 2t^2$ ($x$ in metres, $t$ in seconds), consider the average rate of change on the interval $[1, 1 + h]$, where $h > 0$ is a duration that we will let shrink to zero:
+    $$m(h) = \frac{x(1+h) - x(1)}{h}.$$
+    1. Expand $x(1+h)$ and simplify the expression of $m(h)$.
+    2. What is the limit of $m(h)$ as $h \to 0$? Give this value in $\mathrm{m/s}$: it is the instantaneous speed at $t = 1\ \mathrm{s}$.
+numeric:
+  value: 4
+  unit: "m/s"
+  tolerance: { kind: relative, value: 0.02 }
+  inputLabel: { fr: "Limite de m(h) quand h tend vers 0", en: "Limit of m(h) as h tends to 0" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Développez $(1+h)^2 = 1 + 2h + h^2$ ; le terme constant se simplifie avec $x(1)$, et il reste une expression que l'on peut diviser par $h$.
+      en: |-
+        Expand $(1+h)^2 = 1 + 2h + h^2$; the constant term cancels with $x(1)$, leaving an expression that can be divided by $h$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $m(h) = \dfrac{2(1 + 2h + h^2) - 2}{h} = \dfrac{4h + 2h^2}{h} = 4 + 2h$ : il ne reste plus qu'à faire tendre $h$ vers $0$.
+      en: |-
+        $m(h) = \dfrac{2(1 + 2h + h^2) - 2}{h} = \dfrac{4h + 2h^2}{h} = 4 + 2h$: all that remains is to let $h$ tend to $0$.
+solution:
+  fr: |-
+    **1. Simplification.** $x(1+h) = 2(1+h)^2 = 2 + 4h + 2h^2$ et $x(1) = 2$, donc
+    $$m(h) = \frac{2 + 4h + 2h^2 - 2}{h} = \frac{4h + 2h^2}{h} = 4 + 2h \quad (h \neq 0).$$
+    On retrouve bien $m(0.1) = 4.2\ \mathrm{m/s}$, la valeur de l'exercice précédent.
+
+    **2. Passage à la limite.** Quand $h$ tend vers $0$, le terme $2h$ disparaît :
+    $$\lim_{h \to 0} m(h) = 4\ \mathrm{m/s}.$$
+    Ce nombre ne dépend plus d'aucun intervalle : c'est **la** vitesse instantanée à $t = 1\ \mathrm{s}$, que l'on note $x'(1) = 4\ \mathrm{m/s}$. Le tableau $m(0.1) = 4.2$, $m(0.01) = 4.02$, $m(0.001) = 4.002$ illustre la convergence : la règle « faire tendre l'intervalle vers zéro » répond à la question restée ouverte sur le plan incliné.
+  en: |-
+    **1. Simplification.** $x(1+h) = 2(1+h)^2 = 2 + 4h + 2h^2$ and $x(1) = 2$, hence
+    $$m(h) = \frac{2 + 4h + 2h^2 - 2}{h} = \frac{4h + 2h^2}{h} = 4 + 2h \quad (h \neq 0).$$
+    We recover $m(0.1) = 4.2\ \mathrm{m/s}$, the value of the previous exercise.
+
+    **2. Passing to the limit.** As $h$ tends to $0$, the term $2h$ vanishes:
+    $$\lim_{h \to 0} m(h) = 4\ \mathrm{m/s}.$$
+    This number no longer depends on any interval: it is **the** instantaneous speed at $t = 1\ \mathrm{s}$, written $x'(1) = 4\ \mathrm{m/s}$. The table $m(0.1) = 4.2$, $m(0.01) = 4.02$, $m(0.001) = 4.002$ illustrates the convergence: the rule "let the interval shrink to zero" answers the question left open on the inclined plane.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 3
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

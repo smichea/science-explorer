@@ -1,0 +1,75 @@
+id: law.newton_second
+type: law
+world: world.physics
+region: region.physics.motion_mechanics
+importance: 3
+tags: [vertical-slice]
+title: { fr: Deuxième loi de Newton, en: Newton's second law }
+shortPurpose:
+  fr: Relier les forces exercées sur un système à la variation de sa vitesse.
+  en: Relate the forces acting on a system to the change of its velocity.
+aliases:
+  fr: ["principe fondamental de la dynamique", "PFD", "relation fondamentale de la dynamique", "deuxième loi du mouvement"]
+  en: ["fundamental principle of dynamics", "F = ma", "equation of motion", "second law of motion"]
+description:
+  fr: |
+    Dans un référentiel galiléen, la somme des forces exercées sur un point matériel de masse $m$ est égale à la dérivée de sa quantité de mouvement $\vec p = m\,\vec v$ :
+    $$\sum \vec F = \frac{\mathrm{d}\vec p}{\mathrm{d}t}, \qquad \text{soit, à masse constante,} \qquad \sum \vec F = m\,\vec a.$$
+    La loi ne dit pas que la force produit la vitesse, mais qu'elle produit **l'accélération**, c'est-à-dire la *variation* de la vitesse : un objet sur lequel ne s'exerce aucune force résultante conserve sa vitesse (première loi). C'est pour cela que la dérivée est indispensable pour l'énoncer.
+
+    La deuxième loi est la charnière entre la dynamique et la cinématique : à gauche, un bilan des forces (poids, réaction du support, frottement, force électrique) ; à droite, une dérivée seconde de la position. Elle transforme donc chaque situation physique en **équation différentielle** : $m\,\ddot z = -mg$ pour la chute libre, $m\,\ddot x = mg\sin\theta$ sur un plan incliné sans frottement, $m\,\dot v = mg - k\,v$ avec frottement fluide. Résoudre cette équation, c'est prédire le mouvement.
+
+    Sa validité est celle de la mécanique classique : vitesses petites devant $c$, systèmes macroscopiques, référentiel galiléen (sinon il faut ajouter des forces d'inertie). Galilée n'en disposait pas : il a établi la loi de la chute par la mesure et la géométrie, et c'est Newton qui, en 1687, en a fait la conséquence d'un principe général.
+  en: |
+    In a Galilean frame of reference, the sum of the forces acting on a point mass $m$ equals the derivative of its momentum $\vec p = m\,\vec v$:
+    $$\sum \vec F = \frac{\mathrm{d}\vec p}{\mathrm{d}t}, \qquad \text{that is, at constant mass,} \qquad \sum \vec F = m\,\vec a.$$
+    The law does not say that force produces velocity, but that it produces **acceleration**, that is, the *change* of velocity: an object on which no net force acts keeps its velocity (first law). This is why the derivative is indispensable to state it.
+
+    The second law is the hinge between dynamics and kinematics: on the left, an inventory of forces (weight, normal reaction, friction, electric force); on the right, a second derivative of the position. It therefore turns every physical situation into a **differential equation**: $m\,\ddot z = -mg$ for free fall, $m\,\ddot x = mg\sin\theta$ on a frictionless inclined plane, $m\,\dot v = mg - k\,v$ with fluid drag. Solving that equation is predicting the motion.
+
+    Its validity is that of classical mechanics: speeds small compared with $c$, macroscopic systems, Galilean frame (otherwise inertial forces must be added). Galileo did not have it: he established the law of fall through measurement and geometry, and it was Newton who, in 1687, made it the consequence of a general principle.
+law:
+  statement:
+    fr: "Dans un référentiel galiléen, la somme vectorielle des forces appliquées à un point matériel est égale à la dérivée par rapport au temps de sa quantité de mouvement : $\\sum \\vec F = \\dfrac{\\mathrm{d}\\vec p}{\\mathrm{d}t} = m\\,\\vec a$ à masse constante."
+    en: "In a Galilean frame of reference, the vector sum of the forces applied to a point mass equals the time derivative of its momentum: $\\sum \\vec F = \\dfrac{\\mathrm{d}\\vec p}{\\mathrm{d}t} = m\\,\\vec a$ at constant mass."
+  validity:
+    fr: "Mécanique classique : référentiel galiléen (ou forces d'inertie ajoutées), vitesses très inférieures à celle de la lumière, objets macroscopiques ; pour un solide, s'applique au centre de masse."
+    en: "Classical mechanics: Galilean frame (or inertial forces added), speeds much smaller than that of light, macroscopic objects; for a solid, applies to the centre of mass."
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "faire l'inventaire des forces exercées sur un système et les représenter"
+        - "appliquer la deuxième loi de Newton dans un champ uniforme pour obtenir l'accélération, puis la vitesse et la position"
+        - "relier la direction de la résultante des forces à celle de l'accélération, et distinguer force et vitesse"
+        - "reconnaître qu'en l'absence de force résultante le mouvement est rectiligne uniforme"
+      en:
+        - "list the forces acting on a system and draw them"
+        - "apply Newton's second law in a uniform field to obtain the acceleration, then the velocity and the position"
+        - "relate the direction of the net force to that of the acceleration, and distinguish force from velocity"
+        - "recognise that with no net force the motion is uniform and rectilinear"
+    lesson:
+      fr: |
+        **Énoncé.** Dans un référentiel galiléen, pour un système de masse $m$ constante : $\sum \vec F = m\,\vec a$. La résultante des forces et l'accélération ont même direction et même sens ; la vitesse, elle, peut pointer ailleurs (un projectile monte alors que son poids le tire vers le bas). Si $\sum \vec F = \vec 0$, alors $\vec a = \vec 0$ et le mouvement est rectiligne uniforme ou le système reste immobile : c'est le principe d'inertie.
+
+        **Méthode.** 1. Choisir le système et le référentiel. 2. Faire le bilan des forces. 3. Écrire $m\,\vec a = \sum \vec F$ et projeter sur des axes bien choisis. 4. Intégrer deux fois en utilisant les conditions initiales. Dans le champ de pesanteur uniforme, $\vec a = \vec g$ quelle que soit la masse : $\ddot z = -g$, $\dot z = -g\,t + v_{0z}$, $z = -\tfrac12 g t^2 + v_{0z}\,t + z_0$. C'est la démonstration moderne de la loi que Galilée avait mesurée.
+      en: |
+        **Statement.** In a Galilean frame, for a system of constant mass $m$: $\sum \vec F = m\,\vec a$. The net force and the acceleration have the same direction and orientation; the velocity may point elsewhere (a projectile rises while its weight pulls it down). If $\sum \vec F = \vec 0$, then $\vec a = \vec 0$ and the motion is uniform and rectilinear or the system stays at rest: this is the principle of inertia.
+
+        **Method.** 1. Choose the system and the frame of reference. 2. List the forces. 3. Write $m\,\vec a = \sum \vec F$ and project onto well-chosen axes. 4. Integrate twice using the initial conditions. In a uniform gravitational field, $\vec a = \vec g$ whatever the mass: $\ddot z = -g$, $\dot z = -g\,t + v_{0z}$, $z = -\tfrac12 g t^2 + v_{0z}\,t + z_0$. This is the modern proof of the law Galileo had measured.
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "énoncer la loi avec la quantité de mouvement et l'appliquer dans une base mobile (polaire, Frenet)"
+        - "modéliser les frottements (fluide linéaire ou quadratique, solide de Coulomb) et en déduire l'équation du mouvement"
+        - "distinguer régime transitoire et régime permanent, et identifier une vitesse limite"
+        - "résoudre analytiquement ou numériquement l'équation différentielle obtenue"
+      en:
+        - "state the law with momentum and apply it in a moving basis (polar, Frenet)"
+        - "model friction (linear or quadratic fluid drag, Coulomb solid friction) and derive the equation of motion"
+        - "distinguish the transient from the steady regime and identify a terminal velocity"
+        - "solve the resulting differential equation analytically or numerically"

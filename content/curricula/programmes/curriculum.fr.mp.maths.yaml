@@ -1,0 +1,25 @@
+id: curriculum.fr.mp.maths
+country: FR
+stage: mp
+subject: mathematics
+title:
+  fr: "Mathématiques — MP"
+  en: "Mathematics — MP (second preparatory year)"
+version: "2026-reference"
+validFrom: "2021-09-01"
+validTo: null
+sourceReferences:
+  - title: "Programme de mathématiques de la classe de MP, BO spécial n°1 du 11 février 2021"
+    note: "to verify"
+items:
+  - id: calcul_differentiel
+    title: { fr: Calcul différentiel, en: Differential calculus }
+    reference: "Calcul différentiel — Fonctions de classe C¹ : dérivées partielles, différentielle, gradient ; règle de la chaîne ; optimisation (points critiques, extremums locaux)"
+    alignedNodes:
+      - { node: tool.gradient, depth: 3 }
+      - { node: tool.derivative, depth: 3 }
+  - id: equations_differentielles
+    title: { fr: Équations différentielles linéaires, en: Linear differential equations }
+    reference: "Équations différentielles linéaires — Systèmes différentiels linéaires à coefficients constants ; exponentielle d'un endomorphisme, d'une matrice"
+    alignedNodes:
+      - { node: tool.ode_first_order, depth: 3 }

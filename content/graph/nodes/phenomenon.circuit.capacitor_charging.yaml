@@ -1,0 +1,68 @@
+id: phenomenon.circuit.capacitor_charging
+type: phenomenon
+world: world.physics
+region: region.physics.electricity_circuits
+importance: 3
+tags: [vertical-slice]
+title: { fr: Charge d'un condensateur, en: Capacitor charging }
+shortPurpose:
+  fr: La tension aux bornes d'un condensateur monte vers celle du générateur en suivant une exponentielle de constante de temps RC.
+  en: The voltage across a capacitor rises towards that of the source along an exponential with time constant RC.
+aliases:
+  fr: ["charge et décharge d'un condensateur", "régime transitoire du circuit RC", "constante de temps RC", "réponse d'un circuit RC à un échelon de tension"]
+  en: ["capacitor charge and discharge", "RC circuit transient", "RC time constant", "step response of an RC circuit"]
+description:
+  fr: |
+    Quand on relie un condensateur de capacité $C$, initialement déchargé, à un générateur de tension $E$ à travers une résistance $R$, la tension à ses bornes ne saute pas à $E$ : elle monte progressivement,
+    $$u_C(t) = E\left(1 - e^{-t/\tau}\right), \qquad \tau = RC.$$
+    Le courant, lui, part de $I_0 = E/R$ et décroît comme $i(t) = \dfrac{E}{R}\,e^{-t/\tau}$. Au bout de $\tau$, la tension a atteint $63\,\%$ de $E$ ; au bout de $5\tau$, on considère le condensateur chargé. La décharge suit la loi symétrique $u_C(t) = E\,e^{-t/\tau}$.
+
+    L'origine du phénomène tient en une phrase : **le courant qui charge le condensateur est d'autant plus faible que le condensateur est déjà chargé**. La loi des mailles, $E = R\,i + u_C$, et la relation du condensateur, $i = C\,\dfrac{\mathrm{d}u_C}{\mathrm{d}t}$, donnent l'équation différentielle $RC\,\dfrac{\mathrm{d}u_C}{\mathrm{d}t} + u_C = E$ : la vitesse de variation de $u_C$ est proportionnelle à ce qui lui manque, $E - u_C$. C'est exactement la structure de la chute freinée, de la réaction d'ordre 1 ou de la décroissance radioactive, avec $\tau$ dans le rôle de $m/k$ ou de $1/\lambda$.
+
+    Expérimentalement, la charge d'un condensateur est la façon la plus commode d'observer une exponentielle : un oscilloscope ou une carte d'acquisition donne $u_C(t)$, et la tangente à l'origine, qui coupe l'asymptote $u = E$ en $t = \tau$, permet de mesurer $RC$, donc $C$ si $R$ est connue. Le produit $RC$ est bien homogène à un temps : un ohm fois un farad font une seconde.
+  en: |
+    When a capacitor of capacitance $C$, initially discharged, is connected to a voltage source $E$ through a resistor $R$, the voltage across it does not jump to $E$: it rises gradually,
+    $$u_C(t) = E\left(1 - e^{-t/\tau}\right), \qquad \tau = RC.$$
+    The current, for its part, starts from $I_0 = E/R$ and decays as $i(t) = \dfrac{E}{R}\,e^{-t/\tau}$. After $\tau$, the voltage has reached $63\,\%$ of $E$; after $5\tau$, the capacitor is considered charged. Discharge follows the symmetric law $u_C(t) = E\,e^{-t/\tau}$.
+
+    The origin of the phenomenon fits in one sentence: **the current charging the capacitor is smaller the more the capacitor is already charged**. Kirchhoff's voltage law, $E = R\,i + u_C$, and the capacitor relation, $i = C\,\dfrac{\mathrm{d}u_C}{\mathrm{d}t}$, give the differential equation $RC\,\dfrac{\mathrm{d}u_C}{\mathrm{d}t} + u_C = E$: the rate of change of $u_C$ is proportional to what it still lacks, $E - u_C$. This is exactly the structure of fall with drag, of the first-order reaction or of radioactive decay, with $\tau$ in the role of $m/k$ or $1/\lambda$.
+
+    Experimentally, capacitor charging is the most convenient way to observe an exponential: an oscilloscope or a data-acquisition card gives $u_C(t)$, and the tangent at the origin, which meets the asymptote $u = E$ at $t = \tau$, makes it possible to measure $RC$, hence $C$ if $R$ is known. The product $RC$ is indeed homogeneous to a time: one ohm times one farad makes one second.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "établir l'équation différentielle de la charge à partir de la loi des mailles et de $i = C\\,\\mathrm{d}u_C/\\mathrm{d}t$"
+        - "vérifier que $u_C(t) = E(1 - e^{-t/\\tau})$ est solution et identifier $\\tau = RC$"
+        - "mesurer la constante de temps sur une courbe expérimentale (tangente à l'origine, $63\\,\\%$, $5\\tau$)"
+        - "vérifier l'homogénéité de $RC$ à un temps et prévoir l'effet d'un changement de $R$ ou de $C$"
+      en:
+        - "derive the differential equation of the charge from Kirchhoff's voltage law and $i = C\\,\\mathrm{d}u_C/\\mathrm{d}t$"
+        - "check that $u_C(t) = E(1 - e^{-t/\\tau})$ is a solution and identify $\\tau = RC$"
+        - "measure the time constant on an experimental curve (tangent at the origin, $63\\,\\%$, $5\\tau$)"
+        - "check that $RC$ is homogeneous to a time and predict the effect of changing $R$ or $C$"
+    lesson:
+      fr: |
+        **Mise en équation.** Circuit série générateur $E$, résistance $R$, condensateur $C$, interrupteur fermé à $t = 0$ avec $u_C(0) = 0$. Loi des mailles : $E = u_R + u_C = R\,i + u_C$. Relation du condensateur : $q = C\,u_C$ et $i = \dfrac{\mathrm{d}q}{\mathrm{d}t} = C\,\dfrac{\mathrm{d}u_C}{\mathrm{d}t}$. D'où $RC\,\dfrac{\mathrm{d}u_C}{\mathrm{d}t} + u_C = E$, soit $u_C' = -\dfrac{1}{RC}\,u_C + \dfrac{E}{RC}$ : une équation $y' = ay + b$ avec $a = -1/\tau$, $b = E/\tau$, $\tau = RC$.
+
+        **Résolution et lecture.** Solution générale $u_C(t) = K\,e^{-t/\tau} + E$ ; la condition initiale $u_C(0) = 0$ donne $K = -E$, donc $u_C(t) = E\left(1 - e^{-t/\tau}\right)$ et $i(t) = \dfrac{E}{R}\,e^{-t/\tau}$. À $t = \tau$ : $u_C = E(1 - e^{-1}) \approx 0{,}63\,E$ ; à $t = 5\tau$ : $u_C \approx 0{,}993\,E$. La tangente à l'origine a pour pente $E/\tau$ et coupe l'asymptote $u = E$ à $t = \tau$ : c'est la méthode graphique de mesure de $\tau$. Vérification dimensionnelle : $[R][C] = \dfrac{\mathrm{V}}{\mathrm{A}}\cdot\dfrac{\mathrm{A\cdot s}}{\mathrm{V}} = \mathrm{s}$.
+      en: |
+        **Setting up the equation.** Series circuit with source $E$, resistor $R$, capacitor $C$, switch closed at $t = 0$ with $u_C(0) = 0$. Kirchhoff's voltage law: $E = u_R + u_C = R\,i + u_C$. Capacitor relation: $q = C\,u_C$ and $i = \dfrac{\mathrm{d}q}{\mathrm{d}t} = C\,\dfrac{\mathrm{d}u_C}{\mathrm{d}t}$. Hence $RC\,\dfrac{\mathrm{d}u_C}{\mathrm{d}t} + u_C = E$, that is $u_C' = -\dfrac{1}{RC}\,u_C + \dfrac{E}{RC}$: an equation $y' = ay + b$ with $a = -1/\tau$, $b = E/\tau$, $\tau = RC$.
+
+        **Solution and reading.** General solution $u_C(t) = K\,e^{-t/\tau} + E$; the initial condition $u_C(0) = 0$ gives $K = -E$, so $u_C(t) = E\left(1 - e^{-t/\tau}\right)$ and $i(t) = \dfrac{E}{R}\,e^{-t/\tau}$. At $t = \tau$: $u_C = E(1 - e^{-1}) \approx 0.63\,E$; at $t = 5\tau$: $u_C \approx 0.993\,E$. The tangent at the origin has slope $E/\tau$ and meets the asymptote $u = E$ at $t = \tau$: this is the graphical method for measuring $\tau$. Dimensional check: $[R][C] = \dfrac{\mathrm{V}}{\mathrm{A}}\cdot\dfrac{\mathrm{A\cdot s}}{\mathrm{V}} = \mathrm{s}$.
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "traiter la réponse d'un circuit RC à un échelon de tension avec des conditions initiales quelconques et la continuité de $u_C$"
+        - "faire le bilan énergétique de la charge : énergie stockée $\\tfrac12 C E^2$, énergie dissipée dans $R$"
+        - "généraliser au circuit RL et à tout système du premier ordre (temps caractéristique, régime libre, régime forcé)"
+        - "prévoir la réponse à un signal créneau selon le rapport entre période et constante de temps"
+      en:
+        - "handle the response of an RC circuit to a voltage step with arbitrary initial conditions and the continuity of $u_C$"
+        - "carry out the energy balance of the charge: stored energy $\\tfrac12 C E^2$, energy dissipated in $R$"
+        - "generalise to the RL circuit and to any first-order system (characteristic time, free and forced regimes)"
+        - "predict the response to a square signal according to the ratio between period and time constant"

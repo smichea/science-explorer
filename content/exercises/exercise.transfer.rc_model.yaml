@@ -1,0 +1,94 @@
+# Transfert — charge d'un condensateur : à quoi dq/dt est-il proportionnel ? (choix unique avec justification)
+id: exercise.transfer.rc_model
+type: choice
+nodeId: tool.derivative
+phenomenonId: phenomenon.circuit.capacitor_charging
+depth: 1
+evidenceDimension: modelling_choice
+context:
+  fr: |-
+    Transfert : la dérivée quitte la mécanique. Un condensateur se charge à travers une résistance ; la « position » devient une charge électrique.
+  en: |-
+    Transfer: the derivative leaves mechanics. A capacitor charges through a resistor; the "position" becomes an electric charge.
+prompt:
+  fr: |-
+    Un condensateur de capacité $C = 1.0\ \mu\mathrm{F}$, initialement déchargé, est branché à l'instant $t = 0$ en série avec une résistance $R = 2.0\ \mathrm{k\Omega}$ aux bornes d'un générateur de tension constante $E = 6.0\ \mathrm{V}$. Sa charge $q(t)$ augmente et tend vers la valeur finale $Q = CE = 6.0\ \mu\mathrm{C}$.
+
+    Le courant $i = \dfrac{dq}{dt}$ est le taux de variation de la charge. En vous appuyant sur la loi des mailles, $E = R\,i + \dfrac{q}{C}$, dites à quoi ce taux est proportionnel. Justifiez.
+  en: |-
+    A capacitor of capacitance $C = 1.0\ \mu\mathrm{F}$, initially uncharged, is connected at the instant $t = 0$ in series with a resistor $R = 2.0\ \mathrm{k\Omega}$ across a generator of constant voltage $E = 6.0\ \mathrm{V}$. Its charge $q(t)$ increases and tends to the final value $Q = CE = 6.0\ \mu\mathrm{C}$.
+
+    The current $i = \dfrac{dq}{dt}$ is the rate of change of the charge. Using the loop law, $E = R\,i + \dfrac{q}{C}$, say what this rate is proportional to. Justify.
+choice:
+  multiple: false
+  requireReasoning: true
+  choices:
+    - id: stored_charge
+      text: { fr: "À la charge $q$ déjà stockée", en: "To the charge $q$ already stored" }
+      feedback:
+        fr: |-
+          Si $\dfrac{dq}{dt}$ était proportionnel à $q$, la charge croîtrait de plus en plus vite (croissance exponentielle) et, partant de $q = 0$, ne démarrerait même pas. Or la charge démarre vite, puis ralentit et sature à $Q$.
+        en: |-
+          If $\dfrac{dq}{dt}$ were proportional to $q$, the charge would grow faster and faster (exponential growth) and, starting from $q = 0$, would not even get going. Yet the charge starts quickly, then slows down and saturates at $Q$.
+    - id: remaining_charge
+      text: { fr: "À la charge qui reste à gagner, $Q - q$", en: "To the charge still to be gained, $Q - q$" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : $E = R\,\dfrac{dq}{dt} + \dfrac{q}{C}$ donne $\dfrac{dq}{dt} = \dfrac{CE - q}{RC} = \dfrac{Q - q}{\tau}$ avec $\tau = RC$. Plus le condensateur est proche d'être plein, plus il se remplit lentement : c'est une évolution du premier ordre, $q(t) = Q\,(1 - e^{-t/\tau})$.
+        en: |-
+          Correct: $E = R\,\dfrac{dq}{dt} + \dfrac{q}{C}$ gives $\dfrac{dq}{dt} = \dfrac{CE - q}{RC} = \dfrac{Q - q}{\tau}$ with $\tau = RC$. The closer the capacitor is to being full, the more slowly it fills: this is a first-order evolution, $q(t) = Q\,(1 - e^{-t/\tau})$.
+    - id: elapsed_time
+      text: { fr: "Au temps écoulé $t$", en: "To the elapsed time $t$" }
+      feedback:
+        fr: |-
+          Un taux proportionnel à $t$ signifierait une charge qui s'emballe comme $t^2$, le mouvement uniformément accéléré de Galilée, sans jamais s'arrêter. Ici, au contraire, le courant est maximal à $t = 0$ et diminue ensuite.
+        en: |-
+          A rate proportional to $t$ would mean a charge running away like $t^2$, Galileo's uniformly accelerated motion, never stopping. Here, on the contrary, the current is maximal at $t = 0$ and decreases afterwards.
+    - id: constant
+      text: { fr: "À rien : le taux est constant", en: "To nothing: the rate is constant" }
+      feedback:
+        fr: |-
+          Un taux constant donnerait $q = i\,t$, croissant indéfiniment au-delà de $Q = CE$, ce qui est impossible : la tension du condensateur $q/C$ ne peut pas dépasser $E$. La loi des mailles montre que $i$ diminue quand $q$ augmente.
+        en: |-
+          A constant rate would give $q = i\,t$, growing indefinitely beyond $Q = CE$, which is impossible: the capacitor voltage $q/C$ cannot exceed $E$. The loop law shows that $i$ decreases as $q$ increases.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Dans la loi des mailles, remplacez $i$ par $\dfrac{dq}{dt}$ et isolez cette dérivée. Faites apparaître $CE$ au numérateur.
+      en: |-
+        In the loop law, replace $i$ by $\dfrac{dq}{dt}$ and isolate this derivative. Make $CE$ appear in the numerator.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\dfrac{dq}{dt} = \dfrac{E - q/C}{R} = \dfrac{CE - q}{RC}$, et $CE = Q$.
+      en: |-
+        $\dfrac{dq}{dt} = \dfrac{E - q/C}{R} = \dfrac{CE - q}{RC}$, and $CE = Q$.
+solution:
+  fr: |-
+    **Mise en équation.** Loi des mailles : $E = u_R + u_C = R\,i + \dfrac{q}{C}$. Avec $i = \dfrac{dq}{dt}$ :
+    $$\frac{dq}{dt} = \frac{E - q/C}{R} = \frac{CE - q}{RC} = \frac{Q - q}{\tau}, \qquad Q = CE = 6.0\ \mu\mathrm{C}, \quad \tau = RC = 2.0\ \mathrm{ms}.$$
+    Le taux de variation de la charge est proportionnel à ce qui **reste à gagner**, $Q - q$, avec le coefficient $1/\tau$.
+
+    **Conséquences.** À $t = 0$, $q = 0$ et le taux est maximal : $\dfrac{dq}{dt}(0) = Q/\tau = E/R = 3.0\ \mathrm{mA}$. Quand $q$ se rapproche de $Q$, le taux tend vers zéro : la courbe de $q(t)$ s'aplatit, elle possède une asymptote horizontale. La solution est $q(t) = Q\,(1 - e^{-t/\tau})$.
+
+    **Comparaison avec Galilée.** Sur le plan incliné, la vitesse $x'(t) = a\,t$ était proportionnelle au temps écoulé ; ici la « vitesse » $q'(t)$ est proportionnelle à la distance qui reste à parcourir. Même outil, la dérivée, mais une loi différente : c'est la dérivée qui permet d'écrire et de comparer ces deux lois.
+  en: |-
+    **Setting up the equation.** Loop law: $E = u_R + u_C = R\,i + \dfrac{q}{C}$. With $i = \dfrac{dq}{dt}$:
+    $$\frac{dq}{dt} = \frac{E - q/C}{R} = \frac{CE - q}{RC} = \frac{Q - q}{\tau}, \qquad Q = CE = 6.0\ \mu\mathrm{C}, \quad \tau = RC = 2.0\ \mathrm{ms}.$$
+    The rate of change of the charge is proportional to what is **still to be gained**, $Q - q$, with the coefficient $1/\tau$.
+
+    **Consequences.** At $t = 0$, $q = 0$ and the rate is maximal: $\dfrac{dq}{dt}(0) = Q/\tau = E/R = 3.0\ \mathrm{mA}$. As $q$ approaches $Q$, the rate tends to zero: the curve of $q(t)$ flattens out, it has a horizontal asymptote. The solution is $q(t) = Q\,(1 - e^{-t/\tau})$.
+
+    **Comparison with Galileo.** On the inclined plane, the speed $x'(t) = a\,t$ was proportional to the elapsed time; here the "speed" $q'(t)$ is proportional to the distance still to be covered. Same tool, the derivative, but a different law: it is the derivative that makes it possible to write and compare these two laws.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 3
+  calculationLength: 1
+  modellingOpenness: 3
+  linkedConcepts: 3
+  transfer: 3
+  autonomy: 3

@@ -1,0 +1,61 @@
+id: method.measurement
+type: method
+region: bridge.measurement
+importance: 2
+tags: [vertical-slice]
+title: { fr: Mesure, en: Measurement }
+shortPurpose:
+  fr: Produire un nombre à partir du monde, avec son unité et son incertitude, et savoir ce qu'il vaut.
+  en: Produce a number from the world, with its unit and its uncertainty, and know what it is worth.
+aliases:
+  fr: ["mesurage", "incertitude de mesure", "protocole expérimental", "chronométrage"]
+  en: ["measuring", "measurement uncertainty", "experimental protocol", "timing"]
+description:
+  fr: |
+    **Mesurer**, c'est comparer une grandeur à une unité au moyen d'un instrument et d'un protocole, pour obtenir une valeur numérique accompagnée d'une **incertitude**. Aucune mesure n'est exacte : la répéter donne des valeurs dispersées (variabilité aléatoire), et l'instrument ou la méthode peuvent décaler toutes les valeurs dans le même sens (erreur systématique). Le résultat d'une mesure s'écrit donc $x = \bar x \pm u(x)$, où l'incertitude-type $u(x)$ se déduit de l'écart-type des mesures répétées ($u = \sigma/\sqrt{n}$ pour la moyenne de $n$ mesures) ou des caractéristiques de l'instrument.
+
+    La méthode est un cycle : choisir ce que l'on mesure et avec quoi, estimer l'ordre de grandeur attendu, réaliser des mesures répétées, calculer une valeur et son incertitude, puis **comparer** à une valeur de référence ou à la prédiction d'un modèle. Le critère de compatibilité est le quotient $z = \dfrac{|x - x_{\text{ref}}|}{u}$ : si $z \lesssim 2$, la mesure est compatible ; sinon, c'est le modèle, l'instrument ou le protocole qu'il faut interroger. Une mesure qui contredit un modèle est une information, pas un échec.
+
+    Galilée n'avait ni chronomètre ni oscilloscope : il pesait l'eau écoulée d'un vase pendant la descente d'une bille et rapporte avoir répété l'expérience une bonne centaine de fois pour que les rapports se confirment. La question qu'il se posait est encore la nôtre : cette régularité est-elle réelle, ou est-ce le bruit de mes instruments ?
+  en: |
+    **Measuring** means comparing a quantity with a unit by means of an instrument and a protocol, to obtain a numerical value together with an **uncertainty**. No measurement is exact: repeating it gives scattered values (random variability), and the instrument or the method may shift all values in the same direction (systematic error). The result of a measurement is therefore written $x = \bar x \pm u(x)$, where the standard uncertainty $u(x)$ is deduced from the standard deviation of repeated measurements ($u = \sigma/\sqrt{n}$ for the mean of $n$ measurements) or from the characteristics of the instrument.
+
+    The method is a cycle: choose what to measure and with what, estimate the expected order of magnitude, carry out repeated measurements, compute a value and its uncertainty, then **compare** with a reference value or with the prediction of a model. The compatibility criterion is the quotient $z = \dfrac{|x - x_{\text{ref}}|}{u}$: if $z \lesssim 2$, the measurement is compatible; otherwise it is the model, the instrument or the protocol that must be questioned. A measurement that contradicts a model is information, not a failure.
+
+    Galileo had neither stopwatch nor oscilloscope: he weighed the water that flowed out of a vessel during the descent of a ball and reports having repeated the experiment a good hundred times so that the ratios would be confirmed. The question he asked himself is still ours: is this regularity real, or is it the noise of my instruments?
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "identifier les sources de variabilité d'une mesure et distinguer erreur aléatoire et erreur systématique"
+        - "estimer une incertitude-type à partir d'une série de mesures ou des indications de l'instrument"
+        - "écrire un résultat avec son unité, son incertitude et un nombre de chiffres significatifs cohérent"
+        - "comparer une valeur mesurée à une valeur de référence à l'aide de l'écart normalisé $z$"
+      en:
+        - "identify the sources of variability of a measurement and distinguish random from systematic error"
+        - "estimate a standard uncertainty from a series of measurements or from the instrument's specifications"
+        - "write a result with its unit, its uncertainty and a consistent number of significant figures"
+        - "compare a measured value with a reference value using the normalised deviation $z$"
+    lesson:
+      fr: |
+        **Incertitude-type.** Pour $n$ mesures $x_1, \dots, x_n$ de moyenne $\bar x$ et d'écart-type $\sigma$, l'incertitude-type sur la moyenne est $u(\bar x) = \dfrac{\sigma}{\sqrt{n}}$ (évaluation de type A). Pour une lecture unique sur un instrument de résolution $\delta$, on prend $u = \dfrac{\delta}{\sqrt{12}}$ ou l'indication du constructeur (type B). Le résultat s'écrit $x = \bar x \pm u(x)$, avec un ou deux chiffres significatifs pour $u$ et la même position décimale pour $\bar x$.
+
+        **Comparaison.** Pour confronter une mesure $x \pm u$ à une valeur de référence $x_{\text{ref}}$ (ou une prédiction de modèle), on calcule $z = \dfrac{|x - x_{\text{ref}}|}{u}$ ; on considère les valeurs compatibles si $z \le 2$. Sur le plan incliné, mesurer $a$ puis comparer à $g\sin\theta$ ou à $\tfrac57 g\sin\theta$ permet de décider quel modèle (glissement ou roulement) est compatible avec l'expérience.
+      en: |
+        **Standard uncertainty.** For $n$ measurements $x_1, \dots, x_n$ with mean $\bar x$ and standard deviation $\sigma$, the standard uncertainty on the mean is $u(\bar x) = \dfrac{\sigma}{\sqrt{n}}$ (type A evaluation). For a single reading on an instrument of resolution $\delta$, one takes $u = \dfrac{\delta}{\sqrt{12}}$ or the manufacturer's specification (type B). The result is written $x = \bar x \pm u(x)$, with one or two significant figures for $u$ and the same decimal position for $\bar x$.
+
+        **Comparison.** To confront a measurement $x \pm u$ with a reference value $x_{\text{ref}}$ (or a model prediction), compute $z = \dfrac{|x - x_{\text{ref}}|}{u}$; the values are considered compatible if $z \le 2$. On the inclined plane, measuring $a$ then comparing it with $g\sin\theta$ or with $\tfrac57 g\sin\theta$ decides which model (sliding or rolling) is compatible with the experiment.
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "propager les incertitudes dans une somme, un produit ou un quotient, et pour une fonction quelconque par simulation de Monte-Carlo"
+        - "ajuster un modèle affine par régression linéaire et estimer l'incertitude sur la pente"
+        - "concevoir un protocole qui minimise l'incertitude dominante"
+      en:
+        - "propagate uncertainties in a sum, a product or a quotient, and for an arbitrary function by Monte-Carlo simulation"
+        - "fit an affine model by linear regression and estimate the uncertainty on the slope"
+        - "design a protocol that minimises the dominant uncertainty"

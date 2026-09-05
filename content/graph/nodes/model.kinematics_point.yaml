@@ -1,0 +1,89 @@
+id: model.kinematics_point
+type: model
+world: world.physics
+region: region.physics.motion_mechanics
+importance: 3
+tags: [vertical-slice]
+title: { fr: Cinématique du point, en: Kinematics of a point }
+shortPurpose:
+  fr: Décrire un mouvement par les vecteurs position, vitesse et accélération, avant de demander pourquoi.
+  en: Describe a motion through the position, velocity and acceleration vectors, before asking why.
+aliases:
+  fr: ["point matériel", "vecteurs position, vitesse et accélération", "description du mouvement", "référentiel"]
+  en: ["point mass", "position, velocity and acceleration vectors", "description of motion", "frame of reference"]
+description:
+  fr: |
+    Le modèle du **point matériel** réduit un objet à un point $M$ affecté de sa masse, repéré dans un **référentiel** (un solide de référence muni d'une horloge) par le vecteur position $\overrightarrow{OM}(t)$. Toute la description du mouvement découle de deux dérivations :
+    $$\vec v = \frac{\mathrm{d}\overrightarrow{OM}}{\mathrm{d}t}, \qquad \vec a = \frac{\mathrm{d}\vec v}{\mathrm{d}t} = \frac{\mathrm{d}^2\overrightarrow{OM}}{\mathrm{d}t^2}.$$
+    Dans un repère cartésien, on dérive coordonnée par coordonnée : $v_x = \dot x$, $a_x = \ddot x$ (la notation pointée $\dot x$ signifie $\mathrm{d}x/\mathrm{d}t$). La vitesse est tangente à la trajectoire ; l'accélération dit comment la vitesse change, en norme et en direction.
+
+    Le modèle répond à la question « comment décrire un mouvement avec précision ? » avant de répondre à « pourquoi ce mouvement ? » : c'est la **cinématique**, distincte de la dynamique. Il fait le lien direct avec la dérivée : lire une vitesse sur une courbe $x(t)$, c'est lire une pente ; reconnaître une accélération constante, c'est reconnaître une position quadratique en $t$. Réciproquement, la connaissance de $\vec a(t)$ et des conditions initiales (position et vitesse à $t = 0$) permet de reconstruire toute la trajectoire.
+
+    Ses hypothèses sont fortes : l'objet est un point (on néglige sa taille, sa rotation, sa déformation), le référentiel est précisé et, pour la dynamique, galiléen. Il ne s'applique donc pas tel quel à une bille qui roule (sa rotation compte), à un solide qui tourne sur lui-même ou à une vitesse proche de celle de la lumière.
+  en: |
+    The **point mass** model reduces an object to a point $M$ carrying its mass, located in a **frame of reference** (a reference solid equipped with a clock) by the position vector $\overrightarrow{OM}(t)$. The whole description of the motion follows from two differentiations:
+    $$\vec v = \frac{\mathrm{d}\overrightarrow{OM}}{\mathrm{d}t}, \qquad \vec a = \frac{\mathrm{d}\vec v}{\mathrm{d}t} = \frac{\mathrm{d}^2\overrightarrow{OM}}{\mathrm{d}t^2}.$$
+    In Cartesian coordinates, one differentiates coordinate by coordinate: $v_x = \dot x$, $a_x = \ddot x$ (the dot notation $\dot x$ means $\mathrm{d}x/\mathrm{d}t$). The velocity is tangent to the trajectory; the acceleration says how the velocity changes, in magnitude and in direction.
+
+    The model answers the question "how can a motion be described precisely?" before answering "why this motion?": this is **kinematics**, as distinct from dynamics. It connects directly to the derivative: reading a velocity on a curve $x(t)$ is reading a slope; recognising a constant acceleration is recognising a position quadratic in $t$. Conversely, knowing $\vec a(t)$ and the initial conditions (position and velocity at $t = 0$) lets one reconstruct the whole trajectory.
+
+    Its assumptions are strong: the object is a point (its size, rotation and deformation are neglected), the frame of reference is specified and, for dynamics, Galilean. It therefore does not apply as is to a rolling ball (its rotation matters), to a spinning solid, or to speeds close to that of light.
+model:
+  assumptions:
+    fr:
+      - "Le système est réduit à un point matériel : ses dimensions, sa rotation propre et sa déformation sont négligées."
+      - "Le mouvement est décrit dans un référentiel explicitement choisi, muni d'une horloge ; pour la dynamique, ce référentiel est supposé galiléen."
+      - "La fonction $t \\mapsto \\overrightarrow{OM}(t)$ est supposée deux fois dérivable : vitesse et accélération existent à chaque instant."
+      - "Les vitesses sont très inférieures à celle de la lumière (mécanique classique)."
+    en:
+      - "The system is reduced to a point mass: its dimensions, its own rotation and its deformation are neglected."
+      - "The motion is described in an explicitly chosen frame of reference equipped with a clock; for dynamics, this frame is assumed Galilean."
+      - "The function $t \\mapsto \\overrightarrow{OM}(t)$ is assumed twice differentiable: velocity and acceleration exist at every instant."
+      - "Speeds are much smaller than the speed of light (classical mechanics)."
+  limits:
+    fr:
+      - "Un solide en rotation (bille qui roule, toupie) n'est pas décrit par un seul point : la rotation emporte une part de l'énergie et modifie l'accélération."
+      - "Des vitesses relativistes ou des échelles quantiques sortent du cadre du modèle."
+      - "Le modèle décrit mais n'explique pas : il faut une loi (Newton) pour relier l'accélération aux forces."
+    en:
+      - "A rotating solid (rolling ball, spinning top) is not described by a single point: rotation carries part of the energy and changes the acceleration."
+      - "Relativistic speeds or quantum scales fall outside the model."
+      - "The model describes but does not explain: a law (Newton) is needed to link acceleration to forces."
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "définir les vecteurs position, vitesse et accélération et les représenter sur une trajectoire"
+        - "obtenir vitesse et accélération par dérivation des coordonnées, et réciproquement retrouver la position à partir de l'accélération et des conditions initiales"
+        - "caractériser un mouvement rectiligne uniforme, uniformément accéléré ou circulaire uniforme"
+        - "exploiter un relevé de positions (chronophotographie, vidéo) pour estimer une vitesse"
+      en:
+        - "define the position, velocity and acceleration vectors and draw them on a trajectory"
+        - "obtain velocity and acceleration by differentiating the coordinates, and conversely recover the position from the acceleration and the initial conditions"
+        - "characterise a uniform rectilinear, a uniformly accelerated or a uniform circular motion"
+        - "use a record of positions (stroboscopic photograph, video) to estimate a velocity"
+    lesson:
+      fr: |
+        **Vecteurs du mouvement.** Dans un référentiel muni du repère $(O ;\, \vec i, \vec j, \vec k)$, la position du point $M$ à l'instant $t$ est $\overrightarrow{OM}(t) = x(t)\,\vec i + y(t)\,\vec j + z(t)\,\vec k$. Le vecteur vitesse est la dérivée du vecteur position, $\vec v = \dfrac{\mathrm{d}\overrightarrow{OM}}{\mathrm{d}t}$, de coordonnées $(\dot x, \dot y, \dot z)$ ; il est tangent à la trajectoire et orienté dans le sens du mouvement. Le vecteur accélération est $\vec a = \dfrac{\mathrm{d}\vec v}{\mathrm{d}t}$, de coordonnées $(\ddot x, \ddot y, \ddot z)$. Sur un relevé expérimental, on approche $\vec v(t_i)$ par $\dfrac{\overrightarrow{M_{i-1}M_{i+1}}}{t_{i+1} - t_{i-1}}$ : un taux de variation.
+
+        **Mouvements de référence.** Rectiligne uniforme : $\vec a = \vec 0$, $\vec v$ constant, $x(t) = v\,t + x_0$. Rectiligne uniformément accéléré : $\vec a$ constant et colinéaire à $\vec v$, $x(t) = \tfrac12\,a\,t^2 + v_0\,t + x_0$. Circulaire uniforme : la norme de $\vec v$ est constante mais sa direction tourne, donc $\vec a \neq \vec 0$ ; l'accélération est centripète, de norme $v^2/R$. Dans tous les cas, connaître $\vec a(t)$, $\overrightarrow{OM}(0)$ et $\vec v(0)$ suffit à reconstruire le mouvement.
+      en: |
+        **Vectors of motion.** In a frame of reference with coordinate system $(O ;\, \vec i, \vec j, \vec k)$, the position of the point $M$ at time $t$ is $\overrightarrow{OM}(t) = x(t)\,\vec i + y(t)\,\vec j + z(t)\,\vec k$. The velocity vector is the derivative of the position vector, $\vec v = \dfrac{\mathrm{d}\overrightarrow{OM}}{\mathrm{d}t}$, with coordinates $(\dot x, \dot y, \dot z)$; it is tangent to the trajectory and points in the direction of motion. The acceleration vector is $\vec a = \dfrac{\mathrm{d}\vec v}{\mathrm{d}t}$, with coordinates $(\ddot x, \ddot y, \ddot z)$. On an experimental record, $\vec v(t_i)$ is approximated by $\dfrac{\overrightarrow{M_{i-1}M_{i+1}}}{t_{i+1} - t_{i-1}}$: a rate of change.
+
+        **Reference motions.** Uniform rectilinear: $\vec a = \vec 0$, $\vec v$ constant, $x(t) = v\,t + x_0$. Uniformly accelerated rectilinear: $\vec a$ constant and collinear with $\vec v$, $x(t) = \tfrac12\,a\,t^2 + v_0\,t + x_0$. Uniform circular: the magnitude of $\vec v$ is constant but its direction turns, so $\vec a \neq \vec 0$; the acceleration is centripetal, of magnitude $v^2/R$. In every case, knowing $\vec a(t)$, $\overrightarrow{OM}(0)$ and $\vec v(0)$ is enough to reconstruct the motion.
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "exprimer position, vitesse et accélération en coordonnées cartésiennes, cylindriques et dans la base de Frenet"
+        - "dériver les vecteurs d'une base mobile et interpréter les composantes tangentielle et normale de l'accélération"
+        - "choisir le système de coordonnées adapté à la symétrie du mouvement"
+        - "distinguer référentiels galiléens et non galiléens et énoncer le principe d'inertie"
+      en:
+        - "express position, velocity and acceleration in Cartesian and cylindrical coordinates and in the Frenet basis"
+        - "differentiate the vectors of a moving basis and interpret the tangential and normal components of the acceleration"
+        - "choose the coordinate system suited to the symmetry of the motion"
+        - "distinguish Galilean from non-Galilean frames and state the principle of inertia"

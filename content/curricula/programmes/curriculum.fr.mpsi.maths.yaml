@@ -1,0 +1,30 @@
+id: curriculum.fr.mpsi.maths
+country: FR
+stage: mpsi
+subject: mathematics
+title:
+  fr: "Mathématiques — MPSI"
+  en: "Mathematics — MPSI (first preparatory year)"
+version: "2026-reference"
+validFrom: "2021-09-01"
+validTo: null
+sourceReferences:
+  - title: "Programme de mathématiques de la classe de MPSI, BO spécial n°1 du 11 février 2021"
+    note: "to verify"
+items:
+  - id: derivabilite
+    title: { fr: Dérivabilité, en: Differentiability }
+    reference: "Limites, continuité, dérivabilité — Dérivabilité (nombre dérivé, extremum local et point critique, théorèmes de Rolle et des accroissements finis, fonctions de classe C^k)"
+    alignedNodes:
+      - { node: tool.derivative, depth: 2 }
+  - id: equations_differentielles_lineaires
+    title: { fr: Équations différentielles linéaires, en: Linear differential equations }
+    reference: "Techniques fondamentales de calcul en analyse — Primitives et équations différentielles linéaires"
+    alignedNodes:
+      - { node: tool.ode_first_order, depth: 2 }
+  - id: fonctions_usuelles
+    title: { fr: Fonctions usuelles, en: Standard functions }
+    reference: "Techniques fondamentales de calcul en analyse — Fonctions usuelles"
+    alignedNodes:
+      - { node: tool.exponential, depth: 2 }
+      - { node: concept.function, depth: 2 }

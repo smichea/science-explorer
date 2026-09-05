@@ -1,0 +1,53 @@
+# Authored layout anchors: worlds on a ring, bridges near the centre, regions around their world.
+# Angles in degrees in the horizontal plane; y is the vertical axis. Positions are frozen per content version.
+parameters:
+  worldRingRadius: 46
+  regionRingRadius: 14
+  nodeSpread: 3.2
+  stageOffsetY: 1.6
+  seed: 7
+worlds:
+  - { id: world.mathematics, angle: 270, y: 0 }
+  - { id: world.physics, angle: 30, y: 0 }
+  - { id: world.chemistry, angle: 150, y: 0 }
+bridges:
+  - { id: bridge.modelling, x: 0, y: 1.5, z: 0 }
+  - { id: bridge.measurement, x: 8.0, y: -0.6, z: 0.0 }
+  - { id: bridge.orders_of_magnitude, x: 5.66, y: 0.6, z: 5.66 }
+  - { id: bridge.energy, x: 0.0, y: -0.6, z: 8.0 }
+  - { id: bridge.symmetry, x: -5.66, y: 0.6, z: 5.66 }
+  - { id: bridge.information, x: -8.0, y: -0.6, z: 0.0 }
+  - { id: bridge.experiment, x: -5.66, y: 0.6, z: -5.66 }
+  - { id: bridge.uncertainty, x: -0.0, y: -0.6, z: -8.0 }
+  - { id: bridge.statistics, x: 5.66, y: 0.6, z: -5.66 }
+regions:
+  - { id: region.math.numbers_algebra, angle: 120.0, radius: 14, y: -0.9 }
+  - { id: region.math.functions_analysis, angle: 153.3, radius: 14, y: 0.0 }
+  - { id: region.math.geometry, angle: 186.7, radius: 14, y: 0.9 }
+  - { id: region.math.sequences_series, angle: 220.0, radius: 14, y: -0.9 }
+  - { id: region.math.complex_numbers, angle: 253.3, radius: 14, y: 0.0 }
+  - { id: region.math.linear_algebra, angle: 286.7, radius: 14, y: 0.9 }
+  - { id: region.math.probability_statistics, angle: 320.0, radius: 14, y: -0.9 }
+  - { id: region.math.differential_equations, angle: 353.3, radius: 14, y: 0.0 }
+  - { id: region.math.multivariable_analysis, angle: 26.7, radius: 14, y: 0.9 }
+  - { id: region.math.numerical_methods, angle: 60.0, radius: 14, y: -0.9 }
+  - { id: region.physics.measurement_dimensions, angle: 240.0, radius: 14, y: -0.9 }
+  - { id: region.physics.motion_mechanics, angle: 273.3, radius: 14, y: 0.0 }
+  - { id: region.physics.gravitation, angle: 306.7, radius: 14, y: 0.9 }
+  - { id: region.physics.oscillations, angle: 340.0, radius: 14, y: -0.9 }
+  - { id: region.physics.waves, angle: 13.3, radius: 14, y: 0.0 }
+  - { id: region.physics.optics, angle: 46.7, radius: 14, y: 0.9 }
+  - { id: region.physics.electricity_circuits, angle: 80.0, radius: 14, y: -0.9 }
+  - { id: region.physics.fields_electromagnetism, angle: 113.3, radius: 14, y: 0.0 }
+  - { id: region.physics.thermodynamics, angle: 146.7, radius: 14, y: 0.9 }
+  - { id: region.physics.quantum, angle: 180.0, radius: 14, y: -0.9 }
+  - { id: region.chemistry.atomic_molecular_structure, angle: 0.0, radius: 14, y: -0.9 }
+  - { id: region.chemistry.amount_measurement, angle: 33.3, radius: 14, y: 0.0 }
+  - { id: region.chemistry.reactions_stoichiometry, angle: 66.7, radius: 14, y: 0.9 }
+  - { id: region.chemistry.kinetics, angle: 100.0, radius: 14, y: -0.9 }
+  - { id: region.chemistry.equilibria, angle: 133.3, radius: 14, y: 0.0 }
+  - { id: region.chemistry.acid_base, angle: 166.7, radius: 14, y: 0.9 }
+  - { id: region.chemistry.redox, angle: 200.0, radius: 14, y: -0.9 }
+  - { id: region.chemistry.thermochemistry, angle: 233.3, radius: 14, y: 0.0 }
+  - { id: region.chemistry.electrochemistry, angle: 266.7, radius: 14, y: 0.9 }
+  - { id: region.chemistry.micro_macro, angle: 300.0, radius: 14, y: -0.9 }

@@ -1,0 +1,32 @@
+# analogous_to: structurally similar idea in another domain (one direction is enough).
+# transfers_to: from the phenomenon where the tool was learned TO the one it should transfer to.
+edges:
+  # --- analogous_to ---------------------------------------------------------
+  - { from: phenomenon.circuit.capacitor_charging, to: phenomenon.chemistry.first_order_reaction, type: analogous_to, weight: 1,
+      note: { fr: "$RC$ joue le rôle de $1/k$ : même équation du premier ordre, même exponentielle.", en: "$RC$ plays the role of $1/k$: same first-order equation, same exponential." } }
+  - { from: phenomenon.chemistry.first_order_reaction, to: phenomenon.nuclear.radioactive_decay, type: analogous_to, weight: 1,
+      note: { fr: "Constante de vitesse $k$ et constante radioactive $\\lambda$ : deux probabilités par unité de temps.", en: "Rate constant $k$ and decay constant $\\lambda$: two probabilities per unit time." } }
+  - { from: phenomenon.circuit.capacitor_charging, to: phenomenon.motion.with_drag, type: analogous_to, weight: 0.9,
+      note: { fr: "La tension approche $E$ comme la vitesse approche $v_{\\lim}$ : régime transitoire puis régime permanent.", en: "The voltage approaches $E$ as the velocity approaches $v_{\\lim}$: transient then steady regime." } }
+  # --- transfers_to -----------------------------------------------------------
+  - from: phenomenon.motion.uniformly_accelerated
+    to: phenomenon.circuit.capacitor_charging
+    type: transfers_to
+    weight: 1
+    note:
+      fr: "Après avoir lu une vitesse comme pente de $x(t)$, lire un courant comme pente de $u_C(t)$ : même outil, la dérivée, dans un autre monde."
+      en: "After reading a velocity as the slope of $x(t)$, read a current as the slope of $u_C(t)$: same tool, the derivative, in another world."
+  - from: phenomenon.motion.uniformly_accelerated
+    to: phenomenon.chemistry.first_order_reaction
+    type: transfers_to
+    weight: 1
+    note:
+      fr: "La vitesse de réaction $-\\mathrm{d}[A]/\\mathrm{d}t$ se définit exactement comme la vitesse d'un mobile : ici la dérivée n'est plus constante, elle est proportionnelle à $[A]$."
+      en: "The reaction rate $-\\mathrm{d}[A]/\\mathrm{d}t$ is defined exactly like the velocity of a moving body: here the derivative is no longer constant, it is proportional to $[A]$."
+  - from: phenomenon.circuit.capacitor_charging
+    to: phenomenon.nuclear.radioactive_decay
+    type: transfers_to
+    weight: 0.9
+    note:
+      fr: "Remplacer $u_C$ par $N$ et $RC$ par $1/\\lambda$ : la décharge du condensateur et la décroissance radioactive sont la même courbe."
+      en: "Replace $u_C$ by $N$ and $RC$ by $1/\\lambda$: capacitor discharge and radioactive decay are the same curve."

@@ -1,0 +1,90 @@
+id: tool.exponential
+type: mathematical_tool
+world: world.mathematics
+region: region.math.functions_analysis
+importance: 3
+backpack: true
+tags: [vertical-slice]
+title: { fr: Fonction exponentielle, en: Exponential function }
+shortPurpose:
+  fr: La fonction égale à sa propre dérivée ; le modèle de toute évolution dont la vitesse est proportionnelle à la quantité présente.
+  en: The function equal to its own derivative; the model of every evolution whose rate is proportional to the quantity present.
+aliases:
+  fr: ["exponentielle", "exp", "fonction exp(kt)", "croissance et décroissance exponentielles"]
+  en: ["exponential", "exp", "exp(kt) function", "exponential growth and decay"]
+description:
+  fr: |
+    La **fonction exponentielle** est l'unique fonction dérivable sur $\mathbb{R}$ telle que $f' = f$ et $f(0) = 1$ ; on la note $\exp$ ou $x \mapsto e^x$, avec $e = \exp(1) \approx 2{,}718$. Elle transforme les sommes en produits, $e^{a+b} = e^a\,e^b$, est strictement positive et strictement croissante, tend vers $0$ en $-\infty$ et vers $+\infty$ en $+\infty$ plus vite que toute puissance de $x$. Sa réciproque est le **logarithme népérien** $\ln$, défini sur $]0, +\infty[$ : $y = e^x \iff x = \ln y$.
+
+    Le problème qu'elle résout est celui des évolutions dont **la vitesse est proportionnelle à la quantité présente** : l'équation $y' = k\,y$ a pour solutions exactement les fonctions $t \mapsto C\,e^{kt}$. Avec $k < 0$, la décroissance est d'autant plus rapide qu'il reste beaucoup à perdre : tension d'un condensateur qui se charge, concentration d'un réactif d'ordre 1, population de noyaux radioactifs, vitesse d'un mobile freiné par l'air. Dans tous ces cas, on écrit $y(t) = y_0\,e^{-t/\tau}$, où $\tau = 1/|k|$ est la **constante de temps** ; la quantité est divisée par $2$ tous les $t_{1/2} = \tau \ln 2$ (**demi-vie** ou temps de demi-réaction) et vaut encore $37\,\%$ de sa valeur initiale au bout de $\tau$.
+
+    En Terminale, l'exponentielle est définie par $f' = f$, étudiée avec ses limites et associée aux équations $y' = ay + b$. En MPSI, on la construit rigoureusement à partir du logarithme, on l'étend aux nombres complexes ($e^{i\theta} = \cos\theta + i\sin\theta$), on la relie aux fonctions hyperboliques et à son développement limité, et elle devient la brique de base de toutes les équations différentielles linéaires.
+  en: |
+    The **exponential function** is the unique function differentiable on $\mathbb{R}$ such that $f' = f$ and $f(0) = 1$; it is written $\exp$ or $x \mapsto e^x$, with $e = \exp(1) \approx 2.718$. It turns sums into products, $e^{a+b} = e^a\,e^b$, is strictly positive and strictly increasing, tends to $0$ at $-\infty$ and to $+\infty$ at $+\infty$ faster than any power of $x$. Its inverse is the **natural logarithm** $\ln$, defined on $]0, +\infty[$: $y = e^x \iff x = \ln y$.
+
+    The problem it solves is that of evolutions whose **rate is proportional to the quantity present**: the equation $y' = k\,y$ has exactly the functions $t \mapsto C\,e^{kt}$ as solutions. With $k < 0$, the decay is faster when there is more left to lose: voltage of a charging capacitor, concentration of a first-order reactant, population of radioactive nuclei, velocity of a body slowed by air. In all these cases one writes $y(t) = y_0\,e^{-t/\tau}$, where $\tau = 1/|k|$ is the **time constant**; the quantity is divided by $2$ every $t_{1/2} = \tau \ln 2$ (**half-life**) and is still $37\,\%$ of its initial value after $\tau$.
+
+    In Terminale, the exponential is defined by $f' = f$, studied through its limits and linked to the equations $y' = ay + b$. In MPSI, it is constructed rigorously from the logarithm, extended to complex numbers ($e^{i\theta} = \cos\theta + i\sin\theta$), related to the hyperbolic functions and to its Taylor expansion, and it becomes the building block of every linear differential equation.
+tool:
+  problemSolved:
+    fr: "Décrire une grandeur dont la vitesse de variation est proportionnelle à sa valeur, et en calculer la constante de temps ou la demi-vie."
+    en: "Describe a quantity whose rate of change is proportional to its value, and compute its time constant or half-life."
+  construction:
+    fr: "On cherche une fonction égale à sa dérivée : on montre qu'il en existe une et une seule qui vaut $1$ en $0$, on la note $\\exp$ ; les solutions de $y' = ky$ sont alors exactement les fonctions $t \\mapsto C\\,e^{kt}$."
+    en: "Look for a function equal to its own derivative: show that there is exactly one taking the value $1$ at $0$, call it $\\exp$; the solutions of $y' = ky$ are then exactly the functions $t \\mapsto C\\,e^{kt}$."
+  icon: growth
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "utiliser la relation $e^{a+b} = e^a e^b$ et la relation réciproque avec le logarithme népérien"
+        - "dériver $e^{u(x)}$ et reconnaître $t \\mapsto C e^{kt}$ comme solution de $y' = ky$"
+        - "déterminer une constante de temps ou une demi-vie à partir d'une courbe ou d'un tableau de mesures"
+        - "étudier les limites de l'exponentielle et utiliser les croissances comparées"
+      en:
+        - "use the relation $e^{a+b} = e^a e^b$ and the inverse relation with the natural logarithm"
+        - "differentiate $e^{u(x)}$ and recognise $t \\mapsto C e^{kt}$ as a solution of $y' = ky$"
+        - "determine a time constant or a half-life from a curve or a table of measurements"
+        - "study the limits of the exponential and use comparative growth rates"
+    lesson:
+      fr: |
+        **Définition et propriétés.** Il existe une unique fonction $f$ dérivable sur $\mathbb{R}$ telle que $f' = f$ et $f(0) = 1$ : c'est la fonction exponentielle, $\exp(x) = e^x$. Pour tous réels $a$ et $b$ : $e^{a+b} = e^a\,e^b$, $e^{-a} = \dfrac{1}{e^a}$, $\left(e^a\right)^n = e^{na}$. L'exponentielle est strictement positive et strictement croissante ; $\lim_{x\to -\infty} e^x = 0$, $\lim_{x \to +\infty} e^x = +\infty$ et $\lim_{x\to+\infty} \dfrac{e^x}{x^n} = +\infty$ (croissance comparée). Sa réciproque est le logarithme népérien : $\ln(e^x) = x$, $e^{\ln y} = y$ pour $y > 0$, et $\ln(ab) = \ln a + \ln b$.
+
+        **Dérivation.** $(e^x)' = e^x$ et, pour une fonction dérivable $u$, $\left(e^{u}\right)' = u'\,e^{u}$. En particulier $\left(e^{kt}\right)' = k\,e^{kt}$ : la fonction $t \mapsto C\,e^{kt}$ vérifie $y' = ky$, et ce sont les seules fonctions qui le font. Si $k > 0$ la grandeur croît (croissance exponentielle) ; si $k < 0$ elle décroît vers $0$.
+
+        **Constante de temps et demi-vie.** Pour $y(t) = y_0\,e^{-t/\tau}$ avec $\tau > 0$ : au bout de $\tau$ il reste $y_0/e \approx 0{,}37\,y_0$ ; au bout de $5\tau$ il reste moins de $1\,\%$. La durée au bout de laquelle la quantité est divisée par $2$ vaut $t_{1/2} = \tau \ln 2 \approx 0{,}69\,\tau$ et ne dépend pas de $y_0$ : c'est la signature d'une décroissance exponentielle. Sur un graphique, la tangente à l'origine coupe l'asymptote en $t = \tau$ ; en échelle semi-logarithmique, $\ln y = \ln y_0 - t/\tau$ est une droite de pente $-1/\tau$.
+      en: |
+        **Definition and properties.** There is a unique function $f$ differentiable on $\mathbb{R}$ such that $f' = f$ and $f(0) = 1$: it is the exponential function, $\exp(x) = e^x$. For all real numbers $a$ and $b$: $e^{a+b} = e^a\,e^b$, $e^{-a} = \dfrac{1}{e^a}$, $\left(e^a\right)^n = e^{na}$. The exponential is strictly positive and strictly increasing; $\lim_{x\to -\infty} e^x = 0$, $\lim_{x \to +\infty} e^x = +\infty$ and $\lim_{x\to+\infty} \dfrac{e^x}{x^n} = +\infty$ (comparative growth). Its inverse is the natural logarithm: $\ln(e^x) = x$, $e^{\ln y} = y$ for $y > 0$, and $\ln(ab) = \ln a + \ln b$.
+
+        **Differentiation.** $(e^x)' = e^x$ and, for a differentiable function $u$, $\left(e^{u}\right)' = u'\,e^{u}$. In particular $\left(e^{kt}\right)' = k\,e^{kt}$: the function $t \mapsto C\,e^{kt}$ satisfies $y' = ky$, and these are the only functions that do. If $k > 0$ the quantity grows (exponential growth); if $k < 0$ it decays towards $0$.
+
+        **Time constant and half-life.** For $y(t) = y_0\,e^{-t/\tau}$ with $\tau > 0$: after $\tau$ there remains $y_0/e \approx 0.37\,y_0$; after $5\tau$ less than $1\,\%$ remains. The time after which the quantity is divided by $2$ is $t_{1/2} = \tau \ln 2 \approx 0.69\,\tau$ and does not depend on $y_0$: this is the signature of an exponential decay. On a graph, the tangent at the origin meets the asymptote at $t = \tau$; on a semi-logarithmic scale, $\ln y = \ln y_0 - t/\tau$ is a straight line of slope $-1/\tau$.
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "construire $\\exp$ comme réciproque du logarithme et démontrer l'unicité de la solution de $y' = y$, $y(0) = 1$"
+        - "utiliser l'exponentielle complexe $e^{i\\theta} = \\cos\\theta + i\\sin\\theta$ pour la trigonométrie et les oscillations"
+        - "relier l'exponentielle aux fonctions hyperboliques, aux fonctions puissances et à son développement limité"
+        - "résoudre $y' = a(t)\\,y$ à l'aide de l'exponentielle d'une primitive"
+      en:
+        - "construct $\\exp$ as the inverse of the logarithm and prove the uniqueness of the solution of $y' = y$, $y(0) = 1$"
+        - "use the complex exponential $e^{i\\theta} = \\cos\\theta + i\\sin\\theta$ for trigonometry and oscillations"
+        - "relate the exponential to the hyperbolic functions, to power functions and to its Taylor expansion"
+        - "solve $y' = a(t)\\,y$ using the exponential of an antiderivative"
+    lesson:
+      fr: |
+        **Construction.** En MPSI, on définit $\ln$ comme l'unique primitive de $x \mapsto 1/x$ sur $]0,+\infty[$ qui s'annule en $1$ ; c'est une bijection strictement croissante de $]0,+\infty[$ sur $\mathbb{R}$, et $\exp$ est sa réciproque. Le théorème de dérivation des fonctions réciproques donne $\exp' = \exp$, et l'unicité de la solution de $y' = y$, $y(0) = 1$ se démontre en dérivant $t \mapsto y(t)\,e^{-t}$, dont la dérivée est nulle. Les fonctions puissances $x^\alpha = e^{\alpha \ln x}$ et les fonctions hyperboliques $\operatorname{ch} x = \dfrac{e^x + e^{-x}}{2}$, $\operatorname{sh} x = \dfrac{e^x - e^{-x}}{2}$ en découlent.
+
+        **Exponentielle complexe.** Pour $z = a + ib$, on pose $e^{z} = e^{a}(\cos b + i \sin b)$ ; la relation $e^{z+z'} = e^z\,e^{z'}$ subsiste, et $e^{i\theta} = \cos\theta + i\sin\theta$ (formule d'Euler) code les rotations et les oscillations. La fonction $t \mapsto e^{\lambda t}$, avec $\lambda \in \mathbb{C}$, est dérivable de dérivée $\lambda\,e^{\lambda t}$ : c'est pourquoi les solutions de toutes les équations différentielles linéaires à coefficients constants s'écrivent avec des exponentielles, réelles ou complexes.
+
+        **Comportements asymptotiques.** Croissances comparées : $x^\alpha = o(e^x)$ en $+\infty$ et $\ln x = o(x^\alpha)$ pour tout $\alpha > 0$. Développement limité en $0$ : $e^x = 1 + x + \dfrac{x^2}{2} + \dots + \dfrac{x^n}{n!} + o(x^n)$, ce qui justifie l'approximation $e^{-t/\tau} \approx 1 - t/\tau$ aux temps courts et la lecture de $\tau$ sur la tangente à l'origine.
+      en: |
+        **Construction.** In MPSI, $\ln$ is defined as the unique antiderivative of $x \mapsto 1/x$ on $]0,+\infty[$ that vanishes at $1$; it is a strictly increasing bijection from $]0,+\infty[$ onto $\mathbb{R}$, and $\exp$ is its inverse. The theorem on derivatives of inverse functions gives $\exp' = \exp$, and the uniqueness of the solution of $y' = y$, $y(0) = 1$ is proved by differentiating $t \mapsto y(t)\,e^{-t}$, whose derivative is zero. Power functions $x^\alpha = e^{\alpha \ln x}$ and hyperbolic functions $\operatorname{ch} x = \dfrac{e^x + e^{-x}}{2}$, $\operatorname{sh} x = \dfrac{e^x - e^{-x}}{2}$ follow from it.
+
+        **Complex exponential.** For $z = a + ib$ one sets $e^{z} = e^{a}(\cos b + i \sin b)$; the relation $e^{z+z'} = e^z\,e^{z'}$ still holds, and $e^{i\theta} = \cos\theta + i\sin\theta$ (Euler's formula) encodes rotations and oscillations. The function $t \mapsto e^{\lambda t}$, with $\lambda \in \mathbb{C}$, is differentiable with derivative $\lambda\,e^{\lambda t}$: this is why the solutions of all linear differential equations with constant coefficients are written with exponentials, real or complex.
+
+        **Asymptotic behaviour.** Comparative growth: $x^\alpha = o(e^x)$ at $+\infty$ and $\ln x = o(x^\alpha)$ for every $\alpha > 0$. Taylor expansion at $0$: $e^x = 1 + x + \dfrac{x^2}{2} + \dots + \dfrac{x^n}{n!} + o(x^n)$, which justifies the approximation $e^{-t/\tau} \approx 1 - t/\tau$ at short times and the reading of $\tau$ on the tangent at the origin.

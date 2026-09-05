@@ -1,0 +1,50 @@
+id: concept.initial_condition
+type: mathematical_concept
+region: bridge.modelling
+importance: 2
+tags: [vertical-slice]
+title: { fr: Condition initiale, en: Initial condition }
+shortPurpose:
+  fr: L'état de départ qui, joint à la loi d'évolution, sélectionne une trajectoire unique parmi toutes les possibles.
+  en: The starting state which, together with the law of evolution, selects a single trajectory among all possible ones.
+aliases:
+  fr: ["conditions initiales", "état initial", "constante d'intégration", "problème de Cauchy"]
+  en: ["initial conditions", "initial state", "integration constant", "Cauchy problem"]
+description:
+  fr: |
+    Une loi d'évolution, écrite comme équation différentielle, décrit *comment* une grandeur change, pas *d'où* elle part. L'équation $y' = -ky$ a une infinité de solutions, $y(t) = C\,e^{-kt}$ : une par valeur de $C$. La **condition initiale** $y(0) = y_0$ choisit celle qui correspond à l'expérience : $C = y_0$. Pour une équation du second ordre comme $\ddot x = -g$, il faut deux conditions, position et vitesse initiales, parce que l'on remonte deux fois de la dérivée à la fonction.
+
+    Physiquement, la condition initiale est ce que l'expérimentateur contrôle : lâcher la bille sans vitesse en haut du plan, fermer l'interrupteur sur un condensateur déchargé, mélanger les réactifs à $t = 0$. Elle rend le modèle **prédictif** : le théorème de Cauchy (existence et unicité de la solution qui vérifie la condition initiale) garantit qu'une loi de vitesse et un état de départ déterminent tout l'avenir du système ; c'est le déterminisme de la mécanique classique.
+
+    Mathématiquement, la condition initiale fixe la **constante d'intégration** ; graphiquement, elle choisit une courbe dans la famille des solutions ; expérimentalement, son incertitude se propage à toute la prédiction, ce qui explique pourquoi deux lancers presque identiques peuvent diverger dans les systèmes sensibles.
+  en: |
+    A law of evolution, written as a differential equation, describes *how* a quantity changes, not *where* it starts. The equation $y' = -ky$ has infinitely many solutions, $y(t) = C\,e^{-kt}$: one per value of $C$. The **initial condition** $y(0) = y_0$ picks the one that matches the experiment: $C = y_0$. For a second-order equation such as $\ddot x = -g$, two conditions are needed, initial position and velocity, because one climbs back twice from the derivative to the function.
+
+    Physically, the initial condition is what the experimenter controls: release the ball without velocity at the top of the plane, close the switch on a discharged capacitor, mix the reactants at $t = 0$. It makes the model **predictive**: the Cauchy theorem (existence and uniqueness of the solution satisfying the initial condition) guarantees that a rate law and a starting state determine the whole future of the system; this is the determinism of classical mechanics.
+
+    Mathematically, the initial condition fixes the **integration constant**; graphically, it chooses one curve in the family of solutions; experimentally, its uncertainty propagates to the whole prediction, which explains why two almost identical throws can diverge in sensitive systems.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "utiliser une condition initiale pour déterminer la constante dans la solution de $y' = ay + b$"
+        - "expliquer pourquoi une équation du second ordre demande deux conditions initiales"
+        - "traduire une situation expérimentale (lâcher sans vitesse, condensateur déchargé) en conditions initiales"
+      en:
+        - "use an initial condition to determine the constant in the solution of $y' = ay + b$"
+        - "explain why a second-order equation requires two initial conditions"
+        - "translate an experimental situation (release from rest, discharged capacitor) into initial conditions"
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "énoncer le théorème de Cauchy pour une équation linéaire et l'utiliser pour justifier l'unicité d'une solution"
+        - "utiliser la continuité de certaines grandeurs (tension d'un condensateur, vitesse) pour déterminer les conditions initiales d'un régime transitoire"
+        - "relier la dimension de l'espace des solutions au nombre de conditions initiales nécessaires"
+      en:
+        - "state the Cauchy theorem for a linear equation and use it to justify the uniqueness of a solution"
+        - "use the continuity of certain quantities (capacitor voltage, velocity) to determine the initial conditions of a transient regime"
+        - "relate the dimension of the solution space to the number of initial conditions needed"

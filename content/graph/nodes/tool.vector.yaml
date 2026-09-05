@@ -1,0 +1,77 @@
+id: tool.vector
+type: mathematical_tool
+world: world.mathematics
+region: region.math.geometry
+importance: 2
+backpack: true
+tags: [vertical-slice]
+title: { fr: Vecteur, en: Vector }
+shortPurpose:
+  fr: Représenter une grandeur qui a une direction, un sens et une intensité, et calculer avec elle.
+  en: Represent a quantity that has a direction, an orientation and a magnitude, and compute with it.
+aliases:
+  fr: ["vecteur du plan", "vecteur de l'espace", "coordonnées d'un vecteur", "produit scalaire"]
+  en: ["plane vector", "space vector", "vector coordinates", "dot product"]
+description:
+  fr: |
+    Une position, une vitesse, une force ne sont pas des nombres : elles ont une **direction** et un **sens** en plus d'une intensité. Le **vecteur** est l'objet mathématique qui porte ces trois informations d'un coup. Dans un repère, il se réduit à ses coordonnées, $\vec u = (u_x,\, u_y,\, u_z)$, et toutes les opérations deviennent des calculs sur les coordonnées : somme $\vec u + \vec v$, multiplication par un réel $k\,\vec u$, norme $\|\vec u\| = \sqrt{u_x^2 + u_y^2 + u_z^2}$, produit scalaire $\vec u \cdot \vec v = u_x v_x + u_y v_y + u_z v_z = \|\vec u\|\,\|\vec v\|\cos\theta$.
+
+    Le problème que résout le vecteur est celui de la **décomposition** : projeter le poids d'une bille sur un plan incliné en une composante qui la fait descendre ($mg\sin\theta$) et une composante compensée par le support ($mg\cos\theta$) ; séparer le mouvement d'un projectile en un mouvement horizontal uniforme et un mouvement vertical uniformément accéléré. Ce qui semblait un seul problème compliqué devient deux problèmes simples, un par axe.
+
+    Le vecteur se dérive coordonnée par coordonnée : la vitesse est $\vec v = \dfrac{\mathrm{d}\overrightarrow{OM}}{\mathrm{d}t}$, l'accélération $\vec a = \dfrac{\mathrm{d}\vec v}{\mathrm{d}t}$. En MPSI, on ajoute les bases mobiles (coordonnées polaires, cylindriques) et le produit vectoriel ; en MP, le vecteur devient un élément d'un espace vectoriel abstrait, et le gradient d'une fonction de plusieurs variables est lui-même un vecteur.
+  en: |
+    A position, a velocity, a force are not numbers: they have a **direction** and an **orientation** in addition to a magnitude. The **vector** is the mathematical object that carries these three pieces of information at once. In a coordinate system it reduces to its coordinates, $\vec u = (u_x,\, u_y,\, u_z)$, and every operation becomes a computation on coordinates: sum $\vec u + \vec v$, multiplication by a real number $k\,\vec u$, norm $\|\vec u\| = \sqrt{u_x^2 + u_y^2 + u_z^2}$, dot product $\vec u \cdot \vec v = u_x v_x + u_y v_y + u_z v_z = \|\vec u\|\,\|\vec v\|\cos\theta$.
+
+    The problem the vector solves is **decomposition**: projecting the weight of a ball on an inclined plane into a component that drives it down ($mg\sin\theta$) and a component balanced by the support ($mg\cos\theta$); separating a projectile's motion into a uniform horizontal motion and a uniformly accelerated vertical one. What looked like one complicated problem becomes two simple ones, one per axis.
+
+    A vector is differentiated coordinate by coordinate: velocity is $\vec v = \dfrac{\mathrm{d}\overrightarrow{OM}}{\mathrm{d}t}$, acceleration $\vec a = \dfrac{\mathrm{d}\vec v}{\mathrm{d}t}$. In MPSI one adds moving bases (polar, cylindrical coordinates) and the cross product; in MP the vector becomes an element of an abstract vector space, and the gradient of a function of several variables is itself a vector.
+tool:
+  problemSolved:
+    fr: "Décrire et décomposer des grandeurs orientées (déplacement, vitesse, force) pour ramener un problème dans l'espace à des calculs indépendants sur chaque axe."
+    en: "Describe and decompose oriented quantities (displacement, velocity, force) so that a problem in space reduces to independent computations along each axis."
+  construction:
+    fr: "On choisit une origine et une base $(\\vec i, \\vec j, \\vec k)$ ; tout vecteur s'écrit de façon unique $\\vec u = u_x\\,\\vec i + u_y\\,\\vec j + u_z\\,\\vec k$, et les opérations (somme, produit par un réel, produit scalaire, dérivée) se calculent coordonnée par coordonnée."
+    en: "Choose an origin and a basis $(\\vec i, \\vec j, \\vec k)$; every vector is written uniquely as $\\vec u = u_x\\,\\vec i + u_y\\,\\vec j + u_z\\,\\vec k$, and the operations (sum, product by a real number, dot product, derivative) are computed coordinate by coordinate."
+  icon: arrow
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "calculer les coordonnées d'un vecteur, une somme, un produit par un réel et une norme"
+        - "utiliser le produit scalaire pour calculer un angle ou tester une orthogonalité"
+        - "projeter un vecteur (poids, vitesse) sur les axes d'un repère bien choisi"
+        - "dériver un vecteur position coordonnée par coordonnée pour obtenir vitesse et accélération"
+      en:
+        - "compute the coordinates of a vector, a sum, a product by a real number and a norm"
+        - "use the dot product to compute an angle or test orthogonality"
+        - "project a vector (weight, velocity) onto the axes of a well-chosen coordinate system"
+        - "differentiate a position vector coordinate by coordinate to obtain velocity and acceleration"
+    lesson:
+      fr: |
+        **Coordonnées et opérations.** Dans un repère orthonormé $(O ;\, \vec i,\, \vec j,\, \vec k)$, tout vecteur s'écrit $\vec u = u_x\,\vec i + u_y\,\vec j + u_z\,\vec k$. Somme et produit par un réel se font coordonnée par coordonnée ; la norme vaut $\|\vec u\| = \sqrt{u_x^2 + u_y^2 + u_z^2}$ et le produit scalaire $\vec u \cdot \vec v = u_x v_x + u_y v_y + u_z v_z = \|\vec u\|\,\|\vec v\|\cos(\vec u, \vec v)$. Deux vecteurs non nuls sont orthogonaux si et seulement si leur produit scalaire est nul.
+
+        **Projection.** Projeter un vecteur sur un axe de vecteur unitaire $\vec e$ revient à calculer $\vec u \cdot \vec e$. Sur un plan incliné d'angle $\theta$, le poids $\vec P = m\vec g$ a pour composante le long du plan $mg\sin\theta$ et pour composante normale $-mg\cos\theta$ : le choix d'un axe parallèle au plan transforme un problème à deux dimensions en un problème à une dimension.
+
+        **Dérivation.** Si $\overrightarrow{OM}(t) = x(t)\,\vec i + y(t)\,\vec j + z(t)\,\vec k$ dans une base fixe, alors $\vec v(t) = \dot x\,\vec i + \dot y\,\vec j + \dot z\,\vec k$ et $\vec a(t) = \ddot x\,\vec i + \ddot y\,\vec j + \ddot z\,\vec k$ : on dérive chaque coordonnée comme une fonction ordinaire. Pour un projectile, $\vec a = \vec g$ donne $x(t) = v_0\cos\alpha\, t$ et $z(t) = -\tfrac12 g t^2 + v_0 \sin\alpha\, t$, deux mouvements indépendants.
+      en: |
+        **Coordinates and operations.** In an orthonormal frame $(O ;\, \vec i,\, \vec j,\, \vec k)$, every vector is written $\vec u = u_x\,\vec i + u_y\,\vec j + u_z\,\vec k$. Sums and products by a real number are done coordinate by coordinate; the norm is $\|\vec u\| = \sqrt{u_x^2 + u_y^2 + u_z^2}$ and the dot product $\vec u \cdot \vec v = u_x v_x + u_y v_y + u_z v_z = \|\vec u\|\,\|\vec v\|\cos(\vec u, \vec v)$. Two non-zero vectors are orthogonal if and only if their dot product is zero.
+
+        **Projection.** Projecting a vector onto an axis with unit vector $\vec e$ amounts to computing $\vec u \cdot \vec e$. On an inclined plane of angle $\theta$, the weight $\vec P = m\vec g$ has component $mg\sin\theta$ along the plane and normal component $-mg\cos\theta$: choosing an axis parallel to the plane turns a two-dimensional problem into a one-dimensional one.
+
+        **Differentiation.** If $\overrightarrow{OM}(t) = x(t)\,\vec i + y(t)\,\vec j + z(t)\,\vec k$ in a fixed basis, then $\vec v(t) = \dot x\,\vec i + \dot y\,\vec j + \dot z\,\vec k$ and $\vec a(t) = \ddot x\,\vec i + \ddot y\,\vec j + \ddot z\,\vec k$: each coordinate is differentiated like an ordinary function. For a projectile, $\vec a = \vec g$ gives $x(t) = v_0\cos\alpha\, t$ and $z(t) = -\tfrac12 g t^2 + v_0 \sin\alpha\, t$, two independent motions.
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "exprimer position, vitesse et accélération dans une base mobile (polaire, cylindrique) en dérivant les vecteurs de base"
+        - "calculer un produit vectoriel et l'interpréter (moment d'une force, aire orientée)"
+        - "reconnaître la structure d'espace vectoriel et raisonner avec des familles libres, génératrices et des bases"
+        - "utiliser le produit scalaire abstrait : projection orthogonale, bases orthonormées"
+      en:
+        - "express position, velocity and acceleration in a moving basis (polar, cylindrical) by differentiating the basis vectors"
+        - "compute a cross product and interpret it (moment of a force, oriented area)"
+        - "recognise the vector space structure and reason with linearly independent families, spanning families and bases"
+        - "use the abstract inner product: orthogonal projection, orthonormal bases"

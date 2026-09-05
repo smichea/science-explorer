@@ -1,0 +1,82 @@
+id: model.reaction_order_one
+type: model
+world: world.chemistry
+region: region.chemistry.kinetics
+importance: 2
+tags: [vertical-slice]
+title: { fr: Modèle de la réaction d'ordre 1, en: First-order reaction model }
+shortPurpose:
+  fr: La loi de vitesse $v = k[A]$ et les hypothèses qui la rendent valable.
+  en: The rate law $v = k[A]$ and the assumptions that make it valid.
+aliases:
+  fr: ["loi de vitesse d'ordre 1", "modèle cinétique d'ordre 1", "constante de vitesse", "ordre d'une réaction"]
+  en: ["first-order rate law", "first-order kinetic model", "rate constant", "order of a reaction"]
+description:
+  fr: |
+    Le modèle de la **réaction d'ordre 1** postule que la vitesse volumique de la réaction est proportionnelle à la concentration d'un seul réactif :
+    $$v = -\frac{\mathrm{d}[A]}{\mathrm{d}t} = k\,[A],$$
+    où la constante de vitesse $k$ ne dépend que de la température (et du catalyseur éventuel), pas des concentrations. L'ordre est un **fait expérimental**, pas une conséquence de l'équation-bilan : on le détermine en confrontant les mesures aux lois intégrées ($[A]$ affine en $t$ pour l'ordre 0, $\ln[A]$ affine pour l'ordre 1, $1/[A]$ affine pour l'ordre 2).
+
+    Le modèle est celui d'un processus **sans mémoire** : chaque entité $A$ a, à chaque instant, la même probabilité par unité de temps de réagir, indépendamment de ce que font les autres. C'est ce qui le rend identique à la décroissance radioactive et si proche de la décharge d'un condensateur. Il explique la décroissance exponentielle de $[A]$, la constance du temps de demi-réaction et la lecture directe de $k$ sur une échelle logarithmique.
+
+    Ses limites sont celles de ses hypothèses : réacteur fermé, volume et température constants, réaction unique sans étape inverse significative, milieu homogène. Beaucoup de réactions ne sont d'ordre 1 qu'en apparence (un réactif en grand excès dont la concentration est quasi constante), et un ordre non entier ou variable révèle un mécanisme en plusieurs étapes.
+  en: |
+    The **first-order reaction** model postulates that the volumetric rate of the reaction is proportional to the concentration of a single reactant:
+    $$v = -\frac{\mathrm{d}[A]}{\mathrm{d}t} = k\,[A],$$
+    where the rate constant $k$ depends only on temperature (and on any catalyst), not on concentrations. The order is an **experimental fact**, not a consequence of the balanced equation: it is determined by confronting the measurements with the integrated laws ($[A]$ affine in $t$ for order 0, $\ln[A]$ affine for order 1, $1/[A]$ affine for order 2).
+
+    The model is that of a **memoryless** process: each entity $A$ has, at every instant, the same probability per unit time of reacting, independently of what the others do. This is what makes it identical to radioactive decay and so close to the discharge of a capacitor. It explains the exponential decay of $[A]$, the constancy of the half-life and the direct reading of $k$ on a logarithmic scale.
+
+    Its limits are those of its assumptions: closed reactor, constant volume and temperature, single reaction without a significant reverse step, homogeneous medium. Many reactions are only apparently first order (a reactant in large excess whose concentration is almost constant), and a non-integer or varying order reveals a multi-step mechanism.
+model:
+  assumptions:
+    fr:
+      - "Système fermé, homogène, de volume constant : la concentration $[A]$ ne varie que par la réaction."
+      - "Température constante, donc constante de vitesse $k$ constante pendant toute l'expérience."
+      - "Une seule réaction, d'ordre 1 par rapport à $A$ ; la réaction inverse et les réactions parasites sont négligeables."
+      - "La vitesse ne dépend que de $[A]$ : les autres espèces sont en grand excès ou n'interviennent pas dans la loi de vitesse."
+    en:
+      - "Closed, homogeneous system of constant volume: the concentration $[A]$ changes only through the reaction."
+      - "Constant temperature, hence a rate constant $k$ that stays constant throughout the experiment."
+      - "A single reaction, of order 1 with respect to $A$; the reverse reaction and side reactions are negligible."
+      - "The rate depends only on $[A]$: the other species are in large excess or do not appear in the rate law."
+  limits:
+    fr:
+      - "L'ordre 1 est souvent apparent (dégénérescence de l'ordre) : il cesse d'être valable quand le réactif en excès s'épuise."
+      - "Près de l'équilibre, la réaction inverse ralentit la disparition de $A$ et la loi exponentielle n'est plus exacte."
+      - "Un ordre non entier, ou qui change avec les conditions, signale un mécanisme complexe que le modèle ne décrit pas."
+      - "Une réaction exothermique dans un réacteur mal thermostaté fait varier $k$ au cours du temps."
+    en:
+      - "First order is often only apparent (isolation method): it stops holding when the reactant in excess runs out."
+      - "Near equilibrium, the reverse reaction slows the disappearance of $A$ and the exponential law is no longer exact."
+      - "A non-integer order, or one that changes with conditions, signals a complex mechanism the model does not describe."
+      - "An exothermic reaction in a poorly thermostated reactor makes $k$ vary over time."
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "énoncer la loi de vitesse d'ordre 1 et donner l'unité de $k$"
+        - "distinguer l'ordre (expérimental) des nombres stœchiométriques de l'équation-bilan"
+        - "tester l'ordre 1 sur des mesures : linéarité de $\\ln[A]$, constance du temps de demi-réaction"
+        - "citer les hypothèses du modèle et un cas où il ne s'applique pas"
+      en:
+        - "state the first-order rate law and give the unit of $k$"
+        - "distinguish the (experimental) order from the stoichiometric numbers of the balanced equation"
+        - "test first order on measurements: linearity of $\\ln[A]$, constancy of the half-life"
+        - "list the assumptions of the model and a case where it does not apply"
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "définir ordre partiel, ordre global et constante de vitesse dans le cadre d'une loi de vitesse générale"
+        - "établir les lois intégrées des ordres 0, 1 et 2 et les temps de demi-réaction correspondants"
+        - "mettre en œuvre la dégénérescence de l'ordre et la méthode des vitesses initiales"
+        - "relier $k$ à la température par la loi d'Arrhenius et interpréter l'énergie d'activation"
+      en:
+        - "define partial order, overall order and rate constant within a general rate law"
+        - "establish the integrated laws of orders 0, 1 and 2 and the corresponding half-lives"
+        - "implement the isolation method and the initial-rates method"
+        - "relate $k$ to temperature by the Arrhenius law and interpret the activation energy"

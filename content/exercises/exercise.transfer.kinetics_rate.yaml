@@ -1,0 +1,64 @@
+# Transfert — vitesse initiale d'une réaction d'ordre 1 (réponse numérique)
+id: exercise.transfer.kinetics_rate
+type: numeric
+nodeId: tool.derivative
+phenomenonId: phenomenon.chemistry.first_order_reaction
+depth: 1
+evidenceDimension: transfer
+context:
+  fr: |-
+    Transfert en chimie : la « position » devient une concentration et la « vitesse » une vitesse de réaction.
+  en: |-
+    Transfer to chemistry: the "position" becomes a concentration and the "speed" a reaction rate.
+prompt:
+  fr: |-
+    Un réactif A se transforme selon une réaction d'ordre 1 : sa vitesse de disparition est proportionnelle à sa concentration,
+    $$v = -\frac{d[\mathrm{A}]}{dt} = k\,[\mathrm{A}],$$
+    avec la constante de vitesse $k = 0.10\ \mathrm{s^{-1}}$. À $t = 0$, $[\mathrm{A}]_0 = 0.50\ \mathrm{mol \cdot L^{-1}}$.
+
+    Calculez la vitesse de disparition de A à l'instant initial, en $\mathrm{mol \cdot L^{-1} \cdot s^{-1}}$.
+  en: |-
+    A reactant A is transformed according to a first-order reaction: its rate of disappearance is proportional to its concentration,
+    $$v = -\frac{d[\mathrm{A}]}{dt} = k\,[\mathrm{A}],$$
+    with the rate constant $k = 0.10\ \mathrm{s^{-1}}$. At $t = 0$, $[\mathrm{A}]_0 = 0.50\ \mathrm{mol \cdot L^{-1}}$.
+
+    Compute the rate of disappearance of A at the initial instant, in $\mathrm{mol \cdot L^{-1} \cdot s^{-1}}$.
+numeric:
+  value: 0.050
+  unit: "mol/(L·s)"
+  tolerance: { kind: relative, value: 0.05 }
+  inputLabel: { fr: "Vitesse de disparition à t = 0", en: "Rate of disappearance at t = 0" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        À $t = 0$, remplacez $[\mathrm{A}]$ par $[\mathrm{A}]_0$ dans $v = k\,[\mathrm{A}]$. Vérifiez que $\mathrm{s^{-1}} \times \mathrm{mol \cdot L^{-1}}$ donne bien l'unité demandée.
+      en: |-
+        At $t = 0$, replace $[\mathrm{A}]$ by $[\mathrm{A}]_0$ in $v = k\,[\mathrm{A}]$. Check that $\mathrm{s^{-1}} \times \mathrm{mol \cdot L^{-1}}$ does give the requested unit.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $v_0 = 0.10 \times 0.50$.
+      en: |-
+        $v_0 = 0.10 \times 0.50$.
+solution:
+  fr: |-
+    $$v_0 = k\,[\mathrm{A}]_0 = 0.10\ \mathrm{s^{-1}} \times 0.50\ \mathrm{mol \cdot L^{-1}} = 0.050\ \mathrm{mol \cdot L^{-1} \cdot s^{-1}}.$$
+    C'est, au signe près, la pente de la tangente à l'origine de la courbe $[\mathrm{A}](t)$ : la concentration diminue initialement de $0.050\ \mathrm{mol \cdot L^{-1}}$ par seconde. Cette vitesse n'est pas constante : elle est proportionnelle à ce qui reste de A, donc elle diminue au fur et à mesure. La solution de l'équation est $[\mathrm{A}](t) = [\mathrm{A}]_0\,e^{-kt}$, de constante de temps $\tau = 1/k = 10\ \mathrm{s}$ et de temps de demi-réaction $t_{1/2} = \tau \ln 2 \approx 6.9\ \mathrm{s}$.
+
+    Même structure que la charge du condensateur, $\dfrac{dq}{dt} = \dfrac{Q - q}{\tau}$ : ici la « cible » est $0$ et la quantité qui reste à transformer est $[\mathrm{A}]$ elle-même.
+  en: |-
+    $$v_0 = k\,[\mathrm{A}]_0 = 0.10\ \mathrm{s^{-1}} \times 0.50\ \mathrm{mol \cdot L^{-1}} = 0.050\ \mathrm{mol \cdot L^{-1} \cdot s^{-1}}.$$
+    Up to the sign, this is the slope of the tangent at the origin of the curve $[\mathrm{A}](t)$: the concentration initially decreases by $0.050\ \mathrm{mol \cdot L^{-1}}$ per second. This rate is not constant: it is proportional to what is left of A, so it decreases as time goes on. The solution of the equation is $[\mathrm{A}](t) = [\mathrm{A}]_0\,e^{-kt}$, with time constant $\tau = 1/k = 10\ \mathrm{s}$ and half-life $t_{1/2} = \tau \ln 2 \approx 6.9\ \mathrm{s}$.
+
+    Same structure as the charging of the capacitor, $\dfrac{dq}{dt} = \dfrac{Q - q}{\tau}$: here the "target" is $0$ and the quantity still to be transformed is $[\mathrm{A}]$ itself.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 2
+  linkedConcepts: 3
+  transfer: 3
+  autonomy: 3
