@@ -9,6 +9,11 @@ title: { fr: Dérivée, en: Derivative }
 shortPurpose:
   fr: Décrire une variation instantanée et la pente d'une courbe en un point.
   en: Describe an instantaneous rate of change and the slope of a curve at a point.
+overview:
+  fr: >-
+    La dérivée est l'outil central de tout le voyage. Elle donne la vitesse de variation à un instant, et la pente d'une courbe en un point. Construite en Terminale, elle se précise en MPSI avec les limites, puis s'étend en MP à plusieurs variables. Vous la retrouverez dans huit phénomènes de physique et de chimie.
+  en: >-
+    The derivative is the central tool of the whole journey. It gives the rate of change at an instant, and the slope of a curve at a point. Built in Terminale, sharpened in MPSI with limits, extended in MP to several variables, it returns in eight phenomena of physics and chemistry.
 aliases:
   fr: ["nombre dérivé", "fonction dérivée", "taux de variation instantané", "dérivation"]
   en: ["differential coefficient", "derived function", "instantaneous rate of change", "differentiation"]

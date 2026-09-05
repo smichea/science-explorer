@@ -109,6 +109,28 @@ export const en = {
   'universe.dragRotate': 'Orbit',
   'universe.dragPan': 'Pan',
 
+  'tour.title': 'Bird’s-eye flight',
+  'tour.intro':
+    'Fly over everything that remains to be seen for your goal, along the recommended routes: a short spoken presentation at each stop, never the full lesson.',
+  'tour.start': 'Fly over what remains',
+  'tour.startCount': '{n} destinations',
+  'tour.step': 'Step {n} of {total}',
+  'tour.leg': 'Next route',
+  'tour.legCount': '{n} destinations on this route',
+  'tour.prev': 'Previous stop',
+  'tour.next': 'Next stop',
+  'tour.pause': 'Pause',
+  'tour.resume': 'Resume',
+  'tour.exit': 'Leave the flight',
+  'tour.voice': 'Voice',
+  'tour.noVoice': 'Reading aloud is not available in this browser; the text stays on screen.',
+  'tour.includeDone': 'Also fly over what is already practised',
+  'tour.openLesson': 'Open the full lesson',
+  'tour.alreadyPractised': 'Already practised',
+  'tour.finished': 'End of the flight: {n} destinations flown over.',
+  'tour.nothingLeft':
+    'Everything in your horizon is already practised. Tick the option below to fly over it anyway.',
+
   'filter.my_horizon': 'My horizon',
   'filter.ready': 'Ready to explore',
   'filter.current_stage': 'Current stage',

@@ -53,6 +53,10 @@ export interface StyleContext extends DestinationContext {
   selectedId: string | null;
   toolId: string | null;
   locale: Locale;
+  /** Extra nodes to highlight (the leg of a guided flight). */
+  highlightIds?: Set<string>;
+  /** Ordered node ids drawn as a flight path. */
+  tourPath?: string[];
 }
 
 export function colorOfNode(node: CompiledNode, graph: GraphIndex): string {
@@ -110,7 +114,9 @@ export function computeNodeStyles(ctx: StyleContext): Map<string, NodeStyle> {
     }
     const selected = node.id === selectedId;
     const highlighted =
-      neighbourIds.has(node.id) || (layer === 'applications' && applicationIds.has(node.id));
+      neighbourIds.has(node.id) ||
+      (layer === 'applications' && applicationIds.has(node.id)) ||
+      !!ctx.highlightIds?.has(node.id);
     if (selected) emphasis = 1;
     else if (highlighted) emphasis = Math.max(emphasis, 0.85);
     const size =
@@ -170,6 +176,9 @@ export function computeRoutes(
   const out: RouteStyle[] = [];
   const push = (id: string, from: string, to: string, kind: RouteKind, emphasis: number) =>
     out.push({ id, from, to, kind, emphasis });
+  // The leg of a guided flight is drawn on top of whatever layer is active.
+  const path = ctx.tourPath ?? [];
+  for (let i = 1; i < path.length; i++) push(`tour:${i}`, path[i - 1], path[i], 'route', 0.9);
   const tool =
     toolId ??
     (selectedId && graph.getNode(selectedId)?.type === 'mathematical_tool' ? selectedId : null);

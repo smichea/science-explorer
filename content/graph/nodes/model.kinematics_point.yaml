@@ -8,6 +8,11 @@ title: { fr: Cinématique du point, en: Kinematics of a point }
 shortPurpose:
   fr: Décrire un mouvement par les vecteurs position, vitesse et accélération, avant de demander pourquoi.
   en: Describe a motion through the position, velocity and acceleration vectors, before asking why.
+overview:
+  fr: >-
+    La cinématique du point décrit un mouvement sans en chercher la cause : position, vitesse, accélération, trois vecteurs liés par la dérivée. La vitesse est la dérivée de la position, l'accélération celle de la vitesse. C'est le premier endroit où l'outil mathématique devient un langage physique.
+  en: >-
+    Kinematics of a point describes a motion without asking for its cause: position, velocity, acceleration, three vectors linked by the derivative. Velocity is the derivative of position, acceleration that of velocity. It is the first place where the mathematical tool becomes a physical language.
 aliases:
   fr: ["point matériel", "vecteurs position, vitesse et accélération", "description du mouvement", "référentiel"]
   en: ["point mass", "position, velocity and acceleration vectors", "description of motion", "frame of reference"]

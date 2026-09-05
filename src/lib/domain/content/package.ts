@@ -11,6 +11,7 @@ import type {
   MissionDefinition,
   QuotationDefinition,
   RouteDefinition,
+  TourDefinition,
   SearchEntry,
   SimulationDefinition,
   SourceDefinition,
@@ -36,7 +37,7 @@ export async function loadContentPackage(base: string, fetchFn: Fetch = fetch): 
   const root = packagePath(base);
   const manifest = await getJson<ContentManifest>(fetchFn, `${root}/manifest.json`);
   const file = <T>(name: string) => getJson<T>(fetchFn, `${root}/${name}`);
-  const [graph, layout, curricula, missions, exercises, simulations, sources, glossaryFr, glossaryEn, searchFr, searchEn, routes, glossaryEntries, report] = await Promise.all([
+  const [graph, layout, curricula, missions, exercises, simulations, sources, glossaryFr, glossaryEn, searchFr, searchEn, routes, tours, glossaryEntries, report] = await Promise.all([
     file<CompiledGraph>('graph.json'),
     file<CompiledLayout>('layout.json'),
     file<{ curricula: CurriculumDefinition[]; horizon: HorizonConfig }>('curricula.json'),
@@ -49,6 +50,7 @@ export async function loadContentPackage(base: string, fetchFn: Fetch = fetch): 
     file<SearchEntry[]>('search.fr.json'),
     file<SearchEntry[]>('search.en.json'),
     file<RouteDefinition[]>('routes.json'),
+    file<TourDefinition[]>('tours.json'),
     file<GlossaryEntry[]>('glossary-entries.json'),
     file<ValidationReport>('report.json'),
   ]);
@@ -66,6 +68,7 @@ export async function loadContentPackage(base: string, fetchFn: Fetch = fetch): 
     glossary: { fr: glossaryFr, en: glossaryEn },
     search: { fr: searchFr, en: searchEn },
     routes,
+    tours,
     glossaryEntries,
     report,
   };

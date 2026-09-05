@@ -9,6 +9,11 @@ title: { fr: Fonction exponentielle, en: Exponential function }
 shortPurpose:
   fr: La fonction égale à sa propre dérivée ; le modèle de toute évolution dont la vitesse est proportionnelle à la quantité présente.
   en: The function equal to its own derivative; the model of every evolution whose rate is proportional to the quantity present.
+overview:
+  fr: >-
+    L'exponentielle est la fonction égale à sa propre dérivée. Dès qu'une grandeur varie à une vitesse proportionnelle à ce qui reste, elle apparaît : charge d'un condensateur, réaction d'ordre un, décroissance radioactive, chute freinée. Une seule fonction pour quatre phénomènes de trois mondes.
+  en: >-
+    The exponential is the function equal to its own derivative. It appears whenever a quantity changes at a rate proportional to what remains: capacitor charging, a first-order reaction, radioactive decay, fall with drag. One function for four phenomena from three worlds.
 aliases:
   fr: ["exponentielle", "exp", "fonction exp(kt)", "croissance et décroissance exponentielles"]
   en: ["exponential", "exp", "exp(kt) function", "exponential growth and decay"]

@@ -8,6 +8,11 @@ title: { fr: Fonction, en: Function }
 shortPurpose:
   fr: Associer à chaque valeur d'une variable une valeur et une seule, pour dire comment une grandeur dépend d'une autre.
   en: Assign exactly one value to each value of a variable, to say how one quantity depends on another.
+overview:
+  fr: >-
+    Une fonction associe à chaque valeur d'une variable une valeur et une seule. C'est le langage de base pour dire comment une grandeur dépend d'une autre : la position dépend du temps, la tension dépend de la charge. Tout le programme d'analyse, de la Terminale à la prépa, s'exprime avec elle.
+  en: >-
+    A function assigns exactly one value to each value of a variable. It is the basic language for saying how one quantity depends on another: position depends on time, voltage depends on charge. The whole analysis programme, from Terminale to the preparatory classes, is written in this language.
 aliases:
   fr: ["fonction numérique", "application", "fonction d'une variable réelle", "loi de dépendance"]
   en: ["numerical function", "map", "function of one real variable", "dependence law"]

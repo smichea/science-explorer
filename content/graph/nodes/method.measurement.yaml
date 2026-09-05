@@ -7,6 +7,11 @@ title: { fr: Mesure, en: Measurement }
 shortPurpose:
   fr: Produire un nombre à partir du monde, avec son unité et son incertitude, et savoir ce qu'il vaut.
   en: Produce a number from the world, with its unit and its uncertainty, and know what it is worth.
+overview:
+  fr: >-
+    Mesurer, c'est produire un nombre à partir du monde, avec son unité et son incertitude. Galilée comptait des battements et pesait de l'eau pour mesurer le temps. Savoir ce que vaut une mesure est le point de départ de toute loi physique.
+  en: >-
+    Measuring means producing a number from the world, with its unit and its uncertainty. Galileo counted beats and weighed water to measure time. Knowing what a measurement is worth is the starting point of every physical law.
 aliases:
   fr: ["mesurage", "incertitude de mesure", "protocole expérimental", "chronométrage"]
   en: ["measuring", "measurement uncertainty", "experimental protocol", "timing"]

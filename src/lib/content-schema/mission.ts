@@ -150,6 +150,8 @@ export const MissionSchema = z.object({
   version: z.number().int().min(1),
   title: LocalisedText,
   summary: LocalisedText,
+  /** Spoken presentation excerpt for guided flights (plain sentences, no LaTeX). */
+  overview: LocalisedText.optional(),
   /** Learner's role in the scenario (labelled as pedagogical reconstruction or fiction). */
   role: LocalisedText,
   region: Id.optional(),

@@ -109,6 +109,29 @@ export const fr: Record<MessageKey, string> = {
   'universe.dragRotate': 'Tourner',
   'universe.dragPan': 'Déplacer',
 
+  'tour.title': 'Vol d’oiseau',
+  'tour.intro':
+    'Survoler tout ce qu’il reste à voir pour votre objectif, le long des routes conseillées : une courte présentation lue à chaque escale, jamais la leçon complète.',
+  'tour.start': 'Survoler ce qui reste à voir',
+  'tour.startCount': '{n} destinations',
+  'tour.step': 'Étape {n} sur {total}',
+  'tour.leg': 'Route suivante',
+  'tour.legCount': '{n} destinations sur cette route',
+  'tour.prev': 'Escale précédente',
+  'tour.next': 'Escale suivante',
+  'tour.pause': 'Pause',
+  'tour.resume': 'Reprendre',
+  'tour.exit': 'Quitter le vol',
+  'tour.voice': 'Voix',
+  'tour.noVoice':
+    'La lecture à voix haute n’est pas disponible dans ce navigateur ; le texte reste affiché.',
+  'tour.includeDone': 'Survoler aussi ce qui est déjà pratiqué',
+  'tour.openLesson': 'Ouvrir la leçon complète',
+  'tour.alreadyPractised': 'Déjà pratiqué',
+  'tour.finished': 'Fin du vol : {n} destinations survolées.',
+  'tour.nothingLeft':
+    'Tout votre horizon est déjà pratiqué. Cochez l’option ci-dessous pour le survoler quand même.',
+
   'filter.my_horizon': 'Mon horizon',
   'filter.ready': 'Prêtes à explorer',
   'filter.current_stage': 'Étape courante',

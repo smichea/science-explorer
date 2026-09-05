@@ -7,6 +7,11 @@ title: { fr: Condition initiale, en: Initial condition }
 shortPurpose:
   fr: L'état de départ qui, joint à la loi d'évolution, sélectionne une trajectoire unique parmi toutes les possibles.
   en: The starting state which, together with the law of evolution, selects a single trajectory among all possible ones.
+overview:
+  fr: >-
+    La loi d'évolution dit comment une grandeur change ; la condition initiale dit d'où elle part. Ensemble, elles sélectionnent une trajectoire unique parmi toutes les possibles. Sans condition initiale, une équation différentielle a une infinité de solutions.
+  en: >-
+    The law of evolution says how a quantity changes; the initial condition says where it starts. Together they select a single trajectory among all possible ones. Without an initial condition, a differential equation has infinitely many solutions.
 aliases:
   fr: ["conditions initiales", "état initial", "constante d'intégration", "problème de Cauchy"]
   en: ["initial conditions", "initial state", "integration constant", "Cauchy problem"]

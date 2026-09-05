@@ -7,6 +7,11 @@ title: { fr: Modélisation, en: Modelling }
 shortPurpose:
   fr: Choisir un système, des hypothèses et des variables ; approximer, calculer, puis critiquer le résultat.
   en: Choose a system, assumptions and variables; approximate, compute, then criticise the result.
+overview:
+  fr: >-
+    Modéliser, c'est choisir un système, des hypothèses et des variables, puis approximer, calculer et critiquer le résultat. Point matériel, frottement négligé, source idéale : chaque mission vous fera nommer ces choix. C'est la compétence commune aux trois mondes.
+  en: >-
+    Modelling means choosing a system, assumptions and variables, then approximating, computing and criticising the result. Point mass, negligible friction, ideal source: every mission will make you name these choices. It is the skill shared by the three worlds.
 aliases:
   fr: ["démarche de modélisation", "hypothèses d'un modèle", "mise en équation", "validité d'un modèle"]
   en: ["modelling process", "model assumptions", "setting up equations", "validity of a model"]

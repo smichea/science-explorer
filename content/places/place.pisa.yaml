@@ -6,6 +6,11 @@ title: { fr: Pise, en: Pisa }
 shortPurpose:
   fr: "Ville natale de Galilée et lieu de son premier poste de professeur."
   en: "Galileo's birthplace and the seat of his first professorship."
+overview:
+  fr: >-
+    Pise, ville natale de Galilée et lieu de ses premières leçons. La légende des boulets lâchés du haut de la tour est discutée par les historiens ; les expériences bien attestées sont celles du plan incliné, à Padoue.
+  en: >-
+    Pisa, Galileo's birthplace and the place of his first lectures. The legend of the cannonballs dropped from the tower is disputed by historians; the well-attested experiments are those of the inclined plane, in Padua.
 modernName: { fr: "Pise (Italie)", en: "Pisa (Italy)" }
 coordinates: { lat: 43.7228, lon: 10.4017 }
 locationCertainty: exact

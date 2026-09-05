@@ -6,11 +6,16 @@
   import { learning } from '$lib/state/learning.svelte';
   import { L, t } from '$lib/state/locale.svelte';
   import { profile } from '$lib/state/profile.svelte';
+  import { tour } from '$lib/state/tour.svelte';
 
   const graph = $derived(content.graph!);
   const pkg = $derived(content.pkg!);
   const horizon = $derived(profile.horizon(pkg.horizon));
   const recommendations = $derived(recommend(graph, learning.snapshot, pkg.routes, 4));
+  const plannedStops = $derived.by(() => {
+    void learning.snapshot;
+    return tour.plannedStops();
+  });
   const discovered = $derived(
     [...(learning.snapshot?.nodeStates.values() ?? [])].filter(
       (s) => s.status !== 'unknown' && s.status !== 'seen'
@@ -32,6 +37,21 @@
       <span class="badge">{t('horizon.band.current')}</span>
       {horizon.stages.map(stageTitle).join(' → ')}
     </p>
+  {/if}
+
+  {#if pkg.tours.length}
+    <div class="card card--paper stack-sm">
+      <p style="margin: 0"><strong>🕊 {t('tour.title')}</strong></p>
+      <p class="small muted" style="margin: 0">{t('tour.intro')}</p>
+      <button
+        class="btn btn--primary"
+        type="button"
+        data-testid="tour-start-panel"
+        onclick={() => tour.start()}
+      >
+        {t('tour.start')} · {t('tour.startCount', { n: plannedStops })}
+      </button>
+    </div>
   {/if}
 
   <div class="legend card">

@@ -9,6 +9,11 @@ title:
 shortPurpose:
   fr: Le schéma commun à la charge d'un condensateur, à la réaction d'ordre 1, à la décroissance radioactive et à la chute freinée ; il mène toujours à une exponentielle.
   en: The pattern shared by capacitor charging, first-order reactions, radioactive decay and fall with drag; it always leads to an exponential.
+overview:
+  fr: >-
+    Voici le pont le plus fréquenté de l'univers : une vitesse proportionnelle à la quantité restante. Charge d'un condensateur, réaction d'ordre un, décroissance radioactive, chute freinée : quatre phénomènes, trois mondes, une seule équation, et toujours une exponentielle à l'arrivée.
+  en: >-
+    Here is the busiest bridge of the universe: a rate proportional to the remaining quantity. Capacitor charging, first-order reaction, radioactive decay, fall with drag: four phenomena, three worlds, one equation, and always an exponential at the end.
 aliases:
   fr: ["processus du premier ordre", "relaxation exponentielle", "loi exponentielle universelle", "système sans mémoire"]
   en: ["first-order process", "exponential relaxation", "universal exponential law", "memoryless system"]

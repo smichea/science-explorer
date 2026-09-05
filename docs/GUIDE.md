@@ -19,6 +19,12 @@ Ce guide s'adresse à l'adulte qui accompagne l'explorateur une heure par semain
 | 50–55 min | **Débriefing** | Distinguez ce que l'on savait à l'époque, ce que l'on pouvait mesurer, et le modèle moderne. Les étiquettes *Attesté / Interprétation / Reconstitution / Fiction* sont là pour ça. |
 | 55–60 min | **Sac à dos et journal** | Regardez ensemble la couverture d'application de l'outil du jour (« utilisé dans 4 phénomènes sur 8 ») et notez en une phrase ce qui a été compris et ce qui reste flou. |
 
+## 2 bis. Le vol d'oiseau : la vision globale de la première séance
+
+Le bouton **🕊 Vol d'oiseau** (dans le bandeau de l'univers et dans le panneau « L'univers ») survole automatiquement tout ce qu'il reste à voir pour l'objectif : d'abord les routes conseillées, puis ce qui reste dans chaque monde, l'histoire et les ponts. À chaque escale, la caméra vole vers la destination et une **courte présentation** est affichée et lue à voix haute par la voix du navigateur ; entre deux routes, une phrase de transition fait le lien. Le texte reste toujours affiché, la voix peut être coupée, et « Ouvrir la leçon complète » quitte le vol pour aller à la page de la destination. Ce qui est déjà pratiqué n'est plus survolé, sauf si vous cochez « Survoler aussi ce qui est déjà pratiqué ».
+
+Conseil pour la première séance : faites le vol complet une fois (une quinzaine de minutes avec la voix), puis demandez à l'explorateur où il veut aller en premier.
+
 ## 3. La vue guide
 
 Accessible depuis le menu **Guide** (code éventuel demandé une fois par onglet) :

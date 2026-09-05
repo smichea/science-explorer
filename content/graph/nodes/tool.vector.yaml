@@ -9,6 +9,11 @@ title: { fr: Vecteur, en: Vector }
 shortPurpose:
   fr: Représenter une grandeur qui a une direction, un sens et une intensité, et calculer avec elle.
   en: Represent a quantity that has a direction, an orientation and a magnitude, and compute with it.
+overview:
+  fr: >-
+    Un vecteur représente une grandeur qui a une direction, un sens et une intensité. Forces, vitesses et accélérations sont des vecteurs. Savoir les additionner et les projeter est indispensable pour écrire la deuxième loi de Newton et pour décrire un mouvement sur un plan incliné.
+  en: >-
+    A vector represents a quantity with a direction, an orientation and a magnitude. Forces, velocities and accelerations are vectors. Adding and projecting them is essential for writing Newton's second law and for describing motion on an inclined plane.
 aliases:
   fr: ["vecteur du plan", "vecteur de l'espace", "coordonnées d'un vecteur", "produit scalaire"]
   en: ["plane vector", "space vector", "vector coordinates", "dot product"]

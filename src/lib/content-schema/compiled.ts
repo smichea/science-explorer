@@ -10,7 +10,7 @@ import type { CurriculumDefinition, HorizonConfig } from './curriculum';
 import type { ExerciseDefinition } from './exercise';
 import type { DepthDescriptor, EdgeType, NodeType } from './graph';
 import type { MissionDefinition } from './mission';
-import type { GlossaryEntry, RouteDefinition } from './misc';
+import type { GlossaryEntry, RouteDefinition, TourDefinition } from './misc';
 import type { SimulationDefinition } from './simulation';
 import type { QuotationDefinition, SourceDefinition } from './source';
 
@@ -23,6 +23,8 @@ export interface CompiledNode {
   anchorNode?: Id;
   title: LocalisedText;
   shortPurpose: LocalisedText;
+  /** Spoken presentation excerpt (plain sentences); falls back to shortPurpose when absent. */
+  overview?: LocalisedText;
   description?: LocalisedText;
   aliases?: LocalisedList;
   importance: number;
@@ -168,6 +170,7 @@ export interface ContentPackage {
   glossary: Record<Locale, GlossaryLocalised[]>;
   search: Record<Locale, SearchEntry[]>;
   routes: RouteDefinition[];
+  tours: TourDefinition[];
   glossaryEntries: GlossaryEntry[];
   report: ValidationReport;
 }

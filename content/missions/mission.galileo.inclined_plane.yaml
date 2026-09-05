@@ -19,6 +19,11 @@ summary:
     the time. How does the speed of the ball change during the descent? To answer, you will measure, plot,
     and then build a tool Galileo did not have: the derivative. The same tool will then describe the
     charging of a capacitor and a chemical reaction.
+overview:
+  fr: >-
+    Votre première mission : Padoue, vers mille six cent quatre. Vous prédisez, vous mesurez avec une horloge à eau, vous construisez la dérivée pour dire la vitesse à un instant, puis vous la transférez à un circuit et à une réaction chimique. Une heure pour forger l'outil central du voyage.
+  en: >-
+    Your first mission: Padua, around sixteen hundred and four. You predict, you measure with a water clock, you build the derivative to state the speed at an instant, then you transfer it to a circuit and to a chemical reaction. One hour to forge the central tool of the journey.
 role:
   fr: |
     Vous êtes un jeune pensionnaire logé chez Galilée, chargé de tenir l'horloge à eau pendant les descentes

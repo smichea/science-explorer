@@ -8,6 +8,11 @@ title: { fr: Taux de variation, en: Rate of change }
 shortPurpose:
   fr: Mesurer de combien une grandeur change, en moyenne, par unité de variable sur un intervalle.
   en: Measure how much a quantity changes, on average, per unit of the variable over an interval.
+overview:
+  fr: >-
+    Le taux de variation mesure de combien une grandeur change, en moyenne, par unité de variable sur un intervalle. Une vitesse moyenne est un taux de variation de la position. En faisant rétrécir l'intervalle, on s'approche de la question qui mène à la dérivée : que vaut la vitesse à un instant précis ?
+  en: >-
+    The rate of change measures how much a quantity changes, on average, per unit of the variable over an interval. An average speed is a rate of change of position. Shrinking the interval brings us to the question that leads to the derivative: what is the speed at one precise instant?
 aliases:
   fr: ["taux d'accroissement", "taux de variation moyen", "pente de la sécante", "vitesse moyenne"]
   en: ["average rate of change", "difference quotient", "secant slope", "average velocity"]

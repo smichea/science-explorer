@@ -8,6 +8,11 @@ title: { fr: Modèle du circuit RC, en: RC circuit model }
 shortPurpose:
   fr: Un générateur, une résistance et un condensateur idéaux en série ; le système du premier ordre de référence.
   en: An ideal source, resistor and capacitor in series; the reference first-order system.
+overview:
+  fr: >-
+    Le modèle du circuit RC met en série un générateur, une résistance et un condensateur idéaux. Il conduit à l'équation différentielle du premier ordre de référence. Tout circuit qui se charge ou se décharge s'y ramène en première approximation.
+  en: >-
+    The RC circuit model puts an ideal source, resistor and capacitor in series. It leads to the reference first-order differential equation. Every circuit that charges or discharges reduces to it as a first approximation.
 aliases:
   fr: ["circuit RC série", "circuit du premier ordre", "dipôle RC", "condensateur et résistance en série"]
   en: ["series RC circuit", "first-order circuit", "RC dipole", "capacitor and resistor in series"]

@@ -10,6 +10,11 @@ title:
 shortPurpose:
   fr: Suivre la disparition d'un réactif ou l'apparition d'un produit, et définir la vitesse d'une réaction.
   en: Follow the disappearance of a reactant or the appearance of a product, and define the rate of a reaction.
+overview:
+  fr: >-
+    Suivre une concentration au cours du temps, c'est regarder disparaître un réactif ou apparaître un produit. La vitesse de la réaction est la dérivée de cette concentration. La chimie emprunte ici, mot pour mot, l'outil de la cinématique.
+  en: >-
+    Following a concentration over time means watching a reactant disappear or a product appear. The rate of the reaction is the derivative of that concentration. Chemistry borrows here, word for word, the tool of kinematics.
 aliases:
   fr: ["suivi cinétique", "vitesse de disparition", "vitesse volumique de réaction", "courbe de concentration"]
   en: ["kinetic monitoring", "rate of disappearance", "volumetric rate of reaction", "concentration curve"]

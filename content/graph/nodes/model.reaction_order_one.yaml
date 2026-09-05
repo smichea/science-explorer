@@ -8,6 +8,11 @@ title: { fr: Modèle de la réaction d'ordre 1, en: First-order reaction model }
 shortPurpose:
   fr: La loi de vitesse $v = k[A]$ et les hypothèses qui la rendent valable.
   en: The rate law $v = k[A]$ and the assumptions that make it valid.
+overview:
+  fr: >-
+    Le modèle de la réaction d'ordre un énonce la loi de vitesse et les hypothèses qui la rendent valable : température constante, mélange homogène, une seule étape limitante. Savoir quand un modèle s'applique compte autant que savoir le résoudre.
+  en: >-
+    The first-order reaction model states the rate law and the assumptions that make it valid: constant temperature, homogeneous mixture, a single limiting step. Knowing when a model applies matters as much as knowing how to solve it.
 aliases:
   fr: ["loi de vitesse d'ordre 1", "modèle cinétique d'ordre 1", "constante de vitesse", "ordre d'une réaction"]
   en: ["first-order rate law", "first-order kinetic model", "rate constant", "order of a reaction"]
