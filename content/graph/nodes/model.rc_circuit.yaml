@@ -1,0 +1,80 @@
+id: model.rc_circuit
+type: model
+world: world.physics
+region: region.physics.electricity_circuits
+importance: 2
+tags: [vertical-slice]
+title: { fr: Modèle du circuit RC, en: RC circuit model }
+shortPurpose:
+  fr: Un générateur, une résistance et un condensateur idéaux en série ; le système du premier ordre de référence.
+  en: An ideal source, resistor and capacitor in series; the reference first-order system.
+aliases:
+  fr: ["circuit RC série", "circuit du premier ordre", "dipôle RC", "condensateur et résistance en série"]
+  en: ["series RC circuit", "first-order circuit", "RC dipole", "capacitor and resistor in series"]
+description:
+  fr: |
+    Le modèle du **circuit RC** assemble trois dipôles idéaux en série : un générateur de tension constante $E$ (ou, pour la décharge, un simple fil), un conducteur ohmique de résistance $R$ (loi d'Ohm $u_R = R\,i$) et un condensateur de capacité $C$ (relation $q = C\,u_C$, donc $i = C\,\dfrac{\mathrm{d}u_C}{\mathrm{d}t}$). La loi des mailles, $E = u_R + u_C$, conduit à l'équation différentielle
+    $$RC\,\frac{\mathrm{d}u_C}{\mathrm{d}t} + u_C = E,$$
+    équation linéaire du premier ordre dont la constante de temps est $\tau = RC$.
+
+    Le modèle explique la charge et la décharge du condensateur, l'allure exponentielle des courbes et la valeur de $\tau$ qui règle la durée du régime transitoire (environ $5\tau$). Il sert aussi de brique : associé à une bobine, il devient le circuit RLC oscillant ; alimenté par une tension sinusoïdale, il devient un filtre passe-bas. C'est le premier système du premier ordre que l'on rencontre en électricité, et il se transpose directement à la cinétique chimique ou aux échanges thermiques.
+
+    Ses hypothèses sont explicites : dipôles idéaux (pas de courant de fuite dans le condensateur, résistance interne du générateur nulle ou incluse dans $R$), régime quasi stationnaire (le circuit est petit devant la longueur d'onde des signaux), fils sans résistance, absence d'inductance parasite. Sur un oscilloscope, l'écart entre la courbe mesurée et la courbe modèle mesure l'importance de ces effets négligés.
+  en: |
+    The **RC circuit** model assembles three ideal components in series: a constant voltage source $E$ (or, for discharge, a plain wire), an ohmic conductor of resistance $R$ (Ohm's law $u_R = R\,i$) and a capacitor of capacitance $C$ (relation $q = C\,u_C$, hence $i = C\,\dfrac{\mathrm{d}u_C}{\mathrm{d}t}$). Kirchhoff's voltage law, $E = u_R + u_C$, leads to the differential equation
+    $$RC\,\frac{\mathrm{d}u_C}{\mathrm{d}t} + u_C = E,$$
+    a first-order linear equation whose time constant is $\tau = RC$.
+
+    The model explains the charging and discharging of the capacitor, the exponential shape of the curves and the value of $\tau$ that sets the duration of the transient regime (about $5\tau$). It also serves as a building block: combined with an inductor it becomes the oscillating RLC circuit; driven by a sinusoidal voltage it becomes a low-pass filter. It is the first first-order system met in electricity, and it transposes directly to chemical kinetics or to heat exchange.
+
+    Its assumptions are explicit: ideal components (no leakage current in the capacitor, zero internal resistance of the source or included in $R$), quasi-stationary regime (the circuit is small compared with the wavelength of the signals), wires without resistance, no stray inductance. On an oscilloscope, the gap between the measured curve and the model curve measures the importance of these neglected effects.
+model:
+  assumptions:
+    fr:
+      - "Dipôles idéaux : conducteur ohmique de résistance $R$ constante, condensateur de capacité $C$ constante sans courant de fuite, générateur de tension $E$ constante sans résistance interne (ou incluse dans $R$)."
+      - "Approximation des régimes quasi stationnaires : le courant est le même en tout point du circuit à chaque instant."
+      - "Fils de résistance nulle et absence d'inductance parasite."
+      - "La tension $u_C$ est une fonction continue du temps (l'énergie stockée ne peut pas varier instantanément)."
+    en:
+      - "Ideal components: ohmic conductor of constant resistance $R$, capacitor of constant capacitance $C$ without leakage current, constant voltage source $E$ without internal resistance (or included in $R$)."
+      - "Quasi-stationary approximation: the current is the same at every point of the circuit at each instant."
+      - "Wires of zero resistance and no stray inductance."
+      - "The voltage $u_C$ is a continuous function of time (the stored energy cannot change instantaneously)."
+  limits:
+    fr:
+      - "Un condensateur réel possède un courant de fuite et une résistance série ; à long terme, la tension ne se maintient pas exactement à $E$."
+      - "À haute fréquence, l'inductance des fils et les capacités parasites ajoutent des termes du second ordre : le modèle du premier ordre ne suffit plus."
+      - "Un générateur réel a une résistance interne et un courant maximal ; au tout début de la charge, le courant $E/R$ peut être limité."
+    en:
+      - "A real capacitor has a leakage current and a series resistance; in the long run the voltage does not hold exactly at $E$."
+      - "At high frequency, the inductance of the wires and stray capacitances add second-order terms: the first-order model is no longer enough."
+      - "A real source has an internal resistance and a maximum current; at the very start of the charge, the current $E/R$ may be limited."
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "schématiser un circuit RC série et orienter tensions et courant en convention récepteur"
+        - "utiliser la relation $q = C\\,u_C$ et $i = \\mathrm{d}q/\\mathrm{d}t$ pour écrire l'équation du circuit"
+        - "identifier la constante de temps $RC$ et prévoir son effet sur la durée de charge"
+        - "confronter le modèle à une courbe expérimentale et repérer les effets négligés"
+      en:
+        - "draw a series RC circuit and orient voltages and current in the receiver convention"
+        - "use the relation $q = C\\,u_C$ and $i = \\mathrm{d}q/\\mathrm{d}t$ to write the circuit equation"
+        - "identify the time constant $RC$ and predict its effect on the charging duration"
+        - "confront the model with an experimental curve and spot the neglected effects"
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "énoncer l'approximation des régimes quasi stationnaires et ses conditions de validité"
+        - "écrire l'équation d'un circuit du premier ordre quelconque sous forme canonique $\\tau\\,\\dot y + y = y_\\infty$"
+        - "établir le bilan de puissance du circuit et l'énergie stockée dans le condensateur"
+        - "utiliser la continuité de $u_C$ pour déterminer les conditions initiales"
+      en:
+        - "state the quasi-stationary approximation and its validity conditions"
+        - "write the equation of any first-order circuit in canonical form $\\tau\\,\\dot y + y = y_\\infty$"
+        - "establish the power balance of the circuit and the energy stored in the capacitor"
+        - "use the continuity of $u_C$ to determine the initial conditions"

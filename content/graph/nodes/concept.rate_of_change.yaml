@@ -1,0 +1,58 @@
+id: concept.rate_of_change
+type: mathematical_concept
+world: world.mathematics
+region: region.math.functions_analysis
+importance: 2
+tags: [vertical-slice]
+title: { fr: Taux de variation, en: Rate of change }
+shortPurpose:
+  fr: Mesurer de combien une grandeur change, en moyenne, par unité de variable sur un intervalle.
+  en: Measure how much a quantity changes, on average, per unit of the variable over an interval.
+aliases:
+  fr: ["taux d'accroissement", "taux de variation moyen", "pente de la sécante", "vitesse moyenne"]
+  en: ["average rate of change", "difference quotient", "secant slope", "average velocity"]
+description:
+  fr: |
+    Le **taux de variation** d'une fonction $f$ entre $a$ et $a+h$ ($h \neq 0$) est le quotient
+    $$\frac{f(a+h) - f(a)}{h} = \frac{\Delta f}{\Delta x}.$$
+    C'est « la variation de la sortie divisée par la variation de l'entrée » : de combien $f$ change, par unité de $x$, en moyenne sur l'intervalle. Géométriquement, c'est la pente de la **sécante** (la corde) qui joint les points $(a,\, f(a))$ et $(a+h,\, f(a+h))$ de la courbe.
+
+    Quand la variable est le temps, le taux de variation est une **vitesse moyenne** : distance parcourue divisée par la durée. Un mobile qui passe de $x = 2\ \mathrm{m}$ à $x = 8\ \mathrm{m}$ entre $t = 1\ \mathrm{s}$ et $t = 3\ \mathrm{s}$ a une vitesse moyenne de $3\ \mathrm{m\cdot s^{-1}}$, quel que soit le détail du mouvement entre les deux instants. C'est exactement ce que Galilée pouvait mesurer avec une horloge à eau et une règle.
+
+    Le taux de variation ne dit rien de ce qui se passe *à un instant précis* : entre deux relevés, le mobile peut accélérer. En resserrant l'intervalle ($h \to 0$), la sécante tend vers la tangente et le taux de variation vers le nombre dérivé : ce passage du moyen à l'instantané est précisément la construction de la dérivée.
+  en: |
+    The **rate of change** of a function $f$ between $a$ and $a+h$ ($h \neq 0$) is the quotient
+    $$\frac{f(a+h) - f(a)}{h} = \frac{\Delta f}{\Delta x}.$$
+    It is "change in output divided by change in input": how much $f$ changes, per unit of $x$, on average over the interval. Geometrically it is the slope of the **secant** (the chord) joining the points $(a,\, f(a))$ and $(a+h,\, f(a+h))$ of the graph.
+
+    When the variable is time, the rate of change is an **average velocity**: distance covered divided by the duration. A body that goes from $x = 2\ \mathrm{m}$ to $x = 8\ \mathrm{m}$ between $t = 1\ \mathrm{s}$ and $t = 3\ \mathrm{s}$ has an average velocity of $3\ \mathrm{m\cdot s^{-1}}$, whatever the details of the motion between the two instants. This is exactly what Galileo could measure with a water clock and a ruler.
+
+    The rate of change says nothing about what happens *at a precise instant*: between two readings the body may speed up. Shrinking the interval ($h \to 0$) makes the secant tend to the tangent and the rate of change to the derivative: this passage from average to instantaneous is precisely the construction of the derivative.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "calculer un taux de variation à partir d'une formule ou d'un tableau de mesures"
+        - "interpréter un taux de variation comme la pente d'une sécante"
+        - "interpréter un taux de variation temporel comme une vitesse moyenne"
+        - "distinguer une variation moyenne d'une variation instantanée"
+      en:
+        - "compute a rate of change from a formula or from a table of measurements"
+        - "interpret a rate of change as the slope of a secant"
+        - "interpret a rate of change in time as an average velocity"
+        - "distinguish an average change from an instantaneous change"
+    lesson:
+      fr: |
+        **Définition.** Soit $f$ une fonction et $a$, $a+h$ deux réels de son ensemble de définition, avec $h \neq 0$. Le taux de variation de $f$ entre $a$ et $a+h$ est
+        $$\tau_{a}(h) = \frac{f(a+h) - f(a)}{h}.$$
+        C'est un nombre attaché à un *intervalle*, pas à un point. Sur un tableau de mesures $(t_i, x_i)$, le taux de variation entre deux lignes consécutives est $\dfrac{x_{i+1} - x_i}{t_{i+1} - t_i}$ : la vitesse moyenne sur cet intervalle.
+
+        **Lecture graphique.** Sur la courbe de $f$, $\tau_a(h)$ est le coefficient directeur de la droite (sécante) passant par $A(a,\, f(a))$ et $B(a+h,\, f(a+h))$. Une sécante « montante » correspond à un taux positif, « descendante » à un taux négatif. Pour $f(x) = x^2$ entre $1$ et $1+h$ : $\tau_1(h) = \dfrac{(1+h)^2 - 1}{h} = 2 + h$, qui se rapproche de $2$ quand $h$ devient petit : c'est ce qui annonce le nombre dérivé $f'(1) = 2$.
+      en: |
+        **Definition.** Let $f$ be a function and $a$, $a+h$ two real numbers in its domain, with $h \neq 0$. The rate of change of $f$ between $a$ and $a+h$ is
+        $$\tau_{a}(h) = \frac{f(a+h) - f(a)}{h}.$$
+        It is a number attached to an *interval*, not to a point. On a table of measurements $(t_i, x_i)$, the rate of change between two consecutive rows is $\dfrac{x_{i+1} - x_i}{t_{i+1} - t_i}$: the average velocity over that interval.
+
+        **Graphical reading.** On the graph of $f$, $\tau_a(h)$ is the slope of the line (secant) through $A(a,\, f(a))$ and $B(a+h,\, f(a+h))$. A "rising" secant corresponds to a positive rate, a "falling" one to a negative rate. For $f(x) = x^2$ between $1$ and $1+h$: $\tau_1(h) = \dfrac{(1+h)^2 - 1}{h} = 2 + h$, which gets close to $2$ as $h$ becomes small: this announces the derivative $f'(1) = 2$.

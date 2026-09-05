@@ -1,0 +1,123 @@
+id: tool.ode_first_order
+type: mathematical_tool
+world: world.mathematics
+region: region.math.differential_equations
+importance: 3
+backpack: true
+tags: [vertical-slice]
+title:
+  fr: Équation différentielle du premier ordre
+  en: First-order differential equation
+shortPurpose:
+  fr: Retrouver une grandeur à partir de la loi qui gouverne sa vitesse de variation.
+  en: Recover a quantity from the law that governs its rate of change.
+aliases:
+  fr: ["équation différentielle linéaire du premier ordre", "équation y' = ay + b", "équation différentielle linéaire", "problème de Cauchy"]
+  en: ["first-order linear differential equation", "equation y' = ay + b", "linear differential equation", "Cauchy problem"]
+description:
+  fr: |
+    Une **équation différentielle** est une équation dont l'inconnue est une fonction et qui fait intervenir sa dérivée. La plus simple et la plus féconde est l'équation linéaire du premier ordre à coefficients constants
+    $$y' = a\,y + b,$$
+    dont les solutions sur $\mathbb{R}$ sont les fonctions $t \mapsto C\,e^{at} - \dfrac{b}{a}$ (pour $a \neq 0$). La constante $C$ est fixée par la **condition initiale** $y(0) = y_0$ : une équation différentielle ne prédit une évolution que si l'on connaît l'état de départ.
+
+    Le problème qu'elle résout est celui de la **prédiction** : la physique et la chimie livrent des lois sur les vitesses (loi de Newton, loi des mailles, loi de vitesse), pas directement sur les trajectoires. Résoudre l'équation différentielle, c'est remonter de la loi à la fonction. Le circuit RC ($RC\,u_C' + u_C = E$), la réaction d'ordre 1 ($[A]' = -k\,[A]$), la décroissance radioactive ($N' = -\lambda N$) et la chute freinée ($m\,v' = mg - k\,v$) sont *la même équation* : la résoudre une fois, c'est les résoudre toutes.
+
+    En Terminale, on résout $y' = ay$ puis $y' = ay + b$ à l'aide de l'exponentielle. En MPSI, on traite les équations linéaires à coefficients variables $y' + a(t)\,y = b(t)$ par la méthode de variation de la constante, ainsi que les équations du second ordre à coefficients constants. En MP, on passe aux systèmes $X' = AX$ et à l'exponentielle de matrice, qui unifie le tout.
+  en: |
+    A **differential equation** is an equation whose unknown is a function and which involves its derivative. The simplest and most fruitful is the first-order linear equation with constant coefficients
+    $$y' = a\,y + b,$$
+    whose solutions on $\mathbb{R}$ are the functions $t \mapsto C\,e^{at} - \dfrac{b}{a}$ (for $a \neq 0$). The constant $C$ is fixed by the **initial condition** $y(0) = y_0$: a differential equation predicts an evolution only when the starting state is known.
+
+    The problem it solves is **prediction**: physics and chemistry deliver laws about rates (Newton's law, Kirchhoff's voltage law, rate law), not directly about trajectories. Solving the differential equation means climbing back from the law to the function. The RC circuit ($RC\,u_C' + u_C = E$), the first-order reaction ($[A]' = -k\,[A]$), radioactive decay ($N' = -\lambda N$) and fall with drag ($m\,v' = mg - k\,v$) are *the same equation*: solve it once and you have solved them all.
+
+    In Terminale, one solves $y' = ay$ then $y' = ay + b$ with the exponential. In MPSI, linear equations with variable coefficients $y' + a(t)\,y = b(t)$ are handled by the variation of constants method, together with second-order equations with constant coefficients. In MP, one moves on to systems $X' = AX$ and to the matrix exponential, which unifies everything.
+tool:
+  problemSolved:
+    fr: "Prédire l'évolution d'une grandeur lorsque l'on connaît la loi de sa vitesse de variation et sa valeur initiale : passer de « comment ça change » à « ce que ça vaut à chaque instant »."
+    en: "Predict the evolution of a quantity when the law of its rate of change and its initial value are known: go from \"how it changes\" to \"what it is worth at every instant\"."
+  construction:
+    fr: "On isole la dérivée, $y' = ay + b$ ; l'équation homogène $y' = ay$ a pour solutions $C\\,e^{at}$, on ajoute une solution particulière constante $-b/a$, puis la condition initiale fixe $C$. À coefficients variables, on fait varier la constante $C(t)$."
+    en: "Isolate the derivative, $y' = ay + b$; the homogeneous equation $y' = ay$ has solutions $C\\,e^{at}$, add a constant particular solution $-b/a$, then let the initial condition fix $C$. With variable coefficients, let the constant vary as $C(t)$."
+  icon: flow
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "résoudre $y' = ay$ et $y' = ay + b$ et vérifier une solution par dérivation"
+        - "utiliser une condition initiale pour déterminer la constante d'intégration"
+        - "traduire une loi physique ou chimique (RC, cinétique d'ordre 1, décroissance radioactive) en équation $y' = ay + b$"
+        - "interpréter $-b/a$ comme valeur d'équilibre et $1/|a|$ comme constante de temps"
+      en:
+        - "solve $y' = ay$ and $y' = ay + b$ and check a solution by differentiation"
+        - "use an initial condition to determine the integration constant"
+        - "translate a physical or chemical law (RC, first-order kinetics, radioactive decay) into an equation $y' = ay + b$"
+        - "interpret $-b/a$ as an equilibrium value and $1/|a|$ as a time constant"
+    lesson:
+      fr: |
+        **Équation $y' = ay$.** Les fonctions dérivables sur $\mathbb{R}$ vérifiant $y' = ay$ ($a \in \mathbb{R}$) sont exactement les fonctions $t \mapsto C\,e^{at}$, $C \in \mathbb{R}$. Preuve de l'unicité : si $y' = ay$, la fonction $z(t) = y(t)\,e^{-at}$ a pour dérivée $z' = (y' - ay)\,e^{-at} = 0$, donc $z$ est constante. La condition initiale $y(0) = y_0$ impose $C = y_0$.
+
+        **Équation $y' = ay + b$.** Pour $a \neq 0$, la fonction constante $y_p = -\dfrac{b}{a}$ est une solution particulière (sa dérivée est nulle). Les solutions sont $y(t) = C\,e^{at} - \dfrac{b}{a}$ : solution générale de l'équation homogène plus solution particulière. Si $a < 0$, toutes les solutions tendent vers la valeur d'équilibre $-b/a$ avec la constante de temps $\tau = 1/|a|$ ; si $a > 0$, elles s'en éloignent exponentiellement.
+
+        **Mode d'emploi en sciences.** On écrit la loi physique sous la forme $y' = ay + b$ en identifiant $a$ et $b$ (pour la charge d'un condensateur : $u_C' = -\dfrac{1}{RC}\,u_C + \dfrac{E}{RC}$, donc $\tau = RC$ et $u_C(t) \to E$), on utilise la condition initiale pour fixer $C$, puis on vérifie l'homogénéité : $a$ est l'inverse d'un temps. Les équations $y' = f(t)$, où la dérivée est imposée, se résolvent par recherche d'une primitive.
+      en: |
+        **Equation $y' = ay$.** The functions differentiable on $\mathbb{R}$ satisfying $y' = ay$ ($a \in \mathbb{R}$) are exactly the functions $t \mapsto C\,e^{at}$, $C \in \mathbb{R}$. Proof of uniqueness: if $y' = ay$, the function $z(t) = y(t)\,e^{-at}$ has derivative $z' = (y' - ay)\,e^{-at} = 0$, so $z$ is constant. The initial condition $y(0) = y_0$ forces $C = y_0$.
+
+        **Equation $y' = ay + b$.** For $a \neq 0$, the constant function $y_p = -\dfrac{b}{a}$ is a particular solution (its derivative is zero). The solutions are $y(t) = C\,e^{at} - \dfrac{b}{a}$: general solution of the homogeneous equation plus a particular solution. If $a < 0$, all solutions tend to the equilibrium value $-b/a$ with time constant $\tau = 1/|a|$; if $a > 0$, they move away from it exponentially.
+
+        **How to use it in science.** Write the physical law in the form $y' = ay + b$ by identifying $a$ and $b$ (for a charging capacitor: $u_C' = -\dfrac{1}{RC}\,u_C + \dfrac{E}{RC}$, so $\tau = RC$ and $u_C(t) \to E$), use the initial condition to fix $C$, then check homogeneity: $a$ is the inverse of a time. Equations $y' = f(t)$, where the derivative is imposed, are solved by finding an antiderivative.
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "résoudre $y' + a(t)\\,y = b(t)$ sur un intervalle par la méthode de variation de la constante"
+        - "décrire la structure de l'ensemble des solutions : droite vectorielle, puis droite affine"
+        - "énoncer et utiliser l'existence et l'unicité de la solution du problème de Cauchy"
+        - "utiliser le principe de superposition pour un second membre somme de termes simples"
+      en:
+        - "solve $y' + a(t)\\,y = b(t)$ on an interval by the variation of constants method"
+        - "describe the structure of the solution set: a vector line, then an affine line"
+        - "state and use the existence and uniqueness of the solution of the Cauchy problem"
+        - "use the superposition principle for a right-hand side that is a sum of simple terms"
+    lesson:
+      fr: |
+        **Équation linéaire à coefficients variables.** Sur un intervalle $I$ où $a$ et $b$ sont continues, l'équation $y' + a(t)\,y = b(t)$ a pour solutions $y(t) = \left(C + \displaystyle\int b(t)\,e^{A(t)}\,\mathrm{d}t\right)e^{-A(t)}$, où $A$ est une primitive de $a$ sur $I$. Les solutions de l'équation homogène forment une droite vectorielle engendrée par $e^{-A(t)}$ ; celles de l'équation complète forment une droite affine : une solution particulière plus les solutions homogènes.
+
+        **Variation de la constante.** On cherche la solution particulière sous la forme $y_p(t) = C(t)\,e^{-A(t)}$ ; en reportant dans l'équation, $C'(t) = b(t)\,e^{A(t)}$, et il ne reste qu'une primitive à calculer. Le principe de superposition permet de traiter un second membre somme de termes simples (constante, exponentielle, sinusoïde) terme par terme, en cherchant chaque fois une solution particulière de la même forme.
+
+        **Problème de Cauchy.** Pour tout $t_0 \in I$ et tout $y_0$, il existe une unique solution telle que $y(t_0) = y_0$ : la condition initiale sélectionne exactement une trajectoire. C'est ce théorème qui garantit que le modèle « loi de vitesse + état initial » est prédictif. On étudie aussi les équations du second ordre $y'' + \alpha y' + \beta y = f(t)$ à coefficients constants, dont l'équation caractéristique fournit les exponentielles (réelles ou complexes) de la solution homogène.
+      en: |
+        **Linear equation with variable coefficients.** On an interval $I$ where $a$ and $b$ are continuous, the equation $y' + a(t)\,y = b(t)$ has solutions $y(t) = \left(C + \displaystyle\int b(t)\,e^{A(t)}\,\mathrm{d}t\right)e^{-A(t)}$, where $A$ is an antiderivative of $a$ on $I$. The solutions of the homogeneous equation form a vector line spanned by $e^{-A(t)}$; those of the full equation form an affine line: one particular solution plus the homogeneous solutions.
+
+        **Variation of constants.** Look for the particular solution in the form $y_p(t) = C(t)\,e^{-A(t)}$; substituting into the equation, $C'(t) = b(t)\,e^{A(t)}$, and only an antiderivative remains to be computed. The superposition principle handles a right-hand side that is a sum of simple terms (constant, exponential, sinusoid) term by term, each time looking for a particular solution of the same form.
+
+        **Cauchy problem.** For every $t_0 \in I$ and every $y_0$, there exists a unique solution such that $y(t_0) = y_0$: the initial condition selects exactly one trajectory. This theorem guarantees that the model "rate law + initial state" is predictive. Second-order equations $y'' + \alpha y' + \beta y = f(t)$ with constant coefficients are also studied; their characteristic equation provides the exponentials (real or complex) of the homogeneous solution.
+  - depth: 3
+    stage: mp
+    role: extension_and_application
+    outcomes:
+      fr:
+        - "résoudre un système différentiel linéaire $X' = AX$ à coefficients constants en réduisant la matrice $A$"
+        - "définir l'exponentielle d'une matrice et écrire la solution $X(t) = \\exp(tA)\\,X_0$"
+        - "ramener une équation scalaire d'ordre $n$ à un système du premier ordre"
+        - "discuter la stabilité d'après le signe des parties réelles des valeurs propres"
+      en:
+        - "solve a linear differential system $X' = AX$ with constant coefficients by reducing the matrix $A$"
+        - "define the exponential of a matrix and write the solution $X(t) = \\exp(tA)\\,X_0$"
+        - "reduce a scalar equation of order $n$ to a first-order system"
+        - "discuss stability from the sign of the real parts of the eigenvalues"
+    lesson:
+      fr: |
+        **Systèmes linéaires.** Un système différentiel $X' = AX$, avec $X(t) \in \mathbb{R}^n$ et $A \in \mathcal{M}_n(\mathbb{R})$, est l'analogue vectoriel de $y' = ay$. Ses solutions forment un espace vectoriel de dimension $n$, et le problème de Cauchy $X(t_0) = X_0$ admet une unique solution. Si $A$ est diagonalisable, $A = PDP^{-1}$, le changement d'inconnue $Y = P^{-1}X$ découple le système en $n$ équations scalaires $y_i' = \lambda_i\,y_i$ : les valeurs propres de $A$ sont les taux $a$ des équations élémentaires.
+
+        **Exponentielle de matrice.** On définit $\exp(A) = \displaystyle\sum_{k \ge 0} \frac{A^k}{k!}$ (série absolument convergente en dimension finie) ; si $A$ et $B$ commutent, $\exp(A+B) = \exp(A)\exp(B)$, et $t \mapsto \exp(tA)$ est dérivable de dérivée $A\exp(tA)$. La solution de $X' = AX$, $X(0) = X_0$, est $X(t) = \exp(tA)\,X_0$ : la formule $y(t) = e^{at}\,y_0$ survit mot pour mot. Une équation scalaire d'ordre $n$ se ramène à un système d'ordre 1 en prenant pour inconnues $y, y', \dots, y^{(n-1)}$.
+
+        **Lecture qualitative.** Le signe des parties réelles des valeurs propres décide de la stabilité : toutes strictement négatives, les solutions tendent vers $0$ ; une partie imaginaire non nulle produit des oscillations. Un système $2 \times 2$ suffit à décrire un circuit RLC ou deux réservoirs couplés, et relie les équations différentielles à la réduction des endomorphismes.
+      en: |
+        **Linear systems.** A differential system $X' = AX$, with $X(t) \in \mathbb{R}^n$ and $A \in \mathcal{M}_n(\mathbb{R})$, is the vector analogue of $y' = ay$. Its solutions form a vector space of dimension $n$, and the Cauchy problem $X(t_0) = X_0$ has a unique solution. If $A$ is diagonalisable, $A = PDP^{-1}$, the change of unknown $Y = P^{-1}X$ decouples the system into $n$ scalar equations $y_i' = \lambda_i\,y_i$: the eigenvalues of $A$ are the rates $a$ of the elementary equations.
+
+        **Matrix exponential.** One defines $\exp(A) = \displaystyle\sum_{k \ge 0} \frac{A^k}{k!}$ (absolutely convergent series in finite dimension); if $A$ and $B$ commute, $\exp(A+B) = \exp(A)\exp(B)$, and $t \mapsto \exp(tA)$ is differentiable with derivative $A\exp(tA)$. The solution of $X' = AX$, $X(0) = X_0$, is $X(t) = \exp(tA)\,X_0$: the formula $y(t) = e^{at}\,y_0$ survives word for word. A scalar equation of order $n$ reduces to a first-order system by taking $y, y', \dots, y^{(n-1)}$ as unknowns.
+
+        **Qualitative reading.** The sign of the real parts of the eigenvalues decides stability: all strictly negative, the solutions tend to $0$; a non-zero imaginary part produces oscillations. A $2 \times 2$ system is enough to describe an RLC circuit or two coupled tanks, and links differential equations to the reduction of endomorphisms.

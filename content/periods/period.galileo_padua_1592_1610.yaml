@@ -1,0 +1,21 @@
+id: period.galileo_padua_1592_1610
+anchorNode: mission.galileo.inclined_plane
+importance: 2
+tags: [vertical-slice]
+title: { fr: Les années padouanes de Galilée, en: "Galileo's Padua years" }
+shortPurpose:
+  fr: "Dix-huit années à Padoue où prend forme la science du mouvement."
+  en: "Eighteen years in Padua during which the science of motion took shape."
+date:
+  certainty: interval
+  from: "1592"
+  to: "1610"
+  display: { fr: "1592–1610", en: "1592–1610" }
+context:
+  fr: |
+    Nommé à la chaire de mathématiques de Padoue à la fin de 1592, Galilée y enseigne jusqu'en 1610, au service de la République de Venise. Il y conçoit le compas géométrique et militaire, se lie d'amitié avec Paolo Sarpi, à qui il annonce en octobre 1604 la loi des carrés des temps, et mène, selon la datation de Stillman Drake, ses expériences sur les plans inclinés et les projectiles (vers 1604–1608). La lunette qu'il construit en 1609 et les découvertes du *Sidereus Nuncius* (1610) lui valent le poste de mathématicien et philosophe du grand-duc de Toscane ; il quitte Padoue en septembre 1610 et appellera plus tard ces dix-huit années les meilleures de sa vie.
+  en: |
+    Appointed to the chair of mathematics at Padua at the end of 1592, Galileo taught there until 1610 in the service of the Republic of Venice. There he devised the geometric and military compass, befriended Paolo Sarpi, to whom he announced the times-squared law in October 1604, and carried out, on Stillman Drake's dating, his experiments on inclined planes and projectiles (c. 1604–1608). The telescope he built in 1609 and the discoveries of the *Sidereus Nuncius* (1610) won him the post of mathematician and philosopher to the Grand Duke of Tuscany; he left Padua in September 1610 and would later call these eighteen years the best of his life.
+people: [person.galileo_galilei, person.paolo_sarpi]
+places: [place.padua]
+sources: [source.drake.1978]

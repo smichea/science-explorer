@@ -1,0 +1,42 @@
+id: curriculum.fr.terminale.maths
+country: FR
+stage: terminale
+subject: mathematics
+title:
+  fr: "Mathématiques — Terminale générale, enseignement de spécialité"
+  en: "Mathematics — Terminale (final year), specialised course"
+version: "2026-reference"
+validFrom: "2020-09-01"
+validTo: null
+sourceReferences:
+  - title: "Programme de mathématiques de terminale générale (enseignement de spécialité), BO spécial n°8 du 25 juillet 2019"
+    note: "to verify"
+items:
+  - id: derivation
+    title: { fr: Compléments sur la dérivation, en: Further differentiation }
+    reference: "Analyse — Compléments sur la dérivation"
+    alignedNodes:
+      - { node: tool.derivative, depth: 1 }
+      - { node: concept.rate_of_change, depth: 1 }
+  - id: exponentielle
+    title: { fr: Fonction exponentielle, en: Exponential function }
+    reference: "Analyse — Fonction logarithme (réciproque de l'exponentielle) ; Limites des fonctions (croissances comparées) ; acquis de première : fonction exponentielle"
+    alignedNodes:
+      - { node: tool.exponential, depth: 1 }
+  - id: primitives_equations_differentielles
+    title: { fr: "Primitives, équations différentielles", en: "Antiderivatives, differential equations" }
+    reference: "Analyse — Primitives, équations différentielles"
+    alignedNodes:
+      - { node: tool.ode_first_order, depth: 1 }
+      - { node: concept.initial_condition, depth: 1 }
+  - id: fonctions
+    title: { fr: "Fonctions : limites et continuité", en: "Functions: limits and continuity" }
+    reference: "Analyse — Limites des fonctions ; Continuité des fonctions d'une variable réelle"
+    alignedNodes:
+      - { node: concept.function, depth: 1 }
+      - { node: concept.graph, depth: 1 }
+  - id: vecteurs
+    title: { fr: "Vecteurs, droites et plans de l'espace", en: "Vectors, lines and planes in space" }
+    reference: "Géométrie — Manipuler les vecteurs, les droites et les plans de l'espace ; Orthogonalité et distances dans l'espace"
+    alignedNodes:
+      - { node: tool.vector, depth: 1 }

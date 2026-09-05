@@ -1,0 +1,41 @@
+id: concept.graph
+type: mathematical_concept
+world: world.mathematics
+region: region.math.functions_analysis
+importance: 1
+tags: [vertical-slice]
+title: { fr: Courbe représentative, en: Graph of a function }
+shortPurpose:
+  fr: Voir une fonction d'un seul coup d'œil et y lire pentes, extremums et limites.
+  en: See a function at a glance and read slopes, extrema and limits from it.
+aliases:
+  fr: ["graphe d'une fonction", "représentation graphique", "courbe"]
+  en: ["curve of a function", "graphical representation", "plot"]
+description:
+  fr: |
+    La **courbe représentative** d'une fonction $f$ est l'ensemble des points de coordonnées $(x,\, f(x))$ pour $x$ dans l'ensemble de définition. Elle transforme une formule ou un tableau de valeurs en une forme que l'œil sait lire : où la fonction croît, où elle atteint un maximum, comment elle se comporte à l'infini.
+
+    Pour les sciences, la courbe est d'abord un **outil de lecture des mesures** : un nuage de points $(t_i,\, x_i)$ relevés à l'horloge et à la règle suggère une loi, et la comparaison entre les points et une courbe modèle ($x = \tfrac12 a t^2$, $u = E(1 - e^{-t/\tau})$) permet de la valider ou de la rejeter. C'est ainsi que Galilée a reconnu la loi des carrés des temps, et c'est ainsi que l'on identifie encore aujourd'hui une constante de temps.
+
+    La pente de la corde entre deux points de la courbe est un taux de variation moyen ; la pente de la tangente en un point est le nombre dérivé. La courbe est donc la porte d'entrée géométrique vers la dérivée.
+  en: |
+    The **graph** of a function $f$ is the set of points with coordinates $(x,\, f(x))$ for $x$ in the domain. It turns a formula or a table of values into a shape the eye can read: where the function increases, where it reaches a maximum, how it behaves at infinity.
+
+    For the sciences, the graph is first of all a **tool for reading measurements**: a cloud of points $(t_i,\, x_i)$ recorded with a clock and a ruler suggests a law, and comparing the points with a model curve ($x = \tfrac12 a t^2$, $u = E(1 - e^{-t/\tau})$) lets us validate or reject it. This is how Galileo recognised the times-squared law, and it is still how a time constant is identified today.
+
+    The slope of the chord between two points of the graph is an average rate of change; the slope of the tangent at a point is the derivative. The graph is thus the geometric doorway to the derivative.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "tracer et lire la courbe d'une fonction de référence"
+        - "lire graphiquement une image, un antécédent, un extremum, une limite"
+        - "lire un nombre dérivé comme la pente d'une tangente"
+        - "confronter un nuage de points de mesure à une courbe modèle"
+      en:
+        - "sketch and read the graph of a reference function"
+        - "read an image, a preimage, an extremum and a limit from the graph"
+        - "read a derivative as the slope of a tangent"
+        - "compare a cloud of measured points with a model curve"

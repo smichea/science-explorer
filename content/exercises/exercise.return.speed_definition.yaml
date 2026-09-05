@@ -1,0 +1,102 @@
+# Retour au phénomène — quelle expression donne la vitesse à l'instant t ? (choix unique avec justification)
+id: exercise.return.speed_definition
+type: choice
+nodeId: tool.derivative
+phenomenonId: phenomenon.motion.uniformly_accelerated
+depth: 1
+evidenceDimension: modelling_choice
+context:
+  fr: |-
+    Retour au plan incliné : la loi mesurée $d = k\,t^2$ s'écrit désormais $x(t) = \tfrac{1}{2} a t^2$ avec $a = 2k$.
+  en: |-
+    Back to the inclined plane: the measured law $d = k\,t^2$ is now written $x(t) = \tfrac{1}{2} a t^2$ with $a = 2k$.
+prompt:
+  fr: |-
+    Sur le plan incliné, la position de la bille suit la loi horaire $x(t) = \tfrac{1}{2} a t^2$, où $a$ est une constante (l'accélération, en $\mathrm{m/s^2}$). Vous disposez maintenant de l'outil « dérivée ».
+
+    Parmi les expressions suivantes, laquelle donne **la vitesse de la bille à l'instant $t$** ? Expliquez pourquoi les autres ne conviennent pas.
+  en: |-
+    On the inclined plane, the position of the ball follows the law $x(t) = \tfrac{1}{2} a t^2$, where $a$ is a constant (the acceleration, in $\mathrm{m/s^2}$). You now have the "derivative" tool at your disposal.
+
+    Among the following expressions, which one gives **the speed of the ball at the instant $t$**? Explain why the others are not suitable.
+choice:
+  multiple: false
+  requireReasoning: true
+  choices:
+    - id: x_over_t
+      text: { fr: "$x(t)/t$", en: "$x(t)/t$" }
+      feedback:
+        fr: |-
+          $x(t)/t = \tfrac{1}{2} a t$ est la vitesse moyenne depuis le départ (déplacement total divisé par la durée totale). Elle vaut la moitié de la vitesse instantanée : la bille va plus vite à l'instant $t$ qu'en moyenne depuis $t = 0$.
+        en: |-
+          $x(t)/t = \tfrac{1}{2} a t$ is the average speed since the start (total displacement divided by total duration). It is half the instantaneous speed: the ball moves faster at the instant $t$ than on average since $t = 0$.
+    - id: last_second
+      text:
+        fr: "Le taux de variation moyen sur la dernière seconde, $x(t) - x(t-1)$"
+        en: "The average rate of change over the last second, $x(t) - x(t-1)$"
+      feedback:
+        fr: |-
+          Ce taux vaut $\tfrac{1}{2} a\,[t^2 - (t-1)^2] = a\,(t - \tfrac{1}{2})$ : il dépend du choix arbitraire d'une durée de $1\ \mathrm{s}$ et décrit l'intervalle $[t - 1 ; t]$, pas l'instant $t$. Avec une durée de $0.1\ \mathrm{s}$ on obtiendrait $a\,(t - 0.05)$, une autre valeur.
+        en: |-
+          This rate equals $\tfrac{1}{2} a\,[t^2 - (t-1)^2] = a\,(t - \tfrac{1}{2})$: it depends on the arbitrary choice of a duration of $1\ \mathrm{s}$ and describes the interval $[t - 1, t]$, not the instant $t$. With a duration of $0.1\ \mathrm{s}$ one would get $a\,(t - 0.05)$, a different value.
+    - id: derivative
+      text: { fr: "$x'(t) = a\\,t$", en: "$x'(t) = a\\,t$" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : la dérivée de $\tfrac{1}{2} a t^2$ est $\tfrac{1}{2} a \times 2t = a\,t$. C'est la limite des taux moyens sur $[t ; t+h]$ quand $h \to 0$, la seule quantité qui ne dépend d'aucun intervalle. La vitesse croît proportionnellement au temps : c'est précisément la définition galiléenne du mouvement uniformément accéléré.
+        en: |-
+          Correct: the derivative of $\tfrac{1}{2} a t^2$ is $\tfrac{1}{2} a \times 2t = a\,t$. It is the limit of the average rates on $[t, t+h]$ as $h \to 0$, the only quantity that depends on no interval. The speed grows proportionally to time: this is precisely Galileo's definition of uniformly accelerated motion.
+    - id: area
+      text:
+        fr: "L'aire sous la courbe de $x$ entre $0$ et $t$"
+        en: "The area under the graph of $x$ between $0$ and $t$"
+      feedback:
+        fr: |-
+          Cette aire a la dimension d'une longueur multipliée par un temps ($\mathrm{m \cdot s}$), pas d'une vitesse. L'aire sous la courbe de la **vitesse** redonnerait la position (c'est l'opération inverse de la dérivation), mais ce n'est pas ce qui est demandé.
+        en: |-
+          This area has the dimension of a length multiplied by a time ($\mathrm{m \cdot s}$), not of a speed. The area under the graph of the **speed** would give back the position (the inverse operation of differentiation), but that is not what is asked.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La vitesse à l'instant $t$ est un taux de variation instantané : quelle opération transforme la loi horaire $x(t)$ en ce taux ? Vérifiez aussi les unités de chaque expression.
+      en: |-
+        The speed at the instant $t$ is an instantaneous rate of change: which operation turns the position law $x(t)$ into this rate? Also check the units of each expression.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Dérivez $x(t) = \tfrac{1}{2} a t^2$ terme à terme : $(t^2)' = 2t$.
+      en: |-
+        Differentiate $x(t) = \tfrac{1}{2} a t^2$ term by term: $(t^2)' = 2t$.
+solution:
+  fr: |-
+    La vitesse instantanée est, par définition, la dérivée de la position par rapport au temps :
+    $$v(t) = x'(t) = \tfrac{1}{2} a \times 2t = a\,t.$$
+    Les autres expressions sont des **taux moyens** ou n'ont pas la bonne dimension :
+
+    - $x(t)/t = \tfrac{1}{2} a t$ : vitesse moyenne depuis le départ, moitié de $v(t)$ (les cordes issues de l'origine sont moins pentues que la tangente) ;
+    - le taux moyen sur $[t-1 ; t]$ vaut $a\,(t - \tfrac{1}{2})$ : il dépend d'un intervalle choisi arbitrairement ;
+    - l'aire sous la courbe de $x$ se mesure en $\mathrm{m \cdot s}$ : ce n'est pas une vitesse.
+
+    Ce que Galilée avait posé comme hypothèse, « la vitesse croît comme le temps », devient un calcul : si $x = \tfrac{1}{2} a t^2$, alors nécessairement $v = a\,t$, et réciproquement.
+  en: |-
+    The instantaneous speed is, by definition, the derivative of the position with respect to time:
+    $$v(t) = x'(t) = \tfrac{1}{2} a \times 2t = a\,t.$$
+    The other expressions are **average rates** or do not have the right dimension:
+
+    - $x(t)/t = \tfrac{1}{2} a t$: average speed since the start, half of $v(t)$ (chords from the origin are less steep than the tangent);
+    - the average rate on $[t-1, t]$ equals $a\,(t - \tfrac{1}{2})$: it depends on an arbitrarily chosen interval;
+    - the area under the graph of $x$ is measured in $\mathrm{m \cdot s}$: it is not a speed.
+
+    What Galileo had posited as a hypothesis, "the speed grows as the time", becomes a computation: if $x = \tfrac{1}{2} a t^2$, then necessarily $v = a\,t$, and conversely.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 3
+  linkedConcepts: 3
+  transfer: 2
+  autonomy: 3

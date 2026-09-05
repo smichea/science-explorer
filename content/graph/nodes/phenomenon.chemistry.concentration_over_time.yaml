@@ -1,0 +1,55 @@
+id: phenomenon.chemistry.concentration_over_time
+type: phenomenon
+world: world.chemistry
+region: region.chemistry.kinetics
+importance: 2
+tags: [vertical-slice]
+title:
+  fr: Évolution d'une concentration au cours du temps
+  en: Concentration changing over time
+shortPurpose:
+  fr: Suivre la disparition d'un réactif ou l'apparition d'un produit, et définir la vitesse d'une réaction.
+  en: Follow the disappearance of a reactant or the appearance of a product, and define the rate of a reaction.
+aliases:
+  fr: ["suivi cinétique", "vitesse de disparition", "vitesse volumique de réaction", "courbe de concentration"]
+  en: ["kinetic monitoring", "rate of disappearance", "volumetric rate of reaction", "concentration curve"]
+description:
+  fr: |
+    Une transformation chimique n'est pas instantanée : la concentration d'un réactif $A$ décroît au cours du temps, celle d'un produit croît, et la courbe $[A](t)$ est la première chose que l'on mesure en **cinétique chimique**. On la suit par une grandeur physique proportionnelle à la concentration (absorbance par spectrophotométrie, conductivité, pression ou volume d'un gaz dégagé) ou par des dosages successifs après trempe.
+
+    La **vitesse volumique de disparition** de $A$ est définie par la dérivée : $v_A = -\dfrac{\mathrm{d}[A]}{\mathrm{d}t}$, positive quand $A$ disparaît. Sur la courbe, c'est l'opposé de la pente de la tangente ; elle diminue en général au cours du temps, car elle dépend de la concentration des réactifs, qui s'épuisent. La température et la présence d'un catalyseur l'augmentent, ce que traduit la constante de vitesse $k$.
+
+    Observer $[A](t)$ ne suffit pas à connaître le mécanisme : c'est la forme de la courbe (exponentielle, hyperbolique, affine) qui révèle l'**ordre** de la réaction et sélectionne le modèle. Le cas le plus simple est la réaction d'ordre 1, dont la courbe est exponentielle et le temps de demi-réaction indépendant de la concentration initiale.
+  en: |
+    A chemical transformation is not instantaneous: the concentration of a reactant $A$ decreases over time, that of a product increases, and the curve $[A](t)$ is the first thing measured in **chemical kinetics**. It is monitored through a physical quantity proportional to the concentration (absorbance by spectrophotometry, conductivity, pressure or volume of a released gas) or through successive titrations after quenching.
+
+    The **volumetric rate of disappearance** of $A$ is defined by the derivative: $v_A = -\dfrac{\mathrm{d}[A]}{\mathrm{d}t}$, positive when $A$ disappears. On the curve it is the opposite of the slope of the tangent; it generally decreases over time, because it depends on the concentration of the reactants, which run out. Temperature and the presence of a catalyst increase it, which the rate constant $k$ expresses.
+
+    Observing $[A](t)$ is not enough to know the mechanism: it is the shape of the curve (exponential, hyperbolic, linear) that reveals the **order** of the reaction and selects the model. The simplest case is the first-order reaction, whose curve is exponential and whose half-life is independent of the initial concentration.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "choisir une méthode de suivi (spectrophotométrie, conductimétrie, pression, titrage) adaptée à la transformation"
+        - "définir la vitesse volumique de disparition d'un réactif comme $-\\mathrm{d}[A]/\\mathrm{d}t$ et l'estimer graphiquement"
+        - "identifier les facteurs cinétiques (concentration, température, catalyseur) sur des courbes"
+        - "déterminer un temps de demi-réaction sur une courbe $[A](t)$"
+      en:
+        - "choose a monitoring method (spectrophotometry, conductimetry, pressure, titration) suited to the transformation"
+        - "define the volumetric rate of disappearance of a reactant as $-\\mathrm{d}[A]/\\mathrm{d}t$ and estimate it graphically"
+        - "identify the kinetic factors (concentration, temperature, catalyst) on curves"
+        - "determine a half-life on a $[A](t)$ curve"
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "définir la vitesse de réaction à partir de l'avancement volumique et relier les vitesses de formation et de disparition par les nombres stœchiométriques"
+        - "déterminer un ordre par la méthode intégrale, la méthode différentielle ou les temps de demi-réaction"
+        - "utiliser la dégénérescence de l'ordre pour isoler l'influence d'un réactif"
+      en:
+        - "define the reaction rate from the volumetric extent of reaction and relate rates of formation and disappearance through stoichiometric numbers"
+        - "determine an order by the integral method, the differential method or half-lives"
+        - "use the isolation (pseudo-order) method to single out the influence of one reactant"

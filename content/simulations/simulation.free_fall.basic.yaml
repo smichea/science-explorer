@@ -1,0 +1,72 @@
+# Chute libre : le plan incliné redressé à la verticale, avec un frottement fluide optionnel.
+id: simulation.free_fall.basic
+engine: motion_2d
+title: { fr: "Chute libre", en: "Free fall" }
+description:
+  fr: |-
+    Une bille de 1 kg est lâchée sans vitesse initiale depuis une hauteur réglable (10 m par défaut) dans le champ de pesanteur terrestre. Sans frottement, la chute est un mouvement uniformément accéléré d'accélération $g = 9.81\ \mathrm{m/s^2}$ : la bille lâchée de 10 m touche le sol après $1.43\ \mathrm{s}$ à $14.0\ \mathrm{m/s}$. Un frottement fluide linéaire optionnel, $\vec F = -k\,\vec v$, montre comment la vitesse cesse alors de croître proportionnellement au temps.
+  en: |-
+    A 1 kg ball is released with no initial speed from an adjustable height (10 m by default) in the Earth's gravitational field. Without drag, the fall is a uniformly accelerated motion of acceleration $g = 9.81\ \mathrm{m/s^2}$: the ball released from 10 m hits the ground after $1.43\ \mathrm{s}$ at $14.0\ \mathrm{m/s}$. An optional linear drag force, $\vec F = -k\,\vec v$, shows how the speed then stops growing proportionally to time.
+seedPolicy: deterministic
+seed: 1638
+config:
+  scene: free_fall
+  g: 9.81
+  mass: 1
+  initialHeight: 10
+  linearDrag: 0
+  dt: 0.001
+controls:
+  - { variable: initialHeight, label: { fr: "Hauteur initiale", en: "Initial height" }, min: 1, max: 30, step: 1, unit: "m", default: 10 }
+  - { variable: linearDrag, label: { fr: "Coefficient de frottement fluide k", en: "Linear drag coefficient k" }, min: 0, max: 1, step: 0.05, unit: "kg/s", default: 0 }
+observables: [position, velocity, acceleration, energy]
+views: [world, position_time_graph, velocity_time_graph, table]
+modelNode: model.kinematics_point
+assumptions:
+  fr:
+    - "Point matériel de masse 1 kg, lâché sans vitesse initiale."
+    - "Champ de pesanteur uniforme, $g = 9.81\\ \\mathrm{m/s^2}$, dirigé vers le bas."
+    - |-
+      Si $k = 0$ : aucune force autre que le poids, donc $x(t) = \tfrac{1}{2} g t^2$ et $v(t) = g\,t$.
+    - |-
+      Si $k > 0$ : frottement fluide proportionnel à la vitesse, $m\,\dfrac{dv}{dt} = m g - k\,v$, avec une vitesse limite $v_\infty = m g / k$.
+    - "Sol rigide : la simulation s'arrête au contact."
+  en:
+    - "Point mass of 1 kg, released with no initial speed."
+    - "Uniform gravitational field, $g = 9.81\\ \\mathrm{m/s^2}$, directed downwards."
+    - |-
+      If $k = 0$: no force other than the weight, so $x(t) = \tfrac{1}{2} g t^2$ and $v(t) = g\,t$.
+    - |-
+      If $k > 0$: linear drag proportional to the speed, $m\,\dfrac{dv}{dt} = m g - k\,v$, with a terminal speed $v_\infty = m g / k$.
+    - "Rigid ground: the simulation stops at contact."
+validity:
+  fr: |-
+    Hauteurs de 1 m à 30 m : sur ces distances, une bille dense atteint au plus $24\ \mathrm{m/s}$ et la résistance réelle de l'air (quadratique en vitesse) modifie la durée de chute de moins de 2 %. Le modèle sans frottement est donc une excellente approximation ; le frottement linéaire est un modèle pédagogique, réaliste seulement pour de petits objets lents (gouttelettes, poussières), pas pour une balle à grande vitesse.
+  en: |-
+    Heights from 1 m to 30 m: over these distances a dense ball reaches at most $24\ \mathrm{m/s}$ and the actual air resistance (quadratic in speed) changes the fall time by less than 2%. The frictionless model is therefore an excellent approximation; the linear drag is a pedagogical model, realistic only for small slow objects (droplets, dust), not for a ball at high speed.
+numericalMethod:
+  fr: |-
+    Runge-Kutta d'ordre 4, pas fixe de 1 ms. Sans frottement, le résultat coïncide avec $x = \tfrac{1}{2} g t^2$ à la précision machine ; avec frottement linéaire, l'erreur par rapport à la solution exacte $v(t) = v_\infty\,(1 - e^{-kt/m})$ reste inférieure à $10^{-9}$ en valeur relative.
+  en: |-
+    Fourth-order Runge-Kutta, fixed 1 ms step. Without drag the result matches $x = \tfrac{1}{2} g t^2$ to machine precision; with linear drag the error with respect to the exact solution $v(t) = v_\infty\,(1 - e^{-kt/m})$ stays below $10^{-9}$ in relative value.
+ignoredEffects:
+  fr:
+    - "Résistance de l'air quadratique en vitesse (le régime réel pour une balle)."
+    - "Poussée d'Archimède de l'air."
+    - "Variation de $g$ avec l'altitude et rotation de la Terre."
+    - "Rebond ou déformation à l'arrivée au sol."
+  en:
+    - "Air resistance quadratic in speed (the actual regime for a ball)."
+    - "Buoyancy of the air."
+    - "Variation of $g$ with altitude and rotation of the Earth."
+    - "Bounce or deformation on reaching the ground."
+learningUse:
+  fr: |-
+    Étape « retour au phénomène » : vérifier que la chute libre est le cas $\theta = 90^\circ$ du plan incliné, lire sur le graphique vitesse-temps la droite $v = g\,t$ et retrouver $14.0\ \mathrm{m/s}$ après $1.43\ \mathrm{s}$ (chute de 10 m). Activer ensuite le frottement pour observer que la droite se courbe : la dérivée de la vitesse n'est plus constante.
+  en: |-
+    "Return to the phenomenon" step: check that free fall is the $\theta = 90^\circ$ case of the inclined plane, read the straight line $v = g\,t$ on the speed–time graph and recover $14.0\ \mathrm{m/s}$ after $1.43\ \mathrm{s}$ (10 m fall). Then switch on the drag to observe the line bending: the derivative of the speed is no longer constant.
+a11y:
+  fr: |-
+    Représentation alternative : tableau des hauteurs, vitesses et accélérations tous les 0.1 s, et description textuelle des tendances (« la vitesse augmente de 9.81 m/s par seconde ; avec frottement, elle se rapproche d'une valeur limite »). Curseurs manipulables au clavier ; l'instant et la vitesse d'arrivée au sol sont annoncés en toutes lettres.
+  en: |-
+    Alternative representation: a table of heights, speeds and accelerations every 0.1 s, and a textual description of the trends ("the speed increases by 9.81 m/s every second; with drag, it approaches a limiting value"). Keyboard-operable sliders; the instant and speed on reaching the ground are announced in words.

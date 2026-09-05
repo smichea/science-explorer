@@ -1,0 +1,61 @@
+# Shared bilingual glossary (LEARNING_AND_CONTENT_MODEL §16.3): preferred learner-facing terms and aliases.
+entries:
+  - id: glossary.derivative
+    nodeId: tool.derivative
+    fr: { preferred: dérivée, aliases: [nombre dérivé, fonction dérivée, dérivation] }
+    en: { preferred: derivative, aliases: [differential coefficient, derived function, differentiation] }
+    notes: "Use « dérivée » / \"derivative\" in learner UI; « nombre dérivé » only when the value at one point is meant."
+  - id: glossary.rate_of_change
+    nodeId: concept.rate_of_change
+    fr: { preferred: taux de variation, aliases: [taux d'accroissement, taux de variation moyen, vitesse moyenne] }
+    en: { preferred: rate of change, aliases: [average rate of change, difference quotient, average velocity] }
+    notes: "Always the average rate over an interval; the instantaneous rate is the derivative."
+  - id: glossary.tangent
+    nodeId: tool.derivative
+    fr: { preferred: tangente, aliases: [droite tangente, pente de la tangente] }
+    en: { preferred: tangent, aliases: [tangent line, slope of the tangent] }
+    notes: "The geometric reading of the derivative; not the trigonometric function tan."
+  - id: glossary.limit
+    fr: { preferred: limite, aliases: [passage à la limite, tend vers] }
+    en: { preferred: limit, aliases: [limiting process, tends to] }
+    notes: "No dedicated node in the vertical slice; defined inside tool.derivative and concept.function."
+  - id: glossary.exponential
+    nodeId: tool.exponential
+    fr: { preferred: fonction exponentielle, aliases: [exponentielle, exp, croissance exponentielle, décroissance exponentielle] }
+    en: { preferred: exponential function, aliases: [exponential, exp, exponential growth, exponential decay] }
+  - id: glossary.time_constant
+    nodeId: tool.exponential
+    fr: { preferred: constante de temps, aliases: [temps caractéristique, tau] }
+    en: { preferred: time constant, aliases: [characteristic time, tau] }
+    notes: "RC for the capacitor, m/k for drag, 1/k or 1/λ for first-order decays."
+  - id: glossary.half_life
+    nodeId: tool.exponential
+    fr: { preferred: demi-vie, aliases: [temps de demi-réaction, période radioactive, temps de demi-vie] }
+    en: { preferred: half-life, aliases: [reaction half-life, radioactive half-life, half-time] }
+    notes: "In chemistry prefer « temps de demi-réaction »; in nuclear physics « demi-vie » (« période » is dated)."
+  - id: glossary.differential_equation
+    nodeId: tool.ode_first_order
+    fr: { preferred: équation différentielle, aliases: [équation différentielle du premier ordre, équation différentielle linéaire, EDO] }
+    en: { preferred: differential equation, aliases: [first-order differential equation, linear differential equation, ODE] }
+  - id: glossary.initial_condition
+    nodeId: concept.initial_condition
+    fr: { preferred: condition initiale, aliases: [conditions initiales, état initial, constante d'intégration] }
+    en: { preferred: initial condition, aliases: [initial conditions, initial state, integration constant] }
+  - id: glossary.model
+    nodeId: method.modelling
+    fr: { preferred: modèle, aliases: [modélisation, hypothèses du modèle, mise en équation] }
+    en: { preferred: model, aliases: [modelling, model assumptions, setting up equations] }
+    notes: "A model carries explicit assumptions and limits; « modéliser » is the activity."
+  - id: glossary.measurement
+    nodeId: method.measurement
+    fr: { preferred: mesure, aliases: [mesurage, relevé, chronométrage] }
+    en: { preferred: measurement, aliases: [measuring, reading, timing] }
+  - id: glossary.uncertainty
+    nodeId: method.measurement
+    fr: { preferred: incertitude, aliases: [incertitude-type, incertitude de mesure, écart normalisé] }
+    en: { preferred: uncertainty, aliases: [standard uncertainty, measurement uncertainty, normalised deviation] }
+    notes: "Prefer « incertitude » over « erreur » in learner UI; « erreur » is the (unknown) deviation from the true value."
+  - id: glossary.gradient
+    nodeId: tool.gradient
+    fr: { preferred: gradient, aliases: [vecteur gradient, nabla, dérivées partielles] }
+    en: { preferred: gradient, aliases: [gradient vector, nabla, partial derivatives] }

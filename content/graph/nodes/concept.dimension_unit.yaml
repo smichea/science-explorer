@@ -1,0 +1,50 @@
+id: concept.dimension_unit
+type: mathematical_concept
+region: bridge.measurement
+importance: 2
+tags: [vertical-slice]
+title: { fr: Dimension et unité, en: Dimension and unit }
+shortPurpose:
+  fr: Savoir de quelle nature est une grandeur, l'exprimer dans une unité et vérifier qu'une formule est homogène.
+  en: Know the nature of a quantity, express it in a unit and check that a formula is homogeneous.
+aliases:
+  fr: ["analyse dimensionnelle", "homogénéité", "unités du Système international", "équation aux dimensions"]
+  en: ["dimensional analysis", "homogeneity", "SI units", "dimensional equation"]
+description:
+  fr: |
+    Chaque grandeur physique a une **dimension** : une longueur $L$, un temps $T$, une masse $M$, une intensité de courant $I$, une température $\Theta$, et une combinaison de celles-ci pour les grandeurs dérivées : $[v] = L\,T^{-1}$, $[a] = L\,T^{-2}$, $[F] = M\,L\,T^{-2}$. L'**unité** est le choix d'un étalon pour chaque dimension (mètre, seconde, kilogramme, ampère, kelvin dans le Système international) ; changer d'unité change le nombre, pas la dimension.
+
+    L'usage le plus puissant est le **contrôle d'homogénéité** : on ne peut additionner ou égaler que des grandeurs de même dimension, et l'argument d'une exponentielle, d'un logarithme ou d'un sinus doit être sans dimension. Ainsi $x = \tfrac12 g t^2$ est homogène ($L\,T^{-2} \cdot T^2 = L$), $\tau = RC$ est bien un temps, et dans $e^{-t/\tau}$ le quotient $t/\tau$ est sans dimension. Une formule non homogène est fausse à coup sûr ; une formule homogène est seulement possible.
+
+    L'analyse dimensionnelle permet aussi de **deviner** la forme d'une loi : la période d'un pendule ne peut dépendre que de $\sqrt{\ell/g}$, la vitesse limite d'une bille freinée linéairement que de $mg/k$. C'est la première vérification à faire sur tout résultat, avant même le calcul numérique.
+  en: |
+    Every physical quantity has a **dimension**: a length $L$, a time $T$, a mass $M$, an electric current $I$, a temperature $\Theta$, and a combination of these for derived quantities: $[v] = L\,T^{-1}$, $[a] = L\,T^{-2}$, $[F] = M\,L\,T^{-2}$. The **unit** is the choice of a standard for each dimension (metre, second, kilogram, ampere, kelvin in the International System); changing the unit changes the number, not the dimension.
+
+    The most powerful use is the **homogeneity check**: only quantities of the same dimension can be added or equated, and the argument of an exponential, a logarithm or a sine must be dimensionless. Thus $x = \tfrac12 g t^2$ is homogeneous ($L\,T^{-2} \cdot T^2 = L$), $\tau = RC$ is indeed a time, and in $e^{-t/\tau}$ the quotient $t/\tau$ is dimensionless. A non-homogeneous formula is certainly wrong; a homogeneous formula is merely possible.
+
+    Dimensional analysis also makes it possible to **guess** the form of a law: the period of a pendulum can only depend on $\sqrt{\ell/g}$, the terminal velocity of a linearly damped ball only on $mg/k$. It is the first check to perform on any result, even before the numerical computation.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "donner la dimension et l'unité SI des grandeurs usuelles (vitesse, accélération, force, capacité, constante de vitesse)"
+        - "vérifier l'homogénéité d'une formule et repérer qu'un argument d'exponentielle est sans dimension"
+        - "convertir des unités et contrôler un ordre de grandeur"
+      en:
+        - "give the dimension and SI unit of common quantities (velocity, acceleration, force, capacitance, rate constant)"
+        - "check the homogeneity of a formula and spot that the argument of an exponential is dimensionless"
+        - "convert units and check an order of magnitude"
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "écrire une équation aux dimensions et en déduire la forme d'une loi à une constante près"
+        - "construire des grandeurs sans dimension (nombre de Reynolds) et raisonner en lois d'échelle"
+        - "utiliser l'homogénéité pour contrôler la solution d'une équation différentielle"
+      en:
+        - "write a dimensional equation and deduce the form of a law up to a constant"
+        - "build dimensionless quantities (Reynolds number) and reason with scaling laws"
+        - "use homogeneity to check the solution of a differential equation"

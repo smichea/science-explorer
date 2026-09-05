@@ -1,0 +1,102 @@
+# applies_to edges: from the mathematical tool TO the phenomenon. coverageEligible edges form the
+# denominator of the tool's application coverage (LEARNING_AND_CONTENT_MODEL §12).
+edges:
+  # --- tool.derivative -----------------------------------------------------
+  - from: tool.derivative
+    to: phenomenon.motion.uniformly_accelerated
+    type: applies_to
+    coverageEligible: true
+    weight: 1
+    depthRange: [1, 3]
+    note:
+      fr: "La vitesse est la dérivée de la position, l'accélération celle de la vitesse : une position en $t^2$ signifie une accélération constante."
+      en: "Velocity is the derivative of position, acceleration that of velocity: a position in $t^2$ means a constant acceleration."
+  - from: tool.derivative
+    to: phenomenon.motion.free_fall
+    type: applies_to
+    coverageEligible: true
+    weight: 1
+    depthRange: [1, 3]
+    note:
+      fr: "Dériver $z(t) = -\\tfrac12 g t^2 + v_0 t + z_0$ redonne la vitesse puis l'accélération $-g$."
+      en: "Differentiating $z(t) = -\\tfrac12 g t^2 + v_0 t + z_0$ gives back the velocity, then the acceleration $-g$."
+  - from: tool.derivative
+    to: phenomenon.motion.inclined_plane
+    type: applies_to
+    coverageEligible: true
+    weight: 1
+    depthRange: [1, 3]
+    note:
+      fr: "La pente de la courbe $x(t)$ relevée sur le plan est la vitesse instantanée que Galilée ne pouvait pas mesurer directement."
+      en: "The slope of the $x(t)$ curve recorded on the plane is the instantaneous velocity Galileo could not measure directly."
+  - from: tool.derivative
+    to: phenomenon.motion.with_drag
+    type: applies_to
+    coverageEligible: true
+    weight: 0.8
+    depthRange: [1, 3]
+    note:
+      fr: "L'accélération $\\mathrm{d}v/\\mathrm{d}t$ n'est plus constante : elle décroît à mesure que la vitesse approche de sa limite."
+      en: "The acceleration $\\mathrm{d}v/\\mathrm{d}t$ is no longer constant: it decreases as the velocity approaches its limit."
+  - from: tool.derivative
+    to: phenomenon.circuit.capacitor_charging
+    type: applies_to
+    coverageEligible: true
+    weight: 1
+    depthRange: [1, 3]
+    note:
+      fr: "Le courant est la dérivée de la charge, $i = C\\,\\mathrm{d}u_C/\\mathrm{d}t$ ; la pente de $u_C(t)$ à l'origine donne $\\tau$."
+      en: "The current is the derivative of the charge, $i = C\\,\\mathrm{d}u_C/\\mathrm{d}t$; the slope of $u_C(t)$ at the origin gives $\\tau$."
+  - from: tool.derivative
+    to: phenomenon.chemistry.first_order_reaction
+    type: applies_to
+    coverageEligible: true
+    weight: 1
+    depthRange: [1, 3]
+    note:
+      fr: "La vitesse de réaction est $-\\mathrm{d}[A]/\\mathrm{d}t$ : la loi de vitesse est une équation sur une dérivée."
+      en: "The reaction rate is $-\\mathrm{d}[A]/\\mathrm{d}t$: the rate law is an equation about a derivative."
+  - from: tool.derivative
+    to: phenomenon.chemistry.concentration_over_time
+    type: applies_to
+    coverageEligible: true
+    weight: 0.8
+    depthRange: [1, 3]
+    note:
+      fr: "Définir une vitesse de disparition, c'est prendre la pente de la courbe $[A](t)$."
+      en: "Defining a rate of disappearance means taking the slope of the $[A](t)$ curve."
+  - from: tool.derivative
+    to: phenomenon.nuclear.radioactive_decay
+    type: applies_to
+    coverageEligible: true
+    weight: 0.8
+    depthRange: [1, 3]
+    note:
+      fr: "L'activité est $-\\mathrm{d}N/\\mathrm{d}t$ : la loi de décroissance s'écrit d'abord sur la dérivée."
+      en: "The activity is $-\\mathrm{d}N/\\mathrm{d}t$: the decay law is first written on the derivative."
+  # --- tool.exponential ----------------------------------------------------
+  - { from: tool.exponential, to: phenomenon.circuit.capacitor_charging, type: applies_to, coverageEligible: true, weight: 1, depthRange: [1, 2],
+      note: { fr: "$u_C(t) = E(1 - e^{-t/RC})$ : la tangente à l'origine coupe l'asymptote en $t = \\tau$.", en: "$u_C(t) = E(1 - e^{-t/RC})$: the tangent at the origin meets the asymptote at $t = \\tau$." } }
+  - { from: tool.exponential, to: phenomenon.chemistry.first_order_reaction, type: applies_to, coverageEligible: true, weight: 1, depthRange: [1, 2],
+      note: { fr: "$[A](t) = [A]_0 e^{-kt}$ ; le temps de demi-réaction $\\ln 2 / k$ ne dépend pas de $[A]_0$.", en: "$[A](t) = [A]_0 e^{-kt}$; the half-life $\\ln 2 / k$ does not depend on $[A]_0$." } }
+  - { from: tool.exponential, to: phenomenon.nuclear.radioactive_decay, type: applies_to, coverageEligible: true, weight: 1, depthRange: [1, 2],
+      note: { fr: "$N(t) = N_0 e^{-\\lambda t}$ ; la demi-vie vaut $\\ln 2 / \\lambda$.", en: "$N(t) = N_0 e^{-\\lambda t}$; the half-life is $\\ln 2 / \\lambda$." } }
+  - { from: tool.exponential, to: phenomenon.motion.with_drag, type: applies_to, coverageEligible: true, weight: 0.8, depthRange: [1, 2],
+      note: { fr: "$v(t) = v_{\\lim}(1 - e^{-t/\\tau})$ avec $\\tau = m/k$ : approche exponentielle de la vitesse limite.", en: "$v(t) = v_{\\lim}(1 - e^{-t/\\tau})$ with $\\tau = m/k$: exponential approach to the terminal velocity." } }
+  # --- tool.ode_first_order ------------------------------------------------
+  - { from: tool.ode_first_order, to: phenomenon.circuit.capacitor_charging, type: applies_to, coverageEligible: true, weight: 1, depthRange: [1, 3],
+      note: { fr: "$RC\\,u_C' + u_C = E$ est l'équation $y' = ay + b$ avec $a = -1/RC$.", en: "$RC\\,u_C' + u_C = E$ is the equation $y' = ay + b$ with $a = -1/RC$." } }
+  - { from: tool.ode_first_order, to: phenomenon.chemistry.first_order_reaction, type: applies_to, coverageEligible: true, weight: 1, depthRange: [1, 3],
+      note: { fr: "$[A]' = -k[A]$ est l'équation $y' = ay$ avec $a = -k$.", en: "$[A]' = -k[A]$ is the equation $y' = ay$ with $a = -k$." } }
+  - { from: tool.ode_first_order, to: phenomenon.nuclear.radioactive_decay, type: applies_to, coverageEligible: true, weight: 1, depthRange: [1, 3],
+      note: { fr: "$N' = -\\lambda N$ : même équation, autres lettres.", en: "$N' = -\\lambda N$: same equation, other letters." } }
+  - { from: tool.ode_first_order, to: phenomenon.motion.with_drag, type: applies_to, coverageEligible: true, weight: 1, depthRange: [1, 3],
+      note: { fr: "$m\\,v' = mg - kv$ est l'équation $y' = ay + b$ avec $a = -k/m$ et $b = g$.", en: "$m\\,v' = mg - kv$ is the equation $y' = ay + b$ with $a = -k/m$ and $b = g$." } }
+  # --- tool.vector -----------------------------------------------------------
+  - { from: tool.vector, to: phenomenon.motion.free_fall, type: applies_to, coverageEligible: true, weight: 1, depthRange: [1, 2],
+      note: { fr: "Séparer un projectile en une composante horizontale uniforme et une composante verticale accélérée.", en: "Split a projectile into a uniform horizontal component and an accelerated vertical component." } }
+  - { from: tool.vector, to: phenomenon.motion.inclined_plane, type: applies_to, coverageEligible: true, weight: 1, depthRange: [1, 2],
+      note: { fr: "Projeter le poids sur le plan : $mg\\sin\\theta$ fait descendre, $mg\\cos\\theta$ est compensé par le support.", en: "Project the weight onto the plane: $mg\\sin\\theta$ drives the descent, $mg\\cos\\theta$ is balanced by the support." } }
+  # --- tool.gradient (MP destination; not counted in coverage) --------------
+  - { from: tool.gradient, to: phenomenon.motion.free_fall, type: applies_to, coverageEligible: false, weight: 0.3, depthRange: [3, 3],
+      note: { fr: "Le poids dérive d'une énergie potentielle : $\\vec P = -\\nabla(mgz)$, cas le plus simple d'une force conservative.", en: "The weight derives from a potential energy: $\\vec P = -\\nabla(mgz)$, the simplest case of a conservative force." } }

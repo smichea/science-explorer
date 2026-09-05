@@ -1,0 +1,72 @@
+id: phenomenon.motion.uniformly_accelerated
+type: phenomenon
+world: world.physics
+region: region.physics.motion_mechanics
+importance: 3
+tags: [vertical-slice]
+title: { fr: Mouvement uniformément accéléré, en: Uniformly accelerated motion }
+shortPurpose:
+  fr: Le mouvement dont la vitesse croît régulièrement ; la distance parcourue croît comme le carré du temps.
+  en: The motion whose velocity grows steadily; the distance covered grows as the square of time.
+aliases:
+  fr: ["mouvement rectiligne uniformément accéléré", "mouvement à accélération constante", "loi des carrés des temps", "mouvement naturellement accéléré"]
+  en: ["uniformly accelerated rectilinear motion", "constant-acceleration motion", "times-squared law", "naturally accelerated motion"]
+description:
+  fr: |
+    Un mouvement est **uniformément accéléré** lorsque l'accélération est constante : $a(t) = a$. En remontant deux fois de la dérivée à la fonction, on obtient la vitesse puis la position :
+    $$v(t) = a\,t + v_0, \qquad x(t) = \tfrac12\,a\,t^2 + v_0\,t + x_0,$$
+    où $x_0$ et $v_0$ sont la position et la vitesse initiales. Éliminer le temps donne $v^2 - v_0^2 = 2a\,(x - x_0)$. Une courbe $x(t)$ parabolique, une courbe $v(t)$ rectiligne : voilà la signature du phénomène.
+
+    Sa marque la plus frappante, quand on part du repos ($v_0 = 0$), est la **loi des nombres impairs** : les distances parcourues pendant des durées égales successives sont dans les rapports $1 : 3 : 5 : 7 : \dots$, de sorte que les distances cumulées valent $1, 4, 9, 16, \dots$ fois la première, proportionnelles au carré du temps. C'est cette régularité que Galilée a relevée sur un plan incliné et publiée dans les *Discorsi* (1638) : les espaces parcourus par un corps qui tombe sont comme les carrés des temps. La chute libre, la descente d'un plan incliné sans frottement, un projectile (composante par composante) et une particule chargée dans un champ électrique uniforme en sont des cas particuliers.
+
+    Le phénomène est le terrain d'entraînement idéal de la dérivée : $x'(t) = v(t)$, $v'(t) = a$, et la deuxième loi de Newton en donne la cause dès que la résultante des forces est constante. Il cesse d'être valable quand les forces dépendent de la vitesse (frottements fluides) ou de la position (ressort, gravitation à grande distance).
+  en: |
+    A motion is **uniformly accelerated** when the acceleration is constant: $a(t) = a$. Climbing back twice from the derivative to the function gives the velocity and then the position:
+    $$v(t) = a\,t + v_0, \qquad x(t) = \tfrac12\,a\,t^2 + v_0\,t + x_0,$$
+    where $x_0$ and $v_0$ are the initial position and velocity. Eliminating time gives $v^2 - v_0^2 = 2a\,(x - x_0)$. A parabolic $x(t)$ curve, a straight $v(t)$ line: that is the signature of the phenomenon.
+
+    Its most striking mark, when starting from rest ($v_0 = 0$), is the **odd-number law**: the distances covered during successive equal durations are in the ratios $1 : 3 : 5 : 7 : \dots$, so that the cumulated distances are $1, 4, 9, 16, \dots$ times the first, proportional to the square of the time. This is the regularity Galileo recorded on an inclined plane and published in the *Discorsi* (1638): the spaces traversed by a falling body are as the squares of the times. Free fall, the descent of a frictionless inclined plane, a projectile (component by component) and a charged particle in a uniform electric field are special cases of it.
+
+    The phenomenon is the ideal training ground for the derivative: $x'(t) = v(t)$, $v'(t) = a$, and Newton's second law gives its cause as soon as the net force is constant. It ceases to hold when forces depend on velocity (fluid drag) or on position (spring, gravitation at large distances).
+history:
+  summary:
+    fr: "Galilée a établi expérimentalement, à Padoue, que les distances parcourues par un corps en chute (ralentie sur un plan incliné) sont proportionnelles au carré des temps, et a publié la démonstration dans la troisième journée des *Discorsi* (1638)."
+    en: "Galileo established experimentally, in Padua, that the distances covered by a falling body (slowed down on an inclined plane) are proportional to the square of the elapsed time, and published the demonstration in the Third Day of the *Discorsi* (1638)."
+  status: attested
+  sources: [source.galileo.discorsi.1638, source.drake.1978]
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "établir $v(t) = a\\,t + v_0$ et $x(t) = \\tfrac12 a t^2 + v_0 t + x_0$ à partir d'une accélération constante et des conditions initiales"
+        - "reconnaître un mouvement uniformément accéléré sur un relevé de positions (loi des carrés des temps, rapports $1 : 3 : 5 : 7$)"
+        - "déterminer une accélération à partir d'une courbe $v(t)$ ou d'un tableau de mesures"
+        - "prévoir la position et la vitesse à un instant donné et la durée pour parcourir une distance"
+      en:
+        - "derive $v(t) = a\\,t + v_0$ and $x(t) = \\tfrac12 a t^2 + v_0 t + x_0$ from a constant acceleration and the initial conditions"
+        - "recognise a uniformly accelerated motion in a record of positions (times-squared law, ratios $1 : 3 : 5 : 7$)"
+        - "determine an acceleration from a $v(t)$ curve or from a table of measurements"
+        - "predict the position and velocity at a given time and the duration needed to cover a distance"
+    lesson:
+      fr: |
+        **Équations horaires.** Si $a$ est constante, $v(t) = a\,t + v_0$ (une primitive de $a$) puis $x(t) = \tfrac12\,a\,t^2 + v_0\,t + x_0$ (une primitive de $v$). On vérifie en dérivant : $x'(t) = a\,t + v_0 = v(t)$ et $v'(t) = a$. La courbe $v(t)$ est une droite de pente $a$ ; la courbe $x(t)$ une parabole. La relation indépendante du temps $v^2 - v_0^2 = 2a\,(x - x_0)$ s'obtient en éliminant $t$.
+
+        **Loi des carrés des temps.** Partant du repos, $x(t) = \tfrac12 a t^2$ : aux instants $T, 2T, 3T, 4T$ les distances valent $d, 4d, 9d, 16d$. Les distances parcourues pendant chaque intervalle successif sont donc $d, 3d, 5d, 7d$ : la suite des nombres impairs. Sur un relevé expérimental, il suffit de vérifier que $x/t^2$ est constant pour identifier le phénomène et lire $a = 2x/t^2$ : c'est ce que Galilée a fait avec une horloge à eau, et ce que fait encore une chronophotographie.
+      en: |
+        **Equations of motion.** If $a$ is constant, $v(t) = a\,t + v_0$ (an antiderivative of $a$) and then $x(t) = \tfrac12\,a\,t^2 + v_0\,t + x_0$ (an antiderivative of $v$). Check by differentiating: $x'(t) = a\,t + v_0 = v(t)$ and $v'(t) = a$. The $v(t)$ curve is a line of slope $a$; the $x(t)$ curve is a parabola. The time-independent relation $v^2 - v_0^2 = 2a\,(x - x_0)$ is obtained by eliminating $t$.
+
+        **Times-squared law.** Starting from rest, $x(t) = \tfrac12 a t^2$: at times $T, 2T, 3T, 4T$ the distances are $d, 4d, 9d, 16d$. The distances covered during each successive interval are therefore $d, 3d, 5d, 7d$: the sequence of odd numbers. On an experimental record, checking that $x/t^2$ is constant identifies the phenomenon and gives $a = 2x/t^2$: this is what Galileo did with a water clock, and what a stroboscopic photograph still does.
+  - depth: 2
+    stage: mpsi
+    role: review
+    outcomes:
+      fr:
+        - "retrouver les équations horaires par intégration vectorielle de $\\vec a = \\vec g$ dans un repère quelconque"
+        - "traiter un mouvement de projectile ou d'une particule chargée dans un champ uniforme et en discuter la portée et la flèche"
+        - "expliquer pourquoi le modèle échoue dès qu'une force dépend de la vitesse ou de la position"
+      en:
+        - "recover the equations of motion by vector integration of $\\vec a = \\vec g$ in an arbitrary frame"
+        - "handle the motion of a projectile or of a charged particle in a uniform field and discuss its range and maximum height"
+        - "explain why the model fails as soon as a force depends on velocity or position"

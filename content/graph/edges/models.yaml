@@ -1,0 +1,39 @@
+# Structural edges: models / explains go from model or law TO the phenomenon; specialises from the
+# special case to the general one; generalises "target extends source"; derived_from "target follows from source".
+edges:
+  # --- models ---------------------------------------------------------------
+  - { from: model.kinematics_point, to: phenomenon.motion.uniformly_accelerated, type: models, weight: 1 }
+  - { from: model.kinematics_point, to: phenomenon.motion.free_fall, type: models, weight: 1 }
+  - { from: model.kinematics_point, to: phenomenon.motion.inclined_plane, type: models, weight: 0.9,
+      note: { fr: "Le point matériel décrit une bille qui glisse ; pour une bille qui roule, il manque le facteur $5/7$.", en: "The point mass describes a sliding ball; for a rolling ball the factor $5/7$ is missing." } }
+  - { from: model.kinematics_point, to: phenomenon.motion.with_drag, type: models, weight: 0.9 }
+  - { from: model.rc_circuit, to: phenomenon.circuit.capacitor_charging, type: models, weight: 1 }
+  - { from: model.reaction_order_one, to: phenomenon.chemistry.first_order_reaction, type: models, weight: 1 }
+  - { from: model.reaction_order_one, to: phenomenon.chemistry.concentration_over_time, type: models, weight: 0.8 }
+  - { from: concept.rate_proportional_to_quantity, to: phenomenon.circuit.capacitor_charging, type: models, coverageEligible: false, weight: 1 }
+  - { from: concept.rate_proportional_to_quantity, to: phenomenon.chemistry.first_order_reaction, type: models, coverageEligible: false, weight: 1 }
+  - { from: concept.rate_proportional_to_quantity, to: phenomenon.nuclear.radioactive_decay, type: models, coverageEligible: false, weight: 1 }
+  - { from: concept.rate_proportional_to_quantity, to: phenomenon.motion.with_drag, type: models, coverageEligible: false, weight: 0.9 }
+  # --- explains -------------------------------------------------------------
+  - { from: law.newton_second, to: phenomenon.motion.uniformly_accelerated, type: explains, weight: 1 }
+  - { from: law.newton_second, to: phenomenon.motion.free_fall, type: explains, weight: 1 }
+  - { from: law.newton_second, to: phenomenon.motion.inclined_plane, type: explains, weight: 1 }
+  - { from: law.newton_second, to: phenomenon.motion.with_drag, type: explains, weight: 1 }
+  # --- specialises (special case → general case) -----------------------------
+  - { from: phenomenon.motion.free_fall, to: phenomenon.motion.uniformly_accelerated, type: specialises, weight: 1 }
+  - { from: phenomenon.motion.inclined_plane, to: phenomenon.motion.uniformly_accelerated, type: specialises, weight: 1 }
+  - { from: phenomenon.chemistry.first_order_reaction, to: phenomenon.chemistry.concentration_over_time, type: specialises, weight: 1 }
+  # --- generalises (target extends source) -----------------------------------
+  - { from: tool.derivative, to: tool.gradient, type: generalises, weight: 1,
+      note: { fr: "Pour une fonction d'une seule variable, le gradient se réduit à la dérivée.", en: "For a function of a single variable, the gradient reduces to the derivative." } }
+  # --- derived_from (target follows from source) -----------------------------
+  - { from: concept.rate_of_change, to: tool.derivative, type: derived_from, weight: 1,
+      note: { fr: "Le nombre dérivé est la limite du taux de variation quand l'intervalle se referme.", en: "The derivative is the limit of the rate of change as the interval closes." } }
+  - { from: law.newton_second, to: phenomenon.motion.uniformly_accelerated, type: derived_from, weight: 1,
+      note: { fr: "Une résultante constante impose une accélération constante, donc les équations horaires en $t^2$.", en: "A constant net force imposes a constant acceleration, hence the equations of motion in $t^2$." } }
+  # --- measured_by -----------------------------------------------------------
+  - { from: phenomenon.motion.inclined_plane, to: method.measurement, type: measured_by, weight: 1 }
+  - { from: phenomenon.motion.free_fall, to: method.measurement, type: measured_by, weight: 0.8 }
+  # --- contrasts_with --------------------------------------------------------
+  - { from: concept.rate_of_change, to: tool.derivative, type: contrasts_with, weight: 0.8,
+      note: { fr: "Taux de variation moyen sur un intervalle contre variation instantanée en un point.", en: "Average rate of change over an interval versus instantaneous change at a point." } }

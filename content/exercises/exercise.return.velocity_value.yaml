@@ -1,0 +1,64 @@
+# Retour au phénomène — vitesse à t = 2.0 s sur un plan à 30° (réponse numérique)
+id: exercise.return.velocity_value
+type: numeric
+nodeId: tool.derivative
+phenomenonId: phenomenon.motion.uniformly_accelerated
+depth: 1
+evidenceDimension: procedural_execution
+context:
+  fr: |-
+    Retour au plan incliné : l'outil construit à l'atelier répond enfin à la question posée au départ.
+  en: |-
+    Back to the inclined plane: the tool built in the workshop finally answers the question asked at the start.
+prompt:
+  fr: |-
+    Un mobile **glisse sans frottement** (il ne roule pas) le long d'un plan incliné à $30^\circ$, sans vitesse initiale. Son accélération est constante : $a = g \sin 30^\circ = 9.81 \times 0.5 = 4.905\ \mathrm{m/s^2}$, et sa position le long du plan est $x(t) = \tfrac{1}{2} a t^2$.
+
+    Calculez sa vitesse à l'instant $t = 2.0\ \mathrm{s}$, en $\mathrm{m/s}$.
+  en: |-
+    A body **slides without friction** (it does not roll) along a plane inclined at $30^\circ$, with no initial speed. Its acceleration is constant: $a = g \sin 30^\circ = 9.81 \times 0.5 = 4.905\ \mathrm{m/s^2}$, and its position along the plane is $x(t) = \tfrac{1}{2} a t^2$.
+
+    Compute its speed at the instant $t = 2.0\ \mathrm{s}$, in $\mathrm{m/s}$.
+numeric:
+  value: 9.81
+  unit: "m/s"
+  tolerance: { kind: relative, value: 0.02 }
+  inputLabel: { fr: "Vitesse à t = 2.0 s", en: "Speed at t = 2.0 s" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La vitesse est la dérivée de la position : dérivez $\tfrac{1}{2} a t^2$ avant de remplacer $t$ par $2.0$.
+      en: |-
+        The speed is the derivative of the position: differentiate $\tfrac{1}{2} a t^2$ before replacing $t$ by $2.0$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $v(t) = a\,t$ ; il reste à calculer $4.905 \times 2.0$.
+      en: |-
+        $v(t) = a\,t$; it remains to compute $4.905 \times 2.0$.
+solution:
+  fr: |-
+    $$v(t) = x'(t) = a\,t, \qquad v(2.0) = 4.905 \times 2.0 = 9.81\ \mathrm{m/s}.$$
+    Le mobile gagne $4.905\ \mathrm{m/s}$ à chaque seconde ; après deux secondes il atteint $9.81\ \mathrm{m/s}$ (environ $35\ \mathrm{km/h}$). Il a alors parcouru $x(2.0) = \tfrac{1}{2} \times 4.905 \times 4.0 = 9.81\ \mathrm{m}$.
+
+    *Attention à la coïncidence numérique* : le nombre $9.81$ apparaît parce que $\sin 30^\circ \times 2.0 = 1$ ; la vitesse (en $\mathrm{m/s}$) et $g$ (en $\mathrm{m/s^2}$) n'ont pas la même dimension.
+
+    Sur le plan de Galilée, où la bille **roule** sans glisser, l'accélération serait réduite d'un facteur $5/7$ : $a = 3.50\ \mathrm{m/s^2}$ et $v(2.0) = 7.0\ \mathrm{m/s}$.
+  en: |-
+    $$v(t) = x'(t) = a\,t, \qquad v(2.0) = 4.905 \times 2.0 = 9.81\ \mathrm{m/s}.$$
+    The body gains $4.905\ \mathrm{m/s}$ every second; after two seconds it reaches $9.81\ \mathrm{m/s}$ (about $35\ \mathrm{km/h}$). By then it has travelled $x(2.0) = \tfrac{1}{2} \times 4.905 \times 4.0 = 9.81\ \mathrm{m}$.
+
+    *Beware of the numerical coincidence*: the number $9.81$ shows up because $\sin 30^\circ \times 2.0 = 1$; the speed (in $\mathrm{m/s}$) and $g$ (in $\mathrm{m/s^2}$) do not have the same dimension.
+
+    On Galileo's plane, where the ball **rolls** without slipping, the acceleration would be reduced by a factor $5/7$: $a = 3.50\ \mathrm{m/s^2}$ and $v(2.0) = 7.0\ \mathrm{m/s}$.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 3

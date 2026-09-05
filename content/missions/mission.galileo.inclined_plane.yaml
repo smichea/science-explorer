@@ -1,0 +1,1706 @@
+# Mission: Galileo in Padua — the inclined plane (vertical slice, tool introduced: the derivative).
+# Historical status of the scenario: place, actor, apparatus and documents are attested; the learner's
+# role and every dialogue line are labelled fiction / reconstruction (see historicalContext.claims and
+# the per-step historicalClaims). Locators to verify before `status: published` are flagged "à vérifier".
+id: mission.galileo.inclined_plane
+status: review
+version: 1
+title:
+  fr: "Galilée à Padoue : le plan incliné"
+  en: "Galileo in Padua: the inclined plane"
+summary:
+  fr: |
+    Padoue, vers 1604. Dans la maison de Galilée, une bille de bronze descend une rainure de bois pendant
+    qu'une horloge à eau compte le temps. Comment la vitesse de la bille change-t-elle pendant la descente ?
+    Pour répondre, il faudra mesurer, tracer, puis construire un outil que Galilée n'avait pas : la dérivée.
+    Le même outil servira ensuite à décrire la charge d'un condensateur et une réaction chimique.
+  en: |
+    Padua, c. 1604. In Galileo's house a bronze ball rolls down a wooden groove while a water clock counts
+    the time. How does the speed of the ball change during the descent? To answer, you will measure, plot,
+    and then build a tool Galileo did not have: the derivative. The same tool will then describe the
+    charging of a capacitor and a chemical reaction.
+role:
+  fr: |
+    Vous êtes un jeune pensionnaire logé chez Galilée, chargé de tenir l'horloge à eau pendant les descentes
+    de la bille. **Ce rôle est une fiction pédagogique** : Galilée hébergeait bien des étudiants dans sa maison
+    de Padoue, mais aucun document ne décrit un tel assistant ni les scènes racontées ici.
+  en: |
+    You are a young boarder lodging in Galileo's house, in charge of the water clock during the descents of
+    the ball. **This role is a pedagogical fiction**: Galileo did lodge students in his Padua house, but no
+    document describes such an assistant or the scenes told here.
+anchorNode: phenomenon.motion.inclined_plane
+importance: 3
+
+historicalContext:
+  places: [place.padua]
+  date:
+    certainty: interval
+    from: "1602"
+    to: "1608"
+    display: { fr: "vers 1604", en: "c. 1604" }
+    note:
+      fr: "Les expériences sont datées d'après les feuillets de travail manuscrits et la lettre à Sarpi d'octobre 1604 ; le récit publié est celui des Discorsi de 1638."
+      en: "The experiments are dated from the working manuscripts and the October 1604 letter to Sarpi; the published account is the Discorsi of 1638."
+  people: [person.galileo_galilei, person.paolo_sarpi]
+  evidenceSummary:
+    fr: |
+      Ce que nous savons vient de trois couches de documents. La lettre de Galilée à Paolo Sarpi du 16 octobre
+      1604 énonce la loi des carrés des temps, mais la déduit d'une hypothèse fausse (vitesse proportionnelle à
+      la distance parcourue). Les feuillets de travail conservés à Florence (manuscrit 72) contiennent des
+      mesures et des calculs que les historiens datent des années 1604–1608. Le dispositif — rainure de bois,
+      bille de bronze, temps mesuré en pesant l'eau écoulée — n'est décrit qu'en 1638, dans la Troisième
+      Journée des *Discorsi*. Le scénario de cette mission est une reconstruction pédagogique appuyée sur ces
+      documents ; le rôle du pensionnaire et les dialogues sont des fictions et sont signalés comme telles.
+    en: |
+      What we know comes from three layers of documents. Galileo's letter to Paolo Sarpi of 16 October 1604
+      states the times-squared law but derives it from a false hypothesis (speed proportional to the distance
+      covered). The working folios kept in Florence (manuscript 72) contain measurements and calculations that
+      historians date to the years 1604–1608. The apparatus — wooden groove, bronze ball, time measured by
+      weighing the water that flowed out — is described only in 1638, in the Third Day of the *Discorsi*. The
+      scenario of this mission is a pedagogical reconstruction built on these documents; the boarder's role
+      and the dialogues are fiction and are labelled as such.
+  sources: [source.galileo.discorsi.1638, source.galileo.letter_sarpi.1604, source.drake.1978, source.settle.1961]
+  claims:
+    - id: professorship
+      claim:
+        fr: "Galilée fut professeur de mathématiques à l'université de Padoue de 1592 à 1610."
+        en: "Galileo was professor of mathematics at the University of Padua from 1592 to 1610."
+      status: attested
+      sources: [source.drake.1978]
+    - id: boarders
+      claim:
+        fr: "À Padoue, Galilée logeait et instruisait des étudiants dans sa maison pour compléter ses revenus."
+        en: "In Padua, Galileo lodged and tutored students in his house to supplement his income."
+      status: attested
+      sources: [source.drake.1978]
+    - id: sarpi_letter
+      claim:
+        fr: "Dans sa lettre à Paolo Sarpi du 16 octobre 1604, Galilée affirme que les espaces parcourus sont comme les carrés des temps et le déduit d'un principe erroné : la vitesse serait proportionnelle à la distance parcourue."
+        en: "In his letter to Paolo Sarpi of 16 October 1604, Galileo states that the spaces passed are as the squares of the times and derives it from a mistaken principle: that speed is proportional to the distance covered."
+      status: attested
+      sources: [source.galileo.letter_sarpi.1604]
+    - id: settle_replication
+      claim:
+        fr: "La réplication de Thomas Settle (1961), avec un dispositif conforme aux Discorsi, montre que l'expérience était réalisable avec la précision revendiquée par Galilée."
+        en: "Thomas Settle's replication (1961), with apparatus matching the Discorsi, shows that the experiment was feasible with the precision Galileo claimed."
+      status: scholarly_interpretation
+      sources: [source.settle.1961]
+
+learning:
+  centralQuestion: question.how_to_predict_motion
+  phenomena: [phenomenon.motion.inclined_plane, phenomenon.motion.uniformly_accelerated]
+  toolsIntroduced: [tool.derivative]
+  toolsUsed: [tool.derivative, method.measurement]
+  nodesAssessed: [tool.derivative, concept.rate_of_change, concept.rate_proportional_to_quantity]
+  essentialPrerequisites: [concept.function]
+  recommendedPrerequisites: [concept.graph, concept.rate_of_change]
+  curriculumAlignments:
+    - { curriculum: curriculum.fr.terminale.maths, item: derivation, depth: 1 }
+    - { curriculum: curriculum.fr.terminale.physique_chimie, item: decrire_mouvement, depth: 1 }
+    - { curriculum: curriculum.fr.terminale.physique_chimie, item: circuit_rc, depth: 1 }
+    - { curriculum: curriculum.fr.terminale.physique_chimie, item: cinetique_chimique, depth: 1 }
+  depthVariants:
+    - id: terminale
+      depth: 1
+      title: { fr: "Parcours Terminale : de la mesure à la dérivée", en: "Terminale path: from measurement to the derivative" }
+      minutes: 75
+    - id: discovery
+      depth: 1
+      title: { fr: "Parcours découverte : la bille et l'horloge à eau", en: "Discovery path: the ball and the water clock" }
+      minutes: 45
+      skipSteps: [graph_construction, need_for_tool, return_calculation, transfer_kinetics, debrief]
+    - id: mpsi
+      depth: 2
+      title: { fr: "Parcours MPSI : limite et dérivabilité", en: "MPSI path: limit and differentiability" }
+      minutes: 90
+      note:
+        fr: "L'atelier ajoute la définition rigoureuse de la limite et la notion de dérivabilité en un point."
+        en: "The workshop adds the rigorous limit definition and differentiability at a point."
+    - id: mp
+      depth: 3
+      title: { fr: "Défi MP : la chute avec frottement", en: "MP challenge: fall with drag" }
+      minutes: 30
+      note:
+        fr: "Défi facultatif : le mouvement avec frottement fluide traité comme une équation différentielle du premier ordre."
+        en: "Optional challenge: motion with drag treated as a first-order differential equation."
+
+experience:
+  estimatedMinutes: 75
+  transferTargets: [phenomenon.circuit.capacitor_charging, phenomenon.chemistry.first_order_reaction]
+  steps:
+    # ------------------------------------------------------------------ 1. arrival
+    - id: arrival
+      type: historical_briefing
+      title:
+        fr: "Arrivée à Padoue, vers 1604"
+        en: "Arrival in Padua, c. 1604"
+      instructions:
+        fr: |
+          Padoue, République de Venise, vers 1604. Depuis 1592, Galilée enseigne les mathématiques à l'université,
+          l'une des plus fréquentées d'Europe. Pour compléter un salaire modeste, il loge chez lui des étudiants,
+          souvent de jeunes nobles de passage, et fait fabriquer dans son atelier des compas de proportion.
+
+          Dans cette maison, un problème l'occupe depuis des années : le **mouvement naturellement accéléré**.
+          Tout le monde voit qu'une pierre tombe de plus en plus vite. Mais selon quelle loi ? La vitesse
+          croît-elle avec la distance parcourue, ou avec le temps écoulé ? Et comment le savoir, alors
+          qu'aucune horloge ne peut suivre une chute qui dure moins d'une seconde ?
+
+          Sa réponse, décrite en 1638 dans les *Discorsi* : ralentir la chute. Une bille de bronze « très ronde
+          et bien polie » roule dans une rainure de bois tapissée de parchemin lisse, sur un madrier légèrement
+          incliné ; le temps est mesuré en pesant l'eau qui s'écoule d'un vase pendant la descente. Les
+          historiens datent ces expériences des années 1604–1608, d'après les feuillets de travail conservés à
+          Florence et une lettre d'octobre 1604.
+
+          Un débat a longtemps entouré ces pages : Alexandre Koyré (1953) doutait que Galilée ait vraiment
+          réalisé l'expérience avec la précision annoncée ; Thomas Settle (1961) l'a reproduite avec un
+          dispositif fidèle aux *Discorsi* et obtenu de bons résultats. Vous entrez dans une reconstruction :
+          le lieu, le savant et le dispositif sont documentés ; votre rôle et les paroles échangées sont des
+          fictions.
+        en: |
+          Padua, Republic of Venice, c. 1604. Since 1592 Galileo has taught mathematics at the university, one of
+          the busiest in Europe. To supplement a modest salary he lodges students in his house, often young
+          noblemen passing through, and has proportional compasses made in his workshop.
+
+          In this house, one problem has occupied him for years: **naturally accelerated motion**. Everyone can
+          see that a stone falls faster and faster. But by what law? Does the speed grow with the distance
+          covered, or with the elapsed time? And how could one find out, when no clock can follow a fall that
+          lasts less than a second?
+
+          His answer, described in 1638 in the *Discorsi*: slow the fall down. A bronze ball, "very round and
+          smooth", rolls in a wooden groove lined with smooth parchment, on a gently inclined beam; time is
+          measured by weighing the water that flows out of a vessel during the descent. Historians date these
+          experiments to the years 1604–1608, from the working folios kept in Florence and a letter of October
+          1604.
+
+          A debate long surrounded these pages: Alexandre Koyré (1953) doubted that Galileo had really performed
+          the experiment with the precision claimed; Thomas Settle (1961) reproduced it with apparatus faithful
+          to the *Discorsi* and obtained good results. You are entering a reconstruction: the place, the
+          scientist and the apparatus are documented; your role and the words exchanged are fiction.
+      guideNotes:
+        fr: |
+          Ce pas installe le décor sans exiger de calcul. Insister sur la difficulté matérielle : pas d'horloge à
+          secondes, pas de chronomètre — le temps est *pesé*. Faire remarquer les quatre étiquettes historiques :
+          le dispositif est attesté par les *Discorsi*, la datation est une interprétation d'historiens, le rôle
+          du pensionnaire est une fiction. Le débat Koyré/Settle montre que l'histoire des sciences se travaille
+          aussi par l'expérience.
+        en: |
+          This step sets the scene without any calculation. Stress the material difficulty: no seconds clock, no
+          stopwatch — time is *weighed*. Point out the four historical labels: the apparatus is attested by the
+          *Discorsi*, the dating is a historians' interpretation, the boarder's role is fiction. The Koyré/Settle
+          debate shows that the history of science is also done by experiment.
+      oralPrompts:
+        fr:
+          - "Pourquoi Galilée ne peut-il pas simplement lâcher une pierre et mesurer ?"
+          - "Que gagne-t-on à faire rouler la bille sur un plan peu incliné plutôt qu'à la laisser tomber ?"
+          - "Quelles parties de ce récit sont documentées, et lesquelles sont reconstruites ?"
+        en:
+          - "Why can't Galileo simply drop a stone and measure?"
+          - "What is gained by rolling the ball down a gently inclined plane rather than letting it fall?"
+          - "Which parts of this account are documented, and which are reconstructed?"
+      misconceptions:
+        fr:
+          - "Galilée aurait découvert la loi de la chute en lâchant des objets du haut de la tour de Pise (l'anecdote est tardive et douteuse ; la loi vient du plan incliné)."
+          - "Les expériences auraient été faites avec un chronomètre précis (le temps était mesuré par une masse d'eau écoulée)."
+        en:
+          - "Galileo is supposed to have discovered the law of fall by dropping objects from the Leaning Tower of Pisa (the anecdote is late and doubtful; the law comes from the inclined plane)."
+          - "The experiments are supposed to have used an accurate stopwatch (time was measured by a mass of water that had flowed out)."
+      minutes: 3
+      completion: { kind: read }
+      evidence: [{ type: mission_started }]
+      historicalClaims:
+        - id: professorship
+          claim:
+            fr: "Galilée fut professeur de mathématiques à l'université de Padoue de 1592 à 1610."
+            en: "Galileo was professor of mathematics at the University of Padua from 1592 to 1610."
+          status: attested
+          sources: [source.drake.1978]
+        - id: apparatus
+          claim:
+            fr: "Le dispositif — madrier rainuré tapissé de parchemin, bille de bronze, temps mesuré en pesant l'eau écoulée — est décrit dans la Troisième Journée des Discorsi (1638)."
+            en: "The apparatus — grooved beam lined with parchment, bronze ball, time measured by weighing the water that flowed out — is described in the Third Day of the Discorsi (1638)."
+          status: attested
+          sources: [source.galileo.discorsi.1638]
+        - id: dating
+          claim:
+            fr: "Les expériences sur le plan incliné datent vraisemblablement des années 1604–1608, d'après l'analyse des feuillets de travail par Stillman Drake."
+            en: "The inclined-plane experiments probably date from 1604–1608, according to Stillman Drake's analysis of the working folios."
+          status: scholarly_interpretation
+          sources: [source.drake.1973, source.drake.1978]
+        - id: koyre_settle
+          claim:
+            fr: "Koyré (1953) doutait que l'expérience ait été réellement réalisée avec la précision décrite ; la réplication de Settle (1961) a montré qu'elle était réalisable."
+            en: "Koyré (1953) doubted that the experiment had really been carried out with the precision described; Settle's replication (1961) showed it was feasible."
+          status: scholarly_interpretation
+          sources: [source.koyre.1953, source.settle.1961]
+      a11y:
+        fr: "Description textuelle de l'illustration : une gravure imaginée de l'atelier de Galilée à Padoue — un long madrier incliné portant une rainure, une bille de bronze, un vase d'eau percé au-dessus d'un petit verre, une balance. Aucune information nécessaire n'est portée par l'image seule."
+        en: "Text description of the illustration: an imagined engraving of Galileo's workshop in Padua — a long inclined beam with a groove, a bronze ball, a pierced water vessel above a small glass, a balance. No necessary information is carried by the image alone."
+
+    # ------------------------------------------------------------------ 2. role
+    - id: role
+      type: dialogue
+      title:
+        fr: "Le pensionnaire et l'horloge à eau"
+        en: "The boarder and the water clock"
+      instructions:
+        fr: |
+          Vous êtes l'un des étudiants qui logent chez Galilée. Ce soir, il vous confie l'horloge à eau : un vase
+          percé d'un fin tuyau, un petit verre pour recueillir l'eau, une balance. À chaque descente de la bille,
+          vous ouvrez le jet à l'instant du lâcher et le fermez à l'arrivée ; le poids de l'eau donne la durée.
+
+          **Avertissement.** Ce rôle et les paroles ci-dessous sont des fictions pédagogiques : Galilée hébergeait
+          bien des étudiants, mais aucun document ne rapporte cette scène ni ces phrases. Elles servent à poser la
+          question telle qu'il pouvait se la poser vers 1604.
+        en: |
+          You are one of the students lodging in Galileo's house. Tonight he entrusts you with the water clock: a
+          vessel pierced with a thin pipe, a small glass to collect the water, a balance. At each descent of the
+          ball you open the jet at the moment of release and close it on arrival; the weight of the water gives
+          the duration.
+
+          **Warning.** This role and the lines below are pedagogical fiction: Galileo did lodge students, but no
+          document records this scene or these sentences. They serve to pose the question as he may have posed
+          it around 1604.
+      dialogue:
+        - speaker: narrator
+          status: pedagogical_reconstruction
+          text:
+            fr: "La pièce sent le bois et l'huile de lampe. Sur des tréteaux, un madrier de douze coudées porte une rainure tapissée de parchemin poli. Galilée fait rouler une bille de bronze dans sa paume."
+            en: "The room smells of wood and lamp oil. On trestles, a beam twelve cubits long carries a groove lined with polished parchment. Galileo rolls a bronze ball in his palm."
+        - speaker: person.galileo_galilei
+          status: narrative_fiction
+          text:
+            fr: "Regarde-la descendre. Au départ elle traîne, à l'arrivée elle file. Tout le monde le voit. Mais dis-moi : *comment* sa vitesse change-t-elle en chemin ?"
+            en: "Watch it go down. At the start it dawdles, at the end it flies. Everyone sees that. But tell me: *how* does its speed change along the way?"
+        - speaker: person.galileo_galilei
+          status: narrative_fiction
+          text:
+            fr: "Les uns disent que la vitesse croît avec le chemin parcouru ; d'autres, avec le temps écoulé. Ce ne sont pas les mêmes lois — et nous ne pouvons pas voir la vitesse. Nous ne pouvons que marquer des distances et peser du temps."
+            en: "Some say the speed grows with the path covered; others, with the elapsed time. These are not the same laws — and we cannot see the speed. We can only mark distances and weigh time."
+        - speaker: person.galileo_galilei
+          status: narrative_fiction
+          text:
+            fr: "Alors nous ferons parler les distances. Tiens l'horloge, et ne perds pas une goutte."
+            en: "So we shall make the distances speak. Hold the clock, and do not lose a drop."
+      guideNotes:
+        fr: |
+          Le dialogue reformule la question centrale. Faire dire à l'élève ce que le dispositif mesure vraiment
+          (des distances, des durées) et ce qu'il ne mesure pas (la vitesse à un instant). Le contraste
+          « vitesse-distance » / « vitesse-temps » prépare le choix d'hypothèse du pas 4. Rappeler que la scène est
+          inventée : seul le dispositif est attesté.
+        en: |
+          The dialogue restates the central question. Have the learner say what the apparatus really measures
+          (distances, durations) and what it does not (speed at an instant). The "speed–distance" / "speed–time"
+          contrast prepares the hypothesis choice of step 4. Recall that the scene is invented: only the apparatus
+          is attested.
+      oralPrompts:
+        fr:
+          - "Que peut-on réellement mesurer avec ce dispositif ?"
+          - "Pourquoi est-il impossible de « voir » la vitesse ici ?"
+        en:
+          - "What can really be measured with this apparatus?"
+          - "Why is it impossible to \"see\" the speed here?"
+      misconceptions:
+        fr:
+          - "La vitesse serait une grandeur qu'on lit directement, comme une distance (elle se déduit toujours de distances et de durées)."
+        en:
+          - "Speed is supposed to be a quantity read off directly, like a distance (it is always deduced from distances and durations)."
+      minutes: 2
+      completion: { kind: read }
+      a11y:
+        fr: "Le dialogue est entièrement textuel ; les portraits associés aux répliques sont décoratifs."
+        en: "The dialogue is entirely textual; the portraits attached to the lines are decorative."
+
+    # ------------------------------------------------------------------ 3. question
+    - id: question
+      type: source_inspection
+      title:
+        fr: "Deux documents : la lettre à Sarpi et les feuillets de travail"
+        en: "Two documents: the letter to Sarpi and the working folios"
+      instructions:
+        fr: |
+          **Document A — la lettre à Paolo Sarpi, 16 octobre 1604.** Galilée écrit à son ami, le théologien et
+          savant vénitien Paolo Sarpi, qu'il a trouvé la démonstration d'un fait qu'il tient pour établi :
+          *les espaces parcourus dans le mouvement naturel sont comme les carrés des temps* — « en proportion
+          double des temps », dans le langage des proportions —, et par conséquent *les espaces parcourus en des
+          temps égaux sont comme les nombres impairs à partir de l'unité*. Mais le principe dont il croit tout
+          déduire est faux : « la vitesse croît en proportion de l'éloignement du point de départ ». Autrement
+          dit, en 1604, la loi est juste et l'explication est fausse. (Source : lettre à Sarpi, 1604 ; paraphrase.)
+
+          **Document B — une table de mesures (reconstruction).** Les feuillets de travail de Galilée (manuscrit
+          72 de Florence, dont le folio 116v) contiennent des colonnes de nombres sans commentaire. La table
+          ci-dessous est une **reconstruction pédagogique** inspirée de ces feuillets : ce ne sont pas les mesures
+          de Galilée, mais des nombres du même genre, en « points » (unité de sa règle, un peu moins d'un
+          millimètre), relevés à chaque battement de l'horloge à eau.
+
+          | temps (battements) | 1 | 2 | 3 | 4 |
+          |---|---|---|---|---|
+          | distance le long du plan (points) | 32 | 128 | 291 | 515 |
+
+          Ces nombres cachent une règle. Laquelle ? Calculez ce qui vous semble utile et gardez votre idée pour le
+          pas suivant. Ouvrez aussi la question centrale de la carte — *Comment prédire un mouvement ?* — pour
+          situer le problème.
+        en: |
+          **Document A — the letter to Paolo Sarpi, 16 October 1604.** Galileo writes to his friend, the Venetian
+          theologian and scholar Paolo Sarpi, that he has found the demonstration of a fact he holds as
+          established: *the spaces passed in natural motion are as the squares of the times* — "in double
+          proportion to the times", in the language of proportions — and consequently *the spaces passed in
+          equal times are as the odd numbers starting from unity*. But the principle from which he believes he
+          can derive everything is false: "the speed grows in proportion to the distance from the starting
+          point". In other words, in 1604 the law is right and the explanation is wrong. (Source: letter to Sarpi,
+          1604; paraphrase.)
+
+          **Document B — a table of measurements (reconstruction).** Galileo's working folios (Florence manuscript
+          72, including folio 116v) contain columns of numbers without commentary. The table below is a
+          **pedagogical reconstruction** inspired by these folios: these are not Galileo's measurements, but
+          numbers of the same kind, in "points" (the unit of his ruler, a little under a millimetre), read at each
+          beat of the water clock.
+
+          | time (beats) | 1 | 2 | 3 | 4 |
+          |---|---|---|---|---|
+          | distance along the plane (points) | 32 | 128 | 291 | 515 |
+
+          These numbers hide a rule. Which one? Compute whatever seems useful and keep your idea for the next
+          step. Also open the central question of the map — *How can motion be predicted?* — to place the problem.
+      guideNotes:
+        fr: |
+          Deux idées à faire émerger : (1) une loi peut être juste alors que le principe invoqué est faux — c'est
+          la situation de Galilée en 1604 ; (2) une table brute ne parle pas d'elle-même, il faut calculer des
+          rapports. Ne pas révéler la règle des carrés : laisser l'élève calculer 128/32 = 4 et 291/32 ≈ 9,1 s'il
+          en a l'idée. Le folio 116v est un document authentique ; les nombres affichés ici sont reconstruits
+          (loi des carrés avec un léger bruit de mesure).
+        en: |
+          Two ideas to bring out: (1) a law can be right while the principle invoked is wrong — Galileo's
+          situation in 1604; (2) a raw table does not speak for itself, ratios must be computed. Do not reveal
+          the square rule: let the learner compute 128/32 = 4 and 291/32 ≈ 9.1 if the idea comes. Folio 116v is
+          an authentic document; the numbers shown here are reconstructed (square law with slight measurement
+          noise).
+      oralPrompts:
+        fr:
+          - "Quelle différence y a-t-il entre « la vitesse croît avec la distance » et « la vitesse croît avec le temps » ?"
+          - "Que pouvez-vous calculer à partir de la table pour tester une hypothèse ?"
+          - "Comment une loi juste peut-elle reposer sur un principe faux ?"
+        en:
+          - "What is the difference between \"speed grows with distance\" and \"speed grows with time\"?"
+          - "What can you compute from the table to test a hypothesis?"
+          - "How can a correct law rest on a false principle?"
+      misconceptions:
+        fr:
+          - "« Proportion double » signifierait « deux fois plus » (il s'agit du carré : le rapport des distances est le carré du rapport des temps)."
+          - "Une table de mesures prouverait une loi à elle seule (elle la suggère ; il faut des rapports et un modèle pour la tester)."
+        en:
+          - "\"Double proportion\" is supposed to mean \"twice as much\" (it means squared: the ratio of distances is the square of the ratio of times)."
+          - "A table of measurements is supposed to prove a law on its own (it suggests it; ratios and a model are needed to test it)."
+      minutes: 4
+      completion: { kind: read }
+      evidence: [{ type: node_opened, nodeId: question.how_to_predict_motion }]
+      historicalClaims:
+        - id: letter_statement
+          claim:
+            fr: "La lettre à Sarpi du 16 octobre 1604 énonce que les espaces parcourus sont comme les carrés des temps (et donc comme les nombres impairs en des temps égaux), en le déduisant du principe d'une vitesse proportionnelle à la distance parcourue."
+            en: "The letter to Sarpi of 16 October 1604 states that the spaces passed are as the squares of the times (hence as the odd numbers in equal times), deriving it from the principle of a speed proportional to the distance covered."
+          status: attested
+          sources: [source.galileo.letter_sarpi.1604]
+        - id: table_reconstruction
+          claim:
+            fr: "La table de distances présentée est une reconstruction pédagogique inspirée des feuillets de travail (folio 116v et feuillets voisins) ; les valeurs ne sont pas celles de Galilée."
+            en: "The table of distances shown is a pedagogical reconstruction inspired by the working folios (folio 116v and neighbouring folios); the values are not Galileo's."
+          status: pedagogical_reconstruction
+          sources: [source.galileo.folio_116v, source.drake.1973]
+      a11y:
+        fr: "Document A est un texte. Document B est une table à deux lignes : temps 1, 2, 3, 4 battements ; distance 32, 128, 291, 515 points. Aucun fac-similé n'est nécessaire à la compréhension."
+        en: "Document A is a text. Document B is a two-row table: time 1, 2, 3, 4 beats; distance 32, 128, 291, 515 points. No facsimile is needed for understanding."
+
+    # ------------------------------------------------------------------ 4. hypothesis
+    - id: hypothesis
+      type: hypothesis_choice
+      title:
+        fr: "Votre hypothèse : comment la vitesse croît-elle ?"
+        en: "Your hypothesis: how does the speed grow?"
+      instructions:
+        fr: |
+          Avant toute mesure, prenez position. La bille part sans vitesse et accélère. Trois hypothèses circulent
+          dans la maison :
+
+          1. la vitesse est proportionnelle à la **distance parcourue** — c'est le principe de la lettre à Sarpi ;
+          2. la vitesse est proportionnelle au **temps écoulé** ;
+          3. la vitesse devient rapidement **constante**, comme celle d'une pierre qui coule dans l'eau.
+
+          Choisissez celle qui vous paraît la plus vraisemblable. Votre réponse est enregistrée comme une
+          **prédiction** : elle n'est ni notée ni corrigée maintenant. Vous y reviendrez après les mesures, avec
+          le nouvel outil en main. Notez déjà ce que chaque hypothèse prédirait pour les distances relevées à
+          chaque battement — c'est tout ce que l'horloge à eau permet de tester.
+        en: |
+          Before any measurement, take a position. The ball starts from rest and speeds up. Three hypotheses are
+          going round the house:
+
+          1. speed is proportional to the **distance covered** — the principle of the letter to Sarpi;
+          2. speed is proportional to the **elapsed time**;
+          3. speed quickly becomes **constant**, like that of a stone sinking in water.
+
+          Choose the one that seems most plausible to you. Your answer is recorded as a **prediction**: it is
+          neither graded nor corrected now. You will come back to it after the measurements, with the new tool in
+          hand. Already note what each hypothesis would predict for the distances read at each beat — that is all
+          the water clock allows you to test.
+      guideNotes:
+        fr: |
+          Ne pas corriger. Demander à l'élève ce que chaque hypothèse prédit pour les distances aux battements 1,
+          2, 3 : c'est le lien avec le pas suivant. Pour l'hypothèse 3, faire remarquer qu'une vitesse constante
+          donnerait des distances proportionnelles au temps (1, 2, 3, 4) — la table du pas 3 l'exclut déjà. Pour
+          les élèves de MPSI : si $v = kx$ avec $x(0) = 0$, la seule solution est $x = 0$, la bille ne partirait
+          jamais ; Galilée réfute l'hypothèse 1 dans les *Discorsi* par un autre argument, que les historiens
+          jugent contestable.
+        en: |
+          Do not correct. Ask the learner what each hypothesis predicts for the distances at beats 1, 2, 3: this
+          is the link with the next step. For hypothesis 3, point out that a constant speed would give distances
+          proportional to time (1, 2, 3, 4) — the table of step 3 already rules it out. For MPSI learners: if
+          $v = kx$ with $x(0) = 0$, the only solution is $x = 0$, the ball would never start; Galileo refutes
+          hypothesis 1 in the *Discorsi* by a different argument, which historians consider questionable.
+      oralPrompts:
+        fr:
+          - "Si la vitesse était constante, que verrait-on dans la table des distances ?"
+          - "Que signifie exactement « proportionnelle au temps » ? Donnez un exemple chiffré."
+          - "Comment distinguer les hypothèses 1 et 2 avec seulement des distances et des durées ?"
+        en:
+          - "If the speed were constant, what would we see in the table of distances?"
+          - "What exactly does \"proportional to time\" mean? Give a numerical example."
+          - "How could hypotheses 1 and 2 be told apart with only distances and durations?"
+      misconceptions:
+        fr:
+          - "Une bille qui descend « prend sa vitesse » puis la garde (la vitesse continue de croître tant que le plan descend)."
+          - "« Proportionnelle au temps » et « proportionnelle à la distance » reviendraient au même (ce sont deux lois différentes, aux conséquences différentes)."
+        en:
+          - "A ball going down \"picks up its speed\" and then keeps it (the speed keeps growing as long as the plane goes down)."
+          - "\"Proportional to time\" and \"proportional to distance\" are supposed to amount to the same thing (they are two different laws, with different consequences)."
+      minutes: 3
+      completion:
+        kind: choice
+        choices:
+          - id: speed_distance
+            text:
+              fr: "La vitesse est proportionnelle à la distance parcourue"
+              en: "Speed is proportional to the distance covered"
+          - id: speed_time
+            text:
+              fr: "La vitesse est proportionnelle au temps écoulé"
+              en: "Speed is proportional to the elapsed time"
+            correct: true
+          - id: speed_constant
+            text:
+              fr: "La vitesse devient rapidement constante"
+              en: "Speed quickly becomes constant"
+      evidence: [{ type: prediction_recorded, phenomenonId: phenomenon.motion.uniformly_accelerated }]
+      a11y:
+        fr: "Trois boutons de choix textuels. Aucune image."
+        en: "Three textual choice buttons. No image."
+
+    # ------------------------------------------------------------------ 5. prediction
+    - id: prediction
+      type: prediction
+      title:
+        fr: "Prédiction : jusqu'où ira la bille ?"
+        en: "Prediction: how far will the ball go?"
+      instructions:
+        fr: |
+          La bille part du repos au sommet de la rainure. Votre horloge à eau bat régulièrement : après
+          **1 battement**, la bille a parcouru une distance $d(1)$ le long du plan.
+
+          Sans lancer la simulation, prédisez :
+
+          - après **2 battements**, combien de fois $d(1)$ la bille aura-t-elle parcouru ? C'est le rapport
+            $d(2)/d(1)$ ;
+          - après **3 battements**, le rapport $d(3)/d(1)$.
+
+          Appuyez-vous sur votre hypothèse et sur ce que vous avez remarqué dans les documents. Un rapport est
+          un nombre sans unité : si la loi est bien celle que vous pensez, il ne dépend ni de l'inclinaison du
+          plan ni de la taille de la bille. Vos valeurs sont enregistrées comme prédiction et confrontées aux
+          mesures au pas suivant.
+        en: |
+          The ball starts from rest at the top of the groove. Your water clock beats regularly: after **1 beat**,
+          the ball has covered a distance $d(1)$ along the plane.
+
+          Without running the simulation, predict:
+
+          - after **2 beats**, how many times $d(1)$ will the ball have covered? This is the ratio $d(2)/d(1)$;
+          - after **3 beats**, the ratio $d(3)/d(1)$.
+
+          Rely on your hypothesis and on what you noticed in the documents. A ratio is a number without unit: if
+          the law is the one you think, it depends neither on the slope of the plane nor on the size of the ball.
+          Your values are recorded as a prediction and confronted with the measurements at the next step.
+      guideNotes:
+        fr: |
+          Trois réponses typiques : (2 ; 3) — pensée linéaire, vitesse constante ; (4 ; 9) — loi des carrés,
+          souvent tirée de la lettre à Sarpi ou de la table ; des valeurs intermédiaires — hésitation. Toutes sont
+          acceptables comme prédictions. Faire justifier : « pourquoi 4 et pas 2 ? ». Le point clé est que le
+          rapport ne dépend pas de l'angle.
+        en: |
+          Three typical answers: (2; 3) — linear thinking, constant speed; (4; 9) — square law, often taken from
+          the letter to Sarpi or the table; intermediate values — hesitation. All are acceptable as predictions.
+          Ask for a justification: "why 4 and not 2?". The key point is that the ratio does not depend on the
+          angle.
+      oralPrompts:
+        fr:
+          - "Pourquoi demander un rapport plutôt qu'une distance en centimètres ?"
+          - "Votre prédiction change-t-elle si le plan est plus incliné ?"
+          - "Quelle prédiction ferait quelqu'un qui croit la vitesse constante ?"
+        en:
+          - "Why ask for a ratio rather than a distance in centimetres?"
+          - "Does your prediction change if the plane is steeper?"
+          - "What prediction would someone who believes the speed is constant make?"
+      misconceptions:
+        fr:
+          - "Deux fois plus de temps, deux fois plus de distance (vrai seulement à vitesse constante)."
+          - "Le rapport dépendrait de l'angle du plan (l'angle change l'accélération, pas la forme de la loi)."
+        en:
+          - "Twice the time, twice the distance (true only at constant speed)."
+          - "The ratio is supposed to depend on the angle of the plane (the angle changes the acceleration, not the form of the law)."
+      hints:
+        - id: h1
+          autonomy: 0.8
+          text:
+            fr: "Si la vitesse augmente, la bille parcourt plus pendant le deuxième battement que pendant le premier : le rapport $d(2)/d(1)$ est donc strictement supérieur à 2. De combien ? Relisez le document A."
+            en: "If the speed increases, the ball covers more during the second beat than during the first: the ratio $d(2)/d(1)$ is therefore strictly greater than 2. By how much? Reread document A."
+      minutes: 3
+      completion:
+        kind: inputs
+        inputs:
+          - { id: ratio_2, label: { fr: "d(2)/d(1)", en: "d(2)/d(1)" }, kind: ratio, expected: 4, tolerance: 0.5 }
+          - { id: ratio_3, label: { fr: "d(3)/d(1)", en: "d(3)/d(1)" }, kind: ratio, expected: 9, tolerance: 1 }
+      evidence: [{ type: prediction_recorded, phenomenonId: phenomenon.motion.inclined_plane }]
+      a11y:
+        fr: "Deux champs numériques pour les rapports d(2)/d(1) et d(3)/d(1). Aucune image."
+        en: "Two numeric fields for the ratios d(2)/d(1) and d(3)/d(1). No image."
+
+    # ------------------------------------------------------------------ 6. observe
+    - id: observe
+      type: simulation
+      simulationRef: simulation.galileo.inclined_plane
+      title:
+        fr: "Descentes : mesurer aux battements de l'horloge"
+        en: "Descents: measuring at the beats of the clock"
+      instructions:
+        fr: |
+          Le dispositif est celui que décrivent les *Discorsi* : un madrier rainuré, une bille de bronze, une
+          horloge à eau. Dans cette simulation, un « battement » de l'horloge vaut une seconde, et l'horloge peut
+          être rendue légèrement bruitée, comme une pesée d'eau réelle.
+
+          1. **Choisissez l'inclinaison** du plan — Galilée utilisait des pentes faibles pour que la descente dure.
+          2. **Lâchez** la bille sans vitesse initiale, depuis le haut de la rainure.
+          3. **Relevez** la distance parcourue le long du plan aux marques $t = 1, 2, 3$ battements — et $4$ si
+             la bille est encore sur le plan : avec une pente de $5°$ environ, elle y reste quatre battements —,
+             et enregistrez au moins trois mesures.
+          4. **Comparez** avec votre prédiction : calculez $d(2)/d(1)$ et $d(3)/d(1)$.
+
+          Puis recommencez avec une autre inclinaison. Les distances changent ; les rapports changent-ils ?
+          Galilée affirme avoir répété l'expérience une bonne centaine de fois, pour diverses inclinaisons, avec
+          des résultats concordants.
+        en: |
+          The apparatus is the one described in the *Discorsi*: a grooved beam, a bronze ball, a water clock. In
+          this simulation, one "beat" of the clock is one second, and the clock can be made slightly noisy, like a
+          real weighing of water.
+
+          1. **Choose the slope** of the plane — Galileo used gentle slopes so that the descent would last.
+          2. **Release** the ball without initial speed, from the top of the groove.
+          3. **Read** the distance covered along the plane at the marks $t = 1, 2, 3$ beats — and $4$ if the
+             ball is still on the plane: with a slope of about $5°$, it stays on it for four beats — and record
+             at least three measurements.
+          4. **Compare** with your prediction: compute $d(2)/d(1)$ and $d(3)/d(1)$.
+
+          Then start again with another slope. The distances change; do the ratios change? Galileo claims to
+          have repeated the experiment a full hundred times, for various slopes, with concordant results.
+      guideNotes:
+        fr: |
+          Vérifier que l'élève lit la distance *le long du plan* (pas la hauteur). Faire varier l'angle : les
+          rapports 1 : 4 : 9 : 16 demeurent, seul le facteur change — c'est l'argument de Galilée pour extrapoler à
+          la chute verticale. Avec le bruit d'horloge activé, discuter la dispersion : un rapport de 3,9 ou 4,2
+          confirme-t-il la loi ? La simulation modélise une bille qui roule sans glisser : son accélération est
+          $\tfrac{5}{7}g\sin\alpha$ et non $g\sin\alpha$ — soit $1{,}22\ \mathrm{m/s^2}$ à $10°$, où la bille
+          atteint le bas des $7\ \mathrm{m}$ en $3{,}4\ \mathrm{s}$ ; cela n'affecte pas les rapports.
+        en: |
+          Check that the learner reads the distance *along the plane* (not the height). Vary the angle: the ratios
+          1 : 4 : 9 : 16 remain, only the factor changes — Galileo's argument for extrapolating to vertical fall.
+          With clock noise on, discuss the scatter: does a ratio of 3.9 or 4.2 confirm the law? The simulation
+          models a ball rolling without slipping: its acceleration is $\tfrac{5}{7}g\sin\alpha$ rather than
+          $g\sin\alpha$ — that is $1.22\ \mathrm{m/s^2}$ at $10°$, where the ball reaches the bottom of the
+          $7\ \mathrm{m}$ in $3.4\ \mathrm{s}$; this does not affect the ratios.
+      oralPrompts:
+        fr:
+          - "Vos rapports valent-ils exactement 4 et 9 ? Sinon, la loi est-elle fausse ?"
+          - "Si l'on double l'angle, les distances doublent-elles ?"
+          - "Que peut-on conclure sur la vitesse à partir de ces distances — et que ne peut-on pas encore conclure ?"
+        en:
+          - "Are your ratios exactly 4 and 9? If not, is the law wrong?"
+          - "If the angle is doubled, do the distances double?"
+          - "What can be concluded about the speed from these distances — and what cannot be concluded yet?"
+      misconceptions:
+        fr:
+          - "Une mesure donnant 3,9 au lieu de 4 réfuterait la loi (toute mesure a une incertitude ; on juge la concordance à l'incertitude près)."
+          - "Plus le plan est incliné, plus la loi change (l'inclinaison change l'accélération ; la loi des carrés demeure)."
+        en:
+          - "A measurement giving 3.9 instead of 4 is supposed to refute the law (every measurement has an uncertainty; agreement is judged within it)."
+          - "The steeper the plane, the more the law changes (the slope changes the acceleration; the square law remains)."
+      hints:
+        - id: h1
+          autonomy: 0.8
+          text:
+            fr: "Notez $d(1)$, puis calculez $d(2)/d(1)$ et $d(3)/d(1)$. Comparez ces deux nombres à votre prédiction avant de regarder l'angle suivant."
+            en: "Write down $d(1)$, then compute $d(2)/d(1)$ and $d(3)/d(1)$. Compare these two numbers with your prediction before looking at the next angle."
+        - id: h2
+          autonomy: 0.6
+          text:
+            fr: "Pour une loi en carré des temps, on attend $d(2)/d(1) = 4$ et $d(3)/d(1) = 9$. Si vos rapports s'en écartent avec le bruit d'horloge, refaites la mesure ou réduisez le bruit, et comparez l'écart à la dispersion."
+            en: "For a times-squared law, one expects $d(2)/d(1) = 4$ and $d(3)/d(1) = 9$. If your ratios deviate with clock noise on, repeat the measurement or reduce the noise, and compare the deviation with the scatter."
+      minutes: 8
+      completion: { kind: simulation, minMeasurements: 3 }
+      evidence:
+        - { type: measurement_recorded, nodeId: method.measurement, phenomenonId: phenomenon.motion.inclined_plane }
+      a11y:
+        fr: "Alternative textuelle : la simulation propose une vue « table » listant, pour chaque battement, le temps et la distance parcourue le long du plan ; les mesures peuvent y être relevées sans la vue 3D. Ordre de grandeur attendu : distances dans les rapports 1 : 4 : 9 : 16 quel que soit l'angle."
+        en: "Text alternative: the simulation offers a \"table\" view listing, for each beat, the time and the distance covered along the plane; measurements can be read there without the 3D view. Expected order of magnitude: distances in the ratios 1 : 4 : 9 : 16 whatever the angle."
+
+    # ------------------------------------------------------------------ 7. graph_construction
+    - id: graph_construction
+      type: graph_construction
+      title:
+        fr: "Tracer : de la parabole à la droite"
+        en: "Plotting: from the parabola to the straight line"
+      instructions:
+        fr: |
+          Vos mesures (après conversion des pesées d'eau en secondes) donnent une distance $d$ pour chaque
+          instant $t$. Deux graphiques vont faire parler ces nombres.
+
+          **1. $d$ en fonction de $t$.** Placez les points $(1 ; d(1))$, $(2 ; d(2))$, $(3 ; d(3))$, $(4 ; d(4))$.
+          Ils ne sont pas alignés : la courbe se redresse de plus en plus — une parabole.
+
+          **2. $d$ en fonction de $t^2$.** Portez maintenant en abscisse $1, 4, 9, 16$. Les points s'alignent sur
+          une droite passant par l'origine : $d$ est proportionnelle à $t^2$. On écrit $d = k\,t^2$, et la pente
+          $k$ se lit sur le graphique. On la note $\tfrac12 a$, pour une raison qui apparaîtra à l'atelier, d'où
+          $$d = \tfrac12\,a\,t^2 .$$
+
+          **3. La règle des nombres impairs.** Regardez les distances parcourues *pendant* chaque battement :
+          $d(1) - 0$, $d(2) - d(1)$, $d(3) - d(2)$, $d(4) - d(3)$. Elles sont dans les rapports $1 : 3 : 5 : 7$.
+          C'est ainsi que Galilée énonce sa loi dans les *Discorsi* : les espaces parcourus en des temps égaux
+          sont comme les nombres impairs à partir de l'unité. Il ne trace pas de courbe et n'écrit pas
+          d'équation : il compare des rapports.
+
+          Vérifiez ces résultats dans les deux exercices.
+        en: |
+          Your measurements (after converting the water weighings into seconds) give a distance $d$ for each
+          instant $t$. Two graphs will make these numbers speak.
+
+          **1. $d$ against $t$.** Plot the points $(1, d(1))$, $(2, d(2))$, $(3, d(3))$, $(4, d(4))$. They are
+          not aligned: the curve bends upwards more and more — a parabola.
+
+          **2. $d$ against $t^2$.** Now put $1, 4, 9, 16$ on the horizontal axis. The points line up on a
+          straight line through the origin: $d$ is proportional to $t^2$. We write $d = k\,t^2$, and the slope
+          $k$ is read on the graph. We call it $\tfrac12 a$, for a reason that will appear in the workshop, hence
+          $$d = \tfrac12\,a\,t^2 .$$
+
+          **3. The odd-number rule.** Look at the distances covered *during* each beat: $d(1) - 0$,
+          $d(2) - d(1)$, $d(3) - d(2)$, $d(4) - d(3)$. They are in the ratios $1 : 3 : 5 : 7$. This is how Galileo
+          states his law in the *Discorsi*: the spaces passed in equal times are as the odd numbers starting from
+          unity. He draws no curve and writes no equation: he compares ratios.
+
+          Check these results in the two exercises.
+      guideNotes:
+        fr: |
+          Le passage de $d(t)$ à $d(t^2)$ est une **linéarisation** : on cherche la variable qui rend le graphique
+          droit. Insister : une droite passant par l'origine signifie proportionnalité. La pente vaut $\tfrac12 a$ ;
+          pour un plan à 10° et un glissement sans frottement, $a = g\sin 10° \approx 1{,}7\ \mathrm{m/s^2}$ (bille
+          roulant sans glisser : $\approx 1{,}2\ \mathrm{m/s^2}$). La règle des nombres impairs est l'énoncé
+          historique : $d(n) - d(n-1) = \tfrac12 a\,(2n - 1)$ ; la loi des carrés apparaît alors comme une somme
+          d'impairs ($1 + 3 + 5 + 7 = 16$), l'argument favori de Galilée.
+        en: |
+          Going from $d(t)$ to $d(t^2)$ is a **linearisation**: we look for the variable that makes the graph
+          straight. Stress: a straight line through the origin means proportionality. The slope is $\tfrac12 a$;
+          for a 10° plane and frictionless sliding, $a = g\sin 10° \approx 1.7\ \mathrm{m/s^2}$ (ball rolling
+          without slipping: $\approx 1.2\ \mathrm{m/s^2}$). The odd-number rule is the historical statement:
+          $d(n) - d(n-1) = \tfrac12 a\,(2n - 1)$; the square law then appears as a sum of odd numbers
+          ($1 + 3 + 5 + 7 = 16$), Galileo's favourite argument.
+      oralPrompts:
+        fr:
+          - "Pourquoi tracer $d$ en fonction de $t^2$ plutôt qu'en fonction de $t$ ?"
+          - "Que signifie une droite qui passe par l'origine ?"
+          - "Comment la règle 1 : 3 : 5 : 7 se déduit-elle de la loi des carrés ?"
+        en:
+          - "Why plot $d$ against $t^2$ rather than against $t$?"
+          - "What does a straight line through the origin mean?"
+          - "How does the rule 1 : 3 : 5 : 7 follow from the square law?"
+      misconceptions:
+        fr:
+          - "Des points qui « montent » seraient alignés (une parabole monte aussi ; l'alignement se teste avec une règle ou par des rapports)."
+          - "Le coefficient $\\tfrac12$ serait un résultat de mesure (c'est une convention d'écriture : on mesure $k$ et l'on pose $a = 2k$)."
+          - "La règle des nombres impairs et la loi des carrés seraient deux lois différentes (l'une est l'autre lue par différences : $1 + 3 + 5 + 7 = 16$)."
+        en:
+          - "Points that \"go up\" are supposed to be aligned (a parabola goes up too; alignment is tested with a ruler or with ratios)."
+          - "The coefficient $\\tfrac12$ is supposed to be a measured result (it is a writing convention: one measures $k$ and sets $a = 2k$)."
+          - "The odd-number rule and the square law are supposed to be two different laws (one is the other read through differences: $1 + 3 + 5 + 7 = 16$)."
+      hints:
+        - id: h1
+          autonomy: 0.8
+          text:
+            fr: "Calculez $t^2$ pour chaque mesure et reportez $d$ en fonction de ce nouveau nombre. Si les points s'alignent, la pente donne $\\tfrac12 a$."
+            en: "Compute $t^2$ for each measurement and plot $d$ against this new number. If the points line up, the slope gives $\\tfrac12 a$."
+        - id: h2
+          autonomy: 0.6
+          text:
+            fr: "Avec $d = \\tfrac12 a t^2$, on a $d(2)/d(1) = 4$ et $d(3)/d(1) = 9$ ; les différences successives $d(n) - d(n-1) = \\tfrac12 a\\,(2n-1)$ donnent $1 : 3 : 5 : 7$."
+            en: "With $d = \\tfrac12 a t^2$, we get $d(2)/d(1) = 4$ and $d(3)/d(1) = 9$; the successive differences $d(n) - d(n-1) = \\tfrac12 a\\,(2n-1)$ give $1 : 3 : 5 : 7$."
+      minutes: 6
+      completion: { kind: exercises, exerciseIds: [exercise.galileo.graph_linearise, exercise.galileo.ratio_distances] }
+      historicalClaims:
+        - id: odd_number_rule
+          claim:
+            fr: "Dans la Troisième Journée des Discorsi (1638), Galilée énonce que les espaces parcourus en des temps égaux par un corps en chute, à partir du repos, sont entre eux comme les nombres impairs à partir de l'unité."
+            en: "In the Third Day of the Discorsi (1638), Galileo states that the spaces passed in equal times by a falling body, starting from rest, are to one another as the odd numbers beginning with unity."
+          status: attested
+          sources: [source.galileo.discorsi.1638]
+      a11y:
+        fr: "Alternative textuelle des graphiques : (1) $d$ en fonction de $t$ — points de plus en plus espacés verticalement, courbe qui se redresse ; (2) $d$ en fonction de $t^2$ — points alignés sur une droite passant par l'origine. Les valeurs sont disponibles dans la table de mesures du pas précédent."
+        en: "Text alternative to the graphs: (1) $d$ against $t$ — points more and more spread out vertically, curve bending upwards; (2) $d$ against $t^2$ — points aligned on a straight line through the origin. The values are available in the measurement table of the previous step."
+
+    # ------------------------------------------------------------------ 8. need_for_tool
+    - id: need_for_tool
+      type: comparison_of_models
+      title:
+        fr: "La vitesse à un instant : ce qui manque"
+        en: "The speed at an instant: what is missing"
+      instructions:
+        fr: |
+          Vous savez maintenant que $d = \tfrac12 a t^2$. Prenez, pour fixer les idées, $d = 0{,}6\,t^2$ (distances
+          en mètres, temps en battements — ici des secondes). Galilée sait calculer une **vitesse moyenne** :
+          distance parcourue divisée par la durée. Autour de $t = 2$, sur un intervalle $[2 ; 2 + h]$ de plus en
+          plus court :
+
+          | $h$ (battement) | 1 | 0,5 | 0,1 | 0,01 |
+          |---|---|---|---|---|
+          | vitesse moyenne sur $[2 ; 2+h]$ (m par battement) | 3,0 | 2,7 | 2,46 | 2,406 |
+
+          Chaque intervalle donne une valeur différente, et ces valeurs se rapprochent de $2{,}4$ sans jamais
+          l'atteindre. Aucune n'est « la » vitesse de la bille *à l'instant* $t = 2$ : toutes sont des moyennes
+          sur une durée.
+
+          Voilà l'obstacle. Le dispositif de Galilée mesure des distances et des durées ; « la vitesse à un
+          instant » n'est ni mesurable directement, ni même définie. Pour donner un sens au nombre $2{,}4$ — et
+          savoir le calculer pour n'importe quel instant —, il faut une **règle pour la limite** des vitesses
+          moyennes quand $h$ tend vers $0$. C'est cette règle qui manque, et c'est l'outil que l'atelier va
+          construire.
+        en: |
+          You now know that $d = \tfrac12 a t^2$. Take, to fix ideas, $d = 0.6\,t^2$ (distances in metres, time in
+          beats — here seconds). Galileo knows how to compute an **average speed**: distance covered divided by
+          duration. Around $t = 2$, on a shorter and shorter interval $[2, 2 + h]$:
+
+          | $h$ (beat) | 1 | 0.5 | 0.1 | 0.01 |
+          |---|---|---|---|---|
+          | average speed on $[2, 2+h]$ (m per beat) | 3.0 | 2.7 | 2.46 | 2.406 |
+
+          Each interval gives a different value, and these values approach $2.4$ without ever reaching it. None
+          of them is "the" speed of the ball *at the instant* $t = 2$: all are averages over a duration.
+
+          Here is the obstacle. Galileo's apparatus measures distances and durations; "the speed at an instant"
+          is neither directly measurable nor even defined. To give a meaning to the number $2.4$ — and to be able
+          to compute it for any instant — one needs a **rule for the limit** of the average speeds as $h$ tends
+          to $0$. That rule is what is missing, and it is the tool the workshop will build.
+      guideNotes:
+        fr: |
+          Pivot de la mission : faire ressentir que la difficulté n'est pas instrumentale (une meilleure horloge
+          ne suffit pas) mais conceptuelle. Faire calculer la moyenne sur $[2 ; 2{,}001]$ : $2{,}4006$. Demander :
+          « vers quoi cela tend-il ? peut-on prendre $h = 0$ ? » — division par zéro, c'est précisément l'impasse.
+          Remarque utile : la moyenne depuis le départ, $d(2)/2 = 1{,}2$, est la moitié de la valeur limite — c'est
+          le théorème de la vitesse moyenne, que Galilée démontre géométriquement. Il contourne l'obstacle avec
+          des « degrés de vitesse » et des rapports ; la notion de limite n'existe pas encore.
+        en: |
+          Pivot of the mission: make the learner feel that the difficulty is not instrumental (a better clock is
+          not enough) but conceptual. Have them compute the average on $[2, 2.001]$: $2.4006$. Ask: "what does
+          this tend to? can we take $h = 0$?" — division by zero, precisely the dead end. Useful remark: the
+          average since the start, $d(2)/2 = 1.2$, is half the limiting value — this is the mean-speed theorem,
+          which Galileo proves geometrically. He gets round the obstacle with "degrees of speed" and ratios; the
+          notion of limit does not exist yet.
+      oralPrompts:
+        fr:
+          - "Pourquoi ne peut-on pas prendre $h = 0$ dans le calcul de la vitesse moyenne ?"
+          - "Une horloge parfaite résoudrait-elle le problème ?"
+          - "Vers quelle valeur tendent les vitesses moyennes ? Que représente-t-elle ?"
+        en:
+          - "Why can't we take $h = 0$ in the computation of the average speed?"
+          - "Would a perfect clock solve the problem?"
+          - "Which value do the average speeds tend to? What does it represent?"
+      misconceptions:
+        fr:
+          - "La vitesse à un instant serait « distance totale divisée par temps total » (c'est la moyenne depuis le départ, ici $d(2)/2 = 1{,}2$, moitié de la valeur limite $2{,}4$)."
+          - "Une meilleure horloge donnerait la vitesse instantanée (le problème est la définition, pas la précision)."
+          - "La vitesse instantanée serait nulle, puisqu'en un instant on ne parcourt rien (c'est une limite de rapports, pas un rapport de zéros)."
+        en:
+          - "The speed at an instant is supposed to be \"total distance divided by total time\" (that is the average since the start, here $d(2)/2 = 1.2$, half the limiting value $2.4$)."
+          - "A better clock would give the instantaneous speed (the problem is the definition, not the precision)."
+          - "The instantaneous speed is supposed to be zero, since in an instant nothing is covered (it is a limit of ratios, not a ratio of zeros)."
+      hints:
+        - id: h1
+          autonomy: 0.8
+          text:
+            fr: "Regardez la suite 3,0 ; 2,7 ; 2,46 ; 2,406 : chaque fois que $h$ est divisé par 10, l'écart à 2,4 est divisé par 10. Vers quelle valeur limite ?"
+            en: "Look at the sequence 3.0; 2.7; 2.46; 2.406: each time $h$ is divided by 10, the gap to 2.4 is divided by 10. Towards which limiting value?"
+        - id: h2
+          autonomy: 0.6
+          text:
+            fr: "Calculez la vitesse moyenne pour $h = 0{,}001$ : $\\dfrac{0{,}6 \\times 2{,}001^2 - 0{,}6 \\times 4}{0{,}001} = 2{,}4006$. La règle cherchée doit donner exactement $2{,}4$, sans division par zéro."
+            en: "Compute the average speed for $h = 0.001$: $\\dfrac{0.6 \\times 2.001^2 - 0.6 \\times 4}{0.001} = 2.4006$. The rule we are after must give exactly $2.4$, without dividing by zero."
+      minutes: 5
+      completion: { kind: exercises, exerciseIds: [exercise.galileo.instantaneous_need] }
+      a11y:
+        fr: "La table est textuelle : h = 1 → 3,0 ; h = 0,5 → 2,7 ; h = 0,1 → 2,46 ; h = 0,01 → 2,406 (mètres par battement). Aucune image."
+        en: "The table is textual: h = 1 → 3.0; h = 0.5 → 2.7; h = 0.1 → 2.46; h = 0.01 → 2.406 (metres per beat). No image."
+
+    # ------------------------------------------------------------------ 9. workshop
+    - id: workshop
+      type: mathematics_workshop
+      title:
+        fr: "Atelier : la dérivée, une règle pour la limite"
+        en: "Workshop: the derivative, a rule for the limit"
+      instructions:
+        fr: |
+          ### 1. Le taux de variation moyen
+
+          Prenons une loi horaire simple, $x(t) = 2t^2$ ($x$ en mètres, $t$ en secondes). Entre l'instant $t$ et
+          l'instant $t + h$, le mobile parcourt $x(t+h) - x(t)$ ; sa vitesse moyenne sur $[t ; t+h]$ est le
+          **taux de variation**
+          $$\frac{x(t+h) - x(t)}{h} = \frac{2(t+h)^2 - 2t^2}{h} = \frac{4th + 2h^2}{h} = 4t + 2h \qquad (h \neq 0).$$
+          Le calcul est celui de Galilée — une distance divisée par une durée — mais fait *en général*, pour un
+          instant $t$ et une durée $h$ quelconques. Le résultat dépend encore de $h$.
+
+          ### 2. Faire tendre $h$ vers $0$
+
+          Réduisons la durée : $h = 0{,}1$, puis $0{,}01$, puis $0{,}001$… Le taux $4t + 2h$ se rapproche de $4t$
+          autant qu'on veut, sans jamais poser $h = 0$ (on diviserait par zéro). On dit que $4t + 2h$ **tend
+          vers** $4t$ quand $h$ tend vers $0$, et l'on écrit
+          $$\lim_{h \to 0} (4t + 2h) = 4t .$$
+          Ce nombre ne dépend plus d'aucun intervalle : c'est **la** vitesse à l'instant $t$.
+
+          ### 3. Définition : le nombre dérivé
+
+          Pour une fonction $x$ et un instant $t_0$, le **nombre dérivé** de $x$ en $t_0$ est la limite, lorsqu'elle
+          existe,
+          $$x'(t_0) = \lim_{h \to 0} \frac{x(t_0 + h) - x(t_0)}{h} .$$
+          On dit alors que $x$ est **dérivable** en $t_0$. La fonction $t \mapsto x'(t)$ est la **fonction
+          dérivée**. En physique, on la note aussi $\dfrac{\mathrm{d}x}{\mathrm{d}t}$.
+
+          ### 4. Lecture graphique : la tangente
+
+          Sur la courbe de $x$, le taux $\dfrac{x(t_0+h) - x(t_0)}{h}$ est la pente de la **corde** qui joint les
+          points d'abscisses $t_0$ et $t_0 + h$. Quand $h \to 0$, la corde pivote vers une droite limite : la
+          **tangente** en $t_0$. Le nombre dérivé $x'(t_0)$ est la pente de cette tangente. Vitesse instantanée
+          et pente de la tangente sont un seul et même nombre.
+
+          ### 5. Règles de calcul
+
+          Le passage à la limite n'est à faire qu'une fois par fonction de référence :
+
+          - $(t^n)' = n\,t^{n-1}$ pour $n$ entier — ainsi $(t)' = 1$, $(t^2)' = 2t$, $(t^3)' = 3t^2$ ;
+          - une constante a une dérivée nulle : $(c)' = 0$ ;
+          - constante multiplicative et somme : $(k\,u)' = k\,u'$ et $(u + v)' = u' + v'$.
+
+          Exemple : pour $x(t) = 2t^2$, $x'(t) = 2 \times 2t = 4t$ — le résultat de la section 2, sans limite à
+          recalculer.
+
+          ### 6. Retour au mouvement
+
+          Si $x(t)$ est la position d'un mobile, sa **vitesse** est $v(t) = x'(t)$, et son **accélération** est la
+          dérivée de la vitesse, $a(t) = v'(t)$. La dérivée est la règle qui manquait à Galilée : elle donne un
+          sens à « la vitesse à un instant » et permet de la calculer.
+
+          Les cinq exercices reprennent chaque étape : taux moyen, limite, tangente, règles, ordre de la méthode.
+
+          ---
+
+          **Pour le parcours MPSI.** Dire que $x'(t_0) = \ell$ signifie : pour tout $\varepsilon > 0$, il existe
+          $\delta > 0$ tel que $0 < |h| < \delta$ entraîne
+          $\left| \dfrac{x(t_0+h) - x(t_0)}{h} - \ell \right| < \varepsilon$. De façon équivalente,
+          $x(t_0 + h) = x(t_0) + \ell\,h + h\,\varepsilon(h)$ avec $\varepsilon(h) \to 0$ : c'est le développement
+          limité à l'ordre 1. La dérivabilité en $t_0$ entraîne la continuité en $t_0$ ; la réciproque est fausse
+          ($t \mapsto |t|$ en $0$, où les taux à droite et à gauche tendent vers $1$ et $-1$).
+        en: |
+          ### 1. The average rate of change
+
+          Take a simple position law, $x(t) = 2t^2$ ($x$ in metres, $t$ in seconds). Between the instant $t$ and
+          the instant $t + h$, the body covers $x(t+h) - x(t)$; its average speed on $[t, t+h]$ is the
+          **rate of change**
+          $$\frac{x(t+h) - x(t)}{h} = \frac{2(t+h)^2 - 2t^2}{h} = \frac{4th + 2h^2}{h} = 4t + 2h \qquad (h \neq 0).$$
+          The computation is Galileo's — a distance divided by a duration — but done *in general*, for any
+          instant $t$ and any duration $h$. The result still depends on $h$.
+
+          ### 2. Letting $h$ tend to $0$
+
+          Shrink the duration: $h = 0.1$, then $0.01$, then $0.001$… The rate $4t + 2h$ gets as close to $4t$ as
+          we like, without ever setting $h = 0$ (we would divide by zero). We say that $4t + 2h$ **tends to**
+          $4t$ as $h$ tends to $0$, and we write
+          $$\lim_{h \to 0} (4t + 2h) = 4t .$$
+          This number no longer depends on any interval: it is **the** speed at the instant $t$.
+
+          ### 3. Definition: the derivative at a point
+
+          For a function $x$ and an instant $t_0$, the **derivative** of $x$ at $t_0$ is the limit, when it exists,
+          $$x'(t_0) = \lim_{h \to 0} \frac{x(t_0 + h) - x(t_0)}{h} .$$
+          We then say that $x$ is **differentiable** at $t_0$. The function $t \mapsto x'(t)$ is the **derived
+          function**. In physics it is also written $\dfrac{\mathrm{d}x}{\mathrm{d}t}$.
+
+          ### 4. Graphical reading: the tangent
+
+          On the graph of $x$, the rate $\dfrac{x(t_0+h) - x(t_0)}{h}$ is the slope of the **chord** joining the
+          points of abscissae $t_0$ and $t_0 + h$. As $h \to 0$, the chord pivots towards a limiting line: the
+          **tangent** at $t_0$. The derivative $x'(t_0)$ is the slope of this tangent. Instantaneous speed and
+          slope of the tangent are one and the same number.
+
+          ### 5. Rules of computation
+
+          The passage to the limit only has to be done once per reference function:
+
+          - $(t^n)' = n\,t^{n-1}$ for integer $n$ — thus $(t)' = 1$, $(t^2)' = 2t$, $(t^3)' = 3t^2$;
+          - a constant has zero derivative: $(c)' = 0$;
+          - multiplicative constant and sum: $(k\,u)' = k\,u'$ and $(u + v)' = u' + v'$.
+
+          Example: for $x(t) = 2t^2$, $x'(t) = 2 \times 2t = 4t$ — the result of section 2, with no limit to
+          recompute.
+
+          ### 6. Back to motion
+
+          If $x(t)$ is the position of a moving body, its **velocity** is $v(t) = x'(t)$, and its **acceleration**
+          is the derivative of the velocity, $a(t) = v'(t)$. The derivative is the rule Galileo lacked: it gives a
+          meaning to "the speed at an instant" and makes it computable.
+
+          The five exercises go back over each stage: average rate, limit, tangent, rules, order of the method.
+
+          ---
+
+          **For the MPSI path.** Saying that $x'(t_0) = \ell$ means: for every $\varepsilon > 0$ there exists
+          $\delta > 0$ such that $0 < |h| < \delta$ implies
+          $\left| \dfrac{x(t_0+h) - x(t_0)}{h} - \ell \right| < \varepsilon$. Equivalently,
+          $x(t_0 + h) = x(t_0) + \ell\,h + h\,\varepsilon(h)$ with $\varepsilon(h) \to 0$: this is the first-order
+          Taylor expansion. Differentiability at $t_0$ implies continuity at $t_0$; the converse is false
+          ($t \mapsto |t|$ at $0$, where the right and left rates tend to $1$ and $-1$).
+      guideNotes:
+        fr: |
+          Raisonnement attendu : (1) développer $(t+h)^2$, retrancher, simplifier par $h$ — l'élève doit voir que
+          la simplification exige $h \neq 0$ ; (2) comprendre la limite comme « aussi proche qu'on veut », et non
+          comme « poser $h = 0$ » ; (3) relier corde et tangente ; (4) utiliser les règles sans refaire la limite ;
+          (5) conclure $v = x'$. Points de vigilance : la dérivée de $t^2$ est $2t$ et non $t$ ; la pente est
+          $\Delta x / \Delta t$ et non $x/t$ ; « vitesse à un instant » n'est pas « distance divisée par temps ».
+          Pour le parcours MPSI, discuter $t \mapsto |t|$ en $0$ et les dérivées à droite et à gauche. Si l'élève
+          bloque sur l'exercice de limite, revenir à la table du pas précédent.
+        en: |
+          Expected reasoning: (1) expand $(t+h)^2$, subtract, simplify by $h$ — the learner must see that the
+          simplification requires $h \neq 0$; (2) understand the limit as "as close as we like", not as "setting
+          $h = 0$"; (3) connect chord and tangent; (4) use the rules without redoing the limit; (5) conclude
+          $v = x'$. Watch for: the derivative of $t^2$ is $2t$, not $t$; the slope is $\Delta x / \Delta t$, not
+          $x/t$; "speed at an instant" is not "distance divided by time". For the MPSI path, discuss
+          $t \mapsto |t|$ at $0$ and right and left derivatives. If the learner gets stuck on the limit
+          exercise, go back to the table of the previous step.
+      oralPrompts:
+        fr:
+          - "Pourquoi doit-on simplifier par $h$ avant de faire tendre $h$ vers $0$ ?"
+          - "Que devient la corde quand $h$ devient très petit ?"
+          - "Comment lire $x'(t_0)$ sur un graphique, sans aucun calcul ?"
+        en:
+          - "Why must we simplify by $h$ before letting $h$ tend to $0$?"
+          - "What happens to the chord when $h$ becomes very small?"
+          - "How can $x'(t_0)$ be read on a graph, without any computation?"
+      misconceptions:
+        fr:
+          - "La dérivée de $t^2$ serait $t$ (c'est $2t$ : le taux $4t + 2h$ obtenu pour $x = 2t^2$ le montre)."
+          - "La pente serait $y/x$ (c'est un quotient de *variations*, $\\Delta y / \\Delta x$ ; $y/x$ est la pente de la corde issue de l'origine)."
+          - "La vitesse à un instant serait « distance ÷ temps » (c'est une limite de taux moyens ; distance ÷ temps est une moyenne depuis le départ)."
+        en:
+          - "The derivative of $t^2$ is supposed to be $t$ (it is $2t$: the rate $4t + 2h$ obtained for $x = 2t^2$ shows it)."
+          - "The slope is supposed to be $y/x$ (it is a quotient of *changes*, $\\Delta y / \\Delta x$; $y/x$ is the slope of the chord from the origin)."
+          - "The speed at an instant is supposed to be \"distance ÷ time\" (it is a limit of average rates; distance ÷ time is an average since the start)."
+      hints:
+        - id: h1
+          autonomy: 0.8
+          text:
+            fr: "Pour tout calcul de limite ici, développez d'abord $(t+h)^2 = t^2 + 2th + h^2$, retranchez $t^2$, puis simplifiez par $h$ : il reste des termes sans $h$ et des termes avec $h$, qui disparaissent à la limite."
+            en: "For every limit computation here, first expand $(t+h)^2 = t^2 + 2th + h^2$, subtract $t^2$, then simplify by $h$: what remains are terms without $h$ and terms with $h$, which vanish in the limit."
+        - id: h2
+          autonomy: 0.6
+          text:
+            fr: "Résumé opérationnel : $\\dfrac{x(t+h) - x(t)}{h} \\to x'(t)$ ; pour $x = 2t^2$, $x'(t) = 4t$, donc $x'(1) = 4$ ; pour $x = 3t^2 + 2t$, appliquez $(t^n)' = n\\,t^{n-1}$ terme à terme."
+            en: "Operational summary: $\\dfrac{x(t+h) - x(t)}{h} \\to x'(t)$; for $x = 2t^2$, $x'(t) = 4t$, hence $x'(1) = 4$; for $x = 3t^2 + 2t$, apply $(t^n)' = n\\,t^{n-1}$ term by term."
+      minutes: 12
+      completion:
+        kind: exercises
+        exerciseIds:
+          - exercise.workshop.difference_quotient
+          - exercise.workshop.limit_value
+          - exercise.workshop.tangent_reading
+          - exercise.workshop.power_rule
+          - exercise.workshop.method_order
+      a11y:
+        fr: "L'atelier est un texte structuré en six sections avec formules rendues avec une alternative MathML. La figure de la corde pivotant vers la tangente est décrite dans la section 4 : une corde entre deux points de la courbe, dont l'un se rapproche de l'autre jusqu'à ce que la corde devienne la tangente."
+        en: "The workshop is a text structured in six sections with formulas rendered with a MathML alternative. The figure of the chord pivoting towards the tangent is described in section 4: a chord between two points of the curve, one of which approaches the other until the chord becomes the tangent."
+
+    # ------------------------------------------------------------------ 10. return_calculation
+    - id: return_calculation
+      type: model_selection
+      title:
+        fr: "Retour au plan incliné : la vitesse, enfin"
+        en: "Back to the inclined plane: the speed, at last"
+      instructions:
+        fr: |
+          Vous rapportez l'outil dans la maison de Padoue. La loi horaire mesurée est $x(t) = \tfrac12 a t^2$, avec
+          $a$ une constante. Parmi les outils de votre sac — dérivée, vecteur, exponentielle —, lequel transforme
+          une loi horaire en vitesse ? Sélectionnez-le, puis appliquez-le.
+
+          **1. Dériver la loi horaire.** Avec la règle $(t^2)' = 2t$ :
+          $$v(t) = x'(t) = \tfrac12 a \times 2t = a\,t .$$
+          La vitesse est **proportionnelle au temps écoulé** — et non à la distance parcourue. C'est l'hypothèse 2
+          du pas 4 : vous pouvez maintenant juger votre prédiction. Le facteur $\tfrac12$ de la loi horaire
+          s'explique : il compense le $2$ de la dérivée de $t^2$.
+
+          **2. Dériver encore.** $a(t) = v'(t) = a$ : l'accélération est **constante**. Une position quadratique en
+          $t$ signifie un mouvement uniformément accéléré — c'est la définition que Galilée adopte dans les
+          *Discorsi* : un mouvement qui, partant du repos, acquiert des accroissements de vitesse égaux en des
+          temps égaux (définition paraphrasée). En 1638, il a abandonné le principe de la lettre de 1604 : la
+          vitesse croît avec le temps.
+
+          **3. Mettre des nombres.** Pour un mobile qui **glisse sans frottement** sur un plan incliné à $30°$,
+          l'accélération vaut $a = g\sin 30° = 9{,}81 \times 0{,}5 = 4{,}905\ \mathrm{m/s^2}$ ; après $2{,}0\ \mathrm{s}$,
+          $v = 9{,}81\ \mathrm{m/s}$. (Pour la bille de Galilée, qui roule sans glisser, il faudrait multiplier par
+          $\tfrac57$.)
+
+          **4. Extrapoler à la chute libre.** Redressez le plan jusqu'à la verticale : $\sin 90° = 1$, donc $a = g$.
+          La loi horaire garde sa forme, $x(t) = \tfrac12 g t^2$, et $v(t) = g\,t$. C'est le raisonnement de Galilée
+          — le plan incliné n'est qu'une chute ralentie — que la dérivée rend calculable à n'importe quel instant.
+        en: |
+          You bring the tool back to the house in Padua. The measured position law is $x(t) = \tfrac12 a t^2$,
+          with $a$ a constant. Among the tools in your backpack — derivative, vector, exponential — which one
+          turns a position law into a speed? Select it, then apply it.
+
+          **1. Differentiate the position law.** With the rule $(t^2)' = 2t$:
+          $$v(t) = x'(t) = \tfrac12 a \times 2t = a\,t .$$
+          The speed is **proportional to the elapsed time** — not to the distance covered. This is hypothesis 2
+          of step 4: you can now judge your prediction. The factor $\tfrac12$ in the position law is explained:
+          it compensates the $2$ from the derivative of $t^2$.
+
+          **2. Differentiate again.** $a(t) = v'(t) = a$: the acceleration is **constant**. A position quadratic in
+          $t$ means uniformly accelerated motion — the definition Galileo adopts in the *Discorsi*: a motion
+          which, starting from rest, acquires equal increments of speed in equal times (paraphrased definition).
+          By 1638 he has abandoned the principle of the 1604 letter: speed grows with time.
+
+          **3. Put in numbers.** For a body that **slides without friction** on a plane inclined at $30°$, the
+          acceleration is $a = g\sin 30° = 9.81 \times 0.5 = 4.905\ \mathrm{m/s^2}$; after $2.0\ \mathrm{s}$,
+          $v = 9.81\ \mathrm{m/s}$. (For Galileo's ball, which rolls without slipping, one would have to multiply
+          by $\tfrac57$.)
+
+          **4. Extrapolate to free fall.** Raise the plane to the vertical: $\sin 90° = 1$, hence $a = g$. The
+          position law keeps its form, $x(t) = \tfrac12 g t^2$, and $v(t) = g\,t$. This is Galileo's reasoning —
+          the inclined plane is only a slowed-down fall — which the derivative makes computable at any instant.
+      guideNotes:
+        fr: |
+          Faire choisir l'outil avant de calculer : le vecteur décrit une direction, l'exponentielle un taux
+          proportionnel à la quantité — ni l'un ni l'autre ne transforme $x(t)$ en $v(t)$. Attendre la dérivation
+          explicite, puis la seconde. Revenir sur l'hypothèse du pas 4 : « vitesse proportionnelle à la distance »
+          est incompatible avec $v = at$ et $x = \tfrac12 at^2$, puisque $v = \sqrt{2ax}$ croît comme la racine de
+          $x$, non comme $x$. Sur le glissement sans frottement : $4{,}905\ \mathrm{m/s^2}$ est la valeur du modèle
+          du point matériel ; la bille roulante de la simulation donne $\tfrac57$ de cette valeur — bonne occasion
+          de parler des hypothèses d'un modèle. Signaler la coïncidence numérique : $v(2{,}0) = 9{,}81\ \mathrm{m/s}$
+          n'est pas $g$, les dimensions diffèrent.
+        en: |
+          Have the tool chosen before computing: the vector describes a direction, the exponential a rate
+          proportional to the quantity — neither turns $x(t)$ into $v(t)$. Expect the explicit differentiation,
+          then the second one. Return to the hypothesis of step 4: "speed proportional to distance" is
+          incompatible with $v = at$ and $x = \tfrac12 at^2$, since $v = \sqrt{2ax}$ grows like the square root of
+          $x$, not like $x$. On frictionless sliding: $4.905\ \mathrm{m/s^2}$ is the value of the point-mass model;
+          the rolling ball of the simulation gives $\tfrac57$ of it — a good opportunity to discuss the
+          assumptions of a model. Point out the numerical coincidence: $v(2.0) = 9.81\ \mathrm{m/s}$ is not $g$,
+          the dimensions differ.
+      oralPrompts:
+        fr:
+          - "Pourquoi la dérivée, et non le vecteur ou l'exponentielle, pour passer de la position à la vitesse ?"
+          - "Votre hypothèse du pas 4 était-elle la bonne ? Qu'est-ce qui tranche maintenant ?"
+          - "Que change le passage du plan incliné à la chute verticale, et que ne change-t-il pas ?"
+        en:
+          - "Why the derivative, and not the vector or the exponential, to go from position to speed?"
+          - "Was your hypothesis of step 4 the right one? What settles it now?"
+          - "What does going from the inclined plane to vertical fall change, and what does it not change?"
+      misconceptions:
+        fr:
+          - "Dériver $\\tfrac12 a t^2$ donnerait $\\tfrac12 a t$ (le $2$ de $(t^2)' = 2t$ compense le $\\tfrac12$ : $v = at$)."
+          - "« Vitesse proportionnelle au temps » et « vitesse proportionnelle à la distance » reviendraient au même (avec $x = \\tfrac12 at^2$, $v = at$ est proportionnelle à $\\sqrt{x}$, pas à $x$)."
+          - "En chute libre, la loi changerait de forme (seule la valeur de $a$ change : $a = g$)."
+        en:
+          - "Differentiating $\\tfrac12 a t^2$ is supposed to give $\\tfrac12 a t$ (the $2$ from $(t^2)' = 2t$ compensates the $\\tfrac12$: $v = at$)."
+          - "\"Speed proportional to time\" and \"speed proportional to distance\" are supposed to amount to the same (with $x = \\tfrac12 at^2$, $v = at$ is proportional to $\\sqrt{x}$, not to $x$)."
+          - "In free fall the law is supposed to change its form (only the value of $a$ changes: $a = g$)."
+      hints:
+        - id: h1
+          autonomy: 0.8
+          text:
+            fr: "Appliquez $(t^n)' = n\\,t^{n-1}$ avec $n = 2$, sans oublier la constante multiplicative $\\tfrac12 a$."
+            en: "Apply $(t^n)' = n\\,t^{n-1}$ with $n = 2$, without forgetting the multiplicative constant $\\tfrac12 a$."
+        - id: h2
+          autonomy: 0.6
+          text:
+            fr: "$v(t) = a\\,t$ ; à $30°$, $a = 4{,}905\\ \\mathrm{m/s^2}$ ; en chute libre, $a = g = 9{,}81\\ \\mathrm{m/s^2}$ et $v(t) = g\\,t$."
+            en: "$v(t) = a\\,t$; at $30°$, $a = 4.905\\ \\mathrm{m/s^2}$; in free fall, $a = g = 9.81\\ \\mathrm{m/s^2}$ and $v(t) = g\\,t$."
+      minutes: 7
+      toolSelection:
+        phenomenonId: phenomenon.motion.uniformly_accelerated
+        candidates: [tool.derivative, tool.vector, tool.exponential]
+        correct: tool.derivative
+      completion:
+        kind: exercises
+        exerciseIds: [exercise.return.speed_definition, exercise.return.velocity_value, exercise.return.free_fall_extrapolation]
+      historicalClaims:
+        - id: corrected_law
+          claim:
+            fr: "Dans les Discorsi (1638), Galilée définit le mouvement uniformément accéléré comme celui qui, partant du repos, acquiert des accroissements de vitesse égaux en des temps égaux — la vitesse proportionnelle au temps — et rejette la proportionnalité de la vitesse à la distance parcourue."
+            en: "In the Discorsi (1638), Galileo defines uniformly accelerated motion as one which, starting from rest, acquires equal increments of speed in equal times — speed proportional to time — and rejects the proportionality of speed to the distance covered."
+          status: attested
+          sources: [source.galileo.discorsi.1638]
+      a11y:
+        fr: "Le sélecteur d'outil présente trois cartes textuelles (dérivée, vecteur, exponentielle). Les formules sont rendues avec une alternative MathML. Aucune image nécessaire."
+        en: "The tool selector shows three textual cards (derivative, vector, exponential). Formulas are rendered with a MathML alternative. No image needed."
+
+    # ------------------------------------------------------------------ 11. transfer_rc
+    - id: transfer_rc
+      type: transfer_challenge
+      simulationRef: simulation.rc.charging
+      transferTargets: [phenomenon.circuit.capacitor_charging]
+      title:
+        fr: "Transfert : la charge d'un condensateur"
+        en: "Transfer: charging a capacitor"
+      instructions:
+        fr: |
+          Quittons Padoue pour un laboratoire d'aujourd'hui. Un condensateur de capacité $C = 1{,}0\ \mu\mathrm{F}$,
+          déchargé, est branché à $t = 0$ en série avec une résistance $R = 2{,}0\ \mathrm{k\Omega}$ aux bornes d'un
+          générateur de tension $E = 6{,}0\ \mathrm{V}$. Sa charge $q(t)$ augmente et tend vers $Q = CE = 6{,}0\ \mu\mathrm{C}$.
+
+          La question est la même que pour la bille : **à quelle vitesse la charge varie-t-elle à un instant
+          donné ?** Le courant est précisément ce taux de variation instantané : $i = \dfrac{\mathrm{d}q}{\mathrm{d}t}$.
+          Sélectionnez l'outil qui le définit, puis :
+
+          1. **Lancez la simulation** et observez la courbe $q(t)$ : elle démarre vite, puis ralentit et sature.
+             Rien à voir avec la parabole de la bille.
+          2. **Lisez la pente de la tangente à l'origine** : c'est le courant initial. La loi des mailles,
+             $E = R\,i + q/C$, donne
+             $$\frac{\mathrm{d}q}{\mathrm{d}t} = \frac{Q - q}{\tau}, \qquad \tau = RC = 2{,}0\ \mathrm{ms}.$$
+             Le taux de variation est proportionnel à **ce qui reste à gagner**, $Q - q$ — et non au temps écoulé,
+             comme pour la bille. À $t = 0$ : $\dfrac{\mathrm{d}q}{\mathrm{d}t} = \dfrac{Q}{\tau} = \dfrac{6{,}0\ \mu\mathrm{C}}{2{,}0\ \mathrm{ms}} = 3{,}0\ \mathrm{mA}$.
+          3. **Déplacez le point de tangence** : la pente diminue à mesure que $q$ approche $Q$. Vérifiez que la
+             tangente à l'origine atteint $Q$ à $t = \tau$.
+
+          Même outil, autre loi : la dérivée sert à *écrire* la loi ($\mathrm{d}q/\mathrm{d}t$ en fonction de $q$)
+          autant qu'à la lire.
+        en: |
+          Let us leave Padua for a present-day laboratory. A capacitor of capacitance $C = 1.0\ \mu\mathrm{F}$,
+          uncharged, is connected at $t = 0$ in series with a resistor $R = 2.0\ \mathrm{k\Omega}$ across a voltage
+          generator $E = 6.0\ \mathrm{V}$. Its charge $q(t)$ increases and tends to $Q = CE = 6.0\ \mu\mathrm{C}$.
+
+          The question is the same as for the ball: **how fast does the charge change at a given instant?** The
+          current is precisely this instantaneous rate of change: $i = \dfrac{\mathrm{d}q}{\mathrm{d}t}$. Select
+          the tool that defines it, then:
+
+          1. **Run the simulation** and watch the curve $q(t)$: it starts quickly, then slows down and saturates.
+             Nothing like the parabola of the ball.
+          2. **Read the slope of the tangent at the origin**: it is the initial current. The loop law,
+             $E = R\,i + q/C$, gives
+             $$\frac{\mathrm{d}q}{\mathrm{d}t} = \frac{Q - q}{\tau}, \qquad \tau = RC = 2.0\ \mathrm{ms}.$$
+             The rate of change is proportional to **what is still to be gained**, $Q - q$ — not to the elapsed
+             time, as for the ball. At $t = 0$: $\dfrac{\mathrm{d}q}{\mathrm{d}t} = \dfrac{Q}{\tau} = \dfrac{6.0\ \mu\mathrm{C}}{2.0\ \mathrm{ms}} = 3.0\ \mathrm{mA}$.
+          3. **Move the point of tangency**: the slope decreases as $q$ approaches $Q$. Check that the tangent at
+             the origin reaches $Q$ at $t = \tau$.
+
+          Same tool, another law: the derivative serves to *write* the law ($\mathrm{d}q/\mathrm{d}t$ as a function
+          of $q$) as much as to read it.
+      guideNotes:
+        fr: |
+          Deux objectifs : (1) reconnaître que « courant » est la dérivée de la charge, même geste que « vitesse »
+          est la dérivée de la position ; (2) percevoir la différence de structure — taux proportionnel au temps
+          (Galilée) contre taux proportionnel à l'écart à l'état final (circuit RC). L'élève peut être tenté par
+          l'outil « exponentielle » : elle est la *solution* $q = Q\,(1 - e^{-t/\tau})$, non l'outil qui définit le
+          taux ; la dérivée vient d'abord. Faire varier $\tau$ à $Q$ fixé, puis $Q$ à $\tau$ fixé. Le calcul de
+          $Q/\tau$ demande une conversion de préfixes (µ et m) ; vérification indépendante : $E/R = 3{,}0\ \mathrm{mA}$.
+        en: |
+          Two goals: (1) recognise that "current" is the derivative of the charge, the same move as "speed" is
+          the derivative of position; (2) perceive the difference of structure — rate proportional to time
+          (Galileo) versus rate proportional to the gap to the final state (RC circuit). The learner may be
+          tempted by the "exponential" tool: it is the *solution* $q = Q\,(1 - e^{-t/\tau})$, not the tool that
+          defines the rate; the derivative comes first. Vary $\tau$ at fixed $Q$, then $Q$ at fixed $\tau$. The
+          computation of $Q/\tau$ requires a prefix conversion (µ and m); independent check: $E/R = 3.0\ \mathrm{mA}$.
+      oralPrompts:
+        fr:
+          - "Qu'est-ce qui joue ici le rôle de la position ? Et celui de la vitesse ?"
+          - "Pourquoi le courant diminue-t-il alors que la charge augmente ?"
+          - "En quoi cette loi diffère-t-elle de $v = at$ ?"
+        en:
+          - "What plays the role of position here? And of speed?"
+          - "Why does the current decrease while the charge increases?"
+          - "How does this law differ from $v = at$?"
+      misconceptions:
+        fr:
+          - "Le courant serait proportionnel à la charge déjà stockée (il est proportionnel à ce qui reste, $Q - q$ : sinon, partant de zéro, rien ne démarrerait)."
+          - "La charge finale serait atteinte à $t = \\tau$ (à $t = \\tau$, $q \\approx 0{,}63\\,Q$ ; c'est la tangente à l'origine qui atteint $Q$ à $t = \\tau$)."
+          - "L'outil à choisir serait l'exponentielle (elle est la solution ; l'outil qui définit et calcule le taux est la dérivée)."
+        en:
+          - "The current is supposed to be proportional to the charge already stored (it is proportional to what remains, $Q - q$: otherwise, starting from zero, nothing would get going)."
+          - "The final charge is supposed to be reached at $t = \\tau$ (at $t = \\tau$, $q \\approx 0.63\\,Q$; it is the tangent at the origin that reaches $Q$ at $t = \\tau$)."
+          - "The tool to choose is supposed to be the exponential (it is the solution; the tool that defines and computes the rate is the derivative)."
+      hints:
+        - id: h1
+          autonomy: 0.8
+          text:
+            fr: "Dans la loi des mailles, remplacez $i$ par $\\dfrac{\\mathrm{d}q}{\\mathrm{d}t}$ et isolez cette dérivée ; faites apparaître $CE = Q$ au numérateur."
+            en: "In the loop law, replace $i$ by $\\dfrac{\\mathrm{d}q}{\\mathrm{d}t}$ and isolate this derivative; make $CE = Q$ appear in the numerator."
+        - id: h2
+          autonomy: 0.6
+          text:
+            fr: "À $t = 0$, $q = 0$ : $\\dfrac{\\mathrm{d}q}{\\mathrm{d}t}(0) = \\dfrac{Q}{\\tau} = \\dfrac{6{,}0 \\times 10^{-6}}{2{,}0 \\times 10^{-3}}\\ \\mathrm{A}$ ; vérification : $E/R = 6{,}0 / 2000\\ \\mathrm{A}$."
+            en: "At $t = 0$, $q = 0$: $\\dfrac{\\mathrm{d}q}{\\mathrm{d}t}(0) = \\dfrac{Q}{\\tau} = \\dfrac{6.0 \\times 10^{-6}}{2.0 \\times 10^{-3}}\\ \\mathrm{A}$; check: $E/R = 6.0 / 2000\\ \\mathrm{A}$."
+      minutes: 7
+      toolSelection:
+        phenomenonId: phenomenon.circuit.capacitor_charging
+        candidates: [tool.derivative, tool.vector, tool.exponential]
+        correct: tool.derivative
+      completion: { kind: exercises, exerciseIds: [exercise.transfer.rc_model, exercise.transfer.rc_rate] }
+      evidence:
+        - { type: transfer_completed, nodeId: tool.derivative, phenomenonId: phenomenon.circuit.capacitor_charging, dimension: transfer }
+      a11y:
+        fr: "Alternative textuelle : la simulation propose une vue « table » (temps, charge, taux) et décrit la tangente par sa pente. Valeurs repères : $q(\\tau) \\approx 3{,}8\\ \\mu\\mathrm{C}$, $q(3\\tau) \\approx 5{,}7\\ \\mu\\mathrm{C}$, courant initial $3{,}0\\ \\mathrm{mA}$."
+        en: "Text alternative: the simulation offers a \"table\" view (time, charge, rate) and describes the tangent by its slope. Reference values: $q(\\tau) \\approx 3.8\\ \\mu\\mathrm{C}$, $q(3\\tau) \\approx 5.7\\ \\mu\\mathrm{C}$, initial current $3.0\\ \\mathrm{mA}$."
+
+    # ------------------------------------------------------------------ 12. transfer_kinetics
+    - id: transfer_kinetics
+      type: transfer_challenge
+      simulationRef: simulation.kinetics.first_order
+      transferTargets: [phenomenon.chemistry.first_order_reaction]
+      title:
+        fr: "Transfert : une réaction chimique d'ordre 1"
+        en: "Transfer: a first-order chemical reaction"
+      instructions:
+        fr: |
+          Troisième décor : une paillasse de chimie. Un réactif A disparaît selon une cinétique d'ordre 1 : à
+          chaque instant, sa **vitesse de disparition** est proportionnelle à sa concentration,
+          $$-\frac{\mathrm{d}[\mathrm{A}]}{\mathrm{d}t} = k\,[\mathrm{A}], \qquad k = 0{,}10\ \mathrm{s^{-1}} .$$
+          On part de $[\mathrm{A}]_0 = 0{,}50\ \mathrm{mol\cdot L^{-1}}$.
+
+          La vitesse d'une réaction est, par définition, un taux de variation instantané de concentration :
+          encore la dérivée. Sélectionnez l'outil, puis :
+
+          1. **Calculez la vitesse initiale** : $k\,[\mathrm{A}]_0 = 0{,}10 \times 0{,}50 = 0{,}050\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}$.
+             Lisez-la sur la simulation comme la pente, au signe près, de la tangente à l'origine.
+          2. **Déplacez le point de tangence** : la vitesse diminue proportionnellement à ce qui reste de A.
+             Mesurez le temps de demi-réaction, puis changez $[\mathrm{A}]_0$ : il ne bouge pas — signature de
+             l'ordre 1.
+          3. **Comparez** les trois lois rencontrées : $v = a\,t$ (bille), $\dfrac{\mathrm{d}q}{\mathrm{d}t} = \dfrac{Q - q}{\tau}$
+             (condensateur), $\dfrac{\mathrm{d}[\mathrm{A}]}{\mathrm{d}t} = -k\,[\mathrm{A}]$ (réaction). Les deux
+             dernières ont la même structure : **un taux proportionnel à la quantité restante**. C'est une famille
+             entière de phénomènes — la désintégration radioactive en fait partie, et le mouvement avec
+             frottement lui ressemble : deux destinations qui restent à explorer sur la carte.
+        en: |
+          Third setting: a chemistry bench. A reactant A disappears according to first-order kinetics: at every
+          instant, its **rate of disappearance** is proportional to its concentration,
+          $$-\frac{\mathrm{d}[\mathrm{A}]}{\mathrm{d}t} = k\,[\mathrm{A}], \qquad k = 0.10\ \mathrm{s^{-1}} .$$
+          We start from $[\mathrm{A}]_0 = 0.50\ \mathrm{mol\cdot L^{-1}}$.
+
+          The rate of a reaction is, by definition, an instantaneous rate of change of concentration: the
+          derivative again. Select the tool, then:
+
+          1. **Compute the initial rate**: $k\,[\mathrm{A}]_0 = 0.10 \times 0.50 = 0.050\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}$.
+             Read it on the simulation as the slope, up to sign, of the tangent at the origin.
+          2. **Move the point of tangency**: the rate decreases proportionally to what is left of A. Measure the
+             half-life, then change $[\mathrm{A}]_0$: it does not move — the signature of first order.
+          3. **Compare** the three laws met so far: $v = a\,t$ (ball), $\dfrac{\mathrm{d}q}{\mathrm{d}t} = \dfrac{Q - q}{\tau}$
+             (capacitor), $\dfrac{\mathrm{d}[\mathrm{A}]}{\mathrm{d}t} = -k\,[\mathrm{A}]$ (reaction). The last two
+             have the same structure: **a rate proportional to the remaining quantity**. This is a whole family
+             of phenomena — radioactive decay belongs to it, and motion with drag resembles it: two destinations
+             still to explore on the map.
+      guideNotes:
+        fr: |
+          Insister sur le geste commun : nommer la grandeur qui varie, écrire son taux de variation comme une
+          dérivée, dire de quoi ce taux dépend. L'exercice de classement demande de trier les processus selon que
+          le taux dépend de la quantité restante (circuit RC, ordre 1, radioactivité) ou du temps écoulé
+          (mouvement uniformément accéléré, chute libre). Relier au nœud « taux proportionnel à la quantité » :
+          $\tau = 1/k = 10\ \mathrm{s}$, $t_{1/2} = \tau \ln 2 \approx 6{,}9\ \mathrm{s}$. Ne pas résoudre l'équation
+          différentielle ici (parcours MPSI et MP) ; l'exponentielle n'est nommée que comme solution.
+        en: |
+          Stress the common move: name the quantity that changes, write its rate of change as a derivative, say
+          what this rate depends on. The classification exercise asks to sort processes according to whether the
+          rate depends on the remaining quantity (RC circuit, first order, radioactivity) or on the elapsed time
+          (uniformly accelerated motion, free fall). Link to the node "rate proportional to quantity":
+          $\tau = 1/k = 10\ \mathrm{s}$, $t_{1/2} = \tau \ln 2 \approx 6.9\ \mathrm{s}$. Do not solve the
+          differential equation here (MPSI and MP paths); the exponential is named only as the solution.
+      oralPrompts:
+        fr:
+          - "Qu'ont en commun le condensateur et la réaction ? Qu'est-ce qui les distingue de la bille ?"
+          - "Pourquoi le temps de demi-réaction ne dépend-il pas de la concentration initiale ?"
+          - "Quel autre phénomène de votre programme suit une loi du même type ?"
+        en:
+          - "What do the capacitor and the reaction have in common? What sets them apart from the ball?"
+          - "Why does the half-life not depend on the initial concentration?"
+          - "Which other phenomenon in your syllabus follows a law of the same type?"
+      misconceptions:
+        fr:
+          - "La vitesse d'une réaction serait constante (elle diminue avec la concentration ; seule une réaction d'ordre 0 a une vitesse constante)."
+          - "Un taux « proportionnel à la quantité » ferait croître la quantité (le signe moins : le taux est proportionnel à ce qui reste, et la quantité décroît)."
+          - "La dérivée ne servirait qu'en mécanique (elle définit toute vitesse de variation : courant, vitesse de réaction, activité radioactive)."
+        en:
+          - "The rate of a reaction is supposed to be constant (it decreases with the concentration; only a zero-order reaction has a constant rate)."
+          - "A rate \"proportional to the quantity\" is supposed to make the quantity grow (the minus sign: the rate is proportional to what remains, and the quantity decreases)."
+          - "The derivative is supposed to be useful only in mechanics (it defines every rate of change: current, reaction rate, radioactive activity)."
+      hints:
+        - id: h1
+          autonomy: 0.8
+          text:
+            fr: "À $t = 0$, remplacez $[\\mathrm{A}]$ par $[\\mathrm{A}]_0$ dans $k\\,[\\mathrm{A}]$ ; vérifiez l'unité : $\\mathrm{s^{-1}} \\times \\mathrm{mol\\cdot L^{-1}}$."
+            en: "At $t = 0$, replace $[\\mathrm{A}]$ by $[\\mathrm{A}]_0$ in $k\\,[\\mathrm{A}]$; check the unit: $\\mathrm{s^{-1}} \\times \\mathrm{mol\\cdot L^{-1}}$."
+        - id: h2
+          autonomy: 0.6
+          text:
+            fr: "Pour classer : écrivez pour chaque processus le taux de variation. S'il s'écrit « constante × (quantité restante) », c'est la famille du condensateur ; s'il croît avec $t$, c'est la famille de la bille."
+            en: "To classify: write the rate of change for each process. If it reads \"constant × (remaining quantity)\", it belongs to the capacitor family; if it grows with $t$, to the ball family."
+      minutes: 6
+      toolSelection:
+        phenomenonId: phenomenon.chemistry.first_order_reaction
+        candidates: [tool.derivative, tool.vector, tool.exponential]
+        correct: tool.derivative
+      completion: { kind: exercises, exerciseIds: [exercise.transfer.kinetics_rate, exercise.transfer.classify_rate_processes] }
+      evidence:
+        - { type: transfer_completed, nodeId: tool.derivative, phenomenonId: phenomenon.chemistry.first_order_reaction, dimension: transfer }
+      a11y:
+        fr: "Alternative textuelle : vue « table » (temps, concentration, vitesse). Valeurs repères : $[\\mathrm{A}](10\\ \\mathrm{s}) \\approx 0{,}18\\ \\mathrm{mol\\cdot L^{-1}}$, temps de demi-réaction $\\approx 6{,}9\\ \\mathrm{s}$, vitesse initiale $0{,}050\\ \\mathrm{mol\\cdot L^{-1}\\cdot s^{-1}}$."
+        en: "Text alternative: \"table\" view (time, concentration, rate). Reference values: $[\\mathrm{A}](10\\ \\mathrm{s}) \\approx 0.18\\ \\mathrm{mol\\cdot L^{-1}}$, half-life $\\approx 6.9\\ \\mathrm{s}$, initial rate $0.050\\ \\mathrm{mol\\cdot L^{-1}\\cdot s^{-1}}$."
+
+    # ------------------------------------------------------------------ 13. debrief
+    - id: debrief
+      type: historical_debrief
+      title:
+        fr: "Hier et aujourd'hui : ce que Galilée pouvait dire"
+        en: "Then and now: what Galileo could say"
+      instructions:
+        fr: |
+          Reprenons la mission avec les yeux de l'historien.
+
+          **Ce que Galilée savait et pouvait dire.** Que les distances parcourues à partir du repos sont comme
+          les carrés des temps ; que les espaces parcourus en des temps égaux sont comme les nombres impairs ;
+          que la vitesse croît comme le temps — en 1638, non en 1604. Il le dit dans le langage d'Euclide : des
+          *proportions* entre longueurs, entre durées, entre « degrés de vitesse » — jamais une équation, jamais
+          une fonction $x(t)$. Son premier théorème sur le mouvement accéléré, qui le compare à un mouvement
+          uniforme à la vitesse moyenne, a la forme du « théorème de la vitesse moyenne » des maîtres d'Oxford et
+          de Nicole Oresme au XIV^e siècle ; ce que Galilée en connaissait est débattu par les historiens.
+
+          **Ce qu'il pouvait mesurer.** Des distances sur une rainure et des masses d'eau. Pas de vitesse
+          instantanée, pas d'accélération, pas de $g$ : le plan incliné remplace une horloge qui n'existe pas.
+
+          **Ce qui est venu après.** Huygens (1673), dans l'*Horologium oscillatorium*, étend les résultats de
+          Galilée à la descente sur des plans inclinés et des courbes, et mesure précisément l'accélération de la
+          pesanteur grâce aux pendules. Leibniz (1684) publie la première méthode du calcul différentiel ; Newton
+          l'avait élaborée dans les années 1660 et en use, sous forme géométrique, dans les *Principia* (1687). La
+          vitesse devient la dérivée de la position — l'outil de l'atelier.
+
+          **Une légende à écarter.** L'anecdote de la tour de Pise, d'où Galilée aurait lâché des boulets, vient
+          de la biographie de Viviani, écrite en 1654 et publiée en 1717 ; aucun document contemporain ne la
+          confirme, les historiens sont partagés, et elle n'a de toute façon rien à voir avec la loi des carrés,
+          obtenue sur le plan incliné.
+
+          **Le modèle d'aujourd'hui.** Le point matériel de Newton : $a = g\sin\alpha$ sur un plan sans frottement,
+          $a = g$ en chute libre dans le vide ; avec l'air, une vitesse limite apparaît, décrite par une équation
+          différentielle du premier ordre — le défi MP de cette mission. Le tableau complet « hier / aujourd'hui »
+          est dans la fiche de la mission.
+        en: |
+          Let us go back over the mission with a historian's eyes.
+
+          **What Galileo knew and could say.** That the distances covered from rest are as the squares of the
+          times; that the spaces passed in equal times are as the odd numbers; that speed grows like time — in
+          1638, not in 1604. He says it in Euclid's language: *proportions* between lengths, between durations,
+          between "degrees of speed" — never an equation, never a function $x(t)$. His first theorem on
+          accelerated motion, which compares it with a uniform motion at the mean speed, has the form of the
+          "mean-speed theorem" of the Oxford masters and of Nicole Oresme in the fourteenth century; how much
+          Galileo knew of it is debated by historians.
+
+          **What he could measure.** Distances on a groove and masses of water. No instantaneous speed, no
+          acceleration, no $g$: the inclined plane stands in for a clock that does not exist.
+
+          **What came afterwards.** Huygens (1673), in the *Horologium oscillatorium*, extends Galileo's results
+          to descent on inclined planes and curves, and measures the acceleration of gravity precisely with
+          pendulums. Leibniz (1684) publishes the first method of the differential calculus; Newton had worked it
+          out in the 1660s and uses it, in geometric form, in the *Principia* (1687). Speed becomes the
+          derivative of position — the tool of the workshop.
+
+          **A legend to set aside.** The anecdote of the Leaning Tower of Pisa, from which Galileo is said to have
+          dropped cannonballs, comes from Viviani's biography, written in 1654 and published in 1717; no
+          contemporary document confirms it, historians are divided, and in any case it has nothing to do with
+          the square law, obtained on the inclined plane.
+
+          **Today's model.** Newton's point mass: $a = g\sin\alpha$ on a frictionless plane, $a = g$ in free fall
+          in vacuum; in air, a terminal speed appears, described by a first-order differential equation — the MP
+          challenge of this mission. The full "then / now" table is in the mission sheet.
+      guideNotes:
+        fr: |
+          Le pas sépare quatre registres : attesté (les *Discorsi*, la lettre à Sarpi), interprétation (datation,
+          filiation médiévale, tour de Pise), reconstruction (la table du pas 3, le rôle du pensionnaire), fiction
+          (les dialogues). Faire retrouver à l'élève un exemple de chaque. Insister sur la différence entre
+          « savoir une loi » (Galilée) et « disposer de l'outil qui la calcule » (après Newton et Leibniz). Pour la
+          tour de Pise, noter que Drake lui-même jugeait l'épisode possible : c'est un débat, pas une certitude
+          dans un sens ou dans l'autre.
+        en: |
+          The step separates four registers: attested (the *Discorsi*, the letter to Sarpi), interpretation
+          (dating, medieval lineage, Leaning Tower), reconstruction (the table of step 3, the boarder's role),
+          fiction (the dialogues). Have the learner find an example of each. Stress the difference between
+          "knowing a law" (Galileo) and "having the tool that computes it" (after Newton and Leibniz). For the
+          Leaning Tower, note that Drake himself considered the episode possible: it is a debate, not a certainty
+          either way.
+      oralPrompts:
+        fr:
+          - "Qu'est-ce que Galilée savait sans pouvoir l'écrire comme nous ?"
+          - "Pourquoi le plan incliné est-il une réponse à l'absence d'horloge ?"
+          - "Dans cette mission, donnez un exemple de fait attesté, d'interprétation et de reconstruction."
+        en:
+          - "What did Galileo know without being able to write it the way we do?"
+          - "Why is the inclined plane an answer to the absence of a clock?"
+          - "In this mission, give an example of an attested fact, of an interpretation and of a reconstruction."
+      misconceptions:
+        fr:
+          - "Galilée aurait « inventé la dérivée » ou écrit $v = at$ (il raisonnait par proportions ; la dérivée vient de Newton et Leibniz)."
+          - "La loi de la chute viendrait de la tour de Pise (elle vient du plan incliné ; l'anecdote est tardive et discutée)."
+        en:
+          - "Galileo is supposed to have \"invented the derivative\" or written $v = at$ (he reasoned with proportions; the derivative comes from Newton and Leibniz)."
+          - "The law of fall is supposed to come from the Leaning Tower of Pisa (it comes from the inclined plane; the anecdote is late and disputed)."
+      minutes: 5
+      completion: { kind: read }
+      historicalClaims:
+        - id: proportional_reasoning
+          claim:
+            fr: "Dans les Discorsi, Galilée formule ses résultats sur le mouvement comme des proportions entre grandeurs de même nature (longueurs, durées, degrés de vitesse), sans notation fonctionnelle ni équation algébrique."
+            en: "In the Discorsi, Galileo formulates his results on motion as proportions between quantities of the same kind (lengths, durations, degrees of speed), without functional notation or algebraic equations."
+          status: attested
+          sources: [source.galileo.discorsi.1638]
+        - id: mean_speed_theorem
+          claim:
+            fr: "Le premier théorème de Galilée sur le mouvement uniformément accéléré a la forme du théorème médiéval de la vitesse moyenne ; la filiation avec les calculateurs d'Oxford et Oresme est une interprétation d'historiens."
+            en: "Galileo's first theorem on uniformly accelerated motion has the form of the medieval mean-speed theorem; the lineage from the Oxford calculators and Oresme is a historians' interpretation."
+          status: scholarly_interpretation
+          sources: [source.drake.1978]
+        - id: leibniz_1684
+          claim:
+            fr: "La première publication du calcul différentiel est l'article de Leibniz « Nova methodus pro maximis et minimis » dans les Acta Eruditorum (1684)."
+            en: "The first publication of the differential calculus is Leibniz's article \"Nova methodus pro maximis et minimis\" in the Acta Eruditorum (1684)."
+          status: attested
+          sources: [source.leibniz.1684]
+        - id: huygens_1673
+          claim:
+            fr: "Dans l'Horologium oscillatorium (1673), Huygens étend les résultats de Galilée à la descente sur des plans inclinés et des courbes et donne une mesure précise de l'accélération de la pesanteur fondée sur le pendule."
+            en: "In the Horologium oscillatorium (1673), Huygens extends Galileo's results to descent on inclined planes and curves and gives a precise pendulum-based measurement of the acceleration of gravity."
+          status: attested
+          sources: [source.huygens.1673]
+        - id: leaning_tower
+          claim:
+            fr: "L'anecdote de la tour de Pise repose sur la seule biographie de Viviani (écrite en 1654, publiée en 1717) ; sa réalité est discutée par les historiens (Drake la tenait pour possible, d'autres pour légendaire) et elle n'est pas à l'origine de la loi des carrés."
+            en: "The Leaning Tower anecdote rests on Viviani's biography alone (written in 1654, published in 1717); its reality is disputed by historians (Drake considered it possible, others legendary) and it is not the origin of the square law."
+          status: scholarly_interpretation
+          sources: [source.viviani.1717, source.drake.1978]
+      a11y:
+        fr: "Texte structuré en cinq paragraphes ; la frise chronologique (1604, 1638, 1673, 1684, 1687) est entièrement décrite par les dates du texte."
+        en: "Text structured in five paragraphs; the timeline (1604, 1638, 1673, 1684, 1687) is entirely described by the dates in the text."
+
+    # ------------------------------------------------------------------ 14. reflection
+    - id: reflection
+      type: reflection
+      title:
+        fr: "À vous : ce que Galilée ne pouvait pas dire"
+        en: "Your turn: what Galileo could not say"
+      instructions:
+        fr: |
+          Avec vos mots, en quelques phrases : **que pouvez-vous dire aujourd'hui de la vitesse d'un corps qui
+          tombe, que Galilée ne pouvait pas dire ?**
+
+          Pensez à ce qui manquait sur la table de Padoue : une manière de définir la vitesse *à un instant*, une
+          règle pour la calculer, une écriture pour l'énoncer. Et à ce que vous avez gagné : $v(t) = x'(t)$, donc
+          $v = a\,t$ — la même règle que vous avez ensuite appliquée à une charge électrique et à une
+          concentration.
+
+          Votre explication est évaluée avec une grille (l'outil nommé, le besoin expliqué, l'idée de limite,
+          l'interprétation physique, le regard historique) ; elle nourrit la dimension « reconnaître et
+          expliquer » de votre maîtrise de la dérivée.
+        en: |
+          In your own words, in a few sentences: **what can you say today about the speed of a falling body that
+          Galileo could not say?**
+
+          Think of what was missing on the table in Padua: a way to define the speed *at an instant*, a rule to
+          compute it, a notation to state it. And of what you have gained: $v(t) = x'(t)$, hence $v = a\,t$ — the
+          same rule you then applied to an electric charge and to a concentration.
+
+          Your explanation is assessed with a rubric (the tool named, the need explained, the idea of limit, the
+          physical interpretation, the historical view); it feeds the "recognise and explain" dimension of your
+          mastery of the derivative.
+      guideNotes:
+        fr: |
+          Grille de l'exercice : nomme la dérivée ; explique pourquoi une moyenne ne suffit pas ; décrit la
+          limite ; interprète $v = at$ ; dit ce qui manquait à Galilée. Laisser écrire sans aide d'abord ; les
+          indices ne sont là que pour les élèves bloqués. Une réponse de 80 à 150 mots suffit. Faire lire à voix
+          haute et demander une précision sur le mot « limite ».
+        en: |
+          Rubric of the exercise: names the derivative; explains why an average is not enough; describes the
+          limit; interprets $v = at$; says what Galileo lacked. Let the learner write without help first; the
+          hints are only for those who are stuck. An answer of 80 to 150 words is enough. Have it read aloud and
+          ask for a clarification of the word "limit".
+      oralPrompts:
+        fr:
+          - "Si vous deviez expliquer la dérivée à Galilée en une phrase, laquelle choisiriez-vous ?"
+          - "Quelle étape de la mission vous a semblé la plus difficile, et pourquoi ?"
+        en:
+          - "If you had to explain the derivative to Galileo in one sentence, which would you choose?"
+          - "Which step of the mission seemed the hardest to you, and why?"
+      misconceptions:
+        fr:
+          - "« Galilée n'avait pas assez de données » (il en avait ; il lui manquait un concept et une notation)."
+        en:
+          - "\"Galileo did not have enough data\" (he had; what he lacked was a concept and a notation)."
+      minutes: 3
+      completion: { kind: exercises, exerciseIds: [exercise.debrief.reflection] }
+      a11y:
+        fr: "Zone de texte libre ; la grille d'évaluation est textuelle."
+        en: "Free text area; the assessment rubric is textual."
+
+    # ------------------------------------------------------------------ 15. map_return
+    - id: map_return
+      type: map_return
+      title:
+        fr: "Retour à la carte"
+        en: "Back to the map"
+      instructions:
+        fr: |
+          La mission est terminée. Sur la carte, trois choses s'allument :
+
+          - dans le monde des mathématiques, l'outil **dérivée** entre dans votre sac à dos, avec une première
+            couverture d'applications ;
+          - dans le monde de la physique, le **plan incliné** et le **mouvement uniformément accéléré** passent à
+            l'état exploré, et la **charge d'un condensateur** est reliée par le pont du transfert ;
+          - dans le monde de la chimie, la **réaction d'ordre 1** est reliée par le même pont.
+
+          Deux destinations vous attendent, avec le même outil :
+
+          1. **Le mouvement avec frottement** — que devient la chute quand l'air résiste ? La vitesse cesse de
+             croître comme $t$ ; c'est une équation différentielle du premier ordre, et le défi MP de cette mission.
+          2. **La désintégration radioactive** — un taux proportionnel à la quantité restante, comme la réaction
+             d'ordre 1.
+
+          Votre sac à dos affiche séparément deux indicateurs : ce que vous *maîtrisez* de la dérivée (d'après les
+          exercices et votre explication) et ce que vous en avez *appliqué* (trois phénomènes, parmi tous ceux
+          que l'outil peut éclairer).
+        en: |
+          The mission is over. On the map, three things light up:
+
+          - in the world of mathematics, the **derivative** tool enters your backpack, with a first application
+            coverage;
+          - in the world of physics, the **inclined plane** and **uniformly accelerated motion** become explored,
+            and the **charging of a capacitor** is connected by the transfer bridge;
+          - in the world of chemistry, the **first-order reaction** is connected by the same bridge.
+
+          Two destinations await you, with the same tool:
+
+          1. **Motion with drag** — what becomes of the fall when air resists? The speed stops growing like $t$;
+             this is a first-order differential equation, and the MP challenge of this mission.
+          2. **Radioactive decay** — a rate proportional to the remaining quantity, like the first-order reaction.
+
+          Your backpack shows two separate indicators: what you *master* of the derivative (from the exercises
+          and your explanation) and what you have *applied* it to (three phenomena, among all those the tool can
+          illuminate).
+      guideNotes:
+        fr: |
+          Faire ouvrir le sac à dos : distinguer maîtrise (dimensions : reconnaître et expliquer, exécuter, choisir
+          un modèle, transférer, retenir) et couverture d'applications. Suggérer la destination suivante selon le
+          profil : le mouvement avec frottement pour un élève à l'aise avec les équations, la radioactivité pour
+          consolider le transfert. Une révision espacée sera proposée plus tard : c'est la dimension « retenir ».
+        en: |
+          Have the backpack opened: distinguish mastery (dimensions: recognise and explain, execute, choose a
+          model, transfer, retain) from application coverage. Suggest the next destination according to the
+          profile: motion with drag for a learner at ease with equations, radioactivity to consolidate transfer.
+          A spaced review will be offered later: this is the "retain" dimension.
+      oralPrompts:
+        fr:
+          - "Sur la carte, quels nœuds sont maintenant reliés à la dérivée ? Lesquels restent à explorer ?"
+          - "Quelle destination choisissez-vous, et pourquoi ?"
+        en:
+          - "On the map, which nodes are now connected to the derivative? Which remain to be explored?"
+          - "Which destination do you choose, and why?"
+      misconceptions:
+        fr:
+          - "Avoir terminé la mission signifierait avoir « fini » la dérivée (la maîtrise se construit par l'application à d'autres phénomènes et par la révision)."
+        en:
+          - "Having finished the mission is supposed to mean being \"done\" with the derivative (mastery is built by applying it to other phenomena and by review)."
+      minutes: 2
+      completion: { kind: read }
+      evidence: [{ type: mission_completed }]
+      a11y:
+        fr: "La vue carte 3D a une alternative textuelle : la liste des nœuds mis en évidence (dérivée, plan incliné, mouvement uniformément accéléré, charge d'un condensateur, réaction d'ordre 1) et les deux destinations suggérées (mouvement avec frottement, désintégration radioactive)."
+        en: "The 3D map view has a text alternative: the list of highlighted nodes (derivative, inclined plane, uniformly accelerated motion, charging of a capacitor, first-order reaction) and the two suggested destinations (motion with drag, radioactive decay)."
+# Then versus now (LEARNING_AND_CONTENT_MODEL §8.4).
+debrief:
+  knownAtTheTime:
+    fr: |
+      En 1604, on sait depuis l'Antiquité que les corps lourds tombent de plus en plus vite, et la tradition
+      aristotélicienne enseigne que la vitesse de chute dépend du poids et du milieu traversé. Au XIV^e siècle,
+      les « calculateurs » d'Oxford et Nicole Oresme ont étudié le mouvement « uniformément difforme » et énoncé
+      la règle de la vitesse moyenne, mais sans la confronter à des mesures de chute. Galilée est convaincu que
+      la chute est un mouvement « naturellement accéléré » régi par une loi simple ; en 1604, il croit encore que
+      la vitesse croît avec la distance parcourue, et non avec le temps.
+    en: |
+      In 1604 it has been known since Antiquity that heavy bodies fall faster and faster, and the Aristotelian
+      tradition teaches that the speed of fall depends on weight and on the medium. In the fourteenth century
+      the Oxford "calculators" and Nicole Oresme studied "uniformly difform" motion and stated the mean-speed
+      rule, but without confronting it with measurements of fall. Galileo is convinced that fall is a
+      "naturally accelerated" motion governed by a simple law; in 1604 he still believes that speed grows with
+      the distance covered, not with time.
+  couldMeasure:
+    fr: |
+      Galilée ne dispose d'aucune horloge capable de suivre une chute libre, qui dure moins d'une seconde sur la
+      hauteur d'une pièce. Il « dilue » la pesanteur en faisant rouler une bille sur un plan peu incliné, et
+      mesure le temps par le poids de l'eau écoulée d'un vase pendant la descente. Il peut donc comparer des
+      durées et des distances marquées le long de la rainure — avec une précision de l'ordre de quelques pour
+      cent, d'après la réplication de Settle. Il ne peut mesurer directement ni la vitesse à un instant donné,
+      ni l'accélération.
+    en: |
+      Galileo has no clock able to follow a free fall, which lasts less than a second over the height of a room.
+      He "dilutes" gravity by rolling a ball down a gently inclined plane, and measures time by the weight of
+      the water that flows out of a vessel during the descent. He can therefore compare durations and distances
+      marked along the groove — to within a few per cent, according to Settle's replication. He cannot directly
+      measure the speed at a given instant, nor the acceleration.
+  toolsAvailable:
+    fr: |
+      Les mathématiques de Galilée sont la théorie des proportions d'Euclide et la géométrie : il compare des
+      rapports de distances, de temps et de « degrés de vitesse » représentés par des segments et des triangles.
+      Il ne dispose ni de la notation fonctionnelle — écrire $x(t)$ n'a pas de sens pour lui —, ni du calcul
+      différentiel. « La vitesse est proportionnelle au temps » se dit chez lui en mots et en figures, jamais sous
+      la forme $v = at$.
+    en: |
+      Galileo's mathematics is Euclid's theory of proportions and geometry: he compares ratios of distances, of
+      times and of "degrees of speed" represented by segments and triangles. He has neither functional notation
+      — writing $x(t)$ is meaningless to him — nor the differential calculus. "Speed is proportional to time" is
+      said, in his work, in words and figures, never in the form $v = at$.
+  discoveredLater:
+    fr: |
+      Descartes et Fermat (années 1630) inventent les coordonnées et des méthodes de tangentes ; Huygens (1673)
+      prolonge les résultats de Galilée aux plans inclinés et aux courbes et fixe précisément l'accélération de
+      la pesanteur grâce aux pendules ; Newton (années 1660, publication en 1687) et Leibniz (1684) construisent
+      le calcul différentiel, qui fait de la vitesse la dérivée de la position. Il faudra attendre Cauchy (1821)
+      puis Weierstrass pour une définition rigoureuse de la limite, celle que rencontre le parcours MPSI.
+    en: |
+      Descartes and Fermat (1630s) invent coordinates and tangent methods; Huygens (1673) extends Galileo's
+      results to inclined planes and curves and fixes the acceleration of gravity precisely with pendulums;
+      Newton (1660s, published 1687) and Leibniz (1684) build the differential calculus, which makes speed the
+      derivative of position. A rigorous definition of the limit — the one met on the MPSI path — waits for
+      Cauchy (1821) and then Weierstrass.
+  modernModel:
+    fr: |
+      Aujourd'hui, la chute est décrite par le modèle du point matériel et la deuxième loi de Newton :
+      $m\vec a = m\vec g$, d'où $a = g \approx 9{,}81\ \mathrm{m\cdot s^{-2}}$ dans le vide, et $a = g\sin\alpha$
+      pour un glissement sans frottement sur un plan incliné d'angle $\alpha$ (pour une bille qui roule sans
+      glisser, $a = \tfrac{5}{7}\,g\sin\alpha$). La vitesse est la dérivée de la position, $v(t) = x'(t)$, et
+      l'accélération celle de la vitesse, $a(t) = v'(t)$. Dans l'air, la loi $\tfrac{1}{2}gt^2$ n'est qu'une
+      approximation valable pour les premiers mètres : le frottement fluide conduit à une vitesse limite, décrite
+      par une équation différentielle du premier ordre — objet du défi MP.
+    en: |
+      Today, fall is described by the point-mass model and Newton's second law: $m\vec a = m\vec g$, hence
+      $a = g \approx 9.81\ \mathrm{m\cdot s^{-2}}$ in vacuum, and $a = g\sin\alpha$ for frictionless sliding on a
+      plane inclined at angle $\alpha$ (for a ball rolling without slipping, $a = \tfrac{5}{7}\,g\sin\alpha$).
+      Speed is the derivative of position, $v(t) = x'(t)$, and acceleration the derivative of speed,
+      $a(t) = v'(t)$. In air, the law $\tfrac{1}{2}gt^2$ is only an approximation valid for the first few
+      metres: fluid drag leads to a terminal speed, described by a first-order differential equation — the
+      subject of the MP challenge.

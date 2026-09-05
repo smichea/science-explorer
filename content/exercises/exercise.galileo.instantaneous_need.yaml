@@ -1,0 +1,99 @@
+# Galilée — pourquoi les vitesses moyennes ne suffisent pas (choix unique avec justification)
+id: exercise.galileo.instantaneous_need
+type: choice
+nodeId: concept.rate_of_change
+depth: 1
+evidenceDimension: recognition_explanation
+context:
+  fr: |-
+    Padoue, vers 1604 (reconstruction pédagogique). Les mesures sont faites ; reste à dire ce qu'est la vitesse de la bille à un instant précis.
+  en: |-
+    Padua, c. 1604 (pedagogical reconstruction). The measurements are done; it remains to say what the speed of the ball is at one precise instant.
+prompt:
+  fr: |-
+    Les mesures sur le plan incliné suivent la loi $d = 0.60\,t^2$ ($d$ en mètres, $t$ en secondes). On sait calculer une **vitesse moyenne** entre deux instants : distance parcourue divisée par la durée. Autour de $t = 2\ \mathrm{s}$, par exemple :
+
+    | intervalle | $[2 ; 3]$ | $[2 ; 2.5]$ | $[2 ; 2.1]$ |
+    |:--|--:|--:|--:|
+    | vitesse moyenne | $3.00\ \mathrm{m/s}$ | $2.70\ \mathrm{m/s}$ | $2.46\ \mathrm{m/s}$ |
+
+    Chaque intervalle donne une valeur différente. Pour pouvoir parler de **la** vitesse de la bille à l'instant $t = 2\ \mathrm{s}$, exactement, que manque-t-il ? Justifiez votre choix.
+  en: |-
+    The measurements on the inclined plane follow the law $d = 0.60\,t^2$ ($d$ in metres, $t$ in seconds). We know how to compute an **average speed** between two instants: distance travelled divided by the duration. Around $t = 2\ \mathrm{s}$, for instance:
+
+    | interval | $[2, 3]$ | $[2, 2.5]$ | $[2, 2.1]$ |
+    |:--|--:|--:|--:|
+    | average speed | $3.00\ \mathrm{m/s}$ | $2.70\ \mathrm{m/s}$ | $2.46\ \mathrm{m/s}$ |
+
+    Each interval gives a different value. To be able to speak of **the** speed of the ball at the instant $t = 2\ \mathrm{s}$, exactly, what is missing? Justify your choice.
+choice:
+  multiple: false
+  requireReasoning: true
+  choices:
+    - id: better_clock
+      text: { fr: "Une horloge plus précise", en: "A more precise clock" }
+      feedback:
+        fr: |-
+          Une meilleure horloge réduit l'incertitude sur chaque mesure, mais ne dit pas quel intervalle choisir : même avec la loi exacte $d = 0.60\,t^2$ (aucune erreur de mesure), les moyennes $3.00$, $2.70$, $2.46\ \mathrm{m/s}$ dépendent encore de l'intervalle. Le problème n'est pas instrumental, il est conceptuel.
+        en: |-
+          A better clock reduces the uncertainty on each measurement, but does not say which interval to choose: even with the exact law $d = 0.60\,t^2$ (no measurement error at all), the averages $3.00$, $2.70$, $2.46\ \mathrm{m/s}$ still depend on the interval. The problem is not instrumental, it is conceptual.
+    - id: limit_rule
+      text:
+        fr: "Une règle qui donne la limite des vitesses moyennes lorsque l'intervalle tend vers zéro"
+        en: "A rule giving the limit of the average speeds when the interval shrinks to zero"
+      correct: true
+      feedback:
+        fr: |-
+          Exact. Les vitesses moyennes $3.00$, $2.70$, $2.46\ \mathrm{m/s}$ se rapprochent d'une valeur limite ($2.40\ \mathrm{m/s}$) quand l'intervalle rétrécit. Définir la vitesse instantanée comme cette limite, et savoir la calculer, c'est exactement ce que fournira la dérivée.
+        en: |-
+          Correct. The average speeds $3.00$, $2.70$, $2.46\ \mathrm{m/s}$ approach a limiting value ($2.40\ \mathrm{m/s}$) as the interval shrinks. Defining the instantaneous speed as this limit, and knowing how to compute it, is exactly what the derivative will provide.
+    - id: longer_plane
+      text: { fr: "Un plan plus long", en: "A longer plane" }
+      feedback:
+        fr: |-
+          Un plan plus long permet de mesurer plus longtemps, pas plus finement : il ajoute des lignes au tableau sans résoudre la question de l'intervalle à choisir autour de $t = 2\ \mathrm{s}$.
+        en: |-
+          A longer plane lets you measure for longer, not more finely: it adds rows to the table without settling the question of which interval to choose around $t = 2\ \mathrm{s}$.
+    - id: speedometer
+      text: { fr: "Mesurer la vitesse avec un compteur de vitesse", en: "Measuring the speed with a speedometer" }
+      feedback:
+        fr: |-
+          Un compteur de vitesse mesure lui aussi une distance sur une courte durée (la rotation d'une roue pendant une fraction de seconde) : il applique en secret une règle du type « petit intervalle ». Il ne définit pas la vitesse instantanée, il la suppose déjà définie.
+        en: |-
+          A speedometer also measures a distance over a short duration (the rotation of a wheel during a fraction of a second): it secretly applies a "small interval" rule. It does not define the instantaneous speed, it assumes it is already defined.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Regardez comment évoluent les valeurs du tableau quand l'intervalle rétrécit : $3.00$, $2.70$, $2.46$… Vers quel nombre semblent-elles tendre ? Calculez la vitesse moyenne sur $[2 ; 2.01]$.
+      en: |-
+        Look at how the values in the table evolve as the interval shrinks: $3.00$, $2.70$, $2.46$… Which number do they seem to approach? Compute the average speed on $[2, 2.01]$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Sur $[2 ; 2.01]$ la vitesse moyenne vaut $2.406\ \mathrm{m/s}$. Les valeurs s'approchent de $2.40\ \mathrm{m/s}$ sans qu'aucun intervalle particulier soit « le bon » : il manque une règle pour passer à la limite.
+      en: |-
+        On $[2, 2.01]$ the average speed is $2.406\ \mathrm{m/s}$. The values approach $2.40\ \mathrm{m/s}$ without any particular interval being "the right one": what is missing is a rule for passing to the limit.
+solution:
+  fr: |-
+    La vitesse moyenne sur $[2 ; 2 + h]$ vaut
+    $$\frac{d(2+h) - d(2)}{h} = \frac{0.60\,(2+h)^2 - 0.60 \times 4}{h} = \frac{2.40\,h + 0.60\,h^2}{h} = 2.40 + 0.60\,h.$$
+    Pour $h = 1$, $0.5$, $0.1$, $0.01$ on retrouve $3.00$, $2.70$, $2.46$, $2.406\ \mathrm{m/s}$. Aucune de ces valeurs n'est « la » vitesse à $t = 2\ \mathrm{s}$ : chacune dépend de $h$. Mais toutes s'approchent de $2.40\ \mathrm{m/s}$ quand $h$ tend vers $0$.
+
+    Ce qui manque n'est donc ni un instrument ni un plan plus long, mais une **règle** : définir la vitesse instantanée comme la limite des vitesses moyennes quand la durée de l'intervalle tend vers zéro, et savoir calculer cette limite. Cette règle est la dérivée : $v(2) = d'(2) = 2.40\ \mathrm{m/s}$.
+  en: |-
+    The average speed on $[2, 2 + h]$ is
+    $$\frac{d(2+h) - d(2)}{h} = \frac{0.60\,(2+h)^2 - 0.60 \times 4}{h} = \frac{2.40\,h + 0.60\,h^2}{h} = 2.40 + 0.60\,h.$$
+    For $h = 1$, $0.5$, $0.1$, $0.01$ we recover $3.00$, $2.70$, $2.46$, $2.406\ \mathrm{m/s}$. None of these values is "the" speed at $t = 2\ \mathrm{s}$: each depends on $h$. But all of them approach $2.40\ \mathrm{m/s}$ as $h$ tends to $0$.
+
+    What is missing is therefore neither an instrument nor a longer plane, but a **rule**: define the instantaneous speed as the limit of the average speeds when the duration of the interval tends to zero, and know how to compute this limit. That rule is the derivative: $v(2) = d'(2) = 2.40\ \mathrm{m/s}$.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 3
+  calculationLength: 1
+  modellingOpenness: 2
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

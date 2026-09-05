@@ -1,0 +1,152 @@
+# Sources and quotations of the Galileo vertical slice (mission.galileo.inclined_plane).
+# The ids are referenced by the mission file: never rename them.
+sources:
+  - id: source.galileo.discorsi.1638
+    kind: primary
+    title: Discorsi e dimostrazioni matematiche intorno a due nuove scienze
+    authors: [Galileo Galilei]
+    year: "1638"
+    publication: Elzevir
+    place: Leiden
+    language: it
+    note:
+      fr: "Troisième Journée : du mouvement naturellement accéléré. Décrit l'expérience du plan incliné (chevron de bois à rainure polie, boule de bronze, temps mesurés par pesée de l'eau écoulée)."
+      en: "Third Day: on naturally accelerated motion. Describes the inclined-plane experiment (wooden beam with a polished groove, bronze ball, timing by weighing water)."
+  - id: source.galileo.discorsi.crew_desalvio.1914
+    kind: translation
+    title: Dialogues Concerning Two New Sciences
+    authors: [Henry Crew, Alfonso de Salvio]
+    year: "1914"
+    publication: Macmillan
+    place: New York
+    language: en
+    note:
+      fr: Traduction anglaise des Discorsi, dans le domaine public.
+      en: Public-domain English translation of the Discorsi.
+  - id: source.galileo.letter_sarpi.1604
+    kind: primary
+    title: "Lettera a Paolo Sarpi, 16 ottobre 1604"
+    authors: [Galileo Galilei]
+    year: "1604"
+    publication: "Le Opere di Galileo Galilei, Edizione Nazionale (ed. Antonio Favaro), vol. X, pp. 115–116"
+    language: it
+    note:
+      fr: "Galilée y énonce que les espaces parcourus en chute naturelle sont comme les carrés des temps, et suppose alors (à tort) que la vitesse croît proportionnellement à la distance parcourue."
+      en: "Galileo states that the spaces passed in natural fall are as the squares of the times, and at that date assumes (wrongly) that speed grows in proportion to the distance fallen."
+  - id: source.galileo.folio_116v
+    kind: manuscript
+    title: "Ms. Gal. 72, folio 116v"
+    authors: [Galileo Galilei]
+    year: "c. 1608"
+    publication: Biblioteca Nazionale Centrale di Firenze
+    place: Florence
+    note:
+      fr: "Notes d'expériences (données de projectiles et de plan incliné), généralement datées vers 1608 par Drake ; cette datation est une interprétation savante."
+      en: "Experimental notes (projectile and inclined-plane data), usually dated c. 1608 by Drake; the dating is a scholarly interpretation."
+  - id: source.drake.1973
+    kind: scholarly
+    title: "Galileo's Experimental Confirmation of Horizontal Inertia: Unpublished Manuscripts"
+    authors: [Stillman Drake]
+    year: "1973"
+    publication: "Isis, 64(3), pp. 291–305"
+    language: en
+  - id: source.drake.1978
+    kind: scholarly
+    title: "Galileo at Work: His Scientific Biography"
+    authors: [Stillman Drake]
+    year: "1978"
+    publication: University of Chicago Press
+    place: Chicago
+    language: en
+    note:
+      fr: "Biographie de référence : professorat de Padoue (1592–1610), étudiants pensionnaires logés chez Galilée, datation des expériences sur le mouvement."
+      en: "Reference biography: Padua professorship (1592–1610), boarders in Galileo's house, dating of the motion experiments."
+  - id: source.settle.1961
+    kind: scholarly
+    title: An Experiment in the History of Science
+    authors: [Thomas B. Settle]
+    year: "1961"
+    publication: "Science, 133(3445), pp. 19–23"
+    language: en
+    note:
+      fr: Réplication montrant que l'expérience du plan incliné, telle que Galilée la décrit, était réalisable avec les moyens de l'époque.
+      en: Replication showing that the inclined-plane experiment, as Galileo describes it, was feasible with the means of the time.
+  - id: source.koyre.1953
+    kind: scholarly
+    title: An Experiment in Measurement
+    authors: [Alexandre Koyré]
+    year: "1953"
+    publication: "Proceedings of the American Philosophical Society, 97(2), pp. 222–237"
+    language: en
+    note:
+      fr: Point de vue sceptique sur les prétentions expérimentales de Galilée.
+      en: Sceptical view of Galileo's experimental claims.
+  - id: source.huygens.1673
+    kind: primary
+    title: Horologium Oscillatorium
+    authors: [Christiaan Huygens]
+    year: "1673"
+    place: Paris
+    language: la
+    note:
+      fr: Théorie du pendule et détermination précise de l'accélération de la pesanteur.
+      en: Pendulum theory and a precise determination of the acceleration of gravity.
+  - id: source.leibniz.1684
+    kind: primary
+    title: Nova methodus pro maximis et minimis
+    authors: [Gottfried Wilhelm Leibniz]
+    year: "1684"
+    publication: Acta Eruditorum
+    language: la
+    note:
+      fr: Premier exposé publié du calcul différentiel.
+      en: First published account of the differential calculus.
+  - id: source.viviani.1717
+    kind: tertiary
+    title: Racconto istorico della vita di Galileo
+    authors: [Vincenzo Viviani]
+    year: "1717"
+    language: it
+    note:
+      fr: "Rédigé en 1654, publié en 1717 ; origine de l'anecdote de la tour de Pise, tenue pour douteuse par les historiens."
+      en: "Written in 1654, published in 1717; origin of the Leaning Tower of Pisa anecdote, considered doubtful by historians."
+  - id: source.bo.lycee.2019
+    kind: tertiary
+    title: "Programmes de mathématiques et de physique-chimie de terminale générale, BO spécial n°8 du 25 juillet 2019"
+    authors: ["Ministère de l'Éducation nationale"]
+    year: "2019"
+    language: fr
+    note:
+      fr: Référence à vérifier.
+      en: Reference to verify.
+  - id: source.bo.cpge.2021
+    kind: tertiary
+    title: "Programmes des classes préparatoires MPSI et MP, BO spécial n°1 du 11 février 2021"
+    authors: ["Ministère de l'Enseignement supérieur"]
+    year: "2021"
+    language: fr
+    note:
+      fr: Référence à vérifier.
+      en: Reference to verify.
+
+quotations:
+  - id: quotation.galileo.letter_sarpi.1604
+    source: source.galileo.letter_sarpi.1604
+    originalLanguage: it
+    fr: "Galilée écrit à Sarpi qu'il a trouvé une proposition qu'il juge naturelle et évidente, d'où il démontre que les espaces parcourus par un corps en chute naturelle sont entre eux comme les carrés des temps, et donc que les espaces parcourus en des temps égaux sont comme les nombres impairs à partir de l'unité. Ce principe, ajoute-t-il, est que le mobile gagne de la vitesse dans la proportion où il s'éloigne du point de départ de son mouvement."
+    en: "Galileo writes to Sarpi that he has found a proposition he judges natural and evident, from which he demonstrates that the spaces passed by a naturally falling body are to one another as the squares of the times, and hence that the spaces passed in equal times are as the odd numbers from unity. That principle, he adds, is that the moving body gains speed in the proportion in which it moves away from the starting point of its motion."
+    translationStatus: paraphrase
+    confidence: high
+    context:
+      fr: "Lettre du 16 octobre 1604 : Galilée y annonce la loi des carrés des temps et la fonde sur l'hypothèse, erronée, d'une vitesse proportionnelle à la distance parcourue. Paraphrase des auteurs, sans citation textuelle."
+      en: "Letter of 16 October 1604: Galileo announces the times-squared law and rests it on the incorrect assumption that speed is proportional to the distance fallen. Authors' paraphrase, not a verbatim quotation."
+  - id: quotation.galileo.discorsi.inclined_plane
+    source: source.galileo.discorsi.crew_desalvio.1914
+    originalLanguage: it
+    fr: "On prit une pièce de bois moulurée, ou chevron, longue d'environ douze coudées, large d'une demi-coudée et épaisse de trois doigts ; sur son arête, on creusa un canal d'un peu plus d'un doigt de large ; après avoir rendu cette rainure très droite, lisse et polie, et l'avoir tapissée d'un parchemin lui aussi le plus lisse et poli possible, nous y fîmes rouler une boule de bronze dure, lisse et très ronde. Ayant placé cette planche en pente, en soulevant l'une de ses extrémités d'une ou deux coudées au-dessus de l'autre, nous fîmes rouler la boule, comme je le disais, le long du canal, en notant, de la manière que je décrirai bientôt, le temps nécessaire à la descente."
+    en: "A piece of wooden moulding or scantling, about 12 cubits long, half a cubit wide, and three finger-breadths thick, was taken; on its edge was cut a channel a little more than one finger in breadth; having made this groove very straight, smooth, and polished, and having lined it with parchment, also as smooth and polished as possible, we rolled along it a hard, smooth, and very round bronze ball. Having placed this board in a sloping position, by lifting one end some one or two cubits above the other, we rolled the ball, as I was just saying, along the channel, noting, in a manner presently to be described, the time required to make the descent."
+    translationStatus: published_translation
+    confidence: high
+    context:
+      fr: "Troisième Journée des Discorsi, mouvement naturellement accéléré : Salviati décrit l'appareil ayant servi à vérifier la loi des nombres impairs sur un plan incliné. Le texte anglais est la traduction publiée de Crew et de Salvio (1914) ; la version française est une traduction des auteurs établie d'après cette version anglaise (les braccia de Galilée y sont rendues par « coudées »)."
+      en: "Third Day of the Discorsi, naturally accelerated motion: Salviati describes the apparatus used to test the odd-number law on an inclined plane. The English is the published Crew and de Salvio translation (1914); the French is the authors' own translation made from that English version (Galileo's braccia appear as 'cubits')."

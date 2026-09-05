@@ -1,0 +1,50 @@
+id: curriculum.fr.terminale.physique_chimie
+country: FR
+stage: terminale
+subject: physics_chemistry
+title:
+  fr: "Physique-chimie — Terminale générale, enseignement de spécialité"
+  en: "Physics and chemistry — Terminale (final year), specialised course"
+version: "2026-reference"
+validFrom: "2020-09-01"
+validTo: null
+sourceReferences:
+  - title: "Programme de physique-chimie de terminale générale (enseignement de spécialité), BO spécial n°8 du 25 juillet 2019"
+    note: "to verify"
+items:
+  - id: decrire_mouvement
+    title: { fr: Décrire un mouvement, en: Describing motion }
+    reference: "Mouvement et interactions — Décrire un mouvement"
+    alignedNodes:
+      - { node: model.kinematics_point, depth: 1 }
+  - id: champ_uniforme
+    title: { fr: Mouvement dans un champ uniforme, en: Motion in a uniform field }
+    reference: "Mouvement et interactions — Relier les actions appliquées à un système à son mouvement : mouvement dans un champ uniforme"
+    alignedNodes:
+      - { node: phenomenon.motion.free_fall, depth: 1 }
+      - { node: phenomenon.motion.uniformly_accelerated, depth: 1 }
+      - { node: law.newton_second, depth: 1 }
+  - id: circuit_rc
+    title: { fr: "Dynamique d'un système électrique (circuit RC)", en: "Dynamics of an electrical system (RC circuit)" }
+    reference: "Ondes et signaux — Étudier la dynamique d'un système électrique"
+    alignedNodes:
+      - { node: phenomenon.circuit.capacitor_charging, depth: 1 }
+      - { node: model.rc_circuit, depth: 1 }
+  - id: cinetique_chimique
+    title: { fr: "Évolution temporelle d'un système chimique", en: "Time evolution of a chemical system" }
+    reference: "Constitution et transformations de la matière — Suivre et modéliser l'évolution temporelle d'un système, siège d'une transformation chimique"
+    alignedNodes:
+      - { node: phenomenon.chemistry.first_order_reaction, depth: 1 }
+      - { node: model.reaction_order_one, depth: 1 }
+      - { node: phenomenon.chemistry.concentration_over_time, depth: 1 }
+  - id: decroissance_radioactive
+    title: { fr: Décroissance radioactive, en: Radioactive decay }
+    reference: "Constitution et transformations de la matière — Modéliser l'évolution temporelle d'un système, siège d'une transformation nucléaire"
+    alignedNodes:
+      - { node: phenomenon.nuclear.radioactive_decay, depth: 1 }
+  - id: mesure_incertitudes
+    title: { fr: Mesure et incertitudes, en: Measurement and uncertainties }
+    reference: "Mesure et incertitudes (partie transversale du programme)"
+    alignedNodes:
+      - { node: method.measurement, depth: 1 }
+      - { node: concept.dimension_unit, depth: 1 }

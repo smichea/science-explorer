@@ -1,0 +1,37 @@
+id: curriculum.fr.mpsi.physique_chimie
+country: FR
+stage: mpsi
+subject: physics_chemistry
+title:
+  fr: "Physique-chimie — MPSI"
+  en: "Physics and chemistry — MPSI (first preparatory year)"
+version: "2026-reference"
+validFrom: "2021-09-01"
+validTo: null
+sourceReferences:
+  - title: "Programme de physique-chimie de la classe de MPSI, BO spécial n°1 du 11 février 2021"
+    note: "to verify"
+items:
+  - id: cinematique
+    title: { fr: "Description et paramétrage du mouvement d'un point", en: "Description and parametrisation of the motion of a point" }
+    reference: "Mécanique — Description et paramétrage du mouvement d'un point"
+    alignedNodes:
+      - { node: model.kinematics_point, depth: 2 }
+      - { node: tool.vector, depth: 2 }
+  - id: dynamique
+    title: { fr: Lois de Newton, en: "Newton's laws" }
+    reference: "Mécanique — Lois de Newton (mouvement dans le champ de pesanteur uniforme, influence de la résistance de l'air)"
+    alignedNodes:
+      - { node: law.newton_second, depth: 2 }
+      - { node: phenomenon.motion.with_drag, depth: 2 }
+  - id: circuit_premier_ordre
+    title: { fr: Circuit linéaire du premier ordre, en: First-order linear circuit }
+    reference: "Signaux physiques — Circuit linéaire du premier ordre"
+    alignedNodes:
+      - { node: phenomenon.circuit.capacitor_charging, depth: 2 }
+      - { node: model.rc_circuit, depth: 2 }
+  - id: cinetique
+    title: { fr: Cinétique chimique, en: Chemical kinetics }
+    reference: "Transformations de la matière — Évolution temporelle d'un système, siège d'une transformation chimique"
+    alignedNodes:
+      - { node: model.reaction_order_one, depth: 2 }

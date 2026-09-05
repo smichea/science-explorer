@@ -1,0 +1,66 @@
+# Décroissance radioactive : N(t) = N₀ e^{−t/τ}, demi-vie τ ln 2 ≈ 6.0 min.
+id: simulation.radioactive.decay
+engine: first_order
+title: { fr: "Décroissance radioactive", en: "Radioactive decay" }
+description:
+  fr: |-
+    Un échantillon de 1000 noyaux radioactifs se désintègre : chaque noyau a la même probabilité de se désintégrer par unité de temps, si bien que le nombre de désintégrations par minute, l'**activité**, est proportionnel au nombre de noyaux restants, $-\dfrac{dN}{dt} = \lambda\,N = \dfrac{N}{\tau}$. Avec $\tau = 8.66\ \mathrm{min}$, la **demi-vie** vaut $T_{1/2} = \tau \ln 2 \approx 6.0\ \mathrm{min}$ : il reste 500 noyaux après 6 min, 250 après 12 min, 125 après 18 min. L'activité initiale est $N_0/\tau \approx 115$ désintégrations par minute, soit environ $1.9\ \mathrm{Bq}$.
+  en: |-
+    A sample of 1000 radioactive nuclei decays: each nucleus has the same probability of decaying per unit time, so that the number of disintegrations per minute, the **activity**, is proportional to the number of remaining nuclei, $-\dfrac{dN}{dt} = \lambda\,N = \dfrac{N}{\tau}$. With $\tau = 8.66\ \mathrm{min}$, the **half-life** is $T_{1/2} = \tau \ln 2 \approx 6.0\ \mathrm{min}$: 500 nuclei remain after 6 min, 250 after 12 min, 125 after 18 min. The initial activity is $N_0/\tau \approx 115$ disintegrations per minute, about $1.9\ \mathrm{Bq}$.
+seedPolicy: deterministic
+seed: 1902
+config:
+  scene: radioactive_decay
+  target: 0
+  initial: 1000
+  tau: 8.66
+  unit: "noyaux"
+  timeUnit: "min"
+  duration: 40
+  dt: 0.001
+controls:
+  - { variable: tau, label: { fr: "Constante de temps τ = 1/λ", en: "Time constant τ = 1/λ" }, min: 1, max: 30, step: 0.5, unit: "min", default: 8.66 }
+observables: [quantity, rate, remaining]
+views: [quantity_time_graph, tangent, table]
+assumptions:
+  fr:
+    - "Chaque noyau se désintègre indépendamment des autres, avec une probabilité par unité de temps $\\lambda = 1/\\tau$ constante (ni vieillissement, ni influence du milieu)."
+    - "Le nombre de noyaux est traité comme une grandeur continue : $N(t)$ suit exactement $N_0\\,e^{-t/\\tau}$ (loi moyenne), sans fluctuations statistiques."
+    - "Désintégration en un seul noyau fils stable (pas de chaîne de désintégrations)."
+    - "Aucun apport de noyaux pendant l'observation (cible du modèle : 0)."
+  en:
+    - "Each nucleus decays independently of the others, with a constant probability per unit time $\\lambda = 1/\\tau$ (no ageing, no influence of the environment)."
+    - "The number of nuclei is treated as a continuous quantity: $N(t)$ follows exactly $N_0\\,e^{-t/\\tau}$ (mean law), without statistical fluctuations."
+    - "Decay into a single stable daughter nucleus (no decay chain)."
+    - "No supply of nuclei during the observation (target of the model: 0)."
+validity:
+  fr: |-
+    La loi exponentielle moyenne est excellente pour un grand nombre de noyaux ; avec seulement 1000 noyaux, les fluctuations réelles sont de l'ordre de $\sqrt{N}$ (environ 3 % au départ, 10 % quand il reste 100 noyaux) et la courbe réelle serait en escalier aléatoire autour de la courbe simulée. Constantes de temps de 1 min à 30 min : ordres de grandeur d'isotopes à vie courte utilisés en médecine ou en travaux pratiques ; les valeurs réelles vont de la microseconde au milliard d'années.
+  en: |-
+    The mean exponential law is excellent for a large number of nuclei; with only 1000 nuclei, the actual fluctuations are of the order of $\sqrt{N}$ (about 3% at the start, 10% when 100 nuclei remain) and the actual curve would be a random staircase around the simulated one. Time constants from 1 min to 30 min: orders of magnitude of short-lived isotopes used in medicine or in laboratory classes; actual values range from microseconds to billions of years.
+numericalMethod:
+  fr: |-
+    Runge-Kutta d'ordre 4, pas fixe $dt = 0.001\ \mathrm{min}$ (40 000 pas sur les 40 min simulées). La solution exacte $N_0\,e^{-t/\tau}$ est connue ; l'écart numérique est inférieur à $10^{-10}$ en valeur relative. Le modèle est déterministe : il ne simule pas le tirage aléatoire de chaque désintégration.
+  en: |-
+    Fourth-order Runge-Kutta, fixed step $dt = 0.001\ \mathrm{min}$ (40,000 steps over the 40 min simulated). The exact solution $N_0\,e^{-t/\tau}$ is known; the numerical deviation is below $10^{-10}$ in relative value. The model is deterministic: it does not simulate the random draw of each disintegration.
+ignoredEffects:
+  fr:
+    - "Caractère aléatoire des désintégrations individuelles (fluctuations statistiques, loi de Poisson)."
+    - "Chaînes de désintégration (noyaux fils eux-mêmes radioactifs)."
+    - "Efficacité et temps mort du détecteur qui mesurerait l'activité."
+    - "Bruit de fond radioactif ambiant."
+  en:
+    - "Random character of individual disintegrations (statistical fluctuations, Poisson law)."
+    - "Decay chains (daughter nuclei that are themselves radioactive)."
+    - "Efficiency and dead time of the detector that would measure the activity."
+    - "Ambient background radiation."
+learningUse:
+  fr: |-
+    Troisième exemple de la structure « taux proportionnel à ce qui reste » : lire l'activité comme la pente (au signe près) de la tangente à la courbe $N(t)$, vérifier qu'elle est divisée par deux à chaque demi-vie comme $N$ lui-même, et relier $T_{1/2} = \tau \ln 2$ à $\tau$. Comparer avec la charge du condensateur et la réaction d'ordre 1 : même équation différentielle, mêmes courbes, seuls les noms et les unités changent.
+  en: |-
+    Third example of the "rate proportional to what remains" structure: read the activity as the slope (up to the sign) of the tangent to the curve $N(t)$, check that it halves at each half-life just like $N$ itself, and relate $T_{1/2} = \tau \ln 2$ to $\tau$. Compare with the charging of the capacitor and the first-order reaction: same differential equation, same curves, only the names and units change.
+a11y:
+  fr: |-
+    Représentation alternative : tableau du nombre de noyaux, de l'activité et de la fraction restante toutes les 2 min, et description textuelle (« il reste la moitié des noyaux toutes les 6 min : 1000, 500, 250, 125 »). La demi-vie calculée pour la valeur courante de $\tau$ est annoncée en toutes lettres ; curseur manipulable au clavier.
+  en: |-
+    Alternative representation: a table of the number of nuclei, the activity and the remaining fraction every 2 min, and a textual description ("half of the nuclei remain every 6 min: 1000, 500, 250, 125"). The half-life computed for the current value of $\tau$ is announced in words; keyboard-operable slider.

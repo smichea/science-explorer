@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Science Explorer">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#1e2a5a"/>
+      <stop offset="100%" stop-color="#070b17"/>
+    </radialGradient>
+    <radialGradient id="star" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#ffd166"/>
+      <stop offset="100%" stop-color="#ffb347" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <g fill="none" stroke-width="10" stroke-linecap="round">
+    <ellipse cx="256" cy="256" rx="190" ry="72" stroke="#7f9cff" opacity="0.9" transform="rotate(-25 256 256)"/>
+    <ellipse cx="256" cy="256" rx="190" ry="72" stroke="#5ee6a8" opacity="0.9" transform="rotate(35 256 256)"/>
+    <ellipse cx="256" cy="256" rx="190" ry="72" stroke="#ffb347" opacity="0.9" transform="rotate(95 256 256)"/>
+  </g>
+  <circle cx="256" cy="256" r="70" fill="url(#star)"/>
+  <circle cx="256" cy="256" r="34" fill="#fff7dc"/>
+  <circle cx="98" cy="150" r="10" fill="#7f9cff"/>
+  <circle cx="420" cy="330" r="10" fill="#5ee6a8"/>
+  <circle cx="380" cy="120" r="8" fill="#ffb347"/>
+</svg>

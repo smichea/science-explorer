@@ -1,0 +1,26 @@
+# Historical edges carry an evidenceStatus and sources (historical honesty checklist).
+edges:
+  - from: phenomenon.motion.uniformly_accelerated
+    to: person.galileo_galilei
+    type: historically_developed_by
+    evidenceStatus: attested
+    sources: [source.galileo.discorsi.1638, source.drake.1978]
+    note:
+      fr: "Troisième journée des *Discorsi* (1638) : les espaces parcourus par un corps en chute sont comme les carrés des temps."
+      en: "Third Day of the *Discorsi* (1638): the spaces traversed by a falling body are as the squares of the times."
+  - from: phenomenon.motion.inclined_plane
+    to: person.galileo_galilei
+    type: historically_developed_by
+    evidenceStatus: attested
+    sources: [source.galileo.discorsi.1638, source.drake.1978]
+    note:
+      fr: "Galilée décrit le dispositif (rainure dans une planche, bille de bronze, horloge à eau) dans les *Discorsi* ; les manuscrits de travail analysés par Drake datent les essais de la période padouane."
+      en: "Galileo describes the set-up (groove in a board, bronze ball, water clock) in the *Discorsi*; the working manuscripts analysed by Drake date the trials to the Paduan period."
+  - from: mission.galileo.inclined_plane
+    to: place.padua
+    type: historically_occurred_at
+    evidenceStatus: scholarly_interpretation
+    sources: [source.drake.1978]
+    note:
+      fr: "Les *Discorsi* ne précisent pas le lieu ; la datation padouane des essais (vers 1604) repose sur l'analyse des manuscrits par Stillman Drake."
+      en: "The *Discorsi* do not state the place; the Paduan dating of the trials (c. 1604) rests on Stillman Drake's analysis of the manuscripts."

@@ -1,0 +1,110 @@
+# Transfert — classer les processus à vitesse proportionnelle à ce qui reste (choix multiple)
+id: exercise.transfer.classify_rate_processes
+type: choice
+nodeId: concept.rate_proportional_to_quantity
+depth: 1
+evidenceDimension: recognition_explanation
+context:
+  fr: |-
+    Transfert : reconnaître une même structure mathématique derrière des phénomènes de physique et de chimie.
+  en: |-
+    Transfer: recognising one mathematical structure behind phenomena from physics and chemistry.
+prompt:
+  fr: |-
+    Certains phénomènes évoluent d'autant plus lentement qu'ils sont proches de leur état final : leur taux de variation est **proportionnel à la quantité qui reste à changer**, ce qui conduit à une loi exponentielle. D'autres n'ont pas cette propriété.
+
+    Sélectionnez **tous** les processus dont le taux de variation est proportionnel à la quantité qui reste à changer.
+  en: |-
+    Some phenomena evolve more and more slowly as they approach their final state: their rate of change is **proportional to the quantity still to change**, which leads to an exponential law. Others do not have this property.
+
+    Select **every** process whose rate of change is proportional to the quantity still to change.
+choice:
+  multiple: true
+  requireReasoning: false
+  choices:
+    - id: rc_charging
+      text: { fr: "Charge d'un condensateur à travers une résistance", en: "Charging of a capacitor through a resistor" }
+      correct: true
+      feedback:
+        fr: |-
+          Oui : $\dfrac{dq}{dt} = \dfrac{Q - q}{\tau}$. Le taux est proportionnel à la charge qui reste à gagner.
+        en: |-
+          Yes: $\dfrac{dq}{dt} = \dfrac{Q - q}{\tau}$. The rate is proportional to the charge still to be gained.
+    - id: first_order_reaction
+      text: { fr: "Réaction chimique d'ordre 1", en: "First-order chemical reaction" }
+      correct: true
+      feedback:
+        fr: |-
+          Oui : $\dfrac{d[\mathrm{A}]}{dt} = -k\,[\mathrm{A}]$. Ce qui reste à transformer, c'est la concentration de A elle-même.
+        en: |-
+          Yes: $\dfrac{d[\mathrm{A}]}{dt} = -k\,[\mathrm{A}]$. What is still to be transformed is the concentration of A itself.
+    - id: radioactive_decay
+      text: { fr: "Désintégration radioactive", en: "Radioactive decay" }
+      correct: true
+      feedback:
+        fr: |-
+          Oui : $\dfrac{dN}{dt} = -\lambda\,N$. Le nombre de désintégrations par unité de temps (l'activité) est proportionnel au nombre de noyaux qui restent à se désintégrer.
+        en: |-
+          Yes: $\dfrac{dN}{dt} = -\lambda\,N$. The number of disintegrations per unit time (the activity) is proportional to the number of nuclei still to decay.
+    - id: uniformly_accelerated
+      text: { fr: "Mouvement uniformément accéléré", en: "Uniformly accelerated motion" }
+      feedback:
+        fr: |-
+          Non : $\dfrac{dx}{dt} = a\,t$ croît avec le temps écoulé, sans rapport avec une « distance qui reste à parcourir » ; il n'y a d'ailleurs pas d'état final. La loi est polynomiale, $x = \tfrac{1}{2} a t^2$, et non exponentielle.
+        en: |-
+          No: $\dfrac{dx}{dt} = a\,t$ grows with the elapsed time, unrelated to any "distance still to be covered"; there is no final state anyway. The law is polynomial, $x = \tfrac{1}{2} a t^2$, not exponential.
+    - id: free_fall
+      text: { fr: "Chute libre sans frottement", en: "Free fall without drag" }
+      feedback:
+        fr: |-
+          Non : c'est un mouvement uniformément accéléré particulier ($a = g$) ; la vitesse $g\,t$ augmente indéfiniment tant que le corps tombe. Avec un frottement proportionnel à la vitesse, en revanche, la vitesse tendrait vers une limite selon une loi exponentielle.
+        en: |-
+          No: it is a particular uniformly accelerated motion ($a = g$); the speed $g\,t$ increases indefinitely as long as the body falls. With drag proportional to the speed, on the other hand, the speed would tend to a limit according to an exponential law.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Pour chaque processus, écrivez le taux de variation de la grandeur : dépend-il de la grandeur elle-même (ou de son écart à l'état final), ou du temps écoulé ?
+      en: |-
+        For each process, write the rate of change of the quantity: does it depend on the quantity itself (or on its gap to the final state), or on the elapsed time?
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Trois processus s'écrivent $\dfrac{dy}{dt} = \dfrac{y_\infty - y}{\tau}$ ; deux s'écrivent $\dfrac{dx}{dt} = a\,t$.
+      en: |-
+        Three processes read $\dfrac{dy}{dt} = \dfrac{y_\infty - y}{\tau}$; two read $\dfrac{dx}{dt} = a\,t$.
+solution:
+  fr: |-
+    | Processus | Taux de variation | Proportionnel à ce qui reste ? |
+    |:--|:--|:--|
+    | Charge d'un condensateur | $q' = (Q - q)/\tau$ | oui |
+    | Réaction d'ordre 1 | $[\mathrm{A}]' = -k\,[\mathrm{A}]$ | oui |
+    | Désintégration radioactive | $N' = -\lambda\,N$ | oui |
+    | Mouvement uniformément accéléré | $x' = a\,t$ | non |
+    | Chute libre sans frottement | $x' = g\,t$ | non |
+
+    Les trois premiers partagent la même structure, $y' = (y_\infty - y)/\tau$, et donc la même solution, $y(t) = y_\infty + (y_0 - y_\infty)\,e^{-t/\tau}$ : ils ralentissent en approchant de leur état final, et un temps caractéristique $\tau$ (ou une demi-vie $\tau \ln 2$) les décrit entièrement. Les deux derniers ont un taux qui croît avec le temps : pas d'état final, et une loi polynomiale en $t^2$.
+
+    Reconnaître cette structure commune, c'est ce qui rend l'outil transférable : une seule équation différentielle, trois phénomènes.
+  en: |-
+    | Process | Rate of change | Proportional to what remains? |
+    |:--|:--|:--|
+    | Charging of a capacitor | $q' = (Q - q)/\tau$ | yes |
+    | First-order reaction | $[\mathrm{A}]' = -k\,[\mathrm{A}]$ | yes |
+    | Radioactive decay | $N' = -\lambda\,N$ | yes |
+    | Uniformly accelerated motion | $x' = a\,t$ | no |
+    | Free fall without drag | $x' = g\,t$ | no |
+
+    The first three share the same structure, $y' = (y_\infty - y)/\tau$, and therefore the same solution, $y(t) = y_\infty + (y_0 - y_\infty)\,e^{-t/\tau}$: they slow down as they approach their final state, and one characteristic time $\tau$ (or one half-life $\tau \ln 2$) describes them entirely. The last two have a rate that grows with time: no final state, and a polynomial law in $t^2$.
+
+    Recognising this shared structure is what makes the tool transferable: one differential equation, three phenomena.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 3
+  calculationLength: 1
+  modellingOpenness: 3
+  linkedConcepts: 4
+  transfer: 4
+  autonomy: 3

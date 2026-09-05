@@ -1,0 +1,68 @@
+id: phenomenon.motion.with_drag
+type: phenomenon
+world: world.physics
+region: region.physics.motion_mechanics
+importance: 2
+tags: [vertical-slice]
+title: { fr: Chute avec frottement fluide, en: Fall with fluid drag }
+shortPurpose:
+  fr: Freiné par l'air, un corps qui tombe tend exponentiellement vers une vitesse limite.
+  en: Slowed by the air, a falling body tends exponentially towards a terminal velocity.
+aliases:
+  fr: ["frottement fluide linéaire", "vitesse limite", "chute freinée", "résistance de l'air"]
+  en: ["linear drag", "terminal velocity", "fall with air resistance", "air resistance"]
+description:
+  fr: |
+    Quand un objet se déplace dans un fluide (air, eau), il subit une force de **frottement fluide** opposée à sa vitesse. Pour une petite bille lente, on la modélise par une loi linéaire $\vec f = -k\,\vec v$ ; la deuxième loi de Newton en chute verticale (axe descendant) s'écrit
+    $$m\,\frac{\mathrm{d}v}{\mathrm{d}t} = mg - k\,v,$$
+    équation différentielle linéaire du premier ordre, $v' = -\dfrac{k}{m}\,v + g$. Sa solution, en partant du repos, est $v(t) = v_{\lim}\left(1 - e^{-t/\tau}\right)$, avec la **vitesse limite** $v_{\lim} = \dfrac{mg}{k}$ et la constante de temps $\tau = \dfrac{m}{k}$.
+
+    Le phénomène change de nature par rapport à la chute libre : l'accélération n'est plus constante, elle *diminue* à mesure que la vitesse augmente, car le frottement grandit jusqu'à équilibrer le poids. Au bout de quelques $\tau$, la vitesse ne varie plus : c'est le **régime permanent**, précédé d'un **régime transitoire** d'approche exponentielle. La vitesse se rapproche de sa valeur limite d'autant plus vite qu'elle en est loin : la même phrase que pour la charge d'un condensateur ou la disparition d'un réactif d'ordre 1.
+
+    La loi linéaire vaut pour des vitesses faibles (nombre de Reynolds petit) ; pour un parachutiste ou une balle de tennis, le frottement est plutôt quadratique, $\vec f = -c\,\|\vec v\|\,\vec v$, l'équation devient non linéaire mais garde une vitesse limite $\sqrt{mg/c}$. C'est le cas d'école pour apprendre à choisir un modèle, puis à le résoudre numériquement (méthode d'Euler) quand la solution exacte n'est plus à portée.
+  en: |
+    When an object moves through a fluid (air, water), it experiences a **fluid drag** force opposed to its velocity. For a small, slow ball it is modelled by a linear law $\vec f = -k\,\vec v$; Newton's second law for a vertical fall (downward axis) reads
+    $$m\,\frac{\mathrm{d}v}{\mathrm{d}t} = mg - k\,v,$$
+    a first-order linear differential equation, $v' = -\dfrac{k}{m}\,v + g$. Its solution, starting from rest, is $v(t) = v_{\lim}\left(1 - e^{-t/\tau}\right)$, with the **terminal velocity** $v_{\lim} = \dfrac{mg}{k}$ and the time constant $\tau = \dfrac{m}{k}$.
+
+    The phenomenon changes nature compared with free fall: the acceleration is no longer constant, it *decreases* as the velocity increases, because the drag grows until it balances the weight. After a few $\tau$, the velocity no longer changes: this is the **steady regime**, preceded by a **transient regime** of exponential approach. The velocity approaches its limiting value faster the further it is from it: the same sentence as for a charging capacitor or a disappearing first-order reactant.
+
+    The linear law holds for small velocities (small Reynolds number); for a parachutist or a tennis ball, drag is rather quadratic, $\vec f = -c\,\|\vec v\|\,\vec v$, the equation becomes non-linear but keeps a terminal velocity $\sqrt{mg/c}$. It is the textbook case for learning to choose a model, then to solve it numerically (Euler's method) when the exact solution is out of reach.
+depths:
+  - depth: 1
+    stage: terminale
+    role: discovery
+    outcomes:
+      fr:
+        - "écrire l'équation du mouvement avec un frottement fluide linéaire et l'identifier à $y' = ay + b$"
+        - "interpréter la vitesse limite comme l'équilibre entre le poids et le frottement"
+        - "lire la constante de temps sur la courbe $v(t)$ et distinguer régime transitoire et régime permanent"
+        - "simuler le mouvement par la méthode d'Euler et comparer à la chute libre"
+      en:
+        - "write the equation of motion with linear fluid drag and identify it with $y' = ay + b$"
+        - "interpret the terminal velocity as the balance between weight and drag"
+        - "read the time constant on the $v(t)$ curve and distinguish the transient from the steady regime"
+        - "simulate the motion with Euler's method and compare it with free fall"
+  - depth: 2
+    stage: mpsi
+    role: core
+    outcomes:
+      fr:
+        - "résoudre analytiquement l'équation avec frottement linéaire et discuter la limite des temps courts (chute libre)"
+        - "traiter le frottement quadratique : vitesse limite, résolution numérique, comparaison des deux modèles"
+        - "estimer l'ordre de grandeur de $\\tau$ et de $v_{\\lim}$ pour une bille, une goutte de pluie, un parachutiste"
+        - "justifier le choix du modèle de frottement à partir du nombre de Reynolds"
+      en:
+        - "solve the equation with linear drag analytically and discuss the short-time limit (free fall)"
+        - "handle quadratic drag: terminal velocity, numerical solution, comparison of the two models"
+        - "estimate the order of magnitude of $\\tau$ and $v_{\\lim}$ for a ball, a raindrop, a parachutist"
+        - "justify the choice of drag model from the Reynolds number"
+    lesson:
+      fr: |
+        **Frottement linéaire.** Axe $(Oz)$ descendant, système de masse $m$, forces : poids $mg$ et frottement $-k\,v$ (la poussée d'Archimède est incluse dans un poids apparent si nécessaire). L'équation $m\,\dot v = mg - k\,v$ s'écrit $\dot v + \dfrac{v}{\tau} = g$ avec $\tau = m/k$ ; solution avec $v(0) = 0$ : $v(t) = \dfrac{mg}{k}\left(1 - e^{-t/\tau}\right)$. Aux temps courts, $e^{-t/\tau} \approx 1 - t/\tau$ donne $v \approx g\,t$ : on retrouve la chute libre, ce qui explique que Galilée n'ait pas eu besoin du frottement pour ses billes denses.
+
+        **Frottement quadratique.** Pour $\vec f = -c\,\|\vec v\|\,\vec v$, l'équation $m\,\dot v = mg - c\,v^2$ n'est plus linéaire ; la vitesse limite vaut $v_{\lim} = \sqrt{mg/c}$ et la solution exacte fait intervenir une tangente hyperbolique, mais la résolution numérique (schéma d'Euler $v_{n+1} = v_n + \dot v_n\,\Delta t$) suffit pour tracer $v(t)$. Le choix entre les deux modèles se fait par le nombre de Reynolds $Re = \rho\,v\,d/\eta$ : linéaire pour $Re \ll 1$, quadratique pour $Re \gg 10^3$.
+      en: |
+        **Linear drag.** Downward axis $(Oz)$, system of mass $m$, forces: weight $mg$ and drag $-k\,v$ (buoyancy is included in an apparent weight if needed). The equation $m\,\dot v = mg - k\,v$ reads $\dot v + \dfrac{v}{\tau} = g$ with $\tau = m/k$; solution with $v(0) = 0$: $v(t) = \dfrac{mg}{k}\left(1 - e^{-t/\tau}\right)$. At short times, $e^{-t/\tau} \approx 1 - t/\tau$ gives $v \approx g\,t$: free fall is recovered, which explains why Galileo did not need drag for his dense balls.
+
+        **Quadratic drag.** For $\vec f = -c\,\|\vec v\|\,\vec v$, the equation $m\,\dot v = mg - c\,v^2$ is no longer linear; the terminal velocity is $v_{\lim} = \sqrt{mg/c}$ and the exact solution involves a hyperbolic tangent, but numerical solution (Euler scheme $v_{n+1} = v_n + \dot v_n\,\Delta t$) is enough to plot $v(t)$. The choice between the two models is made with the Reynolds number $Re = \rho\,v\,d/\eta$: linear for $Re \ll 1$, quadratic for $Re \gg 10^3$.

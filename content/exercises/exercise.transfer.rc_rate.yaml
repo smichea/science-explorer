@@ -1,0 +1,62 @@
+# Transfert — taux de variation initial de la charge (réponse numérique)
+id: exercise.transfer.rc_rate
+type: numeric
+nodeId: tool.derivative
+phenomenonId: phenomenon.circuit.capacitor_charging
+depth: 1
+evidenceDimension: transfer
+context:
+  fr: |-
+    Transfert : la pente de la tangente à l'origine de la courbe de charge est un courant.
+  en: |-
+    Transfer: the slope of the tangent at the origin of the charging curve is a current.
+prompt:
+  fr: |-
+    Pour le circuit précédent ($E = 6.0\ \mathrm{V}$, $R = 2.0\ \mathrm{k\Omega}$, $C = 1.0\ \mu\mathrm{F}$), on a établi $\dfrac{dq}{dt} = \dfrac{Q - q}{\tau}$ avec $Q = CE = 6.0\ \mu\mathrm{C}$ et $\tau = RC = 2.0\ \mathrm{ms}$.
+
+    Calculez le taux de variation initial de la charge, $\dfrac{dq}{dt}(0) = \dfrac{Q}{\tau}$, c'est-à-dire le courant à $t = 0$. Exprimez le résultat en **milliampères** (mA).
+  en: |-
+    For the previous circuit ($E = 6.0\ \mathrm{V}$, $R = 2.0\ \mathrm{k\Omega}$, $C = 1.0\ \mu\mathrm{F}$), we established $\dfrac{dq}{dt} = \dfrac{Q - q}{\tau}$ with $Q = CE = 6.0\ \mu\mathrm{C}$ and $\tau = RC = 2.0\ \mathrm{ms}$.
+
+    Compute the initial rate of change of the charge, $\dfrac{dq}{dt}(0) = \dfrac{Q}{\tau}$, that is, the current at $t = 0$. Express the result in **milliamperes** (mA).
+numeric:
+  value: 3.0
+  unit: "mA"
+  tolerance: { kind: relative, value: 0.05 }
+  inputLabel: { fr: "Courant initial dq/dt(0)", en: "Initial current dq/dt(0)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        À $t = 0$ la charge est nulle, donc $Q - q = Q$. Divisez $6.0\ \mu\mathrm{C}$ par $2.0\ \mathrm{ms}$ en convertissant les préfixes : $\mu = 10^{-6}$ et $\mathrm{m} = 10^{-3}$.
+      en: |-
+        At $t = 0$ the charge is zero, so $Q - q = Q$. Divide $6.0\ \mu\mathrm{C}$ by $2.0\ \mathrm{ms}$, converting the prefixes: $\mu = 10^{-6}$ and $\mathrm{m} = 10^{-3}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\dfrac{6.0 \times 10^{-6}\ \mathrm{C}}{2.0 \times 10^{-3}\ \mathrm{s}} = 3.0 \times 10^{-3}\ \mathrm{A}$.
+      en: |-
+        $\dfrac{6.0 \times 10^{-6}\ \mathrm{C}}{2.0 \times 10^{-3}\ \mathrm{s}} = 3.0 \times 10^{-3}\ \mathrm{A}$.
+solution:
+  fr: |-
+    À $t = 0$, $q = 0$, donc $\dfrac{dq}{dt}(0) = \dfrac{Q}{\tau}$ :
+    $$\frac{dq}{dt}(0) = \frac{6.0 \times 10^{-6}\ \mathrm{C}}{2.0 \times 10^{-3}\ \mathrm{s}} = 3.0 \times 10^{-3}\ \mathrm{A} = 3.0\ \mathrm{mA}.$$
+    Vérification par une autre voie : à $t = 0$ le condensateur est déchargé, toute la tension $E$ se retrouve aux bornes de $R$, donc $i(0) = E/R = 6.0\ \mathrm{V} / 2.0\ \mathrm{k\Omega} = 3.0\ \mathrm{mA}$.
+
+    **Lecture graphique.** $3.0\ \mathrm{mA}$ est la pente de la tangente à l'origine de la courbe $q(t)$. Cette tangente atteint la valeur finale $Q$ à l'instant $t = \tau = 2.0\ \mathrm{ms}$ : c'est la manière classique de lire $\tau$ sur un graphique. La charge réelle, elle, ne vaut alors que $Q\,(1 - e^{-1}) \approx 0.63\,Q \approx 3.8\ \mu\mathrm{C}$, car le taux diminue dès que $q$ augmente.
+  en: |-
+    At $t = 0$, $q = 0$, hence $\dfrac{dq}{dt}(0) = \dfrac{Q}{\tau}$:
+    $$\frac{dq}{dt}(0) = \frac{6.0 \times 10^{-6}\ \mathrm{C}}{2.0 \times 10^{-3}\ \mathrm{s}} = 3.0 \times 10^{-3}\ \mathrm{A} = 3.0\ \mathrm{mA}.$$
+    Check by another route: at $t = 0$ the capacitor is uncharged, the whole voltage $E$ appears across $R$, so $i(0) = E/R = 6.0\ \mathrm{V} / 2.0\ \mathrm{k\Omega} = 3.0\ \mathrm{mA}$.
+
+    **Graphical reading.** $3.0\ \mathrm{mA}$ is the slope of the tangent at the origin of the curve $q(t)$. This tangent reaches the final value $Q$ at the instant $t = \tau = 2.0\ \mathrm{ms}$: this is the classic way of reading $\tau$ on a graph. The actual charge at that instant is only $Q\,(1 - e^{-1}) \approx 0.63\,Q \approx 3.8\ \mu\mathrm{C}$, because the rate decreases as soon as $q$ increases.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 3
+  transfer: 3
+  autonomy: 3

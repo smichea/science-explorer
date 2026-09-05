@@ -1,0 +1,70 @@
+# Cinétique d'ordre 1 : [A](t) = [A]₀ e^{−kt}, k = 1/τ.
+id: simulation.kinetics.first_order
+engine: first_order
+title: { fr: "Réaction d'ordre 1", en: "First-order reaction" }
+description:
+  fr: |-
+    Un réactif A disparaît selon une cinétique d'ordre 1 : sa vitesse de disparition est proportionnelle à sa concentration, $-\dfrac{d[\mathrm{A}]}{dt} = k\,[\mathrm{A}]$, avec $k = 1/\tau = 0.10\ \mathrm{s^{-1}}$ pour $\tau = 10\ \mathrm{s}$. Partant de $[\mathrm{A}]_0 = 0.50\ \mathrm{mol/L}$, la concentration suit $[\mathrm{A}](t) = [\mathrm{A}]_0\,e^{-kt}$ : vitesse initiale $0.050\ \mathrm{mol \cdot L^{-1} \cdot s^{-1}}$, temps de demi-réaction $t_{1/2} = \tau \ln 2 \approx 6.9\ \mathrm{s}$, indépendant de la concentration initiale.
+  en: |-
+    A reactant A disappears according to first-order kinetics: its rate of disappearance is proportional to its concentration, $-\dfrac{d[\mathrm{A}]}{dt} = k\,[\mathrm{A}]$, with $k = 1/\tau = 0.10\ \mathrm{s^{-1}}$ for $\tau = 10\ \mathrm{s}$. Starting from $[\mathrm{A}]_0 = 0.50\ \mathrm{mol/L}$, the concentration follows $[\mathrm{A}](t) = [\mathrm{A}]_0\,e^{-kt}$: initial rate $0.050\ \mathrm{mol \cdot L^{-1} \cdot s^{-1}}$, half-life $t_{1/2} = \tau \ln 2 \approx 6.9\ \mathrm{s}$, independent of the initial concentration.
+seedPolicy: deterministic
+seed: 1850
+config:
+  scene: first_order_kinetics
+  target: 0
+  initial: 0.5
+  tau: 10
+  unit: "mol/L"
+  timeUnit: "s"
+  duration: 40
+  dt: 0.001
+controls:
+  - { variable: tau, label: { fr: "Constante de temps τ = 1/k", en: "Time constant τ = 1/k" }, min: 2, max: 30, step: 1, unit: "s", default: 10 }
+  - { variable: initial, label: { fr: "Concentration initiale [A]₀", en: "Initial concentration [A]₀" }, min: 0.1, max: 1, step: 0.1, unit: "mol/L", default: 0.5 }
+observables: [quantity, rate, remaining]
+views: [quantity_time_graph, tangent, table]
+modelNode: model.reaction_order_one
+assumptions:
+  fr:
+    - "Réaction d'ordre 1 par rapport à A, de constante de vitesse $k$ indépendante du temps et de la concentration."
+    - "Milieu homogène, volume constant, température constante (donc $k$ constante)."
+    - "Réaction totale et irréversible : la concentration tend vers 0 (cible du modèle)."
+    - |-
+      Équation $\dfrac{d[\mathrm{A}]}{dt} = -\dfrac{[\mathrm{A}]}{\tau}$ avec $\tau = 1/k$, de solution $[\mathrm{A}](t) = [\mathrm{A}]_0\,e^{-t/\tau}$.
+  en:
+    - "First-order reaction with respect to A, with a rate constant $k$ independent of time and concentration."
+    - "Homogeneous medium, constant volume, constant temperature (hence constant $k$)."
+    - "Complete, irreversible reaction: the concentration tends to 0 (target of the model)."
+    - |-
+      Equation $\dfrac{d[\mathrm{A}]}{dt} = -\dfrac{[\mathrm{A}]}{\tau}$ with $\tau = 1/k$, whose solution is $[\mathrm{A}](t) = [\mathrm{A}]_0\,e^{-t/\tau}$.
+validity:
+  fr: |-
+    Valable pour les réactions effectivement d'ordre 1 (décompositions unimoléculaires, hydrolyses en large excès d'eau, réactions de pseudo-ordre 1) en solution homogène et à température constante. Les constantes de temps proposées (2 s à 30 s) correspondent à des réactions rapides suivies par spectrophotométrie ; le modèle ne décrit ni les réactions équilibrées (concentration finale non nulle), ni les ordres différents de 1, ni un milieu dont la température varie pendant la réaction.
+  en: |-
+    Valid for reactions that are genuinely first order (unimolecular decompositions, hydrolyses in a large excess of water, pseudo-first-order reactions) in a homogeneous solution at constant temperature. The proposed time constants (2 s to 30 s) correspond to fast reactions followed by spectrophotometry; the model describes neither equilibrium reactions (non-zero final concentration), nor orders other than 1, nor a medium whose temperature changes during the reaction.
+numericalMethod:
+  fr: |-
+    Runge-Kutta d'ordre 4, pas fixe $dt = 0.001\ \mathrm{s}$ (40 000 pas sur les 40 s simulées). La solution exacte $[\mathrm{A}]_0\,e^{-t/\tau}$ est connue ; l'écart numérique est inférieur à $10^{-10}$ en valeur relative et sert de contrôle.
+  en: |-
+    Fourth-order Runge-Kutta, fixed step $dt = 0.001\ \mathrm{s}$ (40,000 steps over the 40 s simulated). The exact solution $[\mathrm{A}]_0\,e^{-t/\tau}$ is known; the numerical deviation is below $10^{-10}$ in relative value and serves as a check.
+ignoredEffects:
+  fr:
+    - "Réaction inverse (équilibre chimique) et réactions secondaires."
+    - "Variation de température due à la chaleur de réaction, donc variation de $k$."
+    - "Temps de mélange initial et inhomogénéités du milieu."
+    - "Incertitude des mesures de concentration (spectrophotométrie, conductimétrie)."
+  en:
+    - "Reverse reaction (chemical equilibrium) and side reactions."
+    - "Temperature change due to the heat of reaction, hence change in $k$."
+    - "Initial mixing time and inhomogeneities of the medium."
+    - "Uncertainty of concentration measurements (spectrophotometry, conductimetry)."
+learningUse:
+  fr: |-
+    Étape « transfert » en chimie : lire la vitesse initiale comme la pente de la tangente à l'origine ($k\,[\mathrm{A}]_0 = 0.050\ \mathrm{mol \cdot L^{-1} \cdot s^{-1}}$), vérifier que la vitesse à un instant quelconque est proportionnelle à la concentration restante, et mesurer le temps de demi-réaction. Faire varier $[\mathrm{A}]_0$ pour constater que $t_{1/2}$ ne change pas (signature de l'ordre 1), puis $\tau$ pour voir $k = 1/\tau$ agir. Même équation que la charge du condensateur, avec une cible nulle.
+  en: |-
+    "Transfer" step in chemistry: read the initial rate as the slope of the tangent at the origin ($k\,[\mathrm{A}]_0 = 0.050\ \mathrm{mol \cdot L^{-1} \cdot s^{-1}}$), check that the rate at any instant is proportional to the remaining concentration, and measure the half-life. Vary $[\mathrm{A}]_0$ to see that $t_{1/2}$ does not change (signature of first order), then $\tau$ to see $k = 1/\tau$ at work. Same equation as the charging of the capacitor, with a zero target.
+a11y:
+  fr: |-
+    Représentation alternative : tableau de la concentration, de la vitesse de disparition et de la fraction restante toutes les 2 s, et description textuelle (« la concentration diminue de moitié toutes les 6.9 s : 0.50, 0.25, 0.125 mol/L »). La vue « tangente » annonce la pente au point choisi ; curseurs manipulables au clavier.
+  en: |-
+    Alternative representation: a table of the concentration, the rate of disappearance and the remaining fraction every 2 s, and a textual description ("the concentration halves every 6.9 s: 0.50, 0.25, 0.125 mol/L"). The "tangent" view announces the slope at the chosen point; keyboard-operable sliders.

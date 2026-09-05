@@ -1,0 +1,47 @@
+# Authored routes through the universe (recommended, thematic, historical).
+routes:
+  - id: route.first_journey
+    kind: recommended
+    title:
+      fr: "Premier voyage : de la fonction à la dérivée"
+      en: "First journey: from function to derivative"
+    summary:
+      fr: "Le parcours conseillé pour une première session : construire la dérivée pas à pas, la forger dans la mission de Galilée, puis la réutiliser sur la charge d'un condensateur."
+      en: "The recommended path for a first session: build the derivative step by step, forge it in Galileo's mission, then reuse it on a charging capacitor."
+    nodes:
+      - concept.function
+      - concept.graph
+      - concept.rate_of_change
+      - tool.derivative
+      - mission.galileo.inclined_plane
+      - phenomenon.circuit.capacitor_charging
+  - id: route.exponential_everywhere
+    kind: thematic
+    title:
+      fr: "L'exponentielle est partout"
+      en: "The exponential is everywhere"
+    summary:
+      fr: "Quatre phénomènes de trois mondes, une seule équation : reconnaître le schéma « vitesse proportionnelle à la quantité restante », puis retrouver l'exponentielle et l'équation différentielle qui le résolvent."
+      en: "Four phenomena from three worlds, one equation: recognise the pattern \"rate proportional to the remaining quantity\", then recover the exponential and the differential equation that solve it."
+    nodes:
+      - concept.rate_proportional_to_quantity
+      - phenomenon.circuit.capacitor_charging
+      - phenomenon.chemistry.first_order_reaction
+      - phenomenon.nuclear.radioactive_decay
+      - phenomenon.motion.with_drag
+      - tool.exponential
+      - tool.ode_first_order
+  - id: route.galileo_history
+    kind: historical
+    title:
+      fr: "Galilée à Padoue"
+      en: "Galileo in Padua"
+    summary:
+      fr: "Le temps, le lieu, l'homme, puis l'expérience et la loi qu'elle a révélée : le mouvement uniformément accéléré tel qu'il a été mesuré avant d'être expliqué."
+      en: "The time, the place, the man, then the experiment and the law it revealed: uniformly accelerated motion as it was measured before it was explained."
+    nodes:
+      - period.galileo_padua_1592_1610
+      - place.padua
+      - person.galileo_galilei
+      - mission.galileo.inclined_plane
+      - phenomenon.motion.uniformly_accelerated

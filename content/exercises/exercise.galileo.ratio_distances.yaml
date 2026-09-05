@@ -1,0 +1,72 @@
+# Galilée — rapport des distances à instants égaux (réponse numérique)
+id: exercise.galileo.ratio_distances
+type: numeric
+nodeId: phenomenon.motion.uniformly_accelerated
+depth: 1
+evidenceDimension: procedural_execution
+context:
+  fr: |-
+    Padoue, vers 1604 (reconstruction pédagogique). Galilée pesait l'eau écoulée de son horloge pendant chaque descente ; nous convertissons ces pesées en secondes.
+  en: |-
+    Padua, c. 1604 (pedagogical reconstruction). Galileo weighed the water that flowed from his clock during each descent; we convert these weighings into seconds.
+prompt:
+  fr: |-
+    Sur le plan incliné à 10°, on a mesuré la distance parcourue par la bille depuis son départ (sans vitesse initiale) à trois instants séparés par des durées égales :
+
+    - $d(1) = 0.60\ \mathrm{m}$ à $t = 1\ \mathrm{s}$ ;
+    - $d(2) = 2.40\ \mathrm{m}$ à $t = 2\ \mathrm{s}$ ;
+    - $d(3) = 5.40\ \mathrm{m}$ à $t = 3\ \mathrm{s}$.
+
+    Calculez le rapport $\dfrac{d(2)}{d(1)}$ (nombre sans unité). Que suggère ce résultat pour la loi qui relie $d$ et $t$ ?
+  en: |-
+    On the plane inclined at 10°, the distance travelled by the ball from its start (with no initial speed) was measured at three instants separated by equal durations:
+
+    - $d(1) = 0.60\ \mathrm{m}$ at $t = 1\ \mathrm{s}$;
+    - $d(2) = 2.40\ \mathrm{m}$ at $t = 2\ \mathrm{s}$;
+    - $d(3) = 5.40\ \mathrm{m}$ at $t = 3\ \mathrm{s}$.
+
+    Compute the ratio $\dfrac{d(2)}{d(1)}$ (a number without unit). What does this result suggest for the law linking $d$ and $t$?
+numeric:
+  value: 4
+  tolerance: { kind: relative, value: 0.05 }
+  inputLabel: { fr: "Rapport d(2)/d(1)", en: "Ratio d(2)/d(1)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Un rapport de deux distances : divisez la seconde mesure par la première, puis comparez le résultat à $2^2$. Calculez de même $d(3)/d(1)$ et comparez-le à $3^2$.
+      en: |-
+        A ratio of two distances: divide the second measurement by the first, then compare the result with $2^2$. Do the same for $d(3)/d(1)$ and compare it with $3^2$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $d(2)/d(1) = 2.40 / 0.60$.
+      en: |-
+        $d(2)/d(1) = 2.40 / 0.60$.
+solution:
+  fr: |-
+    $$\frac{d(2)}{d(1)} = \frac{2.40}{0.60} = 4 = 2^2.$$
+
+    De même $\dfrac{d(3)}{d(1)} = \dfrac{5.40}{0.60} = 9 = 3^2$. Quand le temps est multiplié par 2 (puis par 3), la distance est multipliée par 4 (puis par 9) : la distance parcourue est proportionnelle au **carré** du temps, $d = k\,t^2$ avec $k = 0.60\ \mathrm{m/s^2}$.
+
+    C'est la signature d'un mouvement uniformément accéléré : $d = \tfrac{1}{2} a t^2$, donc $a = 2k = 1.2\ \mathrm{m/s^2}$. On retrouve l'accélération attendue pour une bille qui roule sans glisser sur un plan à 10° : $a = \tfrac{5}{7}\, g \sin 10^\circ \approx 1.22\ \mathrm{m/s^2}$.
+
+    Un mouvement uniforme aurait donné un rapport égal à 2, et non à 4.
+  en: |-
+    $$\frac{d(2)}{d(1)} = \frac{2.40}{0.60} = 4 = 2^2.$$
+
+    Likewise $\dfrac{d(3)}{d(1)} = \dfrac{5.40}{0.60} = 9 = 3^2$. When the time is multiplied by 2 (then by 3), the distance is multiplied by 4 (then by 9): the distance travelled is proportional to the **square** of the time, $d = k\,t^2$ with $k = 0.60\ \mathrm{m/s^2}$.
+
+    This is the signature of uniformly accelerated motion: $d = \tfrac{1}{2} a t^2$, hence $a = 2k = 1.2\ \mathrm{m/s^2}$. This matches the acceleration expected for a ball rolling without slipping on a plane at 10°: $a = \tfrac{5}{7}\, g \sin 10^\circ \approx 1.22\ \mathrm{m/s^2}$.
+
+    Uniform motion would have given a ratio equal to 2, not 4.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

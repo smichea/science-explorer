@@ -1,0 +1,68 @@
+# Chute avec frottement fluide : la vitesse tend vers une limite mg/k.
+id: simulation.motion.drag
+engine: motion_2d
+title: { fr: "Chute avec frottement fluide", en: "Fall with drag" }
+description:
+  fr: |-
+    Une bille tombe de 30 m dans un fluide qui exerce un frottement proportionnel à la vitesse, $\vec F = -k\,\vec v$. Tant que la bille est lente, elle accélère presque comme en chute libre ; puis le frottement grandit avec la vitesse jusqu'à équilibrer le poids, et la vitesse tend vers la **vitesse limite** $v_\infty = m g / k$, atteinte à 63 % après le temps caractéristique $\tau = m / k$. Avec les valeurs par défaut ($m = 1\ \mathrm{kg}$, $k = 0.5\ \mathrm{kg/s}$), $v_\infty = 19.6\ \mathrm{m/s}$ et $\tau = 2\ \mathrm{s}$ : la bille touche le sol après $3.1\ \mathrm{s}$ à $15.5\ \mathrm{m/s}$, avant d'avoir atteint sa vitesse limite. Avec $k = 1\ \mathrm{kg/s}$, le palier à $9.8\ \mathrm{m/s}$ est nettement visible.
+  en: |-
+    A ball falls from 30 m through a fluid that exerts a drag proportional to the speed, $\vec F = -k\,\vec v$. While the ball is slow, it accelerates almost as in free fall; then the drag grows with the speed until it balances the weight, and the speed tends to the **terminal speed** $v_\infty = m g / k$, reached at 63% after the characteristic time $\tau = m / k$. With the default values ($m = 1\ \mathrm{kg}$, $k = 0.5\ \mathrm{kg/s}$), $v_\infty = 19.6\ \mathrm{m/s}$ and $\tau = 2\ \mathrm{s}$: the ball hits the ground after $3.1\ \mathrm{s}$ at $15.5\ \mathrm{m/s}$, before reaching its terminal speed. With $k = 1\ \mathrm{kg/s}$, the plateau at $9.8\ \mathrm{m/s}$ is clearly visible.
+seedPolicy: deterministic
+seed: 1687
+config:
+  scene: free_fall
+  g: 9.81
+  mass: 1
+  initialHeight: 30
+  linearDrag: 0.5
+  dt: 0.001
+controls:
+  - { variable: linearDrag, label: { fr: "Coefficient de frottement fluide k", en: "Linear drag coefficient k" }, min: 0.1, max: 2, step: 0.1, unit: "kg/s", default: 0.5 }
+  - { variable: mass, label: { fr: "Masse de la bille", en: "Mass of the ball" }, min: 0.2, max: 5, step: 0.2, unit: "kg", default: 1 }
+observables: [position, velocity, acceleration, energy]
+views: [world, position_time_graph, velocity_time_graph, table]
+modelNode: model.kinematics_point
+assumptions:
+  fr:
+    - "Point matériel de masse $m$, lâché sans vitesse initiale depuis 30 m."
+    - "Champ de pesanteur uniforme, $g = 9.81\\ \\mathrm{m/s^2}$."
+    - |-
+      Frottement fluide linéaire, $\vec F = -k\,\vec v$ : l'équation du mouvement est $m\,\dfrac{dv}{dt} = m g - k\,v$, dont la solution est $v(t) = \dfrac{m g}{k}\left(1 - e^{-kt/m}\right)$.
+    - "Fluide immobile et homogène ; pas de poussée d'Archimède."
+  en:
+    - "Point mass $m$, released with no initial speed from 30 m."
+    - "Uniform gravitational field, $g = 9.81\\ \\mathrm{m/s^2}$."
+    - |-
+      Linear drag, $\vec F = -k\,\vec v$: the equation of motion is $m\,\dfrac{dv}{dt} = m g - k\,v$, whose solution is $v(t) = \dfrac{m g}{k}\left(1 - e^{-kt/m}\right)$.
+    - "Fluid at rest and homogeneous; no buoyancy."
+validity:
+  fr: |-
+    Le frottement linéaire décrit correctement les objets petits et lents dans un fluide visqueux (régime de Stokes : gouttelettes dans l'air, billes dans l'huile ou la glycérine). Pour une balle de 1 kg dans l'air, la traînée réelle est quadratique en vitesse ; les valeurs de $k$ proposées (0.1 à 2 kg/s) sont donc à lire comme un modèle exploratoire qui montre la structure « vitesse proportionnelle à ce qui reste », pas comme des coefficients mesurés.
+  en: |-
+    Linear drag correctly describes small, slow objects in a viscous fluid (Stokes regime: droplets in air, beads in oil or glycerine). For a 1 kg ball in air, the actual drag is quadratic in speed; the proposed values of $k$ (0.1 to 2 kg/s) should therefore be read as an exploratory model showing the "rate proportional to what remains" structure, not as measured coefficients.
+numericalMethod:
+  fr: |-
+    Runge-Kutta d'ordre 4, pas fixe de 1 ms, très inférieur au temps caractéristique le plus court accessible ($\tau = m/k = 0.1\ \mathrm{s}$ pour $m = 0.2\ \mathrm{kg}$ et $k = 2\ \mathrm{kg/s}$). L'erreur relative par rapport à la solution exacte reste inférieure à $10^{-8}$.
+  en: |-
+    Fourth-order Runge-Kutta, fixed 1 ms step, much shorter than the shortest reachable characteristic time ($\tau = m/k = 0.1\ \mathrm{s}$ for $m = 0.2\ \mathrm{kg}$ and $k = 2\ \mathrm{kg/s}$). The relative error with respect to the exact solution stays below $10^{-8}$.
+ignoredEffects:
+  fr:
+    - "Traînée quadratique en vitesse (régime turbulent, dominant pour une balle dans l'air)."
+    - "Poussée d'Archimède."
+    - "Dépendance du coefficient $k$ à la forme, à la taille et à la température du fluide."
+    - "Rotation de la bille et effets de sillage."
+  en:
+    - "Drag quadratic in speed (turbulent regime, dominant for a ball in air)."
+    - "Buoyancy."
+    - "Dependence of the coefficient $k$ on shape, size and fluid temperature."
+    - "Rotation of the ball and wake effects."
+learningUse:
+  fr: |-
+    Contraste avec la chute libre : ici la dérivée de la vitesse, $\dfrac{dv}{dt} = \dfrac{v_\infty - v}{\tau}$, est proportionnelle à l'écart qui reste à la vitesse limite. Faire varier $k$ et $m$ pour observer que $v_\infty = m g / k$ et que le palier apparaît d'autant plus vite que $\tau = m/k$ est court ; comparer la courbe à celle de la charge du condensateur, qui a la même forme.
+  en: |-
+    Contrast with free fall: here the derivative of the speed, $\dfrac{dv}{dt} = \dfrac{v_\infty - v}{\tau}$, is proportional to the remaining gap to the terminal speed. Vary $k$ and $m$ to observe that $v_\infty = m g / k$ and that the plateau appears sooner when $\tau = m/k$ is short; compare the curve with that of the charging capacitor, which has the same shape.
+a11y:
+  fr: |-
+    Représentation alternative : tableau des hauteurs, vitesses et accélérations tous les 0.1 s, description textuelle de la courbe de vitesse (« augmente vite, puis de moins en moins, et se stabilise vers 19.6 m/s ») et annonce de la vitesse limite $m g / k$ calculée pour les valeurs courantes. Curseurs manipulables au clavier.
+  en: |-
+    Alternative representation: a table of heights, speeds and accelerations every 0.1 s, a textual description of the speed curve ("increases quickly, then less and less, and levels off towards 19.6 m/s") and an announcement of the terminal speed $m g / k$ computed for the current values. Keyboard-operable sliders.

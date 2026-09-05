@@ -1,0 +1,67 @@
+id: tool.gradient
+type: mathematical_tool
+world: world.mathematics
+region: region.math.multivariable_analysis
+importance: 2
+backpack: true
+tags: [vertical-slice]
+title: { fr: Gradient, en: Gradient }
+shortPurpose:
+  fr: Étendre la dérivée aux fonctions de plusieurs variables et indiquer la direction de plus forte pente.
+  en: Extend the derivative to functions of several variables and point in the direction of steepest ascent.
+aliases:
+  fr: ["vecteur gradient", "nabla", "dérivées partielles", "différentielle"]
+  en: ["gradient vector", "nabla", "partial derivatives", "differential"]
+description:
+  fr: |
+    Sur un relief $z = f(x, y)$, la question « quelle est la pente ? » n'a plus une seule réponse : elle dépend de la direction dans laquelle on marche. Le **gradient** rassemble toutes ces réponses dans un vecteur,
+    $$\nabla f(a) = \left(\frac{\partial f}{\partial x}(a),\ \frac{\partial f}{\partial y}(a)\right),$$
+    formé des **dérivées partielles**, c'est-à-dire des dérivées ordinaires obtenues en ne faisant varier qu'une variable à la fois. La pente dans la direction du vecteur unitaire $\vec u$ est le produit scalaire $\nabla f(a)\cdot\vec u$ : elle est maximale dans la direction du gradient et nulle le long des lignes de niveau, auxquelles le gradient est orthogonal.
+
+    Le problème que résout le gradient est celui de la **variation d'une grandeur qui dépend de plusieurs paramètres** : comment l'énergie potentielle varie avec la position (la force est $-\nabla E_p$), comment la température varie dans une pièce (le flux thermique suit $-\nabla T$), comment une incertitude se propage quand plusieurs grandeurs mesurées sont incertaines. Il est aussi le cœur de l'**optimisation** : en un extremum d'une fonction régulière, le gradient s'annule, et l'on descend une vallée en suivant $-\nabla f$ (descente de gradient, utilisée pour entraîner les réseaux de neurones).
+
+    Le gradient généralise la dérivée : pour une fonction d'une seule variable, $\nabla f = f'$. Il exige donc la dérivée au niveau MPSI (l'approximation locale $f(a+h) \approx f(a) + f'(a)\,h$ devient $f(a+h) \approx f(a) + \nabla f(a)\cdot h$) et le vecteur. C'est une destination de MP : un lecteur de Terminale peut la visiter pour voir où mène la dérivée.
+  en: |
+    On a landscape $z = f(x, y)$, the question "what is the slope?" no longer has a single answer: it depends on the direction in which you walk. The **gradient** gathers all these answers into one vector,
+    $$\nabla f(a) = \left(\frac{\partial f}{\partial x}(a),\ \frac{\partial f}{\partial y}(a)\right),$$
+    made of the **partial derivatives**, that is, the ordinary derivatives obtained by letting only one variable vary at a time. The slope in the direction of the unit vector $\vec u$ is the dot product $\nabla f(a)\cdot\vec u$: it is largest in the direction of the gradient and zero along the level curves, to which the gradient is orthogonal.
+
+    The problem the gradient solves is the **variation of a quantity that depends on several parameters**: how potential energy varies with position (the force is $-\nabla E_p$), how temperature varies across a room (heat flows along $-\nabla T$), how an uncertainty propagates when several measured quantities are uncertain. It is also the heart of **optimisation**: at an extremum of a smooth function the gradient vanishes, and one walks down a valley by following $-\nabla f$ (gradient descent, used to train neural networks).
+
+    The gradient generalises the derivative: for a function of a single variable, $\nabla f = f'$. It therefore requires the derivative at MPSI level (the local approximation $f(a+h) \approx f(a) + f'(a)\,h$ becomes $f(a+h) \approx f(a) + \nabla f(a)\cdot h$) and the vector. It is an MP destination: a Terminale reader may visit it to see where the derivative leads.
+tool:
+  problemSolved:
+    fr: "Décrire comment une grandeur dépendant de plusieurs variables varie autour d'un point, dans toutes les directions à la fois, et trouver ses extremums."
+    en: "Describe how a quantity depending on several variables varies around a point, in every direction at once, and find its extrema."
+  construction:
+    fr: "On dérive $f$ par rapport à chaque variable en figeant les autres (dérivées partielles) ; le vecteur de ces dérivées est le gradient, et $f(a+h) \\approx f(a) + \\nabla f(a)\\cdot h$ pour $h$ petit."
+    en: "Differentiate $f$ with respect to each variable while freezing the others (partial derivatives); the vector of these derivatives is the gradient, and $f(a+h) \\approx f(a) + \\nabla f(a)\\cdot h$ for small $h$."
+  icon: compass
+depths:
+  - depth: 3
+    stage: mp
+    role: core
+    outcomes:
+      fr:
+        - "calculer les dérivées partielles d'une fonction de plusieurs variables et son gradient"
+        - "écrire la différentielle d'une fonction de classe $\\mathcal{C}^1$ et le développement limité à l'ordre 1"
+        - "interpréter géométriquement le gradient : direction de plus forte pente, normale aux lignes de niveau"
+        - "appliquer la règle de la chaîne et rechercher des extremums locaux par les points critiques"
+      en:
+        - "compute the partial derivatives of a function of several variables and its gradient"
+        - "write the differential of a $\\mathcal{C}^1$ function and the first-order Taylor expansion"
+        - "interpret the gradient geometrically: direction of steepest ascent, normal to level curves"
+        - "apply the chain rule and look for local extrema through critical points"
+    lesson:
+      fr: |
+        **Dérivées partielles et classe $\mathcal{C}^1$.** Soit $f$ définie sur un ouvert $U$ de $\mathbb{R}^n$. La $i$-ième dérivée partielle en $a$ est $\dfrac{\partial f}{\partial x_i}(a) = \lim_{h \to 0}\dfrac{f(a + h\,e_i) - f(a)}{h}$. Si les dérivées partielles existent et sont continues sur $U$, $f$ est de classe $\mathcal{C}^1$ et admet en tout point un développement limité à l'ordre 1 : $f(a + h) = f(a) + \displaystyle\sum_{i=1}^n \frac{\partial f}{\partial x_i}(a)\,h_i + o(\|h\|)$. L'application linéaire $\mathrm{d}f_a : h \mapsto \sum_i \frac{\partial f}{\partial x_i}(a)\,h_i$ est la différentielle de $f$ en $a$.
+
+        **Gradient.** Dans $\mathbb{R}^n$ muni du produit scalaire canonique, il existe un unique vecteur $\nabla f(a)$ tel que $\mathrm{d}f_a(h) = \langle \nabla f(a),\, h\rangle$ pour tout $h$ ; ses coordonnées sont les dérivées partielles. Dérivée directionnelle : $D_{\vec u}f(a) = \langle \nabla f(a),\, \vec u\rangle$. Règle de la chaîne : si $\gamma$ est un arc de classe $\mathcal{C}^1$, $(f \circ \gamma)'(t) = \langle \nabla f(\gamma(t)),\, \gamma'(t)\rangle$ ; le long d'une ligne de niveau, cette dérivée est nulle, donc $\nabla f$ est orthogonal aux lignes de niveau et fournit la normale à la surface d'équation $f = c$.
+
+        **Optimisation.** Si $f$ est de classe $\mathcal{C}^1$ sur l'ouvert $U$ et admet un extremum local en $a$, alors $\nabla f(a) = 0$ ($a$ est un point critique). La réciproque est fausse (point col) ; pour $f$ de classe $\mathcal{C}^2$, la matrice hessienne $H_f(a) = \left(\dfrac{\partial^2 f}{\partial x_i\,\partial x_j}(a)\right)$ intervient dans la formule de Taylor-Young à l'ordre 2 et permet de conclure : définie positive, minimum local ; définie négative, maximum local. En physique, $\vec F = -\nabla E_p$ : les positions d'équilibre sont les points critiques de l'énergie potentielle, stables en ses minimums.
+      en: |
+        **Partial derivatives and class $\mathcal{C}^1$.** Let $f$ be defined on an open set $U$ of $\mathbb{R}^n$. The $i$-th partial derivative at $a$ is $\dfrac{\partial f}{\partial x_i}(a) = \lim_{h \to 0}\dfrac{f(a + h\,e_i) - f(a)}{h}$. If the partial derivatives exist and are continuous on $U$, $f$ is of class $\mathcal{C}^1$ and has at every point a first-order Taylor expansion: $f(a + h) = f(a) + \displaystyle\sum_{i=1}^n \frac{\partial f}{\partial x_i}(a)\,h_i + o(\|h\|)$. The linear map $\mathrm{d}f_a : h \mapsto \sum_i \frac{\partial f}{\partial x_i}(a)\,h_i$ is the differential of $f$ at $a$.
+
+        **Gradient.** In $\mathbb{R}^n$ with the canonical inner product, there is a unique vector $\nabla f(a)$ such that $\mathrm{d}f_a(h) = \langle \nabla f(a),\, h\rangle$ for every $h$; its coordinates are the partial derivatives. Directional derivative: $D_{\vec u}f(a) = \langle \nabla f(a),\, \vec u\rangle$. Chain rule: if $\gamma$ is a $\mathcal{C}^1$ arc, $(f \circ \gamma)'(t) = \langle \nabla f(\gamma(t)),\, \gamma'(t)\rangle$; along a level curve this derivative is zero, so $\nabla f$ is orthogonal to the level curves and gives the normal to the surface of equation $f = c$.
+
+        **Optimisation.** If $f$ is of class $\mathcal{C}^1$ on the open set $U$ and has a local extremum at $a$, then $\nabla f(a) = 0$ ($a$ is a critical point). The converse is false (saddle point); for $f$ of class $\mathcal{C}^2$, the Hessian matrix $H_f(a) = \left(\dfrac{\partial^2 f}{\partial x_i\,\partial x_j}(a)\right)$ enters the second-order Taylor-Young formula and settles the question: positive definite, local minimum; negative definite, local maximum. In physics, $\vec F = -\nabla E_p$: equilibrium positions are the critical points of the potential energy, stable at its minima.

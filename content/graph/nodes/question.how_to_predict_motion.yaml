@@ -1,0 +1,27 @@
+id: question.how_to_predict_motion
+type: question
+anchorNode: phenomenon.motion.uniformly_accelerated
+importance: 2
+tags: [vertical-slice]
+title:
+  fr: "Comment prédire un mouvement ?"
+  en: "How can motion be predicted?"
+shortPurpose:
+  fr: La question qui organise cinématique, lois de Newton, dérivée et équations différentielles.
+  en: The question that organises kinematics, Newton's laws, the derivative and differential equations.
+aliases:
+  fr: ["prédiction du mouvement", "prévoir une trajectoire", "origine des équations du mouvement"]
+  en: ["predicting motion", "forecasting a trajectory", "origin of the equations of motion"]
+description:
+  fr: |
+    Où sera la bille dans une seconde ? La question paraît naïve ; elle a occupé Aristote, Galilée et Newton, et elle organise encore la mécanique. Y répondre exige trois choses : une façon de **décrire** le mouvement avec précision (position, vitesse, accélération : la cinématique du point), une **loi** qui relie la cause au changement (la deuxième loi de Newton, qui impose l'accélération), et un **outil** pour remonter de l'accélération à la position (la dérivée, puis l'équation différentielle avec ses conditions initiales).
+
+    L'histoire montre l'ordre dans lequel ces pièces sont apparues : Galilée a d'abord *mesuré* la régularité de la chute sur un plan incliné (les espaces comme les carrés des temps) sans disposer de la notion moderne de force ; Newton a ensuite fourni la loi ; Newton et Leibniz, l'outil du calcul différentiel. Aujourd'hui, la même question se pose pour un satellite, une goutte de pluie ou une particule dans un accélérateur, et la réponse suit toujours le même chemin : décrire, écrire la loi, résoudre, comparer aux mesures.
+
+    Cette question guide la mission du plan incliné : partir des mesures de Galilée, construire l'outil qui permet de parler de vitesse instantanée, puis vérifier que le même outil prédit la charge d'un condensateur ou la disparition d'un réactif.
+  en: |
+    Where will the ball be in one second? The question looks naive; it occupied Aristotle, Galileo and Newton, and it still organises mechanics. Answering it requires three things: a way to **describe** the motion precisely (position, velocity, acceleration: the kinematics of a point), a **law** that links the cause to the change (Newton's second law, which dictates the acceleration), and a **tool** to climb back from the acceleration to the position (the derivative, then the differential equation with its initial conditions).
+
+    History shows the order in which these pieces appeared: Galileo first *measured* the regularity of fall on an inclined plane (the spaces as the squares of the times) without the modern notion of force; Newton then provided the law; Newton and Leibniz, the tool of differential calculus. Today the same question arises for a satellite, a raindrop or a particle in an accelerator, and the answer always follows the same path: describe, write the law, solve, compare with measurements.
+
+    This question guides the inclined-plane mission: start from Galileo's measurements, build the tool that makes it possible to speak of instantaneous velocity, then check that the same tool predicts the charging of a capacitor or the disappearance of a reactant.

@@ -1,0 +1,70 @@
+# Charge d'un condensateur à travers une résistance : q(t) = Q (1 − e^{−t/τ}).
+id: simulation.rc.charging
+engine: first_order
+title: { fr: "Charge d'un condensateur", en: "Charging of a capacitor" }
+description:
+  fr: |-
+    Un condensateur de capacité $C = 1.0\ \mu\mathrm{F}$, initialement déchargé, se charge à travers une résistance $R = 2.0\ \mathrm{k\Omega}$ sous une tension $E = 6.0\ \mathrm{V}$. Sa charge suit $q(t) = Q\,(1 - e^{-t/\tau})$ avec $Q = CE = 6.0\ \mu\mathrm{C}$ et $\tau = RC = 2.0\ \mathrm{ms}$. Le taux de variation $\dfrac{dq}{dt} = \dfrac{Q - q}{\tau}$ est proportionnel à la charge qui reste à gagner : il vaut $3.0\ \mathrm{mA}$ à $t = 0$, puis décroît ; la tangente à l'origine atteint $Q$ à $t = \tau$, et la charge vaut $0.63\,Q$ à $t = \tau$, $0.95\,Q$ à $t = 3\tau$.
+  en: |-
+    A capacitor of capacitance $C = 1.0\ \mu\mathrm{F}$, initially uncharged, charges through a resistor $R = 2.0\ \mathrm{k\Omega}$ under a voltage $E = 6.0\ \mathrm{V}$. Its charge follows $q(t) = Q\,(1 - e^{-t/\tau})$ with $Q = CE = 6.0\ \mu\mathrm{C}$ and $\tau = RC = 2.0\ \mathrm{ms}$. The rate of change $\dfrac{dq}{dt} = \dfrac{Q - q}{\tau}$ is proportional to the charge still to be gained: it equals $3.0\ \mathrm{mA}$ at $t = 0$, then decreases; the tangent at the origin reaches $Q$ at $t = \tau$, and the charge equals $0.63\,Q$ at $t = \tau$, $0.95\,Q$ at $t = 3\tau$.
+seedPolicy: deterministic
+seed: 1745
+config:
+  scene: rc_charging
+  target: 6
+  initial: 0
+  tau: 2
+  unit: "µC"
+  timeUnit: "ms"
+  duration: 12
+  dt: 0.001
+controls:
+  - { variable: tau, label: { fr: "Constante de temps τ = RC", en: "Time constant τ = RC" }, min: 0.5, max: 5, step: 0.5, unit: "ms", default: 2 }
+  - { variable: target, label: { fr: "Charge finale Q = CE", en: "Final charge Q = CE" }, min: 1, max: 10, step: 1, unit: "µC", default: 6 }
+observables: [quantity, rate, remaining]
+views: [quantity_time_graph, tangent, table]
+modelNode: model.rc_circuit
+assumptions:
+  fr:
+    - "Générateur de tension idéal, de force électromotrice constante $E$ et de résistance interne nulle."
+    - "Résistance et condensateur idéaux (pas de fuite, pas d'inductance des fils), de valeurs constantes."
+    - |-
+      Loi des mailles $E = R\,i + q/C$ avec $i = \dfrac{dq}{dt}$, d'où $\dfrac{dq}{dt} = \dfrac{Q - q}{\tau}$, $Q = CE$, $\tau = RC$.
+    - "Condensateur déchargé à l'instant de fermeture de l'interrupteur ($q(0) = 0$)."
+  en:
+    - "Ideal voltage generator, of constant electromotive force $E$ and zero internal resistance."
+    - "Ideal resistor and capacitor (no leakage, no wire inductance), with constant values."
+    - |-
+      Loop law $E = R\,i + q/C$ with $i = \dfrac{dq}{dt}$, hence $\dfrac{dq}{dt} = \dfrac{Q - q}{\tau}$, $Q = CE$, $\tau = RC$.
+    - "Capacitor uncharged when the switch is closed ($q(0) = 0$)."
+validity:
+  fr: |-
+    Régime quasi stationnaire : valable tant que la durée d'observation (quelques millisecondes) est très longue devant le temps de propagation des signaux dans le circuit (nanosecondes) et courte devant les temps de fuite du condensateur (secondes à heures). Constantes de temps de 0.5 ms à 5 ms et charges de 1 µC à 10 µC : le modèle linéaire est excellent pour des composants ordinaires, avec des écarts inférieurs à 1 %.
+  en: |-
+    Quasi-steady regime: valid as long as the observation time (a few milliseconds) is much longer than the propagation time of signals in the circuit (nanoseconds) and short compared with the leakage times of the capacitor (seconds to hours). Time constants from 0.5 ms to 5 ms and charges from 1 µC to 10 µC: the linear model is excellent for ordinary components, with deviations below 1%.
+numericalMethod:
+  fr: |-
+    Runge-Kutta d'ordre 4, pas fixe $dt = 0.001\ \mathrm{ms}$ (soit 12 000 pas sur les 12 ms simulées). La solution exacte $q(t) = Q\,(1 - e^{-t/\tau})$ est connue ; l'écart numérique est inférieur à $10^{-10}$ en valeur relative et sert de contrôle.
+  en: |-
+    Fourth-order Runge-Kutta, fixed step $dt = 0.001\ \mathrm{ms}$ (12,000 steps over the 12 ms simulated). The exact solution $q(t) = Q\,(1 - e^{-t/\tau})$ is known; the numerical deviation is below $10^{-10}$ in relative value and serves as a check.
+ignoredEffects:
+  fr:
+    - "Résistance interne du générateur et résistance des fils."
+    - "Courant de fuite du condensateur et dépendance de $C$ à la tension ou à la température."
+    - "Inductance parasite du circuit (oscillations aux tout premiers instants)."
+    - "Rebonds de l'interrupteur à la fermeture."
+  en:
+    - "Internal resistance of the generator and resistance of the wires."
+    - "Leakage current of the capacitor and dependence of $C$ on voltage or temperature."
+    - "Parasitic inductance of the circuit (oscillations during the very first instants)."
+    - "Switch bounce at closing."
+learningUse:
+  fr: |-
+    Étape « transfert » : lire la pente de la tangente à l'origine ($Q/\tau = 3.0\ \mathrm{mA}$), vérifier que cette tangente coupe l'asymptote à $t = \tau$, puis déplacer le point de tangence pour constater que la pente diminue proportionnellement à $Q - q$. Faire varier $\tau$ (à $Q$ fixé) et $Q$ (à $\tau$ fixé) pour séparer les deux paramètres ; comparer avec la vitesse de la bille de Galilée, proportionnelle au temps écoulé et non à ce qui reste.
+  en: |-
+    "Transfer" step: read the slope of the tangent at the origin ($Q/\tau = 3.0\ \mathrm{mA}$), check that this tangent meets the asymptote at $t = \tau$, then move the point of tangency to see that the slope decreases proportionally to $Q - q$. Vary $\tau$ (at fixed $Q$) and $Q$ (at fixed $\tau$) to separate the two parameters; compare with the speed of Galileo's ball, proportional to the elapsed time and not to what remains.
+a11y:
+  fr: |-
+    Représentation alternative : tableau de la charge, du taux de variation et de la charge restante tous les 0.5 ms, et description textuelle (« la charge monte vite puis de plus en plus lentement vers 6 µC ; à 2 ms elle vaut 3.8 µC »). La vue « tangente » est doublée d'une annonce vocale de la pente au point choisi ; curseurs manipulables au clavier.
+  en: |-
+    Alternative representation: a table of the charge, the rate of change and the remaining charge every 0.5 ms, and a textual description ("the charge rises quickly then more and more slowly towards 6 µC; at 2 ms it equals 3.8 µC"). The "tangent" view is doubled by a spoken announcement of the slope at the chosen point; keyboard-operable sliders.

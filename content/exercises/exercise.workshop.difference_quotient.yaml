@@ -1,0 +1,64 @@
+# Atelier — taux de variation moyen sur [1 ; 1.1] (réponse numérique)
+id: exercise.workshop.difference_quotient
+type: numeric
+nodeId: tool.derivative
+phenomenonId: phenomenon.motion.uniformly_accelerated
+depth: 1
+evidenceDimension: procedural_execution
+context:
+  fr: |-
+    Atelier mathématique : on remplace les mesures de Galilée par une loi horaire exacte pour construire l'outil qui manquait.
+  en: |-
+    Mathematics workshop: Galileo's measurements are replaced by an exact position law in order to build the missing tool.
+prompt:
+  fr: |-
+    Un mobile a pour loi horaire $x(t) = 2t^2$, avec $x$ en mètres et $t$ en secondes.
+
+    Calculez le **taux de variation moyen** de $x$ sur l'intervalle $[1 ; 1.1]$ :
+    $$\frac{x(1.1) - x(1)}{1.1 - 1}.$$
+    Donnez le résultat en $\mathrm{m/s}$.
+  en: |-
+    A moving body has the position law $x(t) = 2t^2$, with $x$ in metres and $t$ in seconds.
+
+    Compute the **average rate of change** of $x$ on the interval $[1, 1.1]$:
+    $$\frac{x(1.1) - x(1)}{1.1 - 1}.$$
+    Give the result in $\mathrm{m/s}$.
+numeric:
+  value: 4.2
+  unit: "m/s"
+  tolerance: { kind: absolute, value: 0.05 }
+  inputLabel: { fr: "Taux de variation moyen", en: "Average rate of change" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Calculez d'abord $x(1.1) = 2 \times 1.1^2$ et $x(1) = 2 \times 1^2$, puis divisez leur différence par la durée $0.1\ \mathrm{s}$.
+      en: |-
+        First compute $x(1.1) = 2 \times 1.1^2$ and $x(1) = 2 \times 1^2$, then divide their difference by the duration $0.1\ \mathrm{s}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $x(1.1) = 2 \times 1.21 = 2.42\ \mathrm{m}$ et $x(1) = 2\ \mathrm{m}$ ; il reste à diviser $0.42\ \mathrm{m}$ par $0.1\ \mathrm{s}$.
+      en: |-
+        $x(1.1) = 2 \times 1.21 = 2.42\ \mathrm{m}$ and $x(1) = 2\ \mathrm{m}$; it remains to divide $0.42\ \mathrm{m}$ by $0.1\ \mathrm{s}$.
+solution:
+  fr: |-
+    $$x(1.1) = 2 \times 1.1^2 = 2 \times 1.21 = 2.42\ \mathrm{m}, \qquad x(1) = 2 \times 1^2 = 2\ \mathrm{m}.$$
+    Le déplacement pendant l'intervalle vaut $x(1.1) - x(1) = 0.42\ \mathrm{m}$, pour une durée de $0.1\ \mathrm{s}$ :
+    $$\frac{x(1.1) - x(1)}{1.1 - 1} = \frac{0.42}{0.1} = 4.2\ \mathrm{m/s}.$$
+    C'est la vitesse moyenne du mobile entre $t = 1\ \mathrm{s}$ et $t = 1.1\ \mathrm{s}$ : la pente de la corde qui joint les points $(1 ; 2)$ et $(1.1 ; 2.42)$ de la courbe. Elle ne dit pas encore quelle est la vitesse **à** l'instant $t = 1\ \mathrm{s}$ ; pour cela, il faudra faire tendre la durée vers zéro.
+  en: |-
+    $$x(1.1) = 2 \times 1.1^2 = 2 \times 1.21 = 2.42\ \mathrm{m}, \qquad x(1) = 2 \times 1^2 = 2\ \mathrm{m}.$$
+    The displacement during the interval is $x(1.1) - x(1) = 0.42\ \mathrm{m}$, over a duration of $0.1\ \mathrm{s}$:
+    $$\frac{x(1.1) - x(1)}{1.1 - 1} = \frac{0.42}{0.1} = 4.2\ \mathrm{m/s}.$$
+    This is the average speed of the body between $t = 1\ \mathrm{s}$ and $t = 1.1\ \mathrm{s}$: the slope of the chord joining the points $(1, 2)$ and $(1.1, 2.42)$ of the curve. It does not yet say what the speed is **at** the instant $t = 1\ \mathrm{s}$; for that, the duration will have to shrink to zero.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2
