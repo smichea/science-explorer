@@ -50,6 +50,7 @@
   const view = $derived(
     prefs.performanceMode === '2d' && selection.view === '3d' ? '2d' : selection.view
   );
+  const dragMode = $derived(prefs.prefs.atlasDrag ?? 'rotate');
   const hasPanel = $derived(
     !!(selection.selectedId || selection.regionId || selection.worldId) ||
       page.url.pathname.endsWith('/universe')
@@ -195,48 +196,68 @@
   </div>
 
   <div class="stage" data-view={view}>
-    {#if view === '3d' && !webglLost}
-      <Atlas
-        {graph}
-        layout={pkg.layout}
-        {styles}
-        {routes}
-        {focus}
-        {focusKey}
-        locale={locale.current}
-        performance={prefs.performanceMode}
-        reducedMotion={prefs.reducedMotion}
-        {labelText}
-        {onselect}
-        onhover={(id) => (selection.hoveredId = id)}
-        oncontextlost={onContextLost}
-      />
-      <p class="stage__help muted small hide-phone">{t('universe.help')}</p>
-    {:else if view === 'list'}
-      <DestinationList
-        {graph}
-        {styles}
-        selectedId={selection.selectedId}
-        {labelText}
-        {stateLabel}
-        {href}
-        {query}
-      />
-    {:else}
-      {#if webglLost}<p class="stage__notice">{t('universe.webglUnavailable')}</p>{/if}
-      <Map2D
-        {graph}
-        layout={pkg.layout}
-        {styles}
-        {routes}
-        selectedId={selection.selectedId}
-        focusId={focus.id ?? null}
-        {labelText}
-        {stateLabel}
-        {href}
-        {onselect}
-      />
-    {/if}
+    <!-- In normal flow, so the stage padding keeps the scene clear of the panel or the sheet. -->
+    <div class="stage__canvas">
+      {#if view === '3d' && !webglLost}
+        <Atlas
+          {graph}
+          layout={pkg.layout}
+          {styles}
+          {routes}
+          {focus}
+          {focusKey}
+          locale={locale.current}
+          performance={prefs.performanceMode}
+          reducedMotion={prefs.reducedMotion}
+          {dragMode}
+          {labelText}
+          {onselect}
+          onhover={(id) => (selection.hoveredId = id)}
+          oncontextlost={onContextLost}
+        />
+        <div class="stage__footer">
+          <div class="segmented stage__drag" role="group" aria-label={t('universe.dragMode')}>
+            <button
+              type="button"
+              aria-pressed={dragMode === 'rotate'}
+              onclick={() => prefs.update({ atlasDrag: 'rotate' })}
+              data-testid="drag-rotate">{t('universe.dragRotate')}</button
+            >
+            <button
+              type="button"
+              aria-pressed={dragMode === 'pan'}
+              onclick={() => prefs.update({ atlasDrag: 'pan' })}
+              data-testid="drag-pan">{t('universe.dragPan')}</button
+            >
+          </div>
+          <p class="stage__help muted small hide-phone">{t('universe.help')}</p>
+        </div>
+      {:else if view === 'list'}
+        <DestinationList
+          {graph}
+          {styles}
+          selectedId={selection.selectedId}
+          {labelText}
+          {stateLabel}
+          {href}
+          {query}
+        />
+      {:else}
+        {#if webglLost}<p class="stage__notice">{t('universe.webglUnavailable')}</p>{/if}
+        <Map2D
+          {graph}
+          layout={pkg.layout}
+          {styles}
+          {routes}
+          selectedId={selection.selectedId}
+          focusId={focus.id ?? null}
+          {labelText}
+          {stateLabel}
+          {href}
+          {onselect}
+        />
+      {/if}
+    </div>
     <p class="visually-hidden">{t('universe.destinations', { n: stats.nodes })}</p>
   </div>
 
@@ -319,12 +340,36 @@
     min-height: 0;
     overflow: hidden;
   }
-  .stage__help {
+  .stage__canvas {
+    position: relative;
+    height: 100%;
+  }
+  .stage__footer {
     position: absolute;
     left: var(--space-3);
+    right: var(--space-3);
     bottom: var(--space-2);
-    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
     pointer-events: none;
+    z-index: 2;
+  }
+  .stage__drag {
+    flex: none;
+    pointer-events: auto;
+    background: rgba(11, 16, 32, 0.7);
+    backdrop-filter: blur(6px);
+  }
+  .stage__drag button {
+    min-height: 34px;
+    padding: 0.25rem 0.7rem;
+    font-size: var(--fs-sm);
+  }
+  .stage__help {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
   }
   .stage__notice {
     position: absolute;
@@ -360,24 +405,22 @@
     padding: var(--space-4);
     flex: 1;
   }
-  .panel-open .stage__help {
-    right: min(30rem, 42vw);
-  }
-  /* The destination list keeps clear of the open panel; maps can be panned instead. */
-  .panel-open .stage[data-view='list'] {
+  /* The scene only occupies the area the panel leaves visible: its centre is the visible centre. */
+  .panel-open .stage {
     padding-right: min(30rem, 42vw);
   }
   @media (max-width: 1024px) {
     .panel {
       width: min(26rem, 50vw);
     }
-    .panel-open .stage[data-view='list'] {
+    .panel-open .stage {
       padding-right: min(26rem, 50vw);
     }
   }
   @media (max-width: 700px) {
     .atlas-page {
-      height: calc(100dvh - var(--nav-height) - var(--safe-bottom));
+      --atlas-height: calc(100dvh - var(--nav-height) - var(--safe-bottom));
+      height: var(--atlas-height);
     }
     .hud__controls {
       display: none;
@@ -386,14 +429,20 @@
     .hud--open .hud__controls {
       display: flex;
     }
-    .panel-open .stage[data-view='list'] {
+    /* The bottom sheet covers the lower part of the stage: the scene keeps clear of it. */
+    .panel-open .stage {
       padding-right: 0;
+      padding-bottom: calc(0.46 * var(--atlas-height));
+      transition: padding-bottom 0.25s ease;
+    }
+    .panel-expanded .stage {
+      padding-bottom: var(--atlas-height);
     }
     .panel {
       top: auto;
       left: 0;
       width: auto;
-      height: 46%;
+      height: calc(0.46 * var(--atlas-height));
       border-left: 0;
       border-top: 1px solid var(--border-strong);
       border-radius: var(--radius-lg) var(--radius-lg) 0 0;

@@ -32,6 +32,9 @@ jobs:
         env:
           BASE_PATH: /${{ github.event.repository.name }}
       - uses: actions/configure-pages@v5
+        with:
+          # Enable Pages (build type "workflow") if the repository has not been configured yet.
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: build

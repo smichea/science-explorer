@@ -13,7 +13,17 @@ import {
   type RouteKind,
   type RouteStyle,
 } from './styles';
-import { FOCUS_DISTANCE, LABEL_BUDGET, zoomLevelForDistance, type ZoomLevel } from './zoom';
+import {
+  FOCUS_DISTANCE,
+  LABEL_BUDGET,
+  MAX_CAMERA_DISTANCE,
+  overviewDistance,
+  zoomLevelForDistance,
+  type ZoomLevel,
+} from './zoom';
+
+/** What the primary drag (left button, one finger) does. */
+export type DragMode = 'rotate' | 'pan';
 
 export interface FocusTarget {
   kind: 'universe' | 'world' | 'region' | 'node';
@@ -143,6 +153,9 @@ export class AtlasScene {
   private styles = new Map<string, NodeStyle>();
   private glowTexture: THREE.Texture;
   private lastLabelUpdate = 0;
+  private dragMode: DragMode = 'rotate';
+  /** Radius of the authored universe: frames the overview and bounds panning. */
+  private universeRadius: number;
 
   constructor(
     private container: HTMLElement,
@@ -178,13 +191,23 @@ export class AtlasScene {
     this.scene.fog = new THREE.FogExp2(0x070b17, 0.0028);
     this.camera = new THREE.PerspectiveCamera(50, width / height, 0.5, 2500);
     this.camera.position.set(0, 120, 165);
+    this.universeRadius = Math.max(40, layout.bounds.radius);
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = !reducedMotion;
     this.controls.dampingFactor = 0.08;
     this.controls.minDistance = 5;
-    this.controls.maxDistance = 320;
+    this.controls.maxDistance = MAX_CAMERA_DISTANCE;
     this.controls.maxPolarAngle = Math.PI * 0.85;
-    this.controls.addEventListener('change', () => (this.needsRender = true));
+    // Panning slides the view parallel to the screen (map-like), never through the floor plane.
+    this.controls.screenSpacePanning = true;
+    this.controls.keyPanSpeed = 14;
+    // Arrow keys pan only while the atlas itself has the focus (never stolen from the search box).
+    this.controls.listenToKeyEvents(container);
+    this.setDragMode(this.dragMode);
+    this.controls.addEventListener('change', () => {
+      this.clampPan();
+      this.needsRender = true;
+    });
     this.controls.addEventListener('start', () => (this.needsRender = true));
 
     this.glowTexture = radialTexture();
@@ -612,6 +635,33 @@ export class AtlasScene {
     this.needsRender = true;
   }
 
+  /** Rotate (default) or pan with the primary drag; the other gesture stays on the secondary. */
+  setDragMode(mode: DragMode): void {
+    this.dragMode = mode;
+    const pan = mode === 'pan';
+    this.controls.mouseButtons = {
+      LEFT: pan ? THREE.MOUSE.PAN : THREE.MOUSE.ROTATE,
+      MIDDLE: THREE.MOUSE.DOLLY,
+      RIGHT: pan ? THREE.MOUSE.ROTATE : THREE.MOUSE.PAN,
+    };
+    this.controls.touches = {
+      ONE: pan ? THREE.TOUCH.PAN : THREE.TOUCH.ROTATE,
+      TWO: pan ? THREE.TOUCH.DOLLY_ROTATE : THREE.TOUCH.DOLLY_PAN,
+    };
+    this.renderer.domElement.style.cursor = pan ? 'move' : 'grab';
+  }
+
+  /** Keeps the orbit target inside the universe so a long pan can never lose the map. */
+  private clampPan(): void {
+    const limit = this.universeRadius * 1.15;
+    const target = this.controls.target;
+    const length = target.length();
+    if (length <= limit) return;
+    const excess = target.clone().multiplyScalar(1 - limit / length);
+    target.sub(excess);
+    this.camera.position.sub(excess);
+  }
+
   setPerformance(mode: PerformanceMode): void {
     if (mode === this.performance) return;
     this.performance = mode;
@@ -627,7 +677,10 @@ export class AtlasScene {
 
   private targetPosition(target: FocusTarget): { centre: THREE.Vector3; distance: number } | null {
     if (target.kind === 'universe')
-      return { centre: new THREE.Vector3(0, 0, 0), distance: FOCUS_DISTANCE.universe };
+      return {
+        centre: new THREE.Vector3(0, 0, 0),
+        distance: overviewDistance(this.universeRadius, this.camera.fov, this.camera.aspect),
+      };
     if (target.kind === 'world' && target.id) {
       const c = this.layout.worlds[target.id];
       return c ? { centre: toVec(c), distance: FOCUS_DISTANCE.world } : null;
@@ -734,7 +787,11 @@ export class AtlasScene {
     this.setPointer(event);
     const hit = this.pick();
     this.setHover(hit?.kind === 'node' ? hit.id : null);
-    this.renderer.domElement.style.cursor = hit ? 'pointer' : 'grab';
+    this.renderer.domElement.style.cursor = hit
+      ? 'pointer'
+      : this.dragMode === 'pan'
+        ? 'move'
+        : 'grab';
   };
 
   private onPointerLeave = () => this.setHover(null);

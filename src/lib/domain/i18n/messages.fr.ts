@@ -101,10 +101,13 @@ export const fr: Record<MessageKey, string> = {
   'universe.webglUnavailable':
     'Le rendu 3D n’est pas disponible sur cet appareil ; la carte 2D montre le même univers.',
   'universe.canvasLabel':
-    'Atlas en trois dimensions de l’univers des connaissances. Utilisez la carte 2D ou la liste pour naviguer au clavier.',
+    'Atlas en trois dimensions de l’univers des connaissances. Les flèches déplacent la vue ; utilisez la carte 2D ou la liste pour une navigation complète au clavier.',
   'universe.selected': 'Sélection : {title}',
   'universe.help':
-    'Faites glisser pour tourner, molette ou pincement pour zoomer, cliquez une destination pour l’ouvrir.',
+    'Glisser pour tourner ou déplacer (selon le mode), clic droit, Maj + glisser ou deux doigts pour l’autre geste, molette ou pincement pour zoomer, cliquer une destination pour l’ouvrir.',
+  'universe.dragMode': 'Glisser pour',
+  'universe.dragRotate': 'Tourner',
+  'universe.dragPan': 'Déplacer',
 
   'filter.my_horizon': 'Mon horizon',
   'filter.ready': 'Prêtes à explorer',

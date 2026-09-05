@@ -52,6 +52,9 @@ test.describe('responsive layout', () => {
     const panel = page.getByTestId('atlas-panel');
     const before = (await panel.boundingBox())!;
     expect(before.height).toBeLessThan(page.viewportSize()!.height * 0.6);
+    // The map keeps clear of the sheet: what is centred on screen is really the visible centre.
+    const map = (await page.locator('[data-testid="atlas-2d"] svg').first().boundingBox())!;
+    expect(map.y + map.height).toBeLessThanOrEqual(before.y + 1);
     await panel.getByRole('button').first().click();
     await page.waitForTimeout(400);
     const after = (await panel.boundingBox())!;
