@@ -44,18 +44,30 @@ export function destinationState(node: CompiledNode, ctx: DestinationContext): D
   const missingEssential = essential.filter((p) => !satisfiesPrerequisite(status(p.id)));
   const missingRecommended = recommended.filter((p) => !satisfiesPrerequisite(status(p.id)));
   const saved = ctx.savedForLater.includes(node.id);
-  const inProgress = node.type === 'mission' ? ctx.openMissionIds.includes(node.id) : ctx.openMissionIds.some((m) => graph.getMission(m)?.learning.nodesAssessed.includes(node.id) || graph.getMission(m)?.learning.toolsIntroduced.includes(node.id));
+  const inProgress =
+    node.type === 'mission'
+      ? ctx.openMissionIds.includes(node.id)
+      : ctx.openMissionIds.some(
+          (m) =>
+            graph.getMission(m)?.learning.nodesAssessed.includes(node.id) ||
+            graph.getMission(m)?.learning.toolsIntroduced.includes(node.id)
+        );
   const own = snapshot?.nodeStates.get(node.id);
   let kind: DestinationStateKind = 'unknown';
   if (own?.reviewRecommended) kind = 'due_for_review';
   else if (own?.status === 'mastered') kind = 'mastered';
   else if (own?.status === 'practised') kind = 'practised';
-  else if (own?.status === 'discovered' || own?.status === 'seen') kind = 'discovered';
+  // Merely opening a page ('seen') is not a discovery: the route-based states below still apply.
+  else if (own?.status === 'discovered') kind = 'discovered';
   else if (missingEssential.length > 0) kind = 'missing_essential';
   else if (missingRecommended.length > 0) kind = 'missing_recommended';
   else if (essential.length + recommended.length > 0 || node.type === 'mission') kind = 'ready';
   else if (band === 'current' || band === 'next' || band === 'final') kind = 'in_horizon';
-  if (inProgress && (kind === 'unknown' || kind === 'ready' || kind === 'in_horizon' || kind === 'discovered')) kind = 'in_progress';
+  if (
+    inProgress &&
+    (kind === 'unknown' || kind === 'ready' || kind === 'in_horizon' || kind === 'discovered')
+  )
+    kind = 'in_progress';
   if (saved && (kind === 'unknown' || kind === 'in_horizon' || kind === 'ready')) kind = 'saved';
   return { kind, band, missingEssential, missingRecommended, saved, inProgress, silhouette: false };
 }

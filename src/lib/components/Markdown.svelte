@@ -5,4 +5,6 @@
   const html = $derived(renderRichText(text));
 </script>
 
+<!-- The HTML comes from renderRichText, which sanitises the Markdown output with DOMPurify. -->
+<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 <div class="rich {className}">{@html html}</div>

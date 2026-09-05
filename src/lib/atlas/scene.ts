@@ -1,10 +1,18 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { CSS2DObject, CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
-import type { CompiledLayout, CompiledNode, CompiledRegion, Locale, Vec3 } from '$lib/content-schema';
+import type { CompiledLayout, CompiledNode, Locale, Vec3 } from '$lib/content-schema';
 import type { GraphIndex } from '$lib/domain/graph';
 import type { PerformanceMode } from '$lib/persistence/localStorage';
-import { BRIDGE_COLOR, ROUTE_COLORS, ROUTE_DASHED, colorOfRegion, type NodeStyle, type RouteKind, type RouteStyle } from './styles';
+import {
+  BRIDGE_COLOR,
+  ROUTE_COLORS,
+  ROUTE_DASHED,
+  colorOfRegion,
+  type NodeStyle,
+  type RouteKind,
+  type RouteStyle,
+} from './styles';
 import { FOCUS_DISTANCE, LABEL_BUDGET, zoomLevelForDistance, type ZoomLevel } from './zoom';
 
 export interface FocusTarget {
@@ -119,7 +127,14 @@ export class AtlasScene {
   private nebulae: THREE.Sprite[] = [];
   private frame = 0;
   private needsRender = true;
-  private tween: { from: THREE.Vector3; to: THREE.Vector3; fromTarget: THREE.Vector3; toTarget: THREE.Vector3; start: number; duration: number } | null = null;
+  private tween: {
+    from: THREE.Vector3;
+    to: THREE.Vector3;
+    fromTarget: THREE.Vector3;
+    toTarget: THREE.Vector3;
+    start: number;
+    duration: number;
+  } | null = null;
   private hovered: string | null = null;
   private pulsing = false;
   private level: ZoomLevel = 'universe';
@@ -140,7 +155,10 @@ export class AtlasScene {
   ) {
     const width = container.clientWidth || 800;
     const height = container.clientHeight || 600;
-    this.renderer = new THREE.WebGLRenderer({ antialias: performance !== 'reduced', powerPreference: performance === 'high' ? 'high-performance' : 'default' });
+    this.renderer = new THREE.WebGLRenderer({
+      antialias: performance !== 'reduced',
+      powerPreference: performance === 'high' ? 'high-performance' : 'default',
+    });
     this.renderer.setPixelRatio(this.pixelRatio());
     this.renderer.setSize(width, height);
     this.renderer.domElement.style.display = 'block';
@@ -227,14 +245,29 @@ export class AtlasScene {
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    const material = new THREE.PointsMaterial({ size: 1.6, vertexColors: true, transparent: true, opacity: 0.85, sizeAttenuation: true, fog: false });
+    const material = new THREE.PointsMaterial({
+      size: 1.6,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.85,
+      sizeAttenuation: true,
+      fog: false,
+    });
     this.starfield = new THREE.Points(geometry, material);
     this.scene.add(this.starfield);
 
     for (const world of this.graph.graph.worlds) {
       const centre = this.layout.worlds[world.id];
       if (!centre) continue;
-      const material = new THREE.SpriteMaterial({ map: this.glowTexture, color: new THREE.Color(world.color), transparent: true, opacity: 0.32, depthWrite: false, blending: THREE.AdditiveBlending, fog: false });
+      const material = new THREE.SpriteMaterial({
+        map: this.glowTexture,
+        color: new THREE.Color(world.color),
+        transparent: true,
+        opacity: 0.32,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+        fog: false,
+      });
       const sprite = new THREE.Sprite(material);
       sprite.position.copy(toVec(centre));
       sprite.scale.set(95, 95, 1);
@@ -243,7 +276,13 @@ export class AtlasScene {
     }
   }
 
-  private makeLabel(id: string, kind: LabelEntry['kind'], position: THREE.Vector3, base: number, extraClass = ''): LabelEntry {
+  private makeLabel(
+    id: string,
+    kind: LabelEntry['kind'],
+    position: THREE.Vector3,
+    base: number,
+    extraClass = ''
+  ): LabelEntry {
     const element = document.createElement('div');
     element.className = `atlas-label atlas-label--${kind} ${extraClass}`.trim();
     element.dataset.id = id;
@@ -264,7 +303,17 @@ export class AtlasScene {
     const object = new CSS2DObject(element);
     object.position.copy(position);
     this.scene.add(object);
-    const entry: LabelEntry = { object, element, textEl, glyphEl, kind, id, priority: base, base, position };
+    const entry: LabelEntry = {
+      object,
+      element,
+      textEl,
+      glyphEl,
+      kind,
+      id,
+      priority: base,
+      base,
+      position,
+    };
     this.labels.push(entry);
     return entry;
   }
@@ -274,11 +323,23 @@ export class AtlasScene {
       const centre = this.layout.worlds[world.id];
       if (!centre) continue;
       const colour = new THREE.Color(world.color);
-      const ring = new THREE.Mesh(new THREE.TorusGeometry(19.5, 0.14, 8, 96), new THREE.MeshBasicMaterial({ color: colour, transparent: true, opacity: 0.55 }));
+      const ring = new THREE.Mesh(
+        new THREE.TorusGeometry(19.5, 0.14, 8, 96),
+        new THREE.MeshBasicMaterial({ color: colour, transparent: true, opacity: 0.55 })
+      );
       ring.rotation.x = Math.PI / 2;
       ring.position.copy(toVec(centre));
       this.scene.add(ring);
-      const disc = new THREE.Mesh(new THREE.CircleGeometry(19.5, 64), new THREE.MeshBasicMaterial({ color: colour, transparent: true, opacity: 0.06, side: THREE.DoubleSide, depthWrite: false }));
+      const disc = new THREE.Mesh(
+        new THREE.CircleGeometry(19.5, 64),
+        new THREE.MeshBasicMaterial({
+          color: colour,
+          transparent: true,
+          opacity: 0.06,
+          side: THREE.DoubleSide,
+          depthWrite: false,
+        })
+      );
       disc.rotation.x = -Math.PI / 2;
       disc.position.copy(toVec(centre)).add(new THREE.Vector3(0, -0.6, 0));
       disc.userData = { id: world.id, kind: 'world' } satisfies Pickable;
@@ -287,7 +348,14 @@ export class AtlasScene {
       this.makeLabel(world.id, 'world', toVec(centre).add(new THREE.Vector3(0, 7.5, 0)), 100);
     }
     // Bridge hub at the centre.
-    const hub = new THREE.Mesh(new THREE.TorusGeometry(10.5, 0.1, 8, 80), new THREE.MeshBasicMaterial({ color: new THREE.Color(BRIDGE_COLOR), transparent: true, opacity: 0.45 }));
+    const hub = new THREE.Mesh(
+      new THREE.TorusGeometry(10.5, 0.1, 8, 80),
+      new THREE.MeshBasicMaterial({
+        color: new THREE.Color(BRIDGE_COLOR),
+        transparent: true,
+        opacity: 0.45,
+      })
+    );
     hub.rotation.x = Math.PI / 2;
     this.scene.add(hub);
     this.makeLabel('hub', 'hub', new THREE.Vector3(0, 6.5, 0), 90);
@@ -299,17 +367,40 @@ export class AtlasScene {
       if (!centre) continue;
       const colour = new THREE.Color(colorOfRegion(region, this.graph));
       const detailed = region.nodeIds.length > 0;
-      const geometry = new THREE.CylinderGeometry(detailed ? 2.4 : 1.7, detailed ? 2.6 : 1.9, 0.3, 6);
+      const geometry = new THREE.CylinderGeometry(
+        detailed ? 2.4 : 1.7,
+        detailed ? 2.6 : 1.9,
+        0.3,
+        6
+      );
       const material = detailed
-        ? new THREE.MeshStandardMaterial({ color: colour, emissive: colour, emissiveIntensity: 0.25, transparent: true, opacity: 0.85, roughness: 0.7 })
-        : new THREE.MeshBasicMaterial({ color: colour, wireframe: true, transparent: true, opacity: 0.35 });
+        ? new THREE.MeshStandardMaterial({
+            color: colour,
+            emissive: colour,
+            emissiveIntensity: 0.25,
+            transparent: true,
+            opacity: 0.85,
+            roughness: 0.7,
+          })
+        : new THREE.MeshBasicMaterial({
+            color: colour,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.35,
+          });
       const mesh = new THREE.Mesh(geometry, material);
       mesh.position.copy(toVec(centre)).add(new THREE.Vector3(0, -1.2, 0));
       mesh.userData = { id: region.id, kind: 'region' } satisfies Pickable;
       this.scene.add(mesh);
       this.pickables.push(mesh);
       this.regionMeshes.set(region.id, mesh);
-      this.makeLabel(region.id, 'region', toVec(centre).add(new THREE.Vector3(0, detailed ? 2.2 : 1.6, 0)), detailed ? 55 : 22, detailed ? '' : 'atlas-label--silhouette');
+      this.makeLabel(
+        region.id,
+        'region',
+        toVec(centre).add(new THREE.Vector3(0, detailed ? 2.2 : 1.6, 0)),
+        detailed ? 55 : 22,
+        detailed ? '' : 'atlas-label--silhouette'
+      );
     }
   }
 
@@ -317,14 +408,26 @@ export class AtlasScene {
     for (const node of this.graph.graph.nodes) {
       const position = this.layout.positions[node.id];
       if (!position) continue;
-      const material = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.3, roughness: 0.45, metalness: 0.1, transparent: true });
+      const material = new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        emissive: 0xffffff,
+        emissiveIntensity: 0.3,
+        roughness: 0.45,
+        metalness: 0.1,
+        transparent: true,
+      });
       const mesh = new THREE.Mesh(geometryFor(node), material);
       mesh.position.copy(toVec(position));
       mesh.userData = { id: node.id, kind: 'node' } satisfies Pickable;
       this.scene.add(mesh);
       this.pickables.push(mesh);
       this.nodeMeshes.set(node.id, mesh);
-      this.makeLabel(node.id, 'node', toVec(position).add(new THREE.Vector3(0, 1.9, 0)), node.importance * 10);
+      this.makeLabel(
+        node.id,
+        'node',
+        toVec(position).add(new THREE.Vector3(0, 1.9, 0)),
+        node.importance * 10
+      );
     }
   }
 
@@ -347,7 +450,11 @@ export class AtlasScene {
       const colour = new THREE.Color(style.color);
       material.color.copy(colour);
       material.emissive.copy(colour);
-      material.emissiveIntensity = style.selected ? 1.0 : style.highlighted ? 0.6 : 0.3 * style.emphasis + 0.05;
+      material.emissiveIntensity = style.selected
+        ? 1.0
+        : style.highlighted
+          ? 0.6
+          : 0.3 * style.emphasis + 0.05;
       material.opacity = 0.3 + 0.7 * style.emphasis;
       const scale = style.size * (style.selected ? 1.25 : 1);
       mesh.scale.setScalar(scale);
@@ -378,7 +485,10 @@ export class AtlasScene {
     const radius = 1.45 * style.size;
     const colour = STATUS_COLORS[style.kind];
     const addRing = (r: number, tube: number, color: string, opacity = 0.9) => {
-      const ring = new THREE.Mesh(new THREE.TorusGeometry(r, tube, 6, 40), new THREE.MeshBasicMaterial({ color: new THREE.Color(color), transparent: true, opacity }));
+      const ring = new THREE.Mesh(
+        new THREE.TorusGeometry(r, tube, 6, 40),
+        new THREE.MeshBasicMaterial({ color: new THREE.Color(color), transparent: true, opacity })
+      );
       ring.rotation.x = Math.PI / 2;
       ring.position.copy(mesh.position);
       this.effectsGroup.add(ring);
@@ -390,10 +500,26 @@ export class AtlasScene {
       addRing(radius, 0.1, colour);
       addRing(radius + 0.4, 0.05, colour, 0.7);
     } else if (style.kind === 'due_for_review') {
-      const curve = new THREE.EllipseCurve(0, 0, radius + 0.2, radius + 0.2, 0, Math.PI * 2, false, 0);
+      const curve = new THREE.EllipseCurve(
+        0,
+        0,
+        radius + 0.2,
+        radius + 0.2,
+        0,
+        Math.PI * 2,
+        false,
+        0
+      );
       const points = curve.getPoints(48).map((p) => new THREE.Vector3(p.x, 0, p.y));
       const geometry = new THREE.BufferGeometry().setFromPoints(points);
-      const line = new THREE.Line(geometry, new THREE.LineDashedMaterial({ color: new THREE.Color(colour), dashSize: 0.5, gapSize: 0.3 }));
+      const line = new THREE.Line(
+        geometry,
+        new THREE.LineDashedMaterial({
+          color: new THREE.Color(colour),
+          dashSize: 0.5,
+          gapSize: 0.3,
+        })
+      );
       line.computeLineDistances();
       line.position.copy(mesh.position);
       this.effectsGroup.add(line);
@@ -403,7 +529,10 @@ export class AtlasScene {
       rings[rings.length - 1].userData.pulse = true;
       this.pulsing = !this.reducedMotion;
     } else if (style.kind === 'saved') {
-      const flag = new THREE.Mesh(new THREE.ConeGeometry(0.35, 0.8, 4), new THREE.MeshBasicMaterial({ color: new THREE.Color(colour) }));
+      const flag = new THREE.Mesh(
+        new THREE.ConeGeometry(0.35, 0.8, 4),
+        new THREE.MeshBasicMaterial({ color: new THREE.Color(colour) })
+      );
       flag.position.copy(mesh.position).add(new THREE.Vector3(0, style.size + 1.1, 0));
       flag.rotation.x = Math.PI;
       this.effectsGroup.add(flag);
@@ -435,9 +564,18 @@ export class AtlasScene {
       mid.y += 1 + start.distanceTo(end) * 0.16;
       const curve = new THREE.QuadraticBezierCurve3(start, mid, end);
       const points = curve.getPoints(12);
-      const colour = new THREE.Color(ROUTE_COLORS[route.kind]).multiplyScalar(0.25 + 0.75 * route.emphasis);
+      const colour = new THREE.Color(ROUTE_COLORS[route.kind]).multiplyScalar(
+        0.25 + 0.75 * route.emphasis
+      );
       for (let i = 0; i < points.length - 1; i++) {
-        bucket.positions.push(points[i].x, points[i].y, points[i].z, points[i + 1].x, points[i + 1].y, points[i + 1].z);
+        bucket.positions.push(
+          points[i].x,
+          points[i].y,
+          points[i].z,
+          points[i + 1].x,
+          points[i + 1].y,
+          points[i + 1].z
+        );
         bucket.colors.push(colour.r, colour.g, colour.b, colour.r, colour.g, colour.b);
       }
     }
@@ -446,7 +584,13 @@ export class AtlasScene {
       geometry.setAttribute('position', new THREE.Float32BufferAttribute(bucket.positions, 3));
       geometry.setAttribute('color', new THREE.Float32BufferAttribute(bucket.colors, 3));
       const material = ROUTE_DASHED[kind]
-        ? new THREE.LineDashedMaterial({ vertexColors: true, transparent: true, opacity: 0.9, dashSize: 0.9, gapSize: 0.6 })
+        ? new THREE.LineDashedMaterial({
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.9,
+            dashSize: 0.9,
+            gapSize: 0.6,
+          })
         : new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.9 });
       const line = new THREE.LineSegments(geometry, material);
       if (ROUTE_DASHED[kind]) line.computeLineDistances();
@@ -456,7 +600,8 @@ export class AtlasScene {
 
   setLocale(locale: Locale): void {
     this.locale = locale;
-    for (const label of this.labels) label.textEl.textContent = this.callbacks.labelText(label.id, label.kind);
+    for (const label of this.labels)
+      label.textEl.textContent = this.callbacks.labelText(label.id, label.kind);
     this.needsRender = true;
   }
 
@@ -481,7 +626,8 @@ export class AtlasScene {
   // ---------------------------------------------------------------------------
 
   private targetPosition(target: FocusTarget): { centre: THREE.Vector3; distance: number } | null {
-    if (target.kind === 'universe') return { centre: new THREE.Vector3(0, 0, 0), distance: FOCUS_DISTANCE.universe };
+    if (target.kind === 'universe')
+      return { centre: new THREE.Vector3(0, 0, 0), distance: FOCUS_DISTANCE.universe };
     if (target.kind === 'world' && target.id) {
       const c = this.layout.worlds[target.id];
       return c ? { centre: toVec(c), distance: FOCUS_DISTANCE.world } : null;
@@ -494,7 +640,10 @@ export class AtlasScene {
       const c = this.layout.positions[target.id];
       if (!c) return null;
       const node = this.graph.getNode(target.id);
-      return { centre: toVec(c), distance: node?.type === 'mission' ? FOCUS_DISTANCE.mission : FOCUS_DISTANCE.node };
+      return {
+        centre: toVec(c),
+        distance: node?.type === 'mission' ? FOCUS_DISTANCE.mission : FOCUS_DISTANCE.node,
+      };
     }
     return null;
   }
@@ -519,7 +668,14 @@ export class AtlasScene {
       this.needsRender = true;
       return;
     }
-    this.tween = { from: this.camera.position.clone(), to, fromTarget: this.controls.target.clone(), toTarget: centre, start: window.performance.now(), duration: 950 };
+    this.tween = {
+      from: this.camera.position.clone(),
+      to,
+      fromTarget: this.controls.target.clone(),
+      toTarget: centre,
+      start: window.performance.now(),
+      duration: 950,
+    };
     this.needsRender = true;
   }
 
@@ -591,7 +747,12 @@ export class AtlasScene {
   private setHover(id: string | null) {
     if (id === this.hovered) return;
     const previous = this.hovered ? this.nodeMeshes.get(this.hovered) : undefined;
-    if (previous) (previous.material as THREE.MeshStandardMaterial).emissiveIntensity = this.styles.get(this.hovered!)?.selected ? 1 : 0.3;
+    if (previous)
+      (previous.material as THREE.MeshStandardMaterial).emissiveIntensity = this.styles.get(
+        this.hovered!
+      )?.selected
+        ? 1
+        : 0.3;
     this.hovered = id;
     const next = id ? this.nodeMeshes.get(id) : undefined;
     if (next) (next.material as THREE.MeshStandardMaterial).emissiveIntensity = 0.9;
@@ -642,8 +803,8 @@ export class AtlasScene {
         tmp.copy(label.position).project(this.camera);
         if (tmp.z > 1) visible = false;
         else {
-          const x = (tmp.x + 1) / 2 * rect.width;
-          const y = (1 - tmp.y) / 2 * rect.height;
+          const x = ((tmp.x + 1) / 2) * rect.width;
+          const y = ((1 - tmp.y) / 2) * rect.height;
           const key = `${Math.round(x / 150)}:${Math.round(y / 34)}`;
           const isSelected = label.kind === 'node' && this.styles.get(label.id)?.selected;
           if (occupied.has(key) && !isSelected && label.kind !== 'world') visible = false;
@@ -669,7 +830,8 @@ export class AtlasScene {
     }
     if (this.pulsing) {
       const s = 1 + 0.12 * Math.sin(now / 350);
-      for (const rings of this.nodeRings.values()) for (const r of rings) if (r.userData.pulse) r.scale.setScalar(s);
+      for (const rings of this.nodeRings.values())
+        for (const r of rings) if (r.userData.pulse) r.scale.setScalar(s);
       this.needsRender = true;
     }
     if (this.controls.enableDamping) this.controls.update();

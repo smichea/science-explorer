@@ -36,7 +36,11 @@ export function rateAt(config: FirstOrderConfig, t: number): number {
   return (config.target - valueAt(config, t)) / config.tau;
 }
 
-export function step(config: FirstOrderConfig, state: FirstOrderState, dt: number): FirstOrderState {
+export function step(
+  config: FirstOrderConfig,
+  state: FirstOrderState,
+  dt: number
+): FirstOrderState {
   const q = config.target + (state.q - config.target) * Math.exp(-dt / config.tau);
   return { t: state.t + dt, q };
 }

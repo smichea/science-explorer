@@ -29,22 +29,32 @@ export function formatNumber(
   const intlUnit = unit ? INTL_UNITS[unit] : undefined;
   if (intlUnit) {
     try {
-      return new Intl.NumberFormat(locale, { ...base, style: 'unit', unit: intlUnit, unitDisplay: 'short' }).format(value);
+      return new Intl.NumberFormat(locale, {
+        ...base,
+        style: 'unit',
+        unit: intlUnit,
+        unitDisplay: 'short',
+      }).format(value);
     } catch {
       /* fall through to the plain form */
     }
   }
   const text = new Intl.NumberFormat(locale, base).format(value);
-  return unit ? `${text} ${unit}` : text;
+  return unit ? `${text}\u00a0${unit}` : text;
 }
 
 export function formatPercent(value: number, locale: Locale, digits = 0): string {
-  return new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: digits }).format(value);
+  return new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: digits }).format(
+    value
+  );
 }
 
 /** Parses "9,81", "9.81", "1,2e3" or "1 200" into a number; returns NaN when unreadable. */
 export function parseLocaleNumber(input: string): number {
-  const cleaned = input.trim().replace(/\s| | /g, '').replace(/−/g, '-');
+  const cleaned = input
+    .trim()
+    .replace(/\s|\u00a0|\u202f/g, '')
+    .replace(/−/g, '-');
   if (cleaned === '') return NaN;
   // A comma is a decimal separator unless a dot is also present (then it is a thousands separator).
   const normalised = cleaned.includes('.') ? cleaned.replace(/,/g, '') : cleaned.replace(',', '.');
@@ -70,10 +80,12 @@ export function formatHistoricalDate(date: HistoricalDate, locale: Locale): stri
 }
 
 export function formatDuration(minutes: number, locale: Locale): string {
-  if (minutes < 60) return `${Math.round(minutes)} min`;
+  if (minutes < 60) return `${Math.round(minutes)}\u00a0min`;
   const h = Math.floor(minutes / 60);
   const m = Math.round(minutes % 60);
-  return locale === 'fr' ? `${h} h ${m.toString().padStart(2, '0')}` : `${h} h ${m} min`;
+  return locale === 'fr'
+    ? `${h}\u00a0h\u00a0${m.toString().padStart(2, '0')}`
+    : `${h}\u00a0h ${m}\u00a0min`;
 }
 
 export function formatElapsed(ms: number): string {

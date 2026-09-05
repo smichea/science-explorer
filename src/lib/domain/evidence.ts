@@ -33,7 +33,15 @@ export interface EvidenceContext {
  */
 export function idempotencyKey(draft: EvidenceDraft, learnerId: string): string {
   const scope = draft.sessionId ?? `learner:${learnerId}`;
-  return [scope, draft.stepId ?? '-', draft.type, draft.exerciseId ?? '', draft.nodeId ?? '', draft.phenomenonId ?? '', draft.discriminator ?? ''].join(':');
+  return [
+    scope,
+    draft.stepId ?? '-',
+    draft.type,
+    draft.exerciseId ?? '',
+    draft.nodeId ?? '',
+    draft.phenomenonId ?? '',
+    draft.discriminator ?? '',
+  ].join(':');
 }
 
 export function makeEvidence(draft: EvidenceDraft, ctx: EvidenceContext): EvidenceEvent {

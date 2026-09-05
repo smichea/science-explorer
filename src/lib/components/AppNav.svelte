@@ -6,11 +6,26 @@
   import { profile } from '$lib/state/profile.svelte';
 
   const links = $derived([
-    { href: `${base}/universe`, label: t('nav.universe'), icon: '✦', match: ['/universe', '/world', '/region', '/concept', '/mission'] },
+    {
+      href: `${base}/universe`,
+      label: t('nav.universe'),
+      icon: '✦',
+      match: ['/universe', '/world', '/region', '/concept', '/mission'],
+    },
     { href: `${base}/backpack`, label: t('nav.backpack'), icon: '🎒', match: ['/backpack'] },
-    { href: `${base}/journal`, label: t('nav.journal'), icon: '📓', match: ['/journal', '/timeline'] },
+    {
+      href: `${base}/journal`,
+      label: t('nav.journal'),
+      icon: '📓',
+      match: ['/journal', '/timeline'],
+    },
     { href: `${base}/guide/progress`, label: t('nav.guide'), icon: '🧭', match: ['/guide'] },
-    { href: `${base}/settings`, label: t('nav.settings'), icon: '⚙', match: ['/settings', '/profiles', '/studio'] },
+    {
+      href: `${base}/settings`,
+      label: t('nav.settings'),
+      icon: '⚙',
+      match: ['/settings', '/profiles', '/studio'],
+    },
   ]);
 
   const path = $derived(page.url.pathname.slice(base.length) || '/');
@@ -34,7 +49,9 @@
   </ul>
   <div class="appnav__side">
     {#if profile.active}
-      <a class="appnav__who" href="{base}/profiles" title={t('nav.profiles')}>{profile.active.name}</a>
+      <a class="appnav__who" href="{base}/profiles" title={t('nav.profiles')}
+        >{profile.active.name}</a
+      >
     {/if}
     <LocaleSwitch compact />
   </div>
@@ -49,12 +66,14 @@
     align-items: center;
     gap: var(--space-4);
     min-height: var(--nav-height);
-    padding: var(--safe-top) calc(var(--space-4) + var(--safe-right)) 0 calc(var(--space-4) + var(--safe-left));
+    padding: var(--safe-top) calc(var(--space-4) + var(--safe-right)) 0
+      calc(var(--space-4) + var(--safe-left));
     background: rgba(11, 16, 32, 0.85);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
   .brand {
+    min-height: 40px;
     display: flex;
     align-items: center;
     gap: var(--space-2);
@@ -94,6 +113,9 @@
     gap: var(--space-3);
   }
   .appnav__who {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
     color: var(--text);
     text-decoration: none;
     font-weight: 600;
@@ -101,6 +123,35 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+  @media (max-width: 1024px) {
+    .appnav {
+      gap: var(--space-2);
+      padding-left: calc(var(--space-2) + var(--safe-left));
+      padding-right: calc(var(--space-2) + var(--safe-right));
+    }
+    .brand__name {
+      display: none;
+    }
+    .appnav__links {
+      flex: 1;
+      min-width: 0;
+      justify-content: space-around;
+    }
+    .appnav__links a {
+      flex-direction: column;
+      gap: 0.1rem;
+      padding: 0.25rem 0.4rem;
+      font-size: 0.7rem;
+      min-width: 44px;
+      min-height: 44px;
+    }
+    .appnav__icon {
+      font-size: 1.1rem;
+    }
+    .appnav__who {
+      max-width: 6rem;
+    }
   }
   @media (max-width: 700px) {
     .appnav {

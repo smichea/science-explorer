@@ -22,11 +22,28 @@ export const BAND_EMPHASIS: Record<Band, number> = {
   beyond: 0.38,
 };
 
-export type MapFilter = 'my_horizon' | 'ready' | 'current_stage' | 'terminale' | 'mpsi' | 'mp' | 'entire';
-export const MAP_FILTERS: MapFilter[] = ['my_horizon', 'ready', 'current_stage', 'terminale', 'mpsi', 'mp', 'entire'];
+export type MapFilter =
+  'my_horizon' | 'ready' | 'current_stage' | 'terminale' | 'mpsi' | 'mp' | 'entire';
+export const MAP_FILTERS: MapFilter[] = [
+  'my_horizon',
+  'ready',
+  'current_stage',
+  'terminale',
+  'mpsi',
+  'mp',
+  'entire',
+];
 
-export type MapLayer = 'concepts' | 'applications' | 'history' | 'progress' | 'prerequisites' | 'curriculum';
-export const MAP_LAYERS: MapLayer[] = ['concepts', 'applications', 'history', 'progress', 'prerequisites', 'curriculum'];
+export type MapLayer =
+  'concepts' | 'applications' | 'history' | 'progress' | 'prerequisites' | 'curriculum';
+export const MAP_LAYERS: MapLayer[] = [
+  'concepts',
+  'applications',
+  'history',
+  'progress',
+  'prerequisites',
+  'curriculum',
+];
 
 export function stageIndex(stage: Stage, config: HorizonConfig): number {
   return config.stages.find((s) => s.id === stage)?.order ?? -1;
@@ -37,36 +54,79 @@ export function findRule(age: number, config: HorizonConfig): HorizonRule {
   return rule ?? config.rules[config.rules.length - 1];
 }
 
-function buildHorizon(currentStage: Stage, years: 2 | 3, pathId: string, config: HorizonConfig, overridden: boolean, note?: HorizonRule['note']): Horizon {
+function buildHorizon(
+  currentStage: Stage,
+  years: 2 | 3,
+  pathId: string,
+  config: HorizonConfig,
+  overridden: boolean,
+  note?: HorizonRule['note']
+): Horizon {
   const path = config.paths.find((p) => p.id === pathId) ?? config.paths[0];
   const start = Math.max(0, path.stages.indexOf(currentStage));
   let stages = path.stages.slice(start, start + years);
   if (stages.length === 0) stages = [currentStage];
-  return { currentStage, horizonYears: years, pathId: path.id, stages, targets: path.targets, note, overridden };
+  return {
+    currentStage,
+    horizonYears: years,
+    pathId: path.id,
+    stages,
+    targets: path.targets,
+    note,
+    overridden,
+  };
 }
 
 /** Infers the default stage and highlighted route from the learner's age (data-driven, §5.2 architecture). */
 export function inferHorizon(age: number, config: HorizonConfig): Horizon {
   const rule = findRule(age, config);
-  return buildHorizon(rule.currentStage, rule.defaultHorizonYears, rule.pathId, config, false, rule.note);
+  return buildHorizon(
+    rule.currentStage,
+    rule.defaultHorizonYears,
+    rule.pathId,
+    config,
+    false,
+    rule.note
+  );
 }
 
 /** Applies the guide's stage override when present: the path containing that stage is used. */
-export function effectiveHorizon(profile: Pick<LearnerProfile, 'age' | 'stageOverride' | 'horizonYears' | 'curriculumPathId' | 'inferredStage'>, config: HorizonConfig): Horizon {
+export function effectiveHorizon(
+  profile: Pick<
+    LearnerProfile,
+    'age' | 'stageOverride' | 'horizonYears' | 'curriculumPathId' | 'inferredStage'
+  >,
+  config: HorizonConfig
+): Horizon {
   if (!profile.stageOverride || profile.stageOverride === profile.inferredStage) {
     const inferred = inferHorizon(profile.age, config);
     return { ...inferred, currentStage: profile.inferredStage, overridden: false };
   }
   const override = profile.stageOverride;
   const rule = config.rules.find((r) => r.currentStage === override);
-  const pathId = config.paths.find((p) => p.id === profile.curriculumPathId && p.stages.includes(override))?.id ?? rule?.pathId ?? config.paths.find((p) => p.stages.includes(override))?.id ?? profile.curriculumPathId;
-  return buildHorizon(override, rule?.defaultHorizonYears ?? profile.horizonYears, pathId, config, true, rule?.note);
+  const pathId =
+    config.paths.find((p) => p.id === profile.curriculumPathId && p.stages.includes(override))
+      ?.id ??
+    rule?.pathId ??
+    config.paths.find((p) => p.stages.includes(override))?.id ??
+    profile.curriculumPathId;
+  return buildHorizon(
+    override,
+    rule?.defaultHorizonYears ?? profile.horizonYears,
+    pathId,
+    config,
+    true,
+    rule?.note
+  );
 }
 
 /** Lowest stage at which a node is taught, or null when it has no curriculum depth (bridges, history). */
 export function nodeStage(node: CompiledNode, config: HorizonConfig): Stage | null {
   if (node.depths.length === 0) return null;
-  return node.depths.reduce<Stage>((best, d) => (stageIndex(d.stage, config) < stageIndex(best, config) ? d.stage : best), node.depths[0].stage);
+  return node.depths.reduce<Stage>(
+    (best, d) => (stageIndex(d.stage, config) < stageIndex(best, config) ? d.stage : best),
+    node.depths[0].stage
+  );
 }
 
 export function bandOf(stage: Stage | null, horizon: Horizon, config: HorizonConfig): Band {
@@ -83,7 +143,13 @@ export function bandOf(stage: Stage | null, horizon: Horizon, config: HorizonCon
 }
 
 /** Emphasis in [0, 1] used identically by the 3D atlas and the 2D map: filters change emphasis, never geography. */
-export function emphasisFor(stage: Stage | null, horizon: Horizon, filter: MapFilter, config: HorizonConfig, ready = true): number {
+export function emphasisFor(
+  stage: Stage | null,
+  horizon: Horizon,
+  filter: MapFilter,
+  config: HorizonConfig,
+  ready = true
+): number {
   const band = bandOf(stage, horizon, config);
   switch (filter) {
     case 'entire':

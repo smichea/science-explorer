@@ -23,32 +23,62 @@
   }
 
   const groups = $derived.by(() => {
-    const out: Array<{ id: string; kind: 'world' | 'hub'; title: string; regions: Array<{ id: string; title: string; silhouette: boolean; nodes: CompiledNode[] }> }> = [];
+    const out: Array<{
+      id: string;
+      kind: 'world' | 'hub';
+      title: string;
+      regions: Array<{ id: string; title: string; silhouette: boolean; nodes: CompiledNode[] }>;
+    }> = [];
     for (const world of graph.graph.worlds) {
       out.push({
         id: world.id,
         kind: 'world',
         title: labelText(world.id, 'world'),
-        regions: world.regionIds.map((rid) => ({ id: rid, title: labelText(rid, 'region'), silhouette: graph.nodesOfRegion(rid).length === 0, nodes: graph.nodesOfRegion(rid).filter(matches) })),
+        regions: world.regionIds.map((rid) => ({
+          id: rid,
+          title: labelText(rid, 'region'),
+          silhouette: graph.nodesOfRegion(rid).length === 0,
+          nodes: graph.nodesOfRegion(rid).filter(matches),
+        })),
       });
     }
     out.push({
       id: 'hub',
       kind: 'hub',
       title: labelText('hub', 'hub'),
-      regions: graph.graph.regions.filter((r) => r.isBridge).map((r) => ({ id: r.id, title: labelText(r.id, 'region'), silhouette: graph.nodesOfRegion(r.id).length === 0, nodes: graph.nodesOfRegion(r.id).filter(matches) })),
+      regions: graph.graph.regions
+        .filter((r) => r.isBridge)
+        .map((r) => ({
+          id: r.id,
+          title: labelText(r.id, 'region'),
+          silhouette: graph.nodesOfRegion(r.id).length === 0,
+          nodes: graph.nodesOfRegion(r.id).filter(matches),
+        })),
     });
     return out;
   });
 
-  const history = $derived(graph.graph.nodes.filter((n) => !n.region && (n.type === 'mission' || n.type === 'person' || n.type === 'place' || n.type === 'period' || n.type === 'question')).filter(matches));
+  const history = $derived(
+    graph.graph.nodes
+      .filter(
+        (n) =>
+          !n.region &&
+          (n.type === 'mission' ||
+            n.type === 'person' ||
+            n.type === 'place' ||
+            n.type === 'period' ||
+            n.type === 'question')
+      )
+      .filter(matches)
+  );
 </script>
 
 <nav class="dlist" aria-label={t('universe.viewList')} data-testid="destination-list">
   {#each groups as group (group.id)}
     <section class="dlist__world">
       <h2>
-        {#if group.kind === 'world'}<a href={href(group.id, 'world')}>{group.title}</a>{:else}{group.title}{/if}
+        {#if group.kind === 'world'}<a href={href(group.id, 'world')}>{group.title}</a
+          >{:else}{group.title}{/if}
       </h2>
       {#each group.regions as region (region.id)}
         <details open={!region.silhouette}>
@@ -63,7 +93,11 @@
               {#each region.nodes as node (node.id)}
                 {@const style = styles.get(node.id)}
                 <li>
-                  <a href={href(node.id, 'node')} aria-current={node.id === selectedId ? 'page' : undefined} data-node-id={node.id}>
+                  <a
+                    href={href(node.id, 'node')}
+                    aria-current={node.id === selectedId ? 'page' : undefined}
+                    data-node-id={node.id}
+                  >
                     <span class="dlist__glyph" aria-hidden="true">{style?.glyph ?? ''}</span>
                     <span>{labelText(node.id, 'node')}</span>
                     <span class="badge">{stateLabel(node.id)}</span>
@@ -84,7 +118,11 @@
         {#each history as node (node.id)}
           {@const style = styles.get(node.id)}
           <li>
-            <a href={href(node.id, 'node')} aria-current={node.id === selectedId ? 'page' : undefined} data-node-id={node.id}>
+            <a
+              href={href(node.id, 'node')}
+              aria-current={node.id === selectedId ? 'page' : undefined}
+              data-node-id={node.id}
+            >
               <span class="dlist__glyph" aria-hidden="true">{style?.glyph ?? ''}</span>
               <span>{labelText(node.id, 'node')}</span>
               <span class="badge">{stateLabel(node.id)}</span>

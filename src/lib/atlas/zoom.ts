@@ -8,7 +8,18 @@ export function zoomLevelForDistance(distance: number): ZoomLevel {
   return 'concept';
 }
 
-export const FOCUS_DISTANCE = { universe: 178, world: 86, region: 38, node: 15, mission: 15 } as const;
+export const FOCUS_DISTANCE = {
+  universe: 178,
+  world: 86,
+  region: 38,
+  node: 15,
+  mission: 15,
+} as const;
 
 /** Label budget per zoom level (labels beyond the budget are hidden, lowest priority first). */
-export const LABEL_BUDGET: Record<ZoomLevel, number> = { universe: 11, world: 18, region: 26, concept: 32 };
+export const LABEL_BUDGET: Record<ZoomLevel, number> = {
+  universe: 11,
+  world: 18,
+  region: 26,
+  concept: 32,
+};

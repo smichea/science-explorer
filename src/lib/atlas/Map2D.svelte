@@ -1,7 +1,13 @@
 <script lang="ts">
   import type { CompiledLayout } from '$lib/content-schema';
   import type { GraphIndex } from '$lib/domain/graph';
-  import { colorOfRegion, ROUTE_COLORS, ROUTE_DASHED, type NodeStyle, type RouteStyle } from './styles';
+  import {
+    colorOfRegion,
+    ROUTE_COLORS,
+    ROUTE_DASHED,
+    type NodeStyle,
+    type RouteStyle,
+  } from './styles';
   import { t } from '$lib/state/locale.svelte';
 
   interface Props {
@@ -17,7 +23,18 @@
     onselect: (id: string, kind: 'node' | 'region' | 'world') => void;
   }
 
-  let { graph, layout, styles, routes, selectedId, focusId, labelText, stateLabel, href, onselect }: Props = $props();
+  let {
+    graph,
+    layout,
+    styles,
+    routes,
+    selectedId,
+    focusId,
+    labelText,
+    stateLabel,
+    href,
+    onselect,
+  }: Props = $props();
 
   const pad = 12;
   const minX = $derived(layout.bounds.min[0] - pad);
@@ -56,7 +73,11 @@
   function onWheel(e: WheelEvent) {
     e.preventDefault();
     const rect = svg.getBoundingClientRect();
-    zoomAt(e.deltaY < 0 ? 1.15 : 1 / 1.15, (e.clientX - rect.left) / rect.width, (e.clientY - rect.top) / rect.height);
+    zoomAt(
+      e.deltaY < 0 ? 1.15 : 1 / 1.15,
+      (e.clientX - rect.left) / rect.width,
+      (e.clientY - rect.top) / rect.height
+    );
   }
 
   function onPointerDown(e: PointerEvent) {
@@ -79,14 +100,20 @@
   }
   function onTouchStart(e: TouchEvent) {
     if (e.touches.length === 2) {
-      const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      const d = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
       pinch = { distance: d, scale };
     }
   }
   function onTouchMove(e: TouchEvent) {
     if (pinch && e.touches.length === 2) {
       e.preventDefault();
-      const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      const d = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
       scale = Math.max(0.6, Math.min(8, (pinch.scale * d) / pinch.distance));
     }
   }
@@ -105,7 +132,10 @@
     if (!focusId) return;
     const p = layout.positions[focusId] ?? layout.regions[focusId] ?? layout.worlds[focusId];
     if (!p) return;
-    const target = Math.max(scale, layout.positions[focusId] ? 3 : layout.regions[focusId] ? 2 : 1.2);
+    const target = Math.max(
+      scale,
+      layout.positions[focusId] ? 3 : layout.regions[focusId] ? 2 : 1.2
+    );
     scale = target;
     tx = p[0] - minX - width / scale / 2;
     tz = p[2] - minZ - height / scale / 2;
@@ -131,12 +161,20 @@
   }
 
   const showNodeLabels = $derived(scale >= 1.8);
+  const showSilhouetteLabels = $derived(scale >= 1.5);
 </script>
 
 <div class="map2d" data-testid="atlas-2d">
   <div class="map2d__tools">
-    <button class="btn btn--sm btn--icon" type="button" onclick={() => zoomAt(1.3)} aria-label="+">+</button>
-    <button class="btn btn--sm btn--icon" type="button" onclick={() => zoomAt(1 / 1.3)} aria-label="−">−</button>
+    <button class="btn btn--sm btn--icon" type="button" onclick={() => zoomAt(1.3)} aria-label="+"
+      >+</button
+    >
+    <button
+      class="btn btn--sm btn--icon"
+      type="button"
+      onclick={() => zoomAt(1 / 1.3)}
+      aria-label="−">−</button
+    >
     <button class="btn btn--sm" type="button" onclick={reset}>{t('universe.reset')}</button>
   </div>
   <svg
@@ -166,21 +204,53 @@
       {#if c}
         <g class="world">
           <circle cx={c[0]} cy={c[2]} r="21" fill="url(#world-glow)" />
-          <circle cx={c[0]} cy={c[2]} r="19.5" fill="none" stroke={world.color} stroke-width="0.35" opacity="0.7" />
-          <a href={href(world.id, 'world')} onclick={(e) => { e.preventDefault(); if (!moved) onselect(world.id, 'world'); }} aria-label={labelText(world.id, 'world')}>
-            <text x={c[0]} y={c[2] - 22} text-anchor="middle" class="label label--world" fill={world.color}>{labelText(world.id, 'world')}</text>
+          <circle
+            cx={c[0]}
+            cy={c[2]}
+            r="19.5"
+            fill="none"
+            stroke={world.color}
+            stroke-width="0.35"
+            opacity="0.7"
+          />
+          <a
+            href={href(world.id, 'world')}
+            onclick={(e) => {
+              e.preventDefault();
+              if (!moved) onselect(world.id, 'world');
+            }}
+            aria-label={labelText(world.id, 'world')}
+          >
+            <text
+              x={c[0]}
+              y={c[2] - 22}
+              text-anchor="middle"
+              class="label label--world"
+              fill={world.color}>{labelText(world.id, 'world')}</text
+            >
           </a>
         </g>
       {/if}
     {/each}
     <circle cx="0" cy="0" r="10.5" fill="none" stroke="#f7f1e3" stroke-width="0.25" opacity="0.5" />
-    <text x="0" y="-12" text-anchor="middle" class="label label--hub" fill="#f7f1e3">{labelText('hub', 'hub')}</text>
+    <text x="0" y="-12" text-anchor="middle" class="label label--hub" fill="#f7f1e3"
+      >{labelText('hub', 'hub')}</text
+    >
     <!-- routes -->
     {#each routes as route (route.id)}
       {@const a = pos(route.from)}
       {@const b = pos(route.to)}
       {#if a && b}
-        <line x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={ROUTE_COLORS[route.kind]} stroke-width={0.18 + 0.25 * route.emphasis} stroke-opacity={0.25 + 0.7 * route.emphasis} stroke-dasharray={ROUTE_DASHED[route.kind] ? '0.9 0.6' : undefined} />
+        <line
+          x1={a[0]}
+          y1={a[1]}
+          x2={b[0]}
+          y2={b[1]}
+          stroke={ROUTE_COLORS[route.kind]}
+          stroke-width={0.18 + 0.25 * route.emphasis}
+          stroke-opacity={0.25 + 0.7 * route.emphasis}
+          stroke-dasharray={ROUTE_DASHED[route.kind] ? '0.9 0.6' : undefined}
+        />
       {/if}
     {/each}
     <!-- regions -->
@@ -188,9 +258,34 @@
       {@const c = layout.regions[region.id]}
       {#if c}
         {@const detailed = region.nodeIds.length > 0}
-        <a href={href(region.id, 'region')} onclick={(e) => { e.preventDefault(); if (!moved) onselect(region.id, 'region'); }} aria-label={`${labelText(region.id, 'region')} — ${detailed ? t('type.region') : t('state.silhouette')}`}>
-          <circle cx={c[0]} cy={c[2]} r={detailed ? 2.6 : 1.9} fill={colorOfRegion(region, graph)} fill-opacity={detailed ? 0.28 : 0.08} stroke={colorOfRegion(region, graph)} stroke-width="0.25" stroke-dasharray={detailed ? undefined : '0.6 0.5'} />
-          <text x={c[0]} y={c[2] - (detailed ? 3.4 : 2.7)} text-anchor="middle" class="label label--region" class:label--silhouette={!detailed} fill={colorOfRegion(region, graph)}>{labelText(region.id, 'region')}</text>
+        <a
+          href={href(region.id, 'region')}
+          onclick={(e) => {
+            e.preventDefault();
+            if (!moved) onselect(region.id, 'region');
+          }}
+          aria-label={`${labelText(region.id, 'region')} — ${detailed ? t('type.region') : t('state.silhouette')}`}
+        >
+          <circle
+            cx={c[0]}
+            cy={c[2]}
+            r={detailed ? 2.6 : 1.9}
+            fill={colorOfRegion(region, graph)}
+            fill-opacity={detailed ? 0.28 : 0.08}
+            stroke={colorOfRegion(region, graph)}
+            stroke-width="0.25"
+            stroke-dasharray={detailed ? undefined : '0.6 0.5'}
+          />
+          {#if detailed || showSilhouetteLabels}
+            <text
+              x={c[0]}
+              y={c[2] - (detailed ? 3.4 : 2.7)}
+              text-anchor="middle"
+              class="label label--region"
+              class:label--silhouette={!detailed}
+              fill={colorOfRegion(region, graph)}>{labelText(region.id, 'region')}</text
+            >
+          {/if}
         </a>
       {/if}
     {/each}
@@ -203,7 +298,10 @@
         {@const path = shapePath(node.type, r)}
         <a
           href={href(node.id, 'node')}
-          onclick={(e) => { e.preventDefault(); if (!moved) onselect(node.id, 'node'); }}
+          onclick={(e) => {
+            e.preventDefault();
+            if (!moved) onselect(node.id, 'node');
+          }}
           aria-label={`${labelText(node.id, 'node')} — ${stateLabel(node.id)}`}
           aria-current={node.id === selectedId ? 'true' : undefined}
           data-node-id={node.id}
@@ -214,15 +312,43 @@
             <circle cx={p[0]} cy={p[1]} r={r + 1.1} fill="none" stroke="#fff" stroke-width="0.3" />
           {/if}
           {#if style.kind === 'practised' || style.kind === 'mastered' || style.kind === 'discovered' || style.kind === 'in_progress' || style.kind === 'due_for_review'}
-            <circle cx={p[0]} cy={p[1]} r={r + 0.6} fill="none" stroke={style.color} stroke-width={style.kind === 'discovered' ? 0.15 : 0.3} stroke-dasharray={style.kind === 'due_for_review' ? '0.5 0.3' : undefined} />
+            <circle
+              cx={p[0]}
+              cy={p[1]}
+              r={r + 0.6}
+              fill="none"
+              stroke={style.color}
+              stroke-width={style.kind === 'discovered' ? 0.15 : 0.3}
+              stroke-dasharray={style.kind === 'due_for_review' ? '0.5 0.3' : undefined}
+            />
           {/if}
           {#if path}
-            <path d={path} transform={`translate(${p[0]} ${p[1]})`} fill={style.color} stroke="#0b1020" stroke-width="0.15" />
+            <path
+              d={path}
+              transform={`translate(${p[0]} ${p[1]})`}
+              fill={style.color}
+              stroke="#0b1020"
+              stroke-width="0.15"
+            />
           {:else}
-            <circle cx={p[0]} cy={p[1]} r={r * 0.9} fill={style.color} stroke="#0b1020" stroke-width="0.15" />
+            <circle
+              cx={p[0]}
+              cy={p[1]}
+              r={r * 0.9}
+              fill={style.color}
+              stroke="#0b1020"
+              stroke-width="0.15"
+            />
           {/if}
           {#if showNodeLabels || style.selected || style.highlighted || node.importance >= 3}
-            <text x={p[0] + r + 0.6} y={p[1] + 0.5} class="label label--node" class:label--selected={style.selected} fill="#eef1f8">{style.glyph ? `${style.glyph} ` : ''}{labelText(node.id, 'node')}</text>
+            <text
+              x={p[0] + r + 0.6}
+              y={p[1] + 0.5}
+              class="label label--node"
+              class:label--selected={style.selected}
+              fill="#eef1f8"
+              >{style.glyph ? `${style.glyph} ` : ''}{labelText(node.id, 'node')}</text
+            >
           {/if}
         </a>
       {/if}

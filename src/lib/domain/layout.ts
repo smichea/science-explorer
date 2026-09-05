@@ -64,7 +64,9 @@ export function computeLayout(graph: CompiledGraph, anchors: LayoutAnchors): Com
     if (regions[region.id]) continue;
     const world = region.worldId ? graph.worlds.find((w) => w.id === region.worldId) : undefined;
     const centre: Vec3 = world ? worlds[world.id] : [0, 0, 0];
-    const siblings = world ? world.regionIds : graph.regions.filter((r) => r.isBridge).map((r) => r.id);
+    const siblings = world
+      ? world.regionIds
+      : graph.regions.filter((r) => r.isBridge).map((r) => r.id);
     const k = Math.max(0, siblings.indexOf(region.id));
     const a = (k / Math.max(1, siblings.length)) * Math.PI * 2;
     const radius = world ? p.regionRingRadius : 10;
@@ -86,7 +88,8 @@ export function computeLayout(graph: CompiledGraph, anchors: LayoutAnchors): Com
     const jitter = stableRandom(node.id, p.seed);
     const rho = k === 0 ? 0 : p.nodeSpread * Math.sqrt(k) * (0.85 + 0.3 * jitter);
     const phi = k * GOLDEN_ANGLE + jitter * 0.6;
-    const y = nodeStageIndex(node) * p.stageOffsetY + (stableRandom(node.id, p.seed + 1) - 0.5) * 0.8;
+    const y =
+      nodeStageIndex(node) * p.stageOffsetY + (stableRandom(node.id, p.seed + 1) - 0.5) * 0.8;
     positions[node.id] = add(centre, [rho * Math.cos(phi), y, rho * Math.sin(phi)]);
   }
 
@@ -106,7 +109,11 @@ export function computeLayout(graph: CompiledGraph, anchors: LayoutAnchors): Com
       const jitter = stableRandom(node.id, p.seed + 2);
       const phi = k * GOLDEN_ANGLE * 1.7 + jitter * Math.PI * 2;
       const radius = 2.4 + 0.5 * k;
-      positions[node.id] = add(anchor, [radius * Math.cos(phi), 1.2 + jitter * 0.6, radius * Math.sin(phi)]);
+      positions[node.id] = add(anchor, [
+        radius * Math.cos(phi),
+        1.2 + jitter * 0.6,
+        radius * Math.sin(phi),
+      ]);
     }
     pending = next;
   }
@@ -120,7 +127,11 @@ export function computeLayout(graph: CompiledGraph, anchors: LayoutAnchors): Com
     orphan++;
   }
 
-  const all: Vec3[] = [...Object.values(positions), ...Object.values(worlds), ...Object.values(regions)];
+  const all: Vec3[] = [
+    ...Object.values(positions),
+    ...Object.values(worlds),
+    ...Object.values(regions),
+  ];
   const min: Vec3 = [Infinity, Infinity, Infinity];
   const max: Vec3 = [-Infinity, -Infinity, -Infinity];
   for (const v of all) {

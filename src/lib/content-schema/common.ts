@@ -38,7 +38,13 @@ export const EvidenceStatusSchema = z.enum([
 ]);
 export type EvidenceStatus = z.infer<typeof EvidenceStatusSchema>;
 
-export const DateCertaintySchema = z.enum(['exact', 'approximate', 'interval', 'disputed', 'unknown']);
+export const DateCertaintySchema = z.enum([
+  'exact',
+  'approximate',
+  'interval',
+  'disputed',
+  'unknown',
+]);
 export type DateCertainty = z.infer<typeof DateCertaintySchema>;
 
 /** A historical date or interval with explicit uncertainty. */

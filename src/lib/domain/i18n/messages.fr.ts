@@ -3,13 +3,16 @@ import type { MessageKey } from './messages.en';
 /** Chaînes d'interface (français). Typé sur les clés anglaises : une clé manquante casse la vérification. */
 export const fr: Record<MessageKey, string> = {
   'app.name': 'Science Explorer',
-  'app.tagline': 'Un seul univers pour les mathématiques, la physique, la chimie et leur histoire — à explorer à son rythme.',
+  'app.tagline':
+    'Un seul univers pour les mathématiques, la physique, la chimie et leur histoire — à explorer à son rythme.',
   'app.loading': 'Chargement de l’univers…',
-  'app.loadError': 'Le paquet de contenu n’a pas pu être chargé. Vérifiez la connexion puis rechargez.',
+  'app.loadError':
+    'Le paquet de contenu n’a pas pu être chargé. Vérifiez la connexion puis rechargez.',
   'app.skipToContent': 'Aller au contenu',
   'app.offline': 'Hors ligne — le contenu téléchargé reste disponible.',
   'app.online': 'De nouveau en ligne.',
-  'app.updateAvailable': 'Une nouvelle version est prête. Elle sera utilisée à la prochaine ouverture de l’application.',
+  'app.updateAvailable':
+    'Une nouvelle version est prête. Elle sera utilisée à la prochaine ouverture de l’application.',
 
   'locale.fr': 'Français',
   'locale.en': 'English',
@@ -26,21 +29,25 @@ export const fr: Record<MessageKey, string> = {
   'nav.menu': 'Menu',
 
   'welcome.title': 'Bienvenue dans Science Explorer',
-  'welcome.explain': 'Entrez dans un univers stable des connaissances scientifiques, choisissez vos destinations, participez à des missions historiques, construisez des outils mathématiques et appliquez-les aux phénomènes physiques et chimiques.',
+  'welcome.explain':
+    'Entrez dans un univers stable des connaissances scientifiques, choisissez vos destinations, participez à des missions historiques, construisez des outils mathématiques et appliquez-les aux phénomènes physiques et chimiques.',
   'welcome.language': 'Langue',
   'welcome.name': 'Votre prénom',
   'welcome.namePlaceholder': 'par exemple Paul',
   'welcome.age': 'Votre âge',
   'welcome.enter': 'Entrer dans l’univers',
-  'welcome.privacy': 'Pas de compte, pas d’adresse e-mail, pas de mot de passe. Votre prénom, votre âge et votre progression sont conservés sur cet appareil seulement, et vous pouvez les exporter à tout moment.',
+  'welcome.privacy':
+    'Pas de compte, pas d’adresse e-mail, pas de mot de passe. Votre prénom, votre âge et votre progression sont conservés sur cet appareil seulement, et vous pouvez les exporter à tout moment.',
   'welcome.errors.name': 'Indiquez un prénom (1 à 40 caractères).',
   'welcome.errors.age': 'Indiquez un âge entre 5 et 120 ans.',
   'welcome.returning': 'Déjà explorateur ?',
   'welcome.chooseProfile': 'Choisir un explorateur',
 
   'horizon.title': 'Votre chemin mis en valeur',
-  'horizon.intro': '{name}, à {age} ans vous êtes probablement en {stage}. Voici le chemin que la carte mettra en valeur pendant les {years} prochaines années :',
-  'horizon.notRestriction': 'C’est un chemin mis en valeur, pas une restriction : toutes les régions de l’univers restent visibles, et vous pouvez regarder ou tenter n’importe quelle destination.',
+  'horizon.intro':
+    '{name}, à {age} ans vous êtes probablement en {stage}. Voici le chemin que la carte mettra en valeur pendant les {years} prochaines années :',
+  'horizon.notRestriction':
+    'C’est un chemin mis en valeur, pas une restriction : toutes les régions de l’univers restent visibles, et vous pouvez regarder ou tenter n’importe quelle destination.',
   'horizon.targets': 'Objectifs : {targets}',
   'horizon.confirm': 'Ouvrir la carte',
   'horizon.adjust': 'Le guide pourra changer l’étape courante plus tard, dans les réglages.',
@@ -68,7 +75,8 @@ export const fr: Record<MessageKey, string> = {
   'profiles.new': 'Nouvel explorateur',
   'profiles.open': 'Ouvrir',
   'profiles.delete': 'Supprimer',
-  'profiles.deleteConfirm': 'Supprimer {name} et toute sa progression de cet appareil ? Exportez d’abord si vous voulez la conserver.',
+  'profiles.deleteConfirm':
+    'Supprimer {name} et toute sa progression de cet appareil ? Exportez d’abord si vous voulez la conserver.',
   'profiles.empty': 'Aucun explorateur pour l’instant.',
   'profiles.active': 'actif',
 
@@ -86,13 +94,17 @@ export const fr: Record<MessageKey, string> = {
   'universe.reset': 'Réinitialiser la vue',
   'universe.worlds': 'Mondes',
   'universe.bridges': 'Ponts',
-  'universe.silhouette': 'Région à explorer plus tard (pas encore de destination détaillée dans ce paquet de contenu).',
+  'universe.silhouette':
+    'Région à explorer plus tard (pas encore de destination détaillée dans ce paquet de contenu).',
   'universe.destinations': '{n} destinations',
   'universe.tool': 'Outil',
-  'universe.webglUnavailable': 'Le rendu 3D n’est pas disponible sur cet appareil ; la carte 2D montre le même univers.',
-  'universe.canvasLabel': 'Atlas en trois dimensions de l’univers des connaissances. Utilisez la carte 2D ou la liste pour naviguer au clavier.',
+  'universe.webglUnavailable':
+    'Le rendu 3D n’est pas disponible sur cet appareil ; la carte 2D montre le même univers.',
+  'universe.canvasLabel':
+    'Atlas en trois dimensions de l’univers des connaissances. Utilisez la carte 2D ou la liste pour naviguer au clavier.',
   'universe.selected': 'Sélection : {title}',
-  'universe.help': 'Faites glisser pour tourner, molette ou pincement pour zoomer, cliquez une destination pour l’ouvrir.',
+  'universe.help':
+    'Faites glisser pour tourner, molette ou pincement pour zoomer, cliquez une destination pour l’ouvrir.',
 
   'filter.my_horizon': 'Mon horizon',
   'filter.ready': 'Prêtes à explorer',
@@ -110,6 +122,7 @@ export const fr: Record<MessageKey, string> = {
   'layer.curriculum': 'Programme',
 
   'state.unknown': 'Pas encore visitée',
+  'state.seen': 'Vue',
   'state.in_horizon': 'Dans votre horizon',
   'state.ready': 'Prête à explorer',
   'state.missing_recommended': 'Prérequis recommandés manquants',
@@ -168,8 +181,10 @@ export const fr: Record<MessageKey, string> = {
   'concept.saveLater': 'Garder pour plus tard',
   'concept.saved': 'Gardée pour plus tard',
   'concept.unsave': 'Retirer des destinations prévues',
-  'concept.missingIntro': 'Cette destination attend des outils que vous n’avez pas encore pratiqués. La route est interrompue, pas verrouillée.',
-  'concept.beyondIntro': 'Cette destination est au-delà de votre horizon mis en valeur ({stage}). Vous pouvez regarder ; la carte montre les outils qui y mènent.',
+  'concept.missingIntro':
+    'Cette destination attend des outils que vous n’avez pas encore pratiqués. La route est interrompue, pas verrouillée.',
+  'concept.beyondIntro':
+    'Cette destination est au-delà de votre horizon mis en valeur ({stage}). Vous pouvez regarder ; la carte montre les outils qui y mènent.',
   'concept.startMission': 'Commencer la mission',
   'concept.resumeMission': 'Reprendre la mission',
   'concept.openInMap': 'Voir sur la carte',
@@ -193,7 +208,8 @@ export const fr: Record<MessageKey, string> = {
 
   'world.regions': 'Régions',
   'region.destinations': 'Destinations',
-  'region.empty': 'Cette région n’a pas encore de destination détaillée ; elle se remplira dans les prochains paquets de contenu.',
+  'region.empty':
+    'Cette région n’a pas encore de destination détaillée ; elle se remplira dans les prochains paquets de contenu.',
 
   'mission.place': 'Lieu',
   'mission.date': 'Date',
@@ -217,7 +233,8 @@ export const fr: Record<MessageKey, string> = {
   'mission.record': 'Enregistrer',
   'mission.recorded': 'Enregistré',
   'mission.predictionLocked': 'Votre prédiction est enregistrée. Vous la comparerez aux mesures.',
-  'mission.needMeasurements': 'Enregistrez au moins {n} mesures pour continuer ({done} pour l’instant).',
+  'mission.needMeasurements':
+    'Enregistrez au moins {n} mesures pour continuer ({done} pour l’instant).',
   'mission.needExercises': 'Répondez à chaque exercice pour continuer.',
   'mission.needExplanation': 'Écrivez au moins {n} caractères.',
   'mission.evidenceLegend': 'Statut historique',
@@ -225,7 +242,8 @@ export const fr: Record<MessageKey, string> = {
   'mission.toolSelection': 'Quel outil modélise ce phénomène ?',
   'mission.toolSelected': 'Vous avez choisi {tool}.',
   'mission.toolCorrect': 'Exact : c’est l’outil qui modélise le phénomène.',
-  'mission.toolIncorrect': 'Pas celui-ci — regardez ce que la question demande sur la vitesse de variation.',
+  'mission.toolIncorrect':
+    'Pas celui-ci — regardez ce que la question demande sur la vitesse de variation.',
   'mission.completed': 'Mission terminée',
   'mission.completedIntro': 'La carte et votre sac à dos ont été mis à jour.',
   'mission.illuminated': 'Destinations illuminées',
@@ -257,8 +275,10 @@ export const fr: Record<MessageKey, string> = {
   'evidence.pedagogical_reconstruction': 'Reconstitution pédagogique',
   'evidence.narrative_fiction': 'Fiction narrative',
   'evidence.attested.help': 'Directement appuyé par une source primaire ou savante fiable.',
-  'evidence.scholarly_interpretation.help': 'Une interprétation argumentée, appuyée par les travaux des historiens.',
-  'evidence.pedagogical_reconstruction.help': 'Une reconstitution plausible, créée pour rendre le concept apprenable.',
+  'evidence.scholarly_interpretation.help':
+    'Une interprétation argumentée, appuyée par les travaux des historiens.',
+  'evidence.pedagogical_reconstruction.help':
+    'Une reconstitution plausible, créée pour rendre le concept apprenable.',
   'evidence.narrative_fiction.help': 'Un élément inventé, clairement signalé comme tel.',
   'certainty.exact': 'exacte',
   'certainty.approximate': 'approximative',
@@ -309,6 +329,7 @@ export const fr: Record<MessageKey, string> = {
   'sim.numeric': 'numérique',
   'sim.prediction': 'Prédiction',
 
+  'exercise.number': 'Exercice {n}',
   'exercise.answer': 'Votre réponse',
   'exercise.check': 'Vérifier',
   'exercise.checked': 'Vérifié',
@@ -317,7 +338,8 @@ export const fr: Record<MessageKey, string> = {
   'exercise.partial': 'Partiellement correct.',
   'exercise.unit': 'Unité',
   'exercise.unitWrong': 'La valeur est juste mais pas l’unité.',
-  'exercise.parseError': 'Je n’ai pas pu lire cette expression. Utilisez t, des nombres, + − * / ^ et des parenthèses.',
+  'exercise.parseError':
+    'Je n’ai pas pu lire cette expression. Utilisez t, des nombres, + − * / ^ et des parenthèses.',
   'exercise.reasoning': 'Votre raisonnement (une ou deux phrases)',
   'exercise.reasoningRequired': 'Expliquez votre choix.',
   'exercise.solution': 'Afficher la solution',
@@ -335,8 +357,10 @@ export const fr: Record<MessageKey, string> = {
   'exercise.autonomy': 'Autonomie créditée : {value}',
 
   'backpack.title': 'Sac à dos virtuel',
-  'backpack.intro': 'Votre inventaire d’outils mathématiques : ce que vous avez découvert, à quel point vous maîtrisez chaque outil, et où vous l’avez réellement appliqué.',
-  'backpack.empty': 'Aucun outil découvert pour l’instant. La première mission introduit la dérivée.',
+  'backpack.intro':
+    'Votre inventaire d’outils mathématiques : ce que vous avez découvert, à quel point vous maîtrisez chaque outil, et où vous l’avez réellement appliqué.',
+  'backpack.empty':
+    'Aucun outil découvert pour l’instant. La première mission introduit la dérivée.',
   'backpack.notDiscovered': 'Pas encore découvert',
   'backpack.coverage': 'Applications',
   'backpack.coverageDetail': '{applied} phénomènes utilisés sur {eligible} éligibles',
@@ -366,8 +390,10 @@ export const fr: Record<MessageKey, string> = {
   'backpack.noDepth': 'aucune pour l’instant',
   'backpack.evidenceCount': '{n} élément(s) de preuve',
   'backpack.explain': 'Comment est-ce calculé ?',
-  'backpack.explainCoverage': 'Couverture = Σ (poids de l’arête × plus forte preuve d’usage) / Σ poids, sur les arêtes « s’applique à » éligibles dans la portée. Observé dans un exemple résolu compte 0,2 ; utilisé entièrement guidé 0,4 ; avec indices 0,6–0,8 ; en autonomie ou transféré 1.',
-  'backpack.explainMastery': 'Maîtrise = moyenne pondérée de cinq dimensions (20 % reconnaissance, 25 % exécution, 30 % modélisation, 20 % transfert, 5 % rétention). Chaque dimension moyenne les preuves récentes, pondérées par l’autonomie et la récence ; une dimension sans preuve compte 0.',
+  'backpack.explainCoverage':
+    'Couverture = Σ (poids de l’arête × plus forte preuve d’usage) / Σ poids, sur les arêtes « s’applique à » éligibles dans la portée. Observé dans un exemple résolu compte 0,2 ; utilisé entièrement guidé 0,4 ; avec indices 0,6–0,8 ; en autonomie ou transféré 1.',
+  'backpack.explainMastery':
+    'Maîtrise = moyenne pondérée de cinq dimensions (20 % reconnaissance, 25 % exécution, 30 % modélisation, 20 % transfert, 5 % rétention). Chaque dimension moyenne les preuves récentes, pondérées par l’autonomie et la récence ; une dimension sans preuve compte 0.',
   'backpack.algorithm': 'Algorithmes : {coverage}, {mastery}',
   'backpack.state.not_encountered': 'pas rencontré',
   'backpack.state.observed': 'observé dans un exemple résolu',
@@ -395,7 +421,8 @@ export const fr: Record<MessageKey, string> = {
   'journal.intro': 'Notes de séance, destinations visitées et missions terminées.',
   'journal.empty': 'Le journal est vide.',
   'journal.add': 'Ajouter une note',
-  'journal.notePlaceholder': 'Qu’avons-nous fait aujourd’hui ? Qu’est-ce qui était difficile ? Et ensuite ?',
+  'journal.notePlaceholder':
+    'Qu’avons-nous fait aujourd’hui ? Qu’est-ce qui était difficile ? Et ensuite ?',
   'journal.save': 'Enregistrer la note',
   'journal.kind.note': 'Note',
   'journal.kind.guide': 'Note du guide',
@@ -414,14 +441,17 @@ export const fr: Record<MessageKey, string> = {
   'settings.reducedMotionSystem': 'Votre système demande déjà la réduction des mouvements.',
   'settings.textSize': 'Taille du texte',
   'settings.export': 'Exporter la progression',
-  'settings.exportHelp': 'Télécharge un fichier JSON avec le profil de cet explorateur, ses sessions de mission, ses preuves et son journal.',
+  'settings.exportHelp':
+    'Télécharge un fichier JSON avec le profil de cet explorateur, ses sessions de mission, ses preuves et son journal.',
   'settings.import': 'Restaurer depuis un export',
-  'settings.importHelp': 'Choisissez un fichier d’export Science Explorer. Un aperçu s’affiche avant toute modification.',
+  'settings.importHelp':
+    'Choisissez un fichier d’export Science Explorer. Un aperçu s’affiche avant toute modification.',
   'settings.guide': 'Mode guide',
   'settings.guidePin': 'Code guide (facultatif, 4 à 8 chiffres)',
   'settings.guidePinSet': 'Définir le code',
   'settings.guidePinClear': 'Retirer le code',
-  'settings.guidePinHelp': 'Le code évite seulement que l’explorateur ouvre les pages du guide par accident. Il est conservé sur cet appareil.',
+  'settings.guidePinHelp':
+    'Le code évite seulement que l’explorateur ouvre les pages du guide par accident. Il est conservé sur cet appareil.',
   'settings.stageOverride': 'Étape courante (choix du guide)',
   'settings.stageInferred': 'déduite de l’âge',
   'settings.deleteProfile': 'Supprimer cet explorateur de l’appareil',
@@ -431,13 +461,16 @@ export const fr: Record<MessageKey, string> = {
   'settings.evidenceCount': '{n} événements de preuve',
   'settings.saved': 'Enregistré.',
   'settings.diagnostics': 'Diagnostics',
-  'settings.installHint': 'Installez l’application depuis le menu du navigateur pour l’utiliser hors ligne.',
+  'settings.installHint':
+    'Installez l’application depuis le menu du navigateur pour l’utiliser hors ligne.',
 
   'import.title': 'Aperçu de l’import',
   'import.learner': 'Explorateur : {name}, {age} ans',
-  'import.counts': '{sessions} sessions de mission, {evidence} événements de preuve, {journal} entrées de journal',
+  'import.counts':
+    '{sessions} sessions de mission, {evidence} événements de preuve, {journal} entrées de journal',
   'import.contentVersions': 'Versions de contenu : {versions}',
-  'import.unknownNodes': '{n} références à du contenu inconnu dans ce paquet (conservées, ignorées pour les scores).',
+  'import.unknownNodes':
+    '{n} références à du contenu inconnu dans ce paquet (conservées, ignorées pour les scores).',
   'import.conflict': 'Un explorateur avec le même identifiant existe déjà sur cet appareil.',
   'import.createNew': 'Créer un explorateur restauré distinct',
   'import.merge': 'Fusionner avec l’explorateur existant',
@@ -447,7 +480,8 @@ export const fr: Record<MessageKey, string> = {
   'import.tooLarge': 'Ce fichier est trop volumineux.',
 
   'guide.title': 'Mode guide',
-  'guide.intro': 'Pour l’adulte qui mène la séance hebdomadaire : objectifs, minutage, questions orales, indices, preuves et notes.',
+  'guide.intro':
+    'Pour l’adulte qui mène la séance hebdomadaire : objectifs, minutage, questions orales, indices, preuves et notes.',
   'guide.unlock': 'Saisir le code guide',
   'guide.unlockButton': 'Déverrouiller',
   'guide.wrongPin': 'Code incorrect.',
@@ -486,12 +520,14 @@ export const fr: Record<MessageKey, string> = {
   'guide.learnerView': 'Vue apprenant',
 
   'studio.title': 'Studio',
-  'studio.intro': 'Inspection en lecture seule du paquet de contenu compilé et de son rapport de validation.',
+  'studio.intro':
+    'Inspection en lecture seule du paquet de contenu compilé et de son rapport de validation.',
   'studio.graph': 'Graphe de connaissances',
   'studio.report': 'Rapport de validation',
   'studio.errors': '{n} erreur(s)',
   'studio.warnings': '{n} avertissement(s)',
-  'studio.comingSoon': 'Les outils d’édition viendront dans une version ultérieure. Le contenu s’écrit dans le dossier content/ et se compile à la construction.',
+  'studio.comingSoon':
+    'Les outils d’édition viendront dans une version ultérieure. Le contenu s’écrit dans le dossier content/ et se compile à la construction.',
   'studio.nodes': 'Nœuds',
   'studio.edges': 'Arêtes',
 

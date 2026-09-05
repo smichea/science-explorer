@@ -15,7 +15,9 @@
   <div class="stack" data-testid="region-panel">
     <p class="badge">{region.isBridge ? t('type.bridge') : t('type.region')}</p>
     <h1 style="font-size: var(--fs-xl)">{L(region.title)}</h1>
-    {#if world}<p class="small"><a href="{base}/world/{world.id}" style="color: {world.color}">{L(world.title)}</a></p>{/if}
+    {#if world}<p class="small">
+        <a href="{base}/world/{world.id}" style="color: {world.color}">{L(world.title)}</a>
+      </p>{/if}
     <p>{L(region.summary)}</p>
     <h2 style="font-size: var(--fs-lg)">{t('region.destinations')}</h2>
     {#if nodes.length === 0}

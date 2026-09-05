@@ -4,13 +4,15 @@
  */
 export const en = {
   'app.name': 'Science Explorer',
-  'app.tagline': 'One universe of mathematics, physics, chemistry and their history — explored at your own pace.',
+  'app.tagline':
+    'One universe of mathematics, physics, chemistry and their history — explored at your own pace.',
   'app.loading': 'Loading the universe…',
   'app.loadError': 'The content package could not be loaded. Check your connection and reload.',
   'app.skipToContent': 'Skip to content',
   'app.offline': 'Offline — downloaded content stays available.',
   'app.online': 'Back online.',
-  'app.updateAvailable': 'A new version is ready. It will be used the next time you open the application.',
+  'app.updateAvailable':
+    'A new version is ready. It will be used the next time you open the application.',
 
   'locale.fr': 'Français',
   'locale.en': 'English',
@@ -27,21 +29,25 @@ export const en = {
   'nav.menu': 'Menu',
 
   'welcome.title': 'Welcome to Science Explorer',
-  'welcome.explain': 'Enter a stable universe of scientific knowledge, choose your destinations, take part in historical missions, build mathematical tools and apply them to physical and chemical phenomena.',
+  'welcome.explain':
+    'Enter a stable universe of scientific knowledge, choose your destinations, take part in historical missions, build mathematical tools and apply them to physical and chemical phenomena.',
   'welcome.language': 'Language',
   'welcome.name': 'Your first name',
   'welcome.namePlaceholder': 'e.g. Paul',
   'welcome.age': 'Your age',
   'welcome.enter': 'Enter the universe',
-  'welcome.privacy': 'No account, no e-mail, no password. Your name, age and progress are stored on this device only, and you can export them at any time.',
+  'welcome.privacy':
+    'No account, no e-mail, no password. Your name, age and progress are stored on this device only, and you can export them at any time.',
   'welcome.errors.name': 'Please enter a name (1 to 40 characters).',
   'welcome.errors.age': 'Please enter an age between 5 and 120.',
   'welcome.returning': 'Returning explorer?',
   'welcome.chooseProfile': 'Choose an explorer',
 
   'horizon.title': 'Your highlighted route',
-  'horizon.intro': '{name}, at {age} you are probably in {stage}. Here is the route the map will highlight for the next {years} years:',
-  'horizon.notRestriction': 'This is the highlighted route, not a restriction: every region of the universe stays visible, and you may inspect or attempt any destination.',
+  'horizon.intro':
+    '{name}, at {age} you are probably in {stage}. Here is the route the map will highlight for the next {years} years:',
+  'horizon.notRestriction':
+    'This is the highlighted route, not a restriction: every region of the universe stays visible, and you may inspect or attempt any destination.',
   'horizon.targets': 'Targets: {targets}',
   'horizon.confirm': 'Open the map',
   'horizon.adjust': 'The guide can change the current stage later, in settings.',
@@ -69,7 +75,8 @@ export const en = {
   'profiles.new': 'New explorer',
   'profiles.open': 'Open',
   'profiles.delete': 'Delete',
-  'profiles.deleteConfirm': 'Delete {name} and all their progress from this device? Export first if you want to keep it.',
+  'profiles.deleteConfirm':
+    'Delete {name} and all their progress from this device? Export first if you want to keep it.',
   'profiles.empty': 'No explorer yet.',
   'profiles.active': 'active',
 
@@ -87,11 +94,14 @@ export const en = {
   'universe.reset': 'Reset view',
   'universe.worlds': 'Worlds',
   'universe.bridges': 'Bridges',
-  'universe.silhouette': 'Region to be explored later (no detailed destination in this content package yet).',
+  'universe.silhouette':
+    'Region to be explored later (no detailed destination in this content package yet).',
   'universe.destinations': '{n} destinations',
   'universe.tool': 'Tool',
-  'universe.webglUnavailable': '3D rendering is not available on this device; the 2D map shows the same universe.',
-  'universe.canvasLabel': 'Three-dimensional atlas of the knowledge universe. Use the 2D map or the list for keyboard navigation.',
+  'universe.webglUnavailable':
+    '3D rendering is not available on this device; the 2D map shows the same universe.',
+  'universe.canvasLabel':
+    'Three-dimensional atlas of the knowledge universe. Use the 2D map or the list for keyboard navigation.',
   'universe.selected': 'Selected: {title}',
   'universe.help': 'Drag to orbit, scroll or pinch to zoom, click a destination to open it.',
 
@@ -111,6 +121,7 @@ export const en = {
   'layer.curriculum': 'Curriculum',
 
   'state.unknown': 'Not yet visited',
+  'state.seen': 'Seen',
   'state.in_horizon': 'In your horizon',
   'state.ready': 'Ready to explore',
   'state.missing_recommended': 'Missing recommended prerequisites',
@@ -169,8 +180,10 @@ export const en = {
   'concept.saveLater': 'Save for later',
   'concept.saved': 'Saved for later',
   'concept.unsave': 'Remove from planned destinations',
-  'concept.missingIntro': 'This destination expects tools you have not practised yet. The route is interrupted, not locked.',
-  'concept.beyondIntro': 'This destination lies beyond your highlighted horizon ({stage}). You may look around; the map shows the tools that lead here.',
+  'concept.missingIntro':
+    'This destination expects tools you have not practised yet. The route is interrupted, not locked.',
+  'concept.beyondIntro':
+    'This destination lies beyond your highlighted horizon ({stage}). You may look around; the map shows the tools that lead here.',
   'concept.startMission': 'Start the mission',
   'concept.resumeMission': 'Resume the mission',
   'concept.openInMap': 'Show on the map',
@@ -194,7 +207,8 @@ export const en = {
 
   'world.regions': 'Regions',
   'region.destinations': 'Destinations',
-  'region.empty': 'This region has no detailed destination yet; it will fill up in later content packages.',
+  'region.empty':
+    'This region has no detailed destination yet; it will fill up in later content packages.',
 
   'mission.place': 'Place',
   'mission.date': 'Date',
@@ -217,7 +231,8 @@ export const en = {
   'mission.hintsUsed': '{n} hint(s) used',
   'mission.record': 'Record',
   'mission.recorded': 'Recorded',
-  'mission.predictionLocked': 'Your prediction is recorded. You will compare it with the measurements.',
+  'mission.predictionLocked':
+    'Your prediction is recorded. You will compare it with the measurements.',
   'mission.needMeasurements': 'Record at least {n} measurements to continue ({done} so far).',
   'mission.needExercises': 'Answer every exercise to continue.',
   'mission.needExplanation': 'Write at least {n} characters.',
@@ -226,7 +241,8 @@ export const en = {
   'mission.toolSelection': 'Which tool models this phenomenon?',
   'mission.toolSelected': 'You chose {tool}.',
   'mission.toolCorrect': 'Right: this is the tool that models the phenomenon.',
-  'mission.toolIncorrect': 'Not this one — look at what the question asks about the rate of change.',
+  'mission.toolIncorrect':
+    'Not this one — look at what the question asks about the rate of change.',
   'mission.completed': 'Mission completed',
   'mission.completedIntro': 'The map and your backpack have been updated.',
   'mission.illuminated': 'Illuminated destinations',
@@ -258,8 +274,10 @@ export const en = {
   'evidence.pedagogical_reconstruction': 'Pedagogical reconstruction',
   'evidence.narrative_fiction': 'Narrative fiction',
   'evidence.attested.help': 'Directly supported by a reliable primary or scholarly source.',
-  'evidence.scholarly_interpretation.help': 'A reasoned interpretation supported by historical scholarship.',
-  'evidence.pedagogical_reconstruction.help': 'A plausible reconstruction created to make the concept learnable.',
+  'evidence.scholarly_interpretation.help':
+    'A reasoned interpretation supported by historical scholarship.',
+  'evidence.pedagogical_reconstruction.help':
+    'A plausible reconstruction created to make the concept learnable.',
   'evidence.narrative_fiction.help': 'An invented narrative element, clearly marked as such.',
   'certainty.exact': 'exact',
   'certainty.approximate': 'approximate',
@@ -310,6 +328,7 @@ export const en = {
   'sim.numeric': 'numeric',
   'sim.prediction': 'Prediction',
 
+  'exercise.number': 'Exercise {n}',
   'exercise.answer': 'Your answer',
   'exercise.check': 'Check',
   'exercise.checked': 'Checked',
@@ -318,7 +337,8 @@ export const en = {
   'exercise.partial': 'Partly correct.',
   'exercise.unit': 'Unit',
   'exercise.unitWrong': 'The value is right but the unit is not.',
-  'exercise.parseError': 'I could not read this expression. Use t, numbers, + − * / ^ and parentheses.',
+  'exercise.parseError':
+    'I could not read this expression. Use t, numbers, + − * / ^ and parentheses.',
   'exercise.reasoning': 'Your reasoning (one or two sentences)',
   'exercise.reasoningRequired': 'Please explain your choice.',
   'exercise.solution': 'Show the solution',
@@ -336,7 +356,8 @@ export const en = {
   'exercise.autonomy': 'Autonomy credited: {value}',
 
   'backpack.title': 'Virtual backpack',
-  'backpack.intro': 'Your inventory of mathematical tools: what you have discovered, how reliably you master each tool, and where you have actually applied it.',
+  'backpack.intro':
+    'Your inventory of mathematical tools: what you have discovered, how reliably you master each tool, and where you have actually applied it.',
   'backpack.empty': 'No tool discovered yet. The first mission introduces the derivative.',
   'backpack.notDiscovered': 'Not discovered yet',
   'backpack.coverage': 'Applications',
@@ -367,8 +388,10 @@ export const en = {
   'backpack.noDepth': 'none yet',
   'backpack.evidenceCount': '{n} evidence item(s)',
   'backpack.explain': 'How is this computed?',
-  'backpack.explainCoverage': 'Coverage = Σ (edge weight × strongest evidence of use) / Σ edge weights, over the applies_to edges marked eligible within the scope. Observed in a worked example counts 0.2; used fully guided 0.4; with hints 0.6–0.8; autonomous or transferred 1.',
-  'backpack.explainMastery': 'Mastery = weighted average of five dimensions (20 % recognition, 25 % execution, 30 % modelling, 20 % transfer, 5 % retention). Each dimension averages recent evidence, weighted by autonomy and recency; a dimension without evidence counts 0.',
+  'backpack.explainCoverage':
+    'Coverage = Σ (edge weight × strongest evidence of use) / Σ edge weights, over the applies_to edges marked eligible within the scope. Observed in a worked example counts 0.2; used fully guided 0.4; with hints 0.6–0.8; autonomous or transferred 1.',
+  'backpack.explainMastery':
+    'Mastery = weighted average of five dimensions (20 % recognition, 25 % execution, 30 % modelling, 20 % transfer, 5 % retention). Each dimension averages recent evidence, weighted by autonomy and recency; a dimension without evidence counts 0.',
   'backpack.algorithm': 'Algorithms: {coverage}, {mastery}',
   'backpack.state.not_encountered': 'not encountered',
   'backpack.state.observed': 'observed in a worked example',
@@ -415,14 +438,17 @@ export const en = {
   'settings.reducedMotionSystem': 'Your system already asks for reduced motion.',
   'settings.textSize': 'Text size',
   'settings.export': 'Export progress',
-  'settings.exportHelp': 'Downloads a JSON file with this explorer’s profile, mission sessions, evidence and journal.',
+  'settings.exportHelp':
+    'Downloads a JSON file with this explorer’s profile, mission sessions, evidence and journal.',
   'settings.import': 'Restore from an export',
-  'settings.importHelp': 'Choose a Science Explorer export file. You will see a preview before anything changes.',
+  'settings.importHelp':
+    'Choose a Science Explorer export file. You will see a preview before anything changes.',
   'settings.guide': 'Guide mode',
   'settings.guidePin': 'Guide PIN (optional, 4 to 8 digits)',
   'settings.guidePinSet': 'Set the PIN',
   'settings.guidePinClear': 'Remove the PIN',
-  'settings.guidePinHelp': 'The PIN only prevents the learner from opening guide pages by accident. It is stored on this device.',
+  'settings.guidePinHelp':
+    'The PIN only prevents the learner from opening guide pages by accident. It is stored on this device.',
   'settings.stageOverride': 'Current stage (guide override)',
   'settings.stageInferred': 'inferred from age',
   'settings.deleteProfile': 'Delete this explorer from the device',
@@ -436,9 +462,11 @@ export const en = {
 
   'import.title': 'Import preview',
   'import.learner': 'Explorer: {name}, age {age}',
-  'import.counts': '{sessions} mission sessions, {evidence} evidence events, {journal} journal entries',
+  'import.counts':
+    '{sessions} mission sessions, {evidence} evidence events, {journal} journal entries',
   'import.contentVersions': 'Content versions: {versions}',
-  'import.unknownNodes': '{n} references to content unknown in this package (kept, ignored for scores).',
+  'import.unknownNodes':
+    '{n} references to content unknown in this package (kept, ignored for scores).',
   'import.conflict': 'An explorer with the same identifier already exists on this device.',
   'import.createNew': 'Create a separate restored explorer',
   'import.merge': 'Merge into the existing explorer',
@@ -448,7 +476,8 @@ export const en = {
   'import.tooLarge': 'This file is too large.',
 
   'guide.title': 'Guide mode',
-  'guide.intro': 'For the adult leading the weekly session: objectives, timing, oral prompts, hints, evidence and notes.',
+  'guide.intro':
+    'For the adult leading the weekly session: objectives, timing, oral prompts, hints, evidence and notes.',
   'guide.unlock': 'Enter the guide PIN',
   'guide.unlockButton': 'Unlock',
   'guide.wrongPin': 'Wrong PIN.',
@@ -492,7 +521,8 @@ export const en = {
   'studio.report': 'Validation report',
   'studio.errors': '{n} error(s)',
   'studio.warnings': '{n} warning(s)',
-  'studio.comingSoon': 'Authoring tools will come in a later version. Content is authored in the content/ folder and compiled at build time.',
+  'studio.comingSoon':
+    'Authoring tools will come in a later version. Content is authored in the content/ folder and compiled at build time.',
   'studio.nodes': 'Nodes',
   'studio.edges': 'Edges',
 

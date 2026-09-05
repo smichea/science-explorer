@@ -160,10 +160,19 @@ interface ScienceExplorerDB extends DBSchema {
   evidenceEvents: {
     key: string;
     value: EvidenceEvent;
-    indexes: { byLearner: string; byLearnerNode: [string, string]; bySession: string; byIdempotency: string };
+    indexes: {
+      byLearner: string;
+      byLearnerNode: [string, string];
+      bySession: string;
+      byIdempotency: string;
+    };
   };
   nodeStateCache: { key: string; value: CacheRecord<unknown>; indexes: { byLearner: string } };
-  toolApplicationCache: { key: string; value: CacheRecord<unknown>; indexes: { byLearner: string } };
+  toolApplicationCache: {
+    key: string;
+    value: CacheRecord<unknown>;
+    indexes: { byLearner: string };
+  };
   masteryCache: { key: string; value: CacheRecord<unknown>; indexes: { byLearner: string } };
   journalEntries: { key: string; value: JournalEntry; indexes: { byLearner: string } };
   contentPackages: { key: string; value: ContentPackageRecord };

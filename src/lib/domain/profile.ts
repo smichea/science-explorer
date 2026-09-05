@@ -18,7 +18,10 @@ export interface ProfileValidation {
 export const AGE_MIN = 5;
 export const AGE_MAX = 120;
 
-export function validateProfileInput(input: { name: string; age: number | string }): ProfileValidation {
+export function validateProfileInput(input: {
+  name: string;
+  age: number | string;
+}): ProfileValidation {
   const errors: ProfileValidation['errors'] = {};
   const name = input.name.trim();
   if (name.length < 1 || name.length > 40) errors.name = true;
@@ -27,7 +30,12 @@ export function validateProfileInput(input: { name: string; age: number | string
   return { ok: Object.keys(errors).length === 0, errors };
 }
 
-export function buildProfile(input: ProfileInput, config: HorizonConfig, contentVersion: string, now = new Date()): LearnerProfile {
+export function buildProfile(
+  input: ProfileInput,
+  config: HorizonConfig,
+  contentVersion: string,
+  now = new Date()
+): LearnerProfile {
   const horizon = inferHorizon(input.age, config);
   const at = now.toISOString();
   return {
@@ -47,7 +55,12 @@ export function buildProfile(input: ProfileInput, config: HorizonConfig, content
 }
 
 /** Updating the age re-infers the default horizon but never touches evidence or the guide override. */
-export function withAge(profile: LearnerProfile, age: number, config: HorizonConfig, now = new Date()): LearnerProfile {
+export function withAge(
+  profile: LearnerProfile,
+  age: number,
+  config: HorizonConfig,
+  now = new Date()
+): LearnerProfile {
   const horizon = inferHorizon(age, config);
   const at = now.toISOString();
   return {
@@ -67,12 +80,25 @@ export function confirmAge(profile: LearnerProfile, now = new Date()): LearnerPr
   return { ...profile, ageConfirmedAt: at, updatedAt: at };
 }
 
-export function needsAgeConfirmation(profile: LearnerProfile, days: number, now = new Date()): boolean {
+export function needsAgeConfirmation(
+  profile: LearnerProfile,
+  days: number,
+  now = new Date()
+): boolean {
   const confirmed = new Date(profile.ageConfirmedAt).getTime();
   if (Number.isNaN(confirmed)) return true;
   return now.getTime() - confirmed > days * 86_400_000;
 }
 
-export function toSummary(profile: LearnerProfile, lastOpenedAt = new Date().toISOString()): ProfileSummary {
-  return { id: profile.id, name: profile.name, age: profile.age, preferredLocale: profile.preferredLocale, lastOpenedAt };
+export function toSummary(
+  profile: LearnerProfile,
+  lastOpenedAt = new Date().toISOString()
+): ProfileSummary {
+  return {
+    id: profile.id,
+    name: profile.name,
+    age: profile.age,
+    preferredLocale: profile.preferredLocale,
+    lastOpenedAt,
+  };
 }

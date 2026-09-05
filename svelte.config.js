@@ -18,7 +18,11 @@ const config = {
       strict: true,
     }),
     paths: { base },
-    serviceWorker: { register: true },
+    serviceWorker: {
+      register: true,
+      // Dotfiles (.nojekyll) are not served by every static host: keep them out of the offline precache.
+      files: (file) => !file.split('/').some((part) => part.startsWith('.')),
+    },
   },
 };
 

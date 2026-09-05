@@ -2,7 +2,8 @@
 :root {
   color-scheme: dark;
   --text-scale: 1;
-  --font-body: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-body:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --bg: #0b1020;
@@ -66,13 +67,20 @@ html {
 }
 
 body {
+  overflow-wrap: anywhere;
   margin: 0;
   min-height: 100%;
   font-family: var(--font-body);
   font-size: var(--fs-base);
   line-height: 1.55;
   color: var(--text);
-  background: radial-gradient(1200px 800px at 70% -10%, #1a2350 0%, var(--bg) 55%, var(--bg-deep) 100%) fixed;
+  background: radial-gradient(
+      1200px 800px at 70% -10%,
+      #1a2350 0%,
+      var(--bg) 55%,
+      var(--bg-deep) 100%
+    )
+    fixed;
   overflow-x: hidden;
 }
 
@@ -178,6 +186,22 @@ textarea {
 .card--paper .muted {
   color: var(--paper-muted);
 }
+.card--paper .btn:not(.btn--primary):not(.btn--danger) {
+  color: var(--paper-text);
+  background: #fff;
+  border-color: #b9b3a5;
+}
+.card--paper .btn:not(.btn--primary):not(.btn--danger):hover {
+  background: #f0ece3;
+}
+.card--paper .badge {
+  background: #e3ded2;
+  color: var(--paper-muted);
+}
+.card--paper .chip {
+  background: #fff;
+  color: var(--paper-text);
+}
 .muted {
   color: var(--muted);
 }
@@ -222,7 +246,9 @@ p {
   text-decoration: none;
   font-weight: 600;
   line-height: 1.2;
-  transition: background 0.15s, transform 0.05s;
+  transition:
+    background 0.15s,
+    transform 0.05s;
 }
 .btn:hover {
   background: #2b3760;
@@ -302,7 +328,10 @@ textarea.input {
   border: 1px solid var(--border);
   background: var(--bg-elev);
   font-size: var(--fs-sm);
-  white-space: nowrap;
+  /* Long titles wrap inside the chip instead of widening the page on phones. */
+  white-space: normal;
+  max-width: 100%;
+  text-align: left;
 }
 .chip--math {
   border-color: var(--math);
@@ -439,6 +468,19 @@ table.data td {
 }
 
 /* Atlas labels (CSS2D overlay) */
+/* Wide content (tables, code) scrolls in its own container: the page never scrolls sideways. */
+.table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+/* Flex and grid children may shrink below their content: long labels wrap instead of widening the page. */
+.cluster > *,
+.grid > *,
+.stack > * {
+  min-width: 0;
+}
+
 .atlas-label {
   --label-color: #ffffff;
   display: inline-flex;
@@ -501,6 +543,16 @@ table.data td {
   border-color: var(--label-color);
 }
 @media (max-width: 600px) {
+  /* Wide content (tables, code) scrolls in its own container: the page never scrolls sideways. */
+  .table-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table-scroll > table {
+    min-width: max-content;
+  }
+
   .atlas-label {
     font-size: 0.7rem;
     max-width: 10rem;

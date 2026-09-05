@@ -11,7 +11,11 @@
   const pkg = $derived(content.pkg!);
   const horizon = $derived(profile.horizon(pkg.horizon));
   const recommendations = $derived(recommend(graph, learning.snapshot, pkg.routes, 4));
-  const discovered = $derived([...(learning.snapshot?.nodeStates.values() ?? [])].filter((s) => s.status !== 'unknown' && s.status !== 'seen').length);
+  const discovered = $derived(
+    [...(learning.snapshot?.nodeStates.values() ?? [])].filter(
+      (s) => s.status !== 'unknown' && s.status !== 'seen'
+    ).length
+  );
 
   function stageTitle(id: string): string {
     const s = pkg.horizon.stages.find((x) => x.id === id);
@@ -34,13 +38,18 @@
     <h2 class="small muted" style="margin-bottom: var(--space-2)">{t('universe.legend')}</h2>
     <ul class="legend__list">
       {#each graph.graph.worlds as world (world.id)}
-        <li><span class="legend__dot" style="background: {world.color}"></span> <a href="{base}/world/{world.id}">{L(world.title)}</a></li>
+        <li>
+          <span class="legend__dot" style="background: {world.color}"></span>
+          <a href="{base}/world/{world.id}">{L(world.title)}</a>
+        </li>
       {/each}
       <li><span class="legend__dot" style="background: #f7f1e3"></span> {t('universe.bridges')}</li>
       <li><span class="legend__dot" style="background: #ff8fab"></span> {t('type.mission')}</li>
       <li><span class="legend__dot" style="background: #ffd166"></span> {t('layer.history')}</li>
     </ul>
-    <p class="muted small" style="margin: var(--space-2) 0 0">{t('universe.destinations', { n: discovered })} · {graph.graph.nodes.length}</p>
+    <p class="muted small" style="margin: var(--space-2) 0 0">
+      {t('universe.destinations', { n: graph.graph.nodes.length })} · {t('state.discovered')} : {discovered}
+    </p>
   </div>
 
   <section class="stack-sm">
@@ -53,7 +62,9 @@
           {#if rec.via}<span class="muted small">← {L(rec.via.title)}</span>{/if}
         </div>
         {#if rec.node.type === 'mission'}
-          <a class="btn btn--primary btn--sm" href="{base}/mission/{rec.node.id}">{t('concept.startMission')}</a>
+          <a class="btn btn--primary btn--sm" href="{base}/mission/{rec.node.id}"
+            >{t('concept.startMission')}</a
+          >
         {/if}
       </div>
     {/each}

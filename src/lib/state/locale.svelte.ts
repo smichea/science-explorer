@@ -1,5 +1,11 @@
 import type { Locale, LocalisedList, LocalisedText } from '$lib/content-schema';
-import { localise, localiseList, translate, type MessageKey, type MessageParams } from '$lib/domain/i18n';
+import {
+  localise,
+  localiseList,
+  translate,
+  type MessageKey,
+  type MessageParams,
+} from '$lib/domain/i18n';
 import { readLocale, writeLocale } from '$lib/persistence/localStorage';
 
 class LocaleState {
@@ -8,7 +14,8 @@ class LocaleState {
   init(): void {
     const saved = readLocale();
     if (saved) this.current = saved;
-    else if (typeof navigator !== 'undefined' && navigator.language?.toLowerCase().startsWith('en')) this.current = 'en';
+    else if (typeof navigator !== 'undefined' && navigator.language?.toLowerCase().startsWith('en'))
+      this.current = 'en';
     this.apply();
   }
 

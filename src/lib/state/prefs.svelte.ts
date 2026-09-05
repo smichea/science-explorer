@@ -36,11 +36,14 @@ class PrefsState {
   update(patch: Partial<UiPreferences>): void {
     this.prefs = { ...this.prefs, ...patch };
     writeUiPreferences(this.prefs);
-    if (typeof document !== 'undefined') document.documentElement.style.setProperty('--text-scale', String(this.prefs.textScale));
+    if (typeof document !== 'undefined')
+      document.documentElement.style.setProperty('--text-scale', String(this.prefs.textScale));
   }
 
   get reducedMotion(): boolean {
-    return this.prefs.reducedMotion === 'system' ? this.systemReducedMotion : this.prefs.reducedMotion;
+    return this.prefs.reducedMotion === 'system'
+      ? this.systemReducedMotion
+      : this.prefs.reducedMotion;
   }
 
   get performanceMode(): PerformanceMode {

@@ -49,18 +49,51 @@ export function effectiveAcceleration(config: Motion2dConfig): number {
 
 export function initialState(config: Motion2dConfig): Motion2dState {
   if (config.scene === 'inclined_plane') {
-    return { t: 0, x: 0, y: 0, vx: 0, vy: 0, s: 0, v: 0, a: effectiveAcceleration(config), finished: false };
+    return {
+      t: 0,
+      x: 0,
+      y: 0,
+      vx: 0,
+      vy: 0,
+      s: 0,
+      v: 0,
+      a: effectiveAcceleration(config),
+      finished: false,
+    };
   }
   if (config.scene === 'projectile') {
     const v0 = config.initialSpeed;
     const angle = config.launchAngle * DEG;
-    return { t: 0, x: 0, y: config.initialHeight, vx: v0 * Math.cos(angle), vy: v0 * Math.sin(angle), s: 0, v: v0, a: config.g, finished: false };
+    return {
+      t: 0,
+      x: 0,
+      y: config.initialHeight,
+      vx: v0 * Math.cos(angle),
+      vy: v0 * Math.sin(angle),
+      s: 0,
+      v: v0,
+      a: config.g,
+      finished: false,
+    };
   }
-  return { t: 0, x: 0, y: config.initialHeight, vx: 0, vy: -config.initialSpeed, s: 0, v: config.initialSpeed, a: config.g, finished: false };
+  return {
+    t: 0,
+    x: 0,
+    y: config.initialHeight,
+    vx: 0,
+    vy: -config.initialSpeed,
+    s: 0,
+    v: config.initialSpeed,
+    a: config.g,
+    finished: false,
+  };
 }
 
 /** Right-hand side of the ODE system. Returns derivatives of (x, y, vx, vy, s). */
-function derivative(config: Motion2dConfig, state: { vx: number; vy: number }): { dx: number; dy: number; dvx: number; dvy: number; ds: number } {
+function derivative(
+  config: Motion2dConfig,
+  state: { vx: number; vy: number }
+): { dx: number; dy: number; dvx: number; dvy: number; ds: number } {
   const k = config.linearDrag / config.mass;
   if (config.scene === 'inclined_plane') {
     // Along-plane motion stored in vx (speed along the plane), vy unused.
@@ -68,7 +101,13 @@ function derivative(config: Motion2dConfig, state: { vx: number; vy: number }): 
     return { dx: state.vx, dy: 0, dvx: a, dvy: 0, ds: state.vx };
   }
   const speed = Math.hypot(state.vx, state.vy);
-  return { dx: state.vx, dy: state.vy, dvx: -k * state.vx, dvy: -config.g - k * state.vy, ds: speed };
+  return {
+    dx: state.vx,
+    dy: state.vy,
+    dvx: -k * state.vx,
+    dvy: -config.g - k * state.vy,
+    ds: speed,
+  };
 }
 
 /** One RK4 step of duration dt. */
@@ -140,7 +179,18 @@ export function observe(config: Motion2dConfig, state: Motion2dState): Motion2dO
   } else {
     potential = m * config.g * state.y;
   }
-  return { t: state.t, x: state.x, y: state.y, s: state.s, v: state.v, a: state.a, kinetic, potential, total: kinetic + potential, finished: state.finished };
+  return {
+    t: state.t,
+    x: state.x,
+    y: state.y,
+    s: state.s,
+    v: state.v,
+    a: state.a,
+    kinetic,
+    potential,
+    total: kinetic + potential,
+    finished: state.finished,
+  };
 }
 
 /** Closed-form solution without drag (used by tests and to display "exact vs numeric"). */
@@ -167,7 +217,12 @@ export function duration(config: Motion2dConfig): number {
 }
 
 /** Water-clock reading: the measured time carries optional seeded relative noise. */
-export function clockReading(config: Motion2dConfig, seed: number, index: number, trueTime: number): number {
+export function clockReading(
+  config: Motion2dConfig,
+  seed: number,
+  index: number,
+  trueTime: number
+): number {
   if (config.clockNoise <= 0) return trueTime;
   const rng = mulberry32(seed + index * 7919);
   const u = rng() + rng() + rng() - 1.5; // roughly normal, sd ≈ 0.5

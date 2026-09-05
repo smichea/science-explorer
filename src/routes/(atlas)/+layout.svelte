@@ -5,7 +5,12 @@
   import DestinationList from '$lib/atlas/DestinationList.svelte';
   import Map2D from '$lib/atlas/Map2D.svelte';
   import type { FocusTarget } from '$lib/atlas/scene';
-  import { computeNodeStyles, computeRoutes, type NodeStyle, type StyleContext } from '$lib/atlas/styles';
+  import {
+    computeNodeStyles,
+    computeRoutes,
+    type NodeStyle,
+    type StyleContext,
+  } from '$lib/atlas/styles';
   import { announcer } from '$lib/accessibility/announce.svelte';
   import { MAP_FILTERS, MAP_LAYERS } from '$lib/domain/horizon';
   import { content } from '$lib/state/content.svelte';
@@ -22,7 +27,14 @@
   const styleCtx = $derived.by((): StyleContext | null => {
     const ctx = learning.destinationContext();
     if (!ctx) return null;
-    return { ...ctx, filter: selection.filter, layer: selection.layer, selectedId: selection.selectedId, toolId: selection.toolId, locale: locale.current };
+    return {
+      ...ctx,
+      filter: selection.filter,
+      layer: selection.layer,
+      selectedId: selection.selectedId,
+      toolId: selection.toolId,
+      locale: locale.current,
+    };
   });
   const styles = $derived(styleCtx ? computeNodeStyles(styleCtx) : new Map<string, NodeStyle>());
   const routes = $derived(styleCtx ? computeRoutes(styleCtx, learning.snapshot) : []);
@@ -35,14 +47,21 @@
   });
   let focusKey = $state(0);
 
-  const view = $derived(prefs.performanceMode === '2d' && selection.view === '3d' ? '2d' : selection.view);
-  const hasPanel = $derived(!!(selection.selectedId || selection.regionId || selection.worldId) || page.url.pathname.endsWith('/universe'));
+  const view = $derived(
+    prefs.performanceMode === '2d' && selection.view === '3d' ? '2d' : selection.view
+  );
+  const hasPanel = $derived(
+    !!(selection.selectedId || selection.regionId || selection.worldId) ||
+      page.url.pathname.endsWith('/universe')
+  );
   let panelExpanded = $state(false);
   let hudOpen = $state(false);
   let query = $state('');
   let webglLost = $state(false);
 
-  const results = $derived(query.trim().length >= 2 ? graph.searchText(query, locale.current, 8) : []);
+  const results = $derived(
+    query.trim().length >= 2 ? graph.searchText(query, locale.current, 8) : []
+  );
 
   function labelText(id: string, kind: 'node' | 'region' | 'world' | 'hub'): string {
     if (kind === 'hub') return t('universe.bridges');
@@ -88,37 +107,84 @@
     <div class="hud__row">
       <label class="hud__search">
         <span class="visually-hidden">{t('universe.search')}</span>
-        <input class="input" type="search" placeholder={t('universe.searchPlaceholder')} bind:value={query} autocomplete="off" data-testid="atlas-search" />
+        <input
+          class="input"
+          type="search"
+          placeholder={t('universe.searchPlaceholder')}
+          bind:value={query}
+          autocomplete="off"
+          data-testid="atlas-search"
+        />
       </label>
-      <button class="btn btn--sm only-phone" type="button" aria-expanded={hudOpen} onclick={() => (hudOpen = !hudOpen)}>☰ {t('universe.filters')}</button>
+      <button
+        class="btn btn--sm only-phone"
+        type="button"
+        aria-expanded={hudOpen}
+        onclick={() => (hudOpen = !hudOpen)}>☰ {t('universe.filters')}</button
+      >
       <div class="hud__controls">
         <label class="hud__select">
           <span class="visually-hidden">{t('universe.filters')}</span>
-          <select class="input" value={selection.filter} onchange={(e) => selection.setFilter(e.currentTarget.value as never)} data-testid="atlas-filter">
+          <select
+            class="input"
+            value={selection.filter}
+            onchange={(e) => selection.setFilter(e.currentTarget.value as never)}
+            data-testid="atlas-filter"
+          >
             {#each MAP_FILTERS as f (f)}<option value={f}>{t(`filter.${f}`)}</option>{/each}
           </select>
         </label>
         <label class="hud__select">
           <span class="visually-hidden">{t('universe.layers')}</span>
-          <select class="input" value={selection.layer} onchange={(e) => selection.setLayer(e.currentTarget.value as never)} data-testid="atlas-layer">
+          <select
+            class="input"
+            value={selection.layer}
+            onchange={(e) => selection.setLayer(e.currentTarget.value as never)}
+            data-testid="atlas-layer"
+          >
             {#each MAP_LAYERS as l (l)}<option value={l}>{t(`layer.${l}`)}</option>{/each}
           </select>
         </label>
         <div class="segmented" role="group" aria-label={t('universe.view3d')}>
-          <button type="button" aria-pressed={view === '3d'} disabled={prefs.performanceMode === '2d'} onclick={() => selection.setView('3d')}>{t('universe.view3d')}</button>
-          <button type="button" aria-pressed={view === '2d'} onclick={() => selection.setView('2d')}>{t('universe.view2d')}</button>
-          <button type="button" aria-pressed={view === 'list'} onclick={() => selection.setView('list')}>{t('universe.viewList')}</button>
+          <button
+            type="button"
+            aria-pressed={view === '3d'}
+            disabled={prefs.performanceMode === '2d'}
+            onclick={() => selection.setView('3d')}>{t('universe.view3d')}</button
+          >
+          <button type="button" aria-pressed={view === '2d'} onclick={() => selection.setView('2d')}
+            >{t('universe.view2d')}</button
+          >
+          <button
+            type="button"
+            aria-pressed={view === 'list'}
+            onclick={() => selection.setView('list')}>{t('universe.viewList')}</button
+          >
         </div>
-        <button class="btn btn--sm" type="button" onclick={overview}>{t('universe.overview')}</button>
+        <button class="btn btn--sm" type="button" onclick={overview}
+          >{t('universe.overview')}</button
+        >
       </div>
     </div>
     {#if results.length}
       <ul class="hud__results" role="listbox" aria-label={t('universe.search')}>
         {#each results as hit (hit.entry.id)}
           <li>
-            <button type="button" role="option" aria-selected="false" onclick={() => onselect(hit.entry.target, hit.node ? 'node' : hit.region ? 'region' : 'world')}>
+            <button
+              type="button"
+              role="option"
+              aria-selected="false"
+              onclick={() =>
+                onselect(hit.entry.target, hit.node ? 'node' : hit.region ? 'region' : 'world')}
+            >
               <strong>{hit.entry.text}</strong>
-              <span class="muted small">{hit.node ? t(`type.${hit.node.type}`) : hit.region ? t('type.region') : t('type.world')}</span>
+              <span class="muted small"
+                >{hit.node
+                  ? t(`type.${hit.node.type}`)
+                  : hit.region
+                    ? t('type.region')
+                    : t('type.world')}</span
+              >
             </button>
           </li>
         {/each}
@@ -147,10 +213,29 @@
       />
       <p class="stage__help muted small hide-phone">{t('universe.help')}</p>
     {:else if view === 'list'}
-      <DestinationList {graph} {styles} selectedId={selection.selectedId} {labelText} {stateLabel} {href} {query} />
+      <DestinationList
+        {graph}
+        {styles}
+        selectedId={selection.selectedId}
+        {labelText}
+        {stateLabel}
+        {href}
+        {query}
+      />
     {:else}
       {#if webglLost}<p class="stage__notice">{t('universe.webglUnavailable')}</p>{/if}
-      <Map2D {graph} layout={pkg.layout} {styles} {routes} selectedId={selection.selectedId} focusId={focus.id ?? null} {labelText} {stateLabel} {href} {onselect} />
+      <Map2D
+        {graph}
+        layout={pkg.layout}
+        {styles}
+        {routes}
+        selectedId={selection.selectedId}
+        focusId={focus.id ?? null}
+        {labelText}
+        {stateLabel}
+        {href}
+        {onselect}
+      />
     {/if}
     <p class="visually-hidden">{t('universe.destinations', { n: stats.nodes })}</p>
   </div>
@@ -158,7 +243,12 @@
   {#if hasPanel}
     <aside class="panel" aria-label={t('concept.openPage')} data-testid="atlas-panel">
       <div class="panel__bar only-phone">
-        <button class="panel__handle" type="button" aria-label={panelExpanded ? t('common.less') : t('common.more')} onclick={() => (panelExpanded = !panelExpanded)}></button>
+        <button
+          class="panel__handle"
+          type="button"
+          aria-label={panelExpanded ? t('common.less') : t('common.more')}
+          onclick={() => (panelExpanded = !panelExpanded)}
+        ></button>
       </div>
       <div class="panel__content">
         {@render children()}
@@ -250,7 +340,10 @@
     font-size: var(--fs-sm);
   }
   .panel {
+    /* Absolutely positioned inside the stage grid area, so the HUD above stays clickable. */
     position: absolute;
+    grid-row: 2;
+    grid-column: 1;
     top: 0;
     right: 0;
     bottom: 0;
@@ -270,9 +363,16 @@
   .panel-open .stage__help {
     right: min(30rem, 42vw);
   }
+  /* The destination list keeps clear of the open panel; maps can be panned instead. */
+  .panel-open .stage[data-view='list'] {
+    padding-right: min(30rem, 42vw);
+  }
   @media (max-width: 1024px) {
     .panel {
       width: min(26rem, 50vw);
+    }
+    .panel-open .stage[data-view='list'] {
+      padding-right: min(26rem, 50vw);
     }
   }
   @media (max-width: 700px) {
@@ -285,6 +385,9 @@
     }
     .hud--open .hud__controls {
       display: flex;
+    }
+    .panel-open .stage[data-view='list'] {
+      padding-right: 0;
     }
     .panel {
       top: auto;

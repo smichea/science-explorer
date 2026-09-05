@@ -42,6 +42,72 @@ language_options:
 
 Age selects a default learning horizon, not an absolute permission boundary. Paul may inspect or attempt an MP destination immediately; the application should expose the useful prerequisite routes rather than display a closed lock.
 
+## Status
+
+The [initial implementation target](#initial-implementation-target) below is implemented as a complete vertical slice: bilingual local onboarding, the three worlds with every region visible from the first session, the derivative tool at three depths, eight linked phenomena, the historical mission *Galileo in Padua: the inclined plane*, two reusable simulation engines, five exercise types with evidence collection, the virtual backpack (application coverage and mastery), learner and guide views, offline use as an installable progressive web app, and local persistence with export/import.
+
+## Getting started
+
+Requirements: Node.js 22 and npm.
+
+```bash
+npm ci
+npm run dev          # compiles the content package, then starts Vite on http://localhost:5173
+```
+
+Useful scripts:
+
+| Script | What it does |
+|--------|--------------|
+| `npm run content:validate` | Validates every YAML file under `content/` and prints errors and warnings without writing the package |
+| `npm run content:compile` | Validates and writes the compiled package to `static/content/core-<version>/` (generated, not committed) |
+| `npm run check` | Type-checks Svelte and TypeScript sources with `svelte-check` |
+| `npm run lint` / `npm run format` | Prettier and ESLint |
+| `npm test` | Unit and content tests (Vitest) |
+| `npm run test:e2e` | Playwright journeys on three viewports (phone, tablet, desktop); builds and serves the app itself |
+| `npm run build` / `npm run preview` | Production build (static SPA) and local preview |
+
+Set `BASE_PATH=/science-explorer` when building for GitHub Pages; leave it empty for a root deployment.
+
+## Repository layout
+
+```text
+content/            authored sources (YAML, Markdown + LaTeX strings, fr/en fields)
+  graph/            worlds and regions, one node per file, typed edges
+  curricula/        stage inference rules and programme alignments
+  missions/         historical missions (steps, evidence, variants)
+  exercises/        numeric, choice, ordering, symbolic and free-explanation exercises
+  simulations/      engine configurations (motion_2d, first_order)
+  people/ places/ periods/ sources/ glossary/ routes/ layout/
+scripts/            content compiler and validator (tsx)
+src/lib/
+  content-schema/   zod schemas: the source of truth for content shapes
+  domain/           pure services: horizon, graph, layout, mission machine, engines,
+                    answers, progression (status, coverage-0.1, mastery-0.1), i18n, transfer
+  persistence/      localStorage bootstrap state and IndexedDB repositories
+  state/            Svelte 5 rune stores (locale, profile, content, learning, selection, guide)
+  atlas/            Three.js scene, 2D map, destination list, semantic zoom and styles
+  missions/ simulations/ exercises/ components/ accessibility/
+src/routes/         welcome, profiles, universe/world/region/concept, mission, backpack,
+                    journal, timeline, settings, guide/*, studio/*
+tests/              unit (Vitest), content (package invariants), e2e (Playwright)
+docs/               specifications, content authoring guide, parent guide, ADRs
+```
+
+## Content pipeline
+
+Content is compiled, never parsed at runtime: `scripts/compile-content.ts` loads the YAML sources, validates them against the zod schemas, checks cross references (identifiers, prerequisites, French/English parity, historical sources and evidence statuses, coverage eligibility, exercise and simulation consistency), computes the frozen layout of the universe and writes the versioned JSON package with a validation report. Errors fail the build; warnings appear in the Studio inside the app. See [docs/CONTENT_AUTHORING.md](docs/CONTENT_AUTHORING.md).
+
+## Deployment
+
+`.github/workflows/ci.yml` runs on every push: content validation, lint, type-check, unit tests, a build with the Pages base path and the end-to-end journeys. `.github/workflows/deploy.yml` builds `main` and publishes it to GitHub Pages. Once, in the repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**; the site is then served at `https://<owner>.github.io/science-explorer/`.
+
+## Documentation
+
+- [Parent guide (French)](docs/GUIDE.md) — how to run the weekly one-hour session
+- [Content authoring](docs/CONTENT_AUTHORING.md) — adding nodes, missions, exercises and simulations
+- [Architecture decision records](docs/adr/README.md)
+
 ## Specifications
 
 - [Product and UX specification](docs/PRODUCT_SPECIFICATION.md)

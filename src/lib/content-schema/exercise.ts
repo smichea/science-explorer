@@ -84,7 +84,13 @@ export const ExerciseSchema = z.object({
     .optional(),
   rubric: RubricSchema.optional(),
   hints: z
-    .array(z.object({ id: z.string().min(1), text: LocalisedText, autonomy: z.number().min(0).max(1).default(0.8) }))
+    .array(
+      z.object({
+        id: z.string().min(1),
+        text: LocalisedText,
+        autonomy: z.number().min(0).max(1).default(0.8),
+      })
+    )
     .default([]),
   solution: LocalisedText,
   difficulty: DifficultySchema,

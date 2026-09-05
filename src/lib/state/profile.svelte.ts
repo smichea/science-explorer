@@ -1,6 +1,12 @@
 import type { HorizonConfig, Locale, Stage } from '$lib/content-schema';
 import { effectiveHorizon, type Horizon } from '$lib/domain/horizon';
-import { buildProfile, confirmAge, needsAgeConfirmation, toSummary, withAge } from '$lib/domain/profile';
+import {
+  buildProfile,
+  confirmAge,
+  needsAgeConfirmation,
+  toSummary,
+  withAge,
+} from '$lib/domain/profile';
 import type { LearnerProfile, ProfileSettings } from '$lib/persistence/db';
 import {
   readActiveProfileId,
@@ -33,7 +39,11 @@ class ProfileState {
     this.loaded = true;
   }
 
-  async create(input: { name: string; age: number; locale: Locale }, config: HorizonConfig, contentVersion: string): Promise<LearnerProfile> {
+  async create(
+    input: { name: string; age: number; locale: Locale },
+    config: HorizonConfig,
+    contentVersion: string
+  ): Promise<LearnerProfile> {
     const profile = buildProfile(input, config, contentVersion);
     await profileRepo.put(profile);
     await this.open(profile.id);
@@ -82,7 +92,11 @@ class ProfileState {
 
   async setLocale(locale: Locale): Promise<void> {
     if (!this.active || this.active.preferredLocale === locale) return;
-    await this.save({ ...this.active, preferredLocale: locale, updatedAt: new Date().toISOString() });
+    await this.save({
+      ...this.active,
+      preferredLocale: locale,
+      updatedAt: new Date().toISOString(),
+    });
   }
 
   async remove(id: string): Promise<void> {
@@ -94,7 +108,10 @@ class ProfileState {
 
   async saveSettings(patch: Partial<ProfileSettings>): Promise<void> {
     if (!this.active) return;
-    const next = { ...(this.settings ?? { learnerId: this.active.id, savedForLater: [], updatedAt: '' }), ...patch };
+    const next = {
+      ...(this.settings ?? { learnerId: this.active.id, savedForLater: [], updatedAt: '' }),
+      ...patch,
+    };
     await settingsRepo.put($state.snapshot(next) as ProfileSettings);
     this.settings = next;
   }

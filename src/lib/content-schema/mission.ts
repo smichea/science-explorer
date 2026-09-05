@@ -70,7 +70,12 @@ export type StepCompletion = z.infer<typeof CompletionSchema>;
 export const DialogueLineSchema = z.object({
   speaker: Id.or(z.literal('learner')).or(z.literal('narrator')),
   text: LocalisedText,
-  status: z.enum(['attested', 'scholarly_interpretation', 'pedagogical_reconstruction', 'narrative_fiction']),
+  status: z.enum([
+    'attested',
+    'scholarly_interpretation',
+    'pedagogical_reconstruction',
+    'narrative_fiction',
+  ]),
   /** Required when the line is an authentic quotation. */
   quotation: Id.optional(),
 });
@@ -114,9 +119,7 @@ export const StepSchema = z.object({
     .optional(),
   /** Next step id; defaults to the following step in the list. */
   next: z.string().optional(),
-  branches: z
-    .array(z.object({ whenChoice: z.string(), goto: z.string() }))
-    .default([]),
+  branches: z.array(z.object({ whenChoice: z.string(), goto: z.string() })).default([]),
   historicalClaims: z.array(HistoricalClaim).default([]),
   /** Accessible alternative or description of the visual content. */
   a11y: LocalisedText,

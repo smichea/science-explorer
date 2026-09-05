@@ -5,7 +5,8 @@ export interface AnswerCheck {
   correct: boolean;
   /** 0..1 partial credit. */
   score: number;
-  feedback: 'correct' | 'incorrect' | 'partial' | 'unit_wrong' | 'parse_error' | 'reasoning_required';
+  feedback:
+    'correct' | 'incorrect' | 'partial' | 'unit_wrong' | 'parse_error' | 'reasoning_required';
 }
 
 const WRONG: AnswerCheck = { correct: false, score: 0, feedback: 'incorrect' };
@@ -37,15 +38,27 @@ export function unitsEquivalent(a: string | undefined, b: string | undefined): b
   return normaliseUnit(a ?? '') === normaliseUnit(b ?? '');
 }
 
-export function checkNumeric(exercise: ExerciseDefinition, input: { value: string; unit?: string }, _locale: Locale): AnswerCheck {
+export function checkNumeric(
+  exercise: ExerciseDefinition,
+  input: { value: string; unit?: string },
+  _locale: Locale
+): AnswerCheck {
   const spec = exercise.numeric;
   if (!spec) return WRONG;
   const value = parseLocaleNumber(input.value);
   if (!Number.isFinite(value)) return { correct: false, score: 0, feedback: 'parse_error' };
-  const tolerance = spec.tolerance.kind === 'relative' ? Math.abs(spec.value) * spec.tolerance.value : spec.tolerance.value;
+  const tolerance =
+    spec.tolerance.kind === 'relative'
+      ? Math.abs(spec.value) * spec.tolerance.value
+      : spec.tolerance.value;
   const valueOk = Math.abs(value - spec.value) <= tolerance + 1e-12;
   if (!valueOk) return WRONG;
-  if (spec.unit && input.unit !== undefined && input.unit.trim() !== '' && !unitsEquivalent(spec.unit, input.unit)) {
+  if (
+    spec.unit &&
+    input.unit !== undefined &&
+    input.unit.trim() !== '' &&
+    !unitsEquivalent(spec.unit, input.unit)
+  ) {
     return { correct: false, score: 0.5, feedback: 'unit_wrong' };
   }
   return { correct: true, score: 1, feedback: 'correct' };
@@ -55,10 +68,15 @@ export function checkNumeric(exercise: ExerciseDefinition, input: { value: strin
 // Choice
 // ---------------------------------------------------------------------------
 
-export function checkChoice(exercise: ExerciseDefinition, selected: string[], reasoning = ''): AnswerCheck {
+export function checkChoice(
+  exercise: ExerciseDefinition,
+  selected: string[],
+  reasoning = ''
+): AnswerCheck {
   const spec = exercise.choice;
   if (!spec) return WRONG;
-  if (spec.requireReasoning && reasoning.trim().length < 5) return { correct: false, score: 0, feedback: 'reasoning_required' };
+  if (spec.requireReasoning && reasoning.trim().length < 5)
+    return { correct: false, score: 0, feedback: 'reasoning_required' };
   const correct = new Set(spec.choices.filter((c) => c.correct).map((c) => c.id));
   const chosen = new Set(selected);
   if (!spec.multiple) {
@@ -85,7 +103,8 @@ export function checkOrdering(exercise: ExerciseDefinition, order: string[]): An
   let exact = true;
   let pairs = 0;
   for (let i = 0; i < expected.length; i++) if (order[i] !== expected[i]) exact = false;
-  for (let i = 0; i < expected.length - 1; i++) if (order.indexOf(expected[i]) < order.indexOf(expected[i + 1])) pairs++;
+  for (let i = 0; i < expected.length - 1; i++)
+    if (order.indexOf(expected[i]) < order.indexOf(expected[i + 1])) pairs++;
   if (exact) return { correct: true, score: 1, feedback: 'correct' };
   const score = pairs / Math.max(1, expected.length - 1);
   return score > 0.5 ? { correct: false, score: score * 0.6, feedback: 'partial' } : WRONG;
@@ -95,11 +114,21 @@ export function checkOrdering(exercise: ExerciseDefinition, order: string[]): An
 // Symbolic: tiny recursive-descent parser + numeric equivalence on sample points
 // ---------------------------------------------------------------------------
 
-type Token = { kind: 'num'; value: number } | { kind: 'id'; name: string } | { kind: 'op'; op: string } | { kind: 'lp' } | { kind: 'rp' };
+type Token =
+  | { kind: 'num'; value: number }
+  | { kind: 'id'; name: string }
+  | { kind: 'op'; op: string }
+  | { kind: 'lp' }
+  | { kind: 'rp' };
 
 function tokenize(src: string): Token[] {
   const tokens: Token[] = [];
-  const s = src.replace(/,/g, '.').replace(/−/g, '-').replace(/×/g, '*').replace(/÷/g, '/').replace(/\s+/g, '');
+  const s = src
+    .replace(/,/g, '.')
+    .replace(/−/g, '-')
+    .replace(/×/g, '*')
+    .replace(/÷/g, '/')
+    .replace(/\s+/g, '');
   let i = 0;
   while (i < s.length) {
     const c = s[i];
@@ -137,7 +166,15 @@ function tokenize(src: string): Token[] {
 
 type Expr = (env: Record<string, number>) => number;
 
-const FUNCTIONS: Record<string, (x: number) => number> = { exp: Math.exp, ln: Math.log, log: Math.log10, sqrt: Math.sqrt, sin: Math.sin, cos: Math.cos, tan: Math.tan };
+const FUNCTIONS: Record<string, (x: number) => number> = {
+  exp: Math.exp,
+  ln: Math.log,
+  log: Math.log10,
+  sqrt: Math.sqrt,
+  sin: Math.sin,
+  cos: Math.cos,
+  tan: Math.tan,
+};
 
 function parse(tokens: Token[], variables: string[]): Expr {
   let pos = 0;
@@ -269,6 +306,8 @@ export function checkSymbolic(exercise: ExerciseDefinition, input: string): Answ
   } catch {
     return { correct: false, score: 0, feedback: 'parse_error' };
   }
-  const ok = spec.accepted.some((accepted) => expressionsEquivalent(input, accepted, spec.variable));
+  const ok = spec.accepted.some((accepted) =>
+    expressionsEquivalent(input, accepted, spec.variable)
+  );
   return ok ? { correct: true, score: 1, feedback: 'correct' } : WRONG;
 }

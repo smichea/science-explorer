@@ -41,6 +41,7 @@ class SelectionState {
   }
 
   private navigate(pathname: string, params: Record<string, string | null>) {
+    // eslint-disable-next-line svelte/prefer-svelte-reactivity -- a throwaway URL, not reactive state
     const url = new URL(page.url);
     url.pathname = pathname;
     for (const [k, v] of Object.entries(params)) {
@@ -60,7 +61,10 @@ class SelectionState {
     return this.navigate(`${base}/world/${id}`, {});
   }
   setLayer(layer: MapLayer, toolId?: string | null) {
-    return this.navigate(page.url.pathname, { layer: layer === 'concepts' ? null : layer, tool: toolId === undefined ? this.toolId : toolId });
+    return this.navigate(page.url.pathname, {
+      layer: layer === 'concepts' ? null : layer,
+      tool: toolId === undefined ? this.toolId : toolId,
+    });
   }
   setFilter(filter: MapFilter) {
     return this.navigate(page.url.pathname, { filter: filter === 'my_horizon' ? null : filter });

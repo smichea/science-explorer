@@ -20,7 +20,13 @@ export default ts.config(
         'error',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
       ],
+      // Links are built from `base` of $app/paths (ADR-0001); the resolve() helper is not used yet.
+      'svelte/no-navigation-without-resolve': 'off',
     },
+  },
+  {
+    files: ['**/*.cjs'],
+    rules: { '@typescript-eslint/no-require-imports': 'off' },
   },
   {
     files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],

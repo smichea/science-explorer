@@ -25,7 +25,22 @@
     oncontextlost?: () => void;
   }
 
-  let { graph, layout, styles, routes, focus, focusKey, locale, performance, reducedMotion, labelText, onselect, onhover, onzoom, oncontextlost }: Props = $props();
+  let {
+    graph,
+    layout,
+    styles,
+    routes,
+    focus,
+    focusKey,
+    locale,
+    performance,
+    reducedMotion,
+    labelText,
+    onselect,
+    onhover,
+    onzoom,
+    oncontextlost,
+  }: Props = $props();
 
   let container: HTMLDivElement;
   let scene: AtlasScene | null = null;
@@ -78,7 +93,13 @@
   });
 </script>
 
-<div class="atlas" bind:this={container} role="img" aria-label={t('universe.canvasLabel')} data-testid="atlas-3d"></div>
+<div
+  class="atlas"
+  bind:this={container}
+  role="img"
+  aria-label={t('universe.canvasLabel')}
+  data-testid="atlas-3d"
+></div>
 
 <style>
   .atlas {

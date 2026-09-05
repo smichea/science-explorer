@@ -43,7 +43,9 @@ export function renderRichText(source: string | undefined | null): string {
   if (!source) return '';
   const { text, chunks } = extractMath(source);
   const html = marked.parse(text, { async: false }) as string;
-  const withMath = html.replace(/MATHCHUNK(\d+)X/g, (_, i: string) => renderMath(chunks[Number(i)]));
+  const withMath = html.replace(/MATHCHUNK(\d+)X/g, (_, i: string) =>
+    renderMath(chunks[Number(i)])
+  );
   return DOMPurify.sanitize(withMath, {
     USE_PROFILES: { html: true, mathMl: true, svg: true },
     ADD_ATTR: ['target', 'rel'],
@@ -53,7 +55,12 @@ export function renderRichText(source: string | undefined | null): string {
 /** Inline formula rendering (no Markdown). */
 export function renderTex(tex: string, display = false): string {
   try {
-    return katex.renderToString(tex, { displayMode: display, throwOnError: false, output: 'htmlAndMathml', strict: 'ignore' });
+    return katex.renderToString(tex, {
+      displayMode: display,
+      throwOnError: false,
+      output: 'htmlAndMathml',
+      strict: 'ignore',
+    });
   } catch {
     return tex;
   }

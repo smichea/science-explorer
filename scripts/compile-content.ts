@@ -8,7 +8,15 @@
  * graph compilation → search indexes → layout snapshot → manifest with checksums.
  */
 import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import {
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
@@ -66,12 +74,17 @@ const SCHEMA_VERSION = 1;
 const args = process.argv.slice(2);
 const CHECK_ONLY = args.includes('--check');
 const outIndex = args.indexOf('--out');
-const OUT_DIR = outIndex >= 0 ? resolve(args[outIndex + 1]) : join(ROOT, 'static', 'content', `${PACKAGE_ID}-${PACKAGE_VERSION}`);
+const OUT_DIR =
+  outIndex >= 0
+    ? resolve(args[outIndex + 1])
+    : join(ROOT, 'static', 'content', `${PACKAGE_ID}-${PACKAGE_VERSION}`);
 
 const errors: ValidationMessage[] = [];
 const warnings: ValidationMessage[] = [];
-const error = (message: string, file?: string, id?: string) => errors.push({ level: 'error', message, file, id });
-const warn = (message: string, file?: string, id?: string) => warnings.push({ level: 'warning', message, file, id });
+const error = (message: string, file?: string, id?: string) =>
+  errors.push({ level: 'error', message, file, id });
+const warn = (message: string, file?: string, id?: string) =>
+  warnings.push({ level: 'warning', message, file, id });
 
 // ---------------------------------------------------------------------------
 // Loading helpers
@@ -112,7 +125,10 @@ function parseFile<T extends z.ZodTypeAny>(schema: T, file: string): z.infer<T> 
   return result.data;
 }
 
-function parseDir<T extends z.ZodTypeAny>(schema: T, dir: string): Array<{ file: string; data: z.infer<T> }> {
+function parseDir<T extends z.ZodTypeAny>(
+  schema: T,
+  dir: string
+): Array<{ file: string; data: z.infer<T> }> {
   const out: Array<{ file: string; data: z.infer<T> }> = [];
   for (const file of listYaml(dir)) {
     const data = parseFile(schema, file);
@@ -133,7 +149,10 @@ function checkParity(value: unknown, file: string, path = ''): void {
   if (value && typeof value === 'object') {
     const obj = value as Record<string, unknown>;
     if (Array.isArray(obj.fr) && Array.isArray(obj.en) && obj.fr.length !== obj.en.length) {
-      error(`bilingual list length differs (fr: ${obj.fr.length}, en: ${obj.en.length}) at ${path}`, file);
+      error(
+        `bilingual list length differs (fr: ${obj.fr.length}, en: ${obj.en.length}) at ${path}`,
+        file
+      );
     }
     if (typeof obj.fr === 'string' && typeof obj.en === 'string') {
       const frMath = (obj.fr.match(/\$/g) ?? []).length;
@@ -166,7 +185,20 @@ const sourceFiles = parseDir(SourcesFileSchema, join(CONTENT_DIR, 'sources'));
 const glossaryFiles = parseDir(GlossaryFileSchema, join(CONTENT_DIR, 'glossary'));
 const routeFiles = parseDir(RoutesFileSchema, join(CONTENT_DIR, 'routes'));
 
-for (const group of [nodeFiles, edgeFiles, curriculumFiles, missionFiles, exerciseFiles, simulationFiles, personFiles, placeFiles, periodFiles, sourceFiles, glossaryFiles, routeFiles]) {
+for (const group of [
+  nodeFiles,
+  edgeFiles,
+  curriculumFiles,
+  missionFiles,
+  exerciseFiles,
+  simulationFiles,
+  personFiles,
+  placeFiles,
+  periodFiles,
+  sourceFiles,
+  glossaryFiles,
+  routeFiles,
+]) {
   for (const { file, data } of group) checkParity(data, file);
 }
 if (worldsFile) checkParity(worldsFile, 'content/graph/worlds.yaml');
@@ -174,7 +206,9 @@ if (horizon) checkParity(horizon, 'content/curricula/horizon.yaml');
 
 if (!worldsFile || !anchors || !horizon) {
   printMessages();
-  console.error('\nContent validation FAILED: worlds.yaml, layout/anchors.yaml and curricula/horizon.yaml are required.');
+  console.error(
+    '\nContent validation FAILED: worlds.yaml, layout/anchors.yaml and curricula/horizon.yaml are required.'
+  );
   process.exit(1);
 }
 
@@ -192,9 +226,23 @@ const worlds: CompiledWorld[] = worldsFile.worlds.map((w) => ({
 
 const regions: CompiledRegion[] = [
   ...worldsFile.worlds.flatMap((w) =>
-    w.regions.map((r) => ({ id: r.id, worldId: w.id, isBridge: false, title: r.title, summary: r.summary, nodeIds: [] as string[] }))
+    w.regions.map((r) => ({
+      id: r.id,
+      worldId: w.id,
+      isBridge: false,
+      title: r.title,
+      summary: r.summary,
+      nodeIds: [] as string[],
+    }))
   ),
-  ...worldsFile.bridges.map((b) => ({ id: b.id, worldId: null, isBridge: true, title: b.title, summary: b.summary, nodeIds: [] as string[] })),
+  ...worldsFile.bridges.map((b) => ({
+    id: b.id,
+    worldId: null,
+    isBridge: true,
+    title: b.title,
+    summary: b.summary,
+    nodeIds: [] as string[],
+  })),
 ];
 const regionById = new Map(regions.map((r) => [r.id, r]));
 const worldById = new Map(worlds.map((w) => [w.id, w]));
@@ -236,34 +284,74 @@ for (const { file, data } of nodeFiles) {
     file
   );
   if (data.type === 'mathematical_tool' && data.backpack && !data.tool) {
-    error(`backpack tool ${data.id} must answer the five questions (tool.problemSolved, tool.construction)`, file, data.id);
+    error(
+      `backpack tool ${data.id} must answer the five questions (tool.problemSolved, tool.construction)`,
+      file,
+      data.id
+    );
   }
-  if (data.type === 'model' && !data.model) warn(`model ${data.id} has no explicit assumptions/limits`, file, data.id);
+  if (data.type === 'model' && !data.model)
+    warn(`model ${data.id} has no explicit assumptions/limits`, file, data.id);
   if (!data.description) warn(`node ${data.id} has no description`, file, data.id);
-  if (data.history && data.history.sources.length === 0) error(`historical summary of ${data.id} has no source`, file, data.id);
+  if (data.history && data.history.sources.length === 0)
+    error(`historical summary of ${data.id} has no source`, file, data.id);
 }
 for (const { file, data } of personFiles) {
   pushNode(
     {
-      id: data.id, type: 'person', world: data.world, region: data.region, anchorNode: data.anchorNode,
-      title: data.title, shortPurpose: data.shortPurpose, description: data.description, aliases: data.aliases,
-      importance: data.importance, tags: data.tags, sources: data.sources, backpack: false, depths: [],
+      id: data.id,
+      type: 'person',
+      world: data.world,
+      region: data.region,
+      anchorNode: data.anchorNode,
+      title: data.title,
+      shortPurpose: data.shortPurpose,
+      description: data.description,
+      aliases: data.aliases,
+      importance: data.importance,
+      tags: data.tags,
+      sources: data.sources,
+      backpack: false,
+      depths: [],
       person: {
-        display: data.names.display, original: data.names.original, born: data.born, died: data.died,
-        roles: data.roles, places: data.places, biography: data.biography, evidenceStatus: data.evidenceStatus,
+        display: data.names.display,
+        original: data.names.original,
+        born: data.born,
+        died: data.died,
+        roles: data.roles,
+        places: data.places,
+        biography: data.biography,
+        evidenceStatus: data.evidenceStatus,
       },
     },
     file
   );
-  if (data.sources.length === 0) error(`person ${data.id} needs at least one source`, file, data.id);
+  if (data.sources.length === 0)
+    error(`person ${data.id} needs at least one source`, file, data.id);
 }
 for (const { file, data } of placeFiles) {
   pushNode(
     {
-      id: data.id, type: 'place', world: data.world, region: data.region, anchorNode: data.anchorNode,
-      title: data.title, shortPurpose: data.shortPurpose, description: data.description, aliases: data.aliases,
-      importance: data.importance, tags: data.tags, sources: data.sources, backpack: false, depths: [],
-      place: { modernName: data.modernName, coordinates: data.coordinates, locationCertainty: data.locationCertainty, context: data.context },
+      id: data.id,
+      type: 'place',
+      world: data.world,
+      region: data.region,
+      anchorNode: data.anchorNode,
+      title: data.title,
+      shortPurpose: data.shortPurpose,
+      description: data.description,
+      aliases: data.aliases,
+      importance: data.importance,
+      tags: data.tags,
+      sources: data.sources,
+      backpack: false,
+      depths: [],
+      place: {
+        modernName: data.modernName,
+        coordinates: data.coordinates,
+        locationCertainty: data.locationCertainty,
+        context: data.context,
+      },
     },
     file
   );
@@ -271,9 +359,20 @@ for (const { file, data } of placeFiles) {
 for (const { file, data } of periodFiles) {
   pushNode(
     {
-      id: data.id, type: 'period', world: data.world, region: data.region, anchorNode: data.anchorNode,
-      title: data.title, shortPurpose: data.shortPurpose, description: data.description, aliases: data.aliases,
-      importance: data.importance, tags: data.tags, sources: data.sources, backpack: false, depths: [],
+      id: data.id,
+      type: 'period',
+      world: data.world,
+      region: data.region,
+      anchorNode: data.anchorNode,
+      title: data.title,
+      shortPurpose: data.shortPurpose,
+      description: data.description,
+      aliases: data.aliases,
+      importance: data.importance,
+      tags: data.tags,
+      sources: data.sources,
+      backpack: false,
+      depths: [],
       period: { date: data.date, context: data.context, people: data.people, places: data.places },
     },
     file
@@ -284,12 +383,24 @@ for (const { file, data } of missionFiles) {
   missions.push(data);
   pushNode(
     {
-      id: data.id, type: 'mission', region: data.region, anchorNode: data.anchorNode ?? data.learning.phenomena[0],
-      title: data.title, shortPurpose: data.summary, importance: data.importance, tags: [], sources: data.historicalContext.sources,
-      backpack: false, depths: [],
+      id: data.id,
+      type: 'mission',
+      region: data.region,
+      anchorNode: data.anchorNode ?? data.learning.phenomena[0],
+      title: data.title,
+      shortPurpose: data.summary,
+      importance: data.importance,
+      tags: [],
+      sources: data.historicalContext.sources,
+      backpack: false,
+      depths: [],
       mission: {
-        date: data.historicalContext.date, places: data.historicalContext.places, people: data.historicalContext.people,
-        estimatedMinutes: data.experience.estimatedMinutes, phenomena: data.learning.phenomena, toolsIntroduced: data.learning.toolsIntroduced,
+        date: data.historicalContext.date,
+        places: data.historicalContext.places,
+        people: data.historicalContext.people,
+        estimatedMinutes: data.experience.estimatedMinutes,
+        phenomena: data.learning.phenomena,
+        toolsIntroduced: data.learning.toolsIntroduced,
       },
     },
     file
@@ -307,18 +418,27 @@ for (const node of nodes) {
     if (!region) error(`unknown region ${node.region}`, file, node.id);
     else {
       region.nodeIds.push(node.id);
-      if (node.world && region.worldId && region.worldId !== node.world) error(`region ${node.region} does not belong to world ${node.world}`, file, node.id);
+      if (node.world && region.worldId && region.worldId !== node.world)
+        error(`region ${node.region} does not belong to world ${node.world}`, file, node.id);
       if (!node.world && region.worldId) node.world = region.worldId;
     }
   }
-  if (node.anchorNode && !nodeById.has(node.anchorNode)) error(`unknown anchorNode ${node.anchorNode}`, file, node.id);
-  if (!node.region && !node.anchorNode) warn(`node ${node.id} has neither region nor anchorNode: it will be placed near the centre`, file, node.id);
+  if (node.anchorNode && !nodeById.has(node.anchorNode))
+    error(`unknown anchorNode ${node.anchorNode}`, file, node.id);
+  if (!node.region && !node.anchorNode)
+    warn(
+      `node ${node.id} has neither region nor anchorNode: it will be placed near the centre`,
+      file,
+      node.id
+    );
 }
 
 // Edges
 const edges: CompiledEdge[] = [];
 const edgeIds = new Set<string>();
-const allEdgeDefs: Array<{ file: string; edge: EdgeDefinition }> = edgeFiles.flatMap(({ file, data }) => data.edges.map((edge) => ({ file, edge })));
+const allEdgeDefs: Array<{ file: string; edge: EdgeDefinition }> = edgeFiles.flatMap(
+  ({ file, data }) => data.edges.map((edge) => ({ file, edge }))
+);
 for (const { file, edge } of allEdgeDefs) {
   const id = edge.id ?? `${edge.type}:${edge.from}>${edge.to}`;
   if (edgeIds.has(id)) {
@@ -328,9 +448,12 @@ for (const { file, edge } of allEdgeDefs) {
   edgeIds.add(id);
   if (!nodeById.has(edge.from)) error(`edge ${id}: unknown source node ${edge.from}`, file, id);
   if (!nodeById.has(edge.to)) error(`edge ${id}: unknown target node ${edge.to}`, file, id);
-  if (edge.coverageEligible && edge.type !== 'applies_to' && edge.type !== 'models') error(`edge ${id}: only applies_to/models edges may be coverageEligible`, file, id);
-  if (edge.type === 'historically_developed_by' && edge.sources.length === 0) error(`edge ${id}: historical attribution needs a source`, file, id);
-  if (edge.type === 'historically_developed_by' && !edge.evidenceStatus) error(`edge ${id}: historical attribution needs an evidenceStatus`, file, id);
+  if (edge.coverageEligible && edge.type !== 'applies_to' && edge.type !== 'models')
+    error(`edge ${id}: only applies_to/models edges may be coverageEligible`, file, id);
+  if (edge.type === 'historically_developed_by' && edge.sources.length === 0)
+    error(`edge ${id}: historical attribution needs a source`, file, id);
+  if (edge.type === 'historically_developed_by' && !edge.evidenceStatus)
+    error(`edge ${id}: historical attribution needs an evidenceStatus`, file, id);
   edges.push({ ...edge, id });
 }
 
@@ -374,12 +497,21 @@ for (const { file, data } of sourceFiles) {
 }
 const sourceIds = new Set(sources.map((s) => s.id));
 const quotationById = new Map(quotations.map((q) => [q.id, q]));
-for (const q of quotations) if (!sourceIds.has(q.source)) error(`quotation ${q.id}: unknown source ${q.source}`, undefined, q.id);
+for (const q of quotations)
+  if (!sourceIds.has(q.source))
+    error(`quotation ${q.id}: unknown source ${q.source}`, undefined, q.id);
 for (const node of nodes) {
-  for (const s of node.sources) if (!sourceIds.has(s)) error(`node ${node.id}: unknown source ${s}`, nodeFileById.get(node.id), node.id);
-  if (node.history) for (const s of node.history.sources) if (!sourceIds.has(s)) error(`node ${node.id}: unknown history source ${s}`, nodeFileById.get(node.id), node.id);
+  for (const s of node.sources)
+    if (!sourceIds.has(s))
+      error(`node ${node.id}: unknown source ${s}`, nodeFileById.get(node.id), node.id);
+  if (node.history)
+    for (const s of node.history.sources)
+      if (!sourceIds.has(s))
+        error(`node ${node.id}: unknown history source ${s}`, nodeFileById.get(node.id), node.id);
 }
-for (const e of edges) for (const s of e.sources) if (!sourceIds.has(s)) error(`edge ${e.id}: unknown source ${s}`, undefined, e.id);
+for (const e of edges)
+  for (const s of e.sources)
+    if (!sourceIds.has(s)) error(`edge ${e.id}: unknown source ${s}`, undefined, e.id);
 
 // ---------------------------------------------------------------------------
 // Curricula and horizon
@@ -389,14 +521,25 @@ const curricula: CurriculumDefinition[] = curriculumFiles.map((c) => c.data);
 const curriculumById = new Map(curricula.map((c) => [c.id, c]));
 for (const { file, data } of curriculumFiles) {
   for (const item of data.items) {
-    if (item.alignedNodes.length === 0) warn(`curriculum item ${data.id}/${item.id} is not aligned with any node`, file, item.id);
-    for (const a of item.alignedNodes) if (!nodeById.has(a.node)) error(`curriculum item ${item.id}: unknown node ${a.node}`, file, item.id);
+    if (item.alignedNodes.length === 0)
+      warn(`curriculum item ${data.id}/${item.id} is not aligned with any node`, file, item.id);
+    for (const a of item.alignedNodes)
+      if (!nodeById.has(a.node))
+        error(`curriculum item ${item.id}: unknown node ${a.node}`, file, item.id);
   }
 }
 const pathIds = new Set(horizon.paths.map((p) => p.id));
-for (const r of horizon.rules) if (!pathIds.has(r.pathId)) error(`horizon rule ${r.ageMin}-${r.ageMax}: unknown path ${r.pathId}`, 'content/curricula/horizon.yaml');
+for (const r of horizon.rules)
+  if (!pathIds.has(r.pathId))
+    error(
+      `horizon rule ${r.ageMin}-${r.ageMax}: unknown path ${r.pathId}`,
+      'content/curricula/horizon.yaml'
+    );
 const stageIds = new Set(horizon.stages.map((s) => s.id));
-for (const p of horizon.paths) for (const s of p.stages) if (!stageIds.has(s)) error(`path ${p.id}: unknown stage ${s}`, 'content/curricula/horizon.yaml', p.id);
+for (const p of horizon.paths)
+  for (const s of p.stages)
+    if (!stageIds.has(s))
+      error(`path ${p.id}: unknown stage ${s}`, 'content/curricula/horizon.yaml', p.id);
 
 // ---------------------------------------------------------------------------
 // Exercises, simulations
@@ -409,15 +552,33 @@ for (const { file, data } of exerciseFiles) {
     continue;
   }
   exercises.push(data);
-  if (!nodeById.has(data.nodeId)) error(`exercise ${data.id}: unknown node ${data.nodeId}`, file, data.id);
-  if (data.phenomenonId && !nodeById.has(data.phenomenonId)) error(`exercise ${data.id}: unknown phenomenon ${data.phenomenonId}`, file, data.id);
-  const payloads = { numeric: data.numeric, choice: data.choice, ordering: data.ordering, symbolic: data.symbolic, free_explanation: data.rubric };
-  if (!payloads[data.type]) error(`exercise ${data.id} of type ${data.type} lacks its ${data.type === 'free_explanation' ? 'rubric' : data.type} block`, file, data.id);
-  if (data.choice && !data.choice.choices.some((c) => c.correct)) error(`exercise ${data.id}: no correct choice`, file, data.id);
+  if (!nodeById.has(data.nodeId))
+    error(`exercise ${data.id}: unknown node ${data.nodeId}`, file, data.id);
+  if (data.phenomenonId && !nodeById.has(data.phenomenonId))
+    error(`exercise ${data.id}: unknown phenomenon ${data.phenomenonId}`, file, data.id);
+  const payloads = {
+    numeric: data.numeric,
+    choice: data.choice,
+    ordering: data.ordering,
+    symbolic: data.symbolic,
+    free_explanation: data.rubric,
+  };
+  if (!payloads[data.type])
+    error(
+      `exercise ${data.id} of type ${data.type} lacks its ${data.type === 'free_explanation' ? 'rubric' : data.type} block`,
+      file,
+      data.id
+    );
+  if (data.choice && !data.choice.choices.some((c) => c.correct))
+    error(`exercise ${data.id}: no correct choice`, file, data.id);
   if (data.ordering) {
-    const ids = data.ordering.items.map((i) => i.id).sort().join(',');
+    const ids = data.ordering.items
+      .map((i) => i.id)
+      .sort()
+      .join(',');
     const order = [...data.ordering.correctOrder].sort().join(',');
-    if (ids !== order) error(`exercise ${data.id}: correctOrder is not a permutation of item ids`, file, data.id);
+    if (ids !== order)
+      error(`exercise ${data.id}: correctOrder is not a permutation of item ids`, file, data.id);
   }
 }
 const exerciseById = new Map(exercises.map((e) => [e.id, e]));
@@ -430,15 +591,27 @@ for (const { file, data } of simulationFiles) {
   }
   const configSchema = data.engine === 'motion_2d' ? Motion2dConfigSchema : FirstOrderConfigSchema;
   const parsed = configSchema.safeParse(data.config);
-  if (!parsed.success) error(`simulation ${data.id}: invalid ${data.engine} config\n${z.prettifyError(parsed.error)}`, file, data.id);
+  if (!parsed.success)
+    error(
+      `simulation ${data.id}: invalid ${data.engine} config\n${z.prettifyError(parsed.error)}`,
+      file,
+      data.id
+    );
   else {
     data.config = parsed.data;
     for (const c of data.controls) {
-      if (!(c.variable in parsed.data)) error(`simulation ${data.id}: control ${c.variable} is not a config variable`, file, data.id);
-      if (c.min > c.max || c.default < c.min || c.default > c.max) error(`simulation ${data.id}: control ${c.variable} range is inconsistent`, file, data.id);
+      if (!(c.variable in parsed.data))
+        error(
+          `simulation ${data.id}: control ${c.variable} is not a config variable`,
+          file,
+          data.id
+        );
+      if (c.min > c.max || c.default < c.min || c.default > c.max)
+        error(`simulation ${data.id}: control ${c.variable} range is inconsistent`, file, data.id);
     }
   }
-  if (data.modelNode && !nodeById.has(data.modelNode)) error(`simulation ${data.id}: unknown modelNode ${data.modelNode}`, file, data.id);
+  if (data.modelNode && !nodeById.has(data.modelNode))
+    error(`simulation ${data.id}: unknown modelNode ${data.modelNode}`, file, data.id);
   simulations.push(data);
 }
 const simulationById = new Map(simulations.map((s) => [s.id, s]));
@@ -449,22 +622,52 @@ const simulationById = new Map(simulations.map((s) => [s.id, s]));
 
 for (const { file, data } of missionFiles) {
   const ctx = data.historicalContext;
-  for (const p of ctx.places) if (nodeById.get(p)?.type !== 'place') error(`mission ${data.id}: ${p} is not a known place`, file, data.id);
-  for (const p of ctx.people) if (nodeById.get(p)?.type !== 'person') error(`mission ${data.id}: ${p} is not a known person`, file, data.id);
-  for (const s of ctx.sources) if (!sourceIds.has(s)) error(`mission ${data.id}: unknown source ${s}`, file, data.id);
+  for (const p of ctx.places)
+    if (nodeById.get(p)?.type !== 'place')
+      error(`mission ${data.id}: ${p} is not a known place`, file, data.id);
+  for (const p of ctx.people)
+    if (nodeById.get(p)?.type !== 'person')
+      error(`mission ${data.id}: ${p} is not a known person`, file, data.id);
+  for (const s of ctx.sources)
+    if (!sourceIds.has(s)) error(`mission ${data.id}: unknown source ${s}`, file, data.id);
   for (const c of ctx.claims) {
-    if ((c.status === 'attested' || c.status === 'scholarly_interpretation') && c.sources.length === 0) error(`mission ${data.id}: claim ${c.id} (${c.status}) has no source`, file, data.id);
-    for (const s of c.sources) if (!sourceIds.has(s)) error(`mission ${data.id}: claim ${c.id} unknown source ${s}`, file, data.id);
+    if (
+      (c.status === 'attested' || c.status === 'scholarly_interpretation') &&
+      c.sources.length === 0
+    )
+      error(`mission ${data.id}: claim ${c.id} (${c.status}) has no source`, file, data.id);
+    for (const s of c.sources)
+      if (!sourceIds.has(s))
+        error(`mission ${data.id}: claim ${c.id} unknown source ${s}`, file, data.id);
   }
   const l = data.learning;
-  if (nodeById.get(l.centralQuestion)?.type !== 'question') error(`mission ${data.id}: centralQuestion ${l.centralQuestion} is not a question node`, file, data.id);
-  for (const list of [l.phenomena, l.toolsIntroduced, l.toolsUsed, l.nodesAssessed, l.essentialPrerequisites, l.recommendedPrerequisites, data.experience.transferTargets]) {
-    for (const id of list) if (!nodeById.has(id)) error(`mission ${data.id}: unknown node ${id}`, file, data.id);
+  if (nodeById.get(l.centralQuestion)?.type !== 'question')
+    error(
+      `mission ${data.id}: centralQuestion ${l.centralQuestion} is not a question node`,
+      file,
+      data.id
+    );
+  for (const list of [
+    l.phenomena,
+    l.toolsIntroduced,
+    l.toolsUsed,
+    l.nodesAssessed,
+    l.essentialPrerequisites,
+    l.recommendedPrerequisites,
+    data.experience.transferTargets,
+  ]) {
+    for (const id of list)
+      if (!nodeById.has(id)) error(`mission ${data.id}: unknown node ${id}`, file, data.id);
   }
   for (const a of l.curriculumAlignments) {
     const c = curriculumById.get(a.curriculum);
     if (!c) error(`mission ${data.id}: unknown curriculum ${a.curriculum}`, file, data.id);
-    else if (!c.items.some((i) => i.id === a.item)) error(`mission ${data.id}: unknown curriculum item ${a.item} in ${a.curriculum}`, file, data.id);
+    else if (!c.items.some((i) => i.id === a.item))
+      error(
+        `mission ${data.id}: unknown curriculum item ${a.item} in ${a.curriculum}`,
+        file,
+        data.id
+      );
   }
   const stepIds = new Set<string>();
   for (const step of data.experience.steps) {
@@ -476,37 +679,119 @@ for (const { file, data } of missionFiles) {
   for (const step of data.experience.steps) {
     if (step.type === 'transfer_challenge') hasTransfer = true;
     if (step.type === 'prediction' || step.type === 'hypothesis_choice') hasPrediction = true;
-    if (step.next && !stepIds.has(step.next)) error(`mission ${data.id}: step ${step.id} → unknown next ${step.next}`, file, data.id);
-    for (const b of step.branches) if (!stepIds.has(b.goto)) error(`mission ${data.id}: step ${step.id} branch → unknown step ${b.goto}`, file, data.id);
-    if (step.completion.kind === 'exercises') for (const ex of step.completion.exerciseIds) if (!exerciseById.has(ex)) error(`mission ${data.id}: step ${step.id} unknown exercise ${ex}`, file, data.id);
+    if (step.next && !stepIds.has(step.next))
+      error(`mission ${data.id}: step ${step.id} → unknown next ${step.next}`, file, data.id);
+    for (const b of step.branches)
+      if (!stepIds.has(b.goto))
+        error(`mission ${data.id}: step ${step.id} branch → unknown step ${b.goto}`, file, data.id);
+    if (step.completion.kind === 'exercises')
+      for (const ex of step.completion.exerciseIds)
+        if (!exerciseById.has(ex))
+          error(`mission ${data.id}: step ${step.id} unknown exercise ${ex}`, file, data.id);
     if (step.completion.kind === 'choice' && step.branches.length > 0) {
       const ids = new Set(step.completion.choices.map((c) => c.id));
-      for (const b of step.branches) if (!ids.has(b.whenChoice)) error(`mission ${data.id}: step ${step.id} branch on unknown choice ${b.whenChoice}`, file, data.id);
+      for (const b of step.branches)
+        if (!ids.has(b.whenChoice))
+          error(
+            `mission ${data.id}: step ${step.id} branch on unknown choice ${b.whenChoice}`,
+            file,
+            data.id
+          );
     }
-    if (step.simulationRef && !simulationById.has(step.simulationRef)) error(`mission ${data.id}: step ${step.id} unknown simulation ${step.simulationRef}`, file, data.id);
-    if ((step.type === 'simulation' || step.type === 'measurement') && !step.simulationRef) error(`mission ${data.id}: ${step.type} step ${step.id} needs a simulationRef`, file, data.id);
+    if (step.simulationRef && !simulationById.has(step.simulationRef))
+      error(
+        `mission ${data.id}: step ${step.id} unknown simulation ${step.simulationRef}`,
+        file,
+        data.id
+      );
+    if ((step.type === 'simulation' || step.type === 'measurement') && !step.simulationRef)
+      error(
+        `mission ${data.id}: ${step.type} step ${step.id} needs a simulationRef`,
+        file,
+        data.id
+      );
     if (step.toolSelection) {
       const ts = step.toolSelection;
-      if (!nodeById.has(ts.phenomenonId)) error(`mission ${data.id}: step ${step.id} unknown phenomenon ${ts.phenomenonId}`, file, data.id);
-      for (const c of ts.candidates) if (!nodeById.has(c)) error(`mission ${data.id}: step ${step.id} unknown tool candidate ${c}`, file, data.id);
-      if (!ts.candidates.includes(ts.correct)) error(`mission ${data.id}: step ${step.id} correct tool is not among candidates`, file, data.id);
+      if (!nodeById.has(ts.phenomenonId))
+        error(
+          `mission ${data.id}: step ${step.id} unknown phenomenon ${ts.phenomenonId}`,
+          file,
+          data.id
+        );
+      for (const c of ts.candidates)
+        if (!nodeById.has(c))
+          error(`mission ${data.id}: step ${step.id} unknown tool candidate ${c}`, file, data.id);
+      if (!ts.candidates.includes(ts.correct))
+        error(
+          `mission ${data.id}: step ${step.id} correct tool is not among candidates`,
+          file,
+          data.id
+        );
     }
     for (const ev of step.evidence) {
-      if (ev.nodeId && !nodeById.has(ev.nodeId)) error(`mission ${data.id}: step ${step.id} evidence → unknown node ${ev.nodeId}`, file, data.id);
-      if (ev.phenomenonId && !nodeById.has(ev.phenomenonId)) error(`mission ${data.id}: step ${step.id} evidence → unknown phenomenon ${ev.phenomenonId}`, file, data.id);
+      if (ev.nodeId && !nodeById.has(ev.nodeId))
+        error(
+          `mission ${data.id}: step ${step.id} evidence → unknown node ${ev.nodeId}`,
+          file,
+          data.id
+        );
+      if (ev.phenomenonId && !nodeById.has(ev.phenomenonId))
+        error(
+          `mission ${data.id}: step ${step.id} evidence → unknown phenomenon ${ev.phenomenonId}`,
+          file,
+          data.id
+        );
     }
-    for (const t of step.transferTargets) if (!nodeById.has(t)) error(`mission ${data.id}: step ${step.id} unknown transfer target ${t}`, file, data.id);
+    for (const t of step.transferTargets)
+      if (!nodeById.has(t))
+        error(`mission ${data.id}: step ${step.id} unknown transfer target ${t}`, file, data.id);
     for (const c of step.historicalClaims) {
-      if ((c.status === 'attested' || c.status === 'scholarly_interpretation') && c.sources.length === 0) error(`mission ${data.id}: step ${step.id} claim ${c.id} (${c.status}) has no source`, file, data.id);
-      for (const s of c.sources) if (!sourceIds.has(s)) error(`mission ${data.id}: step ${step.id} claim ${c.id} unknown source ${s}`, file, data.id);
+      if (
+        (c.status === 'attested' || c.status === 'scholarly_interpretation') &&
+        c.sources.length === 0
+      )
+        error(
+          `mission ${data.id}: step ${step.id} claim ${c.id} (${c.status}) has no source`,
+          file,
+          data.id
+        );
+      for (const s of c.sources)
+        if (!sourceIds.has(s))
+          error(
+            `mission ${data.id}: step ${step.id} claim ${c.id} unknown source ${s}`,
+            file,
+            data.id
+          );
     }
     for (const line of step.dialogue) {
-      if (line.speaker !== 'learner' && line.speaker !== 'narrator' && nodeById.get(line.speaker)?.type !== 'person') error(`mission ${data.id}: step ${step.id} dialogue speaker ${line.speaker} is not a person`, file, data.id);
-      if (line.status === 'attested' && !line.quotation) error(`mission ${data.id}: step ${step.id} has an attested line without a quotation record — invented dialogue must never look authentic`, file, data.id);
-      if (line.quotation && !quotationById.has(line.quotation)) error(`mission ${data.id}: step ${step.id} unknown quotation ${line.quotation}`, file, data.id);
+      if (
+        line.speaker !== 'learner' &&
+        line.speaker !== 'narrator' &&
+        nodeById.get(line.speaker)?.type !== 'person'
+      )
+        error(
+          `mission ${data.id}: step ${step.id} dialogue speaker ${line.speaker} is not a person`,
+          file,
+          data.id
+        );
+      if (line.status === 'attested' && !line.quotation)
+        error(
+          `mission ${data.id}: step ${step.id} has an attested line without a quotation record — invented dialogue must never look authentic`,
+          file,
+          data.id
+        );
+      if (line.quotation && !quotationById.has(line.quotation))
+        error(
+          `mission ${data.id}: step ${step.id} unknown quotation ${line.quotation}`,
+          file,
+          data.id
+        );
     }
   }
-  for (const v of l.depthVariants) for (const s of v.skipSteps) if (!stepIds.has(s)) error(`mission ${data.id}: variant ${v.id} skips unknown step ${s}`, file, data.id);
+  for (const v of l.depthVariants)
+    for (const s of v.skipSteps)
+      if (!stepIds.has(s))
+        error(`mission ${data.id}: variant ${v.id} skips unknown step ${s}`, file, data.id);
   if (!hasTransfer) warn(`mission ${data.id} has no transfer_challenge step`, file, data.id);
   if (!hasPrediction) warn(`mission ${data.id} never asks for a prediction`, file, data.id);
 }
@@ -518,9 +803,11 @@ for (const { file, data } of missionFiles) {
 const glossaryEntries: GlossaryEntry[] = [];
 for (const { file, data } of glossaryFiles) {
   for (const g of data.entries) {
-    if (glossaryEntries.some((x) => x.id === g.id)) error(`duplicate glossary entry ${g.id}`, file, g.id);
+    if (glossaryEntries.some((x) => x.id === g.id))
+      error(`duplicate glossary entry ${g.id}`, file, g.id);
     else glossaryEntries.push(g);
-    if (g.nodeId && !nodeById.has(g.nodeId)) error(`glossary ${g.id}: unknown node ${g.nodeId}`, file, g.id);
+    if (g.nodeId && !nodeById.has(g.nodeId))
+      error(`glossary ${g.id}: unknown node ${g.nodeId}`, file, g.id);
   }
 }
 const routes: RouteDefinition[] = [];
@@ -528,7 +815,8 @@ for (const { file, data } of routeFiles) {
   for (const r of data.routes) {
     if (routes.some((x) => x.id === r.id)) error(`duplicate route ${r.id}`, file, r.id);
     else routes.push(r);
-    for (const n of r.nodes) if (!nodeById.has(n)) error(`route ${r.id}: unknown node ${n}`, file, r.id);
+    for (const n of r.nodes)
+      if (!nodeById.has(n)) error(`route ${r.id}: unknown node ${n}`, file, r.id);
   }
 }
 
@@ -538,16 +826,27 @@ for (const { file, data } of routeFiles) {
 
 for (const node of nodes) {
   const file = nodeFileById.get(node.id);
-  if (node.type === 'mathematical_tool' && !edges.some((e) => e.from === node.id && e.type === 'applies_to')) warn(`tool ${node.id} has no application`, file, node.id);
-  if (node.type === 'phenomenon' && !edges.some((e) => e.to === node.id && (e.type === 'models' || e.type === 'explains'))) warn(`phenomenon ${node.id} has no modelling connection`, file, node.id);
+  if (
+    node.type === 'mathematical_tool' &&
+    !edges.some((e) => e.from === node.id && e.type === 'applies_to')
+  )
+    warn(`tool ${node.id} has no application`, file, node.id);
+  if (
+    node.type === 'phenomenon' &&
+    !edges.some((e) => e.to === node.id && (e.type === 'models' || e.type === 'explains'))
+  )
+    warn(`phenomenon ${node.id} has no modelling connection`, file, node.id);
   if (node.type === 'person') {
-    const used = edges.some((e) => e.from === node.id || e.to === node.id) || missions.some((m) => m.historicalContext.people.includes(node.id));
+    const used =
+      edges.some((e) => e.from === node.id || e.to === node.id) ||
+      missions.some((m) => m.historicalContext.people.includes(node.id));
     if (!used) warn(`person ${node.id} is only decoration (no edge, no mission)`, file, node.id);
   }
 }
-for (const region of regions) if (region.nodeIds.length === 0 && !region.isBridge) {
-  // Silhouette regions are expected in the vertical slice: they keep the global geography visible.
-}
+for (const region of regions)
+  if (region.nodeIds.length === 0 && !region.isBridge) {
+    // Silhouette regions are expected in the vertical slice: they keep the global geography visible.
+  }
 
 // ---------------------------------------------------------------------------
 // Layout, search, glossary per locale
@@ -568,16 +867,55 @@ function tokens(text: string): string[] {
 const search: Record<Locale, SearchEntry[]> = { fr: [], en: [] };
 const glossary: Record<Locale, GlossaryLocalised[]> = { fr: [], en: [] };
 for (const locale of LOCALES) {
-  for (const w of worlds) search[locale].push({ id: w.id, kind: 'world', target: w.id, text: w.title[locale], terms: tokens(`${w.title[locale]} ${w.purpose[locale]}`) });
-  for (const r of regions) search[locale].push({ id: r.id, kind: 'region', target: r.id, text: r.title[locale], terms: tokens(`${r.title[locale]} ${r.summary[locale]}`) });
+  for (const w of worlds)
+    search[locale].push({
+      id: w.id,
+      kind: 'world',
+      target: w.id,
+      text: w.title[locale],
+      terms: tokens(`${w.title[locale]} ${w.purpose[locale]}`),
+    });
+  for (const r of regions)
+    search[locale].push({
+      id: r.id,
+      kind: 'region',
+      target: r.id,
+      text: r.title[locale],
+      terms: tokens(`${r.title[locale]} ${r.summary[locale]}`),
+    });
   for (const n of nodes) {
-    const kind: SearchEntry['kind'] = n.type === 'mission' ? 'mission' : n.type === 'person' ? 'person' : n.type === 'place' ? 'place' : 'node';
+    const kind: SearchEntry['kind'] =
+      n.type === 'mission'
+        ? 'mission'
+        : n.type === 'person'
+          ? 'person'
+          : n.type === 'place'
+            ? 'place'
+            : 'node';
     const aliases = n.aliases?.[locale] ?? [];
-    search[locale].push({ id: n.id, kind, target: n.id, text: n.title[locale], terms: tokens([n.title[locale], ...aliases, n.shortPurpose[locale]].join(' ')) });
+    search[locale].push({
+      id: n.id,
+      kind,
+      target: n.id,
+      text: n.title[locale],
+      terms: tokens([n.title[locale], ...aliases, n.shortPurpose[locale]].join(' ')),
+    });
   }
   for (const g of glossaryEntries) {
-    glossary[locale].push({ id: g.id, nodeId: g.nodeId, preferred: g[locale].preferred, aliases: g[locale].aliases });
-    if (g.nodeId) search[locale].push({ id: g.id, kind: 'glossary', target: g.nodeId, text: g[locale].preferred, terms: tokens([g[locale].preferred, ...g[locale].aliases].join(' ')) });
+    glossary[locale].push({
+      id: g.id,
+      nodeId: g.nodeId,
+      preferred: g[locale].preferred,
+      aliases: g[locale].aliases,
+    });
+    if (g.nodeId)
+      search[locale].push({
+        id: g.id,
+        kind: 'glossary',
+        target: g.nodeId,
+        text: g[locale].preferred,
+        terms: tokens([g[locale].preferred, ...g[locale].aliases].join(' ')),
+      });
   }
 }
 
@@ -586,8 +924,10 @@ for (const locale of LOCALES) {
 // ---------------------------------------------------------------------------
 
 function printMessages() {
-  const fmt = (m: ValidationMessage) => `  ${m.file ? `[${m.file}] ` : ''}${m.id ? `${m.id}: ` : ''}${m.message}`;
-  if (warnings.length) console.log(`\n${warnings.length} warning(s):\n${warnings.map(fmt).join('\n')}`);
+  const fmt = (m: ValidationMessage) =>
+    `  ${m.file ? `[${m.file}] ` : ''}${m.id ? `${m.id}: ` : ''}${m.message}`;
+  if (warnings.length)
+    console.log(`\n${warnings.length} warning(s):\n${warnings.map(fmt).join('\n')}`);
   if (errors.length) console.error(`\n${errors.length} error(s):\n${errors.map(fmt).join('\n')}`);
 }
 
@@ -608,7 +948,11 @@ function report(): ValidationReport {
   };
   const r: ValidationReport = { createdAt: new Date().toISOString(), errors, warnings, counts };
   printMessages();
-  console.log(`\ncontent ${PACKAGE_ID}-${PACKAGE_VERSION}: ${Object.entries(counts).map(([k, v]) => `${v} ${k}`).join(', ')}`);
+  console.log(
+    `\ncontent ${PACKAGE_ID}-${PACKAGE_VERSION}: ${Object.entries(counts)
+      .map(([k, v]) => `${v} ${k}`)
+      .join(', ')}`
+  );
   return r;
 }
 
@@ -630,7 +974,11 @@ function emit(name: string, data: unknown) {
   const text = JSON.stringify(data);
   const file = join(OUT_DIR, name);
   writeFileSync(file, text);
-  files[name] = { path: name, sha256: createHash('sha256').update(text).digest('hex'), bytes: Buffer.byteLength(text) };
+  files[name] = {
+    path: name,
+    sha256: createHash('sha256').update(text).digest('hex'),
+    bytes: Buffer.byteLength(text),
+  };
 }
 
 emit('graph.json', graph);
@@ -639,8 +987,14 @@ emit('curricula.json', { curricula, horizon: horizon satisfies HorizonConfig });
 emit('missions.json', missions);
 emit('exercises.json', exercises);
 emit('simulations.json', simulations);
-emit('people.json', nodes.filter((n) => n.type === 'person'));
-emit('places.json', nodes.filter((n) => n.type === 'place'));
+emit(
+  'people.json',
+  nodes.filter((n) => n.type === 'person')
+);
+emit(
+  'places.json',
+  nodes.filter((n) => n.type === 'place')
+);
 emit('sources.json', { sources, quotations });
 emit('glossary.fr.json', glossary.fr);
 emit('glossary.en.json', glossary.en);

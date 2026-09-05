@@ -1,7 +1,16 @@
-import type { EvidenceEvent, JournalEntry, MissionSession, SimulationSnapshot } from '$lib/persistence/db';
+import type {
+  EvidenceEvent,
+  JournalEntry,
+  MissionSession,
+  SimulationSnapshot,
+} from '$lib/persistence/db';
 import { evidenceRepo, journalRepo, sessionRepo } from '$lib/persistence/repositories';
 import { computeProgression, type ProgressionSnapshot } from '$lib/domain/progression';
-import { destinationState, type DestinationContext, type DestinationState } from '$lib/domain/progression/destination';
+import {
+  destinationState,
+  type DestinationContext,
+  type DestinationState,
+} from '$lib/domain/progression/destination';
 import type { CompiledNode } from '$lib/content-schema';
 import { content } from './content.svelte';
 import { profile } from './profile.svelte';
@@ -19,10 +28,20 @@ class LearningState {
     if (!this.learnerId || !content.graph || !content.pkg || !profile.active) return null;
     const horizon = profile.horizon(content.pkg.horizon);
     if (!horizon) return null;
-    return computeProgression(this.evidence, content.graph, content.pkg.horizon, horizon, new Date(this.clock));
+    return computeProgression(
+      this.evidence,
+      content.graph,
+      content.pkg.horizon,
+      horizon,
+      new Date(this.clock)
+    );
   });
 
-  openMissionIds: string[] = $derived(this.sessions.filter((s) => s.status !== 'completed' && s.status !== 'abandoned').map((s) => s.missionId));
+  openMissionIds: string[] = $derived(
+    this.sessions
+      .filter((s) => s.status !== 'completed' && s.status !== 'abandoned')
+      .map((s) => s.missionId)
+  );
 
   async bind(learnerId: string | null): Promise<void> {
     if (learnerId === this.learnerId) return;
@@ -46,14 +65,23 @@ class LearningState {
   }
 
   async append(events: EvidenceEvent[]): Promise<EvidenceEvent[]> {
-    const stored = await evidenceRepo.appendMany(events);
+    const stored = await evidenceRepo.appendMany($state.snapshot(events) as EvidenceEvent[]);
     if (stored.length) this.evidence = [...this.evidence, ...stored];
     return stored;
   }
 
-  async commitStep(session: MissionSession, events: EvidenceEvent[], snapshot?: SimulationSnapshot): Promise<void> {
-    const stored = await sessionRepo.commitStep(session, events, snapshot);
-    this.upsertSession(session);
+  async commitStep(
+    session: MissionSession,
+    events: EvidenceEvent[],
+    snapshot?: SimulationSnapshot
+  ): Promise<void> {
+    const plain = $state.snapshot(session) as MissionSession;
+    const stored = await sessionRepo.commitStep(
+      plain,
+      $state.snapshot(events) as EvidenceEvent[],
+      snapshot
+    );
+    this.upsertSession(plain);
     if (stored.length) this.evidence = [...this.evidence, ...stored];
   }
 
@@ -63,12 +91,13 @@ class LearningState {
   }
 
   async saveSession(session: MissionSession): Promise<void> {
-    await sessionRepo.put(session);
-    this.upsertSession(session);
+    const plain = $state.snapshot(session) as MissionSession;
+    await sessionRepo.put(plain);
+    this.upsertSession(plain);
   }
 
   async addJournal(entry: JournalEntry): Promise<void> {
-    await journalRepo.put(entry);
+    await journalRepo.put($state.snapshot(entry) as JournalEntry);
     this.journal = [entry, ...this.journal.filter((j) => j.id !== entry.id)];
   }
 
@@ -79,7 +108,9 @@ class LearningState {
 
   sessionFor(missionId: string): MissionSession | undefined {
     return this.sessions
-      .filter((s) => s.missionId === missionId && s.status !== 'completed' && s.status !== 'abandoned')
+      .filter(
+        (s) => s.missionId === missionId && s.status !== 'completed' && s.status !== 'abandoned'
+      )
       .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
   }
 

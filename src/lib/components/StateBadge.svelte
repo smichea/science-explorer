@@ -6,7 +6,9 @@
   let { kind }: { kind: DestinationStateKind } = $props();
 </script>
 
-<span class="state state--{kind}"><span aria-hidden="true">{STATE_GLYPH[kind]}</span> {t(`state.${kind}`)}</span>
+<span class="state state--{kind}"
+  ><span aria-hidden="true">{STATE_GLYPH[kind]}</span> {t(`state.${kind}`)}</span
+>
 
 <style>
   .state {

@@ -25,10 +25,7 @@ export interface SearchHit {
 }
 
 function normalise(text: string): string {
-  return text
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '');
+  return text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 }
 
 /** In-memory graph index with the queries of TECHNICAL_ARCHITECTURE §11 (no remote graph database). */
@@ -89,7 +86,11 @@ export class GraphIndex {
     return region?.worldId ? this.worldsById.get(region.worldId) : undefined;
   }
 
-  getNeighbours(id: string, types?: EdgeType[], direction: 'out' | 'in' | 'both' = 'both'): Neighbour[] {
+  getNeighbours(
+    id: string,
+    types?: EdgeType[],
+    direction: 'out' | 'in' | 'both' = 'both'
+  ): Neighbour[] {
     const out: Neighbour[] = [];
     if (direction !== 'in') {
       for (const e of this.edgesFrom.get(id) ?? []) {
@@ -116,7 +117,10 @@ export class GraphIndex {
   }
 
   /** Every prerequisite reachable from the destination, topologically ordered (foundations first). */
-  prerequisiteClosure(id: string, kinds: EdgeType[] = ['requires_essentially', 'requires_recommended']): CompiledNode[] {
+  prerequisiteClosure(
+    id: string,
+    kinds: EdgeType[] = ['requires_essentially', 'requires_recommended']
+  ): CompiledNode[] {
     const visited = new Set<string>();
     const order: CompiledNode[] = [];
     const visit = (nodeId: string) => {
@@ -134,7 +138,9 @@ export class GraphIndex {
 
   /** Nodes that depend on this one (what it unlocks). */
   dependentsOf(id: string): CompiledNode[] {
-    return this.getNeighbours(id, ['requires_essentially', 'requires_recommended'], 'out').map((n) => n.node);
+    return this.getNeighbours(id, ['requires_essentially', 'requires_recommended'], 'out').map(
+      (n) => n.node
+    );
   }
 
   /** Coverage-eligible applications of a tool. */
@@ -155,11 +161,22 @@ export class GraphIndex {
 
   getHistoricalMissions(nodeId: string): MissionDefinition[] {
     const ids = new Set<string>();
-    for (const e of this.edgesFrom.get(nodeId) ?? []) if (e.type === 'appears_in_mission') ids.add(e.to);
+    for (const e of this.edgesFrom.get(nodeId) ?? [])
+      if (e.type === 'appears_in_mission') ids.add(e.to);
     for (const m of this.missionsById.values()) {
-      if (m.learning.phenomena.includes(nodeId) || m.learning.toolsIntroduced.includes(nodeId) || m.learning.toolsUsed.includes(nodeId) || m.learning.nodesAssessed.includes(nodeId) || m.historicalContext.people.includes(nodeId) || m.historicalContext.places.includes(nodeId)) ids.add(m.id);
+      if (
+        m.learning.phenomena.includes(nodeId) ||
+        m.learning.toolsIntroduced.includes(nodeId) ||
+        m.learning.toolsUsed.includes(nodeId) ||
+        m.learning.nodesAssessed.includes(nodeId) ||
+        m.historicalContext.people.includes(nodeId) ||
+        m.historicalContext.places.includes(nodeId)
+      )
+        ids.add(m.id);
     }
-    return [...ids].map((id) => this.missionsById.get(id)).filter((m): m is MissionDefinition => !!m);
+    return [...ids]
+      .map((id) => this.missionsById.get(id))
+      .filter((m): m is MissionDefinition => !!m);
   }
 
   getMission(id: string): MissionDefinition | undefined {

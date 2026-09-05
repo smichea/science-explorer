@@ -20,7 +20,9 @@
 </script>
 
 <a class="chip {cls}" {href} title={state ? t(`state.${state.kind}`) : undefined}>
-  {#if state?.kind && STATE_GLYPH[state.kind]}<span aria-hidden="true">{STATE_GLYPH[state.kind]}</span>{/if}
+  {#if state?.kind && STATE_GLYPH[state.kind]}<span aria-hidden="true"
+      >{STATE_GLYPH[state.kind]}</span
+    >{/if}
   <span>{L(node.title)}</span>
   {#if showType}<span class="muted">· {t(`type.${node.type}`)}</span>{/if}
   {#if state}<span class="visually-hidden">— {t(`state.${state.kind}`)}</span>{/if}

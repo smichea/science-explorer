@@ -1,4 +1,11 @@
-import type { EvidenceStatus, HistoricalDate, Id, Locale, LocalisedList, LocalisedText } from './common';
+import type {
+  EvidenceStatus,
+  HistoricalDate,
+  Id,
+  Locale,
+  LocalisedList,
+  LocalisedText,
+} from './common';
 import type { CurriculumDefinition, HorizonConfig } from './curriculum';
 import type { ExerciseDefinition } from './exercise';
 import type { DepthDescriptor, EdgeType, NodeType } from './graph';

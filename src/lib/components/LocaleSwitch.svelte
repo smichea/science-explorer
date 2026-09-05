@@ -12,10 +12,20 @@
 </script>
 
 <div class="segmented" role="group" aria-label={t('locale.switch')}>
-  <button type="button" aria-pressed={locale.current === 'fr'} onclick={() => choose('fr')} lang="fr">
+  <button
+    type="button"
+    aria-pressed={locale.current === 'fr'}
+    onclick={() => choose('fr')}
+    lang="fr"
+  >
     {compact ? 'FR' : t('locale.fr')}
   </button>
-  <button type="button" aria-pressed={locale.current === 'en'} onclick={() => choose('en')} lang="en">
+  <button
+    type="button"
+    aria-pressed={locale.current === 'en'}
+    onclick={() => choose('en')}
+    lang="en"
+  >
     {compact ? 'EN' : t('locale.en')}
   </button>
 </div>

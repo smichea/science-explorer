@@ -26,7 +26,8 @@ export const MASTERY_WEIGHTS: Record<MasteryDimension, number> = {
 
 export type NodeStatus = 'unknown' | 'seen' | 'discovered' | 'practised' | 'mastered';
 export type ConfidenceLabel = 'low' | 'developing' | 'solid' | 'established';
-export type ApplicationStateKind = 'not_encountered' | 'observed' | 'guided' | 'hinted' | 'autonomous' | 'transferred' | 'retained';
+export type ApplicationStateKind =
+  'not_encountered' | 'observed' | 'guided' | 'hinted' | 'autonomous' | 'transferred' | 'retained';
 
 export interface MasteryEstimate {
   estimate: number;
@@ -35,6 +36,8 @@ export interface MasteryEstimate {
   dimensions: Record<MasteryDimension, number>;
   evidenceCount: number;
   contexts: number;
+  /** Distinct calendar days with evidence: one long session never looks like established mastery. */
+  distinctDays: number;
   algorithmVersion: string;
 }
 
@@ -84,8 +87,27 @@ export interface ExplanationItem {
 }
 
 const SUCCESS_TYPES = new Set(['exercise_solved', 'tool_selected_for_model', 'transfer_completed']);
-const DISCOVERY_TYPES = new Set(['prediction_recorded', 'measurement_recorded', 'mission_completed', 'worked_example_observed', 'explanation_submitted', 'exercise_attempted', 'mission_started', 'hint_opened', 'simulation_parameter_changed', 'guide_rubric_scored']);
-const NEUTRAL_TYPES = new Set(['node_opened', 'hint_opened', 'simulation_parameter_changed', 'mission_started', 'prediction_recorded', 'measurement_recorded', 'mission_completed']);
+const DISCOVERY_TYPES = new Set([
+  'prediction_recorded',
+  'measurement_recorded',
+  'mission_completed',
+  'worked_example_observed',
+  'explanation_submitted',
+  'exercise_attempted',
+  'mission_started',
+  'hint_opened',
+  'simulation_parameter_changed',
+  'guide_rubric_scored',
+]);
+const NEUTRAL_TYPES = new Set([
+  'node_opened',
+  'hint_opened',
+  'simulation_parameter_changed',
+  'mission_started',
+  'prediction_recorded',
+  'measurement_recorded',
+  'mission_completed',
+]);
 
 /** Score in [0, 1] carried by an event (correct 1, partial its score, incorrect 0). */
 export function scoreOf(e: EvidenceEvent): number | null {
@@ -132,9 +154,16 @@ const emptyMastery = (): MasteryEstimate => ({
   estimate: 0,
   confidence: 0,
   confidenceLabel: 'low',
-  dimensions: { recognition_explanation: 0, procedural_execution: 0, modelling_choice: 0, transfer: 0, retention: 0 },
+  dimensions: {
+    recognition_explanation: 0,
+    procedural_execution: 0,
+    modelling_choice: 0,
+    transfer: 0,
+    retention: 0,
+  },
   evidenceCount: 0,
   contexts: 0,
+  distinctDays: 0,
   algorithmVersion: MASTERY_ALGORITHM,
 });
 
@@ -143,10 +172,16 @@ const emptyMastery = (): MasteryEstimate => ({
  * headline = weighted sum of the five dimensions; a dimension without evidence counts 0, so one
  * correct answer can never look like reliable mastery. Returns the explanation trace too.
  */
-export function computeMastery(events: EvidenceEvent[], now: Date): { mastery: MasteryEstimate; explanation: ExplanationItem[] } {
+export function computeMastery(
+  events: EvidenceEvent[],
+  now: Date
+): { mastery: MasteryEstimate; explanation: ExplanationItem[] } {
   const scored = events
     .map((e) => ({ e, score: scoreOf(e), dimension: dimensionOf(e) }))
-    .filter((x): x is { e: EvidenceEvent; score: number; dimension: MasteryDimension } => x.score !== null && x.dimension !== null)
+    .filter(
+      (x): x is { e: EvidenceEvent; score: number; dimension: MasteryDimension } =>
+        x.score !== null && x.dimension !== null
+    )
     .sort((a, b) => b.e.timestamp.localeCompare(a.e.timestamp));
   if (scored.length === 0) return { mastery: emptyMastery(), explanation: [] };
 
@@ -157,7 +192,9 @@ export function computeMastery(events: EvidenceEvent[], now: Date): { mastery: M
     let den = 0;
     let rank = 0;
     for (const item of scored) {
-      const inDimension = item.dimension === dim || (dim === 'retention' && item.e.review === true && item.score >= 0.5);
+      const inDimension =
+        item.dimension === dim ||
+        (dim === 'retention' && item.e.review === true && item.score >= 0.5);
       if (!inDimension) continue;
       const recency = Math.pow(0.85, rank++);
       const autonomy = item.e.autonomy ?? 1;
@@ -177,30 +214,53 @@ export function computeMastery(events: EvidenceEvent[], now: Date): { mastery: M
     }
     mastery.dimensions[dim] = den > 0 ? num / den : 0;
   }
-  mastery.estimate = MASTERY_DIMENSIONS.reduce((sum, d) => sum + MASTERY_WEIGHTS[d] * mastery.dimensions[d], 0);
+  mastery.estimate = MASTERY_DIMENSIONS.reduce(
+    (sum, d) => sum + MASTERY_WEIGHTS[d] * mastery.dimensions[d],
+    0
+  );
   for (const item of explanation) {
-    item.contribution = item.dimension ? MASTERY_WEIGHTS[item.dimension] * item.recency * item.autonomy * item.score : 0;
+    item.contribution = item.dimension
+      ? MASTERY_WEIGHTS[item.dimension] * item.recency * item.autonomy * item.score
+      : 0;
   }
 
   const n = scored.length;
   const contexts = new Set(scored.map((x) => x.e.phenomenonId).filter(Boolean)).size;
+  const distinctDays = new Set(scored.map((x) => x.e.timestamp.slice(0, 10))).size;
+  // Evidence gathered on a single day is capped: confidence grows with sessions spread over time.
+  const spread = 0.7 + 0.3 * Math.min(1, Math.max(0, distinctDays - 1) / 2);
   const meanAutonomy = scored.reduce((s, x) => s + (x.e.autonomy ?? 1), 0) / n;
   const first = scored[scored.length - 1].e.timestamp;
   const firstTime = new Date(first).getTime();
-  const reviewSuccess = scored.some((x) => x.e.review === true && x.score >= 0.5 && new Date(x.e.timestamp).getTime() - firstTime >= 7 * 86_400_000);
+  const reviewSuccess = scored.some(
+    (x) =>
+      x.e.review === true &&
+      x.score >= 0.5 &&
+      new Date(x.e.timestamp).getTime() - firstTime >= 7 * 86_400_000
+  );
   const rubric = scored.some((x) => x.e.type === 'guide_rubric_scored');
   void now;
-  const confidence = clamp01((1 - Math.exp(-n / 8)) * (0.5 + 0.5 * meanAutonomy) * (0.5 + 0.125 * Math.min(contexts, 4)) + (reviewSuccess ? 0.1 : 0) + (rubric ? 0.1 : 0));
+  const confidence = clamp01(
+    (1 - Math.exp(-n / 8)) *
+      (0.5 + 0.5 * meanAutonomy) *
+      (0.5 + 0.125 * Math.min(contexts, 4)) *
+      spread +
+      (reviewSuccess ? 0.1 : 0) +
+      (rubric ? 0.1 : 0)
+  );
   mastery.confidence = confidence;
   mastery.confidenceLabel = confidenceLabel(confidence);
   mastery.evidenceCount = n;
   mastery.contexts = contexts;
+  mastery.distinctDays = distinctDays;
   return { mastery, explanation };
 }
 
 /** status-0.1 */
 export function computeNodeState(nodeId: string, events: EvidenceEvent[], now: Date): NodeState {
-  const own = events.filter((e) => e.nodeId === nodeId).sort((a, b) => a.timestamp.localeCompare(b.timestamp));
+  const own = events
+    .filter((e) => e.nodeId === nodeId)
+    .sort((a, b) => a.timestamp.localeCompare(b.timestamp));
   const { mastery } = computeMastery(own, now);
   let status: NodeStatus = 'unknown';
   let firstSeenAt: string | undefined;
@@ -223,13 +283,20 @@ export function computeNodeState(nodeId: string, events: EvidenceEvent[], now: D
     }
   }
   if (own.some((e) => e.type === 'node_opened')) status = 'seen';
-  if (own.some((e) => DISCOVERY_TYPES.has(e.type) || SUCCESS_TYPES.has(e.type))) status = 'discovered';
+  if (own.some((e) => DISCOVERY_TYPES.has(e.type) || SUCCESS_TYPES.has(e.type)))
+    status = 'discovered';
   if (lastSuccessAt) status = 'practised';
-  if (mastery.estimate >= 0.7 && mastery.confidence >= 0.55) status = 'mastered';
+  // Mastery needs confidence and evidence from at least two different days (a session and a later return).
+  if (mastery.estimate >= 0.7 && mastery.confidence >= 0.55 && mastery.distinctDays >= 2)
+    status = 'mastered';
   let reviewRecommended = false;
   if ((status === 'practised' || status === 'mastered') && lastSuccessAt) {
     const age = now.getTime() - new Date(lastSuccessAt).getTime();
-    const reviewedSince = own.some((e) => e.review === true && new Date(e.timestamp).getTime() > new Date(lastSuccessAt!).getTime() - 1);
+    const reviewedSince = own.some(
+      (e) =>
+        e.review === true &&
+        new Date(e.timestamp).getTime() > new Date(lastSuccessAt!).getTime() - 1
+    );
     reviewRecommended = age > 21 * 86_400_000 && !reviewedSince;
   }
   return {
@@ -260,7 +327,12 @@ function applicationKind(value: number, events: EvidenceEvent[]): ApplicationSta
   if (value <= 0) return 'not_encountered';
   if (value < 0.4) return 'observed';
   if (events.some((e) => e.review && usageValue(e) >= 0.5)) return 'retained';
-  if (events.some((e) => e.type === 'transfer_completed' && (e.autonomy ?? 1) >= 0.8 && usageValue(e) >= 0.5)) return 'transferred';
+  if (
+    events.some(
+      (e) => e.type === 'transfer_completed' && (e.autonomy ?? 1) >= 0.8 && usageValue(e) >= 0.5
+    )
+  )
+    return 'transferred';
   if (value >= 1) return 'autonomous';
   if (value >= 0.6) return 'hinted';
   return 'guided';
@@ -273,7 +345,13 @@ export function coverageScope(horizon: Horizon, config: HorizonConfig): Stage[] 
 }
 
 /** coverage-0.1 */
-export function computeCoverage(toolId: string, events: EvidenceEvent[], graph: GraphIndex, scope: Stage[], config: HorizonConfig): CoverageEstimate {
+export function computeCoverage(
+  toolId: string,
+  events: EvidenceEvent[],
+  graph: GraphIndex,
+  scope: Stage[],
+  config: HorizonConfig
+): CoverageEstimate {
   const applications: ApplicationState[] = [];
   let num = 0;
   let den = 0;
@@ -288,7 +366,13 @@ export function computeCoverage(toolId: string, events: EvidenceEvent[], graph: 
       if (v > 0) lastAt = !lastAt || e.timestamp > lastAt ? e.timestamp : lastAt;
       value = Math.max(value, v);
     }
-    applications.push({ phenomenonId: phenomenon.id, weight: edge.weight, value, state: applicationKind(value, related), lastAt });
+    applications.push({
+      phenomenonId: phenomenon.id,
+      weight: edge.weight,
+      value,
+      state: applicationKind(value, related),
+      lastAt,
+    });
     num += edge.weight * value;
     den += edge.weight;
   }
@@ -312,7 +396,13 @@ export interface ProgressionSnapshot {
 }
 
 /** Recomputes every derived value from the evidence log (caches are disposable). */
-export function computeProgression(events: EvidenceEvent[], graph: GraphIndex, config: HorizonConfig, horizon: Horizon, now = new Date()): ProgressionSnapshot {
+export function computeProgression(
+  events: EvidenceEvent[],
+  graph: GraphIndex,
+  config: HorizonConfig,
+  horizon: Horizon,
+  now = new Date()
+): ProgressionSnapshot {
   const nodeStates = new Map<string, NodeState>();
   const explanations = new Map<string, ExplanationItem[]>();
   const touched = new Set(events.map((e) => e.nodeId).filter((id): id is string => !!id));
@@ -324,9 +414,12 @@ export function computeProgression(events: EvidenceEvent[], graph: GraphIndex, c
   const coverage = new Map<string, CoverageEstimate>();
   const scope = coverageScope(horizon, config);
   for (const node of graph.graph.nodes) {
-    if (node.type === 'mathematical_tool') coverage.set(node.id, computeCoverage(node.id, events, graph, scope, config));
+    if (node.type === 'mathematical_tool')
+      coverage.set(node.id, computeCoverage(node.id, events, graph, scope, config));
   }
-  const completedMissions = new Set(events.filter((e) => e.type === 'mission_completed' && e.missionId).map((e) => e.missionId!));
+  const completedMissions = new Set(
+    events.filter((e) => e.type === 'mission_completed' && e.missionId).map((e) => e.missionId!)
+  );
   return { nodeStates, coverage, explanations, completedMissions, computedAt: now.toISOString() };
 }
 

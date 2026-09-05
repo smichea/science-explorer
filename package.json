@@ -38,6 +38,7 @@
     "eslint": "^9.39.0",
     "eslint-config-prettier": "^10.1.0",
     "eslint-plugin-svelte": "^3.23.0",
+    "fake-indexeddb": "^6.2.5",
     "globals": "^16.0.0",
     "js-yaml": "^4.1.0",
     "prettier": "^3.6.0",

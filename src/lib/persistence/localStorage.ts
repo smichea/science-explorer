@@ -108,7 +108,10 @@ export function writeActiveProfileId(id: string | null): void {
 }
 
 export function readProfileIndex(): ProfileIndex {
-  const index = readJson<ProfileIndex>(LS.profileIndex, { schemaVersion: STORAGE_SCHEMA_VERSION, profiles: [] });
+  const index = readJson<ProfileIndex>(LS.profileIndex, {
+    schemaVersion: STORAGE_SCHEMA_VERSION,
+    profiles: [],
+  });
   if (!Array.isArray(index.profiles)) index.profiles = [];
   return index;
 }

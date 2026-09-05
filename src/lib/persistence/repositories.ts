@@ -26,22 +26,44 @@ export const profileRepo = {
   async deleteCascade(learnerId: string): Promise<void> {
     const db = await getDb();
     const tx = db.transaction(
-      ['profiles', 'profileSettings', 'missionSessions', 'evidenceEvents', 'nodeStateCache', 'toolApplicationCache', 'masteryCache', 'journalEntries', 'simulationSnapshots'],
+      [
+        'profiles',
+        'profileSettings',
+        'missionSessions',
+        'evidenceEvents',
+        'nodeStateCache',
+        'toolApplicationCache',
+        'masteryCache',
+        'journalEntries',
+        'simulationSnapshots',
+      ],
       'readwrite'
     );
     await tx.objectStore('profiles').delete(learnerId);
     await tx.objectStore('profileSettings').delete(learnerId);
-    const sessions = await tx.objectStore('missionSessions').index('byLearner').getAllKeys(learnerId);
+    const sessions = await tx
+      .objectStore('missionSessions')
+      .index('byLearner')
+      .getAllKeys(learnerId);
     for (const key of sessions) {
       const snaps = await tx.objectStore('simulationSnapshots').index('bySession').getAllKeys(key);
       for (const s of snaps) await tx.objectStore('simulationSnapshots').delete(s);
       await tx.objectStore('missionSessions').delete(key);
     }
-    for (const key of await tx.objectStore('evidenceEvents').index('byLearner').getAllKeys(learnerId)) await tx.objectStore('evidenceEvents').delete(key);
+    for (const key of await tx
+      .objectStore('evidenceEvents')
+      .index('byLearner')
+      .getAllKeys(learnerId))
+      await tx.objectStore('evidenceEvents').delete(key);
     for (const store of ['nodeStateCache', 'toolApplicationCache', 'masteryCache'] as const) {
-      for (const key of await tx.objectStore(store).index('byLearner').getAllKeys(learnerId)) await tx.objectStore(store).delete(key);
+      for (const key of await tx.objectStore(store).index('byLearner').getAllKeys(learnerId))
+        await tx.objectStore(store).delete(key);
     }
-    for (const key of await tx.objectStore('journalEntries').index('byLearner').getAllKeys(learnerId)) await tx.objectStore('journalEntries').delete(key);
+    for (const key of await tx
+      .objectStore('journalEntries')
+      .index('byLearner')
+      .getAllKeys(learnerId))
+      await tx.objectStore('journalEntries').delete(key);
     await tx.done;
   },
 };
@@ -49,10 +71,18 @@ export const profileRepo = {
 export const settingsRepo = {
   async get(learnerId: string): Promise<ProfileSettings> {
     const db = await getDb();
-    return (await db.get('profileSettings', learnerId)) ?? { learnerId, savedForLater: [], updatedAt: new Date(0).toISOString() };
+    return (
+      (await db.get('profileSettings', learnerId)) ?? {
+        learnerId,
+        savedForLater: [],
+        updatedAt: new Date(0).toISOString(),
+      }
+    );
   },
   async put(settings: ProfileSettings): Promise<void> {
-    await (await getDb()).put('profileSettings', { ...settings, updatedAt: new Date().toISOString() });
+    await (
+      await getDb()
+    ).put('profileSettings', { ...settings, updatedAt: new Date().toISOString() });
   },
 };
 
@@ -65,7 +95,10 @@ export const sessionRepo = {
   },
   async findOpen(learnerId: string, missionId: string): Promise<MissionSession | undefined> {
     const db = await getDb();
-    const all = await db.getAllFromIndex('missionSessions', 'byLearnerMission', [learnerId, missionId]);
+    const all = await db.getAllFromIndex('missionSessions', 'byLearnerMission', [
+      learnerId,
+      missionId,
+    ]);
     return all
       .filter((s) => s.status !== 'completed' && s.status !== 'abandoned')
       .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
@@ -78,9 +111,16 @@ export const sessionRepo = {
    * transaction. Evidence with an existing idempotency key is skipped, so re-renders, resumes and
    * language switches never duplicate events.
    */
-  async commitStep(session: MissionSession, evidence: EvidenceEvent[], snapshot?: SimulationSnapshot): Promise<EvidenceEvent[]> {
+  async commitStep(
+    session: MissionSession,
+    evidence: EvidenceEvent[],
+    snapshot?: SimulationSnapshot
+  ): Promise<EvidenceEvent[]> {
     const db = await getDb();
-    const tx = db.transaction(['missionSessions', 'evidenceEvents', 'simulationSnapshots'], 'readwrite');
+    const tx = db.transaction(
+      ['missionSessions', 'evidenceEvents', 'simulationSnapshots'],
+      'readwrite'
+    );
     const appended: EvidenceEvent[] = [];
     const evidenceStore = tx.objectStore('evidenceEvents');
     for (const event of evidence) {
@@ -125,7 +165,9 @@ export const cacheRepo = {
     await (await getDb()).put(store, record as CacheRecord<unknown>);
   },
   async listByLearner<T>(store: CacheStore, learnerId: string): Promise<CacheRecord<T>[]> {
-    return (await (await getDb()).getAllFromIndex(store, 'byLearner', learnerId)) as CacheRecord<T>[];
+    return (await (
+      await getDb()
+    ).getAllFromIndex(store, 'byLearner', learnerId)) as CacheRecord<T>[];
   },
 };
 
@@ -147,7 +189,13 @@ export const packageRepo = {
     const db = await getDb();
     const key = `${id}@${version}`;
     if (!(await db.get('contentPackages', key))) {
-      await db.put('contentPackages', { key, id, version, installedAt: new Date().toISOString(), state: 'bundled' });
+      await db.put('contentPackages', {
+        key,
+        id,
+        version,
+        installedAt: new Date().toISOString(),
+        state: 'bundled',
+      });
     }
   },
   async list() {
