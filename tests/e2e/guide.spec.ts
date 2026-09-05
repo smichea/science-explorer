@@ -47,6 +47,8 @@ test.describe('guide mode', () => {
       .getByTestId('guide-note')
       .fill('Paul a bien compris la différence entre vitesse moyenne et instantanée.');
     await page.getByRole('button', { name: /Enregistrer la note/ }).click();
+    // The field is cleared only once the note is stored in IndexedDB: wait before navigating away.
+    await expect(page.getByTestId('guide-note')).toHaveValue('');
     await page.goto('journal');
     await expect(page.getByTestId('journal')).toContainText('vitesse moyenne et instantanée');
 
