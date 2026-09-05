@@ -31,6 +31,8 @@ export interface UiPreferences {
   textScale: number;
   mapView: '3d' | '2d';
   lastRoute?: string;
+  /** Primary drag gesture in the 3D atlas: orbit (default) or pan. */
+  atlasDrag?: 'rotate' | 'pan';
 }
 
 export const DEFAULT_UI_PREFERENCES: UiPreferences = {

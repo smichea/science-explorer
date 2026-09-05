@@ -3,7 +3,7 @@
   import type { CompiledLayout, Locale } from '$lib/content-schema';
   import type { GraphIndex } from '$lib/domain/graph';
   import type { PerformanceMode } from '$lib/persistence/localStorage';
-  import { AtlasScene, type FocusTarget } from './scene';
+  import { AtlasScene, type DragMode, type FocusTarget } from './scene';
   import type { NodeStyle, RouteStyle } from './styles';
   import type { ZoomLevel } from './zoom';
   import { t } from '$lib/state/locale.svelte';
@@ -18,6 +18,7 @@
     locale: Locale;
     performance: PerformanceMode;
     reducedMotion: boolean;
+    dragMode?: DragMode;
     labelText: (id: string, kind: 'node' | 'region' | 'world' | 'hub') => string;
     onselect: (id: string, kind: 'node' | 'region' | 'world') => void;
     onhover?: (id: string | null) => void;
@@ -35,6 +36,7 @@
     locale,
     performance,
     reducedMotion,
+    dragMode = 'rotate',
     labelText,
     onselect,
     onhover,
@@ -86,6 +88,9 @@
     scene?.setReducedMotion(reducedMotion);
   });
   $effect(() => {
+    scene?.setDragMode(dragMode);
+  });
+  $effect(() => {
     void focusKey;
     if (!scene || !focus) return;
     scene.focus(focus, firstFocusDone);
@@ -93,10 +98,14 @@
   });
 </script>
 
+<!-- Focusable so the arrow keys can pan (a map-like widget, hence the application role); the 2D map
+     and the list remain the keyboard-first views. -->
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <div
   class="atlas"
   bind:this={container}
-  role="img"
+  role="application"
+  tabindex="0"
   aria-label={t('universe.canvasLabel')}
   data-testid="atlas-3d"
 ></div>
@@ -109,5 +118,9 @@
     overflow: hidden;
     background: #070b17;
     cursor: grab;
+  }
+  .atlas:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
   }
 </style>

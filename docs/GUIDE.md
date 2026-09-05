@@ -43,4 +43,5 @@ Accessible depuis le menu **Guide** (code éventuel demandé une fois par onglet
 
 - **Carte 2D seulement** ou **graphismes réduits** sur un appareil lent ; la carte 2D et la liste donnent accès à toutes les destinations.
 - **Réduire les mouvements** supprime les vols de caméra et permet d'avancer les simulations pas à pas avec des tableaux de valeurs.
+- **Tourner / Déplacer** (en bas à gauche de l'atlas) choisit ce que fait le glisser principal ; l'autre geste reste disponible au clic droit, avec Maj + glisser ou à deux doigts, et les flèches du clavier déplacent la vue quand l'atlas a le focus. « Vue d'ensemble » recentre toujours les trois mondes.
 - **Étape courante** : si l'âge déduit ne correspond pas au niveau réel, le guide peut la surcharger dans les réglages sans rien réinitialiser.

@@ -101,9 +101,13 @@ export const en = {
   'universe.webglUnavailable':
     '3D rendering is not available on this device; the 2D map shows the same universe.',
   'universe.canvasLabel':
-    'Three-dimensional atlas of the knowledge universe. Use the 2D map or the list for keyboard navigation.',
+    'Three-dimensional atlas of the knowledge universe. Arrow keys pan the view; use the 2D map or the list for full keyboard navigation.',
   'universe.selected': 'Selected: {title}',
-  'universe.help': 'Drag to orbit, scroll or pinch to zoom, click a destination to open it.',
+  'universe.help':
+    'Drag to orbit or to pan (see the mode), right button, Shift + drag or two fingers for the other gesture, scroll or pinch to zoom, click a destination to open it.',
+  'universe.dragMode': 'Drag to',
+  'universe.dragRotate': 'Orbit',
+  'universe.dragPan': 'Pan',
 
   'filter.my_horizon': 'My horizon',
   'filter.ready': 'Ready to explore',
