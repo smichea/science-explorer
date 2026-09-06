@@ -17,3 +17,4 @@ Decisions that shape the implementation of the vertical slice. Each record state
 | [0011](0011-single-application-repository-with-explicit-boundaries.md) | Single application repository with explicit module boundaries |
 | [0012](0012-typed-i18n-and-localised-content-fields.md) | Typed interface dictionaries and localised content fields |
 | [0013](0013-browser-speech-synthesis-for-guided-flights.md) | Browser speech synthesis for the bird's-eye flight |
+| [0014](0014-narrated-interactive-lessons.md) | Narrated, interactive lessons: slides, a tool that follows the words, free play, typed exercises |

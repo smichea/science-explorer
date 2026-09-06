@@ -1,0 +1,7 @@
+# Leçon à outil simulation : les diapositives sont composées depuis la description du nœud.
+id: lesson.phenomenon.chemistry.first_order_reaction
+nodeId: phenomenon.chemistry.first_order_reaction
+depth: 1
+tool:
+  kind: simulation
+  simulationId: simulation.kinetics.first_order

@@ -7,13 +7,16 @@
   import NodeChip from './NodeChip.svelte';
   import StateBadge from './StateBadge.svelte';
   import { makeEvidence } from '$lib/domain/evidence';
+  import { speakableText } from '$lib/domain/speech';
   import { formatHistoricalDate, formatPercent } from '$lib/domain/i18n/format';
   import { nodeStage } from '$lib/domain/horizon';
   import { content } from '$lib/state/content.svelte';
   import { learning } from '$lib/state/learning.svelte';
   import { L, LL, locale, t } from '$lib/state/locale.svelte';
+  import { prefs } from '$lib/state/prefs.svelte';
   import { profile } from '$lib/state/profile.svelte';
   import { selection } from '$lib/state/selection.svelte';
+  import { speech } from '$lib/state/speech.svelte';
 
   let { node }: { node: CompiledNode } = $props();
 
@@ -104,6 +107,27 @@
   function showApplications() {
     void selection.setLayer('applications', node.id);
   }
+
+  // The short presentation is read aloud when the destination opens (voice on by default).
+  let reading = $state(false);
+  const voiceOn = $derived(prefs.prefs.voice ?? prefs.prefs.tourVoice ?? true);
+  async function readOverview() {
+    const text = speakableText(L(node.overview ?? node.shortPurpose), locale.current);
+    reading = true;
+    await speech.speak(text, locale.current);
+    reading = false;
+  }
+  function stopReading() {
+    speech.cancel();
+    reading = false;
+  }
+  $effect(() => {
+    void node.id;
+    untrack(() => {
+      if (node.type !== 'mission' && voiceOn && speech.available) void readOverview();
+    });
+    return () => stopReading();
+  });
 </script>
 
 <article class="concept stack" data-testid="concept-panel" data-node-id={node.id}>
@@ -123,6 +147,24 @@
       {#if stage}<span class="chip">{t('concept.stage')} : {stageShort(stage)}</span>{/if}
       {#if destination}<StateBadge kind={destination.kind} />{/if}
     </div>
+    {#if node.type !== 'mission'}
+      <div class="cluster">
+        <a class="btn btn--primary" href="{base}/lesson/{node.id}" data-testid="follow-lesson"
+          >▶ {t('lesson.follow')}</a
+        >
+        {#if speech.available}
+          <button
+            class="btn btn--sm btn--ghost"
+            type="button"
+            data-testid="read-overview"
+            aria-pressed={reading}
+            onclick={() => (reading ? stopReading() : void readOverview())}
+            >{reading ? `⏹ ${t('lesson.stopReading')}` : `🔊 ${t('lesson.readOverview')}`}</button
+          >
+        {/if}
+      </div>
+      <p class="small muted" style="margin: 0">{t('lesson.followHint')}</p>
+    {/if}
   </header>
 
   {#if destination && (destination.missingEssential.length || destination.missingRecommended.length) && node.type !== 'mission'}

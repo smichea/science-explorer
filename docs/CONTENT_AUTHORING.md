@@ -435,6 +435,60 @@ A flight visits each lesson once: first along its routes, then in the automatic 
 
 A flight follows the prerequisites (`requires_essentially` and `requires_recommended` edges): a destination is always flown after the prerequisites flown before it. Inside a leg the order is fixed automatically (a prerequisite written after a node that needs it is pulled forward, just before that node); across legs the compiler rebuilds the complete flight, over the whole universe, and reports every inversion: an **error** for an essential prerequisite, a **warning** for a recommended one. Order the routes and the legs so that the compilation stays silent.
 
+### `content/lessons/<node>.yaml` — narrated, interactive lessons
+
+See `src/lib/content-schema/lesson.ts`. A lesson is played on `/lesson/<nodeId>`: slides read
+aloud on the left (the voice of the browser, on by default), a tool on the right that follows the
+words, a free play with the tool, then exercises with typed answers. Skeleton:
+
+```yaml
+id: lesson.concept.function
+nodeId: concept.function
+depth: 1                            # one lesson per node and depth
+tool:                               # optional: plotter | simulation
+  kind: plotter
+  variable: x
+  view: { x: [-3, 3], y: [-2, 10] }
+  parameters:                       # sliders of the free play, usable in expressions (a, a+h)
+    - { id: h, label: { fr: "largeur h", en: "width h" }, min: 0.02, max: 1.5, step: 0.02, value: 1 }
+  input: true                       # the learner may type an expression of the variable
+steps:
+  - id: definition
+    kind: slide                     # slide (read, then moves on) | play | exercises
+    title: { fr: "…", en: "…" }
+    text:                           # plain prose, read sentence by sentence; avoid LaTeX here
+      fr: >-
+        Une fonction associe à chaque valeur de la variable une valeur et une seule.
+        Prenons la fonction carré : à tout réel x, elle associe x au carré.
+      en: >-
+        …
+    actions:                        # fired at sentence `at` (0-based) while the text is read
+      - { at: 1, plot: { id: f, expr: "x^2", label: { fr: "f(x) = x²", en: "f(x) = x²" } } }
+      - { at: 1, point: { id: p, on: f, x: 2, guides: true, label: { fr: "f(2) = 4", en: "f(2) = 4" } } }
+      # secant: { id, on, from, to }   tangent: { id, on, x }   interval: { id, on, from, to }
+      # hide: [ids]   clear: true   view: { x, y, labels: { x: "t (s)", y: "h (m)" } }   set: { h: 0.5 }
+  - id: play
+    kind: play
+    text: { fr: "À vous…", en: "Your turn…" }
+  - id: exercises
+    kind: exercises
+    text: { fr: "…", en: "…" }
+    exercises: [exercise.function.image, exercise.function.preimage]
+```
+
+- `tool: { kind: simulation, simulationId: simulation.rc.charging }` shows a simulation instead of
+  the plotter (no actions).
+- Without `steps`, the slides are cut from the node `description` (one paragraph each), followed
+  by a free play when there is a tool and by the exercises of the node. Every node therefore has a
+  lesson; authoring one adds the tool and the synchronisation with the words.
+- The compiler refuses an unknown node, exercise or simulation, an expression that does not
+  compile (variable and parameters only; `exp`, `ln`, `log`, `sqrt`, `sin`, `cos`, `tan`, `pi`,
+  `e`), two lessons for the same node and depth, and warns when an action fires beyond the last
+  French sentence, when a lesson has no exercises step or no free play.
+- Numbers in the spoken text: write them as words or digits, never as LaTeX (a formula is read
+  as "formule"); end a sentence with a lower-case letter only if it is a variable (`x.`), a
+  capitalised one- or two-letter word (`M.`) glues the next sentence.
+
 ## Historical honesty checklist
 
 1. Every date carries its certainty (`exact`, `approximate`, `interval`, `disputed`, `unknown`).

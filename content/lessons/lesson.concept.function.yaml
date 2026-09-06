@@ -1,0 +1,113 @@
+# Leçon narrée — la fonction, avec le traceur de courbes. Le texte est lu phrase par phrase ; chaque
+# action de `actions` se déclenche à la phrase `at` (première phrase = 0).
+id: lesson.concept.function
+nodeId: concept.function
+depth: 1
+tool:
+  kind: plotter
+  variable: x
+  view: { x: [-3, 3], y: [-2, 10] }
+  parameters: []
+  input: true
+steps:
+  - id: definition
+    title: { fr: "Une valeur, une seule image", en: "One value, one image" }
+    text:
+      fr: >-
+        Une fonction associe à chaque valeur de la variable une valeur et une seule.
+        Prenons la fonction carré : à tout réel x, elle associe x au carré.
+        Au réel 2, elle associe 4 : on dit que 4 est l'image de 2.
+        Sur la courbe, au-dessus de chaque abscisse il n'y a qu'un seul point.
+      en: >-
+        A function assigns to each value of the variable exactly one value.
+        Take the square function: to every real number x, it assigns x squared.
+        To the number 2, it assigns 4: we say that 4 is the image of 2.
+        On the curve, above each abscissa there is only one point.
+    actions:
+      - { at: 1, plot: { id: f, expr: "x^2", label: { fr: "f(x) = x²", en: "f(x) = x²" } } }
+      - { at: 2, point: { id: p2, on: f, x: 2, guides: true, label: { fr: "f(2) = 4", en: "f(2) = 4" } } }
+      - { at: 3, point: { id: pm, on: f, x: -1.5, guides: true, label: { fr: "f(−1,5) = 2,25", en: "f(−1.5) = 2.25" } } }
+  - id: faces
+    title: { fr: "Quatre visages d'une même fonction", en: "Four faces of one function" }
+    text:
+      fr: >-
+        Une même fonction a quatre visages.
+        Une formule, comme g de x égale trois x carré plus un.
+        Un tableau de valeurs : pour x égal à 0, 1 et 2, on obtient 1, 4 et 13.
+        Une courbe, celle que vous voyez.
+        Et une équation qu'elle vérifie.
+        Savoir passer d'un visage à l'autre, c'est le cœur du travail de modélisation.
+      en: >-
+        One function has four faces.
+        A formula, such as g of x equals three x squared plus one.
+        A table of values: for x equal to 0, 1 and 2, we get 1, 4 and 13.
+        A curve, the one you can see.
+        And an equation it satisfies.
+        Knowing how to move from one face to another is the heart of modelling.
+    actions:
+      - { at: 1, hide: [f], view: { y: [-2, 16] }, plot: { id: g, expr: "3*x^2+1", label: { fr: "g(x) = 3x² + 1", en: "g(x) = 3x² + 1" } } }
+      - { at: 2, point: { id: g0, on: g, x: 0, guides: true, label: { fr: "g(0) = 1", en: "g(0) = 1" } } }
+      - { at: 2, point: { id: g1, on: g, x: 1, guides: true, label: { fr: "g(1) = 4", en: "g(1) = 4" } } }
+      - { at: 2, point: { id: g2, on: g, x: 2, guides: true, label: { fr: "g(2) = 13", en: "g(2) = 13" } } }
+  - id: time
+    title: { fr: "En sciences, la variable est le temps", en: "In science, the variable is time" }
+    text:
+      fr: >-
+        En sciences, la variable est presque toujours le temps.
+        La hauteur parcourue par une bille qui tombe dépend du temps : à chaque instant, une hauteur et une seule.
+        Voici la loi de la chute libre : la hauteur parcourue vaut environ cinq fois le carré du temps.
+        Après deux secondes, la bille a parcouru près de vingt mètres.
+      en: >-
+        In science, the variable is almost always time.
+        The height fallen by a ball depends on time: at each instant, one height and one only.
+        Here is the law of free fall: the height fallen is about five times the square of the time.
+        After two seconds, the ball has fallen nearly twenty metres.
+    actions:
+      - { at: 0, clear: true, view: { x: [0, 3], y: [0, 45], labels: { x: "t (s)", y: "h (m)" } } }
+      - { at: 2, plot: { id: h, expr: "4.9*x^2", domain: [0, 3], label: { fr: "h(t) = 4,9 t²", en: "h(t) = 4.9 t²" } } }
+      - { at: 3, point: { id: h2, on: h, x: 2, guides: true, label: { fr: "h(2) = 19,6 m", en: "h(2) = 19.6 m" } } }
+  - id: reference
+    title: { fr: "Les fonctions de référence", en: "Reference functions" }
+    text:
+      fr: >-
+        En Terminale, on travaille avec des fonctions de référence et leurs combinaisons.
+        La fonction carré, que vous connaissez déjà.
+        L'exponentielle, qui grandit de plus en plus vite.
+        Le sinus, qui oscille entre moins un et un.
+        Chacune a sa courbe, ses variations et ses limites ; en les combinant, on décrit presque tous les phénomènes du programme.
+      en: >-
+        In Terminale, you work with reference functions and their combinations.
+        The square function, which you already know.
+        The exponential, which grows faster and faster.
+        The sine, which oscillates between minus one and one.
+        Each has its curve, its variations and its limits; by combining them, you describe almost every phenomenon of the programme.
+    actions:
+      - { at: 0, clear: true, view: { x: [-3, 3], y: [-2, 8], labels: { x: "x", y: "y" } } }
+      - { at: 1, plot: { id: sq, expr: "x^2", label: { fr: "x²", en: "x²" } } }
+      - { at: 2, plot: { id: ex, expr: "exp(x)", label: { fr: "exp(x)", en: "exp(x)" } } }
+      - { at: 3, plot: { id: si, expr: "sin(x)", label: { fr: "sin(x)", en: "sin(x)" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de tracer", en: "Your turn to plot" }
+    text:
+      fr: >-
+        À vous. Tapez une expression de x, par exemple x au cube moins deux x, ou racine de x, et regardez sa courbe apparaître.
+        Déplacez le marqueur le long de la courbe pour lire des images.
+        Une abscisse, une seule image : c'est cela, une fonction.
+      en: >-
+        Your turn. Type an expression of x, for example x cubed minus two x, or the square root of x, and watch its curve appear.
+        Move the marker along the curve to read images.
+        One abscissa, one image: that is what a function is.
+    actions:
+      - { at: 0, clear: true, view: { x: [-4, 4], y: [-6, 10] }, plot: { id: sq, expr: "x^2", label: { fr: "x²", en: "x²" } } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Trois exercices pour fixer les idées : calculer une image, retrouver un antécédent, puis écrire une fonction sous une autre forme.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Three exercises to settle the ideas: compute an image, find a preimage, then write a function in another form.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.function.image, exercise.function.preimage, exercise.function.expand]

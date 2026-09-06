@@ -1,0 +1,7 @@
+# Leçon à outil simulation : les diapositives sont composées depuis la description du nœud.
+id: lesson.phenomenon.motion.inclined_plane
+nodeId: phenomenon.motion.inclined_plane
+depth: 1
+tool:
+  kind: simulation
+  simulationId: simulation.galileo.inclined_plane

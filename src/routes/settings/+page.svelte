@@ -193,6 +193,16 @@
       />
       {t('settings.reducedMotion')}</label
     >
+    <label class="cluster"
+      ><input
+        type="checkbox"
+        checked={prefs.prefs.voice ?? prefs.prefs.tourVoice ?? true}
+        onchange={(e) =>
+          prefs.update({ voice: e.currentTarget.checked, tourVoice: e.currentTarget.checked })}
+        data-testid="settings-voice"
+      />
+      {t('settings.voice')}</label
+    >
     {#if prefs.systemReducedMotion}<p class="muted small" style="margin:0">
         {t('settings.reducedMotionSystem')}
       </p>{/if}

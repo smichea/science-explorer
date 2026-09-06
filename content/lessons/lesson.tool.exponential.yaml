@@ -1,0 +1,78 @@
+# Leçon narrée — l'exponentielle, avec le traceur (paramètre k).
+id: lesson.tool.exponential
+nodeId: tool.exponential
+depth: 1
+tool:
+  kind: plotter
+  variable: x
+  view: { x: [-3, 3], y: [-1, 8] }
+  parameters:
+    - { id: k, label: { fr: "coefficient k", en: "coefficient k" }, min: -2, max: 2, step: 0.1, value: 1 }
+  input: false
+steps:
+  - id: definition
+    title: { fr: "Égale à sa dérivée", en: "Equal to its own derivative" }
+    text:
+      fr: >-
+        L'exponentielle est la fonction égale à sa propre dérivée, qui vaut 1 en zéro.
+        En 1, elle vaut environ 2,72 : c'est le nombre e.
+        En chaque point, la pente de la tangente est égale à la hauteur du point : en zéro, la pente vaut 1.
+      en: >-
+        The exponential is the function equal to its own derivative, which is 1 at zero.
+        At 1, it is about 2.72: this is the number e.
+        At every point, the slope of the tangent equals the height of the point: at zero, the slope is 1.
+    actions:
+      - { at: 0, plot: { id: e, expr: "exp(x)", label: { fr: "exp(x)", en: "exp(x)" } } }
+      - { at: 1, point: { id: p1, on: e, x: 1, guides: true, label: { fr: "exp(1) ≈ 2,72", en: "exp(1) ≈ 2.72" } } }
+      - { at: 2, tangent: { id: t0, on: e, x: 0, label: { fr: "tangente en 0", en: "tangent at 0" } } }
+  - id: growth
+    title: { fr: "Une croissance qui l'emporte", en: "A growth that wins" }
+    text:
+      fr: >-
+        Comparée à x carré, l'exponentielle finit toujours par l'emporter.
+        Elle est strictement positive et strictement croissante.
+        Vers moins l'infini, elle tend vers zéro sans jamais l'atteindre.
+      en: >-
+        Compared with x squared, the exponential always wins in the end.
+        It is strictly positive and strictly increasing.
+        Towards minus infinity, it tends to zero without ever reaching it.
+    actions:
+      - { at: 0, hide: [p1, t0], view: { x: [-4, 4], y: [-1, 20] }, plot: { id: sq, expr: "x^2", dashed: true, label: { fr: "x²", en: "x²" } } }
+      - { at: 2, interval: { id: left, on: e, from: -4, to: -1.5, label: { fr: "vers 0", en: "towards 0" } } }
+  - id: decay
+    title: { fr: "Décroissance exponentielle", en: "Exponential decay" }
+    text:
+      fr: >-
+        Avec un exposant négatif, la courbe descend : exp de moins x décrit une décroissance.
+        C'est la forme des lois de décharge, de refroidissement et de désintégration.
+        La quantité diminue d'autant plus vite qu'il en reste : la pente est toujours proportionnelle à la hauteur.
+      en: >-
+        With a negative exponent, the curve goes down: exp of minus x describes a decay.
+        It is the shape of the laws of discharge, cooling and disintegration.
+        The quantity decreases the faster the more of it remains: the slope is always proportional to the height.
+    actions:
+      - { at: 0, clear: true, view: { x: [-1, 4], y: [-0.5, 3] }, plot: { id: d, expr: "exp(-x)", label: { fr: "exp(−x)", en: "exp(−x)" } } }
+      - { at: 2, tangent: { id: td, on: d, x: 0.5, label: { fr: "tangente en 0,5", en: "tangent at 0.5" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de faire varier k", en: "Your turn to vary k" }
+    text:
+      fr: >-
+        À vous. Faites varier k dans exp de k x : k positif fait croître, k négatif fait décroître, et la vitesse dépend de la valeur de k.
+        Placez le marqueur et cochez la tangente : sa pente vaut k fois la hauteur.
+      en: >-
+        Your turn. Vary k in exp of k x: a positive k makes it grow, a negative k makes it decay, and the speed depends on the value of k.
+        Place the marker and tick the tangent: its slope equals k times the height.
+    actions:
+      - { at: 0, clear: true, view: { x: [-3, 3], y: [-1, 8] }, plot: { id: ek, expr: "exp(k*x)", label: { fr: "exp(k x)", en: "exp(k x)" } } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Trois exercices : une valeur, une dérivée, puis une équation à résoudre.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Three exercises: a value, a derivative, then an equation to solve.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.exponential.value, exercise.exponential.derivative, exercise.exponential.solve]

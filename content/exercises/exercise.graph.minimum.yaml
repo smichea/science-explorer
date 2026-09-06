@@ -1,0 +1,47 @@
+# Leçon courbe — situer un minimum (réponse numérique)
+id: exercise.graph.minimum
+type: numeric
+nodeId: concept.graph
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Soit $g(x) = x^2 - 4x + 1$. Tracez-la dans le traceur (`x^2-4*x+1`).
+
+    En quelle abscisse $x$ la fonction $g$ atteint-elle son minimum ?
+  en: |-
+    Let $g(x) = x^2 - 4x + 1$. Draw it in the plotter (`x^2-4*x+1`).
+
+    At which abscissa $x$ does the function $g$ reach its minimum?
+numeric:
+  value: 2
+  tolerance: { kind: absolute, value: 0.1 }
+  inputLabel: { fr: "x du minimum", en: "x of the minimum" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Déplacez le marqueur jusqu'au point le plus bas de la courbe et lisez son abscisse.
+      en: |-
+        Move the marker to the lowest point of the curve and read its abscissa.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La courbe est symétrique par rapport à la verticale passant par le minimum ; $g(0) = g(4) = 1$.
+      en: |-
+        The curve is symmetric about the vertical line through the minimum; $g(0) = g(4) = 1$.
+solution:
+  fr: |-
+    Le minimum est atteint en $x = 2$ : $g(x) = (x - 2)^2 - 3$, forme qui montre que $g(x) \ge -3$ avec égalité en $x = 2$. Sur la courbe, c'est le point le plus bas ; la fonction décroît avant, croît après.
+  en: |-
+    The minimum is reached at $x = 2$: $g(x) = (x - 2)^2 - 3$, a form showing that $g(x) \ge -3$ with equality at $x = 2$. On the curve, it is the lowest point; the function decreases before it and increases after it.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

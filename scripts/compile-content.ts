@@ -60,11 +60,16 @@ import {
   type SearchEntry,
   type SimulationDefinition,
   type SourceDefinition,
+  LessonSchema,
+  type LessonDefinition,
+  type PlotterAction,
   type ValidationMessage,
   type ValidationReport,
 } from '../src/lib/content-schema/index';
 import { GraphIndex } from '../src/lib/domain/graph';
+import { compileExpression } from '../src/lib/domain/answers';
 import { computeLayout } from '../src/lib/domain/layout';
+import { speakableText, splitSentences } from '../src/lib/domain/speech';
 import { buildTour, prerequisiteInversions } from '../src/lib/domain/tour';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -187,6 +192,7 @@ const periodFiles = parseDir(PeriodSchema, join(CONTENT_DIR, 'periods'));
 const sourceFiles = parseDir(SourcesFileSchema, join(CONTENT_DIR, 'sources'));
 const glossaryFiles = parseDir(GlossaryFileSchema, join(CONTENT_DIR, 'glossary'));
 const routeFiles = parseDir(RoutesFileSchema, join(CONTENT_DIR, 'routes'));
+const lessonFiles = parseDir(LessonSchema, join(CONTENT_DIR, 'lessons'));
 
 for (const group of [
   nodeFiles,
@@ -625,6 +631,96 @@ for (const { file, data } of simulationFiles) {
 const simulationById = new Map(simulations.map((s) => [s.id, s]));
 
 // ---------------------------------------------------------------------------
+// Lessons: one per node and depth, a known tool, exercises of the node, expressions that compile,
+// actions that fall inside the spoken text.
+// ---------------------------------------------------------------------------
+
+const lessons: LessonDefinition[] = [];
+for (const { file, data } of lessonFiles) {
+  if (lessons.some((l) => l.id === data.id)) {
+    error(`duplicate lesson ${data.id}`, file, data.id);
+    continue;
+  }
+  if (lessons.some((l) => l.nodeId === data.nodeId && l.depth === data.depth))
+    error(
+      `lesson ${data.id}: ${data.nodeId} already has a lesson at depth ${data.depth}`,
+      file,
+      data.id
+    );
+  lessons.push(data);
+  const node = nodeById.get(data.nodeId);
+  if (!node) error(`lesson ${data.id}: unknown node ${data.nodeId}`, file, data.id);
+  else if (node.type === 'mission')
+    error(`lesson ${data.id}: a mission is practised, not taught`, file, data.id);
+  const tool = data.tool;
+  if (tool?.kind === 'simulation' && !simulationById.has(tool.simulationId))
+    error(`lesson ${data.id}: unknown simulation ${tool.simulationId}`, file, data.id);
+  const parameters = tool?.kind === 'plotter' ? tool.parameters.map((p) => p.id) : [];
+  const variables = tool?.kind === 'plotter' ? [tool.variable, ...parameters] : [];
+  const checkAction = (action: PlotterAction, where: string) => {
+    if (action.plot) {
+      try {
+        compileExpression(action.plot.expr, variables);
+      } catch (e) {
+        error(`${where}: curve ${action.plot.id}: ${(e as Error).message}`, file, data.id);
+      }
+    }
+    const scalars = [
+      action.point?.x,
+      action.secant?.from,
+      action.secant?.to,
+      action.tangent?.x,
+      action.interval?.from,
+      action.interval?.to,
+    ];
+    for (const scalar of scalars) {
+      if (typeof scalar !== 'string') continue;
+      try {
+        compileExpression(scalar, parameters);
+      } catch (e) {
+        error(`${where}: ${scalar}: ${(e as Error).message}`, file, data.id);
+      }
+    }
+    for (const id of Object.keys(action.set ?? {}))
+      if (!parameters.includes(id)) error(`${where}: unknown parameter ${id}`, file, data.id);
+  };
+  if (tool?.kind === 'plotter')
+    tool.initial.forEach((a, i) => checkAction(a, `lesson ${data.id}: initial action ${i + 1}`));
+  const stepIds = new Set<string>();
+  for (const step of data.steps ?? []) {
+    const where = `lesson ${data.id}, step ${step.id}`;
+    if (stepIds.has(step.id)) error(`${where}: duplicate step id`, file, data.id);
+    stepIds.add(step.id);
+    if (step.actions.length && tool?.kind !== 'plotter')
+      error(`${where}: plotter actions without a plotter tool`, file, data.id);
+    const sentences = splitSentences(speakableText(step.text.fr, 'fr')).length;
+    step.actions.forEach((action, i) => {
+      checkAction(action, `${where}, action ${i + 1}`);
+      if (action.at >= sentences)
+        warn(
+          `${where}: action ${i + 1} fires at sentence ${action.at + 1} but the French text has ${sentences}`,
+          file,
+          data.id
+        );
+    });
+    if (step.kind === 'exercises' && step.exercises.length === 0)
+      error(`${where}: an exercises step needs exercises`, file, data.id);
+    if (step.kind !== 'exercises' && step.exercises.length)
+      warn(`${where}: exercises listed on a ${step.kind} step are ignored`, file, data.id);
+    for (const id of step.exercises) {
+      const exercise = exerciseById.get(id);
+      if (!exercise) error(`${where}: unknown exercise ${id}`, file, data.id);
+      else if (exercise.nodeId !== data.nodeId)
+        warn(`${where}: exercise ${id} belongs to ${exercise.nodeId}`, file, data.id);
+    }
+  }
+  if (data.steps && !data.steps.some((s) => s.kind === 'exercises'))
+    warn(`lesson ${data.id} has no exercises step`, file, data.id);
+  if (data.steps && data.tool && !data.steps.some((s) => s.kind === 'play'))
+    warn(`lesson ${data.id} has a tool but no free play step`, file, data.id);
+}
+
+// ---------------------------------------------------------------------------
 // Missions
 // ---------------------------------------------------------------------------
 
@@ -1016,6 +1112,7 @@ function report(): ValidationReport {
     glossary: glossaryEntries.length,
     routes: routes.length,
     tours: tours.length,
+    lessons: lessons.length,
     curricula: curricula.length,
   };
   const r: ValidationReport = { createdAt: new Date().toISOString(), errors, warnings, counts };
@@ -1074,6 +1171,7 @@ emit('search.fr.json', search.fr);
 emit('search.en.json', search.en);
 emit('routes.json', routes);
 emit('tours.json', tours);
+emit('lessons.json', lessons);
 emit('glossary-entries.json', glossaryEntries);
 emit('asset-manifest.json', { assets: [] });
 emit('report.json', validation);

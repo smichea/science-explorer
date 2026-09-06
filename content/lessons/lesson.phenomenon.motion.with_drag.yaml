@@ -1,0 +1,7 @@
+# Leçon à outil simulation : les diapositives sont composées depuis la description du nœud.
+id: lesson.phenomenon.motion.with_drag
+nodeId: phenomenon.motion.with_drag
+depth: 1
+tool:
+  kind: simulation
+  simulationId: simulation.motion.drag

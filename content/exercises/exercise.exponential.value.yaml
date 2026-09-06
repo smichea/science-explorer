@@ -1,0 +1,43 @@
+# Leçon exponentielle — une valeur (réponse numérique)
+id: exercise.exponential.value
+type: numeric
+nodeId: tool.exponential
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Donnez la valeur de $e^2$ arrondie au centième (vous pouvez lire la courbe avec le marqueur ou utiliser une calculatrice).
+  en: |-
+    Give the value of $e^2$ rounded to the nearest hundredth (you may read the curve with the marker or use a calculator).
+numeric:
+  value: 7.39
+  tolerance: { kind: absolute, value: 0.02 }
+  inputLabel: { fr: "e²", en: "e²" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        $e \approx 2{,}718$ ; $e^2 = e \times e$.
+      en: |-
+        $e \approx 2.718$; $e^2 = e \times e$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $2{,}718 \times 2{,}718 \approx 7{,}39$.
+      en: |-
+        $2.718 \times 2.718 \approx 7.39$.
+solution:
+  fr: |-
+    $e^2 \approx 7{,}39$. Sur la courbe, le point d'abscisse $2$ est déjà bien plus haut que $2^2 = 4$ : l'exponentielle rattrape puis dépasse la fonction carré.
+  en: |-
+    $e^2 \approx 7.39$. On the curve, the point with abscissa $2$ is already well above $2^2 = 4$: the exponential catches up with and then overtakes the square function.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2
