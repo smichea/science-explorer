@@ -17,7 +17,7 @@ steps:
       fr: >-
         En Terminale, une fonction se construit souvent à partir de deux autres. Composer u puis v, c'est appliquer u, puis appliquer v au résultat : on note v rond u. Avec u de x égale x moins a et v de x égale x carré, la composée est la parabole décalée de a vers la droite.
       en: >-
-        In Terminale, a function is often built from two others. Composing u then v means applying u, then applying v to the result: we write v circle u. With u of x equal to x minus a and v of x equal to x squared, the composite is the parabola shifted by a to the right.
+        In Grade 12, a function is often built from two others. Composing u then v means applying u, then applying v to the result: we write v circle u. With u of x equal to x minus a and v of x equal to x squared, the composite is the parabola shifted by a to the right.
     actions:
       - { at: 1, plot: { id: v, expr: "x^2", label: { fr: "v(x) = x²", en: "v(x) = x²" } } }
       - { at: 2, plot: { id: c, expr: "(x-a)^2", label: { fr: "v∘u(x) = (x − a)²", en: "v∘u(x) = (x − a)²" } } }
@@ -38,7 +38,7 @@ steps:
       fr: >-
         La Terminale ajoute les limites : le comportement d'une fonction aux bords de son ensemble de définition. La fonction un sur x moins a tend vers l'infini près de a et vers zéro à l'infini. La droite verticale x égale a est une asymptote.
       en: >-
-        Terminale adds limits: the behaviour of a function at the edges of its domain. The function one over x minus a tends to infinity near a and to zero at infinity. The vertical line x equals a is an asymptote.
+        Grade 12 adds limits: the behaviour of a function at the edges of its domain. The function one over x minus a tends to infinity near a and to zero at infinity. The vertical line x equals a is an asymptote.
     actions:
       - { at: 0, clear: true, set: { a: 1 }, view: { x: [-4, 4], y: [-6, 6] } }
       - { at: 1, plot: { id: h, expr: "1/(x-a)", label: { fr: "1/(x − a)", en: "1/(x − a)" } } }

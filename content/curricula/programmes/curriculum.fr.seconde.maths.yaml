@@ -4,7 +4,7 @@ stage: seconde
 subject: mathematics
 title:
   fr: "Mathématiques — Seconde générale et technologique"
-  en: "Mathematics — Seconde (year 10), general and technological track"
+  en: "Mathematics — Grade 10 (Seconde), general and technological track"
 version: "2026-reference"
 validFrom: "2019-09-01"
 validTo: null

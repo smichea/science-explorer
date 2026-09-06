@@ -13,7 +13,7 @@ overview:
   fr: >-
     La dérivée est l'outil central de tout le voyage. Elle donne la vitesse de variation à un instant, et la pente d'une courbe en un point. Construite en Terminale, elle se précise en MPSI avec les limites, puis s'étend en MP à plusieurs variables. Vous la retrouverez dans huit phénomènes de physique et de chimie.
   en: >-
-    The derivative is the central tool of the whole journey. It gives the rate of change at an instant, and the slope of a curve at a point. Built in Terminale, sharpened in MPSI with limits, extended in MP to several variables, it returns in eight phenomena of physics and chemistry.
+    The derivative is the central tool of the whole journey. It gives the rate of change at an instant, and the slope of a curve at a point. Built in Grade 12, sharpened in MPSI with limits, extended in MP to several variables, it returns in eight phenomena of physics and chemistry.
 aliases:
   fr: ["nombre dérivé", "fonction dérivée", "taux de variation instantané", "dérivation"]
   en: ["differential coefficient", "derived function", "instantaneous rate of change", "differentiation"]
@@ -33,7 +33,7 @@ description:
 
     The derivative is the central tool of the atlas because it turns every law of evolution into an equation: "the rate of disappearance is proportional to the remaining quantity" becomes $y' = -ky$; "force dictates acceleration" becomes $m\,x'' = F$. Once the derivative is mastered, the same move applies to a rolling ball, a charging capacitor, a disappearing reactant or a decaying nucleus: only the meaning of the letters changes.
 
-    Its construction grows over the years. In Terminale, one learns the definition by a limit, the differentiation rules and the kinematic reading. In MPSI, the notion of differentiability is made precise, together with the local approximation $f(a+h) \approx f(a) + f'(a)\,h$ and the theorems linking the sign of the derivative to variations (Rolle, mean value). In MP, the derivative becomes differential and gradient for functions of several variables, with optimisation in view.
+    Its construction grows over the years. In Grade 12, one learns the definition by a limit, the differentiation rules and the kinematic reading. In MPSI, the notion of differentiability is made precise, together with the local approximation $f(a+h) \approx f(a) + f'(a)\,h$ and the theorems linking the sign of the derivative to variations (Rolle, mean value). In MP, the derivative becomes differential and gradient for functions of several variables, with optimisation in view.
 tool:
   problemSolved:
     fr: "Connaître la vitesse instantanée de variation d'une grandeur, et donc la pente d'une courbe en un point, alors que l'on ne sait mesurer que des variations moyennes sur un intervalle."

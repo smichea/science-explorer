@@ -4,7 +4,7 @@ stage: terminale
 subject: physics_chemistry
 title:
   fr: "Physique-chimie — Terminale générale, enseignement de spécialité"
-  en: "Physics and chemistry — Terminale (final year), specialised course"
+  en: "Physics and chemistry — Grade 12 (Terminale), specialised course"
 version: "2026-reference"
 validFrom: "2020-09-01"
 validTo: null

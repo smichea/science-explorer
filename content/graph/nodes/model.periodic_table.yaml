@@ -50,7 +50,7 @@ model:
     en:
       - "The duet and octet rules have exceptions: boron or aluminium with $6$ electrons, sulfur or phosphorus with $10$ or $12$, radicals such as nitrogen monoxide."
       - "The transition metals (columns $3$ to $12$) form several ions (iron II and iron III) that the model does not predict."
-      - "The Lewis structure gives neither the geometry of the molecule nor the length or energy of the bonds: that is the subject of Première."
+      - "The Lewis structure gives neither the geometry of the molecule nor the length or energy of the bonds: that is the subject of Grade 11."
       - "The noble gases are not totally inert: xenon forms a few compounds, and the stability of a species also depends on its environment (solvent, physical state)."
 depths:
   - depth: 1

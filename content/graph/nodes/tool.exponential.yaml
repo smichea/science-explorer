@@ -29,7 +29,7 @@ description:
 
     The problem it solves is that of evolutions whose **rate is proportional to the quantity present**: the equation $y' = k\,y$ has exactly the functions $t \mapsto C\,e^{kt}$ as solutions. With $k < 0$, the decay is faster when there is more left to lose: voltage of a charging capacitor, concentration of a first-order reactant, population of radioactive nuclei, velocity of a body slowed by air. In all these cases one writes $y(t) = y_0\,e^{-t/\tau}$, where $\tau = 1/|k|$ is the **time constant**; the quantity is divided by $2$ every $t_{1/2} = \tau \ln 2$ (**half-life**) and is still $37\,\%$ of its initial value after $\tau$.
 
-    In Terminale, the exponential is defined by $f' = f$, studied through its limits and linked to the equations $y' = ay + b$. In MPSI, it is constructed rigorously from the logarithm, extended to complex numbers ($e^{i\theta} = \cos\theta + i\sin\theta$), related to the hyperbolic functions and to its Taylor expansion, and it becomes the building block of every linear differential equation.
+    In Grade 12, the exponential is defined by $f' = f$, studied through its limits and linked to the equations $y' = ay + b$. In MPSI, it is constructed rigorously from the logarithm, extended to complex numbers ($e^{i\theta} = \cos\theta + i\sin\theta$), related to the hyperbolic functions and to its Taylor expansion, and it becomes the building block of every linear differential equation.
 tool:
   problemSolved:
     fr: "Décrire une grandeur dont la vitesse de variation est proportionnelle à sa valeur, et en calculer la constante de temps ou la demi-vie."

@@ -21,7 +21,7 @@ edges:
   - { from: method.measurement, to: concept.pure_substances_mixtures, type: requires_recommended, weight: 0.6,
       note: { fr: "Identifier une espèce par sa masse volumique ou sa température d'ébullition demande de comparer une mesure à une référence, incertitude comprise.", en: "Identifying a species by its density or boiling temperature requires comparing a measurement with a reference, uncertainty included." } }
   - { from: phenomenon.nuclear_transformation, to: phenomenon.nuclear.radioactive_decay, type: requires_recommended, weight: 0.8,
-      note: { fr: "La loi de décroissance de Terminale dit à quelle vitesse se produisent les désintégrations vues en Seconde.", en: "The decay law of Terminale says how fast the disintegrations seen in Seconde occur." } }
+      note: { fr: "La loi de décroissance de Terminale dit à quelle vitesse se produisent les désintégrations vues en Seconde.", en: "The decay law of Grade 12 says how fast the disintegrations seen in Grade 10 occur." } }
   - { from: concept.concentration, to: phenomenon.chemistry.concentration_over_time, type: requires_recommended, weight: 0.7,
       note: { fr: "Suivre une concentration au cours du temps suppose de savoir ce qu'est une concentration.", en: "Following a concentration over time presupposes knowing what a concentration is." } }
   - { from: model.chemical_reaction, to: phenomenon.chemistry.first_order_reaction, type: requires_recommended, weight: 0.7,

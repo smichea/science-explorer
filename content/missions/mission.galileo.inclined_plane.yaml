@@ -102,7 +102,7 @@ learning:
   depthVariants:
     - id: terminale
       depth: 1
-      title: { fr: "Parcours Terminale : de la mesure à la dérivée", en: "Terminale path: from measurement to the derivative" }
+      title: { fr: "Parcours Terminale : de la mesure à la dérivée", en: "Grade 12 path: from measurement to the derivative" }
       minutes: 75
     - id: discovery
       depth: 1

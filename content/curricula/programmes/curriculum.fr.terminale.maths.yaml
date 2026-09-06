@@ -4,7 +4,7 @@ stage: terminale
 subject: mathematics
 title:
   fr: "Mathématiques — Terminale générale, enseignement de spécialité"
-  en: "Mathematics — Terminale (final year), specialised course"
+  en: "Mathematics — Grade 12 (Terminale), specialised course"
 version: "2026-reference"
 validFrom: "2020-09-01"
 validTo: null
