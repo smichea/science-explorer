@@ -111,12 +111,13 @@ export const en = {
 
   'tour.title': 'Bird’s-eye flight',
   'tour.intro':
-    'Fly over everything that remains to be seen for your goal, along the recommended routes: a short spoken presentation at each stop, never the full lesson.',
+    'Fly over everything that remains to be seen for your goal, along the recommended routes and in prerequisite order: a short spoken presentation at each lesson, never the full lesson.',
   'tour.start': 'Fly over what remains',
   'tour.startCount': '{n} destinations',
   'tour.step': 'Step {n} of {total}',
   'tour.leg': 'Next route',
-  'tour.legCount': '{n} destinations on this route',
+  'tour.legCount': '{n} lessons on this route, in prerequisite order',
+  'tour.legStops': 'Stops of the route',
   'tour.prev': 'Previous stop',
   'tour.next': 'Next stop',
   'tour.pause': 'Pause',

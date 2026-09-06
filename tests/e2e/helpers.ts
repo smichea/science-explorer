@@ -128,6 +128,41 @@ export async function currentStepId(page: Page): Promise<string> {
   return (await page.getByTestId('mission-step').getAttribute('data-step-id')) ?? '';
 }
 
+/**
+ * Waits until the mission session stored in IndexedDB has reached the given step: a step is
+ * committed after the interface has moved on, so a reload right after a click could otherwise
+ * find the previous checkpoint (or abort the pending transaction).
+ */
+export async function expectStoredStep(page: Page, missionId: string, stepId: string) {
+  await page.waitForFunction(
+    ([mission, step]) =>
+      new Promise<boolean>((resolve) => {
+        const request = indexedDB.open('science-explorer');
+        request.onerror = () => resolve(false);
+        request.onsuccess = () => {
+          const db = request.result;
+          try {
+            const all = db.transaction('missionSessions').objectStore('missionSessions').getAll();
+            all.onerror = () => resolve(false);
+            all.onsuccess = () => {
+              db.close();
+              resolve(
+                all.result.some(
+                  (s: { missionId: string; currentStepId: string }) =>
+                    s.missionId === mission && s.currentStepId === step
+                )
+              );
+            };
+          } catch {
+            db.close();
+            resolve(false);
+          }
+        };
+      }),
+    [missionId, stepId] as const
+  );
+}
+
 /** Drives the whole Galileo mission (Terminale variant) to completion. */
 export async function completeGalileoMission(page: Page) {
   await page.goto('mission/mission.galileo.inclined_plane');

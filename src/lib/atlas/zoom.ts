@@ -26,12 +26,26 @@ export const MAX_CAMERA_DISTANCE = 320;
  * universe distance, never beyond the orbit limit.
  */
 export function overviewDistance(radius: number, verticalFovDeg: number, aspect: number): number {
+  return Math.max(FOCUS_DISTANCE.universe, fitDistance(radius, verticalFovDeg, aspect));
+}
+
+/**
+ * Camera distance at which a sphere of the given radius fits inside the frustum, whatever the
+ * canvas aspect; never beyond the orbit limit. Used to frame a group of destinations (a leg of
+ * the bird's-eye flight): never closer than a region view, so a tight group is not shown from
+ * up close.
+ */
+export function groupDistance(radius: number, verticalFovDeg: number, aspect: number): number {
+  return Math.max(FOCUS_DISTANCE.region, fitDistance(radius, verticalFovDeg, aspect));
+}
+
+function fitDistance(radius: number, verticalFovDeg: number, aspect: number): number {
   const safeAspect = Number.isFinite(aspect) && aspect > 0 ? aspect : 1;
   const vertical = (Math.max(1, Math.min(179, verticalFovDeg)) / 2) * (Math.PI / 180);
   const horizontal = Math.atan(Math.tan(vertical) * safeAspect);
   const half = Math.min(vertical, horizontal);
   const fit = Math.max(0, radius) / Math.sin(half);
-  return Math.min(MAX_CAMERA_DISTANCE, Math.max(FOCUS_DISTANCE.universe, fit));
+  return Math.min(MAX_CAMERA_DISTANCE, fit);
 }
 
 /** Label budget per zoom level (labels beyond the budget are hidden, lowest priority first). */

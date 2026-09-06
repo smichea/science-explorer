@@ -63,7 +63,9 @@ import {
   type ValidationMessage,
   type ValidationReport,
 } from '../src/lib/content-schema/index';
+import { GraphIndex } from '../src/lib/domain/graph';
 import { computeLayout } from '../src/lib/domain/layout';
+import { buildTour, prerequisiteInversions } from '../src/lib/domain/tour';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
@@ -826,7 +828,7 @@ for (const { file, data } of routeFiles) {
   }
 }
 
-// Guided flights: every leg after the first must carry its transition sentence, and the nodes
+// Guided flights: every leg after the first must carry its transition sentence, and the lessons
 // flown over should have a spoken overview (otherwise the short purpose is read instead).
 const tours: TourDefinition[] = [];
 const speakableProblem = (text: string) =>
@@ -847,7 +849,8 @@ for (const { file, data } of routeFiles) {
         const route = routes.find((r) => r.id === leg.route);
         for (const id of route?.nodes ?? []) {
           const node = nodeById.get(id);
-          if (!node) continue;
+          // Missions are practised, never flown over: no spoken overview expected.
+          if (!node || node.type === 'mission') continue;
           if (!node.overview)
             warn(`${label}: ${id} has no overview (its short purpose will be read)`, file, id);
         }
@@ -899,6 +902,28 @@ for (const region of regions)
 // ---------------------------------------------------------------------------
 
 const graph: CompiledGraph = { version: PACKAGE_VERSION, worlds, regions, nodes, edges };
+
+// A flight must follow the prerequisites: rebuild each flight over the whole universe (no horizon,
+// no progression) and refuse an essential prerequisite flown after a destination that needs it.
+{
+  const index = new GraphIndex(graph, missions, { fr: [], en: [] });
+  for (const tour of tours) {
+    const steps = buildTour(
+      tour,
+      { graph: index, routes, horizon: null, config: horizon, snapshot: null },
+      { everything: true }
+    );
+    for (const inversion of prerequisiteInversions(steps, index)) {
+      const message =
+        `${inversion.to} (leg ${inversion.toLeg + 1}) is flown before its ` +
+        `${inversion.type === 'requires_essentially' ? 'essential' : 'recommended'} prerequisite ` +
+        `${inversion.from} (leg ${inversion.fromLeg + 1})`;
+      const file = routeFiles.find((f) => f.data.tours.some((t) => t.id === tour.id))?.file ?? '';
+      if (inversion.type === 'requires_essentially') error(message, file, tour.id);
+      else warn(message, file, tour.id);
+    }
+  }
+}
 const layout = computeLayout(graph, anchors);
 
 function tokens(text: string): string[] {

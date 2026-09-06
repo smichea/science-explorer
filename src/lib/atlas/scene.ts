@@ -17,6 +17,7 @@ import {
   FOCUS_DISTANCE,
   LABEL_BUDGET,
   MAX_CAMERA_DISTANCE,
+  groupDistance,
   overviewDistance,
   zoomLevelForDistance,
   type ZoomLevel,
@@ -25,9 +26,14 @@ import {
 /** What the primary drag (left button, one finger) does. */
 export type DragMode = 'rotate' | 'pan';
 
+/** Space kept around a framed group of nodes so that labels and glows stay in view. */
+const GROUP_MARGIN = 8;
+
 export interface FocusTarget {
-  kind: 'universe' | 'world' | 'region' | 'node';
+  kind: 'universe' | 'world' | 'region' | 'node' | 'group';
   id?: string;
+  /** The nodes framed together by a `group` target. */
+  ids?: string[];
 }
 
 export interface AtlasCallbacks {
@@ -697,6 +703,19 @@ export class AtlasScene {
         centre: toVec(c),
         distance: node?.type === 'mission' ? FOCUS_DISTANCE.mission : FOCUS_DISTANCE.node,
       };
+    }
+    if (target.kind === 'group' && target.ids?.length) {
+      // Frame every node of the group: look at their centre from far enough to see them all.
+      const points = target.ids
+        .map((id) => this.layout.positions[id])
+        .filter((p): p is Vec3 => !!p)
+        .map(toVec);
+      if (points.length === 0) return null;
+      const centre = points
+        .reduce((sum, p) => sum.add(p), new THREE.Vector3())
+        .divideScalar(points.length);
+      const radius = Math.max(...points.map((p) => p.distanceTo(centre))) + GROUP_MARGIN;
+      return { centre, distance: groupDistance(radius, this.camera.fov, this.camera.aspect) };
     }
     return null;
   }

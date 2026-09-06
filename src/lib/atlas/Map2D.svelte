@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { CompiledLayout } from '$lib/content-schema';
+  import type { CompiledLayout, Vec3 } from '$lib/content-schema';
   import type { GraphIndex } from '$lib/domain/graph';
   import {
     colorOfRegion,
@@ -17,6 +17,8 @@
     routes: RouteStyle[];
     selectedId: string | null;
     focusId: string | null;
+    /** Destinations framed together when no single element is focused (a leg of a flight). */
+    focusIds?: string[] | null;
     labelText: (id: string, kind: 'node' | 'region' | 'world' | 'hub') => string;
     stateLabel: (id: string) => string;
     href: (id: string, kind: 'node' | 'region' | 'world') => string;
@@ -30,6 +32,7 @@
     routes,
     selectedId,
     focusId,
+    focusIds = null,
     labelText,
     stateLabel,
     href,
@@ -127,18 +130,29 @@
     tz = 0;
   }
 
-  // Centre the view on the focused element.
+  // Centre the view on the focused element, or frame a group of destinations.
   $effect(() => {
-    if (!focusId) return;
-    const p = layout.positions[focusId] ?? layout.regions[focusId] ?? layout.worlds[focusId];
-    if (!p) return;
-    const target = Math.max(
-      scale,
-      layout.positions[focusId] ? 3 : layout.regions[focusId] ? 2 : 1.2
-    );
-    scale = target;
-    tx = p[0] - minX - width / scale / 2;
-    tz = p[2] - minZ - height / scale / 2;
+    if (focusId) {
+      const p = layout.positions[focusId] ?? layout.regions[focusId] ?? layout.worlds[focusId];
+      if (!p) return;
+      const target = Math.max(
+        scale,
+        layout.positions[focusId] ? 3 : layout.regions[focusId] ? 2 : 1.2
+      );
+      scale = target;
+      tx = p[0] - minX - width / scale / 2;
+      tz = p[2] - minZ - height / scale / 2;
+      return;
+    }
+    const points = (focusIds ?? []).map((id) => layout.positions[id]).filter((p): p is Vec3 => !!p);
+    if (points.length === 0) return;
+    const xs = points.map((p) => p[0]);
+    const zs = points.map((p) => p[2]);
+    const spanX = Math.max(...xs) - Math.min(...xs) + 2 * pad;
+    const spanZ = Math.max(...zs) - Math.min(...zs) + 2 * pad;
+    scale = Math.max(1, Math.min(3, width / spanX, height / spanZ));
+    tx = (Math.min(...xs) + Math.max(...xs)) / 2 - minX - width / scale / 2;
+    tz = (Math.min(...zs) + Math.max(...zs)) / 2 - minZ - height / scale / 2;
   });
 
   function shapePath(type: string, r: number): string {

@@ -266,7 +266,8 @@
           {styles}
           {routes}
           selectedId={activeSelectedId}
-          focusId={focus.id ?? null}
+          focusId={focus.kind === 'group' ? null : (focus.id ?? null)}
+          focusIds={focus.kind === 'group' ? (focus.ids ?? null) : null}
           {labelText}
           {stateLabel}
           {href}
