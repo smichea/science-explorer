@@ -12,6 +12,7 @@ import {
   histogram,
   isPrime,
   lensImage,
+  nucleusSymbol,
   outcomesOf,
   primeFactors,
   primesUpTo,
@@ -154,6 +155,9 @@ describe('periodic table', () => {
     expect(stableIon(6)).toBeNull();
     expect(decay(238, 92, 'alpha')).toEqual({ a: 234, z: 90 });
     expect(decay(14, 6, 'beta_minus')).toEqual({ a: 14, z: 7 });
+    expect(nucleusSymbol(92)).toBe('U');
+    expect(nucleusSymbol(90)).toBe('Th');
+    expect(nucleusSymbol(6)).toBe('C');
   });
 });
 

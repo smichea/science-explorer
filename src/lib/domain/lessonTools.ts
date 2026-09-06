@@ -424,6 +424,17 @@ export function elementOf(z: number): Element | undefined {
   return ELEMENTS[z - 1];
 }
 
+/** Symbols of the elements 37 to 94 (the nucleus panel goes beyond the table shown). */
+const SYMBOLS_BEYOND =
+  'Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn Fr Ra Ac Th Pa U Np Pu'.split(
+    ' '
+  );
+
+/** Symbol of the element of atomic number z (1 to 94), or `Z = z` beyond. */
+export function nucleusSymbol(z: number): string {
+  return elementOf(z)?.symbol ?? SYMBOLS_BEYOND[z - 37] ?? `Z=${z}`;
+}
+
 const SUBSHELLS: Array<[string, number]> = [
   ['1s', 2],
   ['2s', 2],

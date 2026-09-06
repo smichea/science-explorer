@@ -5,6 +5,7 @@
     decay,
     electronConfiguration,
     elementOf,
+    nucleusSymbol,
     stableIon,
     valenceElectrons,
     type DecayKind,
@@ -48,7 +49,7 @@
     noble_gas: '#f7f1e3',
   };
   const families = $derived([...new Set(shown.map((e) => e.family))]);
-  const symbolOf = (zz: number) => elementOf(zz)?.symbol ?? `Z=${zz}`;
+  const symbolOf = (zz: number) => nucleusSymbol(zz);
   function applyDecay(kind: DecayKind) {
     const to = decay(a, z, kind);
     if (to.a < 1 || to.z < 1 || to.z > to.a) return;
