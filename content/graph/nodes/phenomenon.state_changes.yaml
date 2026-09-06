@@ -1,0 +1,46 @@
+id: phenomenon.state_changes
+type: phenomenon
+world: world.chemistry
+region: region.chemistry.micro_macro
+importance: 2
+tags: [lycee]
+title: { fr: Changements d'état et énergie, en: Changes of state and energy }
+shortPurpose:
+  fr: Décrire les passages entre solide, liquide et gaz à l'échelle des molécules, et calculer l'énergie qu'ils échangent.
+  en: Describe the passages between solid, liquid and gas at the scale of the molecules, and compute the energy they exchange.
+overview:
+  fr: >-
+    Fondre, bouillir, geler, la matière change d'état sans changer d'espèce, seules l'agitation et l'organisation des molécules changent. Pendant qu'un corps pur change d'état, sa température reste bloquée sur un palier, et l'énergie reçue sert uniquement à défaire la cohésion. Cette énergie se calcule, et elle explique aussi bien la sueur qui rafraîchit que le glaçon qui refroidit une boisson.
+  en: >-
+    Melting, boiling, freezing, matter changes state without changing species, only the agitation and the arrangement of the molecules change. While a pure substance changes state, its temperature stays locked on a plateau, and the energy received serves only to undo the cohesion. This energy can be computed, and it explains both the sweat that cools us and the ice cube that chills a drink.
+aliases:
+  fr: ["fusion et vaporisation", "palier de température", "énergie massique de changement d'état", "transformation physique"]
+  en: ["melting and vaporisation", "temperature plateau", "specific latent heat", "physical transformation"]
+description:
+  fr: |
+    La matière existe sous trois états : **solide** (entités serrées et ordonnées), **liquide** (serrées mais mobiles), **gaz** (dispersées et très agitées). Les six **changements d'état** sont la fusion (solide vers liquide) et la solidification, la vaporisation (liquide vers gaz) et la liquéfaction, la sublimation (solide vers gaz) et la condensation. Un changement d'état est une **transformation physique** : les molécules sont conservées, $\mathrm{H_2O}$ reste $\mathrm{H_2O}$ dans la glace, l'eau et la vapeur ; seules changent leur agitation et les liaisons entre elles. On l'écrit comme une équation, en précisant les états : $\mathrm{H_2O(s)} \to \mathrm{H_2O(l)}$.
+
+    Pour un **corps pur**, à pression donnée, le changement d'état se fait à température constante : la courbe de température d'un glaçon que l'on chauffe monte, puis marque un **palier** à $0\ ^\circ\mathrm{C}$ tant que glace et eau coexistent, puis remonte. Pendant le palier, l'énergie reçue ne sert pas à agiter davantage les molécules mais à rompre leur cohésion. L'**énergie** à fournir pour changer l'état d'une masse $m$ est proportionnelle à cette masse : $E = m \times L$, où $L$ est l'énergie massique de changement d'état, en $\mathrm{J/kg}$ ; pour l'eau, $L_{\text{fusion}} = 334\ \mathrm{kJ/kg}$ et $L_{\text{vaporisation}} = 2260\ \mathrm{kJ/kg}$. Faire fondre $200\ \mathrm{g}$ de glace demande ainsi $E = 0{,}200 \times 334 = 66{,}8\ \mathrm{kJ}$. La fusion, la vaporisation et la sublimation reçoivent de l'énergie (elles sont **endothermiques**) ; les transformations inverses en libèrent (**exothermiques**).
+
+    L'**évaporation** est une vaporisation lente, à la surface d'un liquide et à toute température, alors que l'**ébullition** se produit dans tout le volume à la température d'ébullition ; les deux prélèvent de l'énergie au liquide et à son entourage, ce qui explique la fraîcheur ressentie après la baignade. Un mélange, lui, n'a pas de palier net : sa température continue de varier pendant le changement d'état, ce qui permet de le distinguer d'un corps pur. Enfin, un corps chaud posé dans une pièce ne change pas d'état mais se refroidit vers la température ambiante, d'autant plus vite que l'écart est grand : sa température rejoint celle de la pièce en ralentissant, comme le montre la simulation de refroidissement.
+  en: |
+    Matter exists in three states: **solid** (entities packed and ordered), **liquid** (packed but mobile), **gas** (dispersed and highly agitated). The six **changes of state** are melting (solid to liquid) and solidification, vaporisation (liquid to gas) and liquefaction, sublimation (solid to gas) and deposition. A change of state is a **physical transformation**: the molecules are conserved, $\mathrm{H_2O}$ stays $\mathrm{H_2O}$ in ice, water and steam; only their agitation and the bonds between them change. It is written as an equation, stating the states: $\mathrm{H_2O(s)} \to \mathrm{H_2O(l)}$.
+
+    For a **pure substance**, at a given pressure, the change of state takes place at constant temperature: the temperature curve of an ice cube being heated rises, then shows a **plateau** at $0\ ^\circ\mathrm{C}$ as long as ice and water coexist, then rises again. During the plateau, the energy received does not agitate the molecules further but breaks their cohesion. The **energy** needed to change the state of a mass $m$ is proportional to that mass: $E = m \times L$, where $L$ is the specific latent heat of the change of state, in $\mathrm{J/kg}$; for water, $L_{\text{melting}} = 334\ \mathrm{kJ/kg}$ and $L_{\text{vaporisation}} = 2260\ \mathrm{kJ/kg}$. Melting $200\ \mathrm{g}$ of ice thus requires $E = 0.200 \times 334 = 66.8\ \mathrm{kJ}$. Melting, vaporisation and sublimation receive energy (they are **endothermic**); the reverse transformations release it (**exothermic**).
+
+    **Evaporation** is a slow vaporisation, at the surface of a liquid and at any temperature, whereas **boiling** occurs throughout the volume at the boiling temperature; both take energy from the liquid and its surroundings, which explains the chill felt after a swim. A mixture, on the other hand, has no clear plateau: its temperature keeps changing during the change of state, which makes it possible to distinguish it from a pure substance. Finally, a hot body placed in a room does not change state but cools towards the room temperature, the faster the larger the difference: its temperature reaches that of the room while slowing down, as the cooling simulation shows.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "nommer les six changements d'état et les décrire à l'échelle microscopique comme des transformations physiques"
+        - "exploiter la courbe de température d'un corps pur et reconnaître le palier d'un changement d'état"
+        - "calculer l'énergie échangée lors d'un changement d'état avec la relation E = m · L et identifier son sens (endothermique ou exothermique)"
+        - "distinguer évaporation et ébullition, et interpréter le refroidissement d'un corps vers la température ambiante"
+      en:
+        - "name the six changes of state and describe them at the microscopic scale as physical transformations"
+        - "use the temperature curve of a pure substance and recognise the plateau of a change of state"
+        - "compute the energy exchanged during a change of state with the relation E = m · L and identify its direction (endothermic or exothermic)"
+        - "distinguish evaporation from boiling, and interpret the cooling of a body towards room temperature"

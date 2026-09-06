@@ -1,0 +1,49 @@
+# Leçon principe d'inertie — distance parcourue par un train en mouvement rectiligne uniforme (réponse numérique)
+id: exercise.inertia.distance
+type: numeric
+nodeId: law.inertia
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Sur une portion de voie rectiligne, un TGV roule à la vitesse constante $v = 288\ \mathrm{km/h}$ : les forces qui s'exercent sur lui se compensent.
+
+    Quelle distance $d$ parcourt-il pendant $\Delta t = 45\ \mathrm{s}$ ? Donnez le résultat en mètres.
+  en: |-
+    On a straight stretch of track, a high-speed train runs at the constant speed $v = 288\ \mathrm{km/h}$: the forces acting on it compensate.
+
+    What distance $d$ does it cover during $\Delta t = 45\ \mathrm{s}$? Give the result in metres.
+numeric:
+  value: 3600
+  unit: "m"
+  tolerance: { kind: absolute, value: 10 }
+  inputLabel: { fr: "d", en: "d" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Convertissez d'abord la vitesse en mètres par seconde : $1\ \mathrm{km/h} = \dfrac{1000\ \mathrm{m}}{3600\ \mathrm{s}}$, donc on divise par $3{,}6$.
+      en: |-
+        First convert the speed to metres per second: $1\ \mathrm{km/h} = \dfrac{1000\ \mathrm{m}}{3600\ \mathrm{s}}$, so divide by $3.6$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $v = 288 / 3{,}6 = 80\ \mathrm{m/s}$, puis $d = v \times \Delta t$.
+      en: |-
+        $v = 288 / 3.6 = 80\ \mathrm{m/s}$, then $d = v \times \Delta t$.
+solution:
+  fr: |-
+    Conversion : $v = 288\ \mathrm{km/h} = \dfrac{288 \times 1000}{3600} = 80\ \mathrm{m/s}$.
+
+    Le mouvement étant rectiligne uniforme, la distance est proportionnelle à la durée :
+    $$d = v\,\Delta t = 80 \times 45 = 3600\ \mathrm{m},$$
+    soit $3{,}6\ \mathrm{km}$ en trois quarts de minute. C'est le principe d'inertie qui garantit ce calcul : tant que les forces se compensent, le vecteur vitesse reste le même, et l'on peut extrapoler la position aussi loin que l'on veut.
+  en: |-
+    Conversion: $v = 288\ \mathrm{km/h} = \dfrac{288 \times 1000}{3600} = 80\ \mathrm{m/s}$.
+
+    Since the motion is uniform and rectilinear, the distance is proportional to the duration:
+    $$d = v\,\Delta t = 80 \times 45 = 3600\ \mathrm{m},$$
+    that is $3.6\ \mathrm{km}$ in three quarters of a minute. The principle of inertia is what guarantees this computation: as long as the forces compensate, the velocity vector stays the same, and the position can be extrapolated as far as one wants.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

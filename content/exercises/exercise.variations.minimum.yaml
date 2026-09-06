@@ -1,0 +1,44 @@
+# Extremums — la valeur du minimum de 2(x − 3)² − 5 (réponse numérique)
+id: exercise.variations.minimum
+type: numeric
+nodeId: concept.variations_extremums
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Soit $h$ la fonction définie sur $\mathbb{R}$ par $h(x) = 2(x - 3)^2 - 5$.
+
+    Quelle est la valeur du **minimum** de $h$ sur $\mathbb{R}$ ? (On demande la valeur du minimum, pas l'abscisse où il est atteint.)
+  en: |-
+    Let $h$ be the function defined on $\mathbb{R}$ by $h(x) = 2(x - 3)^2 - 5$.
+
+    What is the value of the **minimum** of $h$ on $\mathbb{R}$? (The value of the minimum is asked, not the abscissa where it is reached.)
+numeric:
+  value: -5
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "minimum de h", en: "minimum of h" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Un carré est toujours positif ou nul : $2(x - 3)^2 \geq 0$ pour tout $x$. Quand ce terme est-il le plus petit possible ?
+      en: |-
+        A square is always positive or zero: $2(x - 3)^2 \geq 0$ for every $x$. When is this term as small as possible?
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $(x - 3)^2 = 0$ pour $x = 3$ ; calculez alors $h(3)$.
+      en: |-
+        $(x - 3)^2 = 0$ for $x = 3$; then compute $h(3)$.
+solution:
+  fr: |-
+    Pour tout réel $x$, $(x - 3)^2 \geq 0$, donc $2(x - 3)^2 \geq 0$ et $h(x) \geq -5$. De plus $h(3) = 2 \times 0 - 5 = -5$.
+
+    La valeur $-5$ est donc bien atteinte : c'est le minimum de $h$ sur $\mathbb{R}$, atteint en $x = 3$. La fonction est décroissante sur $]-\infty\,;\,3]$ et croissante sur $[3\,;\,+\infty[$. La forme canonique $2(x - 3)^2 - 5$ donne tout cela sans calcul, alors que la forme développée $2x^2 - 12x + 13$ ne le montre pas.
+  en: |-
+    For every real $x$, $(x - 3)^2 \geq 0$, so $2(x - 3)^2 \geq 0$ and $h(x) \geq -5$. Moreover $h(3) = 2 \times 0 - 5 = -5$.
+
+    The value $-5$ is therefore reached: it is the minimum of $h$ on $\mathbb{R}$, reached at $x = 3$. The function is decreasing on $]-\infty\,;\,3]$ and increasing on $[3\,;\,+\infty[$. The canonical form $2(x - 3)^2 - 5$ gives all this without computation, whereas the expanded form $2x^2 - 12x + 13$ does not show it.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

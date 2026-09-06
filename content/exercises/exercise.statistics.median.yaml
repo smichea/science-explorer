@@ -1,0 +1,45 @@
+# Statistiques — la médiane d'une série de six valeurs (réponse numérique)
+id: exercise.statistics.median
+type: numeric
+nodeId: tool.descriptive_statistics
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Six élèves ont mis, en minutes, les temps suivants pour un même trajet : $7$, $12$, $9$, $15$, $10$, $8$.
+
+    Déterminez la médiane de cette série.
+  en: |-
+    Six pupils took, in minutes, the following times for the same journey: $7$, $12$, $9$, $15$, $10$, $8$.
+
+    Determine the median of this series.
+numeric:
+  value: 9.5
+  unit: "min"
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "médiane", en: "median" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Commencez par ranger les six valeurs dans l'ordre croissant.
+      en: |-
+        Start by arranging the six values in increasing order.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        L'effectif est pair : la médiane est la moyenne des deux valeurs centrales, la troisième et la quatrième de la série ordonnée.
+      en: |-
+        The count is even: the median is the average of the two central values, the third and the fourth of the ordered series.
+solution:
+  fr: |-
+    Série ordonnée : $7 \leq 8 \leq 9 \leq 10 \leq 12 \leq 15$. L'effectif $N = 6$ est pair, donc la médiane est la moyenne des troisième et quatrième valeurs :
+    $$\text{Me} = \frac{9 + 10}{2} = 9{,}5 \ \text{min}.$$
+    Au moins la moitié des temps sont inférieurs ou égaux à $9{,}5$ et au moins la moitié supérieurs ou égaux. La moyenne vaut $\dfrac{61}{6} \approx 10{,}2$ min, tirée vers le haut par la valeur $15$ : la médiane, elle, n'y est pas sensible.
+  en: |-
+    Ordered series: $7 \leq 8 \leq 9 \leq 10 \leq 12 \leq 15$. The count $N = 6$ is even, so the median is the average of the third and fourth values:
+    $$\text{Me} = \frac{9 + 10}{2} = 9.5 \ \text{min}.$$
+    At least half of the times are less than or equal to $9.5$ and at least half greater than or equal. The mean is $\dfrac{61}{6} \approx 10.2$ min, pulled upwards by the value $15$: the median, for its part, is not sensitive to it.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

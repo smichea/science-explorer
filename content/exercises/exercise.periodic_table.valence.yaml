@@ -1,0 +1,44 @@
+# Leçon tableau périodique — électrons de valence de l'oxygène (réponse numérique)
+id: exercise.periodic_table.valence
+type: numeric
+nodeId: model.periodic_table
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    L'oxygène a pour numéro atomique $Z = 8$ ; il se trouve dans la deuxième ligne et la colonne $16$ du tableau périodique.
+
+    Combien d'électrons de valence possède un atome d'oxygène ?
+  en: |-
+    Oxygen has atomic number $Z = 8$; it lies in the second row and column $16$ of the periodic table.
+
+    How many valence electrons does an oxygen atom have?
+numeric:
+  value: 6
+  tolerance: { kind: absolute, value: 0 }
+  inputLabel: { fr: "électrons de valence", en: "valence electrons" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Écrivez la configuration électronique de l'oxygène ($8$ électrons) et comptez les électrons de la dernière couche occupée.
+      en: |-
+        Write the electron configuration of oxygen ($8$ electrons) and count the electrons of the last occupied shell.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $1s^2\,2s^2\,2p^4$ : la deuxième couche contient les électrons des sous-couches $2s$ et $2p$.
+      en: |-
+        $1s^2\,2s^2\,2p^4$: the second shell contains the electrons of the $2s$ and $2p$ subshells.
+solution:
+  fr: |-
+    La configuration électronique de l'oxygène est $1s^2\,2s^2\,2p^4$. La dernière couche occupée est la deuxième ($2s$ et $2p$), qui porte $2 + 4 = 6$ **électrons de valence**. On retrouve ce nombre dans la position de l'oxygène : colonne $16$, soit $16 - 10 = 6$ électrons de valence pour un élément des colonnes $13$ à $18$.
+
+    Il manque deux électrons à l'oxygène pour atteindre l'octet du néon : il forme l'ion $\mathrm{O^{2-}}$, ou bien deux liaisons covalentes, comme dans la molécule d'eau.
+  en: |-
+    The electron configuration of oxygen is $1s^2\,2s^2\,2p^4$. The last occupied shell is the second one ($2s$ and $2p$), which carries $2 + 4 = 6$ **valence electrons**. This number is also read from the position of oxygen: column $16$, that is $16 - 10 = 6$ valence electrons for an element of columns $13$ to $18$.
+
+    Oxygen is two electrons short of the octet of neon: it forms the $\mathrm{O^{2-}}$ ion, or else two covalent bonds, as in the water molecule.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

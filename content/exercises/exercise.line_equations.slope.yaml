@@ -1,0 +1,42 @@
+# Équations de droites — la pente d'une droite passant par deux points (réponse numérique)
+id: exercise.line_equations.slope
+type: numeric
+nodeId: tool.line_equations
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Dans un repère, on donne $C(-2\,;\,3)$ et $D(4\,;\,-6)$.
+
+    Calculez le coefficient directeur (la pente) de la droite $(CD)$, sous forme décimale.
+  en: |-
+    In a frame, we are given $C(-2\,;\,3)$ and $D(4\,;\,-6)$.
+
+    Compute the slope of the line $(CD)$, in decimal form.
+numeric:
+  value: -1.5
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "pente m", en: "slope m" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La pente est le quotient de la variation des ordonnées par la variation des abscisses : $m = \dfrac{y_D - y_C}{x_D - x_C}$.
+      en: |-
+        The slope is the quotient of the change in ordinates by the change in abscissae: $m = \dfrac{y_D - y_C}{x_D - x_C}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $y_D - y_C = -6 - 3 = -9$ et $x_D - x_C = 4 - (-2) = 6$.
+      en: |-
+        $y_D - y_C = -6 - 3 = -9$ and $x_D - x_C = 4 - (-2) = 6$.
+solution:
+  fr: |-
+    $$m = \frac{y_D - y_C}{x_D - x_C} = \frac{-6 - 3}{4 - (-2)} = \frac{-9}{6} = -1{,}5.$$
+    La pente est négative : la droite descend, et chaque unité parcourue vers la droite fait perdre $1{,}5$ en ordonnée. En prenant les points dans l'autre ordre, $\dfrac{3 - (-6)}{-2 - 4} = \dfrac{9}{-6}$, on retrouve $-1{,}5$ : la pente ne dépend pas de l'ordre des points, à condition de ne pas mélanger.
+  en: |-
+    $$m = \frac{y_D - y_C}{x_D - x_C} = \frac{-6 - 3}{4 - (-2)} = \frac{-9}{6} = -1.5.$$
+    The slope is negative: the line goes down, and each unit travelled to the right loses $1.5$ in ordinate. Taking the points in the other order, $\dfrac{3 - (-6)}{-2 - 4} = \dfrac{9}{-6}$, gives $-1.5$ again: the slope does not depend on the order of the points, provided they are not mixed up.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

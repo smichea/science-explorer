@@ -1,0 +1,82 @@
+# Leçon principe d'inertie — reconnaître le mouvement où les forces se compensent (choix unique)
+id: exercise.inertia.compensated
+type: choice
+nodeId: law.inertia
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Voici quatre situations, décrites dans le référentiel terrestre.
+
+    Dans laquelle les forces exercées sur le système **se compensent-elles** ?
+  en: |-
+    Here are four situations, described in the terrestrial frame of reference.
+
+    In which one do the forces exerted on the system **compensate**?
+choice:
+  multiple: false
+  choices:
+    - id: falling_ball
+      text: { fr: "Une bille lâchée sans vitesse, qui tombe vers le sol", en: "A ball released without velocity, falling towards the ground" }
+      feedback:
+        fr: |-
+          La bille accélère : sa vitesse augmente, donc, d'après la contraposée du principe d'inertie, les forces ne se compensent pas. Seul son poids agit sur elle.
+        en: |-
+          The ball speeds up: its velocity increases, so, by the contrapositive of the principle of inertia, the forces do not compensate. Only its weight acts on it.
+    - id: satellite
+      text: { fr: "Un satellite en mouvement circulaire uniforme autour de la Terre", en: "A satellite in uniform circular motion around the Earth" }
+      feedback:
+        fr: |-
+          La valeur de la vitesse est constante, mais sa direction change sans cesse : le vecteur vitesse varie, donc les forces ne se compensent pas. L'attraction de la Terre n'est compensée par rien.
+        en: |-
+          The value of the velocity is constant, but its direction keeps changing: the velocity vector varies, so the forces do not compensate. The attraction of the Earth is compensated by nothing.
+    - id: parachutist
+      text: { fr: "Un parachutiste qui descend verticalement à vitesse constante", en: "A parachutist descending vertically at constant speed" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : le mouvement est rectiligne uniforme, donc, d'après le principe d'inertie, les forces se compensent. Le poids et la force de frottement de l'air ont la même valeur et des sens opposés.
+        en: |-
+          Correct: the motion is uniform and rectilinear, so, by the principle of inertia, the forces compensate. The weight and the drag force of the air have the same value and opposite senses.
+    - id: starting_car
+      text: { fr: "Une voiture qui démarre au feu vert", en: "A car pulling away at the green light" }
+      feedback:
+        fr: |-
+          La voiture accélère : sa vitesse passe de zéro à quelques mètres par seconde. La force motrice l'emporte sur les frottements ; la somme des forces n'est pas nulle.
+        en: |-
+          The car speeds up: its velocity goes from zero to a few metres per second. The driving force wins over friction; the sum of the forces is not zero.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le principe d'inertie relie « forces qui se compensent » à « repos ou mouvement rectiligne uniforme ». Cherchez la situation où le vecteur vitesse ne change ni de valeur ni de direction.
+      en: |-
+        The principle of inertia links "compensating forces" to "rest or uniform straight-line motion". Look for the situation where the velocity vector changes neither in value nor in direction.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Une vitesse qui augmente, ou une direction qui tourne, signifie que les forces ne se compensent pas.
+      en: |-
+        A velocity that increases, or a direction that turns, means that the forces do not compensate.
+solution:
+  fr: |-
+    D'après le principe d'inertie et sa réciproque, les forces se compensent si et seulement si le système est immobile ou en mouvement **rectiligne uniforme**, c'est-à-dire si son vecteur vitesse est constant (même valeur, même direction, même sens).
+
+    - La bille qui tombe accélère : forces non compensées (seul le poids agit).
+    - Le satellite garde une vitesse de valeur constante, mais sa direction tourne : le vecteur vitesse varie, forces non compensées (c'est l'attraction gravitationnelle qui le fait tourner).
+    - Le parachutiste à vitesse constante et verticale est en mouvement rectiligne uniforme : **les forces se compensent**, son poids et la force de frottement de l'air ont la même valeur.
+    - La voiture qui démarre accélère : forces non compensées.
+
+    Le piège est le satellite : « vitesse constante » ne suffit pas, il faut un *vecteur* vitesse constant.
+  en: |-
+    By the principle of inertia and its converse, the forces compensate if and only if the system is at rest or in **uniform straight-line motion**, that is, if its velocity vector is constant (same value, same direction, same sense).
+
+    - The falling ball speeds up: forces not compensated (only the weight acts).
+    - The satellite keeps a velocity of constant value, but its direction turns: the velocity vector varies, forces not compensated (the gravitational attraction is what makes it turn).
+    - The parachutist at constant vertical speed is in uniform straight-line motion: **the forces compensate**, the weight and the drag force of the air have the same value.
+    - The car pulling away speeds up: forces not compensated.
+
+    The trap is the satellite: "constant speed" is not enough, the velocity *vector* must be constant.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 2, linkedConcepts: 2, transfer: 2, autonomy: 2 }

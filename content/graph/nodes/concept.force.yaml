@@ -1,0 +1,65 @@
+id: concept.force
+type: model
+world: world.physics
+region: region.physics.motion_mechanics
+importance: 3
+tags: [lycee]
+title: { fr: "Modéliser une action par une force", en: "Modelling an action by a force" }
+shortPurpose:
+  fr: "Représenter l'action d'un objet sur un autre par un vecteur force, avec son point d'application, sa direction, son sens et sa valeur en newtons."
+  en: "Represent the action of one object on another by a force vector, with its point of application, its direction, its sense and its value in newtons."
+overview:
+  fr: >-
+    Quand un objet agit sur un autre, on modélise cette action par une force : une flèche qui a un point d'application, une direction, un sens et une valeur en newtons. Le poids, la réaction d'un support, la poussée d'une main sont des forces. Et chaque action a sa réciproque : si la Terre attire la pomme, la pomme attire la Terre avec une force de même valeur.
+  en: >-
+    When one object acts on another, we model that action by a force: an arrow with a point of application, a direction, a sense and a value in newtons. Weight, the reaction of a support, the push of a hand are forces. And every action has its reciprocal: if the Earth pulls the apple, the apple pulls the Earth with a force of the same value.
+aliases:
+  fr: ["force", "vecteur force", "diagramme objet-interactions", "principe des actions réciproques"]
+  en: ["force", "force vector", "interaction diagram", "principle of reciprocal actions"]
+description:
+  fr: |
+    Un système (l'objet étudié) est en **interaction** avec d'autres objets : interactions de contact (une main qui pousse, un support qui soutient, un fil qui tire, un ressort, les frottements) ou interactions à distance (attraction gravitationnelle, action magnétique, action électrique). Chaque action exercée sur le système est **modélisée par une force**, représentée par un vecteur $\vec F$ qui possède quatre caractéristiques : un point d'application, une direction (la droite qui porte la flèche), un sens et une valeur, mesurée en newtons ($\mathrm{N}$) avec un dynamomètre. Une force est toujours exercée *par* un objet *sur* un autre : on écrit $\vec F_{A/B}$ pour la force exercée par $A$ sur $B$.
+
+    Le **diagramme objet-interactions** est la méthode pour n'oublier aucune force : on entoure le système, on relie chaque objet qui agit sur lui, puis on dessine une force par interaction. Sur une trousse posée sur une table, deux interactions : la Terre, à distance, exerce le **poids** $\vec P$, vertical, vers le bas, de valeur $P = m\,g$ avec $g = 9{,}81\ \mathrm{N/kg}$ ; la table, par contact, exerce la réaction $\vec R$, verticale, vers le haut. Pour une trousse de $200\ \mathrm{g}$, $P = 0{,}200 \times 9{,}81 \approx 1{,}96\ \mathrm{N}$, et la réaction a la même valeur puisque la trousse ne bouge pas. Sur le schéma, la longueur de la flèche est proportionnelle à la valeur de la force (une échelle, par exemple $1\ \mathrm{cm}$ pour $1\ \mathrm{N}$).
+
+    Le **principe des actions réciproques** (troisième loi de Newton) affirme que si $A$ exerce sur $B$ la force $\vec F_{A/B}$, alors $B$ exerce sur $A$ la force $\vec F_{B/A} = -\vec F_{A/B}$ : même direction, même valeur, sens opposé, et cela que les objets soient immobiles ou en mouvement. La pomme attire donc la Terre autant que la Terre attire la pomme ; c'est la masse énorme de la Terre qui rend son mouvement imperceptible. Piège classique : les deux forces d'un couple action-réaction s'appliquent sur deux objets différents, elles ne se « compensent » donc jamais sur un même système ; le poids et la réaction de la table, eux, s'appliquent au même objet et ne forment pas un tel couple. Au chapitre suivant, la comparaison des forces exercées sur un système dit si son mouvement change : c'est le principe d'inertie.
+  en: |
+    A system (the object under study) is in **interaction** with other objects: contact interactions (a hand pushing, a support holding, a string pulling, a spring, friction) or interactions at a distance (gravitational attraction, magnetic action, electric action). Each action exerted on the system is **modelled by a force**, represented by a vector $\vec F$ with four characteristics: a point of application, a direction (the line carrying the arrow), a sense and a value, measured in newtons ($\mathrm{N}$) with a spring scale. A force is always exerted *by* one object *on* another: we write $\vec F_{A/B}$ for the force exerted by $A$ on $B$.
+
+    The **interaction diagram** is the method for forgetting no force: circle the system, link every object acting on it, then draw one force per interaction. For a pencil case resting on a table, two interactions: the Earth, at a distance, exerts the **weight** $\vec P$, vertical, downwards, of value $P = m\,g$ with $g = 9.81\ \mathrm{N/kg}$; the table, by contact, exerts the reaction $\vec R$, vertical, upwards. For a $200\ \mathrm{g}$ pencil case, $P = 0.200 \times 9.81 \approx 1.96\ \mathrm{N}$, and the reaction has the same value since the pencil case does not move. On the drawing, the length of the arrow is proportional to the value of the force (a scale, for instance $1\ \mathrm{cm}$ for $1\ \mathrm{N}$).
+
+    The **principle of reciprocal actions** (Newton's third law) states that if $A$ exerts on $B$ the force $\vec F_{A/B}$, then $B$ exerts on $A$ the force $\vec F_{B/A} = -\vec F_{A/B}$: same direction, same value, opposite sense, whether the objects are at rest or moving. The apple therefore pulls the Earth as much as the Earth pulls the apple; it is the enormous mass of the Earth that makes its motion imperceptible. Classic trap: the two forces of an action–reaction pair act on two different objects, so they never "cancel" on one system; the weight and the reaction of the table act on the same object and do not form such a pair. In the next chapter, comparing the forces exerted on a system tells whether its motion changes: this is the principle of inertia.
+model:
+  assumptions:
+    fr:
+      - "Le système est identifié et réduit à un point (son centre) où s'appliquent les forces ; sa rotation et sa déformation sont ignorées."
+      - "Chaque interaction, de contact ou à distance, est décrite par une seule force, de valeur mesurable en newtons."
+      - "Le champ de pesanteur est uniforme à l'échelle de l'expérience : $g = 9{,}81\\ \\mathrm{N/kg}$ partout dans la salle."
+    en:
+      - "The system is identified and reduced to a point (its centre) where the forces act; its rotation and deformation are ignored."
+      - "Each interaction, by contact or at a distance, is described by a single force, whose value is measurable in newtons."
+      - "The gravitational field is uniform at the scale of the experiment: $g = 9.81\\ \\mathrm{N/kg}$ everywhere in the room."
+  limits:
+    fr:
+      - "Une force répartie (pression de l'eau sur une coque, frottement le long d'une surface) est résumée par une seule flèche : c'est une approximation."
+      - "Le modèle ne dit pas comment le système bouge ; il faut une loi (principe d'inertie, deuxième loi de Newton) pour relier forces et mouvement."
+      - "Pour un objet étendu qui tourne, le point d'application compte : le modèle du point n'y suffit plus."
+    en:
+      - "A distributed force (water pressure on a hull, friction along a surface) is summed up by a single arrow: this is an approximation."
+      - "The model does not say how the system moves; a law (principle of inertia, Newton's second law) is needed to link forces and motion."
+      - "For an extended object that rotates, the point of application matters: the point model is no longer enough."
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "modéliser l'action d'un objet sur un système par une force et en donner les quatre caractéristiques"
+        - "établir un diagramme objet-interactions et représenter les forces à l'échelle sur un schéma"
+        - "calculer la valeur du poids à partir de la masse ($P = m\\,g$) et distinguer masse et poids"
+        - "utiliser le principe des actions réciproques pour identifier la force réciproque d'une force donnée"
+      en:
+        - "model the action of an object on a system by a force and give its four characteristics"
+        - "draw an interaction diagram and represent the forces to scale on a drawing"
+        - "compute the value of the weight from the mass ($P = m\\,g$) and distinguish mass from weight"
+        - "use the principle of reciprocal actions to identify the reciprocal of a given force"

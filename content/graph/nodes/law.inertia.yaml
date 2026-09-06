@@ -1,0 +1,53 @@
+id: law.inertia
+type: law
+world: world.physics
+region: region.physics.motion_mechanics
+importance: 3
+tags: [lycee]
+title: { fr: "Principe d'inertie", en: "Principle of inertia" }
+shortPurpose:
+  fr: "Relier l'immobilité ou le mouvement rectiligne uniforme d'un système au fait que les forces qui s'exercent sur lui se compensent."
+  en: "Relate the rest or uniform straight-line motion of a system to the fact that the forces acting on it compensate."
+overview:
+  fr: >-
+    Le principe d'inertie dit qu'un système immobile ou en mouvement rectiligne uniforme est un système dont les forces se compensent, et réciproquement. Un palet lancé sur la glace file tout droit à vitesse constante tant que rien ne le freine. Dès que la vitesse change, en valeur ou en direction, c'est que les forces ne se compensent plus.
+  en: >-
+    The principle of inertia says that a system at rest or in uniform straight-line motion is a system whose forces compensate, and conversely. A puck launched on ice glides straight ahead at constant speed as long as nothing slows it. As soon as the velocity changes, in value or in direction, the forces no longer compensate.
+aliases:
+  fr: ["première loi de Newton", "inertie", "mouvement rectiligne uniforme", "forces qui se compensent"]
+  en: ["Newton's first law", "inertia", "uniform rectilinear motion", "compensating forces"]
+description:
+  fr: |
+    **Principe d'inertie.** Dans un référentiel galiléen (par exemple le référentiel terrestre pour une expérience de quelques secondes), tout système modélisé par un point matériel persévère dans son état de repos ou de mouvement rectiligne uniforme si les forces qui s'exercent sur lui se compensent, c'est-à-dire si leur somme vectorielle est nulle : $\sum \vec F = \vec 0$. La réciproque est vraie aussi : si un système est immobile ou en mouvement rectiligne uniforme, alors les forces qui s'exercent sur lui se compensent. Le vecteur vitesse $\vec v$ (direction, sens et valeur) reste alors constant ; pour un mouvement rectiligne uniforme, la distance parcourue est proportionnelle à la durée, $d = v\,\Delta t$.
+
+    Le principe répond à une question vieille comme Aristote : faut-il une force pour entretenir un mouvement ? Non : un palet lancé sur une patinoire glisse tout droit, à vitesse constante, alors que la main ne le pousse plus ; son poids $\vec P$ et la réaction de la glace $\vec R$ se compensent, et les frottements sont négligeables. Un vaisseau spatial loin de tout astre, moteurs éteints, file de même en ligne droite pour toujours. Réciproquement, un parachutiste qui descend à vitesse constante est soumis à deux forces qui se compensent : son poids et la force de frottement de l'air, de même valeur, par exemple $800\ \mathrm{N}$ chacune pour une masse de $81{,}5\ \mathrm{kg}$.
+
+    La **contraposée** est l'outil le plus utile : si le vecteur vitesse varie, en valeur ou en direction, alors les forces ne se compensent pas. Une bille qui tombe accélère, donc son poids n'est pas compensé ; un satellite qui tourne autour de la Terre change sans cesse de direction, donc une force agit sur lui, l'attraction gravitationnelle. Piège classique : « vitesse constante » signifie vecteur vitesse constant, un mouvement circulaire uniforme n'est donc *pas* un cas d'inertie. Enfin, le mouvement dépend du référentiel : la valise posée dans un train qui roule à vitesse constante est immobile pour le passager et en mouvement rectiligne uniforme pour le quai ; dans les deux cas, les forces se compensent. Un référentiel où le principe d'inertie s'applique est dit galiléen.
+  en: |
+    **Principle of inertia.** In a Galilean frame of reference (for instance the terrestrial frame for an experiment lasting a few seconds), any system modelled by a point mass keeps its state of rest or of uniform straight-line motion if the forces acting on it compensate, that is, if their vector sum is zero: $\sum \vec F = \vec 0$. The converse is true as well: if a system is at rest or in uniform straight-line motion, then the forces acting on it compensate. The velocity vector $\vec v$ (direction, sense and value) then stays constant; for a uniform straight-line motion, the distance covered is proportional to the duration, $d = v\,\Delta t$.
+
+    The principle answers a question as old as Aristotle: is a force needed to keep a motion going? No: a puck launched on an ice rink glides straight ahead, at constant speed, although the hand no longer pushes it; its weight $\vec P$ and the reaction of the ice $\vec R$ compensate, and friction is negligible. A spacecraft far from any star, engines off, likewise travels in a straight line for ever. Conversely, a parachutist descending at constant speed is subject to two forces that compensate: the weight and the drag force of the air, of the same value, for instance $800\ \mathrm{N}$ each for a mass of $81.5\ \mathrm{kg}$.
+
+    The **contrapositive** is the most useful tool: if the velocity vector varies, in value or in direction, then the forces do not compensate. A falling ball speeds up, so its weight is not compensated; a satellite orbiting the Earth keeps changing direction, so a force acts on it, the gravitational attraction. Classic trap: "constant speed" means a constant velocity vector, so a uniform circular motion is *not* a case of inertia. Finally, motion depends on the frame of reference: the suitcase resting in a train running at constant speed is at rest for the passenger and in uniform straight-line motion for the platform; in both cases, the forces compensate. A frame of reference in which the principle of inertia holds is called Galilean.
+law:
+  statement:
+    fr: "Dans un référentiel galiléen, tout système persévère dans son état de repos ou de mouvement rectiligne uniforme si les forces qui s'exercent sur lui se compensent ($\\sum \\vec F = \\vec 0$), et réciproquement."
+    en: "In a Galilean frame of reference, every system keeps its state of rest or of uniform straight-line motion if the forces acting on it compensate ($\\sum \\vec F = \\vec 0$), and conversely."
+  validity:
+    fr: "Référentiels galiléens (référentiel terrestre pour des expériences courtes, référentiel héliocentrique) ; système modélisé par un point matériel ; mécanique classique, vitesses très inférieures à celle de la lumière."
+    en: "Galilean frames of reference (terrestrial frame for short experiments, heliocentric frame); system modelled by a point mass; classical mechanics, speeds much smaller than that of light."
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "énoncer le principe d'inertie et sa réciproque, et préciser le référentiel dans lequel il s'applique"
+        - "exploiter le principe d'inertie ou sa contraposée pour déduire des informations sur le mouvement ou sur les forces"
+        - "reconnaître qu'un mouvement rectiligne uniforme a un vecteur vitesse constant et calculer une distance parcourue avec $d = v\\,\\Delta t$"
+        - "décrire un même mouvement dans deux référentiels différents (relativité du mouvement)"
+      en:
+        - "state the principle of inertia and its converse, and specify the frame of reference in which it applies"
+        - "use the principle of inertia or its contrapositive to deduce information about the motion or about the forces"
+        - "recognise that a uniform straight-line motion has a constant velocity vector and compute a distance covered with $d = v\\,\\Delta t$"
+        - "describe the same motion in two different frames of reference (relativity of motion)"

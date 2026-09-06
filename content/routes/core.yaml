@@ -3,6 +3,83 @@
 # always before the destinations that need it (the compiler checks the flights built from them).
 # Missions belong to routes as practice steps; the bird's-eye flight never stops on them.
 routes:
+  - id: route.seconde.numbers_functions
+    kind: recommended
+    stage: seconde
+    title:
+      fr: "Seconde : des nombres aux fonctions"
+      en: "Seconde: from numbers to functions"
+    summary:
+      fr: "La première année du lycée en mathématiques : le vocabulaire de la logique, les ensembles de nombres, l'arithmétique, le calcul littéral et les équations, puis la notion de fonction, sa courbe, ses variations et les fonctions de référence."
+      en: "The first year of lycée in mathematics: the vocabulary of logic, number sets, arithmetic, algebraic manipulation and equations, then the notion of function, its curve, its variations and the reference functions."
+    nodes:
+      - concept.logic_sets
+      - concept.number_sets
+      - tool.arithmetic
+      - tool.powers_roots
+      - tool.algebraic_identities
+      - tool.linear_equations
+      - tool.sign_table
+      - concept.function
+      - concept.graph
+      - concept.variations_extremums
+      - tool.reference_functions
+  - id: route.seconde.geometry_data
+    kind: thematic
+    stage: seconde
+    title:
+      fr: "Seconde : géométrie, statistiques et probabilités"
+      en: "Seconde: geometry, statistics and probability"
+    summary:
+      fr: "Les vecteurs et le repérage, les équations de droites, puis l'information chiffrée, les statistiques descriptives, les probabilités, l'échantillonnage et un premier contact avec l'algorithmique."
+      en: "Vectors and coordinates, equations of lines, then percentages, descriptive statistics, probability, sampling and a first contact with algorithmics."
+    nodes:
+      - tool.vector
+      - concept.coordinates
+      - tool.line_equations
+      - concept.proportions_evolutions
+      - tool.descriptive_statistics
+      - concept.probability
+      - concept.sampling_fluctuation
+      - tool.algorithmics
+  - id: route.seconde.motion_waves
+    kind: thematic
+    stage: seconde
+    title:
+      fr: "Seconde : mouvement, interactions, ondes et signaux"
+      en: "Seconde: motion, interactions, waves and signals"
+    summary:
+      fr: "Les unités et la mesure, la description d'un mouvement, les forces, le principe d'inertie et la gravitation, puis le son, la réfraction, les lentilles et la loi d'Ohm."
+      en: "Units and measurement, describing a motion, forces, the principle of inertia and gravitation, then sound, refraction, lenses and Ohm's law."
+    nodes:
+      - concept.dimension_unit
+      - method.measurement
+      - model.kinematics_point
+      - concept.force
+      - law.inertia
+      - law.universal_gravitation
+      - phenomenon.sound
+      - law.snell_descartes
+      - model.thin_lens
+      - law.ohm
+  - id: route.seconde.matter
+    kind: thematic
+    stage: seconde
+    title:
+      fr: "Seconde : constitution et transformations de la matière"
+      en: "Seconde: constitution and transformations of matter"
+    summary:
+      fr: "Corps purs, mélanges et solutions, l'atome et le tableau périodique, la mole, puis les trois transformations de la matière : physique, chimique et nucléaire."
+      en: "Pure substances, mixtures and solutions, the atom and the periodic table, the mole, then the three transformations of matter: physical, chemical and nuclear."
+    nodes:
+      - concept.pure_substances_mixtures
+      - concept.concentration
+      - model.atom
+      - model.periodic_table
+      - concept.amount_of_substance
+      - phenomenon.state_changes
+      - model.chemical_reaction
+      - phenomenon.nuclear_transformation
   - id: route.first_journey
     kind: recommended
     title:
@@ -88,7 +165,31 @@ tours:
       en: >-
         Welcome aboard. This flight passes over everything you still have to see before the entrance exams, in the order in which the notions build on one another: each stop comes after the ones it depends on. First the recommended routes, then what remains in each world. A short presentation at each stop; you can open the full lesson later.
     legs:
+      - route: route.seconde.numbers_functions
+      - route: route.seconde.geometry_data
+        transition:
+          fr: >-
+            Les nombres, les équations et les fonctions sont en place. Passons à la géométrie du plan, aux vecteurs et aux droites, puis aux données : statistiques, probabilités et échantillonnage.
+          en: >-
+            Numbers, equations and functions are in place. Let us move on to plane geometry, vectors and lines, then to data: statistics, probability and sampling.
+      - route: route.seconde.motion_waves
+        transition:
+          fr: >-
+            Les outils mathématiques de Seconde sont posés. Passons à la physique : mesurer, décrire un mouvement, modéliser les actions par des forces, puis suivre les ondes, le son et la lumière, jusqu'aux circuits.
+          en: >-
+            The mathematical tools of Seconde are laid down. On to physics: measuring, describing a motion, modelling actions by forces, then following waves, sound and light, down to circuits.
+      - route: route.seconde.matter
+        transition:
+          fr: >-
+            Du mouvement à la matière : de quoi elle est faite, comment on la décrit et comment elle se transforme, par des changements d'état, des réactions chimiques et des transformations nucléaires.
+          en: >-
+            From motion to matter: what it is made of, how it is described and how it transforms, through changes of state, chemical reactions and nuclear transformations.
       - route: route.first_journey
+        transition:
+          fr: >-
+            Les fondations sont solides. Voici le premier voyage de Terminale : de la fonction à la dérivée, l'outil central de tout ce qui suit.
+          en: >-
+            The foundations are solid. Here is the first journey of Terminale: from the function to the derivative, the central tool of everything that follows.
       - route: route.motion
         transition:
           fr: >-

@@ -1,0 +1,42 @@
+# Probabilités — la probabilité d'une réunion à partir de P(A), P(B) et P(A ∩ B) (réponse numérique)
+id: exercise.probability.union
+type: numeric
+nodeId: concept.probability
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Dans un lycée, on choisit un élève au hasard. On note $A$ l'événement « l'élève fait du sport » et $B$ « l'élève joue d'un instrument ». On sait que $P(A) = 0{,}5$, $P(B) = 0{,}4$ et $P(A \cap B) = 0{,}15$.
+
+    Calculez $P(A \cup B)$, la probabilité que l'élève fasse du sport **ou** joue d'un instrument.
+  en: |-
+    In a lycée, a pupil is chosen at random. Let $A$ be the event "the pupil does sport" and $B$ "the pupil plays an instrument". We know that $P(A) = 0.5$, $P(B) = 0.4$ and $P(A \cap B) = 0.15$.
+
+    Compute $P(A \cup B)$, the probability that the pupil does sport **or** plays an instrument.
+numeric:
+  value: 0.75
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "P(A ∪ B)", en: "P(A ∪ B)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Utilisez la formule $P(A \cup B) = P(A) + P(B) - P(A \cap B)$ : les élèves qui font les deux ne doivent être comptés qu'une fois.
+      en: |-
+        Use the formula $P(A \cup B) = P(A) + P(B) - P(A \cap B)$: the pupils who do both must be counted only once.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $0{,}5 + 0{,}4 = 0{,}9$ compte deux fois les $0{,}15$ de l'intersection.
+      en: |-
+        $0.5 + 0.4 = 0.9$ counts the $0.15$ of the intersection twice.
+solution:
+  fr: |-
+    $$P(A \cup B) = P(A) + P(B) - P(A \cap B) = 0{,}5 + 0{,}4 - 0{,}15 = 0{,}75.$$
+    Il y a $75\,\%$ de chances que l'élève fasse du sport ou joue d'un instrument (ou les deux). Si l'on avait simplement additionné, on aurait obtenu $0{,}9$ en comptant deux fois les $15\,\%$ d'élèves qui font les deux. L'événement contraire, « ni sport ni instrument », a pour probabilité $1 - 0{,}75 = 0{,}25$.
+  en: |-
+    $$P(A \cup B) = P(A) + P(B) - P(A \cap B) = 0.5 + 0.4 - 0.15 = 0.75.$$
+    There is a $75\,\%$ chance that the pupil does sport or plays an instrument (or both). Simply adding would have given $0.9$, counting twice the $15\,\%$ of pupils who do both. The complementary event, "neither sport nor instrument", has probability $1 - 0.75 = 0.25$.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

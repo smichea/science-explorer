@@ -1,0 +1,44 @@
+# Leçon transformations nucléaires — nombre de neutrons du carbone 14 (réponse numérique)
+id: exercise.nuclear.carbon14_neutrons
+type: numeric
+nodeId: phenomenon.nuclear_transformation
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Le carbone 14, $^{14}_{6}\mathrm{C}$, est un isotope radioactif du carbone utilisé pour dater les vestiges anciens ; le carbone le plus abondant est le carbone 12, $^{12}_{6}\mathrm{C}$.
+
+    Combien de neutrons le noyau de carbone 14 contient-il ?
+  en: |-
+    Carbon-14, $^{14}_{6}\mathrm{C}$, is a radioactive isotope of carbon used to date ancient remains; the most abundant carbon is carbon-12, $^{12}_{6}\mathrm{C}$.
+
+    How many neutrons does the carbon-14 nucleus contain?
+numeric:
+  value: 8
+  tolerance: { kind: absolute, value: 0 }
+  inputLabel: { fr: "nombre de neutrons", en: "number of neutrons" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le nombre du haut, $14$, est le nombre de nucléons ; le nombre du bas, $6$, est le nombre de protons.
+      en: |-
+        The top number, $14$, is the number of nucleons; the bottom number, $6$, is the number of protons.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Neutrons : $N = A - Z = 14 - 6$.
+      en: |-
+        Neutrons: $N = A - Z = 14 - 6$.
+solution:
+  fr: |-
+    Le noyau $^{14}_{6}\mathrm{C}$ a $A = 14$ nucléons dont $Z = 6$ protons, donc
+    $$N = A - Z = 14 - 6 = 8 \text{ neutrons}.$$
+    Le carbone 12 n'en a que $6$ : les deux isotopes ont la même chimie (même $Z$, mêmes électrons) mais des noyaux différents, et seul le carbone 14 est instable. Il se désintègre par émission bêta moins, $^{14}_{6}\mathrm{C} \to {}^{14}_{7}\mathrm{N} + {}^{0}_{-1}\mathrm{e}$ : un de ses neutrons devient un proton, et le carbone devient de l'azote.
+  en: |-
+    The nucleus $^{14}_{6}\mathrm{C}$ has $A = 14$ nucleons including $Z = 6$ protons, so
+    $$N = A - Z = 14 - 6 = 8 \text{ neutrons}.$$
+    Carbon-12 has only $6$: the two isotopes have the same chemistry (same $Z$, same electrons) but different nuclei, and only carbon-14 is unstable. It decays by beta minus emission, $^{14}_{6}\mathrm{C} \to {}^{14}_{7}\mathrm{N} + {}^{0}_{-1}\mathrm{e}$: one of its neutrons becomes a proton, and carbon becomes nitrogen.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

@@ -1,0 +1,45 @@
+# Leçon changements d'état — énergie pour faire fondre 200 g de glace (réponse numérique)
+id: exercise.state_changes.melting_energy
+type: numeric
+nodeId: phenomenon.state_changes
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On sort du congélateur $200\ \mathrm{g}$ de glace à $0\ ^\circ\mathrm{C}$ et on la laisse fondre entièrement, sans que sa température change. L'énergie massique de fusion de l'eau vaut $L_{\text{fusion}} = 334\ \mathrm{kJ/kg}$.
+
+    Quelle énergie $E$ la glace doit-elle recevoir pour fondre complètement ? Répondez en $\mathrm{kJ}$.
+  en: |-
+    $200\ \mathrm{g}$ of ice at $0\ ^\circ\mathrm{C}$ is taken out of the freezer and left to melt completely, without its temperature changing. The specific latent heat of melting of water is $L_{\text{melting}} = 334\ \mathrm{kJ/kg}$.
+
+    What energy $E$ must the ice receive to melt completely? Answer in $\mathrm{kJ}$.
+numeric:
+  value: 66.8
+  unit: "kJ"
+  tolerance: { kind: absolute, value: 1 }
+  inputLabel: { fr: "E", en: "E" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        L'énergie d'un changement d'état est proportionnelle à la masse : $E = m \times L$, avec $m$ en kilogrammes si $L$ est en $\mathrm{kJ/kg}$.
+      en: |-
+        The energy of a change of state is proportional to the mass: $E = m \times L$, with $m$ in kilograms if $L$ is in $\mathrm{kJ/kg}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Convertissez : $200\ \mathrm{g} = 0{,}200\ \mathrm{kg}$, puis multipliez par $334$.
+      en: |-
+        Convert: $200\ \mathrm{g} = 0.200\ \mathrm{kg}$, then multiply by $334$.
+solution:
+  fr: |-
+    La masse doit être en kilogrammes : $m = 200\ \mathrm{g} = 0{,}200\ \mathrm{kg}$. L'énergie de fusion vaut
+    $$E = m \times L_{\text{fusion}} = 0{,}200 \times 334 = 66{,}8\ \mathrm{kJ}.$$
+    Cette énergie est reçue par la glace (la fusion est endothermique) et prélevée à son entourage : c'est pour cela qu'un glaçon refroidit une boisson. Elle est d'ailleurs comparable à l'énergie nécessaire pour chauffer la même masse d'eau liquide de $0$ à $80\ ^\circ\mathrm{C}$ environ : faire fondre coûte cher.
+  en: |-
+    The mass must be in kilograms: $m = 200\ \mathrm{g} = 0.200\ \mathrm{kg}$. The melting energy is
+    $$E = m \times L_{\text{melting}} = 0.200 \times 334 = 66.8\ \mathrm{kJ}.$$
+    This energy is received by the ice (melting is endothermic) and taken from its surroundings: that is why an ice cube chills a drink. It is comparable to the energy needed to heat the same mass of liquid water from $0$ to about $80\ ^\circ\mathrm{C}$: melting is expensive.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

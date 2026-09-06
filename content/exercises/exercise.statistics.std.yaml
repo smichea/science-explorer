@@ -1,0 +1,49 @@
+# Statistiques — l'écart type d'une série de huit valeurs (réponse numérique)
+id: exercise.statistics.std
+type: numeric
+nodeId: tool.descriptive_statistics
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On a relevé huit fois la longueur d'une même table, en centimètres, et obtenu les écarts suivants par rapport à $150$ cm : $2$, $4$, $4$, $4$, $5$, $5$, $7$, $9$.
+
+    Calculez l'écart type $\sigma$ de cette série de huit valeurs (à $0{,}05$ près).
+  en: |-
+    The length of the same table was recorded eight times, in centimetres, giving the following deviations from $150$ cm: $2$, $4$, $4$, $4$, $5$, $5$, $7$, $9$.
+
+    Compute the standard deviation $\sigma$ of this series of eight values (to within $0.05$).
+numeric:
+  value: 2
+  unit: "cm"
+  tolerance: { kind: absolute, value: 0.05 }
+  inputLabel: { fr: "écart type σ", en: "standard deviation σ" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Calculez d'abord la moyenne $\bar{x}$, puis les écarts $x_i - \bar{x}$, leurs carrés, la moyenne de ces carrés, et enfin sa racine carrée.
+      en: |-
+        First compute the mean $\bar{x}$, then the deviations $x_i - \bar{x}$, their squares, the mean of these squares, and finally its square root.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\bar{x} = \dfrac{40}{8} = 5$ ; les carrés des écarts sont $9, 1, 1, 1, 0, 0, 4, 16$.
+      en: |-
+        $\bar{x} = \dfrac{40}{8} = 5$; the squared deviations are $9, 1, 1, 1, 0, 0, 4, 16$.
+solution:
+  fr: |-
+    Moyenne : $\bar{x} = \dfrac{2 + 4 + 4 + 4 + 5 + 5 + 7 + 9}{8} = \dfrac{40}{8} = 5$.
+
+    Écarts à la moyenne : $-3, -1, -1, -1, 0, 0, 2, 4$ ; carrés : $9, 1, 1, 1, 0, 0, 4, 16$, de somme $32$. La variance est la moyenne de ces carrés, $\dfrac{32}{8} = 4$, et l'écart type sa racine carrée :
+    $$\sigma = \sqrt{4} = 2 \ \text{cm}.$$
+    Les mesures se dispersent typiquement de $2$ cm autour de la moyenne. En physique, cette dispersion sert à estimer l'incertitude de la mesure ; la moyenne $5$ cm serait la valeur retenue pour l'écart à $150$ cm.
+  en: |-
+    Mean: $\bar{x} = \dfrac{2 + 4 + 4 + 4 + 5 + 5 + 7 + 9}{8} = \dfrac{40}{8} = 5$.
+
+    Deviations from the mean: $-3, -1, -1, -1, 0, 0, 2, 4$; squares: $9, 1, 1, 1, 0, 0, 4, 16$, with sum $32$. The variance is the mean of these squares, $\dfrac{32}{8} = 4$, and the standard deviation its square root:
+    $$\sigma = \sqrt{4} = 2 \ \text{cm}.$$
+    The measurements typically spread by $2$ cm around the mean. In physics, this spread serves to estimate the uncertainty of the measurement; the mean $5$ cm would be the retained value for the deviation from $150$ cm.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 3, modellingOpenness: 1, linkedConcepts: 1, transfer: 2, autonomy: 2 }

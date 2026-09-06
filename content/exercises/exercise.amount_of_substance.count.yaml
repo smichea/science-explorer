@@ -1,0 +1,44 @@
+# Leçon quantité de matière — nombre de molécules dans 0,50 mol (réponse numérique)
+id: exercise.amount_of_substance.count
+type: numeric
+nodeId: concept.amount_of_substance
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un ballon contient $n = 0{,}50\ \mathrm{mol}$ de dioxyde de carbone $\mathrm{CO_2}$. Donnée : $N_A = 6{,}02 \times 10^{23}\ \mathrm{mol^{-1}}$.
+
+    Combien de molécules de $\mathrm{CO_2}$ ce ballon contient-il ? Écrivez le résultat en notation scientifique, par exemple `3e23` pour $3 \times 10^{23}$ (précision attendue : $2\ \%$).
+  en: |-
+    A flask contains $n = 0.50\ \mathrm{mol}$ of carbon dioxide $\mathrm{CO_2}$. Data: $N_A = 6.02 \times 10^{23}\ \mathrm{mol^{-1}}$.
+
+    How many $\mathrm{CO_2}$ molecules does this flask contain? Write the result in scientific notation, for example `3e23` for $3 \times 10^{23}$ (expected precision: $2\ \%$).
+numeric:
+  value: 3.01e23
+  tolerance: { kind: relative, value: 0.02 }
+  inputLabel: { fr: "N", en: "N" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Une mole contient $N_A$ entités ; $n$ moles en contiennent $n$ fois plus.
+      en: |-
+        One mole contains $N_A$ entities; $n$ moles contain $n$ times more.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $N = n \times N_A = 0{,}50 \times 6{,}02 \times 10^{23}$.
+      en: |-
+        $N = n \times N_A = 0.50 \times 6.02 \times 10^{23}$.
+solution:
+  fr: |-
+    Le nombre d'entités est proportionnel à la quantité de matière :
+    $$N = n \times N_A = 0{,}50 \times 6{,}02 \times 10^{23} = 3{,}01 \times 10^{23} \text{ molécules}.$$
+    Soit environ trois cent mille milliards de milliards de molécules dans une demi-mole, c'est-à-dire dans $22\ \mathrm{g}$ de dioxyde de carbone ($M(\mathrm{CO_2}) = 44{,}0\ \mathrm{g/mol}$). Chacune de ces molécules contient un atome de carbone et deux atomes d'oxygène : le ballon renferme donc $6{,}02 \times 10^{23}$ atomes d'oxygène, une mole exactement.
+  en: |-
+    The number of entities is proportional to the amount of substance:
+    $$N = n \times N_A = 0.50 \times 6.02 \times 10^{23} = 3.01 \times 10^{23} \text{ molecules}.$$
+    That is about three hundred thousand billion billion molecules in half a mole, that is in $22\ \mathrm{g}$ of carbon dioxide ($M(\mathrm{CO_2}) = 44.0\ \mathrm{g/mol}$). Each of these molecules contains one carbon atom and two oxygen atoms: the flask therefore holds $6.02 \times 10^{23}$ oxygen atoms, exactly one mole.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

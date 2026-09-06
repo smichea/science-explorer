@@ -1,0 +1,47 @@
+# Leçon transformation chimique — réactif limitant et quantité de CO₂ formée (réponse numérique)
+id: exercise.chemical_reaction.limiting_reactant
+type: numeric
+nodeId: model.chemical_reaction
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    On fait brûler $2{,}0\ \mathrm{mol}$ de méthane dans $3{,}0\ \mathrm{mol}$ de dioxygène ; la combustion est complète et modélisée par la réaction d'équation
+    $$\mathrm{CH_4} + 2\,\mathrm{O_2} \to \mathrm{CO_2} + 2\,\mathrm{H_2O}.$$
+
+    Identifiez le réactif limitant, puis donnez la quantité de matière de dioxyde de carbone $\mathrm{CO_2}$ formée dans l'état final, en $\mathrm{mol}$.
+  en: |-
+    $2.0\ \mathrm{mol}$ of methane is burnt in $3.0\ \mathrm{mol}$ of oxygen; the combustion is complete and modelled by the reaction of equation
+    $$\mathrm{CH_4} + 2\,\mathrm{O_2} \to \mathrm{CO_2} + 2\,\mathrm{H_2O}.$$
+
+    Identify the limiting reactant, then give the amount of substance of carbon dioxide $\mathrm{CO_2}$ formed in the final state, in $\mathrm{mol}$.
+numeric:
+  value: 1.5
+  unit: "mol"
+  tolerance: { kind: absolute, value: 0.05 }
+  inputLabel: { fr: "n(CO₂) final", en: "final n(CO₂)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Pour brûler $2{,}0\ \mathrm{mol}$ de méthane, combien faudrait-il de dioxygène d'après l'équation ? En a-t-on assez ?
+      en: |-
+        To burn $2.0\ \mathrm{mol}$ of methane, how much oxygen would be needed according to the equation? Is there enough?
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Le dioxygène est limitant : il permet $x_{\max} = \dfrac{3{,}0}{2} = 1{,}5\ \mathrm{mol}$ de réaction, et chaque « tour » de réaction forme une mole de $\mathrm{CO_2}$.
+      en: |-
+        Oxygen is limiting: it allows $x_{\max} = \dfrac{3.0}{2} = 1.5\ \mathrm{mol}$ of reaction, and each "turn" of the reaction forms one mole of $\mathrm{CO_2}$.
+solution:
+  fr: |-
+    Si la réaction a lieu $x$ fois, il disparaît $x$ mole de $\mathrm{CH_4}$ et $2x$ moles de $\mathrm{O_2}$. Le méthane permettrait d'aller jusqu'à $x = 2{,}0\ \mathrm{mol}$, le dioxygène seulement jusqu'à $x = \dfrac{3{,}0}{2} = 1{,}5\ \mathrm{mol}$ : c'est le **dioxygène** qui s'épuise en premier, il est le réactif limitant, et l'avancement maximal vaut $x_{\max} = 1{,}5\ \mathrm{mol}$.
+
+    Dans l'état final, il s'est formé $x_{\max} = 1{,}5\ \mathrm{mol}$ de $\mathrm{CO_2}$ et $2\,x_{\max} = 3{,}0\ \mathrm{mol}$ d'eau ; il reste $2{,}0 - 1{,}5 = 0{,}5\ \mathrm{mol}$ de méthane en excès et plus du tout de dioxygène. Pour un mélange stœchiométrique, il aurait fallu $4{,}0\ \mathrm{mol}$ de dioxygène.
+  en: |-
+    If the reaction takes place $x$ times, $x$ mole of $\mathrm{CH_4}$ and $2x$ moles of $\mathrm{O_2}$ disappear. Methane would allow going up to $x = 2.0\ \mathrm{mol}$, oxygen only up to $x = \dfrac{3.0}{2} = 1.5\ \mathrm{mol}$: **oxygen** runs out first, it is the limiting reactant, and the maximum extent is $x_{\max} = 1.5\ \mathrm{mol}$.
+
+    In the final state, $x_{\max} = 1.5\ \mathrm{mol}$ of $\mathrm{CO_2}$ and $2\,x_{\max} = 3.0\ \mathrm{mol}$ of water have formed; $2.0 - 1.5 = 0.5\ \mathrm{mol}$ of methane is left in excess and no oxygen at all. For a stoichiometric mixture, $4.0\ \mathrm{mol}$ of oxygen would have been needed.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 2, transfer: 1, autonomy: 2 }

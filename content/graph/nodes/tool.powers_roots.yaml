@@ -1,0 +1,47 @@
+id: tool.powers_roots
+type: mathematical_tool
+world: world.mathematics
+region: region.math.numbers_algebra
+importance: 2
+backpack: false
+tags: [lycee]
+title: { fr: "Puissances et racines carrées", en: "Powers and square roots" }
+shortPurpose:
+  fr: "Calculer avec les puissances d'exposant entier, écrire les nombres en notation scientifique et manipuler les racines carrées sans erreur."
+  en: "Compute with integer powers, write numbers in scientific notation and handle square roots without mistakes."
+overview:
+  fr: >-
+    Les puissances écrivent en quelques signes des produits répétés et des nombres immenses ou minuscules : la notation scientifique en fait l'outil des ordres de grandeur en physique et en chimie. La racine carrée est l'opération inverse du carré, avec ses règles propres et ses pièges. Savoir calculer avec les deux est indispensable avant le calcul littéral.
+  en: >-
+    Powers write repeated products and huge or tiny numbers in a few signs: scientific notation makes them the tool of orders of magnitude in physics and chemistry. The square root is the inverse operation of the square, with its own rules and traps. Knowing how to compute with both is indispensable before algebraic manipulation.
+aliases:
+  fr: ["puissances", "notation scientifique", "racine carrée", "exposant négatif", "ordre de grandeur"]
+  en: ["powers", "scientific notation", "square root", "negative exponent", "order of magnitude"]
+description:
+  fr: |
+    Pour un réel $a$ et un entier $n \geq 1$, la **puissance** $a^n$ est le produit de $n$ facteurs égaux à $a$ ; on pose $a^0 = 1$ et, pour $a \neq 0$, $a^{-n} = \dfrac{1}{a^n}$, de sorte que $2^{-3} = \dfrac18 = 0{,}125$. Les règles de calcul découlent de la définition : $a^m \times a^n = a^{m+n}$, $\dfrac{a^m}{a^n} = a^{m-n}$, $(a^m)^n = a^{mn}$ et $(ab)^n = a^n b^n$. En revanche $a^m + a^n$ ne se simplifie pas, et il faut distinguer $-2^2 = -4$ de $(-2)^2 = 4$.
+
+    La **notation scientifique** écrit tout nombre non nul sous la forme $a \times 10^n$ avec $1 \leq a < 10$ et $n$ entier relatif : la masse d'un électron est $9{,}1 \times 10^{-31}$ kg, le rayon de la Terre $6{,}4 \times 10^6$ m. Les règles des puissances rendent les calculs immédiats : $(3{,}2 \times 10^{-3}) \times (2 \times 10^5) = 6{,}4 \times 10^2 = 640$. L'exposant $n$ donne l'ordre de grandeur, ce que la physique compare avant tout calcul détaillé. Un nombre en notation scientifique se lit d'un coup d'œil : $10^{-9}$ est un milliardième, $10^{12}$ mille milliards.
+
+    La **racine carrée** d'un réel positif $a$ est l'unique réel positif dont le carré vaut $a$ : $\sqrt{a} \geq 0$ et $(\sqrt{a})^2 = a$, donc $\sqrt{25} = 5$, tandis que $\sqrt{2} \approx 1{,}414$ n'a pas d'écriture décimale exacte. Pour $a$ et $b$ positifs, $\sqrt{ab} = \sqrt{a}\,\sqrt{b}$ et, si $b \neq 0$, $\sqrt{\dfrac{a}{b}} = \dfrac{\sqrt{a}}{\sqrt{b}}$, ce qui permet de simplifier $\sqrt{50} = \sqrt{25 \times 2} = 5\sqrt{2}$. En revanche $\sqrt{a + b}$ n'est pas $\sqrt{a} + \sqrt{b}$, comme le montre $\sqrt{9 + 16} = 5$ alors que $3 + 4 = 7$ ; et pour tout réel $x$, $\sqrt{x^2} = |x|$, pas $x$.
+  en: |
+    For a real $a$ and an integer $n \geq 1$, the **power** $a^n$ is the product of $n$ factors equal to $a$; we set $a^0 = 1$ and, for $a \neq 0$, $a^{-n} = \dfrac{1}{a^n}$, so that $2^{-3} = \dfrac18 = 0.125$. The calculation rules follow from the definition: $a^m \times a^n = a^{m+n}$, $\dfrac{a^m}{a^n} = a^{m-n}$, $(a^m)^n = a^{mn}$ and $(ab)^n = a^n b^n$. On the other hand $a^m + a^n$ does not simplify, and one must distinguish $-2^2 = -4$ from $(-2)^2 = 4$.
+
+    **Scientific notation** writes every non-zero number in the form $a \times 10^n$ with $1 \leq a < 10$ and $n$ an integer: the mass of an electron is $9.1 \times 10^{-31}$ kg, the radius of the Earth $6.4 \times 10^6$ m. The rules of powers make the computations immediate: $(3.2 \times 10^{-3}) \times (2 \times 10^5) = 6.4 \times 10^2 = 640$. The exponent $n$ gives the order of magnitude, which physics compares before any detailed calculation. A number in scientific notation is read at a glance: $10^{-9}$ is a billionth, $10^{12}$ a thousand billion.
+
+    The **square root** of a positive real $a$ is the unique positive real whose square is $a$: $\sqrt{a} \geq 0$ and $(\sqrt{a})^2 = a$, so $\sqrt{25} = 5$, whereas $\sqrt{2} \approx 1.414$ has no exact decimal writing. For $a$ and $b$ positive, $\sqrt{ab} = \sqrt{a}\,\sqrt{b}$ and, if $b \neq 0$, $\sqrt{\dfrac{a}{b}} = \dfrac{\sqrt{a}}{\sqrt{b}}$, which allows one to simplify $\sqrt{50} = \sqrt{25 \times 2} = 5\sqrt{2}$. On the other hand $\sqrt{a + b}$ is not $\sqrt{a} + \sqrt{b}$, as shown by $\sqrt{9 + 16} = 5$ whereas $3 + 4 = 7$; and for every real $x$, $\sqrt{x^2} = |x|$, not $x$.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "calculer avec les puissances d'exposant entier relatif et appliquer les règles a^m × a^n, a^m / a^n, (a^m)^n"
+        - "écrire un nombre en notation scientifique et l'utiliser pour multiplier, diviser et comparer des ordres de grandeur"
+        - "définir la racine carrée d'un réel positif et utiliser √(ab) = √a √b pour simplifier une écriture"
+        - "éviter les erreurs classiques : √(a + b) ≠ √a + √b, √(x²) = |x|, (−a)^n selon la parité de n"
+      en:
+        - "compute with powers of integer exponent and apply the rules a^m × a^n, a^m / a^n, (a^m)^n"
+        - "write a number in scientific notation and use it to multiply, divide and compare orders of magnitude"
+        - "define the square root of a positive real and use √(ab) = √a √b to simplify an expression"
+        - "avoid the classic mistakes: √(a + b) ≠ √a + √b, √(x²) = |x|, (−a)^n according to the parity of n"

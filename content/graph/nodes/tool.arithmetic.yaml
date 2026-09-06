@@ -1,0 +1,47 @@
+id: tool.arithmetic
+type: mathematical_tool
+world: world.mathematics
+region: region.math.numbers_algebra
+importance: 2
+backpack: false
+tags: [lycee]
+title: { fr: "Multiples, diviseurs et nombres premiers", en: "Multiples, divisors and prime numbers" }
+shortPurpose:
+  fr: "Décomposer un entier en facteurs premiers pour connaître ses diviseurs, simplifier une fraction et démontrer des propriétés des entiers."
+  en: "Decompose an integer into prime factors to know its divisors, simplify a fraction and prove properties of the integers."
+overview:
+  fr: >-
+    Les entiers ont une structure cachée : chacun se décompose d'une seule façon en produit de nombres premiers, comme une molécule en atomes. Cette décomposition donne tous les diviseurs d'un nombre, simplifie les fractions et sert à démontrer, par exemple, que racine de deux n'est pas une fraction. C'est le premier atelier de démonstration du lycée.
+  en: >-
+    Integers have a hidden structure: each one decomposes in a single way into a product of prime numbers, like a molecule into atoms. This decomposition gives all the divisors of a number, simplifies fractions and serves to prove, for instance, that the square root of two is not a fraction. It is the first proof workshop of lycée.
+aliases:
+  fr: ["arithmétique", "divisibilité", "décomposition en facteurs premiers", "parité", "crible d'Ératosthène"]
+  en: ["arithmetic", "divisibility", "prime factorisation", "parity", "sieve of Eratosthenes"]
+description:
+  fr: |
+    Soit $a$ et $b$ deux entiers. On dit que $b$ est un **multiple** de $a$, ou que $a$ est un **diviseur** de $b$, s'il existe un entier $k$ tel que $b = ka$ : comme $84 = 7 \times 12$, les entiers $7$ et $12$ divisent $84$. Tout entier naturel est pair, de la forme $2k$, ou impair, de la forme $2k + 1$ ; la somme de deux multiples de $a$ est encore un multiple de $a$, et le carré d'un nombre impair est impair, car $(2k + 1)^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$. Un entier $p \geq 2$ est **premier** s'il n'a que deux diviseurs, $1$ et lui-même : $2, 3, 5, 7, 11, 13, \ldots$ ; le nombre $1$ n'est pas premier.
+
+    Tout entier $n \geq 2$ se **décompose** en produit de facteurs premiers, et cette écriture est unique à l'ordre près : $84 = 2^2 \times 3 \times 7$ et $360 = 2^3 \times 3^2 \times 5$. On l'obtient en divisant successivement par les plus petits nombres premiers, et elle résout d'un coup plusieurs problèmes. Les diviseurs de $84$ sont les produits $2^i \times 3^j \times 7^k$ avec $i \leq 2$, $j \leq 1$ et $k \leq 1$, soit $3 \times 2 \times 2 = 12$ diviseurs ; la fraction $\dfrac{84}{360}$ se simplifie en $\dfrac{7}{30}$ en supprimant les facteurs communs $2^2 \times 3$. Les critères de divisibilité par $2$, $3$, $5$, $9$ et $10$ accélèrent la recherche : un entier est divisible par $3$ lorsque la somme de ses chiffres l'est.
+
+    Pour tester si un entier $n$ est premier, il suffit d'essayer les diviseurs premiers jusqu'à $\sqrt{n}$ : $97$ n'est divisible ni par $2$, ni par $3$, ni par $5$, ni par $7$, et $11^2 > 97$, donc $97$ est premier. Le crible d'Ératosthène, qui raye les multiples de chaque nombre premier, donne tous les premiers jusqu'à une borne, et l'on démontre qu'il y en a une infinité. La décomposition en facteurs premiers est aussi la clé de l'irrationalité de $\sqrt{2}$ : si $\sqrt{2} = \dfrac{p}{q}$ avec une fraction irréductible, alors $p^2 = 2q^2$ force $p$ puis $q$ à être pairs, ce qui contredit l'irréductibilité. Ce raisonnement par l'absurde est l'un des premiers du programme de Seconde.
+  en: |
+    Let $a$ and $b$ be two integers. We say that $b$ is a **multiple** of $a$, or that $a$ is a **divisor** of $b$, if there exists an integer $k$ such that $b = ka$: since $84 = 7 \times 12$, the integers $7$ and $12$ divide $84$. Every natural number is even, of the form $2k$, or odd, of the form $2k + 1$; the sum of two multiples of $a$ is again a multiple of $a$, and the square of an odd number is odd, because $(2k + 1)^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$. An integer $p \geq 2$ is **prime** if it has only two divisors, $1$ and itself: $2, 3, 5, 7, 11, 13, \ldots$; the number $1$ is not prime.
+
+    Every integer $n \geq 2$ can be **decomposed** into a product of prime factors, and this writing is unique up to order: $84 = 2^2 \times 3 \times 7$ and $360 = 2^3 \times 3^2 \times 5$. It is obtained by dividing successively by the smallest primes, and it settles several problems at once. The divisors of $84$ are the products $2^i \times 3^j \times 7^k$ with $i \leq 2$, $j \leq 1$ and $k \leq 1$, that is $3 \times 2 \times 2 = 12$ divisors; the fraction $\dfrac{84}{360}$ simplifies to $\dfrac{7}{30}$ by removing the common factors $2^2 \times 3$. The divisibility criteria by $2$, $3$, $5$, $9$ and $10$ speed up the search: an integer is divisible by $3$ when the sum of its digits is.
+
+    To test whether an integer $n$ is prime, it is enough to try the prime divisors up to $\sqrt{n}$: $97$ is divisible neither by $2$, nor by $3$, nor by $5$, nor by $7$, and $11^2 > 97$, so $97$ is prime. The sieve of Eratosthenes, which crosses out the multiples of each prime, gives all the primes up to a bound, and one proves that there are infinitely many. The prime factorisation is also the key to the irrationality of $\sqrt{2}$: if $\sqrt{2} = \dfrac{p}{q}$ with an irreducible fraction, then $p^2 = 2q^2$ forces $p$ and then $q$ to be even, which contradicts irreducibility. This proof by contradiction is one of the first of the Seconde programme.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "déterminer si un entier est multiple ou diviseur d'un autre et utiliser la parité (2k, 2k + 1) dans une démonstration"
+        - "reconnaître un nombre premier et tester la primalité d'un entier en essayant les diviseurs premiers jusqu'à sa racine carrée"
+        - "décomposer un entier en produit de facteurs premiers et en déduire ses diviseurs ou simplifier une fraction"
+        - "utiliser les critères de divisibilité par 2, 3, 5, 9 et 10"
+      en:
+        - "decide whether an integer is a multiple or a divisor of another and use parity (2k, 2k + 1) in a proof"
+        - "recognise a prime number and test the primality of an integer by trying the prime divisors up to its square root"
+        - "decompose an integer into a product of prime factors and deduce its divisors or simplify a fraction"
+        - "use the divisibility criteria by 2, 3, 5, 9 and 10"

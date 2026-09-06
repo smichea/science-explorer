@@ -1,0 +1,88 @@
+# Leçon narrée — calcul littéral et identités remarquables : les deux membres d'une identité donnent la même courbe (paramètre a).
+id: lesson.tool.algebraic_identities
+nodeId: tool.algebraic_identities
+depth: 1
+tools:
+  - id: plotter
+    kind: plotter
+    variable: x
+    view: { x: [-5, 5], y: [-4, 16] }
+    parameters:
+      - { id: a, label: { fr: "nombre a", en: "number a" }, min: -3, max: 3, step: 0.1, value: 2 }
+    input: true
+steps:
+  - id: square
+    title: { fr: "Le carré d'une somme", en: "The square of a sum" }
+    text:
+      fr: >-
+        Développer, c'est transformer un produit en somme.
+        Prenons le carré de x plus a, avec a égal 2 : sa courbe est une parabole.
+        L'identité remarquable dit que ce carré vaut x carré plus deux a x plus a carré.
+        Traçons cette forme développée en pointillés : elle recouvre exactement la première courbe, quelle que soit la valeur de a.
+      en: >-
+        Expanding means turning a product into a sum.
+        Take the square of x plus a, with a equal to 2: its curve is a parabola.
+        The remarkable identity says that this square equals x squared plus two a x plus a squared.
+        Let us plot this expanded form dashed: it covers the first curve exactly, whatever the value of a.
+    actions:
+      - { at: 1, plot: { id: f, expr: "(x+a)^2", label: { fr: "(x + a)²", en: "(x + a)²" } } }
+      - { at: 3, plot: { id: g, expr: "x^2+2*a*x+a^2", dashed: true, label: { fr: "x² + 2ax + a²", en: "x² + 2ax + a²" } } }
+  - id: difference
+    title: { fr: "Une somme par une différence", en: "A sum times a difference" }
+    text:
+      fr: >-
+        Effaçons tout, et prenons le produit de x plus a par x moins a.
+        En développant, les doubles produits se compensent : il reste x carré moins a carré.
+        Cette forme développée, en pointillés, recouvre encore la courbe du produit.
+        L'identité se lit dans les deux sens : elle sert aussi à factoriser une différence de deux carrés.
+      en: >-
+        Let us clear everything, and take the product of x plus a by x minus a.
+        When expanding, the double products cancel out: what remains is x squared minus a squared.
+        This expanded form, dashed, again covers the curve of the product.
+        The identity reads both ways: it also serves to factor a difference of two squares.
+    actions:
+      - { at: 0, clear: true, plot: { id: p, expr: "(x+a)*(x-a)", label: { fr: "(x + a)(x − a)", en: "(x + a)(x − a)" } } }
+      - { at: 2, plot: { id: q, expr: "x^2-a^2", dashed: true, label: { fr: "x² − a²", en: "x² − a²" } } }
+  - id: roots
+    title: { fr: "Choisir la bonne forme", en: "Choosing the right form" }
+    text:
+      fr: >-
+        La forme factorisée montre où l'expression s'annule.
+        Le produit de x plus a par x moins a est nul quand x vaut moins a ou quand x vaut a : ce sont les deux points où la courbe coupe l'axe des abscisses.
+        Avec a égal 3, ces racines sont moins 3 et 3, alors que la forme développée, x carré moins 9, ne les montre pas du premier coup.
+        Développer pour calculer, factoriser pour résoudre : c'est le choix de forme à faire à chaque question.
+      en: >-
+        The factored form shows where the expression vanishes.
+        The product of x plus a by x minus a is zero when x equals minus a or when x equals a: these are the two points where the curve crosses the horizontal axis.
+        With a equal to 3, these roots are minus 3 and 3, whereas the expanded form, x squared minus 9, does not show them at first sight.
+        Expand to compute, factor to solve: that is the choice of form to make at every question.
+    actions:
+      - { at: 1, point: { id: r1, on: p, x: "-a", guides: true, label: { fr: "x = −a", en: "x = −a" } } }
+      - { at: 1, point: { id: r2, on: p, x: "a", guides: true, label: { fr: "x = a", en: "x = a" } } }
+      - { at: 2, set: { a: 3 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de développer", en: "Your turn to expand" }
+    text:
+      fr: >-
+        À vous.
+        Faites varier a et vérifiez que les courbes en pointillés restent collées aux courbes pleines.
+        Tapez ensuite une expression et sa forme développée pour tester votre calcul : si les deux courbes coïncident, le développement est juste.
+      en: >-
+        Your turn.
+        Vary a and check that the dashed curves stay glued to the solid ones.
+        Then type an expression and its expanded form to test your computation: if the two curves coincide, the expansion is right.
+    actions:
+      - { at: 0, clear: true, set: { a: 2 }, plot: { id: f, expr: "(x+a)^2", label: { fr: "(x + a)²", en: "(x + a)²" } } }
+      - { at: 0, plot: { id: g, expr: "x^2+2*a*x+a^2", dashed: true, label: { fr: "x² + 2ax + a²", en: "x² + 2ax + a²" } } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : développer un carré, puis factoriser une différence de deux carrés.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: expand a square, then factor a difference of two squares.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.identities.expand, exercise.identities.factor]

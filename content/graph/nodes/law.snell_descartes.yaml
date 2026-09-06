@@ -1,0 +1,55 @@
+id: law.snell_descartes
+type: law
+world: world.physics
+region: region.physics.optics
+importance: 2
+tags: [lycee]
+title: { fr: "Réfraction et lois de Snell-Descartes", en: "Refraction and Snell's laws" }
+shortPurpose:
+  fr: "Prévoir la direction d'un rayon lumineux qui traverse la surface entre deux milieux transparents."
+  en: "Predict the direction of a light ray crossing the surface between two transparent media."
+overview:
+  fr: >-
+    Quand la lumière passe de l'air à l'eau ou au verre, elle change de direction : c'est la réfraction, celle qui fait paraître brisée une paille dans un verre. Les lois de Snell-Descartes disent exactement de combien le rayon dévie, grâce à l'indice de réfraction de chaque milieu. Elles expliquent aussi la réflexion totale des fibres optiques et la dispersion de la lumière blanche par un prisme.
+  en: >-
+    When light passes from air into water or glass, it changes direction: this is refraction, the one that makes a straw look broken in a glass. Snell's laws say exactly how much the ray bends, thanks to the refractive index of each medium. They also explain the total reflection inside optical fibres and the dispersion of white light by a prism.
+aliases:
+  fr: ["réfraction", "lois de Descartes", "indice de réfraction", "réflexion totale"]
+  en: ["refraction", "Descartes' laws", "refractive index", "total internal reflection"]
+description:
+  fr: |
+    Dans un milieu transparent homogène, la lumière se propage en ligne droite, à la vitesse $v = c/n$ où $c = 3{,}00 \times 10^{8}\ \mathrm{m/s}$ est la vitesse dans le vide et $n \geq 1$ l'**indice de réfraction** du milieu ($n = 1{,}00$ pour l'air, $1{,}33$ pour l'eau, environ $1{,}5$ pour le verre). À la surface qui sépare deux milieux, le rayon incident donne un rayon réfléchi et un rayon **réfracté**, dont les directions sont repérées par leurs angles avec la **normale** (la perpendiculaire à la surface au point d'incidence) : angle d'incidence $i_1$, angle de réfraction $i_2$. **Lois de Snell-Descartes.** Les rayons incident, réfléchi et réfracté sont dans le plan d'incidence ; l'angle de réflexion est égal à l'angle d'incidence ; et pour la réfraction,
+    $$n_1 \sin i_1 = n_2 \sin i_2.$$
+
+    La loi permet de calculer la déviation. Un rayon arrive de l'air ($n_1 = 1{,}00$) sur du verre ($n_2 = 1{,}50$) avec $i_1 = 30^\circ$ : $\sin i_2 = \dfrac{n_1 \sin i_1}{n_2} = \dfrac{0{,}500}{1{,}50} = 0{,}333$, d'où $i_2 \approx 19{,}5^\circ$. En entrant dans un milieu plus réfringent (indice plus grand), le rayon se **rapproche** de la normale ; en sortant vers un milieu moins réfringent, il s'en écarte. C'est pourquoi le fond d'une piscine paraît moins profond qu'il n'est, et qu'une paille semble brisée à la surface de l'eau. Mesurer $i_1$ et $i_2$ avec un demi-disque de plexiglas et tracer $\sin i_2$ en fonction de $\sin i_1$ donne une droite passant par l'origine : c'est ainsi qu'on vérifie la loi et qu'on mesure un indice.
+
+    Quand la lumière va du verre vers l'air ($n_1 > n_2$), l'angle de réfraction est plus grand que l'angle d'incidence ; au-delà d'un **angle limite** $i_{\lim}$ tel que $\sin i_{\lim} = n_2 / n_1$ (soit $41{,}8^\circ$ pour le verre d'indice $1{,}50$), la loi n'a plus de solution : il n'y a plus de rayon réfracté et la lumière est **totalement réfléchie**. C'est le principe des fibres optiques qui transportent Internet. Enfin, l'indice d'un milieu dépend légèrement de la couleur de la lumière : le verre dévie un peu plus le violet que le rouge, et un prisme **disperse** la lumière blanche en un spectre continu. Piège classique : les angles se mesurent toujours par rapport à la normale, jamais par rapport à la surface.
+  en: |
+    In a homogeneous transparent medium, light travels in a straight line, at the speed $v = c/n$ where $c = 3.00 \times 10^{8}\ \mathrm{m/s}$ is the speed in a vacuum and $n \geq 1$ the **refractive index** of the medium ($n = 1.00$ for air, $1.33$ for water, about $1.5$ for glass). At the surface separating two media, the incident ray gives a reflected ray and a **refracted** ray, whose directions are located by their angles with the **normal** (the perpendicular to the surface at the point of incidence): angle of incidence $i_1$, angle of refraction $i_2$. **Snell's laws.** The incident, reflected and refracted rays lie in the plane of incidence; the angle of reflection equals the angle of incidence; and for refraction,
+    $$n_1 \sin i_1 = n_2 \sin i_2.$$
+
+    The law lets us compute the deviation. A ray comes from air ($n_1 = 1.00$) onto glass ($n_2 = 1.50$) with $i_1 = 30^\circ$: $\sin i_2 = \dfrac{n_1 \sin i_1}{n_2} = \dfrac{0.500}{1.50} = 0.333$, hence $i_2 \approx 19.5^\circ$. Entering a more refractive medium (larger index), the ray moves **closer** to the normal; leaving towards a less refractive medium, it moves away from it. This is why the bottom of a swimming pool looks shallower than it is, and why a straw seems broken at the surface of the water. Measuring $i_1$ and $i_2$ with a plexiglass half-disc and plotting $\sin i_2$ against $\sin i_1$ gives a straight line through the origin: this is how the law is checked and an index measured.
+
+    When light goes from glass to air ($n_1 > n_2$), the angle of refraction is larger than the angle of incidence; beyond a **critical angle** $i_{\lim}$ such that $\sin i_{\lim} = n_2 / n_1$ (that is $41.8^\circ$ for glass of index $1.50$), the law has no solution any more: there is no refracted ray and the light is **totally reflected**. This is the principle of the optical fibres that carry the Internet. Finally, the index of a medium depends slightly on the colour of the light: glass bends violet a little more than red, and a prism **disperses** white light into a continuous spectrum. Classic trap: angles are always measured from the normal, never from the surface.
+law:
+  statement:
+    fr: "Les rayons incident, réfléchi et réfracté sont dans le plan d'incidence ; l'angle de réflexion est égal à l'angle d'incidence ; les angles d'incidence et de réfraction, mesurés par rapport à la normale, vérifient $n_1 \\sin i_1 = n_2 \\sin i_2$."
+    en: "The incident, reflected and refracted rays lie in the plane of incidence; the angle of reflection equals the angle of incidence; the angles of incidence and refraction, measured from the normal, satisfy $n_1 \\sin i_1 = n_2 \\sin i_2$."
+  validity:
+    fr: "Milieux transparents, homogènes et isotropes séparés par une surface lisse (dioptre) ; lumière monochromatique (l'indice dépend de la couleur) ; optique géométrique, c'est-à-dire dimensions très grandes devant la longueur d'onde (sinon diffraction)."
+    en: "Transparent, homogeneous and isotropic media separated by a smooth surface; monochromatic light (the index depends on the colour); geometrical optics, that is, dimensions much larger than the wavelength (otherwise diffraction)."
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "définir l'indice de réfraction d'un milieu et relier la vitesse de la lumière dans le milieu à $c$ et $n$"
+        - "énoncer les lois de Snell-Descartes pour la réflexion et la réfraction, en mesurant les angles par rapport à la normale"
+        - "calculer un angle de réfraction ou un indice à partir de la relation $n_1 \\sin i_1 = n_2 \\sin i_2$ et prévoir l'existence d'une réflexion totale"
+        - "expliquer la dispersion de la lumière blanche par un prisme par la dépendance de l'indice avec la couleur"
+      en:
+        - "define the refractive index of a medium and relate the speed of light in the medium to $c$ and $n$"
+        - "state Snell's laws for reflection and refraction, measuring the angles from the normal"
+        - "compute an angle of refraction or an index from the relation $n_1 \\sin i_1 = n_2 \\sin i_2$ and predict whether total reflection occurs"
+        - "explain the dispersion of white light by a prism through the dependence of the index on the colour"

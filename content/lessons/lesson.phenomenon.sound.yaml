@@ -1,0 +1,28 @@
+# Leçon — émission et perception d'un son : la propagation d'une vibration (outil onde) et le signal périodique (traceur).
+id: lesson.phenomenon.sound
+nodeId: phenomenon.sound
+depth: 1
+tools:
+  - id: wave
+    kind: wave
+    title: { fr: "Propagation du son", en: "Sound propagation" }
+    parameters:
+      - { id: f, label: { fr: "fréquence f (Hz)", en: "frequency f (Hz)" }, min: 200, max: 1000, step: 10, value: 440 }
+    period: "1/f"
+    speed: 340
+    amplitude: 1
+    length: 3
+    point: 1
+    labels: { x: "x (m)", t: "t (s)" }
+  - id: signal
+    kind: plotter
+    title: { fr: "Signal périodique", en: "Periodic signal" }
+    variable: t
+    view: { x: [0, 0.01], y: [-1.5, 1.5] }
+    parameters:
+      - { id: f, label: { fr: "fréquence f (Hz)", en: "frequency f (Hz)" }, min: 200, max: 1000, step: 10, value: 440 }
+    input: false
+    initial:
+      - { view: { labels: { x: "t (s)", y: "u" } } }
+      - { plot: { id: sig, expr: "sin(2*pi*f*t)", label: { fr: "signal", en: "signal" } } }
+      - { interval: { id: period, from: 0, to: "1/f", label: { fr: "une période T = 1/f", en: "one period T = 1/f" } } }

@@ -1,0 +1,11 @@
+# Leçon — tableau périodique : familles, électrons de valence et ion stable de chaque élément jusqu'à l'argon.
+id: lesson.model.periodic_table
+nodeId: model.periodic_table
+depth: 1
+tools:
+  - id: table
+    kind: periodic_table
+    title: { fr: "Familles, électrons de valence et ions", en: "Families, valence electrons and ions" }
+    max: 18
+    selected: 11
+    mode: table

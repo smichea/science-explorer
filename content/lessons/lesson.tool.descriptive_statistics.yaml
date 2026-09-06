@@ -1,0 +1,12 @@
+# Leçon — statistiques descriptives : les notes d'une classe (valeurs et effectifs), histogramme, boîte, moyenne, médiane, quartiles, écart type.
+id: lesson.tool.descriptive_statistics
+nodeId: tool.descriptive_statistics
+depth: 1
+tools:
+  - id: data
+    kind: data
+    title: { fr: "Les notes de la classe", en: "The marks of the class" }
+    values: [8, 9, 10, 11, 12, 13, 14, 16, 18]
+    counts: [1, 2, 3, 5, 6, 4, 3, 1, 1]
+    label: { fr: "notes de la classe", en: "marks of the class" }
+    bins: 6

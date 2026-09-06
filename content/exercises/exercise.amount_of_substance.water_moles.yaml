@@ -1,0 +1,45 @@
+# Leçon quantité de matière — quantité de matière dans 36 g d'eau (réponse numérique)
+id: exercise.amount_of_substance.water_moles
+type: numeric
+nodeId: concept.amount_of_substance
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un verre contient $m = 36\ \mathrm{g}$ d'eau. Données : $M(\mathrm{H}) = 1{,}0\ \mathrm{g/mol}$, $M(\mathrm{O}) = 16{,}0\ \mathrm{g/mol}$.
+
+    Calculez la quantité de matière $n$ de molécules d'eau contenue dans ce verre, en $\mathrm{mol}$.
+  en: |-
+    A glass contains $m = 36\ \mathrm{g}$ of water. Data: $M(\mathrm{H}) = 1.0\ \mathrm{g/mol}$, $M(\mathrm{O}) = 16.0\ \mathrm{g/mol}$.
+
+    Compute the amount of substance $n$ of water molecules contained in this glass, in $\mathrm{mol}$.
+numeric:
+  value: 2.0
+  unit: "mol"
+  tolerance: { kind: absolute, value: 0.05 }
+  inputLabel: { fr: "n", en: "n" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Calculez d'abord la masse molaire de l'eau $\mathrm{H_2O}$ en additionnant les masses molaires de ses atomes (attention à l'indice $2$).
+      en: |-
+        First compute the molar mass of water $\mathrm{H_2O}$ by adding the molar masses of its atoms (mind the subscript $2$).
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $M(\mathrm{H_2O}) = 2 \times 1{,}0 + 16{,}0 = 18{,}0\ \mathrm{g/mol}$, puis $n = \dfrac{m}{M}$.
+      en: |-
+        $M(\mathrm{H_2O}) = 2 \times 1.0 + 16.0 = 18.0\ \mathrm{g/mol}$, then $n = \dfrac{m}{M}$.
+solution:
+  fr: |-
+    La masse molaire de l'eau est $M(\mathrm{H_2O}) = 2 \times M(\mathrm{H}) + M(\mathrm{O}) = 2 \times 1{,}0 + 16{,}0 = 18{,}0\ \mathrm{g/mol}$. La quantité de matière vaut donc
+    $$n = \frac{m}{M} = \frac{36}{18{,}0} = 2{,}0\ \mathrm{mol}.$$
+    Contrôle des unités : des grammes divisés par des grammes par mole donnent des moles. Ces $2{,}0\ \mathrm{mol}$ représentent $N = n \times N_A = 2{,}0 \times 6{,}02 \times 10^{23} \approx 1{,}2 \times 10^{24}$ molécules : un nombre impossible à compter, mais facile à peser.
+  en: |-
+    The molar mass of water is $M(\mathrm{H_2O}) = 2 \times M(\mathrm{H}) + M(\mathrm{O}) = 2 \times 1.0 + 16.0 = 18.0\ \mathrm{g/mol}$. The amount of substance is therefore
+    $$n = \frac{m}{M} = \frac{36}{18.0} = 2.0\ \mathrm{mol}.$$
+    Unit check: grams divided by grams per mole give moles. These $2.0\ \mathrm{mol}$ represent $N = n \times N_A = 2.0 \times 6.02 \times 10^{23} \approx 1.2 \times 10^{24}$ molecules: a number impossible to count, but easy to weigh.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

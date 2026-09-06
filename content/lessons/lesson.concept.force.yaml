@@ -1,0 +1,105 @@
+# Leçon narrée — modéliser une action par une force, avec l'outil vecteurs (poids, réaction, poussée, frottement, actions réciproques).
+id: lesson.concept.force
+nodeId: concept.force
+depth: 1
+tools:
+  - id: vectors
+    kind: vectors
+    view: { x: [-4, 4], y: [-4, 4] }
+    vectors:
+      - { id: weight, x: 0, y: -3, label: { fr: "P", en: "P" }, color: "#ffb347", components: true, hidden: true }
+      - { id: reaction, x: 0, y: 3, label: { fr: "R", en: "R" }, color: "#5ee6a8", hidden: true }
+      - { id: push, x: 2, y: 0, label: { fr: "F", en: "F" }, color: "#7f9cff", drag: true, hidden: true }
+      - { id: friction, x: -2, y: 0, label: { fr: "f", en: "f" }, color: "#ff8fab", drag: true, hidden: true }
+      - { id: fab, x: 2, y: 1, label: { fr: "F A/B", en: "F A/B" }, color: "#ffd166", hidden: true }
+      - { id: fba, x: -2, y: -1, label: { fr: "F B/A", en: "F B/A" }, color: "#ff8fab", hidden: true }
+    sums:
+      - { id: sum, of: [weight, reaction], label: { fr: "P + R", en: "P + R" }, hidden: true }
+steps:
+  - id: force
+    title: { fr: "Une action, une force", en: "An action, a force" }
+    text:
+      fr: >-
+        Quand un objet agit sur un autre, on modélise cette action par une force.
+        Une force se représente par une flèche : un point d'application, une direction, un sens et une valeur en newtons.
+        Ici, la Terre attire une trousse posée sur une table : c'est le poids, noté P, vertical, dirigé vers le bas, de valeur m fois g.
+        Avec une masse de 300 grammes, le poids vaut 0,3 fois 9,81, soit environ 2,9 newtons ; sur le dessin, la flèche mesure 3 unités.
+      en: >-
+        When one object acts on another, we model that action by a force.
+        A force is represented by an arrow: a point of application, a direction, a sense and a value in newtons.
+        Here, the Earth pulls a pencil case resting on a table: this is the weight, written P, vertical, pointing downwards, of value m times g.
+        With a mass of 300 grams, the weight is 0.3 times 9.81, about 2.9 newtons; on the drawing, the arrow is 3 units long.
+    actions:
+      - { at: 2, show: [weight] }
+  - id: diagram
+    title: { fr: "Le diagramme objet-interactions", en: "The interaction diagram" }
+    text:
+      fr: >-
+        Pour ne rien oublier, on fait le diagramme objet-interactions : la trousse est en interaction avec la Terre, à distance, et avec la table, par contact.
+        La table exerce sur la trousse une force de réaction, verticale, dirigée vers le haut.
+        La trousse reste immobile : la réaction a la même valeur que le poids, et la somme des deux forces est nulle.
+        Le poids et la réaction s'appliquent au même objet ; ce sont deux forces différentes qui se compensent.
+      en: >-
+        To forget nothing, we draw the interaction diagram: the pencil case interacts with the Earth, at a distance, and with the table, by contact.
+        The table exerts on the pencil case a reaction force, vertical, pointing upwards.
+        The pencil case stays at rest: the reaction has the same value as the weight, and the sum of the two forces is zero.
+        The weight and the reaction act on the same object; they are two different forces that compensate.
+    actions:
+      - { at: 1, show: [reaction] }
+      - { at: 2, show: [sum] }
+  - id: contact
+    title: { fr: "Pousser, frotter", en: "Pushing, rubbing" }
+    text:
+      fr: >-
+        Poussons maintenant la trousse avec la main : une force de contact, horizontale, dirigée vers la droite.
+        La table résiste par un frottement, horizontal, dans le sens opposé au mouvement.
+        Tant que la poussée ne dépasse pas le frottement, la trousse ne bouge pas ; ensuite, elle se met à glisser.
+        Sur un schéma, la longueur de chaque flèche est proportionnelle à la valeur de la force : c'est l'échelle.
+      en: >-
+        Now let us push the pencil case with the hand: a contact force, horizontal, pointing to the right.
+        The table resists through friction, horizontal, in the sense opposite to the motion.
+        As long as the push does not exceed the friction, the pencil case does not move; then it starts to slide.
+        On a drawing, the length of each arrow is proportional to the value of the force: this is the scale.
+    actions:
+      - { at: 0, hide: [sum], show: [push] }
+      - { at: 1, show: [friction] }
+  - id: reciprocal
+    title: { fr: "Les actions réciproques", en: "Reciprocal actions" }
+    text:
+      fr: >-
+        Chaque action a sa réciproque : si un objet A exerce une force sur un objet B, alors B exerce sur A une force de même direction, de même valeur et de sens opposé.
+        C'est le principe des actions réciproques, la troisième loi de Newton.
+        Les deux forces s'appliquent sur deux objets différents : elles ne se compensent jamais sur un même système.
+        La pomme attire la Terre autant que la Terre attire la pomme, mais la Terre est si massive que son mouvement est imperceptible.
+      en: >-
+        Every action has its reciprocal: if an object A exerts a force on an object B, then B exerts on A a force with the same direction, the same value and the opposite sense.
+        This is the principle of reciprocal actions, Newton's third law.
+        The two forces act on two different objects: they never compensate on one and the same system.
+        The apple pulls the Earth as much as the Earth pulls the apple, but the Earth is so massive that its motion is imperceptible.
+    actions:
+      - { at: 0, hide: [weight, reaction, push, friction], show: [fab, fba] }
+  - id: play
+    kind: play
+    title: { fr: "À vous de dessiner les forces", en: "Your turn to draw the forces" }
+    text:
+      fr: >-
+        À vous. Glissez la pointe de la poussée ou du frottement, et lisez les composantes et la valeur de chaque force.
+        Comparez la longueur des flèches : à cette échelle, une unité vaut un newton.
+        La somme du poids et de la réaction reste nulle : la trousse ne décolle pas de la table.
+      en: >-
+        Your turn. Drag the tip of the push or of the friction, and read the components and the value of each force.
+        Compare the lengths of the arrows: at this scale, one unit is one newton.
+        The sum of the weight and the reaction stays zero: the pencil case does not leave the table.
+    actions:
+      - { at: 0, clear: true, show: [weight, reaction, push, friction, sum] }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : la valeur d'un poids, puis la force réciproque d'un poids.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the value of a weight, then the reciprocal of a weight.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.force.weight, exercise.force.reciprocal]

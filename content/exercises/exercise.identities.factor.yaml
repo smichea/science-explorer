@@ -1,0 +1,44 @@
+# Identités remarquables — factoriser x² − 9 (réponse symbolique)
+id: exercise.identities.factor
+type: symbolic
+nodeId: tool.algebraic_identities
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Factorisez $x^2 - 9$ en un produit de deux facteurs du premier degré.
+
+    Écrivez votre réponse comme une expression en $x$, par exemple `(x-2)*(x+5)`.
+  en: |-
+    Factor $x^2 - 9$ into a product of two linear factors.
+
+    Write your answer as an expression in $x$, for instance `(x-2)*(x+5)`.
+symbolic:
+  variable: x
+  accepted: ["(x-3)*(x+3)", "(x+3)*(x-3)", "x^2-9"]
+  display: "x² − 9 ="
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Reconnaissez une différence de deux carrés : $x^2 - 9 = x^2 - 3^2$, puis utilisez $a^2 - b^2 = (a - b)(a + b)$.
+      en: |-
+        Recognise a difference of two squares: $x^2 - 9 = x^2 - 3^2$, then use $a^2 - b^2 = (a - b)(a + b)$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Ici $a = x$ et $b = 3$.
+      en: |-
+        Here $a = x$ and $b = 3$.
+solution:
+  fr: |-
+    $9 = 3^2$, donc $x^2 - 9$ est une différence de deux carrés et l'identité $a^2 - b^2 = (a - b)(a + b)$ donne
+    $$x^2 - 9 = (x - 3)(x + 3).$$
+    Vérification en développant : $(x - 3)(x + 3) = x^2 + 3x - 3x - 9 = x^2 - 9$. Cette forme factorisée montre aussitôt que l'expression s'annule pour $x = 3$ et pour $x = -3$ : c'est exactement ce que la forme développée cachait.
+  en: |-
+    $9 = 3^2$, so $x^2 - 9$ is a difference of two squares and the identity $a^2 - b^2 = (a - b)(a + b)$ gives
+    $$x^2 - 9 = (x - 3)(x + 3).$$
+    Check by expanding: $(x - 3)(x + 3) = x^2 + 3x - 3x - 9 = x^2 - 9$. This factored form immediately shows that the expression vanishes for $x = 3$ and for $x = -3$: exactly what the expanded form was hiding.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

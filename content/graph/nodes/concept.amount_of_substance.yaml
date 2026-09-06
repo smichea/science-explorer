@@ -1,0 +1,46 @@
+id: concept.amount_of_substance
+type: method
+world: world.chemistry
+region: region.chemistry.amount_measurement
+importance: 3
+tags: [lycee]
+title: { fr: "Quantité de matière : la mole", en: "Amount of substance: the mole" }
+shortPurpose:
+  fr: Compter des entités par paquets de six cent deux mille milliards de milliards, pour passer de la masse pesée au nombre de molécules.
+  en: Count entities in packets of six hundred and two thousand billion billion, to go from the weighed mass to the number of molecules.
+overview:
+  fr: >-
+    Une goutte d'eau contient plus de molécules qu'il n'y a de grains de sable sur Terre, impossible de les compter une à une. La mole est le paquet du chimiste, six cent deux mille milliards de milliards d'entités, et la masse molaire donne la masse d'un paquet. Peser, c'est alors compter, et c'est ce qui permet de prévoir les quantités dans une réaction.
+  en: >-
+    A drop of water contains more molecules than there are grains of sand on Earth, impossible to count them one by one. The mole is the chemist's packet, six hundred and two thousand billion billion entities, and the molar mass gives the mass of one packet. Weighing then becomes counting, and that is what makes it possible to predict the amounts in a reaction.
+aliases:
+  fr: ["mole", "constante d'Avogadro", "masse molaire", "nombre d'entités"]
+  en: ["mole", "Avogadro constant", "molar mass", "number of entities"]
+description:
+  fr: |
+    La **quantité de matière** $n$ d'un échantillon est le nombre d'entités (atomes, molécules, ions) qu'il contient, compté par paquets : son unité est la **mole**, et une mole contient $N_A = 6{,}02 \times 10^{23}$ entités, où $N_A$ est la **constante d'Avogadro** (en $\mathrm{mol^{-1}}$). Le nombre d'entités $N$ et la quantité de matière sont donc liés par $N = n \times N_A$ : $0{,}50\ \mathrm{mol}$ de molécules d'eau, c'est $0{,}50 \times 6{,}02 \times 10^{23} = 3{,}0 \times 10^{23}$ molécules. Cette unité existe parce que les entités sont minuscules et innombrables : la mole ramène leurs nombres à des valeurs de l'ordre de l'unité.
+
+    On ne compte pas les entités, on les pèse. La masse d'une entité se déduit des masses des atomes qui la composent, et la **masse molaire** $M$ d'une espèce est la masse d'une mole de ses entités : $M = m_{\text{entité}} \times N_A$, en $\mathrm{g/mol}$. Elle s'obtient en additionnant les masses molaires atomiques lues dans le tableau périodique : avec $M(\mathrm{H}) = 1{,}0$, $M(\mathrm{C}) = 12{,}0$ et $M(\mathrm{O}) = 16{,}0\ \mathrm{g/mol}$, on a $M(\mathrm{H_2O}) = 2 \times 1{,}0 + 16{,}0 = 18{,}0\ \mathrm{g/mol}$ et $M(\mathrm{CO_2}) = 12{,}0 + 2 \times 16{,}0 = 44{,}0\ \mathrm{g/mol}$. La quantité de matière contenue dans une masse $m$ vaut alors $n = \dfrac{m}{M}$ : $36\ \mathrm{g}$ d'eau représentent $n = \dfrac{36}{18{,}0} = 2{,}0\ \mathrm{mol}$.
+
+    La mole est le **pont** entre l'échelle macroscopique, où l'on pèse des grammes, et l'échelle microscopique, où réagissent des molécules : une équation de réaction se lit aussi bien « une molécule de méthane et deux de dioxygène » que « une mole de méthane et deux moles de dioxygène ». Les erreurs classiques sont de confondre masse et quantité de matière (deux échantillons de même masse n'ont pas la même quantité de matière si leurs masses molaires diffèrent), d'oublier les indices dans une formule ($\mathrm{H_2O}$ contient deux atomes d'hydrogène) ou de mélanger grammes et kilogrammes. Vérifier l'unité du résultat, $\mathrm{g} / (\mathrm{g/mol}) = \mathrm{mol}$, évite la plupart d'entre elles.
+  en: |
+    The **amount of substance** $n$ of a sample is the number of entities (atoms, molecules, ions) it contains, counted in packets: its unit is the **mole**, and one mole contains $N_A = 6.02 \times 10^{23}$ entities, where $N_A$ is the **Avogadro constant** (in $\mathrm{mol^{-1}}$). The number of entities $N$ and the amount of substance are therefore linked by $N = n \times N_A$: $0.50\ \mathrm{mol}$ of water molecules is $0.50 \times 6.02 \times 10^{23} = 3.0 \times 10^{23}$ molecules. This unit exists because entities are tiny and innumerable: the mole brings their numbers down to values of the order of one.
+
+    Entities are not counted, they are weighed. The mass of an entity is deduced from the masses of the atoms that make it up, and the **molar mass** $M$ of a species is the mass of one mole of its entities: $M = m_{\text{entity}} \times N_A$, in $\mathrm{g/mol}$. It is obtained by adding the atomic molar masses read from the periodic table: with $M(\mathrm{H}) = 1.0$, $M(\mathrm{C}) = 12.0$ and $M(\mathrm{O}) = 16.0\ \mathrm{g/mol}$, we get $M(\mathrm{H_2O}) = 2 \times 1.0 + 16.0 = 18.0\ \mathrm{g/mol}$ and $M(\mathrm{CO_2}) = 12.0 + 2 \times 16.0 = 44.0\ \mathrm{g/mol}$. The amount of substance contained in a mass $m$ is then $n = \dfrac{m}{M}$: $36\ \mathrm{g}$ of water represent $n = \dfrac{36}{18.0} = 2.0\ \mathrm{mol}$.
+
+    The mole is the **bridge** between the macroscopic scale, where grams are weighed, and the microscopic scale, where molecules react: a reaction equation reads equally well as "one molecule of methane and two of oxygen" or as "one mole of methane and two moles of oxygen". The classic mistakes are confusing mass and amount of substance (two samples of the same mass do not have the same amount of substance if their molar masses differ), forgetting the subscripts in a formula ($\mathrm{H_2O}$ contains two hydrogen atoms) or mixing grams and kilograms. Checking the unit of the result, $\mathrm{g} / (\mathrm{g/mol}) = \mathrm{mol}$, avoids most of them.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "définir la quantité de matière comme un nombre d'entités divisé par la constante d'Avogadro et convertir un nombre d'entités en moles"
+        - "calculer la masse d'une entité ou la masse molaire d'une espèce à partir des masses des atomes"
+        - "déterminer la quantité de matière d'un échantillon à partir de sa masse et de la masse molaire de l'espèce"
+        - "utiliser la mole pour relier l'échelle macroscopique et l'échelle microscopique, en contrôlant les unités"
+      en:
+        - "define the amount of substance as a number of entities divided by the Avogadro constant and convert a number of entities into moles"
+        - "compute the mass of an entity or the molar mass of a species from the masses of the atoms"
+        - "determine the amount of substance of a sample from its mass and the molar mass of the species"
+        - "use the mole to link the macroscopic and microscopic scales, checking the units"

@@ -1,0 +1,111 @@
+# Leçon narrée — le principe d'inertie, avec l'outil vecteurs (palet sur la glace : vitesse constante, poids et réaction qui se compensent, frottement).
+id: lesson.law.inertia
+nodeId: law.inertia
+depth: 1
+tools:
+  - id: vectors
+    kind: vectors
+    view: { x: [-1, 9], y: [-1, 5] }
+    parameters:
+      - { id: a, label: { fr: "position du palet a (m)", en: "puck position a (m)" }, min: 0, max: 8, step: 0.5, value: 2 }
+      - { id: k, label: { fr: "vitesse v (m/s)", en: "speed v (m/s)" }, min: 0, max: 3, step: 0.5, value: 2 }
+    vectors:
+      - { id: om, x: "a", y: 2, label: { fr: "OM", en: "OM" }, color: "#a7b0c8" }
+      - { id: v, x: "k", y: 0, from: om, label: { fr: "v", en: "v" }, color: "#5ee6a8" }
+      - { id: p, x: 0, y: -2, from: om, label: { fr: "P", en: "P" }, color: "#ffb347", hidden: true }
+      - { id: r, x: 0, y: 2, from: om, label: { fr: "R", en: "R" }, color: "#7f9cff", hidden: true }
+      - { id: d, x: -1.5, y: 0, from: om, label: { fr: "f", en: "f" }, color: "#ff8fab", hidden: true }
+    paths:
+      - { id: traj, x: "s", y: "2", range: [0, 8], label: { fr: "trajectoire", en: "trajectory" }, dashed: true }
+    sums:
+      - { id: sum, of: [p, r], label: { fr: "P + R", en: "P + R" }, hidden: true }
+steps:
+  - id: puck
+    title: { fr: "Un palet sur la glace", en: "A puck on the ice" }
+    text:
+      fr: >-
+        Un palet lancé sur la glace glisse en ligne droite : sa trajectoire, en pointillés, est une droite, et le vecteur gris repère la position M du palet.
+        Sa vitesse ne change ni de valeur, ni de direction, ni de sens : le mouvement est rectiligne uniforme.
+        Le vecteur vitesse v reste le même en tout point de la trajectoire ; ici il vaut 2 mètres par seconde vers la droite.
+        Chaque seconde, le palet avance de la même distance : la distance parcourue est proportionnelle à la durée.
+      en: >-
+        A puck launched on the ice glides in a straight line: its trajectory, dashed, is a straight line, and the grey vector locates the position M of the puck.
+        Its velocity changes neither in value, nor in direction, nor in sense: the motion is uniform and rectilinear.
+        The velocity vector v stays the same at every point of the trajectory; here it is 2 metres per second to the right.
+        Every second, the puck moves forward by the same distance: the distance covered is proportional to the duration.
+    actions:
+      - { at: 0, set: { a: 2, k: 2 } }
+      - { at: 2, set: { a: 4 } }
+      - { at: 3, set: { a: 6 } }
+  - id: forces
+    title: { fr: "Des forces qui se compensent", en: "Forces that compensate" }
+    text:
+      fr: >-
+        Quelles forces s'exercent sur le palet ?
+        Son poids, vertical vers le bas, et la réaction de la glace, verticale vers le haut.
+        Ces deux forces ont la même valeur et des sens opposés : leur somme est nulle, elles se compensent.
+        C'est le principe d'inertie : quand les forces se compensent, le système reste immobile ou garde un mouvement rectiligne uniforme, et réciproquement.
+      en: >-
+        Which forces act on the puck?
+        Its weight, vertical downwards, and the reaction of the ice, vertical upwards.
+        These two forces have the same value and opposite senses: their sum is zero, they compensate.
+        This is the principle of inertia: when the forces compensate, the system stays at rest or keeps a uniform straight-line motion, and conversely.
+    actions:
+      - { at: 1, show: [p, r] }
+      - { at: 2, show: [sum] }
+  - id: change
+    title: { fr: "Quand le mouvement change", en: "When the motion changes" }
+    text:
+      fr: >-
+        Sur une glace rugueuse, un frottement apparaît, opposé au mouvement.
+        Les forces ne se compensent plus : le palet ralentit, puis s'arrête.
+        C'est la contraposée du principe : si la vitesse varie, en valeur ou en direction, alors les forces ne se compensent pas.
+        Une bille qui tombe accélère, un satellite tourne : dans les deux cas, une force n'est pas compensée.
+      en: >-
+        On rough ice, a friction appears, opposed to the motion.
+        The forces no longer compensate: the puck slows down, then stops.
+        This is the contrapositive of the principle: if the velocity varies, in value or in direction, then the forces do not compensate.
+        A falling ball speeds up, a satellite turns: in both cases, a force is not compensated.
+    actions:
+      - { at: 0, hide: [sum], show: [d] }
+      - { at: 1, set: { a: 7, k: 1 } }
+  - id: frame
+    title: { fr: "Le mouvement dépend du référentiel", en: "Motion depends on the frame of reference" }
+    text:
+      fr: >-
+        Le mouvement dépend de l'observateur, c'est-à-dire du référentiel.
+        Une valise posée dans un train qui roule à vitesse constante est immobile pour le passager, avec une vitesse nulle.
+        Pour une personne restée sur le quai, la même valise est en mouvement rectiligne uniforme.
+        Dans les deux cas, les forces qui s'exercent sur elle se compensent : le principe d'inertie s'applique dans ces deux référentiels, dits galiléens.
+      en: >-
+        Motion depends on the observer, that is, on the frame of reference.
+        A suitcase resting in a train running at constant speed is at rest for the passenger, with zero velocity.
+        For a person who stayed on the platform, the same suitcase is in uniform straight-line motion.
+        In both cases, the forces acting on it compensate: the principle of inertia holds in both frames, called Galilean.
+    actions:
+      - { at: 0, hide: [d], show: [p, r, sum], set: { a: 4, k: 2 } }
+      - { at: 1, set: { k: 0 } }
+      - { at: 2, set: { k: 2 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de faire glisser le palet", en: "Your turn to slide the puck" }
+    text:
+      fr: >-
+        À vous. Déplacez le palet avec le curseur a et changez sa vitesse avec le curseur v : le vecteur vitesse ne dépend pas de la position.
+        Lisez la somme du poids et de la réaction, toujours nulle, et demandez-vous ce qu'il faudrait pour que le palet ralentisse.
+      en: >-
+        Your turn. Move the puck with the slider a and change its speed with the slider v: the velocity vector does not depend on the position.
+        Read the sum of the weight and the reaction, always zero, and ask yourself what it would take for the puck to slow down.
+    actions:
+      - { at: 0, clear: true, show: [p, r, sum], set: { a: 2, k: 2 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : reconnaître un mouvement où les forces se compensent, puis calculer une distance parcourue à vitesse constante.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: recognise a motion in which the forces compensate, then compute a distance covered at constant speed.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.inertia.compensated, exercise.inertia.distance]

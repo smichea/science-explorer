@@ -1,0 +1,46 @@
+id: concept.coordinates
+type: mathematical_concept
+world: world.mathematics
+region: region.math.geometry
+importance: 2
+tags: [lycee]
+title: { fr: "Repérage dans le plan : milieu, distance, projeté", en: "Coordinates in the plane: midpoint, distance, projection" }
+shortPurpose:
+  fr: "Traduire une figure du plan en coordonnées pour calculer un milieu, une distance ou un projeté orthogonal, et démontrer avec des nombres."
+  en: "Translate a plane figure into coordinates to compute a midpoint, a distance or an orthogonal projection, and prove with numbers."
+overview:
+  fr: >-
+    Un repère orthonormé transforme chaque point du plan en un couple de nombres, et la géométrie en calculs. Le milieu d'un segment est la moyenne des coordonnées, la distance entre deux points vient du théorème de Pythagore, et le projeté orthogonal donne le point d'une droite le plus proche d'un point. Ces trois outils démontrent qu'un triangle est rectangle ou qu'un quadrilatère est un parallélogramme, et préparent les équations de droites.
+  en: >-
+    An orthonormal frame turns every point of the plane into a pair of numbers, and geometry into computations. The midpoint of a segment is the average of the coordinates, the distance between two points comes from Pythagoras' theorem, and the orthogonal projection gives the point of a line closest to a point. These three tools prove that a triangle is right-angled or that a quadrilateral is a parallelogram, and prepare the equations of lines.
+aliases:
+  fr: ["repère orthonormé", "coordonnées d'un point", "milieu d'un segment", "distance entre deux points", "projeté orthogonal"]
+  en: ["orthonormal frame", "coordinates of a point", "midpoint of a segment", "distance between two points", "orthogonal projection"]
+description:
+  fr: |
+    Un **repère orthonormé** $(O\,;\,I,\,J)$ du plan est formé d'une origine $O$ et de deux axes perpendiculaires portant la même unité ; tout point $M$ y possède un couple unique de coordonnées $(x_M\,;\,y_M)$, son abscisse et son ordonnée. Le **milieu** $K$ du segment $[AB]$ a pour coordonnées la moyenne de celles de $A$ et de $B$ : $x_K = \dfrac{x_A + x_B}{2}$ et $y_K = \dfrac{y_A + y_B}{2}$. Pour $A(1\,;\,1)$ et $B(5\,;\,4)$, le milieu est $K(3\,;\,2{,}5)$. Cette formule sert à démontrer qu'un quadrilatère est un parallélogramme : ses diagonales ont alors le même milieu.
+
+    La **distance** $AB$ se calcule avec le théorème de Pythagore dans le triangle rectangle formé par $A$, $B$ et le point $H(x_B\,;\,y_A)$ : les côtés de l'angle droit mesurent $|x_B - x_A|$ et $|y_B - y_A|$, donc $AB = \sqrt{(x_B - x_A)^2 + (y_B - y_A)^2}$. Avec $A(1\,;\,1)$ et $B(5\,;\,4)$, $AB = \sqrt{4^2 + 3^2} = \sqrt{25} = 5$. Cette formule n'est valable que dans un repère **orthonormé** : si les unités des deux axes diffèrent, le triangle n'est plus rectangle à l'échelle du dessin et Pythagore ne s'applique plus. Elle permet de prouver qu'un triangle est isocèle, ou rectangle par la réciproque de Pythagore, à partir des seules coordonnées.
+
+    Le **projeté orthogonal** d'un point $M$ sur une droite $d$ est le point $H$ de $d$ tel que la droite $(MH)$ soit perpendiculaire à $d$ ; c'est le point de $d$ le plus proche de $M$, et la longueur $MH$ est la distance de $M$ à $d$. Dans le triangle rectangle qu'il crée, on retrouve Pythagore et la trigonométrie du collège, cosinus, sinus et tangente d'un angle aigu. Milieu, distance et projeté sont les trois outils qui permettent de démontrer qu'un triangle est rectangle ou isocèle, qu'un quadrilatère est un parallélogramme, ou de calculer une longueur inaccessible ; ils préparent les équations de droites et, en Première, le produit scalaire.
+  en: |
+    An **orthonormal frame** $(O\,;\,I,\,J)$ of the plane consists of an origin $O$ and two perpendicular axes carrying the same unit; every point $M$ has in it a unique pair of coordinates $(x_M\,;\,y_M)$, its abscissa and its ordinate. The **midpoint** $K$ of the segment $[AB]$ has as coordinates the average of those of $A$ and $B$: $x_K = \dfrac{x_A + x_B}{2}$ and $y_K = \dfrac{y_A + y_B}{2}$. For $A(1\,;\,1)$ and $B(5\,;\,4)$, the midpoint is $K(3\,;\,2.5)$. This formula serves to prove that a quadrilateral is a parallelogram: its diagonals then share the same midpoint.
+
+    The **distance** $AB$ is computed with Pythagoras' theorem in the right triangle formed by $A$, $B$ and the point $H(x_B\,;\,y_A)$: the sides of the right angle measure $|x_B - x_A|$ and $|y_B - y_A|$, so $AB = \sqrt{(x_B - x_A)^2 + (y_B - y_A)^2}$. With $A(1\,;\,1)$ and $B(5\,;\,4)$, $AB = \sqrt{4^2 + 3^2} = \sqrt{25} = 5$. This formula is only valid in an **orthonormal** frame: if the units of the two axes differ, the triangle is no longer right-angled at the scale of the drawing and Pythagoras no longer applies. It allows one to prove that a triangle is isosceles, or right-angled by the converse of Pythagoras, from the coordinates alone.
+
+    The **orthogonal projection** of a point $M$ onto a line $d$ is the point $H$ of $d$ such that the line $(MH)$ is perpendicular to $d$; it is the point of $d$ closest to $M$, and the length $MH$ is the distance from $M$ to $d$. In the right triangle it creates, one finds again Pythagoras and the trigonometry of collège, cosine, sine and tangent of an acute angle. Midpoint, distance and projection are the three tools that allow one to prove that a triangle is right-angled or isosceles, that a quadrilateral is a parallelogram, or to compute an inaccessible length; they prepare the equations of lines and, in Première, the dot product.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "calculer les coordonnées du milieu d'un segment dans un repère"
+        - "calculer la distance entre deux points dans un repère orthonormé à l'aide du théorème de Pythagore"
+        - "construire le projeté orthogonal d'un point sur une droite et l'utiliser pour calculer une distance ou un angle"
+        - "démontrer qu'un triangle est rectangle ou isocèle, ou qu'un quadrilatère est un parallélogramme, à partir de coordonnées"
+      en:
+        - "compute the coordinates of the midpoint of a segment in a frame"
+        - "compute the distance between two points in an orthonormal frame using Pythagoras' theorem"
+        - "construct the orthogonal projection of a point onto a line and use it to compute a distance or an angle"
+        - "prove that a triangle is right-angled or isosceles, or that a quadrilateral is a parallelogram, from coordinates"

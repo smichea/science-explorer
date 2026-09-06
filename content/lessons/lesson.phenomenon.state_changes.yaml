@@ -1,0 +1,20 @@
+# Leçon — changements d'état : le refroidissement vers la température ambiante (simulation) et E = m · L (traceur).
+id: lesson.phenomenon.state_changes
+nodeId: phenomenon.state_changes
+depth: 1
+tools:
+  - id: simulation
+    kind: simulation
+    title: { fr: "Refroidissement vers la température ambiante", en: "Cooling towards room temperature" }
+    simulationId: simulation.cooling.basic
+  - id: plotter
+    kind: plotter
+    title: { fr: "Énergie de changement d'état", en: "Energy of a change of state" }
+    variable: m
+    view: { x: [0, 2], y: [0, 800] }
+    parameters:
+      - { id: l, label: { fr: "énergie massique L (kJ/kg)", en: "specific latent heat L (kJ/kg)" }, min: 100, max: 400, step: 10, value: 334 }
+    input: false
+    initial:
+      - { view: { labels: { x: "m (kg)", y: "E (kJ)" } }, plot: { id: energy, expr: "l*m", label: { fr: "E = m · L", en: "E = m · L" } } }
+      - { point: { id: p, on: energy, x: 0.2, guides: true, label: { fr: "200 g de glace", en: "200 g of ice" } } }

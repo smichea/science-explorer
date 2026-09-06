@@ -1,0 +1,17 @@
+# Leçon — proportions et évolutions : la valeur finale x (1 + t/100) en fonction de la valeur initiale x, comparée à y = x (paramètre t en %).
+id: lesson.concept.proportions_evolutions
+nodeId: concept.proportions_evolutions
+depth: 1
+tools:
+  - id: plotter
+    kind: plotter
+    title: { fr: "Valeur finale en fonction de la valeur initiale", en: "Final value against initial value" }
+    variable: x
+    view: { x: [0, 200], y: [0, 300] }
+    parameters:
+      - { id: t, label: { fr: "taux d'évolution t (%)", en: "rate of change t (%)" }, min: -50, max: 100, step: 1, value: 20 }
+    input: true
+    initial:
+      - { plot: { id: f, expr: "x*(1+t/100)", label: { fr: "valeur finale = x (1 + t/100)", en: "final value = x (1 + t/100)" } } }
+      - { plot: { id: g, expr: "x", dashed: true, label: { fr: "valeur initiale (y = x)", en: "initial value (y = x)" } } }
+      - { point: { id: p, on: f, x: 100, guides: true, label: { fr: "100 → 100 (1 + t/100)", en: "100 → 100 (1 + t/100)" } } }

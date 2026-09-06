@@ -1,0 +1,46 @@
+id: concept.variations_extremums
+type: mathematical_concept
+world: world.mathematics
+region: region.math.functions_analysis
+importance: 2
+tags: [lycee]
+title: { fr: "Variations, extremums et parité", en: "Variations, extrema and parity" }
+shortPurpose:
+  fr: "Décrire comment une fonction monte ou descend, repérer ses valeurs extrêmes et exploiter la symétrie de sa courbe."
+  en: "Describe how a function goes up or down, locate its extreme values and exploit the symmetry of its curve."
+overview:
+  fr: >-
+    Une fonction croissante conserve l'ordre des nombres, une fonction décroissante le renverse. Ces variations, résumées par des flèches dans un tableau, disent où la fonction atteint son maximum ou son minimum. La parité, paire ou impaire, révèle une symétrie de la courbe qui divise le travail par deux. Ce sont les premiers gestes de l'analyse, avant la dérivée.
+  en: >-
+    An increasing function preserves the order of numbers, a decreasing function reverses it. These variations, summarised by arrows in a table, say where the function reaches its maximum or its minimum. Parity, even or odd, reveals a symmetry of the curve that halves the work. These are the first gestures of analysis, before the derivative.
+aliases:
+  fr: ["sens de variation", "fonction croissante", "fonction décroissante", "tableau de variations", "maximum et minimum", "fonction paire ou impaire"]
+  en: ["direction of variation", "increasing function", "decreasing function", "variation table", "maximum and minimum", "even or odd function"]
+description:
+  fr: |
+    Soit $f$ une fonction définie sur un intervalle $I$. On dit que $f$ est **croissante** sur $I$ si, pour tous réels $u$ et $v$ de $I$, $u \leq v$ entraîne $f(u) \leq f(v)$ : elle conserve l'ordre. Elle est **décroissante** sur $I$ si $u \leq v$ entraîne $f(u) \geq f(v)$ : elle renverse l'ordre. Sur la courbe, croissante se lit « monte » quand on parcourt l'axe des abscisses de gauche à droite, décroissante se lit « descend » ; une fonction peut être décroissante sur un intervalle puis croissante sur un autre, et le **tableau de variations** résume ces alternances par des flèches, avec les valeurs aux bornes.
+
+    Un **maximum** de $f$ sur $I$ est une valeur $f(a)$ telle que $f(x) \leq f(a)$ pour tout $x$ de $I$ ; un **minimum** vérifie $f(x) \geq f(a)$. Le mot extremum désigne l'un ou l'autre ; c'est une valeur prise par la fonction, atteinte en un point $a$ qu'il faut préciser. Pour $f(x) = (x - a)^2 - 1$, le carré est positif ou nul et ne s'annule qu'en $x = a$ : $f$ admet donc le minimum $-1$, atteint en $a$, et elle est décroissante sur $]-\infty\,;\,a]$ puis croissante sur $[a\,;\,+\infty[$. Cette forme, dite canonique, rend la lecture immédiate, alors que la forme développée $x^2 - 2ax + a^2 - 1$ la cache.
+
+    Une fonction définie sur un ensemble symétrique par rapport à $0$ est **paire** si $f(-x) = f(x)$ pour tout $x$, **impaire** si $f(-x) = -f(x)$. La courbe d'une fonction paire est symétrique par rapport à l'axe des ordonnées, comme celle de $x \mapsto x^2$ ; celle d'une fonction impaire est symétrique par rapport à l'origine, comme celle de $x \mapsto x^3$. La parité divise le travail par deux : les variations sur $[0\,;\,+\infty[$ donnent celles sur $]-\infty\,;\,0]$. Deux pièges : confondre le maximum, qui est une ordonnée, avec le point où il est atteint, qui est une abscisse ; et croire qu'une fonction est forcément paire ou impaire, alors que la plupart ne sont ni l'une ni l'autre.
+  en: |
+    Let $f$ be a function defined on an interval $I$. We say that $f$ is **increasing** on $I$ if, for all reals $u$ and $v$ in $I$, $u \leq v$ implies $f(u) \leq f(v)$: it preserves the order. It is **decreasing** on $I$ if $u \leq v$ implies $f(u) \geq f(v)$: it reverses the order. On the curve, increasing reads "goes up" when the horizontal axis is travelled from left to right, decreasing reads "goes down"; a function can be decreasing on one interval then increasing on another, and the **variation table** summarises these alternations with arrows, with the values at the bounds.
+
+    A **maximum** of $f$ on $I$ is a value $f(a)$ such that $f(x) \leq f(a)$ for every $x$ in $I$; a **minimum** satisfies $f(x) \geq f(a)$. The word extremum stands for either; it is a value taken by the function, reached at a point $a$ that must be specified. For $f(x) = (x - a)^2 - 1$, the square is positive or zero and vanishes only at $x = a$: $f$ therefore has the minimum $-1$, reached at $a$, and it is decreasing on $]-\infty\,;\,a]$ then increasing on $[a\,;\,+\infty[$. This form, called canonical, makes the reading immediate, whereas the expanded form $x^2 - 2ax + a^2 - 1$ hides it.
+
+    A function defined on a set symmetric about $0$ is **even** if $f(-x) = f(x)$ for every $x$, **odd** if $f(-x) = -f(x)$. The curve of an even function is symmetric about the vertical axis, like that of $x \mapsto x^2$; that of an odd function is symmetric about the origin, like that of $x \mapsto x^3$. Parity halves the work: the variations on $[0\,;\,+\infty[$ give those on $]-\infty\,;\,0]$. Two traps: confusing the maximum, which is an ordinate, with the point where it is reached, which is an abscissa; and believing that a function must be even or odd, whereas most are neither.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "définir une fonction croissante ou décroissante sur un intervalle par la conservation ou le renversement de l'ordre"
+        - "lire et dresser un tableau de variations à partir d'une courbe ou d'une expression simple"
+        - "déterminer un maximum ou un minimum, sa valeur et le point où il est atteint"
+        - "reconnaître une fonction paire ou impaire par le calcul de f(−x) et par la symétrie de sa courbe"
+      en:
+        - "define an increasing or decreasing function on an interval by the preservation or reversal of order"
+        - "read and draw up a variation table from a curve or from a simple expression"
+        - "determine a maximum or a minimum, its value and the point where it is reached"
+        - "recognise an even or odd function by computing f(−x) and by the symmetry of its curve"

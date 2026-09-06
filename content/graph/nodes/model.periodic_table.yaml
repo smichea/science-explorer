@@ -1,0 +1,69 @@
+id: model.periodic_table
+type: model
+world: world.chemistry
+region: region.chemistry.atomic_molecular_structure
+importance: 2
+tags: [lycee]
+title: { fr: Tableau périodique et stabilité des entités, en: Periodic table and stability of chemical species }
+shortPurpose:
+  fr: Lire dans la position d'un élément le nombre de ses électrons de valence, et prévoir l'ion ou les liaisons qu'il forme pour gagner la stabilité des gaz nobles.
+  en: Read the number of valence electrons of an element from its position, and predict the ion or the bonds it forms to gain the stability of the noble gases.
+overview:
+  fr: >-
+    Le tableau périodique range les éléments par numéro atomique croissant, et sa forme suit la configuration électronique : une ligne par couche, une colonne par nombre d'électrons de valence. Les gaz nobles, dans la dernière colonne, sont stables ; les autres atomes gagnent, perdent ou partagent des électrons pour leur ressembler. C'est ainsi qu'on prévoit les ions et les molécules.
+  en: >-
+    The periodic table orders the elements by increasing atomic number, and its shape follows the electron configuration: one row per shell, one column per number of valence electrons. The noble gases, in the last column, are stable; the other atoms gain, lose or share electrons to resemble them. That is how ions and molecules are predicted.
+aliases:
+  fr: ["classification périodique", "règle de l'octet", "ions monoatomiques", "schéma de Lewis"]
+  en: ["periodic classification", "octet rule", "monoatomic ions", "Lewis structure"]
+description:
+  fr: |
+    Le **tableau périodique** classe les éléments par numéro atomique $Z$ croissant. Sa structure découle de la configuration électronique : les éléments d'une même **ligne** (période) ont le même nombre de couches occupées, ceux d'une même **colonne** (famille) ont le même nombre d'électrons de valence, donc des propriétés chimiques voisines. Pour les $18$ premiers éléments, les colonnes $1$ et $2$ correspondent à $1$ et $2$ électrons de valence, les colonnes $13$ à $18$ à $3$ jusqu'à $8$. Trois familles sont à connaître : les **métaux alcalins** (colonne $1$, lithium, sodium, potassium), les **halogènes** (colonne $17$, fluor, chlore, brome) et les **gaz nobles** (colonne $18$, hélium, néon, argon).
+
+    Les gaz nobles sont chimiquement **stables** : leur dernière couche est saturée, avec $2$ électrons pour l'hélium (**duet**) et $8$ pour les autres (**octet**). Les autres atomes évoluent pour acquérir la configuration du gaz noble le plus proche. Ils peuvent perdre ou gagner des électrons et former des **ions monoatomiques** : le sodium ($1s^2\,2s^2\,2p^6\,3s^1$) perd un électron et donne $\mathrm{Na^+}$, le magnésium en perd deux et donne $\mathrm{Mg^{2+}}$, le chlore ($3s^2\,3p^5$ en couche externe) en gagne un et donne $\mathrm{Cl^-}$, l'oxygène en gagne deux et donne $\mathrm{O^{2-}}$. La charge de l'ion se lit donc directement dans la colonne.
+
+    Ils peuvent aussi **partager** des électrons : une **liaison covalente** est la mise en commun de deux électrons entre deux atomes, un de chaque, et chaque électron partagé compte pour les deux atomes. Le **schéma de Lewis** d'une molécule représente les doublets liants (traits entre les atomes) et les doublets non liants (traits sur un atome). Dans l'eau $\mathrm{H_2O}$, l'oxygène, qui a $6$ électrons de valence, forme deux liaisons avec deux atomes d'hydrogène et garde deux doublets non liants : il a bien $8$ électrons autour de lui, et chaque hydrogène en a $2$. Dans le dioxyde de carbone $\mathrm{CO_2}$, le carbone ($4$ électrons de valence) forme deux liaisons doubles, une avec chaque oxygène, et chaque oxygène conserve deux doublets non liants. Ces règles prévoient les formules de la plupart des molécules et des ions simples, mais pas leur géométrie ni leur énergie, et elles connaissent des exceptions au-delà de $Z = 18$.
+  en: |
+    The **periodic table** classifies the elements by increasing atomic number $Z$. Its structure follows from the electron configuration: the elements of one **row** (period) have the same number of occupied shells, those of one **column** (family) have the same number of valence electrons, hence similar chemical properties. For the first $18$ elements, columns $1$ and $2$ correspond to $1$ and $2$ valence electrons, columns $13$ to $18$ to $3$ up to $8$. Three families are to be known: the **alkali metals** (column $1$, lithium, sodium, potassium), the **halogens** (column $17$, fluorine, chlorine, bromine) and the **noble gases** (column $18$, helium, neon, argon).
+
+    The noble gases are chemically **stable**: their last shell is full, with $2$ electrons for helium (**duet**) and $8$ for the others (**octet**). The other atoms evolve to acquire the configuration of the nearest noble gas. They can lose or gain electrons and form **monoatomic ions**: sodium ($1s^2\,2s^2\,2p^6\,3s^1$) loses one electron and gives $\mathrm{Na^+}$, magnesium loses two and gives $\mathrm{Mg^{2+}}$, chlorine ($3s^2\,3p^5$ in its outer shell) gains one and gives $\mathrm{Cl^-}$, oxygen gains two and gives $\mathrm{O^{2-}}$. The charge of the ion can therefore be read directly from the column.
+
+    They can also **share** electrons: a **covalent bond** is the sharing of two electrons between two atoms, one from each, and each shared electron counts for both atoms. The **Lewis structure** of a molecule shows the bonding pairs (lines between atoms) and the lone pairs (lines on an atom). In water $\mathrm{H_2O}$, oxygen, which has $6$ valence electrons, forms two bonds with two hydrogen atoms and keeps two lone pairs: it does have $8$ electrons around it, and each hydrogen has $2$. In carbon dioxide $\mathrm{CO_2}$, carbon ($4$ valence electrons) forms two double bonds, one with each oxygen, and each oxygen keeps two lone pairs. These rules predict the formulas of most simple molecules and ions, but not their geometry nor their energy, and they have exceptions beyond $Z = 18$.
+model:
+  assumptions:
+    fr:
+      - "Les éléments sont rangés par numéro atomique croissant ; une ligne correspond à une couche électronique, une colonne à un nombre d'électrons de valence."
+      - "Une entité est stable quand sa couche externe est saturée comme celle d'un gaz noble : $2$ électrons (duet) ou $8$ électrons (octet)."
+      - "Un atome atteint cette configuration en perdant ou en gagnant des électrons (ion monoatomique) ou en partageant des doublets (liaison covalente)."
+      - "Les électrons de cœur ne participent pas aux réactions : seuls les électrons de valence comptent."
+    en:
+      - "The elements are ordered by increasing atomic number; a row corresponds to an electron shell, a column to a number of valence electrons."
+      - "A species is stable when its outer shell is full like that of a noble gas: $2$ electrons (duet) or $8$ electrons (octet)."
+      - "An atom reaches this configuration by losing or gaining electrons (monoatomic ion) or by sharing pairs (covalent bond)."
+      - "Core electrons do not take part in reactions: only the valence electrons count."
+  limits:
+    fr:
+      - "Les règles du duet et de l'octet ont des exceptions : le bore ou l'aluminium avec $6$ électrons, le soufre ou le phosphore avec $10$ ou $12$, les radicaux comme le monoxyde d'azote."
+      - "Les métaux de transition (colonnes $3$ à $12$) forment plusieurs ions (fer II et fer III) que le modèle ne prévoit pas."
+      - "Le schéma de Lewis ne donne ni la géométrie de la molécule ni la longueur ou l'énergie des liaisons : ce sera l'objet de la Première."
+      - "Les gaz nobles ne sont pas totalement inertes : le xénon forme quelques composés, et la stabilité d'une entité dépend aussi de son environnement (solvant, état physique)."
+    en:
+      - "The duet and octet rules have exceptions: boron or aluminium with $6$ electrons, sulfur or phosphorus with $10$ or $12$, radicals such as nitrogen monoxide."
+      - "The transition metals (columns $3$ to $12$) form several ions (iron II and iron III) that the model does not predict."
+      - "The Lewis structure gives neither the geometry of the molecule nor the length or energy of the bonds: that is the subject of Première."
+      - "The noble gases are not totally inert: xenon forms a few compounds, and the stability of a species also depends on its environment (solvent, physical state)."
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "situer un élément dans le tableau périodique à partir de sa configuration électronique, et réciproquement"
+        - "nommer les familles des métaux alcalins, des halogènes et des gaz nobles et associer leurs propriétés à leur colonne"
+        - "prévoir la charge de l'ion monoatomique formé par un atome à l'aide des règles du duet et de l'octet"
+        - "interpréter le schéma de Lewis d'une molécule simple : doublets liants et non liants, liaisons covalentes"
+      en:
+        - "locate an element in the periodic table from its electron configuration, and conversely"
+        - "name the families of the alkali metals, the halogens and the noble gases and link their properties to their column"
+        - "predict the charge of the monoatomic ion formed by an atom using the duet and octet rules"
+        - "interpret the Lewis structure of a simple molecule: bonding and lone pairs, covalent bonds"

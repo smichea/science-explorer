@@ -1,0 +1,28 @@
+# Leçon — la loi d'Ohm : la caractéristique d'un conducteur ohmique (traceur) et son ajustement sur des mesures (outil d'ajustement).
+id: lesson.law.ohm
+nodeId: law.ohm
+depth: 1
+tools:
+  - id: characteristic
+    kind: plotter
+    title: { fr: "Caractéristique U(I)", en: "Characteristic U(I)" }
+    variable: i
+    view: { x: [0, 0.5], y: [0, 12] }
+    parameters:
+      - { id: r, label: { fr: "résistance R (Ω)", en: "resistance R (Ω)" }, min: 5, max: 40, step: 1, value: 20 }
+    input: false
+    initial:
+      - { view: { labels: { x: "I (A)", y: "U (V)" } } }
+      - { plot: { id: ohm, expr: "r*i", label: { fr: "U = R I", en: "U = R I" } } }
+      - { point: { id: reading, on: ohm, x: 0.25, guides: true, label: { fr: "I = 0,25 A", en: "I = 0.25 A" } } }
+  - id: measure
+    kind: fit
+    title: { fr: "Mesures et modèle", en: "Measurements and model" }
+    view: { x: [0, 0.5], y: [0, 12] }
+    labels: { x: "I (A)", y: "U (V)" }
+    parameters:
+      - { id: r, label: { fr: "résistance R (Ω)", en: "resistance R (Ω)" }, min: 5, max: 40, step: 1, value: 20 }
+    generator: { expr: "22*x", noise: 0.3, count: 6, from: 0.05, to: 0.4, seed: 4 }
+    models:
+      - { id: ohm, expr: "r*x", label: { fr: "U = R I", en: "U = R I" } }
+    measure: true

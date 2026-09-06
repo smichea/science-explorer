@@ -1,0 +1,44 @@
+# Ensembles de nombres — la distance entre deux réels lue avec la valeur absolue (réponse numérique)
+id: exercise.number_sets.distance
+type: numeric
+nodeId: concept.number_sets
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Sur la droite numérique, on place les réels $x = -3{,}5$ et $a = 2$.
+
+    Calculez la distance entre $x$ et $a$, c'est-à-dire $|x - a|$. Donnez la valeur exacte.
+  en: |-
+    On the number line, we place the reals $x = -3.5$ and $a = 2$.
+
+    Compute the distance between $x$ and $a$, that is $|x - a|$. Give the exact value.
+numeric:
+  value: 5.5
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "|x − a|", en: "|x − a|" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Placez les deux nombres sur la droite : $-3{,}5$ est à gauche de $0$, $2$ à droite. La distance est la longueur du segment qui les joint.
+      en: |-
+        Place both numbers on the line: $-3.5$ is left of $0$, $2$ right of it. The distance is the length of the segment joining them.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $|x - a| = |-3{,}5 - 2| = |-5{,}5|$ ; la valeur absolue d'un nombre négatif est son opposé.
+      en: |-
+        $|x - a| = |-3.5 - 2| = |-5.5|$; the absolute value of a negative number is its opposite.
+solution:
+  fr: |-
+    La distance entre deux réels est la valeur absolue de leur différence :
+    $$|x - a| = |-3{,}5 - 2| = |-5{,}5| = 5{,}5.$$
+    On aurait pu calculer $|a - x| = |2 - (-3{,}5)| = 5{,}5$ : la distance ne dépend pas de l'ordre. Sur la droite numérique, on va de $-3{,}5$ à $0$ (longueur $3{,}5$) puis de $0$ à $2$ (longueur $2$), soit $5{,}5$ au total.
+  en: |-
+    The distance between two reals is the absolute value of their difference:
+    $$|x - a| = |-3.5 - 2| = |-5.5| = 5.5.$$
+    We could have computed $|a - x| = |2 - (-3.5)| = 5.5$: the distance does not depend on the order. On the number line, we go from $-3.5$ to $0$ (length $3.5$) then from $0$ to $2$ (length $2$), that is $5.5$ altogether.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

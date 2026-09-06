@@ -1,0 +1,43 @@
+# Leçon force — calculer la valeur du poids d'une personne de 60 kg (réponse numérique)
+id: exercise.force.weight
+type: numeric
+nodeId: concept.force
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une personne a une masse $m = 60\ \mathrm{kg}$. Sur Terre, l'intensité de la pesanteur vaut $g = 9{,}81\ \mathrm{N/kg}$.
+
+    Calculez la valeur $P$ de son poids, en newtons, arrondie à l'unité.
+  en: |-
+    A person has a mass $m = 60\ \mathrm{kg}$. On Earth, the gravitational field strength is $g = 9.81\ \mathrm{N/kg}$.
+
+    Compute the value $P$ of their weight, in newtons, rounded to the unit.
+numeric:
+  value: 589
+  unit: "N"
+  tolerance: { kind: absolute, value: 2 }
+  inputLabel: { fr: "P", en: "P" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le poids est proportionnel à la masse : $P = m \times g$, avec la masse en kilogrammes et $g$ en newtons par kilogramme.
+      en: |-
+        The weight is proportional to the mass: $P = m \times g$, with the mass in kilograms and $g$ in newtons per kilogram.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $P = 60 \times 9{,}81$.
+      en: |-
+        $P = 60 \times 9.81$.
+solution:
+  fr: |-
+    $$P = m\,g = 60 \times 9{,}81 = 588{,}6 \approx 589\ \mathrm{N}.$$
+    La masse, $60\ \mathrm{kg}$, ne change pas d'un lieu à l'autre ; le poids est la force exercée par la Terre, verticale, dirigée vers le bas, de valeur environ $590\ \mathrm{N}$. Sur la Lune, où $g_L = 1{,}62\ \mathrm{N/kg}$, la même personne pèserait six fois moins.
+  en: |-
+    $$P = m\,g = 60 \times 9.81 = 588.6 \approx 589\ \mathrm{N}.$$
+    The mass, $60\ \mathrm{kg}$, does not change from one place to another; the weight is the force exerted by the Earth, vertical, pointing downwards, of value about $590\ \mathrm{N}$. On the Moon, where $g_L = 1.62\ \mathrm{N/kg}$, the same person would weigh six times less.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

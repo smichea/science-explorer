@@ -1,0 +1,45 @@
+# Leçon son — distance d'un orage à partir du retard entre l'éclair et le tonnerre (réponse numérique)
+id: exercise.sound.lightning
+type: numeric
+nodeId: phenomenon.sound
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    Pendant un orage, on voit un éclair, puis on entend le tonnerre $\Delta t = 6{,}0\ \mathrm{s}$ plus tard. La vitesse du son dans l'air vaut $v = 340\ \mathrm{m/s}$, et la lumière arrive quasi instantanément.
+
+    À quelle distance $d$ la foudre est-elle tombée ? Donnez le résultat en mètres.
+  en: |-
+    During a storm, a flash of lightning is seen, then the thunder is heard $\Delta t = 6.0\ \mathrm{s}$ later. The speed of sound in air is $v = 340\ \mathrm{m/s}$, and the light arrives almost instantly.
+
+    How far away, $d$, did the lightning strike? Give the result in metres.
+numeric:
+  value: 2040
+  unit: "m"
+  tolerance: { kind: relative, value: 0.02 }
+  inputLabel: { fr: "d", en: "d" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La lumière arrive tout de suite : le retard de $6{,}0\ \mathrm{s}$ est le temps mis par le son pour parcourir la distance $d$ à la vitesse $v$.
+      en: |-
+        The light arrives right away: the $6.0\ \mathrm{s}$ delay is the time the sound takes to cover the distance $d$ at speed $v$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $v = d / \Delta t$, donc $d = v \times \Delta t = 340 \times 6{,}0$.
+      en: |-
+        $v = d / \Delta t$, so $d = v \times \Delta t = 340 \times 6.0$.
+solution:
+  fr: |-
+    Le son se propage à vitesse constante : $v = \dfrac{d}{\Delta t}$, d'où
+    $$d = v\,\Delta t = 340 \times 6{,}0 = 2040\ \mathrm{m} \approx 2\ \mathrm{km}.$$
+    D'où la règle des orages : chaque tranche de trois secondes entre l'éclair et le tonnerre correspond à environ un kilomètre ($340 \times 3 \approx 1000\ \mathrm{m}$). La lumière, environ un million de fois plus rapide, parcourt ces deux kilomètres en quelques millionièmes de seconde.
+  en: |-
+    Sound travels at constant speed: $v = \dfrac{d}{\Delta t}$, hence
+    $$d = v\,\Delta t = 340 \times 6.0 = 2040\ \mathrm{m} \approx 2\ \mathrm{km}.$$
+    Hence the storm rule: every three seconds between the flash and the thunder correspond to about one kilometre ($340 \times 3 \approx 1000\ \mathrm{m}$). Light, about a million times faster, covers these two kilometres in a few millionths of a second.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 2, linkedConcepts: 1, transfer: 2, autonomy: 2 }

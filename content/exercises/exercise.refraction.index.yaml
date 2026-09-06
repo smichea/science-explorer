@@ -1,0 +1,42 @@
+# Leçon réfraction — indice d'un liquide à partir des angles d'incidence et de réfraction mesurés (réponse numérique)
+id: exercise.refraction.index
+type: numeric
+nodeId: law.snell_descartes
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Pour identifier un liquide transparent, on envoie un rayon depuis l'air ($n_1 = 1{,}00$) vers sa surface. Pour un angle d'incidence $i_1 = 40^\circ$, on mesure un angle de réfraction $i_2 = 28^\circ$.
+
+    Calculez l'indice de réfraction $n_2$ du liquide, à $0{,}01$ près (grandeur sans unité).
+  en: |-
+    To identify a transparent liquid, a ray is sent from air ($n_1 = 1.00$) onto its surface. For an angle of incidence $i_1 = 40^\circ$, an angle of refraction $i_2 = 28^\circ$ is measured.
+
+    Compute the refractive index $n_2$ of the liquid, to $0.01$ (a dimensionless quantity).
+numeric:
+  value: 1.37
+  tolerance: { kind: absolute, value: 0.02 }
+  inputLabel: { fr: "n₂", en: "n₂" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Dans $n_1 \sin i_1 = n_2 \sin i_2$, l'inconnue est maintenant $n_2$ : isolez-la.
+      en: |-
+        In $n_1 \sin i_1 = n_2 \sin i_2$, the unknown is now $n_2$: isolate it.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $n_2 = \dfrac{n_1 \sin i_1}{\sin i_2} = \dfrac{\sin 40^\circ}{\sin 28^\circ}$, avec la calculatrice en degrés.
+      en: |-
+        $n_2 = \dfrac{n_1 \sin i_1}{\sin i_2} = \dfrac{\sin 40^\circ}{\sin 28^\circ}$, with the calculator in degrees.
+solution:
+  fr: |-
+    $$n_2 = \frac{n_1 \sin i_1}{\sin i_2} = \frac{1{,}00 \times \sin 40^\circ}{\sin 28^\circ} = \frac{0{,}643}{0{,}469} \approx 1{,}37.$$
+    Cet indice est proche de celui de l'éthanol ($1{,}36$) et nettement supérieur à celui de l'eau ($1{,}33$). Au laboratoire, on mesure plutôt plusieurs couples $(i_1 ; i_2)$ et l'on trace $\sin i_2$ en fonction de $\sin i_1$ : la pente de la droite obtenue vaut $n_1/n_2$, ce qui moyenne les erreurs de lecture.
+  en: |-
+    $$n_2 = \frac{n_1 \sin i_1}{\sin i_2} = \frac{1.00 \times \sin 40^\circ}{\sin 28^\circ} = \frac{0.643}{0.469} \approx 1.37.$$
+    This index is close to that of ethanol ($1.36$) and clearly larger than that of water ($1.33$). In the laboratory, one rather measures several pairs $(i_1, i_2)$ and plots $\sin i_2$ against $\sin i_1$: the slope of the resulting line is $n_1/n_2$, which averages the reading errors.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 1, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

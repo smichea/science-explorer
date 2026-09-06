@@ -1,0 +1,44 @@
+# Leçon transformations nucléaires — noyau fils de la désintégration alpha de l'uranium 238 (réponse numérique)
+id: exercise.nuclear.alpha_daughter
+type: numeric
+nodeId: phenomenon.nuclear_transformation
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Le noyau d'uranium 238, $^{238}_{92}\mathrm{U}$, est radioactif alpha : il émet un noyau d'hélium $^{4}_{2}\mathrm{He}$ et se transforme en un noyau fils $^{A}_{Z}\mathrm{Y}$.
+
+    En appliquant les lois de conservation, déterminez le numéro atomique $Z$ du noyau fils.
+  en: |-
+    The uranium-238 nucleus, $^{238}_{92}\mathrm{U}$, is alpha radioactive: it emits a helium nucleus $^{4}_{2}\mathrm{He}$ and turns into a daughter nucleus $^{A}_{Z}\mathrm{Y}$.
+
+    Applying the conservation laws, determine the atomic number $Z$ of the daughter nucleus.
+numeric:
+  value: 90
+  tolerance: { kind: absolute, value: 0 }
+  inputLabel: { fr: "Z du noyau fils", en: "Z of the daughter nucleus" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Écrivez l'équation $^{238}_{92}\mathrm{U} \to {}^{A}_{Z}\mathrm{Y} + {}^{4}_{2}\mathrm{He}$ : la somme des nombres du bas (charges) est la même des deux côtés, de même que celle des nombres du haut (nucléons).
+      en: |-
+        Write the equation $^{238}_{92}\mathrm{U} \to {}^{A}_{Z}\mathrm{Y} + {}^{4}_{2}\mathrm{He}$: the sum of the bottom numbers (charges) is the same on both sides, and so is that of the top numbers (nucleons).
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Conservation de la charge : $92 = Z + 2$.
+      en: |-
+        Conservation of charge: $92 = Z + 2$.
+solution:
+  fr: |-
+    L'équation de la désintégration est $^{238}_{92}\mathrm{U} \to {}^{A}_{Z}\mathrm{Y} + {}^{4}_{2}\mathrm{He}$. Les lois de Soddy imposent la conservation du nombre de nucléons, $238 = A + 4$, et de la charge, $92 = Z + 2$, d'où
+    $$A = 234 \quad \text{et} \quad Z = 90.$$
+    L'élément de numéro atomique $90$ est le thorium : $^{238}_{92}\mathrm{U} \to {}^{234}_{90}\mathrm{Th} + {}^{4}_{2}\mathrm{He}$. L'uranium est devenu un autre élément, ce qu'aucune réaction chimique ne peut faire ; le thorium 234 est lui-même radioactif et la chaîne se poursuit jusqu'au plomb 206, stable.
+  en: |-
+    The decay equation is $^{238}_{92}\mathrm{U} \to {}^{A}_{Z}\mathrm{Y} + {}^{4}_{2}\mathrm{He}$. Soddy's laws impose the conservation of the number of nucleons, $238 = A + 4$, and of the charge, $92 = Z + 2$, hence
+    $$A = 234 \quad \text{and} \quad Z = 90.$$
+    The element of atomic number $90$ is thorium: $^{238}_{92}\mathrm{U} \to {}^{234}_{90}\mathrm{Th} + {}^{4}_{2}\mathrm{He}$. Uranium has become another element, which no chemical reaction can do; thorium-234 is itself radioactive and the chain continues down to lead-206, which is stable.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

@@ -1,0 +1,18 @@
+# Leçon — variations, extremums et parité : la parabole (x − a)² − 1, son minimum, et la courbe impaire x³ (paramètre a).
+id: lesson.concept.variations_extremums
+nodeId: concept.variations_extremums
+depth: 1
+tools:
+  - id: plotter
+    kind: plotter
+    variable: x
+    view: { x: [-4, 4], y: [-3, 9] }
+    parameters:
+      - { id: a, label: { fr: "abscisse a du minimum", en: "abscissa a of the minimum" }, min: -2, max: 2, step: 0.1, value: 1 }
+    input: true
+    initial:
+      - { plot: { id: f, expr: "(x-a)^2-1", label: { fr: "(x − a)² − 1", en: "(x − a)² − 1" } } }
+      - { interval: { id: dec, on: f, from: -4, to: "a", label: { fr: "décroissante", en: "decreasing" } } }
+      - { interval: { id: inc, on: f, from: "a", to: 4, label: { fr: "croissante", en: "increasing" } } }
+      - { point: { id: m, on: f, x: "a", guides: true, label: { fr: "minimum −1", en: "minimum −1" } } }
+      - { plot: { id: c, expr: "x^3", dashed: true, label: { fr: "x³ (impaire)", en: "x³ (odd)" } } }

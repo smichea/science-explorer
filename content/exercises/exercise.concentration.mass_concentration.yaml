@@ -1,0 +1,45 @@
+# Leçon concentration — concentration en masse d'une solution de sucre (réponse numérique)
+id: exercise.concentration.mass_concentration
+type: numeric
+nodeId: concept.concentration
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On dissout $m = 5{,}0\ \mathrm{g}$ de sucre dans de l'eau, dans une fiole jaugée de $250\ \mathrm{mL}$, puis on complète avec de l'eau jusqu'au trait de jauge et on agite.
+
+    Calculez la concentration en masse $C_m$ du sucre dans la solution obtenue, en $\mathrm{g/L}$.
+  en: |-
+    $m = 5.0\ \mathrm{g}$ of sugar is dissolved in water, in a $250\ \mathrm{mL}$ volumetric flask, then water is added up to the mark and the flask is shaken.
+
+    Compute the mass concentration $C_m$ of the sugar in the solution obtained, in $\mathrm{g/L}$.
+numeric:
+  value: 20
+  unit: "g/L"
+  tolerance: { kind: absolute, value: 0.5 }
+  inputLabel: { fr: "C_m", en: "C_m" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La concentration en masse est la masse de soluté par litre de solution : $C_m = \dfrac{m}{V}$, avec $V$ le volume de la solution.
+      en: |-
+        The mass concentration is the mass of solute per litre of solution: $C_m = \dfrac{m}{V}$, with $V$ the volume of the solution.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Convertissez d'abord le volume en litres : $250\ \mathrm{mL} = 0{,}250\ \mathrm{L}$.
+      en: |-
+        First convert the volume to litres: $250\ \mathrm{mL} = 0.250\ \mathrm{L}$.
+solution:
+  fr: |-
+    Le volume de la solution est $V = 250\ \mathrm{mL} = 0{,}250\ \mathrm{L}$, d'où
+    $$C_m = \frac{m}{V} = \frac{5{,}0}{0{,}250} = 20\ \mathrm{g/L}.$$
+    Chaque litre de cette solution contient $20\ \mathrm{g}$ de sucre, et donc chaque millilitre en contient $0{,}020\ \mathrm{g}$. Le volume à utiliser est celui de la **solution** (le trait de jauge), pas celui de l'eau ajoutée ; et cette concentration n'a rien à voir avec la masse volumique de la solution, qui vaut environ $1000\ \mathrm{g/L}$.
+  en: |-
+    The volume of the solution is $V = 250\ \mathrm{mL} = 0.250\ \mathrm{L}$, hence
+    $$C_m = \frac{m}{V} = \frac{5.0}{0.250} = 20\ \mathrm{g/L}.$$
+    Each litre of this solution contains $20\ \mathrm{g}$ of sugar, so each millilitre contains $0.020\ \mathrm{g}$. The volume to use is that of the **solution** (the mark), not that of the water added; and this concentration has nothing to do with the density of the solution, which is about $1000\ \mathrm{g/L}$.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

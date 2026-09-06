@@ -68,6 +68,11 @@ export interface TourStopStep {
   node: CompiledNode;
   /** The depth at which the destination is flown (the learner's depth, 1 for a content check). */
   depth: number;
+  /**
+   * Order of the stage at which the destination meets the learner (0 for a content check): a
+   * prerequisite met at a later stage than its dependant is a foundation the learner already has.
+   */
+  stageOrder: number;
   status: NodeStatus;
   /** The spoken presentation excerpt (node overview, or its short purpose). */
   text: LocalisedText;
@@ -129,8 +134,15 @@ export function buildTour(
       .filter((n) => n.type !== 'mission' && inScope(n) && !isDone(n))
       .map((n) => [n.id, n])
   );
-  const flownDepth = (node: CompiledNode) =>
-    horizon && !options.everything ? learnerDepth(node, horizon, config) : 1;
+  const learner = horizon && !options.everything ? horizon : null;
+  const flownDepth = (node: CompiledNode) => (learner ? learnerDepth(node, learner, config) : 1);
+  const stageOrderOf = (node: CompiledNode) => {
+    if (!learner) return 0;
+    const stage = stageFor(node, learner, config);
+    return stage === null ? 0 : Math.max(0, stageIndex(stage, config));
+  };
+  const isFoundation = (node: CompiledNode) =>
+    !!learner && bandOf(stageFor(node, learner, config), learner, config) === 'foundation';
   const visited = new Set<string>();
   const steps: TourStep[] = [
     { kind: 'intro', title: tour.title, text: tour.intro, focus: { kind: 'universe' } },
@@ -138,20 +150,20 @@ export function buildTour(
 
   tour.legs.forEach((leg, legIndex) => {
     const route = leg.route ? routes.find((r) => r.id === leg.route) : undefined;
-    // A route of an earlier year is flown with the foundations only: its destinations taught again
-    // later fall to the legs of the learner's own years.
-    if (
-      route?.stage &&
-      horizon &&
-      !options.everything &&
-      !options.includeFoundations &&
-      stageIndex(route.stage, config) < stageIndex(horizon.currentStage, config)
-    )
-      return;
+    // A route of an earlier year is flown with the foundations only, and then carries only the
+    // foundations: its destinations taught again later fall to the legs of the learner's own years.
+    const earlier =
+      !!route?.stage &&
+      !!learner &&
+      stageIndex(route.stage, config) < stageIndex(learner.currentStage, config);
+    if (earlier && !options.includeFoundations) return;
     const nodes = orderByPrerequisites(
-      legNodes(leg, route, candidates, visited, graph, config),
+      legNodes(leg, route, candidates, visited, graph, config).filter(
+        (n) => !earlier || isFoundation(n)
+      ),
       graph,
-      flownDepth
+      flownDepth,
+      stageOrderOf
     );
     if (nodes.length === 0) return;
     const title = route?.title ?? leg.title ?? tour.title;
@@ -173,6 +185,7 @@ export function buildTour(
         legTitle: title,
         node,
         depth: flownDepth(node),
+        stageOrder: stageOrderOf(node),
         status: statusOf(snapshot, node.id),
         text: node.overview ?? node.shortPurpose,
         focus: { kind: 'node', id: node.id },
@@ -246,7 +259,9 @@ export function orderByPrerequisites(
   nodes: CompiledNode[],
   graph: GraphIndex,
   /** The depth at which each node is flown: prerequisites of later depths do not count. */
-  depthOf: (node: CompiledNode) => number = () => 1
+  depthOf: (node: CompiledNode) => number = () => 1,
+  /** The stage order at which each node is flown: a prerequisite met later is already known. */
+  stageOrderOf: (node: CompiledNode) => number = () => 0
 ): CompiledNode[] {
   const index = new Map(nodes.map((n, i) => [n.id, i]));
   const placed = new Set<string>();
@@ -256,9 +271,10 @@ export function orderByPrerequisites(
     if (placed.has(node.id) || visiting.has(node.id)) return;
     visiting.add(node.id);
     const depth = depthOf(node);
+    const order = stageOrderOf(node);
     const prerequisites = graph
       .getNeighbours(node.id, PREREQUISITE_TYPES, 'in')
-      .filter(({ edge }) => edgeApplies(edge, depth))
+      .filter(({ edge, node: p }) => edgeApplies(edge, depth) && stageOrderOf(p) <= order)
       .map((n) => n.node)
       .filter((n) => index.has(n.id))
       .sort((a, b) => index.get(a.id)! - index.get(b.id)!);
@@ -280,10 +296,18 @@ export function prerequisiteInversions(
   steps: TourStep[],
   graph: GraphIndex
 ): PrerequisiteInversion[] {
-  const position = new Map<string, { order: number; leg: number; depth: number }>();
+  const position = new Map<
+    string,
+    { order: number; leg: number; depth: number; stageOrder: number }
+  >();
   steps.forEach((step, order) => {
     if (step.kind === 'stop')
-      position.set(step.node.id, { order, leg: step.legIndex, depth: step.depth });
+      position.set(step.node.id, {
+        order,
+        leg: step.legIndex,
+        depth: step.depth,
+        stageOrder: step.stageOrder,
+      });
   });
   const out: PrerequisiteInversion[] = [];
   for (const [id, at] of position) {
@@ -291,6 +315,8 @@ export function prerequisiteInversions(
       if (!edgeApplies(edge, at.depth)) continue;
       const before = position.get(node.id);
       if (!before || before.order < at.order) continue;
+      // A prerequisite the learner meets at a later stage is a foundation already acquired.
+      if (before.stageOrder > at.stageOrder) continue;
       out.push({
         from: node.id,
         to: id,

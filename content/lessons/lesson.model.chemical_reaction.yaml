@@ -1,0 +1,94 @@
+# Leçon narrée — transformation chimique et réaction, avec l'outil réaction (tableau d'avancement de la combustion du méthane).
+id: lesson.model.chemical_reaction
+nodeId: model.chemical_reaction
+depth: 1
+tools:
+  - id: reaction
+    kind: reaction
+    title: { fr: "Combustion du méthane", en: "Combustion of methane" }
+    parameters:
+      - { id: a, label: { fr: "méthane initial (mol)", en: "initial methane (mol)" }, min: 0, max: 4, step: 0.1, value: 1 }
+      - { id: b, label: { fr: "dioxygène initial (mol)", en: "initial oxygen (mol)" }, min: 0, max: 8, step: 0.1, value: 3 }
+    reactants:
+      - { id: methane, formula: "CH₄", coefficient: 1, initial: "a", label: { fr: "méthane", en: "methane" } }
+      - { id: dioxygen, formula: "O₂", coefficient: 2, initial: "b", label: { fr: "dioxygène", en: "oxygen" } }
+    products:
+      - { id: co2, formula: "CO₂", coefficient: 1 }
+      - { id: water, formula: "H₂O", coefficient: 2 }
+    unit: mol
+steps:
+  - id: equation
+    title: { fr: "L'équation et la conservation des éléments", en: "The equation and the conservation of the elements" }
+    text:
+      fr: >-
+        Le méthane brûle dans le dioxygène : des espèces disparaissent, d'autres apparaissent, c'est une transformation chimique.
+        On la modélise par une réaction, écrite sous la forme d'une équation : CH4 plus 2 O2 donne CO2 plus 2 H2O.
+        Les nombres stœchiométriques, 1, 2, 1 et 2, assurent la conservation des éléments : un carbone, quatre hydrogènes et quatre oxygènes de chaque côté.
+        On n'ajuste jamais une équation en changeant une formule, seulement ces nombres.
+      en: >-
+        Methane burns in oxygen: some species disappear, others appear, it is a chemical transformation.
+        It is modelled by a reaction, written as an equation: CH4 plus 2 O2 gives CO2 plus 2 H2O.
+        The stoichiometric coefficients, 1, 2, 1 and 2, ensure the conservation of the elements: one carbon, four hydrogens and four oxygens on each side.
+        An equation is never balanced by changing a formula, only these numbers.
+    actions:
+      - { at: 0, set: { a: 1, b: 3 } }
+  - id: initial_state
+    title: { fr: "L'état initial", en: "The initial state" }
+    text:
+      fr: >-
+        Dans l'état initial, première ligne du tableau, on introduit une mole de méthane et trois moles de dioxygène : aucun produit n'est encore formé.
+        L'avancement x compte, en moles, combien de fois la réaction écrite s'est produite : il vaut zéro au départ, puis augmente jusqu'à sa valeur maximale, sur la dernière ligne.
+        Les barres représentent les quantités de matière de chaque espèce pour l'avancement affiché.
+      en: >-
+        In the initial state, first row of the table, one mole of methane and three moles of oxygen are introduced: no product is formed yet.
+        The extent x counts, in moles, how many times the written reaction has taken place: it is zero at the start, then increases up to its maximum value, on the last row.
+        The bars represent the amounts of substance of each species for the extent displayed.
+    actions:
+      - { at: 0, set: { a: 1, b: 3 } }
+  - id: limiting
+    title: { fr: "Avancement et réactif limitant", en: "Extent and limiting reactant" }
+    text:
+      fr: >-
+        Quand x augmente, le méthane diminue de x et le dioxygène de 2 x, tandis qu'il se forme x mole de CO2 et 2 x moles d'eau.
+        La transformation s'arrête quand un réactif est épuisé : c'est le réactif limitant, l'autre est en excès.
+        Avec une mole de méthane et 1,5 mole de dioxygène, le dioxygène est limitant : l'avancement maximal vaut 0,75 mole, et il reste 0,25 mole de méthane.
+      en: >-
+        As x increases, methane decreases by x and oxygen by 2 x, while x mole of CO2 and 2 x moles of water are formed.
+        The transformation stops when one reactant is used up: it is the limiting reactant, the other is in excess.
+        With one mole of methane and 1.5 mole of oxygen, oxygen is limiting: the maximum extent is 0.75 mole, and 0.25 mole of methane is left.
+    actions:
+      - { at: 2, set: { a: 1, b: 1.5 } }
+  - id: final_state
+    title: { fr: "État final et mélange stœchiométrique", en: "Final state and stoichiometric mixture" }
+    text:
+      fr: >-
+        L'état final se lit sur la dernière ligne du tableau : le réactif limitant est à zéro, les produits sont au maximum, et il reste une partie du réactif en excès.
+        Si les quantités initiales sont dans les proportions de l'équation, une mole de méthane pour deux moles de dioxygène, les deux réactifs disparaissent ensemble : le mélange est stœchiométrique.
+        La combustion libère de l'énergie vers l'extérieur : la transformation est exothermique.
+      en: >-
+        The final state is read on the last row of the table: the limiting reactant is at zero, the products are at their maximum, and part of the reactant in excess is left.
+        If the initial amounts are in the proportions of the equation, one mole of methane for two moles of oxygen, both reactants disappear together: the mixture is stoichiometric.
+        The combustion releases energy to the surroundings: the transformation is exothermic.
+    actions:
+      - { at: 1, set: { a: 1, b: 2 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de doser les réactifs", en: "Your turn to dose the reactants" }
+    text:
+      fr: >-
+        À vous. Faites varier les quantités initiales de méthane et de dioxygène avec les curseurs, déplacez l'avancement, et repérez à chaque fois le réactif limitant et l'état final.
+      en: >-
+        Your turn. Vary the initial amounts of methane and oxygen with the sliders, move the extent, and spot each time the limiting reactant and the final state.
+    actions:
+      - { at: 0, set: { a: 2, b: 3 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : un réactif limitant, puis l'ajustement d'une équation.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: a limiting reactant, then balancing an equation.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.chemical_reaction.limiting_reactant, exercise.chemical_reaction.balance]

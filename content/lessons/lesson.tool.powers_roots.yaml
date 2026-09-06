@@ -1,0 +1,16 @@
+# Leçon — puissances et racines carrées : le traceur montre x puissance n (n entier réglable) et racine de x.
+id: lesson.tool.powers_roots
+nodeId: tool.powers_roots
+depth: 1
+tools:
+  - id: plotter
+    kind: plotter
+    variable: x
+    view: { x: [-3, 3], y: [-2, 9] }
+    parameters:
+      - { id: n, label: { fr: "exposant n", en: "exponent n" }, min: 1, max: 4, step: 1, value: 2 }
+    input: true
+    initial:
+      - { plot: { id: p, expr: "x^n", label: { fr: "xⁿ", en: "xⁿ" } } }
+      - { plot: { id: r, expr: "sqrt(x)", label: { fr: "√x", en: "√x" } } }
+      - { point: { id: q, on: r, x: 4, guides: true, label: { fr: "√4 = 2", en: "√4 = 2" } } }

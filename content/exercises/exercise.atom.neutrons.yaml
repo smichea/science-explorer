@@ -1,0 +1,44 @@
+# Leçon atome — nombre de neutrons du chlore 35 (réponse numérique)
+id: exercise.atom.neutrons
+type: numeric
+nodeId: model.atom
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Le noyau de l'atome de chlore 35 s'écrit $^{35}_{17}\mathrm{Cl}$.
+
+    Combien de neutrons ce noyau contient-il ?
+  en: |-
+    The nucleus of the chlorine-35 atom is written $^{35}_{17}\mathrm{Cl}$.
+
+    How many neutrons does this nucleus contain?
+numeric:
+  value: 18
+  tolerance: { kind: absolute, value: 0 }
+  inputLabel: { fr: "nombre de neutrons", en: "number of neutrons" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Dans l'écriture $^{A}_{Z}\mathrm{X}$, le nombre du bas est le numéro atomique $Z$ (nombre de protons) et le nombre du haut est le nombre de masse $A$ (nombre de nucléons).
+      en: |-
+        In the notation $^{A}_{Z}\mathrm{X}$, the bottom number is the atomic number $Z$ (number of protons) and the top number is the mass number $A$ (number of nucleons).
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Les nucléons sont les protons et les neutrons : $N = A - Z$.
+      en: |-
+        The nucleons are the protons and the neutrons: $N = A - Z$.
+solution:
+  fr: |-
+    Le nombre de masse est $A = 35$ et le numéro atomique $Z = 17$ : le noyau contient $17$ protons et
+    $$N = A - Z = 35 - 17 = 18 \text{ neutrons}.$$
+    L'atome, neutre, possède aussi $17$ électrons. L'autre isotope naturel du chlore, $^{37}_{17}\mathrm{Cl}$, a le même nombre de protons mais $20$ neutrons : même élément, même chimie, masse différente.
+  en: |-
+    The mass number is $A = 35$ and the atomic number $Z = 17$: the nucleus contains $17$ protons and
+    $$N = A - Z = 35 - 17 = 18 \text{ neutrons}.$$
+    The atom, being neutral, also has $17$ electrons. The other natural isotope of chlorine, $^{37}_{17}\mathrm{Cl}$, has the same number of protons but $20$ neutrons: same element, same chemistry, different mass.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

@@ -79,4 +79,36 @@ test.describe('narrated lessons', () => {
     await expect(page.getByTestId('dimensions-builder')).toBeVisible();
     await expectNoHorizontalScroll(page);
   });
+
+  test('the Seconde tools answer to the learner: series, reaction, periodic table, optics', async ({
+    page,
+  }) => {
+    test.skip(test.info().project.name !== 'desktop', 'checked once, on desktop');
+    await createExplorer(page, { age: 15 });
+    // A statistical series recomputes its summary when the learner edits the values.
+    await page.goto('lesson/tool.descriptive_statistics');
+    await nextUntil(page, 'play');
+    await page.getByTestId('data-values').fill('2 ; 4 ; 4 ; 4 ; 5 ; 5 ; 7 ; 9');
+    await expect(page.getByTestId('data-tool')).toHaveAttribute('data-count', '8');
+    await expect(page.getByTestId('data-reading')).toContainText('4,5');
+    // An extent table follows the extent slider and names the limiting reactant.
+    await page.goto('lesson/model.chemical_reaction');
+    await nextUntil(page, 'play');
+    await expect(page.getByTestId('reaction-reading')).toContainText(/limitant|stœchiométrique/);
+    await page.getByTestId('reaction-extent').fill('0');
+    await expect(page.getByTestId('reaction-tool')).toHaveAttribute('data-extent', '0');
+    // The periodic table opens the card of the clicked element.
+    await page.goto('lesson/model.atom');
+    await nextUntil(page, 'play');
+    await page.getByTestId('element-Na').click();
+    await expect(page.getByTestId('element-info')).toContainText('Sodium');
+    await expect(page.getByTestId('element-info')).toContainText('3s¹');
+    // Refraction follows the incidence slider.
+    await page.goto('lesson/law.snell_descartes');
+    await nextUntil(page, 'play');
+    await expect(page.getByTestId('optics-tool')).toHaveAttribute('data-mode', 'refraction');
+    await page.getByTestId('plotter-param-i').fill('60');
+    await expect(page.getByTestId('optics-reading')).toContainText('60');
+    await expectNoHorizontalScroll(page);
+  });
 });

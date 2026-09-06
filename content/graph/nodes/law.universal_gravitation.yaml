@@ -1,0 +1,57 @@
+id: law.universal_gravitation
+type: law
+world: world.physics
+region: region.physics.gravitation
+importance: 2
+tags: [lycee]
+title: { fr: "Loi de gravitation universelle et poids", en: "Law of universal gravitation and weight" }
+shortPurpose:
+  fr: "Calculer la force d'attraction entre deux masses et comprendre le poids comme l'attraction de la Terre."
+  en: "Compute the attractive force between two masses and understand weight as the attraction of the Earth."
+overview:
+  fr: >-
+    Deux corps qui ont une masse s'attirent toujours : c'est la gravitation universelle, découverte par Newton. La force est proportionnelle à chacune des masses et diminue comme le carré de la distance qui sépare leurs centres. Le poids d'un objet n'est rien d'autre que l'attraction de la Terre sur lui ; c'est pourquoi on pèse six fois moins sur la Lune.
+  en: >-
+    Any two bodies that have a mass attract each other: this is universal gravitation, discovered by Newton. The force is proportional to each of the masses and decreases as the square of the distance between their centres. The weight of an object is nothing but the attraction of the Earth on it; that is why one weighs six times less on the Moon.
+aliases:
+  fr: ["gravitation universelle", "interaction gravitationnelle", "force d'attraction gravitationnelle", "poids et masse"]
+  en: ["universal gravitation", "gravitational interaction", "gravitational attraction force", "weight and mass"]
+description:
+  fr: |
+    **Loi de gravitation universelle.** Deux corps $A$ et $B$, de masses $m_A$ et $m_B$, dont les centres sont séparés de la distance $d$, exercent l'un sur l'autre des forces attractives de même valeur, portées par la droite qui joint leurs centres :
+    $$F_{A/B} = F_{B/A} = G\,\frac{m_A\, m_B}{d^2}, \qquad G = 6{,}67 \times 10^{-11}\ \mathrm{N \cdot m^2 \cdot kg^{-2}}.$$
+    La force $\vec F_{A/B}$ (exercée par $A$ sur $B$) est dirigée de $B$ vers $A$, et $\vec F_{B/A} = -\vec F_{A/B}$ : les deux corps s'attirent, conformément au principe des actions réciproques. La constante $G$ est minuscule : deux masses de $1\ \mathrm{kg}$ distantes de $1\ \mathrm{m}$ s'attirent avec une force de $6{,}67 \times 10^{-11}\ \mathrm{N}$, imperceptible.
+
+    La loi répond à une question que Newton fut le premier à poser ainsi : la force qui fait tomber la pomme est-elle la même que celle qui retient la Lune ? Oui. Le **poids** d'un objet de masse $m$ à la surface de la Terre est la force gravitationnelle exercée par la Terre (masse $M_T = 5{,}97 \times 10^{24}\ \mathrm{kg}$, rayon $R_T = 6{,}37 \times 10^{6}\ \mathrm{m}$) : $P = G\,\dfrac{M_T\, m}{R_T^2} = m\,g$ avec $g = G\,\dfrac{M_T}{R_T^2} \approx 9{,}8\ \mathrm{N/kg}$. Le calcul redonne bien la valeur mesurée avec un dynamomètre. Sur la Lune, $M_L$ et $R_L$ sont plus petits et $g_L \approx 1{,}62\ \mathrm{N/kg}$ : un astronaute de $80\ \mathrm{kg}$ y pèse $130\ \mathrm{N}$ au lieu de $785\ \mathrm{N}$ sur Terre.
+
+    La **masse** (en kilogrammes) mesure la quantité de matière d'un objet et ne change pas d'un lieu à l'autre ; le **poids** (en newtons) est une force qui dépend de l'astre et de l'altitude. Piège classique : la loi utilise la distance entre les *centres* des deux corps, pas entre leurs surfaces ; à $400\ \mathrm{km}$ d'altitude, dans la Station spatiale, $g$ vaut encore $8{,}7\ \mathrm{N/kg}$, et les astronautes flottent parce qu'ils tombent avec la station, pas parce que la gravité a disparu. Avec ces idées, on décrit en Première le mouvement des planètes et des satellites, et l'on comprend que la chute libre et le mouvement uniformément accéléré ont pour cause la gravitation.
+  en: |
+    **Law of universal gravitation.** Two bodies $A$ and $B$, of masses $m_A$ and $m_B$, whose centres are separated by the distance $d$, exert on each other attractive forces of the same value, carried by the line joining their centres:
+    $$F_{A/B} = F_{B/A} = G\,\frac{m_A\, m_B}{d^2}, \qquad G = 6.67 \times 10^{-11}\ \mathrm{N \cdot m^2 \cdot kg^{-2}}.$$
+    The force $\vec F_{A/B}$ (exerted by $A$ on $B$) points from $B$ towards $A$, and $\vec F_{B/A} = -\vec F_{A/B}$: the two bodies attract each other, in accordance with the principle of reciprocal actions. The constant $G$ is tiny: two masses of $1\ \mathrm{kg}$ at a distance of $1\ \mathrm{m}$ attract each other with a force of $6.67 \times 10^{-11}\ \mathrm{N}$, imperceptible.
+
+    The law answers a question Newton was the first to ask in this way: is the force that makes the apple fall the same as the one that holds the Moon? Yes. The **weight** of an object of mass $m$ at the surface of the Earth is the gravitational force exerted by the Earth (mass $M_T = 5.97 \times 10^{24}\ \mathrm{kg}$, radius $R_T = 6.37 \times 10^{6}\ \mathrm{m}$): $P = G\,\dfrac{M_T\, m}{R_T^2} = m\,g$ with $g = G\,\dfrac{M_T}{R_T^2} \approx 9.8\ \mathrm{N/kg}$. The computation does give back the value measured with a spring scale. On the Moon, $M_L$ and $R_L$ are smaller and $g_L \approx 1.62\ \mathrm{N/kg}$: an $80\ \mathrm{kg}$ astronaut weighs $130\ \mathrm{N}$ there instead of $785\ \mathrm{N}$ on Earth.
+
+    **Mass** (in kilograms) measures the amount of matter of an object and does not change from one place to another; **weight** (in newtons) is a force that depends on the celestial body and on the altitude. Classic trap: the law uses the distance between the *centres* of the two bodies, not between their surfaces; at $400\ \mathrm{km}$ of altitude, in the Space Station, $g$ is still $8.7\ \mathrm{N/kg}$, and the astronauts float because they fall together with the station, not because gravity has vanished. With these ideas, the motion of planets and satellites is described in Première, and one understands that free fall and uniformly accelerated motion are caused by gravitation.
+law:
+  statement:
+    fr: "Deux corps de masses $m_A$ et $m_B$, dont les centres sont distants de $d$, s'attirent avec des forces de même valeur $F = G\\,\\dfrac{m_A\\, m_B}{d^2}$, portées par la droite joignant leurs centres, avec $G = 6{,}67 \\times 10^{-11}\\ \\mathrm{N \\cdot m^2 \\cdot kg^{-2}}$."
+    en: "Two bodies of masses $m_A$ and $m_B$, whose centres are a distance $d$ apart, attract each other with forces of the same value $F = G\\,\\dfrac{m_A\\, m_B}{d^2}$, carried by the line joining their centres, with $G = 6.67 \\times 10^{-11}\\ \\mathrm{N \\cdot m^2 \\cdot kg^{-2}}$."
+  validity:
+    fr: "Corps à répartition de masse sphérique (ou de dimensions petites devant $d$), $d$ étant la distance entre les centres ; champs faibles et vitesses très inférieures à celle de la lumière (sinon relativité générale)."
+    en: "Bodies with a spherical mass distribution (or of dimensions small compared with $d$), $d$ being the distance between the centres; weak fields and speeds much smaller than that of light (otherwise general relativity)."
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "caractériser la force d'interaction gravitationnelle entre deux corps (direction, sens, valeur) et la représenter"
+        - "calculer la valeur de la force d'attraction gravitationnelle avec $F = G\\,\\dfrac{m_A\\, m_B}{d^2}$ en respectant les unités du Système international"
+        - "interpréter le poids d'un objet comme la force gravitationnelle exercée par la Terre et relier $g$ à $G$, $M_T$ et $R_T$"
+        - "distinguer masse et poids et calculer un poids sur un autre astre"
+      en:
+        - "characterise the gravitational force between two bodies (direction, sense, value) and represent it"
+        - "compute the value of the gravitational attraction with $F = G\\,\\dfrac{m_A\\, m_B}{d^2}$ using SI units"
+        - "interpret the weight of an object as the gravitational force exerted by the Earth and relate $g$ to $G$, $M_T$ and $R_T$"
+        - "distinguish mass from weight and compute a weight on another celestial body"

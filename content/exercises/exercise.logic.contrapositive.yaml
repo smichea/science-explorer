@@ -1,0 +1,73 @@
+# Logique — reconnaître la contraposée d'une implication (choix unique)
+id: exercise.logic.contrapositive
+type: choice
+nodeId: concept.logic_sets
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    On considère l'implication vraie : « pour tout réel $x$, si $x > 2$ alors $x^2 > 4$ ».
+
+    Parmi les affirmations suivantes, laquelle est sa **contraposée** ?
+  en: |-
+    Consider the true implication: "for every real $x$, if $x > 2$ then $x^2 > 4$".
+
+    Among the following statements, which one is its **contrapositive**?
+choice:
+  multiple: false
+  requireReasoning: false
+  choices:
+    - id: converse
+      text: { fr: "si $x^2 > 4$ alors $x > 2$", en: "if $x^2 > 4$ then $x > 2$" }
+      feedback:
+        fr: |-
+          C'est la **réciproque** : on a échangé l'hypothèse et la conclusion. Elle est d'ailleurs fausse, comme le montre $x = -3$.
+        en: |-
+          That is the **converse**: hypothesis and conclusion have been swapped. It is false, moreover, as $x = -3$ shows.
+    - id: contrapositive
+      text: { fr: "si $x^2 \\leq 4$ alors $x \\leq 2$", en: "if $x^2 \\leq 4$ then $x \\leq 2$" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : la contraposée de « si $P$ alors $Q$ » est « si non $Q$ alors non $P$ ». La négation de $x^2 > 4$ est $x^2 \leq 4$, celle de $x > 2$ est $x \leq 2$. Elle est équivalente à l'implication de départ, donc vraie.
+        en: |-
+          Correct: the contrapositive of "if $P$ then $Q$" is "if not $Q$ then not $P$". The negation of $x^2 > 4$ is $x^2 \leq 4$, that of $x > 2$ is $x \leq 2$. It is equivalent to the original implication, hence true.
+    - id: inverse
+      text: { fr: "si $x \\leq 2$ alors $x^2 \\leq 4$", en: "if $x \\leq 2$ then $x^2 \\leq 4$" }
+      feedback:
+        fr: |-
+          On a nié l'hypothèse et la conclusion sans les échanger : ce n'est ni la contraposée ni la réciproque, et cette affirmation est fausse ($x = -3$ vérifie $x \leq 2$ mais $x^2 = 9$).
+        en: |-
+          Hypothesis and conclusion have been negated without being swapped: this is neither the contrapositive nor the converse, and this statement is false ($x = -3$ satisfies $x \leq 2$ but $x^2 = 9$).
+    - id: mixed
+      text: { fr: "si $x^2 \\leq 4$ alors $x > 2$", en: "if $x^2 \\leq 4$ then $x > 2$" }
+      feedback:
+        fr: |-
+          Seule la conclusion a été niée et déplacée. La contraposée nie **les deux** propositions et les échange : « si non $Q$ alors non $P$ ».
+        en: |-
+          Only the conclusion has been negated and moved. The contrapositive negates **both** propositions and swaps them: "if not $Q$ then not $P$".
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La contraposée de « si $P$ alors $Q$ » est « si non $Q$ alors non $P$ » : on nie les deux propositions et on les échange.
+      en: |-
+        The contrapositive of "if $P$ then $Q$" is "if not $Q$ then not $P$": negate both propositions and swap them.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La négation de « $x^2 > 4$ » est « $x^2 \leq 4$ » ; la négation de « $x > 2$ » est « $x \leq 2$ ».
+      en: |-
+        The negation of "$x^2 > 4$" is "$x^2 \leq 4$"; the negation of "$x > 2$" is "$x \leq 2$".
+solution:
+  fr: |-
+    Avec $P$ : « $x > 2$ » et $Q$ : « $x^2 > 4$ », l'implication est $P \Rightarrow Q$. Sa contraposée est « non $Q \Rightarrow$ non $P$ », soit
+    $$\text{si } x^2 \leq 4 \text{ alors } x \leq 2.$$
+    Une implication et sa contraposée sont toujours vraies ou fausses ensemble. La réciproque, « si $x^2 > 4$ alors $x > 2$ », est une affirmation différente, ici fausse : $x = -3$ est un contre-exemple.
+  en: |-
+    With $P$: "$x > 2$" and $Q$: "$x^2 > 4$", the implication is $P \Rightarrow Q$. Its contrapositive is "not $Q \Rightarrow$ not $P$", that is
+    $$\text{if } x^2 \leq 4 \text{ then } x \leq 2.$$
+    An implication and its contrapositive are always true or false together. The converse, "if $x^2 > 4$ then $x > 2$", is a different statement, false here: $x = -3$ is a counter-example.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

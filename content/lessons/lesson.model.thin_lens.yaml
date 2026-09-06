@@ -1,0 +1,14 @@
+# Leçon — la lentille mince convergente : construction de l'image réelle et grandissement (outil optique en mode lentille).
+id: lesson.model.thin_lens
+nodeId: model.thin_lens
+depth: 1
+tools:
+  - id: lens
+    kind: optics
+    title: { fr: "Image par une lentille convergente", en: "Image through a converging lens" }
+    mode: lens
+    parameters:
+      - { id: d, label: { fr: "distance objet-lentille d (cm)", en: "object–lens distance d (cm)" }, min: 2, max: 20, step: 0.5, value: 12 }
+      - { id: f, label: { fr: "distance focale f' (cm)", en: "focal length f' (cm)" }, min: 2, max: 8, step: 0.5, value: 5 }
+    focal: "f"
+    object: { distance: "d", height: 3 }

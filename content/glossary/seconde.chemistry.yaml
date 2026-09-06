@@ -1,0 +1,113 @@
+# Glossaire bilingue — chimie de Seconde (termes préférés et alias, 3 entrées par destination).
+entries:
+  # --- concept.pure_substances_mixtures ---------------------------------------
+  - id: glossary.chemical_species
+    nodeId: concept.pure_substances_mixtures
+    fr: { preferred: espèce chimique, aliases: [corps pur, mélange, mélange homogène, mélange hétérogène] }
+    en: { preferred: chemical species, aliases: [pure substance, mixture, homogeneous mixture, heterogeneous mixture] }
+    notes: "A pure substance is one species; a mixture is several. Avoid « pur » in the everyday sense."
+  - id: glossary.mass_density
+    nodeId: concept.pure_substances_mixtures
+    fr: { preferred: masse volumique, aliases: [rho, masse par unité de volume] }
+    en: { preferred: density, aliases: [mass density, rho, mass per unit volume] }
+    notes: "« densité » in French is the dimensionless ratio to water; use « masse volumique » in learner UI."
+  - id: glossary.thin_layer_chromatography
+    nodeId: concept.pure_substances_mixtures
+    fr: { preferred: chromatographie sur couche mince, aliases: [CCM, chromatographie, éluant] }
+    en: { preferred: thin-layer chromatography, aliases: [TLC, chromatography, eluent] }
+  # --- concept.concentration --------------------------------------------------
+  - id: glossary.aqueous_solution
+    nodeId: concept.concentration
+    fr: { preferred: solution aqueuse, aliases: [soluté, solvant, dissolution] }
+    en: { preferred: aqueous solution, aliases: [solute, solvent, dissolution] }
+  - id: glossary.mass_concentration
+    nodeId: concept.concentration
+    fr: { preferred: concentration en masse, aliases: [concentration massique, Cm, teneur en masse] }
+    en: { preferred: mass concentration, aliases: [concentration by mass, Cm, mass per litre] }
+    notes: "Seconde works with mass concentration (g/L); the molar concentration comes in Première."
+  - id: glossary.dilution
+    nodeId: concept.concentration
+    fr: { preferred: dilution, aliases: [solution mère, solution fille, facteur de dilution, échelle de teintes] }
+    en: { preferred: dilution, aliases: [stock solution, diluted solution, dilution factor, colour scale] }
+  # --- model.atom -------------------------------------------------------------
+  - id: glossary.atomic_nucleus
+    nodeId: model.atom
+    fr: { preferred: noyau atomique, aliases: [nucléons, protons, neutrons, numéro atomique, nombre de masse] }
+    en: { preferred: atomic nucleus, aliases: [nucleons, protons, neutrons, atomic number, mass number] }
+  - id: glossary.isotopes
+    nodeId: model.atom
+    fr: { preferred: isotopes, aliases: [élément chimique, carbone 14, chlore 37] }
+    en: { preferred: isotopes, aliases: [chemical element, carbon-14, chlorine-37] }
+    notes: "Same Z, different N: same element, same chemistry, different mass."
+  - id: glossary.electron_configuration
+    nodeId: model.atom
+    fr: { preferred: configuration électronique, aliases: [cortège électronique, sous-couches, électrons de valence] }
+    en: { preferred: electron configuration, aliases: [electron cloud, subshells, valence electrons] }
+  # --- model.periodic_table ---------------------------------------------------
+  - id: glossary.periodic_table
+    nodeId: model.periodic_table
+    fr: { preferred: tableau périodique, aliases: [classification périodique, tableau de Mendeleïev, famille chimique] }
+    en: { preferred: periodic table, aliases: [periodic classification, Mendeleev's table, chemical family] }
+  - id: glossary.octet_rule
+    nodeId: model.periodic_table
+    fr: { preferred: règle de l'octet, aliases: [règle du duet, gaz nobles, ion monoatomique] }
+    en: { preferred: octet rule, aliases: [duet rule, noble gases, monoatomic ion] }
+  - id: glossary.covalent_bond
+    nodeId: model.periodic_table
+    fr: { preferred: liaison covalente, aliases: [doublet liant, doublet non liant, schéma de Lewis] }
+    en: { preferred: covalent bond, aliases: [bonding pair, lone pair, Lewis structure] }
+  # --- concept.amount_of_substance --------------------------------------------
+  - id: glossary.mole
+    nodeId: concept.amount_of_substance
+    fr: { preferred: mole, aliases: [quantité de matière, mol, nombre d'entités] }
+    en: { preferred: mole, aliases: [amount of substance, mol, number of entities] }
+    notes: "« quantité de matière » is the quantity, « mole » its unit; never « nombre de moles » in learner UI."
+  - id: glossary.avogadro_constant
+    nodeId: concept.amount_of_substance
+    fr: { preferred: constante d'Avogadro, aliases: [nombre d'Avogadro, NA] }
+    en: { preferred: Avogadro constant, aliases: [Avogadro's number, NA] }
+  - id: glossary.molar_mass
+    nodeId: concept.amount_of_substance
+    fr: { preferred: masse molaire, aliases: [masse d'une entité, masse molaire atomique, g/mol] }
+    en: { preferred: molar mass, aliases: [mass of an entity, atomic molar mass, g/mol] }
+  # --- phenomenon.state_changes -----------------------------------------------
+  - id: glossary.change_of_state
+    nodeId: phenomenon.state_changes
+    fr: { preferred: changement d'état, aliases: [fusion, solidification, vaporisation, liquéfaction, sublimation, condensation] }
+    en: { preferred: change of state, aliases: [melting, solidification, vaporisation, liquefaction, sublimation, deposition] }
+  - id: glossary.latent_heat
+    nodeId: phenomenon.state_changes
+    fr: { preferred: énergie massique de changement d'état, aliases: [chaleur latente, énergie de fusion, énergie de vaporisation] }
+    en: { preferred: specific latent heat, aliases: [latent heat, energy of melting, energy of vaporisation] }
+    notes: "Programme wording: « énergie massique de changement d'état » (in J/kg); « chaleur latente » is the older name."
+  - id: glossary.temperature_plateau
+    nodeId: phenomenon.state_changes
+    fr: { preferred: palier de température, aliases: [température de fusion, température d'ébullition, courbe de chauffage] }
+    en: { preferred: temperature plateau, aliases: [melting point, boiling point, heating curve] }
+  # --- model.chemical_reaction ------------------------------------------------
+  - id: glossary.chemical_reaction
+    nodeId: model.chemical_reaction
+    fr: { preferred: réaction chimique, aliases: [transformation chimique, équation de réaction, réactifs, produits] }
+    en: { preferred: chemical reaction, aliases: [chemical transformation, reaction equation, reactants, products] }
+    notes: "The transformation is what happens; the reaction is its model."
+  - id: glossary.limiting_reactant
+    nodeId: model.chemical_reaction
+    fr: { preferred: réactif limitant, aliases: [réactif en excès, mélange stœchiométrique, avancement] }
+    en: { preferred: limiting reactant, aliases: [reactant in excess, stoichiometric mixture, extent of reaction] }
+  - id: glossary.stoichiometric_coefficient
+    nodeId: model.chemical_reaction
+    fr: { preferred: nombre stœchiométrique, aliases: [coefficient stœchiométrique, ajuster une équation, conservation des éléments] }
+    en: { preferred: stoichiometric coefficient, aliases: [stoichiometric number, balancing an equation, conservation of the elements] }
+  # --- phenomenon.nuclear_transformation --------------------------------------
+  - id: glossary.nuclear_transformation
+    nodeId: phenomenon.nuclear_transformation
+    fr: { preferred: transformation nucléaire, aliases: [réaction nucléaire, désintégration, noyau fils] }
+    en: { preferred: nuclear transformation, aliases: [nuclear reaction, disintegration, daughter nucleus] }
+  - id: glossary.alpha_beta_emission
+    nodeId: phenomenon.nuclear_transformation
+    fr: { preferred: radioactivité alpha et bêta, aliases: [émission alpha, émission bêta, lois de Soddy] }
+    en: { preferred: alpha and beta radioactivity, aliases: [alpha emission, beta emission, Soddy's laws] }
+  - id: glossary.fission_fusion
+    nodeId: phenomenon.nuclear_transformation
+    fr: { preferred: fission et fusion nucléaires, aliases: [fission, fusion, énergie nucléaire] }
+    en: { preferred: nuclear fission and fusion, aliases: [fission, fusion, nuclear energy] }

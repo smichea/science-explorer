@@ -1,0 +1,44 @@
+# Équations — la solution négative de (2x + 5)(x − 4) = 0 (réponse numérique)
+id: exercise.linear_equations.product_null
+type: numeric
+nodeId: tool.linear_equations
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On considère l'équation $(2x + 5)(x - 4) = 0$.
+
+    Elle a deux solutions. Donnez la solution **négative**, sous forme décimale.
+  en: |-
+    Consider the equation $(2x + 5)(x - 4) = 0$.
+
+    It has two solutions. Give the **negative** solution, in decimal form.
+numeric:
+  value: -2.5
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "solution négative", en: "negative solution" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Un produit est nul si et seulement si l'un de ses facteurs est nul : résolvez $2x + 5 = 0$ et $x - 4 = 0$ séparément.
+      en: |-
+        A product is zero if and only if one of its factors is zero: solve $2x + 5 = 0$ and $x - 4 = 0$ separately.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $2x + 5 = 0$ donne $2x = -5$, puis divisez par $2$.
+      en: |-
+        $2x + 5 = 0$ gives $2x = -5$, then divide by $2$.
+solution:
+  fr: |-
+    Un produit de facteurs est nul si et seulement si l'un au moins des facteurs est nul :
+    $$(2x + 5)(x - 4) = 0 \iff 2x + 5 = 0 \ \text{ou}\ x - 4 = 0 \iff x = -\frac52 \ \text{ou}\ x = 4.$$
+    Les solutions sont $-2{,}5$ et $4$ ; la solution négative est $-2{,}5$. Surtout ne pas développer : la forme factorisée est exactement celle qui permet de résoudre.
+  en: |-
+    A product of factors is zero if and only if at least one of the factors is zero:
+    $$(2x + 5)(x - 4) = 0 \iff 2x + 5 = 0 \ \text{or}\ x - 4 = 0 \iff x = -\frac52 \ \text{or}\ x = 4.$$
+    The solutions are $-2.5$ and $4$; the negative solution is $-2.5$. Above all, do not expand: the factored form is exactly the one that allows solving.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

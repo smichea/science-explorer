@@ -1,0 +1,73 @@
+# Leçon changements d'état — la température pendant un changement d'état (choix unique)
+id: exercise.state_changes.plateau
+type: choice
+nodeId: phenomenon.state_changes
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    On chauffe régulièrement, à pression atmosphérique, un bloc de glace pure sorti du congélateur à $-18\ ^\circ\mathrm{C}$, en relevant sa température au cours du temps.
+
+    Que fait la température pendant que la glace fond, tant qu'il reste à la fois de la glace et de l'eau liquide ?
+  en: |-
+    A block of pure ice taken out of the freezer at $-18\ ^\circ\mathrm{C}$ is heated steadily, at atmospheric pressure, and its temperature is recorded over time.
+
+    What does the temperature do while the ice melts, as long as both ice and liquid water remain?
+choice:
+  multiple: false
+  requireReasoning: false
+  choices:
+    - id: constant
+      text: { fr: "Elle reste constante, à 0 °C, pendant toute la fusion.", en: "It stays constant, at 0 °C, throughout the melting." }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : pour un corps pur, le changement d'état se fait à température constante. L'énergie reçue sert à rompre la cohésion du solide, pas à augmenter l'agitation des molécules ; la température ne remonte qu'une fois toute la glace fondue.
+        en: |-
+          Correct: for a pure substance, the change of state takes place at constant temperature. The energy received breaks the cohesion of the solid rather than increasing the agitation of the molecules; the temperature rises again only once all the ice has melted.
+    - id: rises
+      text: { fr: "Elle continue de monter régulièrement, puisque l'on chauffe.", en: "It keeps rising steadily, since heating continues." }
+      feedback:
+        fr: |-
+          On chauffe, mais l'énergie reçue pendant la fusion sert à séparer les molécules du solide, pas à les agiter davantage : la température reste bloquée sur un palier tant que les deux états coexistent.
+        en: |-
+          Heating continues, but the energy received during melting is used to separate the molecules of the solid, not to agitate them further: the temperature stays locked on a plateau as long as both states coexist.
+    - id: drops
+      text: { fr: "Elle baisse, car la fusion consomme de l'énergie.", en: "It drops, because melting consumes energy." }
+      feedback:
+        fr: |-
+          La fusion est bien endothermique, mais l'énergie est fournie par le chauffage : le mélange glace-eau reste à $0\ ^\circ\mathrm{C}$, il ne se refroidit pas. Une baisse de température s'observerait si la glace fondait en prélevant de l'énergie à une boisson, par exemple.
+        en: |-
+          Melting is indeed endothermic, but the energy is supplied by the heating: the ice-water mixture stays at $0\ ^\circ\mathrm{C}$, it does not cool down. A drop in temperature would be seen if the ice melted by taking energy from a drink, for instance.
+    - id: depends
+      text: { fr: "Cela dépend de la masse de glace : plus elle est grande, plus la température monte.", en: "It depends on the mass of ice: the larger it is, the more the temperature rises." }
+      feedback:
+        fr: |-
+          La masse change la **durée** du palier (il faut fournir $E = m \times L$), pas sa température : un gros bloc et un petit glaçon fondent tous les deux à $0\ ^\circ\mathrm{C}$.
+        en: |-
+          The mass changes the **duration** of the plateau ($E = m \times L$ must be supplied), not its temperature: a big block and a small ice cube both melt at $0\ ^\circ\mathrm{C}$.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Pensez à la courbe de température d'un corps pur que l'on chauffe : montée, palier, montée.
+      en: |-
+        Think of the temperature curve of a pure substance being heated: rise, plateau, rise.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        À quoi sert l'énergie reçue pendant la fusion, si ce n'est pas à agiter davantage les molécules ?
+      en: |-
+        What is the energy received during melting used for, if not to agitate the molecules further?
+solution:
+  fr: |-
+    Pour un **corps pur** à pression fixée, la fusion se fait à une température constante, ici $0\ ^\circ\mathrm{C}$ : la courbe de température présente un **palier** tant que la glace et l'eau liquide coexistent. Pendant ce palier, l'énergie apportée par le chauffage sert à rompre la cohésion du solide, et non à augmenter l'agitation thermique des molécules, qui fixe la température.
+
+    La durée du palier dépend de la masse (il faut fournir $E = m \times L_{\text{fusion}}$), mais pas sa température. Avant le palier, la température de la glace monte de $-18$ à $0\ ^\circ\mathrm{C}$ ; après, celle de l'eau liquide remonte vers $100\ ^\circ\mathrm{C}$, où un second palier, celui de l'ébullition, apparaît.
+  en: |-
+    For a **pure substance** at fixed pressure, melting takes place at a constant temperature, here $0\ ^\circ\mathrm{C}$: the temperature curve shows a **plateau** as long as ice and liquid water coexist. During this plateau, the energy supplied by the heating breaks the cohesion of the solid, and does not increase the thermal agitation of the molecules, which sets the temperature.
+
+    The duration of the plateau depends on the mass ($E = m \times L_{\text{melting}}$ must be supplied), but not its temperature. Before the plateau, the temperature of the ice rises from $-18$ to $0\ ^\circ\mathrm{C}$; afterwards, that of the liquid water rises towards $100\ ^\circ\mathrm{C}$, where a second plateau, that of boiling, appears.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

@@ -1,0 +1,44 @@
+# Probabilités — une probabilité par dénombrement en situation d'équiprobabilité (réponse numérique)
+id: exercise.probability.equiprobable
+type: numeric
+nodeId: concept.probability
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un sac contient douze jetons indiscernables au toucher, numérotés de $1$ à $12$. On tire un jeton au hasard.
+
+    Quelle est la probabilité d'obtenir un multiple de $4$ ? Donnez le résultat sous forme décimale.
+  en: |-
+    A bag contains twelve tokens indistinguishable by touch, numbered from $1$ to $12$. A token is drawn at random.
+
+    What is the probability of getting a multiple of $4$? Give the result in decimal form.
+numeric:
+  value: 0.25
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "probabilité", en: "probability" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Les jetons sont indiscernables : les douze issues sont équiprobables. Comptez les issues favorables, puis divisez par le nombre total d'issues.
+      en: |-
+        The tokens are indistinguishable: the twelve outcomes are equiprobable. Count the favourable outcomes, then divide by the total number of outcomes.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Les multiples de $4$ entre $1$ et $12$ sont $4$, $8$ et $12$.
+      en: |-
+        The multiples of $4$ between $1$ and $12$ are $4$, $8$ and $12$.
+solution:
+  fr: |-
+    L'univers est $\Omega = \{1, 2, \ldots, 12\}$, avec $12$ issues équiprobables puisque les jetons sont indiscernables. L'événement $M$ « obtenir un multiple de $4$ » est $M = \{4, 8, 12\}$, qui a $3$ issues. Donc
+    $$P(M) = \frac{\text{nombre d'issues de } M}{\text{nombre d'issues de } \Omega} = \frac{3}{12} = \frac14 = 0{,}25.$$
+    L'événement contraire, « le numéro n'est pas un multiple de $4$ », a pour probabilité $1 - 0{,}25 = 0{,}75$. Sur un grand nombre de tirages, la fréquence des multiples de $4$ se stabiliserait autour de $0{,}25$.
+  en: |-
+    The sample space is $\Omega = \{1, 2, \ldots, 12\}$, with $12$ equiprobable outcomes since the tokens are indistinguishable. The event $M$ "getting a multiple of $4$" is $M = \{4, 8, 12\}$, which has $3$ outcomes. Hence
+    $$P(M) = \frac{\text{number of outcomes in } M}{\text{number of outcomes in } \Omega} = \frac{3}{12} = \frac14 = 0.25.$$
+    The complementary event, "the number is not a multiple of $4$", has probability $1 - 0.25 = 0.75$. Over a large number of draws, the frequency of multiples of $4$ would stabilise around $0.25$.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

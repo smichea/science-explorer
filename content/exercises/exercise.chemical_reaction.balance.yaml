@@ -1,0 +1,46 @@
+# Leçon transformation chimique — ajuster l'équation de combustion du propane (réponse numérique)
+id: exercise.chemical_reaction.balance
+type: numeric
+nodeId: model.chemical_reaction
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    La combustion complète du propane $\mathrm{C_3H_8}$ dans le dioxygène produit du dioxyde de carbone et de l'eau. Son équation s'écrit, avec les nombres stœchiométriques entiers les plus petits possibles :
+    $$\mathrm{C_3H_8} + a\,\mathrm{O_2} \to 3\,\mathrm{CO_2} + 4\,\mathrm{H_2O}.$$
+
+    Quel est le nombre stœchiométrique $a$ du dioxygène ?
+  en: |-
+    The complete combustion of propane $\mathrm{C_3H_8}$ in oxygen produces carbon dioxide and water. Its equation is written, with the smallest possible whole stoichiometric coefficients:
+    $$\mathrm{C_3H_8} + a\,\mathrm{O_2} \to 3\,\mathrm{CO_2} + 4\,\mathrm{H_2O}.$$
+
+    What is the stoichiometric coefficient $a$ of oxygen?
+numeric:
+  value: 5
+  tolerance: { kind: absolute, value: 0 }
+  inputLabel: { fr: "a", en: "a" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Comptez les atomes d'oxygène dans les produits : $3\,\mathrm{CO_2}$ et $4\,\mathrm{H_2O}$. Il doit y en avoir autant dans les réactifs.
+      en: |-
+        Count the oxygen atoms in the products: $3\,\mathrm{CO_2}$ and $4\,\mathrm{H_2O}$. There must be as many in the reactants.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Les produits contiennent $3 \times 2 + 4 \times 1 = 10$ atomes d'oxygène ; chaque molécule $\mathrm{O_2}$ en apporte deux.
+      en: |-
+        The products contain $3 \times 2 + 4 \times 1 = 10$ oxygen atoms; each $\mathrm{O_2}$ molecule brings two.
+solution:
+  fr: |-
+    Les nombres $3$ et $4$ assurent déjà la conservation du carbone ($3$ de chaque côté) et de l'hydrogène ($8$ de chaque côté). Il reste l'oxygène : les produits en contiennent $3 \times 2 + 4 \times 1 = 10$ atomes, et les réactifs en contiennent $2a$, d'où $2a = 10$ et
+    $$a = 5 : \qquad \mathrm{C_3H_8} + 5\,\mathrm{O_2} \to 3\,\mathrm{CO_2} + 4\,\mathrm{H_2O}.$$
+    Vérification : $3$ C, $8$ H et $10$ O de chaque côté. Les nombres stœchiométriques ne sont pas des indices : on ne touche jamais aux formules, seulement aux nombres placés devant elles.
+  en: |-
+    The numbers $3$ and $4$ already ensure the conservation of carbon ($3$ on each side) and hydrogen ($8$ on each side). Oxygen remains: the products contain $3 \times 2 + 4 \times 1 = 10$ atoms, and the reactants contain $2a$, hence $2a = 10$ and
+    $$a = 5 : \qquad \mathrm{C_3H_8} + 5\,\mathrm{O_2} \to 3\,\mathrm{CO_2} + 4\,\mathrm{H_2O}.$$
+    Check: $3$ C, $8$ H and $10$ O on each side. Stoichiometric coefficients are not subscripts: the formulas are never touched, only the numbers placed in front of them.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

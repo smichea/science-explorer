@@ -1,0 +1,43 @@
+# Leçon gravitation — le poids d'une personne de 70 kg sur la Lune (réponse numérique)
+id: exercise.gravitation.moon_weight
+type: numeric
+nodeId: law.universal_gravitation
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    À la surface de la Lune, l'intensité de la pesanteur vaut $g_L = 1{,}62\ \mathrm{N/kg}$ (contre $9{,}81\ \mathrm{N/kg}$ sur Terre).
+
+    Quelle est la valeur du poids d'une personne de masse $m = 70\ \mathrm{kg}$ sur la Lune ? Donnez le résultat en newtons, à l'unité près.
+  en: |-
+    At the surface of the Moon, the gravitational field strength is $g_L = 1.62\ \mathrm{N/kg}$ (against $9.81\ \mathrm{N/kg}$ on Earth).
+
+    What is the value of the weight of a person of mass $m = 70\ \mathrm{kg}$ on the Moon? Give the result in newtons, to the nearest unit.
+numeric:
+  value: 113
+  unit: "N"
+  tolerance: { kind: absolute, value: 1 }
+  inputLabel: { fr: "P", en: "P" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La masse ne change pas d'un astre à l'autre ; ce qui change, c'est $g$. Le poids vaut $P = m\,g$ avec la valeur de $g$ sur la Lune.
+      en: |-
+        The mass does not change from one celestial body to another; what changes is $g$. The weight is $P = m\,g$ with the value of $g$ on the Moon.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $P = 70 \times 1{,}62$.
+      en: |-
+        $P = 70 \times 1.62$.
+solution:
+  fr: |-
+    $$P_L = m\,g_L = 70 \times 1{,}62 = 113{,}4 \approx 113\ \mathrm{N}.$$
+    Sur Terre, la même personne pèse $P_T = 70 \times 9{,}81 \approx 687\ \mathrm{N}$ : environ six fois plus, alors que sa masse reste $70\ \mathrm{kg}$ partout. Le poids est une force, l'attraction de l'astre ; la masse est une propriété de la personne.
+  en: |-
+    $$P_L = m\,g_L = 70 \times 1.62 = 113.4 \approx 113\ \mathrm{N}.$$
+    On Earth, the same person weighs $P_T = 70 \times 9.81 \approx 687\ \mathrm{N}$: about six times more, while their mass stays $70\ \mathrm{kg}$ everywhere. Weight is a force, the attraction of the celestial body; mass is a property of the person.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 2, autonomy: 2 }

@@ -1,0 +1,45 @@
+# Leçon son — fréquence d'un signal sonore à partir d'une période lue sur un oscillogramme (réponse numérique)
+id: exercise.sound.frequency
+type: numeric
+nodeId: phenomenon.sound
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Sur l'enregistrement d'un signal sonore périodique, on lit que $4$ périodes occupent une durée totale de $8{,}0\ \mathrm{ms}$.
+
+    Calculez la fréquence $f$ de ce son, en hertz.
+  en: |-
+    On the recording of a periodic sound signal, one reads that $4$ periods span a total duration of $8.0\ \mathrm{ms}$.
+
+    Compute the frequency $f$ of this sound, in hertz.
+numeric:
+  value: 500
+  unit: "Hz"
+  tolerance: { kind: absolute, value: 5 }
+  inputLabel: { fr: "f", en: "f" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Commencez par la période $T$ : la durée d'une seule répétition du signal, à convertir en secondes.
+      en: |-
+        Start with the period $T$: the duration of a single repetition of the signal, to be converted to seconds.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $T = 8{,}0 / 4 = 2{,}0\ \mathrm{ms} = 2{,}0 \times 10^{-3}\ \mathrm{s}$, puis $f = 1/T$.
+      en: |-
+        $T = 8.0 / 4 = 2.0\ \mathrm{ms} = 2.0 \times 10^{-3}\ \mathrm{s}$, then $f = 1/T$.
+solution:
+  fr: |-
+    Quatre périodes durent $8{,}0\ \mathrm{ms}$, donc une période dure $T = \dfrac{8{,}0}{4} = 2{,}0\ \mathrm{ms} = 2{,}0 \times 10^{-3}\ \mathrm{s}$.
+    $$f = \frac{1}{T} = \frac{1}{2{,}0 \times 10^{-3}} = 500\ \mathrm{Hz}.$$
+    Lire plusieurs périodes à la fois, puis diviser, réduit l'erreur de lecture. Un son de $500\ \mathrm{Hz}$ est un peu plus aigu que le la du diapason ($440\ \mathrm{Hz}$) : plus la fréquence est grande, plus le son est aigu.
+  en: |-
+    Four periods last $8.0\ \mathrm{ms}$, so one period lasts $T = \dfrac{8.0}{4} = 2.0\ \mathrm{ms} = 2.0 \times 10^{-3}\ \mathrm{s}$.
+    $$f = \frac{1}{T} = \frac{1}{2.0 \times 10^{-3}} = 500\ \mathrm{Hz}.$$
+    Reading several periods at once, then dividing, reduces the reading error. A $500\ \mathrm{Hz}$ sound is slightly higher than the A of a tuning fork ($440\ \mathrm{Hz}$): the larger the frequency, the higher the sound.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

@@ -1,0 +1,43 @@
+# Leçon loi d'Ohm — intensité du courant dans un conducteur de 47 Ω sous 9 V (réponse numérique)
+id: exercise.ohm.current
+type: numeric
+nodeId: law.ohm
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un conducteur ohmique de résistance $R = 47\ \Omega$ est branché seul aux bornes d'une pile de tension $U = 9{,}0\ \mathrm{V}$.
+
+    Calculez l'intensité $I$ du courant qui le traverse, en ampères, à $0{,}001\ \mathrm{A}$ près.
+  en: |-
+    An ohmic conductor of resistance $R = 47\ \Omega$ is connected on its own across a battery of voltage $U = 9.0\ \mathrm{V}$.
+
+    Compute the current $I$ flowing through it, in amperes, to $0.001\ \mathrm{A}$.
+numeric:
+  value: 0.191
+  unit: "A"
+  tolerance: { kind: absolute, value: 0.005 }
+  inputLabel: { fr: "I", en: "I" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Loi d'Ohm : $U = R\,I$. Isolez $I$ : c'est le quotient de la tension par la résistance.
+      en: |-
+        Ohm's law: $U = R\,I$. Isolate $I$: it is the quotient of the voltage by the resistance.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $I = \dfrac{U}{R} = \dfrac{9{,}0}{47}$.
+      en: |-
+        $I = \dfrac{U}{R} = \dfrac{9.0}{47}$.
+solution:
+  fr: |-
+    $$I = \frac{U}{R} = \frac{9{,}0}{47} \approx 0{,}191\ \mathrm{A} = 191\ \mathrm{mA}.$$
+    Vérification des unités : des volts divisés par des ohms donnent des ampères. Avec une résistance dix fois plus grande, $470\ \Omega$, l'intensité serait dix fois plus petite, $19\ \mathrm{mA}$ : la résistance « freine » le courant, à tension donnée.
+  en: |-
+    $$I = \frac{U}{R} = \frac{9.0}{47} \approx 0.191\ \mathrm{A} = 191\ \mathrm{mA}.$$
+    Unit check: volts divided by ohms give amperes. With a ten times larger resistance, $470\ \Omega$, the current would be ten times smaller, $19\ \mathrm{mA}$: the resistance "holds back" the current, at a given voltage.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

@@ -1,0 +1,44 @@
+# Identités remarquables — développer (x + 3)² (réponse symbolique)
+id: exercise.identities.expand
+type: symbolic
+nodeId: tool.algebraic_identities
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Développez et réduisez $(x + 3)^2$.
+
+    Écrivez votre réponse comme une expression en $x$, par exemple `x^2+4*x+4`.
+  en: |-
+    Expand and simplify $(x + 3)^2$.
+
+    Write your answer as an expression in $x$, for instance `x^2+4*x+4`.
+symbolic:
+  variable: x
+  accepted: ["x^2+6*x+9", "x^2+6x+9"]
+  display: "(x + 3)² ="
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Utilisez l'identité $(a + b)^2 = a^2 + 2ab + b^2$ avec $a = x$ et $b = 3$. N'oubliez pas le double produit.
+      en: |-
+        Use the identity $(a + b)^2 = a^2 + 2ab + b^2$ with $a = x$ and $b = 3$. Do not forget the double product.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $a^2 = x^2$, $2ab = 2 \times x \times 3 = 6x$ et $b^2 = 9$.
+      en: |-
+        $a^2 = x^2$, $2ab = 2 \times x \times 3 = 6x$ and $b^2 = 9$.
+solution:
+  fr: |-
+    Avec l'identité $(a + b)^2 = a^2 + 2ab + b^2$ :
+    $$(x + 3)^2 = x^2 + 2 \times 3 \times x + 3^2 = x^2 + 6x + 9.$$
+    On retrouve ce résultat en développant le produit $(x + 3)(x + 3) = x^2 + 3x + 3x + 9$. Vérification avec $x = 1$ : $(1 + 3)^2 = 16$ et $1 + 6 + 9 = 16$. L'erreur classique $x^2 + 9$ donnerait $10$ : le double produit $6x$ ne doit jamais être oublié.
+  en: |-
+    With the identity $(a + b)^2 = a^2 + 2ab + b^2$:
+    $$(x + 3)^2 = x^2 + 2 \times 3 \times x + 3^2 = x^2 + 6x + 9.$$
+    The same result comes from expanding the product $(x + 3)(x + 3) = x^2 + 3x + 3x + 9$. Check with $x = 1$: $(1 + 3)^2 = 16$ and $1 + 6 + 9 = 16$. The classic mistake $x^2 + 9$ would give $10$: the double product $6x$ must never be forgotten.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

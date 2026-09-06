@@ -1,0 +1,55 @@
+id: tool.linear_equations
+type: mathematical_tool
+world: world.mathematics
+region: region.math.numbers_algebra
+importance: 3
+backpack: true
+tags: [lycee]
+title: { fr: "Équations et inéquations du premier degré", en: "Linear equations and inequalities" }
+shortPurpose:
+  fr: "Trouver la ou les valeurs d'une inconnue qui rendent vraie une égalité ou une inégalité, et écrire l'ensemble des solutions."
+  en: "Find the value or values of an unknown that make an equality or an inequality true, and write the solution set."
+overview:
+  fr: >-
+    Résoudre une équation, c'est trouver les nombres qui rendent une égalité vraie. Pour le premier degré, on isole l'inconnue en faisant la même opération des deux côtés ; pour un produit, on annule chaque facteur ; pour une inéquation, une seule règle de plus, le changement de sens quand on multiplie par un nombre négatif. C'est l'outil que la physique et la chimie utilisent à chaque calcul de durée, de concentration ou de résistance.
+  en: >-
+    Solving an equation means finding the numbers that make an equality true. For the first degree, the unknown is isolated by doing the same operation on both sides; for a product, each factor is set to zero; for an inequality, just one more rule, the change of direction when multiplying by a negative number. It is the tool physics and chemistry use in every computation of a duration, a concentration or a resistance.
+aliases:
+  fr: ["équation du premier degré", "inéquation", "équation produit nul", "résolution d'équation", "ensemble des solutions"]
+  en: ["linear equation", "inequality", "zero-product equation", "solving an equation", "solution set"]
+description:
+  fr: |
+    Une **équation du premier degré** à une inconnue s'écrit $ax + b = c$ avec $a \neq 0$ ; la résoudre, c'est trouver tous les réels $x$ qui la vérifient. On isole l'inconnue en effectuant la même opération dans les deux membres : $3x - 7 = 2$ donne $3x = 9$ puis $x = 3$, et l'on vérifie que $3 \times 3 - 7 = 2$. Une **équation produit nul** se résout avec la règle « un produit est nul si et seulement si l'un de ses facteurs est nul » : $(2x + 5)(x - 4) = 0$ équivaut à $x = -\dfrac52$ ou $x = 4$. Enfin $x^2 = a$ a deux solutions, $\sqrt{a}$ et $-\sqrt{a}$, si $a > 0$, une seule si $a = 0$ et aucune si $a < 0$.
+
+    Une **inéquation** $ax + b > c$ se résout de la même façon, avec une règle de plus : multiplier ou diviser les deux membres par un nombre **négatif** change le sens de l'inégalité. Ainsi $-2x + 1 \leq 7$ donne $-2x \leq 6$ puis $x \geq -3$. L'ensemble des solutions est un intervalle, ici $[-3\,;\,+\infty[$, que l'on représente sur la droite numérique. Graphiquement, résoudre $ax + b = c$ revient à chercher l'abscisse du point où la droite $y = ax + b$ coupe la droite horizontale $y = c$, et $ax + b > c$ décrit les abscisses où la première droite passe au-dessus de la seconde.
+
+    Ces techniques sont l'outil quotidien des sciences : trouver la durée d'un mouvement uniforme en résolvant $vt + x_0 = d$, la valeur pour laquelle deux tarifs affines s'égalisent, ou le domaine dans lequel une contrainte est respectée. Deux pièges classiques : oublier de changer le sens de l'inégalité, et diviser les deux membres par une expression qui contient $x$ et peut s'annuler, ce qui fait perdre des solutions. La bonne habitude est de tout ramener dans un membre, de factoriser si possible, puis d'appliquer la règle du produit nul ou de dresser un tableau de signes. Chaque solution trouvée se vérifie en la reportant dans l'équation de départ.
+  en: |
+    A **linear equation** in one unknown reads $ax + b = c$ with $a \neq 0$; solving it means finding all the reals $x$ that satisfy it. The unknown is isolated by performing the same operation on both sides: $3x - 7 = 2$ gives $3x = 9$ then $x = 3$, and we check that $3 \times 3 - 7 = 2$. A **zero-product equation** is solved with the rule "a product is zero if and only if one of its factors is zero": $(2x + 5)(x - 4) = 0$ is equivalent to $x = -\dfrac52$ or $x = 4$. Finally $x^2 = a$ has two solutions, $\sqrt{a}$ and $-\sqrt{a}$, if $a > 0$, a single one if $a = 0$ and none if $a < 0$.
+
+    An **inequality** $ax + b > c$ is solved in the same way, with one more rule: multiplying or dividing both sides by a **negative** number reverses the direction of the inequality. Thus $-2x + 1 \leq 7$ gives $-2x \leq 6$ then $x \geq -3$. The solution set is an interval, here $[-3\,;\,+\infty[$, which is represented on the number line. Graphically, solving $ax + b = c$ amounts to finding the abscissa of the point where the line $y = ax + b$ meets the horizontal line $y = c$, and $ax + b > c$ describes the abscissae where the first line passes above the second.
+
+    These techniques are the daily tool of the sciences: finding the duration of a uniform motion by solving $vt + x_0 = d$, the value for which two linear tariffs are equal, or the range in which a constraint is met. Two classic traps: forgetting to reverse the inequality, and dividing both sides by an expression that contains $x$ and may vanish, which loses solutions. The good habit is to bring everything to one side, factor if possible, then apply the zero-product rule or draw up a sign table. Every solution found is checked by substituting it into the original equation.
+tool:
+  problemSolved:
+    fr: "Trouver la ou les valeurs d'une inconnue qui rendent vraie une égalité ou une inégalité du premier degré, et décrire l'ensemble des solutions, sous forme de liste ou d'intervalle."
+    en: "Find the value or values of an unknown that make a linear equality or inequality true, and describe the solution set, as a list or as an interval."
+  construction:
+    fr: "On effectue la même opération dans les deux membres pour isoler l'inconnue, en inversant le sens d'une inégalité quand on multiplie ou divise par un nombre négatif ; pour un produit nul, on annule chaque facteur séparément."
+    en: "The same operation is performed on both sides to isolate the unknown, reversing the direction of an inequality when multiplying or dividing by a negative number; for a zero product, each factor is set to zero separately."
+  icon: balance
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "résoudre une équation du premier degré ax + b = c et vérifier la solution"
+        - "résoudre une équation produit nul et une équation de la forme x² = a"
+        - "résoudre une inéquation du premier degré, en changeant le sens de l'inégalité quand on multiplie par un nombre négatif, et donner l'ensemble des solutions sous forme d'intervalle"
+        - "interpréter graphiquement une équation ou une inéquation comme la comparaison de deux droites"
+      en:
+        - "solve a linear equation ax + b = c and check the solution"
+        - "solve a zero-product equation and an equation of the form x² = a"
+        - "solve a linear inequality, reversing the inequality when multiplying by a negative number, and give the solution set as an interval"
+        - "interpret an equation or an inequality graphically as the comparison of two lines"

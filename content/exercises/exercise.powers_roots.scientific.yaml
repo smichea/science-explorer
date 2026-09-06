@@ -1,0 +1,44 @@
+# Puissances — un produit en notation scientifique (réponse numérique)
+id: exercise.powers_roots.scientific
+type: numeric
+nodeId: tool.powers_roots
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Calculez le produit $(3{,}2 \times 10^{-3}) \times (2 \times 10^{5})$.
+
+    Donnez le résultat sous forme d'un nombre décimal (par exemple `1250` ou `0,04`).
+  en: |-
+    Compute the product $(3.2 \times 10^{-3}) \times (2 \times 10^{5})$.
+
+    Give the result as a decimal number (for instance `1250` or `0.04`).
+numeric:
+  value: 640
+  tolerance: { kind: relative, value: 0.001 }
+  inputLabel: { fr: "produit", en: "product" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Multipliez les mantisses entre elles et les puissances de $10$ entre elles : $a^m \times a^n = a^{m+n}$.
+      en: |-
+        Multiply the mantissas together and the powers of $10$ together: $a^m \times a^n = a^{m+n}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $3{,}2 \times 2 = 6{,}4$ et $10^{-3} \times 10^{5} = 10^{-3+5} = 10^{2}$.
+      en: |-
+        $3.2 \times 2 = 6.4$ and $10^{-3} \times 10^{5} = 10^{-3+5} = 10^{2}$.
+solution:
+  fr: |-
+    On regroupe les mantisses et les puissances de dix :
+    $$(3{,}2 \times 10^{-3}) \times (2 \times 10^{5}) = (3{,}2 \times 2) \times 10^{-3+5} = 6{,}4 \times 10^{2} = 640.$$
+    Le résultat est déjà en notation scientifique, puisque $1 \leq 6{,}4 < 10$. L'ordre de grandeur, $10^2$, se lisait d'avance en additionnant les exposants : c'est ce que l'on fait en physique avant tout calcul précis.
+  en: |-
+    We group the mantissas and the powers of ten:
+    $$(3.2 \times 10^{-3}) \times (2 \times 10^{5}) = (3.2 \times 2) \times 10^{-3+5} = 6.4 \times 10^{2} = 640.$$
+    The result is already in scientific notation, since $1 \leq 6.4 < 10$. The order of magnitude, $10^2$, could be read in advance by adding the exponents: this is what physics does before any precise calculation.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

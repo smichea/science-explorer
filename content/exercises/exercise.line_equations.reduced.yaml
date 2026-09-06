@@ -1,0 +1,48 @@
+# Équations de droites — l'équation réduite de la droite passant par deux points (réponse symbolique)
+id: exercise.line_equations.reduced
+type: symbolic
+nodeId: tool.line_equations
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Dans un repère, on donne $A(2\,;\,3)$ et $B(-1\,;\,-3)$.
+
+    Déterminez l'équation réduite $y = mx + p$ de la droite $(AB)$. Donnez l'expression de $y$ en fonction de $x$, par exemple `3*x+2`.
+  en: |-
+    In a frame, we are given $A(2\,;\,3)$ and $B(-1\,;\,-3)$.
+
+    Find the reduced equation $y = mx + p$ of the line $(AB)$. Give the expression of $y$ as a function of $x$, for instance `3*x+2`.
+symbolic:
+  variable: x
+  accepted: ["2*x-1", "2x-1"]
+  display: "y ="
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Commencez par le coefficient directeur : $m = \dfrac{y_B - y_A}{x_B - x_A}$. Puis écrivez que $A$ est sur la droite pour trouver $p$.
+      en: |-
+        Start with the slope: $m = \dfrac{y_B - y_A}{x_B - x_A}$. Then write that $A$ lies on the line to find $p$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $m = \dfrac{-3 - 3}{-1 - 2} = \dfrac{-6}{-3} = 2$, puis $3 = 2 \times 2 + p$.
+      en: |-
+        $m = \dfrac{-3 - 3}{-1 - 2} = \dfrac{-6}{-3} = 2$, then $3 = 2 \times 2 + p$.
+solution:
+  fr: |-
+    La droite n'est pas verticale car $x_A \neq x_B$. Son coefficient directeur est
+    $$m = \frac{y_B - y_A}{x_B - x_A} = \frac{-3 - 3}{-1 - 2} = \frac{-6}{-3} = 2.$$
+    Le point $A(2\,;\,3)$ appartient à la droite, donc $3 = 2 \times 2 + p$, d'où $p = -1$. L'équation réduite est $y = 2x - 1$.
+
+    Vérification avec $B$ : $2 \times (-1) - 1 = -3 = y_B$. Une équation cartésienne de la même droite est $2x - y - 1 = 0$, de vecteur directeur $\vec u(1\,;\,2)$ : avancer de $1$ en abscisse fait monter de $2$, ce qui est bien la pente.
+  en: |-
+    The line is not vertical since $x_A \neq x_B$. Its slope is
+    $$m = \frac{y_B - y_A}{x_B - x_A} = \frac{-3 - 3}{-1 - 2} = \frac{-6}{-3} = 2.$$
+    The point $A(2\,;\,3)$ lies on the line, so $3 = 2 \times 2 + p$, whence $p = -1$. The reduced equation is $y = 2x - 1$.
+
+    Check with $B$: $2 \times (-1) - 1 = -3 = y_B$. A Cartesian equation of the same line is $2x - y - 1 = 0$, with direction vector $\vec u(1\,;\,2)$: moving $1$ along the abscissa raises by $2$, which is indeed the slope.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

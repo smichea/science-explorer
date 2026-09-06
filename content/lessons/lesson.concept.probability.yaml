@@ -1,0 +1,13 @@
+# Leçon — probabilités : un dé à six faces, les fréquences de chaque face face aux probabilités, et l'événement « nombre pair ».
+id: lesson.concept.probability
+nodeId: concept.probability
+depth: 1
+tools:
+  - id: die
+    kind: random
+    title: { fr: "Un dé équilibré et l'événement « nombre pair »", en: "A fair die and the event 'even number'" }
+    experiment: die
+    sides: 6
+    event: { label: { fr: "nombre pair", en: "even number" }, outcomes: ["2", "4", "6"] }
+    mode: frequencies
+    seed: 7

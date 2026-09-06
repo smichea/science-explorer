@@ -1,0 +1,46 @@
+id: concept.sampling_fluctuation
+type: mathematical_concept
+world: world.mathematics
+region: region.math.probability_statistics
+importance: 2
+tags: [lycee]
+title: { fr: "Échantillonnage et fluctuation", en: "Sampling and fluctuation" }
+shortPurpose:
+  fr: "Comprendre pourquoi la fréquence observée sur un échantillon varie d'un échantillon à l'autre, et comment elle estime malgré tout une probabilité."
+  en: "Understand why the frequency observed on a sample varies from one sample to the next, and how it nevertheless estimates a probability."
+overview:
+  fr: >-
+    Tirer cinquante boules dans une urne donne une fréquence de boules rouges, et cinquante autres tirages en donnent une autre : c'est la fluctuation d'échantillonnage. Elle diminue quand la taille de l'échantillon augmente, et l'intervalle p plus ou moins un sur racine de n dit à quel point la fréquence peut s'écarter de la probabilité. La simulation permet d'observer tout cela sans une seule urne, et c'est le principe des sondages.
+  en: >-
+    Drawing fifty balls from an urn gives a frequency of red balls, and fifty more draws give another: this is sampling fluctuation. It decreases as the sample size increases, and the interval p plus or minus one over the square root of n says how far the frequency may stray from the probability. Simulation lets one observe all this without a single urn, and it is the principle of opinion polls.
+aliases:
+  fr: ["échantillon", "fréquence observée", "fluctuation d'échantillonnage", "intervalle de fluctuation", "simulation", "estimation d'une proportion"]
+  en: ["sample", "observed frequency", "sampling fluctuation", "fluctuation interval", "simulation", "estimating a proportion"]
+description:
+  fr: |
+    Un **échantillon de taille $n$** est la liste des résultats de $n$ répétitions indépendantes d'une même expérience aléatoire, ou de $n$ individus tirés au hasard dans une population. La **fréquence** d'une issue dans l'échantillon est le quotient de son nombre d'apparitions par $n$ : $18$ boules rouges sur $50$ tirages donnent la fréquence $f = \dfrac{18}{50} = 0{,}36$. Cette fréquence n'est pas la probabilité $p$ : elle change d'un échantillon à l'autre, c'est la **fluctuation d'échantillonnage**, et elle se rapproche de $p$ quand $n$ grandit.
+
+    On admet en Seconde que, pour une proportion $p$ comprise entre $0{,}2$ et $0{,}8$ et pour $n \geq 25$, environ $95\,\%$ des échantillons de taille $n$ ont une fréquence dans l'**intervalle de fluctuation** $\left[p - \dfrac{1}{\sqrt{n}}\,;\,p + \dfrac{1}{\sqrt{n}}\right]$. Pour une urne contenant $3$ boules rouges sur $5$, $p = 0{,}6$ et $n = 100$ donnent $[0{,}5\,;\,0{,}7]$ ; passer à $n = 400$ resserre l'intervalle à $[0{,}55\,;\,0{,}65]$, car sa demi-largeur $\dfrac{1}{\sqrt{n}}$ est divisée par deux quand $n$ est multiplié par quatre. La **simulation**, avec un tableur ou un programme, permet d'observer cette fluctuation sur des centaines d'échantillons sans manipuler une seule urne.
+
+    Ces idées ont deux usages. D'une part, une fréquence observée hors de l'intervalle de fluctuation fait douter du modèle : une pièce qui donne pile avec la fréquence $0{,}62$ sur $200$ lancers, alors que l'intervalle autour de $0{,}5$ va d'environ $0{,}43$ à $0{,}57$, est probablement truquée. D'autre part, quand la proportion $p$ d'une population est inconnue, la fréquence $f$ d'un échantillon l'**estime**, avec une précision de l'ordre de $\dfrac{1}{\sqrt{n}}$ : c'est le principe des sondages. La version vulgarisée de la loi des grands nombres résume tout : lorsque $n$ est grand, sauf exception, la fréquence observée est proche de la probabilité.
+  en: |
+    A **sample of size $n$** is the list of the results of $n$ independent repetitions of the same random experiment, or of $n$ individuals drawn at random from a population. The **frequency** of an outcome in the sample is the quotient of its number of occurrences by $n$: $18$ red balls out of $50$ draws give the frequency $f = \dfrac{18}{50} = 0.36$. This frequency is not the probability $p$: it changes from one sample to the next, this is **sampling fluctuation**, and it gets closer to $p$ as $n$ grows.
+
+    In Seconde it is accepted that, for a proportion $p$ between $0.2$ and $0.8$ and for $n \geq 25$, about $95\,\%$ of the samples of size $n$ have a frequency in the **fluctuation interval** $\left[p - \dfrac{1}{\sqrt{n}}\,;\,p + \dfrac{1}{\sqrt{n}}\right]$. For an urn containing $3$ red balls out of $5$, $p = 0.6$ and $n = 100$ give $[0.5\,;\,0.7]$; moving to $n = 400$ tightens the interval to $[0.55\,;\,0.65]$, because its half-width $\dfrac{1}{\sqrt{n}}$ is halved when $n$ is multiplied by four. **Simulation**, with a spreadsheet or a program, allows this fluctuation to be observed on hundreds of samples without handling a single urn.
+
+    These ideas have two uses. On the one hand, an observed frequency outside the fluctuation interval casts doubt on the model: a coin that gives heads with frequency $0.62$ over $200$ tosses, whereas the interval around $0.5$ goes from about $0.43$ to $0.57$, is probably biased. On the other hand, when the proportion $p$ of a population is unknown, the frequency $f$ of a sample **estimates** it, with a precision of the order of $\dfrac{1}{\sqrt{n}}$: this is the principle of opinion polls. The popularised version of the law of large numbers sums it all up: when $n$ is large, apart from exceptions, the observed frequency is close to the probability.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "calculer la fréquence d'une issue dans un échantillon et la distinguer de la probabilité"
+        - "observer la fluctuation d'échantillonnage sur plusieurs échantillons, réels ou simulés, et son atténuation quand la taille augmente"
+        - "utiliser l'intervalle de fluctuation p ± 1/√n pour juger de la compatibilité d'une fréquence observée avec un modèle"
+        - "estimer une proportion inconnue par la fréquence observée sur un échantillon"
+      en:
+        - "compute the frequency of an outcome in a sample and distinguish it from the probability"
+        - "observe sampling fluctuation over several samples, real or simulated, and its reduction as the size increases"
+        - "use the fluctuation interval p ± 1/√n to judge the compatibility of an observed frequency with a model"
+        - "estimate an unknown proportion by the frequency observed on a sample"

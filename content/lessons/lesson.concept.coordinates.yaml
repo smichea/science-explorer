@@ -1,0 +1,18 @@
+# Leçon — repérage dans le plan : les points A et B (déplaçables), le segment AB, son milieu et sa longueur, le triangle rectangle AHB.
+id: lesson.concept.coordinates
+nodeId: concept.coordinates
+depth: 1
+tools:
+  - id: frame
+    kind: vectors
+    title: { fr: "Milieu et distance dans un repère orthonormé", en: "Midpoint and distance in an orthonormal frame" }
+    view: { x: [-1, 7], y: [-1, 6] }
+    parameters: []
+    points:
+      - { id: a, x: 1, y: 1, label: { fr: "A", en: "A" }, drag: true }
+      - { id: b, x: 5, y: 4, label: { fr: "B", en: "B" }, drag: true }
+      - { id: h, x: 5, y: 1, label: { fr: "H", en: "H" } }
+    segments:
+      - { id: ab, from: a, to: b, label: { fr: "AB", en: "AB" } }
+      - { id: ah, from: a, to: h, label: { fr: "AH", en: "AH" }, dashed: true }
+      - { id: hb, from: h, to: b, label: { fr: "HB", en: "HB" }, dashed: true }

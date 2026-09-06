@@ -1,0 +1,46 @@
+id: concept.probability
+type: mathematical_concept
+world: world.mathematics
+region: region.math.probability_statistics
+importance: 2
+tags: [lycee]
+title: { fr: "Probabilités : univers, événements, équiprobabilité", en: "Probability: sample space, events, equiprobability" }
+shortPurpose:
+  fr: "Modéliser une expérience aléatoire par un univers et des probabilités, puis calculer la probabilité d'un événement."
+  en: "Model a random experiment by a sample space and probabilities, then compute the probability of an event."
+overview:
+  fr: >-
+    Une expérience aléatoire, comme lancer un dé, a des résultats connus mais imprévisibles : leur ensemble est l'univers, et un événement en est une partie. Une probabilité attribue à chaque résultat un nombre entre zéro et un, et le calcul suit quelques règles simples, dont la formule de la réunion de deux événements. Quand tous les résultats ont la même chance, la probabilité se réduit à un comptage.
+  en: >-
+    A random experiment, such as rolling a die, has known but unpredictable results: their set is the sample space, and an event is a part of it. A probability assigns to each result a number between zero and one, and computing follows a few simple rules, including the formula for the union of two events. When all results have the same chance, probability reduces to counting.
+aliases:
+  fr: ["expérience aléatoire", "univers", "événement", "événement contraire", "probabilité d'une réunion", "équiprobabilité"]
+  en: ["random experiment", "sample space", "event", "complementary event", "probability of a union", "equiprobability"]
+description:
+  fr: |
+    Une **expérience aléatoire** est une expérience dont on connaît les résultats possibles sans pouvoir prédire lequel se produira : lancer un dé, tirer une boule dans une urne. L'ensemble de ses résultats, ou **issues**, est l'**univers** $\Omega$ ; pour un dé, $\Omega = \{1, 2, 3, 4, 5, 6\}$. Un **événement** est une partie de $\Omega$ : « obtenir un nombre pair » est l'événement $A = \{2, 4, 6\}$. Une **probabilité** attribue à chaque issue un nombre compris entre $0$ et $1$, la somme de ces nombres valant $1$, et la probabilité d'un événement est la somme des probabilités des issues qui le composent.
+
+    L'événement **contraire** $\bar{A}$ est formé des issues qui ne sont pas dans $A$, et $P(\bar{A}) = 1 - P(A)$. L'**intersection** $A \cap B$ est réalisée quand $A$ et $B$ le sont tous les deux, la **réunion** $A \cup B$ quand l'un au moins l'est ; deux événements d'intersection vide sont **incompatibles**. La formule $P(A \cup B) = P(A) + P(B) - P(A \cap B)$ évite de compter deux fois les issues communes : avec un dé, $A$ « pair » et $B$ « multiple de $3$ » donnent $P(A \cup B) = \dfrac36 + \dfrac26 - \dfrac16 = \dfrac46$, l'issue $6$ étant commune aux deux.
+
+    Il y a **équiprobabilité** quand toutes les issues ont la même probabilité, ce que l'on suppose pour un dé ou une pièce équilibrés ; alors $P(A) = \dfrac{\text{nombre d'issues de } A}{\text{nombre d'issues de } \Omega}$, et le calcul se ramène à un dénombrement, à l'aide d'un tableau à double entrée ou d'un arbre. Le modèle du dé équilibré n'est qu'une hypothèse : c'est l'observation des fréquences sur un grand nombre de lancers qui permet de la tester, car elles se stabilisent autour des probabilités. Deux pièges : additionner $P(A)$ et $P(B)$ sans retirer $P(A \cap B)$, et confondre une issue, résultat de l'expérience, avec un événement, ensemble d'issues.
+  en: |
+    A **random experiment** is an experiment whose possible results are known without one being able to predict which will occur: rolling a die, drawing a ball from an urn. The set of its results, or **outcomes**, is the **sample space** $\Omega$; for a die, $\Omega = \{1, 2, 3, 4, 5, 6\}$. An **event** is a subset of $\Omega$: "getting an even number" is the event $A = \{2, 4, 6\}$. A **probability** assigns to each outcome a number between $0$ and $1$, the sum of these numbers being $1$, and the probability of an event is the sum of the probabilities of the outcomes composing it.
+
+    The **complementary** event $\bar{A}$ consists of the outcomes that are not in $A$, and $P(\bar{A}) = 1 - P(A)$. The **intersection** $A \cap B$ occurs when $A$ and $B$ both occur, the **union** $A \cup B$ when at least one of them does; two events with empty intersection are **incompatible**. The formula $P(A \cup B) = P(A) + P(B) - P(A \cap B)$ avoids counting the common outcomes twice: with a die, $A$ "even" and $B$ "multiple of $3$" give $P(A \cup B) = \dfrac36 + \dfrac26 - \dfrac16 = \dfrac46$, the outcome $6$ being common to both.
+
+    There is **equiprobability** when all the outcomes have the same probability, which is assumed for a fair die or coin; then $P(A) = \dfrac{\text{number of outcomes in } A}{\text{number of outcomes in } \Omega}$, and the computation reduces to counting, with a two-way table or a tree. The model of the fair die is only an assumption: it is the observation of the frequencies over a large number of rolls that allows one to test it, because they stabilise around the probabilities. Two traps: adding $P(A)$ and $P(B)$ without removing $P(A \cap B)$, and confusing an outcome, a result of the experiment, with an event, a set of outcomes.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "décrire une expérience aléatoire par son univers et modéliser un événement comme un ensemble d'issues"
+        - "calculer la probabilité d'un événement contraire, d'une intersection et d'une réunion avec P(A ∪ B) = P(A) + P(B) − P(A ∩ B)"
+        - "reconnaître une situation d'équiprobabilité et calculer une probabilité par dénombrement (tableau, arbre)"
+        - "distinguer probabilité théorique et fréquence observée sur un grand nombre de répétitions"
+      en:
+        - "describe a random experiment by its sample space and model an event as a set of outcomes"
+        - "compute the probability of a complementary event, of an intersection and of a union with P(A ∪ B) = P(A) + P(B) − P(A ∩ B)"
+        - "recognise an equiprobable situation and compute a probability by counting (table, tree)"
+        - "distinguish theoretical probability from the frequency observed over a large number of repetitions"

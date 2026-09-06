@@ -1,0 +1,46 @@
+id: concept.proportions_evolutions
+type: mathematical_concept
+world: world.mathematics
+region: region.math.probability_statistics
+importance: 2
+tags: [lycee]
+title: { fr: "Proportions, pourcentages et évolutions", en: "Proportions, percentages and changes" }
+shortPurpose:
+  fr: "Calculer avec des proportions et des pourcentages, et décrire une évolution par son taux ou son coefficient multiplicateur."
+  en: "Compute with proportions and percentages, and describe a change by its rate or its multiplier."
+overview:
+  fr: >-
+    Une proportion compare une partie à un tout, et le pourcentage n'est qu'une façon de l'écrire. Une évolution se décrit par son taux, mais se calcule avec le coefficient multiplicateur un plus t : c'est lui qui permet d'enchaîner deux évolutions ou de revenir en arrière. Une hausse de vingt pour cent suivie d'une baisse de vingt pour cent ne ramène pas au point de départ.
+  en: >-
+    A proportion compares a part with a whole, and the percentage is merely a way of writing it. A change is described by its rate, but computed with the multiplier one plus t: it is the multiplier that allows two changes to be chained or undone. An increase of twenty per cent followed by a decrease of twenty per cent does not bring you back to the starting point.
+aliases:
+  fr: ["proportion", "pourcentage", "taux d'évolution", "coefficient multiplicateur", "évolutions successives", "évolution réciproque"]
+  en: ["proportion", "percentage", "rate of change", "multiplier", "successive changes", "reciprocal change"]
+description:
+  fr: |
+    La **proportion** d'une sous-population $A$ dans une population $E$ est le quotient $p = \dfrac{n_A}{n_E}$ de leurs effectifs, un nombre compris entre $0$ et $1$ que l'on exprime souvent en **pourcentage** : $p = 0{,}35$ se lit $35\,\%$. Si $A$ est une partie de $B$, elle-même partie de $E$, la proportion de $A$ dans $E$ est le produit des proportions : $40\,\%$ des élèves font du sport et parmi eux $25\,\%$ nagent, donc $0{,}4 \times 0{,}25 = 0{,}1$, soit $10\,\%$ des élèves nagent. On n'additionne des pourcentages que s'ils portent sur la même population de référence.
+
+    Une grandeur qui passe d'une valeur initiale $V_i$ à une valeur finale $V_f$ subit un **taux d'évolution** $t = \dfrac{V_f - V_i}{V_i}$, positif pour une hausse, négatif pour une baisse. Évoluer de $t$ revient à multiplier par le **coefficient multiplicateur** $CM = 1 + t$ : une hausse de $20\,\%$ multiplie par $1{,}2$, une baisse de $20\,\%$ multiplie par $0{,}8$. Réciproquement, un coefficient de $1{,}05$ signifie une hausse de $5\,\%$ et un coefficient de $0{,}7$ une baisse de $30\,\%$. Le coefficient multiplicateur est l'outil qui rend tous les calculs cohérents : on ne raisonne jamais en ajoutant ou en retranchant des pourcentages d'évolution.
+
+    Des **évolutions successives** se composent en multipliant les coefficients : $+20\,\%$ suivi de $-20\,\%$ donne $1{,}2 \times 0{,}8 = 0{,}96$, soit une baisse globale de $4\,\%$ et non un retour au point de départ, parce que la baisse s'applique à une valeur plus grande. L'**évolution réciproque**, qui ramène à la valeur initiale, a pour coefficient l'inverse $\dfrac{1}{CM}$ : après $+25\,\%$, il faut multiplier par $\dfrac{1}{1{,}25} = 0{,}8$, soit $-20\,\%$. Ces règles servent partout où une grandeur évolue en proportion, prix, populations, concentrations, et elles préparent les suites géométriques de Première.
+  en: |
+    The **proportion** of a sub-population $A$ in a population $E$ is the quotient $p = \dfrac{n_A}{n_E}$ of their sizes, a number between $0$ and $1$ often expressed as a **percentage**: $p = 0.35$ reads $35\,\%$. If $A$ is a part of $B$, itself a part of $E$, the proportion of $A$ in $E$ is the product of the proportions: $40\,\%$ of the pupils do sport and among them $25\,\%$ swim, so $0.4 \times 0.25 = 0.1$, that is $10\,\%$ of the pupils swim. Percentages are only added when they refer to the same reference population.
+
+    A quantity going from an initial value $V_i$ to a final value $V_f$ undergoes a **rate of change** $t = \dfrac{V_f - V_i}{V_i}$, positive for an increase, negative for a decrease. Changing by $t$ amounts to multiplying by the **multiplier** $CM = 1 + t$: an increase of $20\,\%$ multiplies by $1.2$, a decrease of $20\,\%$ multiplies by $0.8$. Conversely, a multiplier of $1.05$ means an increase of $5\,\%$ and a multiplier of $0.7$ a decrease of $30\,\%$. The multiplier is the tool that keeps every computation consistent: one never reasons by adding or subtracting rates of change.
+
+    **Successive changes** are composed by multiplying the multipliers: $+20\,\%$ followed by $-20\,\%$ gives $1.2 \times 0.8 = 0.96$, that is an overall decrease of $4\,\%$ and not a return to the starting point, because the decrease applies to a larger value. The **reciprocal change**, which brings back to the initial value, has as multiplier the reciprocal $\dfrac{1}{CM}$: after $+25\,\%$, one must multiply by $\dfrac{1}{1.25} = 0.8$, that is $-20\,\%$. These rules apply wherever a quantity changes in proportion, prices, populations, concentrations, and they prepare the geometric sequences of Première.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "calculer une proportion, l'exprimer en pourcentage et calculer une proportion de proportion"
+        - "calculer un taux d'évolution et le coefficient multiplicateur associé, et passer de l'un à l'autre"
+        - "calculer le taux global de plusieurs évolutions successives en multipliant les coefficients"
+        - "déterminer le taux d'évolution réciproque d'une évolution donnée"
+      en:
+        - "compute a proportion, express it as a percentage and compute a proportion of a proportion"
+        - "compute a rate of change and the associated multiplier, and convert one into the other"
+        - "compute the overall rate of several successive changes by multiplying the multipliers"
+        - "determine the reciprocal rate of a given change"
