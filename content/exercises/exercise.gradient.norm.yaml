@@ -1,0 +1,39 @@
+# Leçon — tool.gradient (numeric)
+id: exercise.gradient.norm
+type: numeric
+nodeId: tool.gradient
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: Toujours pour $f(x, y) = x^2 + 2y^2$, calculez la norme du gradient $\|\nabla f(1, 1)\|$ (deux décimales).
+  en: Still for $f(x, y) = x^2 + 2y^2$, compute the norm of the gradient $\|\nabla f(1, 1)\|$ (two decimals).
+numeric:
+  value: 4.47
+  tolerance:
+    kind: absolute
+    value: 0.02
+  inputLabel:
+    fr: ‖∇f‖
+    en: ‖∇f‖
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: $\nabla f = (2x ; 4y)$.
+    en: $\nabla f = (2x, 4y)$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $\sqrt{2^2 + 4^2} = \sqrt{20}$.
+    en: $\sqrt{2^2 + 4^2} = \sqrt{20}$.
+solution:
+  fr: $\nabla f(1, 1) = (2 ; 4)$ et $\|\nabla f\| = \sqrt{20} \approx 4{,}47$. Le gradient pointe vers la plus forte pente ; sa norme est cette pente.
+  en: $\nabla f(1, 1) = (2, 4)$ and $\|\nabla f\| = \sqrt{20} \approx 4.47$. The gradient points towards the steepest ascent; its norm is that slope.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 2
+  linkedConcepts: 2
+  transfer: 2
+  autonomy: 3

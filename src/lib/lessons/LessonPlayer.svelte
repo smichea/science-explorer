@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onDestroy, onMount, untrack } from 'svelte';
   import { base } from '$app/paths';
-  import type { ExerciseDefinition } from '$lib/content-schema';
+  import type { ExerciseDefinition, LessonToolKind } from '$lib/content-schema';
   import Markdown from '$lib/components/Markdown.svelte';
   import ExerciseRunner from '$lib/exercises/ExerciseRunner.svelte';
   import SimulationView from '$lib/simulations/SimulationView.svelte';
@@ -17,6 +17,12 @@
   import { speech } from '$lib/state/speech.svelte';
   import LessonBoard from './LessonBoard.svelte';
   import Plotter from './Plotter.svelte';
+  import DimensionsTool from './tools/DimensionsTool.svelte';
+  import FieldTool from './tools/FieldTool.svelte';
+  import FitTool from './tools/FitTool.svelte';
+  import SlopeFieldTool from './tools/SlopeFieldTool.svelte';
+  import TimelineTool from './tools/TimelineTool.svelte';
+  import VectorsTool from './tools/VectorsTool.svelte';
 
   let { plan }: { plan: LessonPlan } = $props();
 
@@ -24,13 +30,18 @@
   const pkg = $derived(content.pkg!);
   const step = $derived(lesson.step);
   const stepIndex = $derived(lesson.index);
-  const plotterTool = $derived(plan.tool?.kind === 'plotter' ? plan.tool : null);
+  const tool = $derived(lesson.tool);
+  const toolState = $derived(tool ? lesson.toolState(tool.id) : null);
+  const plotterTool = $derived(tool?.kind === 'plotter' ? tool : null);
   const simulation = $derived.by(() => {
-    const tool = plan.tool;
-    return tool?.kind === 'simulation'
-      ? pkg.simulations.find((s) => s.id === tool.simulationId)
+    const current = tool;
+    return current?.kind === 'simulation'
+      ? pkg.simulations.find((s) => s.id === current.simulationId)
       : undefined;
   });
+  const parameters = $derived(tool && 'parameters' in tool ? tool.parameters : []);
+  const toolName = (kind: LessonToolKind, title?: { fr: string; en: string }) =>
+    title ? L(title) : t(`lesson.tool.${kind}`);
   const exercises = $derived(
     (step?.kind === 'exercises' ? step.exercises : [])
       .map((id) => pkg.exercises.find((e) => e.id === id))
@@ -296,21 +307,55 @@
         {#if !plan.authored}<p class="small muted" style="margin: 0">{t('lesson.auto')}</p>{/if}
       </section>
 
-      <aside class="lesson__tool" data-testid="lesson-tool" data-tool={plan.tool?.kind ?? 'board'}>
-        {#if plotterTool && lesson.plotter}
+      <aside class="lesson__tool" data-testid="lesson-tool" data-tool={tool?.kind ?? 'board'}>
+        {#if plan.tools.length > 1}
+          <div class="segmented lesson__tabs" role="tablist" aria-label={t('lesson.tools')}>
+            {#each plan.tools as candidate (candidate.id)}
+              <button
+                type="button"
+                role="tab"
+                aria-selected={tool?.id === candidate.id}
+                disabled={!lesson.interactive && tool?.id !== candidate.id}
+                data-testid="lesson-tab-{candidate.id}"
+                onclick={() => lesson.chooseTool(candidate.id)}
+                >{toolName(candidate.kind, candidate.title)}</button
+              >
+            {/each}
+          </div>
+        {/if}
+        {#if tool && toolState}
           <div class="card stack-sm">
-            <Plotter
-              plot={lesson.plotter}
-              variable={plotterTool.variable}
-              interactive={lesson.interactive}
-              customExpression={lesson.customExpression}
-              marker={lesson.marker}
-              {showTangent}
-              onmarker={(x) => (lesson.marker = x)}
-            />
-            {#if lesson.interactive}
-              <div class="stack-sm" data-testid="plotter-controls">
-                {#if plotterTool.input}
+            {#if tool.kind === 'plotter' && toolState.plotter}
+              <Plotter
+                plot={toolState.plotter}
+                variable={tool.variable}
+                interactive={lesson.interactive}
+                customExpression={lesson.customExpression}
+                marker={lesson.marker}
+                {showTangent}
+                onmarker={(x) => (lesson.marker = x)}
+              />
+            {:else if tool.kind === 'simulation'}
+              {#if simulation}
+                <SimulationView {simulation} />
+                <p class="small muted" style="margin: 0">{t('lesson.simulationHint')}</p>
+              {/if}
+            {:else if tool.kind === 'vectors'}
+              <VectorsTool {tool} tstate={toolState} interactive={lesson.interactive} />
+            {:else if tool.kind === 'slope_field'}
+              <SlopeFieldTool {tool} tstate={toolState} interactive={lesson.interactive} />
+            {:else if tool.kind === 'fit'}
+              <FitTool {tool} tstate={toolState} interactive={lesson.interactive} />
+            {:else if tool.kind === 'field'}
+              <FieldTool {tool} tstate={toolState} interactive={lesson.interactive} />
+            {:else if tool.kind === 'dimensions'}
+              <DimensionsTool {tool} interactive={lesson.interactive} />
+            {:else if tool.kind === 'timeline'}
+              <TimelineTool {tool} tstate={toolState} interactive={lesson.interactive} />
+            {/if}
+            {#if lesson.interactive && (parameters.length || plotterTool)}
+              <div class="stack-sm" data-testid="tool-controls">
+                {#if plotterTool?.input}
                   <label class="field">
                     <span class="label">{t('lesson.expression')}</span>
                     <input
@@ -327,11 +372,11 @@
                     >
                   </label>
                 {/if}
-                {#each plotterTool.parameters as p (p.id)}
+                {#each parameters as p (p.id)}
                   <label class="field">
                     <span class="label"
                       >{p.label ? L(p.label) : p.id} = {fmt(
-                        lesson.plotter.params[p.id] ?? p.value
+                        toolState.params[p.id] ?? p.value
                       )}</span
                     >
                     <input
@@ -339,26 +384,24 @@
                       min={p.min}
                       max={p.max}
                       step={p.step}
-                      value={lesson.plotter.params[p.id] ?? p.value}
-                      oninput={(e) => lesson.setParameter(p.id, Number(e.currentTarget.value))}
+                      value={toolState.params[p.id] ?? p.value}
+                      oninput={(e) =>
+                        lesson.setParameter(tool.id, p.id, Number(e.currentTarget.value))}
                       data-testid="plotter-param-{p.id}"
                     />
                   </label>
                 {/each}
-                <div class="cluster small">
-                  <span class="muted">{t('lesson.markerHint')}</span>
-                  <label class="cluster"
-                    ><input type="checkbox" bind:checked={showTangent} />
-                    {t('lesson.showTangent')}</label
-                  >
-                </div>
+                {#if plotterTool}
+                  <div class="cluster small">
+                    <span class="muted">{t('lesson.markerHint')}</span>
+                    <label class="cluster"
+                      ><input type="checkbox" bind:checked={showTangent} />
+                      {t('lesson.showTangent')}</label
+                    >
+                  </div>
+                {/if}
               </div>
             {/if}
-          </div>
-        {:else if simulation}
-          <div class="card stack-sm">
-            <SimulationView {simulation} />
-            <p class="small muted" style="margin: 0">{t('lesson.simulationHint')}</p>
           </div>
         {:else}
           <LessonBoard node={plan.node} depth={plan.depth} />
@@ -418,6 +461,11 @@
   .lesson__tool {
     position: sticky;
     top: var(--space-3);
+    display: grid;
+    gap: var(--space-2);
+  }
+  .lesson__tabs {
+    justify-self: start;
   }
   .rail {
     display: flex;

@@ -1,0 +1,75 @@
+# Leçon narrée — la condition initiale, avec le champ de pentes.
+id: lesson.concept.initial_condition
+nodeId: concept.initial_condition
+depth: 1
+tools:
+  - id: field
+    kind: slope_field
+    view: { x: [0, 5], y: [-1, 5] }
+    parameters: []
+    equation: "2 - y"
+    labels: { x: "t", y: "y" }
+    solutions:
+      - { id: a, x0: 0, y0: 0, label: { fr: "y(0) = 0", en: "y(0) = 0" }, hidden: true }
+      - { id: b, x0: 0, y0: 4, label: { fr: "y(0) = 4", en: "y(0) = 4" }, hidden: true }
+      - { id: c, x0: 0, y0: 2, label: { fr: "y(0) = 2", en: "y(0) = 2" }, hidden: true }
+steps:
+  - id: why
+    title: { fr: "Une loi ne dit pas d'où l'on part", en: "A law does not say where you start" }
+    text:
+      fr: >-
+        Une équation différentielle ne suffit pas à prévoir : elle dit comment une grandeur varie, pas d'où elle part.
+        Prenons y prime égale 2 moins y.
+        Toutes les solutions tendent vers 2, mais chacune part d'une valeur différente.
+      en: >-
+        A differential equation is not enough to predict: it says how a quantity varies, not where it starts.
+        Take y prime equals 2 minus y.
+        Every solution tends to 2, but each one starts from a different value.
+    actions: []
+  - id: pick
+    title: { fr: "La valeur de départ choisit la solution", en: "The starting value picks the solution" }
+    text:
+      fr: >-
+        Partons de zéro : la courbe monte vers 2.
+        Partons de 4 : elle descend vers 2.
+        Partons de 2 : elle reste à 2, c'est la solution constante.
+        La condition initiale, la valeur au départ, sélectionne une solution unique.
+      en: >-
+        Start from zero: the curve rises towards 2.
+        Start from 4: it falls towards 2.
+        Start from 2: it stays at 2, the constant solution.
+        The initial condition, the value at the start, selects a unique solution.
+    actions:
+      - { at: 0, show: [a] }
+      - { at: 1, show: [b] }
+      - { at: 2, show: [c] }
+  - id: physics
+    title: { fr: "L'état à l'instant zéro", en: "The state at time zero" }
+    text:
+      fr: >-
+        En physique, la condition initiale, c'est l'état du système à l'instant zéro : la tension du condensateur, la vitesse de la bille, la concentration au début de la réaction.
+        Sans elle, on connaît la loi mais pas la trajectoire.
+      en: >-
+        In physics, the initial condition is the state of the system at time zero: the voltage of the capacitor, the speed of the ball, the concentration at the start of the reaction.
+        Without it, we know the law but not the trajectory.
+    actions: []
+  - id: play
+    kind: play
+    title: { fr: "À vous de choisir le départ", en: "Your turn to choose the start" }
+    text:
+      fr: >-
+        À vous. Cliquez dans le champ pour choisir une condition initiale et regardez la solution qui en part.
+      en: >-
+        Your turn. Click in the field to choose an initial condition and watch the solution that starts there.
+    actions: []
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : trouver la constante fixée par la condition initiale, puis calculer une valeur.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: find the constant set by the initial condition, then compute a value.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.initial_condition.constant, exercise.initial_condition.value]

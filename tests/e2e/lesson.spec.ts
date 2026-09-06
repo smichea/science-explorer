@@ -46,12 +46,36 @@ test.describe('narrated lessons', () => {
     await expect(page.getByTestId('lesson-next-lesson')).toContainText('Courbe représentative');
   });
 
-  test('composes a lesson from the description when none is authored', async ({ page }) => {
+  test('every kind of tool answers to the learner: vectors, slope field, tabs', async ({
+    page,
+  }) => {
     test.skip(test.info().project.name !== 'desktop', 'checked once, on desktop');
     await createExplorer(page);
+    // The vector lesson shows the sum as the second slide names it.
+    await page.goto('lesson/tool.vector');
+    await expect(page.getByTestId('vectors-tool')).toHaveAttribute('data-vectors', '1');
+    await nextUntil(page, 'play');
+    await expect(page.getByTestId('vectors-tool')).toHaveAttribute('data-vectors', '3');
+    await expect(page.getByTestId('vectors-readout')).toContainText('u + v');
+    // A slope field accepts an initial condition on click during the free play.
+    await page.goto('lesson/tool.ode_first_order');
+    await nextUntil(page, 'play');
+    const field = page.getByTestId('slope-field-tool');
+    await expect(field).toHaveAttribute('data-solutions', '3');
+    const box = (await field.boundingBox())!;
+    await page.mouse.click(box.x + box.width * 0.3, box.y + box.height * 0.45);
+    await expect(field).toHaveAttribute('data-solutions', '4');
+    // A lesson with two tools offers tabs during the free play.
+    await page.goto('lesson/model.rc_circuit');
+    await nextUntil(page, 'play');
+    await expect(page.getByTestId('lesson-tool')).toHaveAttribute('data-tool', 'slope_field');
+    await page.getByTestId('lesson-tab-simulation').click();
+    await expect(page.getByTestId('lesson-tool')).toHaveAttribute('data-tool', 'simulation');
+    await expect(page.getByTestId('simulation')).toBeVisible();
+    // A dimension table lets the learner rebuild a derived quantity.
     await page.goto('lesson/concept.dimension_unit');
-    await expect(page.getByTestId('lesson-board')).toBeVisible();
-    await expect(page.getByTestId('lesson-step')).toContainText(/dimension/i);
-    await expect(page.getByTestId('lesson-tool')).toHaveAttribute('data-tool', 'board');
+    await nextUntil(page, 'play');
+    await expect(page.getByTestId('dimensions-builder')).toBeVisible();
+    await expectNoHorizontalScroll(page);
   });
 });

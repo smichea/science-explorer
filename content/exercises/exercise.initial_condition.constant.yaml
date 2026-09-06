@@ -1,0 +1,45 @@
+# Leçon — concept.initial_condition (numeric)
+id: exercise.initial_condition.constant
+type: numeric
+nodeId: concept.initial_condition
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Les solutions de $y' = 2 - y$ s'écrivent $y(t) = 2 + C\,e^{-t}$.
+
+    Quelle est la valeur de $C$ si $y(0) = 5$ ?
+  en: |-
+    The solutions of $y' = 2 - y$ read $y(t) = 2 + C\,e^{-t}$.
+
+    What is the value of $C$ if $y(0) = 5$?
+numeric:
+  value: 3
+  tolerance:
+    kind: absolute
+    value: 0.01
+  inputLabel:
+    fr: C
+    en: C
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: 'Remplacez $t$ par $0$ : $e^{0} = 1$.'
+    en: 'Replace $t$ with $0$: $e^{0} = 1$.'
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $2 + C = 5$.
+    en: $2 + C = 5$.
+solution:
+  fr: '$y(0) = 2 + C = 5$, donc $C = 3$ : la condition initiale fixe la constante, donc la solution.'
+  en: '$y(0) = 2 + C = 5$, so $C = 3$: the initial condition sets the constant, hence the solution.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

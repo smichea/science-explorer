@@ -4,9 +4,12 @@ import {
   applyPlotterAction,
   exercisesForNode,
   initialPlotterState,
+  itemVisible,
   lessonFor,
   nextLessonOnRoute,
   plotterStateAt,
+  toolStateAt,
+  type LessonPlan,
 } from '../../src/lib/domain/lesson';
 import { loadGraph, loadPackage } from './helpers';
 
@@ -20,7 +23,7 @@ describe('lessons', () => {
     const plan = lessonFor(node('concept.function'), pkg.lessons, pkg.exercises);
     expect(plan.authored).toBe(true);
     expect(plan.id).toBe('lesson.concept.function');
-    expect(plan.tool?.kind).toBe('plotter');
+    expect(plan.tools.map((t) => t.kind)).toEqual(['plotter']);
     expect(plan.steps.map((s) => s.kind)).toEqual([
       'slide',
       'slide',
@@ -41,9 +44,8 @@ describe('lessons', () => {
   it('composes a lesson from the description when none is authored', () => {
     const plan = lessonFor(node('concept.dimension_unit'), pkg.lessons, pkg.exercises);
     expect(plan.authored).toBe(false);
-    expect(plan.tool).toBeUndefined();
     expect(plan.steps.length).toBeGreaterThanOrEqual(2);
-    expect(plan.steps.every((s) => s.kind === 'slide')).toBe(true);
+    expect(plan.steps[0].kind).toBe('slide');
     expect(plan.steps[0].text.fr.length).toBeGreaterThan(40);
     expect(plan.steps[0].text.en.length).toBeGreaterThan(40);
   });
@@ -54,7 +56,7 @@ describe('lessons', () => {
       pkg.lessons,
       pkg.exercises
     );
-    expect(plan.tool).toEqual({
+    expect(plan.tools[0]).toMatchObject({
       kind: 'simulation',
       simulationId: 'simulation.galileo.inclined_plane',
     });
@@ -75,7 +77,7 @@ describe('lessons', () => {
 
   it('replays the plotter actions up to a sentence, accumulating across slides', () => {
     const plan = lessonFor(node('concept.function'), pkg.lessons, pkg.exercises);
-    const tool = plan.tool as Plotter;
+    const tool = plan.tools[0] as Plotter;
     expect(plotterStateAt(tool, plan.steps, 0, 0).curves).toEqual([]);
     const afterSecond = plotterStateAt(tool, plan.steps, 0, 1);
     expect(afterSecond.curves.map((c) => c.id)).toEqual(['f']);
@@ -95,6 +97,7 @@ describe('lessons', () => {
 
   it('keeps parameters, applies clear and set', () => {
     const tool: Plotter = {
+      id: 'plotter',
       kind: 'plotter',
       variable: 'x',
       view: { x: [-1, 1], y: [-1, 1] },
@@ -107,6 +110,7 @@ describe('lessons', () => {
     expect(state.view.labels).toEqual({ x: 'x', y: 'y' });
     state = applyPlotterAction(state, {
       at: 0,
+      show: [],
       hide: [],
       clear: false,
       plot: { id: 'f', expr: 'a*x', dashed: false },
@@ -114,9 +118,55 @@ describe('lessons', () => {
     });
     expect(state.curves.length).toBe(1);
     expect(state.params.a).toBe(0.5);
-    state = applyPlotterAction(state, { at: 0, hide: [], clear: true });
+    state = applyPlotterAction(state, { at: 0, show: [], hide: [], clear: true });
     expect(state.curves).toEqual([]);
     expect(state.order).toEqual([]);
+  });
+
+  it('shows and hides the items of any tool from the slides', () => {
+    const plan: LessonPlan = {
+      id: 'preview',
+      node: node('tool.vector'),
+      depth: 1,
+      authored: true,
+      tools: [
+        {
+          id: 'vectors',
+          kind: 'vectors',
+          view: { x: [-1, 5], y: [-1, 5] },
+          parameters: [],
+          vectors: [
+            { id: 'u', x: 3, y: 1, components: false, drag: false, hidden: false },
+            { id: 'v', x: 1, y: 2, components: false, drag: false, hidden: true },
+          ],
+          paths: [],
+          sums: [],
+        },
+      ],
+      steps: [
+        {
+          id: 'one',
+          kind: 'slide',
+          text: { fr: 'Un. Deux.', en: 'One. Two.' },
+          actions: [{ at: 1, show: ['v'], hide: [], clear: false }],
+          exercises: [],
+        },
+        {
+          id: 'two',
+          kind: 'slide',
+          text: { fr: 'Trois.', en: 'Three.' },
+          actions: [{ at: 0, show: [], hide: ['u'], clear: false }],
+          exercises: [],
+        },
+      ],
+    };
+    const tool = plan.tools[0] as Extract<LessonTool, { kind: 'vectors' }>;
+    const before = toolStateAt(plan, 'vectors', 0, 0)!;
+    expect(tool.vectors.map((v) => itemVisible(v, before))).toEqual([true, false]);
+    const shown = toolStateAt(plan, 'vectors', 0, 1)!;
+    expect(tool.vectors.map((v) => itemVisible(v, shown))).toEqual([true, true]);
+    const later = toolStateAt(plan, 'vectors', 1, null)!;
+    expect(tool.vectors.map((v) => itemVisible(v, later))).toEqual([false, true]);
   });
 
   it('finds the next lesson along the routes, skipping missions', () => {

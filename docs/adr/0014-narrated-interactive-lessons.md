@@ -11,12 +11,21 @@ a moment to play with the tool, then exercises with typed answers rather than mu
 
 ## Decision
 
-- A lesson is content (`content/lessons/<node>.yaml`, `LessonSchema`): a tool (`plotter` or
-  `simulation`), then steps of three kinds — `slide` (read, then moves on), `play` (waits), and
-  `exercises` (ids of exercises of the node). A slide carries `actions` keyed by the index of the
-  sentence at which they fire: `plot`, `point`, `secant`, `tangent`, `interval`, `hide`, `clear`,
-  `view`, `set`. Items accumulate from slide to slide; the state of the plotter at any point of
-  the text is a pure replay of the actions (`plotterStateAt`), so going back is exact.
+- A lesson is content (`content/lessons/<node>.yaml`, `LessonSchema`): one or several tools
+  (`plotter`, `simulation`, `vectors`, `slope_field`, `fit`, `field`, `dimensions`, `timeline`),
+  then steps of three kinds — `slide` (read, then moves on), `play` (waits), and `exercises`
+  (ids of exercises of the node). A step shows one tool; the learner switches between tools with
+  tabs during the play and the exercises. A slide carries `actions` keyed by the index of the
+  sentence at which they fire: `show` / `hide` of items declared by any tool, `set` of a
+  parameter, `view`, and for the plotter `plot`, `point`, `secant`, `tangent`, `interval`,
+  `clear`. Items accumulate from slide to slide; the state of a tool at any point of the text is
+  a pure replay of the actions (`toolStateAt`), so going back is exact.
+- Every lesson has at least one tool: curves for functions and the exponential, vectors for the
+  vector, kinematics, Newton's law and the forces on the inclined plane, slope fields for
+  differential equations, initial conditions, proportional rates and the RC, kinetic and decay
+  models, measurements with candidate models for measurement, modelling and the question of
+  prediction, a scalar field for the gradient, a dimension table for units, a timeline for the
+  people, places and period, and the existing simulations for the phenomena.
 - The narration reuses the browser voice of ADR-0013, sentence by sentence; the `onSentence`
   callback of the speech wrapper drives the actions. Without a voice, the sentences are paced on
   their reading time, so the tool still follows the text.

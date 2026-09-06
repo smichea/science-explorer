@@ -1,0 +1,45 @@
+# Leçon — concept.dimension_unit (numeric)
+id: exercise.dimension.exponent
+type: numeric
+nodeId: concept.dimension_unit
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    La dimension d'une accélération est $L\,T^{-2}$.
+
+    Quel est l'exposant du temps $T$ dans cette dimension ?
+  en: |-
+    The dimension of an acceleration is $L\,T^{-2}$.
+
+    What is the exponent of time $T$ in that dimension?
+numeric:
+  value: -2
+  tolerance:
+    kind: absolute
+    value: 0.01
+  inputLabel:
+    fr: exposant de T
+    en: exponent of T
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: Une accélération est une vitesse divisée par un temps.
+    en: An acceleration is a speed divided by a time.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $[v] = L\,T^{-1}$, puis on divise encore par $T$.
+    en: $[v] = L\,T^{-1}$, then divide by $T$ once more.
+solution:
+  fr: '$[a] = [v]/[t] = L\,T^{-1} \cdot T^{-1} = L\,T^{-2}$ : l''exposant de $T$ est $-2$, d''où l''unité $\mathrm{m/s^2}$.'
+  en: '$[a] = [v]/[t] = L\,T^{-1} \cdot T^{-1} = L\,T^{-2}$: the exponent of $T$ is $-2$, hence the unit $\mathrm{m/s^2}$.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

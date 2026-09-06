@@ -1,0 +1,15 @@
+# Leçon — la mesure, avec des mesures répétées de g et une valeur à retenir.
+id: lesson.method.measurement
+nodeId: method.measurement
+depth: 1
+tools:
+  - id: fit
+    kind: fit
+    view: { x: [0, 13], y: [8.5, 11] }
+    labels: { x: "n° de la mesure", y: "g (m/s²)" }
+    parameters:
+      - { id: m, label: { fr: "valeur retenue m", en: "retained value m" }, min: 8.5, max: 11, step: 0.01, value: 9.5 }
+    generator: { expr: "9.81", noise: 0.3, count: 6, from: 1, to: 6, seed: 7 }
+    models:
+      - { id: mean, expr: "m", label: { fr: "valeur unique m", en: "single value m" } }
+    measure: true

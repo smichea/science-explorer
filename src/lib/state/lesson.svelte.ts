@@ -1,6 +1,12 @@
 import type { AnswerCheck } from '$lib/domain/answers';
-import type { LessonStep } from '$lib/content-schema';
-import { plotterStateAt, type LessonPlan, type PlotterState } from '$lib/domain/lesson';
+import type { LessonStep, LessonTool } from '$lib/content-schema';
+import {
+  toolOfStep,
+  toolStateAt,
+  type LessonPlan,
+  type PlotterState,
+  type ToolState,
+} from '$lib/domain/lesson';
 import { speakableText, splitSentences } from '$lib/domain/speech';
 import { L, locale } from './locale.svelte';
 import { prefs } from './prefs.svelte';
@@ -36,9 +42,11 @@ class LessonState {
   tick = $state(0);
   records = $state<Record<string, ExerciseRecord>>({});
   hints = $state<Record<string, string[]>>({});
-  /** Parameter values moved by the learner (free play), on top of the authored ones. */
-  paramOverrides = $state<Record<string, number>>({});
-  /** The learner's own expression (free play). */
+  /** The tool the learner switched to (free play, exercises); null follows the step. */
+  chosenToolId = $state<string | null>(null);
+  /** Parameter values moved by the learner, per tool, on top of the authored ones. */
+  paramOverrides = $state<Record<string, Record<string, number>>>({});
+  /** The learner's own expression (plotter free play). */
   customExpression = $state('');
   /** Abscissa of the learner's marker on the plotter, null when hidden. */
   marker = $state<number | null>(null);
@@ -65,17 +73,41 @@ class LessonState {
     return prefs.prefs.voice ?? prefs.prefs.tourVoice ?? true;
   }
 
-  /** The plotter after the actions fired so far, with the learner's parameter values on top. */
-  get plotter(): PlotterState | null {
-    const plan = this.plan;
-    if (!plan || plan.tool?.kind !== 'plotter') return null;
-    const base = plotterStateAt(plan.tool, plan.steps, this.index, this.sentence);
-    return { ...base, params: { ...base.params, ...this.paramOverrides } };
-  }
-
-  /** Whether the learner may handle the tool on the current step. */
+  /** Whether the learner may handle the tools on the current step. */
   get interactive(): boolean {
     return this.step?.kind === 'play' || this.step?.kind === 'exercises';
+  }
+
+  /** The tool on screen: the learner's choice during the play, else the step's tool. */
+  get tool(): LessonTool | null {
+    const plan = this.plan;
+    if (!plan) return null;
+    if (this.interactive && this.chosenToolId) {
+      const chosen = plan.tools.find((t) => t.id === this.chosenToolId);
+      if (chosen) return chosen;
+    }
+    return toolOfStep(plan, this.step);
+  }
+
+  /** State of a tool after the actions fired so far, with the learner's parameter values on top. */
+  toolState(toolId: string): ToolState | null {
+    const plan = this.plan;
+    if (!plan) return null;
+    const base = toolStateAt(plan, toolId, this.index, this.sentence);
+    if (!base) return null;
+    const params = { ...base.params, ...(this.paramOverrides[toolId] ?? {}) };
+    return {
+      ...base,
+      params,
+      plotter: base.plotter ? { ...base.plotter, params } : null,
+    };
+  }
+
+  /** The plotter drawing of the tool on screen, when it is a plotter. */
+  get plotter(): PlotterState | null {
+    const tool = this.tool;
+    if (tool?.kind !== 'plotter') return null;
+    return this.toolState(tool.id)?.plotter ?? null;
   }
 
   get solved(): number {
@@ -148,7 +180,10 @@ class LessonState {
     this.index = index;
     this.sentence = null;
     this.tick++;
-    if (target.kind === 'slide') this.paramOverrides = {};
+    if (target.kind === 'slide') {
+      this.paramOverrides = {};
+      this.chosenToolId = null;
+    }
     if (this.status === 'finished') this.status = 'paused';
     if (this.status === 'paused') this.status = 'playing';
     void this.play();
@@ -191,8 +226,15 @@ class LessonState {
     else speech.cancel();
   }
 
-  setParameter(id: string, value: number): void {
-    this.paramOverrides = { ...this.paramOverrides, [id]: value };
+  chooseTool(id: string): void {
+    this.chosenToolId = id;
+  }
+
+  setParameter(toolId: string, id: string, value: number): void {
+    this.paramOverrides = {
+      ...this.paramOverrides,
+      [toolId]: { ...(this.paramOverrides[toolId] ?? {}), [id]: value },
+    };
   }
 
   /** Records an answer; returns the attempt number. */
@@ -225,6 +267,7 @@ class LessonState {
     this.plan = null;
     this.index = 0;
     this.sentence = null;
+    this.chosenToolId = null;
     this.paramOverrides = {};
     this.customExpression = '';
     this.marker = null;

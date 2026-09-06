@@ -1,0 +1,46 @@
+# Leçon — model.rc_circuit (numeric)
+id: exercise.rc.time_constant
+type: numeric
+nodeId: model.rc_circuit
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un circuit RC a $R = 2000\ \Omega$ et $C = 500\ \mu\mathrm{F}$.
+
+    Calculez la constante de temps $\tau = RC$.
+  en: |-
+    An RC circuit has $R = 2000\ \Omega$ and $C = 500\ \mu\mathrm{F}$.
+
+    Compute the time constant $\tau = RC$.
+numeric:
+  value: 1
+  tolerance:
+    kind: absolute
+    value: 0.01
+  inputLabel:
+    fr: τ
+    en: τ
+  unit: s
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: $500\ \mu\mathrm{F} = 500 \times 10^{-6}\ \mathrm{F}$.
+    en: $500\ \mu\mathrm{F} = 500 \times 10^{-6}\ \mathrm{F}$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $2000 \times 5 \times 10^{-4}$.
+    en: $2000 \times 5 \times 10^{-4}$.
+solution:
+  fr: '$\tau = RC = 2000 \times 5 \times 10^{-4} = 1\ \mathrm{s}$ : au bout de $\tau$ la tension atteint $63\,\%$ de $E$, au bout de $5\tau$ elle est pratiquement à $E$.'
+  en: '$\tau = RC = 2000 \times 5 \times 10^{-4} = 1\ \mathrm{s}$: after $\tau$ the voltage reaches $63\,\%$ of $E$, after $5\tau$ it is practically at $E$.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

@@ -2,6 +2,18 @@
 id: lesson.phenomenon.circuit.capacitor_charging
 nodeId: phenomenon.circuit.capacitor_charging
 depth: 1
-tool:
-  kind: simulation
-  simulationId: simulation.rc.charging
+tools:
+  - id: simulation
+    kind: simulation
+    simulationId: simulation.rc.charging
+  - id: field
+    kind: slope_field
+    title: { fr: "Équation de la charge", en: "Charging equation" }
+    view: { x: [0, 10], y: [0, 8] }
+    parameters:
+      - { id: e, label: { fr: "tension E (V)", en: "voltage E (V)" }, min: 1, max: 8, step: 0.5, value: 6 }
+      - { id: r, label: { fr: "constante de temps τ (s)", en: "time constant τ (s)" }, min: 0.5, max: 4, step: 0.25, value: 2 }
+    equation: "(e - y)/r"
+    labels: { x: "t (s)", y: "u (V)" }
+    solutions:
+      - { id: charge, x0: 0, y0: 0, label: { fr: "charge depuis 0", en: "charging from 0" } }

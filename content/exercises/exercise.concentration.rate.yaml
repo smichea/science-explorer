@@ -1,0 +1,46 @@
+# Leçon — phenomenon.chemistry.concentration_over_time (numeric)
+id: exercise.concentration.rate
+type: numeric
+nodeId: phenomenon.chemistry.concentration_over_time
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    La concentration d'un réactif passe de $0{,}80$ à $0{,}64\ \mathrm{mol/L}$ entre $t = 0$ et $t = 2\ \mathrm{s}$.
+
+    Quelle est la vitesse moyenne de disparition, en $\mathrm{mol/(L\cdot s)}$ ?
+  en: |-
+    The concentration of a reactant goes from $0.80$ to $0.64\ \mathrm{mol/L}$ between $t = 0$ and $t = 2\ \mathrm{s}$.
+
+    What is the mean rate of disappearance, in $\mathrm{mol/(L\cdot s)}$?
+numeric:
+  value: 0.08
+  tolerance:
+    kind: absolute
+    value: 0.005
+  inputLabel:
+    fr: vitesse moyenne
+    en: mean rate
+  unit: mol/(L·s)
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: Vitesse moyenne = variation de concentration divisée par la durée, au signe près.
+    en: Mean rate = change of concentration divided by the duration, up to the sign.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $(0{,}80 - 0{,}64)/2$.
+    en: $(0.80 - 0.64)/2$.
+solution:
+  fr: '$v = \dfrac{0{,}80 - 0{,}64}{2} = 0{,}08\ \mathrm{mol/(L\cdot s)}$ : c''est la pente de la corde sur la courbe de concentration, la même idée que le taux de variation.'
+  en: '$v = \dfrac{0.80 - 0.64}{2} = 0.08\ \mathrm{mol/(L\cdot s)}$: it is the slope of the chord on the concentration curve, the same idea as the rate of change.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

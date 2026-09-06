@@ -2,12 +2,13 @@
 id: lesson.concept.graph
 nodeId: concept.graph
 depth: 1
-tool:
-  kind: plotter
-  variable: x
-  view: { x: [-3, 4], y: [-2, 10] }
-  parameters: []
-  input: true
+tools:
+  - id: plotter
+    kind: plotter
+    variable: x
+    view: { x: [-3, 4], y: [-2, 10] }
+    parameters: []
+    input: true
 steps:
   - id: points
     title: { fr: "Une courbe est faite de points", en: "A curve is made of points" }

@@ -1,0 +1,45 @@
+# Leçon — phenomenon.nuclear.radioactive_decay (numeric)
+id: exercise.radioactive.constant
+type: numeric
+nodeId: phenomenon.nuclear.radioactive_decay
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Le carbone 14 a une demi-vie de $5730$ ans.
+
+    Calculez sa constante radioactive $\lambda = \ln 2 / t_{1/2}$ en $\mathrm{an^{-1}}$ (écrivez par exemple `1.2e-4`).
+  en: |-
+    Carbon 14 has a half-life of $5730$ years.
+
+    Compute its decay constant $\lambda = \ln 2 / t_{1/2}$ in $\mathrm{year^{-1}}$ (write for example `1.2e-4`).
+numeric:
+  value: 0.000121
+  tolerance:
+    kind: absolute
+    value: 3.0e-06
+  inputLabel:
+    fr: λ
+    en: λ
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: $\ln 2 \approx 0{,}693$.
+    en: $\ln 2 \approx 0.693$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $0{,}693 / 5730$.
+    en: $0.693 / 5730$.
+solution:
+  fr: '$\lambda = 0{,}693/5730 \approx 1{,}21 \times 10^{-4}\ \mathrm{an^{-1}}$ : la datation au carbone 14 repose sur cette constante.'
+  en: '$\lambda = 0.693/5730 \approx 1.21 \times 10^{-4}\ \mathrm{year^{-1}}$: radiocarbon dating rests on this constant.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

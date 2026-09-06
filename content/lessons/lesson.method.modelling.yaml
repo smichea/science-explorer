@@ -1,0 +1,79 @@
+# Leçon narrée — la modélisation, avec des mesures et trois modèles candidats.
+id: lesson.method.modelling
+nodeId: method.modelling
+depth: 1
+tools:
+  - id: fit
+    kind: fit
+    view: { x: [0, 3.2], y: [0, 50] }
+    labels: { x: "t (s)", y: "d (m)" }
+    parameters:
+      - { id: a, label: { fr: "coefficient a", en: "coefficient a" }, min: 0, max: 10, step: 0.1, value: 3 }
+      - { id: b, label: { fr: "coefficient b", en: "coefficient b" }, min: 0, max: 20, step: 0.5, value: 10 }
+    generator: { expr: "4.9*x^2", noise: 1.2, count: 8, from: 0.25, to: 2, seed: 3 }
+    models:
+      - { id: linear, expr: "b*x", label: { fr: "linéaire : d = b t", en: "linear: d = b t" } }
+      - { id: quadratic, expr: "a*x^2", label: { fr: "quadratique : d = a t²", en: "quadratic: d = a t²" }, hidden: true }
+      - { id: exponential, expr: "exp(a*x)-1", label: { fr: "exponentielle : d = exp(a t) − 1", en: "exponential: d = exp(a t) − 1" }, hidden: true }
+    target: 3
+steps:
+  - id: data
+    title: { fr: "Des mesures, une loi simple", en: "Measurements, a simple law" }
+    text:
+      fr: >-
+        Modéliser, c'est choisir une loi simple qui rende compte des mesures, puis s'en servir pour prévoir.
+        Voici huit mesures de la distance parcourue par une bille en fonction du temps.
+        Une première idée : une droite.
+        L'écart moyen dit de combien la droite s'éloigne des points.
+      en: >-
+        Modelling means choosing a simple law that accounts for the measurements, then using it to predict.
+        Here are eight measurements of the distance covered by a ball against time.
+        A first idea: a straight line.
+        The mean error says how far the line strays from the points.
+    actions: []
+  - id: compare
+    title: { fr: "Comparer des modèles", en: "Comparing models" }
+    text:
+      fr: >-
+        Essayons une loi en t carré : l'écart moyen chute.
+        Une exponentielle, elle, s'écarte vite des mesures.
+        Le bon modèle est à la fois simple et fidèle, et il prédit correctement une mesure qu'on n'a pas encore faite : ici, la distance à trois secondes.
+      en: >-
+        Let us try a law in t squared: the mean error drops.
+        An exponential, on the other hand, quickly strays from the measurements.
+        The right model is both simple and faithful, and it correctly predicts a measurement not yet made: here, the distance at three seconds.
+    actions:
+      - { at: 0, show: [quadratic] }
+      - { at: 1, show: [exponential] }
+  - id: limits
+    title: { fr: "Hypothèses et domaine de validité", en: "Assumptions and domain of validity" }
+    text:
+      fr: >-
+        Un modèle a des hypothèses et un domaine de validité.
+        La loi en t carré suppose que rien ne freine la bille ; avec des frottements, elle cesse d'être fidèle.
+        Modéliser, c'est aussi savoir quand le modèle ne s'applique plus.
+      en: >-
+        A model has assumptions and a domain of validity.
+        The law in t squared assumes that nothing slows the ball; with friction, it stops being faithful.
+        Modelling also means knowing when the model no longer applies.
+    actions: []
+  - id: play
+    kind: play
+    title: { fr: "À vous d'ajuster", en: "Your turn to fit" }
+    text:
+      fr: >-
+        À vous. Choisissez un modèle, réglez ses coefficients pour réduire l'écart moyen, et lisez la prédiction à trois secondes.
+      en: >-
+        Your turn. Choose a model, tune its coefficients to reduce the mean error, and read the prediction at three seconds.
+    actions: []
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : reconnaître le bon modèle, puis prédire une mesure.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: recognise the right model, then predict a measurement.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.modelling.choose, exercise.modelling.predict]

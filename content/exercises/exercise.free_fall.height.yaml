@@ -1,0 +1,40 @@
+# Leçon — phenomenon.motion.free_fall (numeric)
+id: exercise.free_fall.height
+type: numeric
+nodeId: phenomenon.motion.free_fall
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: Quelle hauteur une bille lâchée sans vitesse a-t-elle parcourue après $2\ \mathrm{s}$ ($g = 9{,}8\ \mathrm{m/s^2}$) ?
+  en: What height has a ball released at rest fallen after $2\ \mathrm{s}$ ($g = 9.8\ \mathrm{m/s^2}$)?
+numeric:
+  value: 19.6
+  tolerance:
+    kind: absolute
+    value: 0.1
+  inputLabel:
+    fr: hauteur
+    en: height
+  unit: m
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: $h = \tfrac12 g t^2$.
+    en: $h = \tfrac12 g t^2$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $0{,}5 \times 9{,}8 \times 4$.
+    en: $0.5 \times 9.8 \times 4$.
+solution:
+  fr: '$h = \tfrac12 \times 9{,}8 \times 2^2 = 19{,}6\ \mathrm{m}$ : quatre fois la hauteur parcourue en une seconde.'
+  en: '$h = \tfrac12 \times 9.8 \times 2^2 = 19.6\ \mathrm{m}$: four times the height fallen in one second.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

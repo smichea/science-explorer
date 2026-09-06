@@ -2,6 +2,7 @@
 id: lesson.phenomenon.motion.free_fall
 nodeId: phenomenon.motion.free_fall
 depth: 1
-tool:
-  kind: simulation
-  simulationId: simulation.free_fall.basic
+tools:
+  - id: simulation
+    kind: simulation
+    simulationId: simulation.free_fall.basic

@@ -2,6 +2,7 @@
 id: lesson.phenomenon.motion.uniformly_accelerated
 nodeId: phenomenon.motion.uniformly_accelerated
 depth: 1
-tool:
-  kind: simulation
-  simulationId: simulation.galileo.inclined_plane
+tools:
+  - id: simulation
+    kind: simulation
+    simulationId: simulation.galileo.inclined_plane

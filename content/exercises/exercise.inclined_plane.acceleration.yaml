@@ -1,0 +1,46 @@
+# Leçon — phenomenon.motion.inclined_plane (numeric)
+id: exercise.inclined_plane.acceleration
+type: numeric
+nodeId: phenomenon.motion.inclined_plane
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Un objet glisse sans frottement sur un plan incliné de $30^\circ$ ($g = 9{,}8\ \mathrm{m/s^2}$).
+
+    Quelle est son accélération le long du plan ?
+  en: |-
+    An object slides without friction on a plane inclined at $30^\circ$ ($g = 9.8\ \mathrm{m/s^2}$).
+
+    What is its acceleration along the plane?
+numeric:
+  value: 4.9
+  tolerance:
+    kind: absolute
+    value: 0.05
+  inputLabel:
+    fr: a
+    en: a
+  unit: m/s²
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: 'Seule la composante du poids le long du plan accélère l''objet : $g \sin\theta$.'
+    en: 'Only the component of the weight along the plane accelerates the object: $g \sin\theta$.'
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $\sin 30^\circ = 0{,}5$.
+    en: $\sin 30^\circ = 0.5$.
+solution:
+  fr: $a = g \sin 30^\circ = 9{,}8 \times 0{,}5 = 4{,}9\ \mathrm{m/s^2}$. Le plan incliné « dilue » la pesanteur, ce qui permit à Galilée de mesurer une chute ralentie.
+  en: $a = g \sin 30^\circ = 9.8 \times 0.5 = 4.9\ \mathrm{m/s^2}$. The inclined plane "dilutes" gravity, which let Galileo measure a slowed-down fall.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

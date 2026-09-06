@@ -1,0 +1,16 @@
+# Leçon — l'évolution d'une concentration : des mesures, deux modèles, une vitesse.
+id: lesson.phenomenon.chemistry.concentration_over_time
+nodeId: phenomenon.chemistry.concentration_over_time
+depth: 1
+tools:
+  - id: fit
+    kind: fit
+    view: { x: [0, 25], y: [0, 1] }
+    labels: { x: "t (s)", y: "[A] (mol/L)" }
+    parameters:
+      - { id: a, label: { fr: "concentration initiale a", en: "initial concentration a" }, min: 0.2, max: 1, step: 0.02, value: 0.6 }
+      - { id: k, label: { fr: "constante k", en: "rate constant k" }, min: 0.02, max: 0.4, step: 0.01, value: 0.05 }
+    generator: { expr: "0.8*exp(-0.12*x)", noise: 0.025, count: 9, from: 0, to: 20, seed: 11 }
+    models:
+      - { id: linear, expr: "a - k*x", label: { fr: "linéaire : [A] = a − k t", en: "linear: [A] = a − k t" } }
+      - { id: exponential, expr: "a*exp(-k*x)", label: { fr: "exponentielle : [A] = a exp(−k t)", en: "exponential: [A] = a exp(−k t)" } }

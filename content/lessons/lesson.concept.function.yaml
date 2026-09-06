@@ -3,12 +3,13 @@
 id: lesson.concept.function
 nodeId: concept.function
 depth: 1
-tool:
-  kind: plotter
-  variable: x
-  view: { x: [-3, 3], y: [-2, 10] }
-  parameters: []
-  input: true
+tools:
+  - id: plotter
+    kind: plotter
+    variable: x
+    view: { x: [-3, 3], y: [-2, 10] }
+    parameters: []
+    input: true
 steps:
   - id: definition
     title: { fr: "Une valeur, une seule image", en: "One value, one image" }

@@ -1,0 +1,45 @@
+# Leçon — model.reaction_order_one (numeric)
+id: exercise.reaction.rate_constant
+type: numeric
+nodeId: model.reaction_order_one
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une réaction d'ordre 1 a un temps de demi-réaction de $20\ \mathrm{s}$.
+
+    Calculez la constante de vitesse $k = \ln 2 / t_{1/2}$ (trois décimales, en $\mathrm{s^{-1}}$).
+  en: |-
+    A first-order reaction has a half-life of $20\ \mathrm{s}$.
+
+    Compute the rate constant $k = \ln 2 / t_{1/2}$ (three decimals, in $\mathrm{s^{-1}}$).
+numeric:
+  value: 0.035
+  tolerance:
+    kind: absolute
+    value: 0.001
+  inputLabel:
+    fr: k
+    en: k
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: $\ln 2 \approx 0{,}693$.
+    en: $\ln 2 \approx 0.693$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $0{,}693 / 20$.
+    en: $0.693 / 20$.
+solution:
+  fr: $k = \ln 2 / 20 \approx 0{,}035\ \mathrm{s^{-1}}$. Pour un ordre 1, le temps de demi-réaction ne dépend pas de la concentration initiale.
+  en: $k = \ln 2 / 20 \approx 0.035\ \mathrm{s^{-1}}$. For a first-order reaction, the half-life does not depend on the initial concentration.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

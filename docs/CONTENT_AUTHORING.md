@@ -438,20 +438,21 @@ A flight follows the prerequisites (`requires_essentially` and `requires_recomme
 ### `content/lessons/<node>.yaml` — narrated, interactive lessons
 
 See `src/lib/content-schema/lesson.ts`. A lesson is played on `/lesson/<nodeId>`: slides read
-aloud on the left (the voice of the browser, on by default), a tool on the right that follows the
-words, a free play with the tool, then exercises with typed answers. Skeleton:
+aloud on the left (the voice of the browser, on by default), one or several tools on the right
+that follow the words, a free play with the tools, then exercises with typed answers. Skeleton:
 
 ```yaml
 id: lesson.concept.function
 nodeId: concept.function
 depth: 1                            # one lesson per node and depth
-tool:                               # optional: plotter | simulation
-  kind: plotter
-  variable: x
-  view: { x: [-3, 3], y: [-2, 10] }
-  parameters:                       # sliders of the free play, usable in expressions (a, a+h)
-    - { id: h, label: { fr: "largeur h", en: "width h" }, min: 0.02, max: 1.5, step: 0.02, value: 1 }
-  input: true                       # the learner may type an expression of the variable
+tools:                              # one or several; a step shows one of them (`tool: <id>`)
+  - id: plotter
+    kind: plotter                   # plotter | simulation | vectors | slope_field | fit | field | dimensions | timeline
+    variable: x
+    view: { x: [-3, 3], y: [-2, 10] }
+    parameters:                     # sliders of the free play, usable in expressions (a, a+h)
+      - { id: h, label: { fr: "largeur h", en: "width h" }, min: 0.02, max: 1.5, step: 0.02, value: 1 }
+    input: true                     # the learner may type an expression of the variable
 steps:
   - id: definition
     kind: slide                     # slide (read, then moves on) | play | exercises
@@ -465,8 +466,8 @@ steps:
     actions:                        # fired at sentence `at` (0-based) while the text is read
       - { at: 1, plot: { id: f, expr: "x^2", label: { fr: "f(x) = x²", en: "f(x) = x²" } } }
       - { at: 1, point: { id: p, on: f, x: 2, guides: true, label: { fr: "f(2) = 4", en: "f(2) = 4" } } }
-      # secant: { id, on, from, to }   tangent: { id, on, x }   interval: { id, on, from, to }
-      # hide: [ids]   clear: true   view: { x, y, labels: { x: "t (s)", y: "h (m)" } }   set: { h: 0.5 }
+      # plotter only: secant { id, on, from, to }  tangent { id, on, x }  interval { id, on, from, to }  clear
+      # every tool: show [ids]  hide [ids]  set { h: 0.5 }  view { x, y, labels: { x: "t (s)", y: "h (m)" } }
   - id: play
     kind: play
     text: { fr: "À vous…", en: "Your turn…" }
@@ -476,18 +477,31 @@ steps:
     exercises: [exercise.function.image, exercise.function.preimage]
 ```
 
-- `tool: { kind: simulation, simulationId: simulation.rc.charging }` shows a simulation instead of
-  the plotter (no actions).
+The tools, all fed by the safe expression compiler (variable and parameters, `exp`, `ln`, `log`,
+`sqrt`, `sin`, `cos`, `tan`, `pi`, `e`):
+
+| kind | what it shows | its items (declare `hidden: true` to reveal them with `show`) | free play |
+| --- | --- | --- | --- |
+| `plotter` | curves of one variable | drawn by the actions | typed expression, marker, tangent, sliders |
+| `simulation` | an existing simulation (`simulationId`) | — | the simulation's own controls |
+| `vectors` | arrows with components, sums, parametric paths | `vectors` (`x`, `y` may use parameters; `from` chains), `paths` (`x`, `y` of `s`), `sums` | drag the heads (`drag: true`), sliders |
+| `slope_field` | the direction field of `y' = equation(x, y)` and solutions | `solutions` (`x0`, `y0`) | click to add an initial condition, sliders |
+| `fit` | measured points (`points` or a seeded `generator`) and candidate `models` | `models` | choose a model, tune sliders, `measure: true` adds points, `target` asks a prediction |
+| `field` | a scalar field `expr(x, y)` as a heat map with iso-lines and the gradient at a marker | — | drag the marker, sliders |
+| `dimensions` | a table of `quantities` with dimension exponents and SI units | `quantities` | rebuild a derived quantity (`base: false`) from the base ones |
+| `timeline` | events (`year`, or `start`–`end`) on lanes, a year cursor | `events` | drag the cursor |
+
 - Without `steps`, the slides are cut from the node `description` (one paragraph each), followed
   by a free play when there is a tool and by the exercises of the node. Every node therefore has a
-  lesson; authoring one adds the tool and the synchronisation with the words.
-- The compiler refuses an unknown node, exercise or simulation, an expression that does not
-  compile (variable and parameters only; `exp`, `ln`, `log`, `sqrt`, `sin`, `cos`, `tan`, `pi`,
-  `e`), two lessons for the same node and depth, and warns when an action fires beyond the last
-  French sentence, when a lesson has no exercises step or no free play.
+  lesson; authoring the steps adds the synchronisation with the words. An authored lesson without
+  an exercises step still ends with the exercises of the node.
+- The compiler refuses an unknown node, tool, exercise or simulation, an expression that does not
+  compile, two lessons for the same node and depth, drawing actions on a tool that is not a
+  plotter; it warns when an action fires beyond the last French sentence, when a lesson has no
+  tool, no free play or a node without exercise, and when `show`/`hide` name an unknown item.
 - Numbers in the spoken text: write them as words or digits, never as LaTeX (a formula is read
-  as "formule"); end a sentence with a lower-case letter only if it is a variable (`x.`), a
-  capitalised one- or two-letter word (`M.`) glues the next sentence.
+  as "formule"); a sentence may end with a variable (`x.`), while a capitalised one- or two-letter
+  word (`M.`) glues the next sentence.
 
 ## Historical honesty checklist
 

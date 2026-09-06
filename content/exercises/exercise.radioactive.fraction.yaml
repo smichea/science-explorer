@@ -1,0 +1,39 @@
+# Leçon — phenomenon.nuclear.radioactive_decay (numeric)
+id: exercise.radioactive.fraction
+type: numeric
+nodeId: phenomenon.nuclear.radioactive_decay
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: Quelle fraction d'un échantillon radioactif reste-t-il après trois demi-vies ? (Réponse entre 0 et 1, trois décimales.)
+  en: What fraction of a radioactive sample remains after three half-lives? (Answer between 0 and 1, three decimals.)
+numeric:
+  value: 0.125
+  tolerance:
+    kind: absolute
+    value: 0.002
+  inputLabel:
+    fr: fraction restante
+    en: remaining fraction
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: Chaque demi-vie divise la quantité par deux.
+    en: Each half-life halves the quantity.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $1/2 \times 1/2 \times 1/2$.
+    en: $1/2 \times 1/2 \times 1/2$.
+solution:
+  fr: $(1/2)^3 = 1/8 = 0{,}125$. Après dix demi-vies il reste moins d'un millième.
+  en: $(1/2)^3 = 1/8 = 0.125$. After ten half-lives less than a thousandth remains.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

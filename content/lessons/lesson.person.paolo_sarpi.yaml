@@ -1,0 +1,25 @@
+# Leçon d'histoire — frise chronologique ; les diapositives viennent de la description.
+id: lesson.person.paolo_sarpi
+nodeId: person.paolo_sarpi
+depth: 1
+tools:
+  - id: timeline
+    kind: timeline
+    from: 1550
+    to: 1650
+    cursor: 1604
+    events:
+      - { id: born, year: 1564, label: { fr: "Naissance de Galilée à Pise", en: "Galileo born in Pisa" }, kind: life }
+      - { id: pisa_chair, start: 1589, end: 1592, label: { fr: "Enseigne les mathématiques à Pise", en: "Teaches mathematics in Pisa" }, kind: place }
+      - { id: padua_chair, start: 1592, end: 1610, label: { fr: "Chaire de mathématiques à Padoue", en: "Chair of mathematics in Padua" }, kind: place }
+      - { id: sarpi_letter, year: 1604, label: { fr: "Lettre à Sarpi : loi des carrés des temps", en: "Letter to Sarpi: the times-squared law" }, kind: work }
+      - { id: plane, start: 1604, end: 1608, label: { fr: "Expériences du plan incliné", en: "Inclined-plane experiments" }, kind: work }
+      - { id: telescope, year: 1609, label: { fr: "Lunette astronomique", en: "Telescope" }, kind: work }
+      - { id: sidereus, year: 1610, label: { fr: "Sidereus Nuncius", en: "Sidereus Nuncius" }, kind: work }
+      - { id: trial, year: 1633, label: { fr: "Procès et condamnation", en: "Trial and condemnation" }, kind: context }
+      - { id: discorsi, year: 1638, label: { fr: "Discorsi (Leyde)", en: "Discorsi (Leiden)" }, kind: work }
+      - { id: died, year: 1642, label: { fr: "Mort à Arcetri", en: "Dies in Arcetri" }, kind: life }
+      - { id: sarpi_born, year: 1552, label: { fr: "Naissance de Paolo Sarpi à Venise", en: "Paolo Sarpi born in Venice" }, kind: life }
+      - { id: sarpi_letter, year: 1604, label: { fr: "Reçoit la lettre de Galilée sur la chute", en: "Receives Galileo’s letter on falling bodies" }, kind: work }
+      - { id: interdict, year: 1606, label: { fr: "Interdit de Venise : Sarpi défend la République", en: "Venetian Interdict: Sarpi defends the Republic" }, kind: context }
+      - { id: sarpi_died, year: 1623, label: { fr: "Mort de Sarpi", en: "Sarpi dies" }, kind: life }

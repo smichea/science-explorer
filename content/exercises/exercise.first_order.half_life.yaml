@@ -1,0 +1,46 @@
+# Leçon — phenomenon.chemistry.first_order_reaction (numeric)
+id: exercise.first_order.half_life
+type: numeric
+nodeId: phenomenon.chemistry.first_order_reaction
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une réaction d'ordre 1 a pour constante $k = 0{,}1\ \mathrm{s^{-1}}$.
+
+    Calculez son temps de demi-réaction $t_{1/2} = \ln 2 / k$.
+  en: |-
+    A first-order reaction has rate constant $k = 0.1\ \mathrm{s^{-1}}$.
+
+    Compute its half-life $t_{1/2} = \ln 2 / k$.
+numeric:
+  value: 6.93
+  tolerance:
+    kind: absolute
+    value: 0.05
+  inputLabel:
+    fr: t½
+    en: t½
+  unit: s
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: $\ln 2 \approx 0{,}693$.
+    en: $\ln 2 \approx 0.693$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $0{,}693 / 0{,}1$.
+    en: $0.693 / 0.1$.
+solution:
+  fr: '$t_{1/2} = 0{,}693/0{,}1 \approx 6{,}9\ \mathrm{s}$ : toutes les $6{,}9\ \mathrm{s}$, la concentration est divisée par deux.'
+  en: '$t_{1/2} = 0.693/0.1 \approx 6.9\ \mathrm{s}$: every $6.9\ \mathrm{s}$, the concentration is halved.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

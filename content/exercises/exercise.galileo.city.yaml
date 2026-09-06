@@ -1,0 +1,54 @@
+# Leçon — person.galileo_galilei (choice)
+id: exercise.galileo.city
+type: choice
+nodeId: person.galileo_galilei
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: Dans quelle ville Galilée mène-t-il ses expériences sur le plan incliné, vers 1604 ?
+  en: In which city does Galileo carry out his inclined-plane experiments, around 1604?
+choice:
+  multiple: false
+  choices:
+  - id: pisa
+    text:
+      fr: Pise
+      en: Pisa
+    correct: false
+  - id: padua
+    text:
+      fr: Padoue
+      en: Padua
+    correct: true
+  - id: florence
+    text:
+      fr: Florence
+      en: Florence
+    correct: false
+  - id: venice
+    text:
+      fr: Venise
+      en: Venice
+    correct: false
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: 'Regardez la frise : où enseigne-t-il entre 1592 et 1610 ?'
+    en: 'Look at the timeline: where does he teach between 1592 and 1610?'
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: La lettre de 1604 est écrite à Padoue, à Paolo Sarpi.
+    en: The 1604 letter is written in Padua, to Paolo Sarpi.
+solution:
+  fr: À Padoue, où il enseigne de 1592 à 1610. Pise est la ville de sa naissance et de son premier poste ; Florence, celle de ses dernières années.
+  en: In Padua, where he teaches from 1592 to 1610. Pisa is the city of his birth and of his first post; Florence, that of his last years.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

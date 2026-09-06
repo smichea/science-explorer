@@ -1,0 +1,45 @@
+# Leçon — concept.rate_proportional_to_quantity (numeric)
+id: exercise.rate_proportional.rate
+type: numeric
+nodeId: concept.rate_proportional_to_quantity
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Une quantité obéit à $N'(t) = -0{,}5\,N(t)$.
+
+    Quelle est sa vitesse de variation $N'$ à l'instant où $N = 4$ ?
+  en: |-
+    A quantity obeys $N'(t) = -0.5\,N(t)$.
+
+    What is its rate of change $N'$ at the instant when $N = 4$?
+numeric:
+  value: -2
+  tolerance:
+    kind: absolute
+    value: 0.01
+  inputLabel:
+    fr: N'
+    en: N'
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: Remplacez $N$ par $4$ dans l'équation.
+    en: Replace $N$ with $4$ in the equation.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $-0{,}5 \times 4$.
+    en: $-0.5 \times 4$.
+solution:
+  fr: '$N'' = -0{,}5 \times 4 = -2$ : la quantité diminue d''autant plus vite qu''il en reste. Quand $N$ vaudra $2$, la vitesse ne sera plus que $-1$.'
+  en: '$N'' = -0.5 \times 4 = -2$: the quantity decreases the faster the more of it remains. When $N$ is $2$, the rate will only be $-1$.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

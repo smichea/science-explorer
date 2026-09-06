@@ -1,0 +1,45 @@
+# Leçon — tool.gradient (numeric)
+id: exercise.gradient.partial
+type: numeric
+nodeId: tool.gradient
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Soit $f(x, y) = x^2 + 2y^2$.
+
+    Calculez la dérivée partielle $\dfrac{\partial f}{\partial x}$ au point $(1 ; 1)$.
+  en: |-
+    Let $f(x, y) = x^2 + 2y^2$.
+
+    Compute the partial derivative $\dfrac{\partial f}{\partial x}$ at the point $(1, 1)$.
+numeric:
+  value: 2
+  tolerance:
+    kind: absolute
+    value: 0.01
+  inputLabel:
+    fr: ∂f/∂x (1, 1)
+    en: ∂f/∂x (1, 1)
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: Dérivez par rapport à $x$ en traitant $y$ comme une constante.
+    en: Differentiate with respect to $x$, treating $y$ as a constant.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $\partial_x f = 2x$.
+    en: $\partial_x f = 2x$.
+solution:
+  fr: '$\partial_x f = 2x$, donc $\partial_x f(1, 1) = 2$. De même $\partial_y f = 4y = 4$ : le gradient en $(1 ; 1)$ vaut $(2 ; 4)$.'
+  en: '$\partial_x f = 2x$, so $\partial_x f(1, 1) = 2$. Likewise $\partial_y f = 4y = 4$: the gradient at $(1, 1)$ is $(2, 4)$.'
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 2
+  linkedConcepts: 2
+  transfer: 2
+  autonomy: 3

@@ -1,0 +1,14 @@
+# Leçon — la deuxième loi de Newton : la force impose l'accélération, la masse résiste.
+id: lesson.law.newton_second
+nodeId: law.newton_second
+depth: 1
+tools:
+  - id: vectors
+    kind: vectors
+    view: { x: [-1, 11], y: [-4, 4] }
+    parameters:
+      - { id: f, label: { fr: "force F (N)", en: "force F (N)" }, min: 0, max: 10, step: 0.5, value: 6 }
+      - { id: m, label: { fr: "masse m (kg)", en: "mass m (kg)" }, min: 0.5, max: 5, step: 0.5, value: 2 }
+    vectors:
+      - { id: force, x: "f", y: 1.5, label: { fr: "F", en: "F" }, color: "#ffb347" }
+      - { id: accel, x: "f/m", y: -1.5, label: { fr: "a = F / m", en: "a = F / m" }, color: "#5ee6a8" }

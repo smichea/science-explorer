@@ -2,13 +2,14 @@
 id: lesson.tool.exponential
 nodeId: tool.exponential
 depth: 1
-tool:
-  kind: plotter
-  variable: x
-  view: { x: [-3, 3], y: [-1, 8] }
-  parameters:
-    - { id: k, label: { fr: "coefficient k", en: "coefficient k" }, min: -2, max: 2, step: 0.1, value: 1 }
-  input: false
+tools:
+  - id: plotter
+    kind: plotter
+    variable: x
+    view: { x: [-3, 3], y: [-1, 8] }
+    parameters:
+      - { id: k, label: { fr: "coefficient k", en: "coefficient k" }, min: -2, max: 2, step: 0.1, value: 1 }
+    input: false
 steps:
   - id: definition
     title: { fr: "Égale à sa dérivée", en: "Equal to its own derivative" }

@@ -1,0 +1,16 @@
+# Leçon — la cinématique du point : position, vitesse et accélération le long d'une trajectoire.
+id: lesson.model.kinematics_point
+nodeId: model.kinematics_point
+depth: 1
+tools:
+  - id: vectors
+    kind: vectors
+    view: { x: [-1, 7], y: [-1, 7] }
+    parameters:
+      - { id: t, label: { fr: "instant t (s)", en: "instant t (s)" }, min: 0, max: 2.4, step: 0.05, value: 1 }
+    paths:
+      - { id: trajectory, x: "2*s", y: "6-s^2", range: [0, 2.45], label: { fr: "trajectoire", en: "trajectory" }, dashed: true }
+    vectors:
+      - { id: r, x: "2*t", y: "6-t^2", label: { fr: "position r(t)", en: "position r(t)" }, components: true }
+      - { id: v, x: 2, y: "-2*t", from: r, label: { fr: "vitesse v(t)", en: "velocity v(t)" }, color: "#5ee6a8" }
+      - { id: a, x: 0, y: -2, from: r, label: { fr: "accélération a", en: "acceleration a" }, color: "#ff8fab" }

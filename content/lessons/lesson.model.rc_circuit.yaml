@@ -1,0 +1,20 @@
+# Leçon — le modèle du circuit RC : l'équation de la tension et la simulation de la charge.
+id: lesson.model.rc_circuit
+nodeId: model.rc_circuit
+depth: 1
+tools:
+  - id: field
+    kind: slope_field
+    title: { fr: "Équation de la tension", en: "Voltage equation" }
+    view: { x: [0, 10], y: [0, 8] }
+    parameters:
+      - { id: e, label: { fr: "tension E (V)", en: "voltage E (V)" }, min: 1, max: 8, step: 0.5, value: 6 }
+      - { id: r, label: { fr: "constante de temps τ (s)", en: "time constant τ (s)" }, min: 0.5, max: 4, step: 0.25, value: 2 }
+    equation: "(e - y)/r"
+    labels: { x: "t (s)", y: "u (V)" }
+    solutions:
+      - { id: charge, x0: 0, y0: 0, label: { fr: "charge depuis 0", en: "charging from 0" } }
+  - id: simulation
+    kind: simulation
+    title: { fr: "Charge du condensateur", en: "Capacitor charging" }
+    simulationId: simulation.rc.charging

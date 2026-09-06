@@ -1,0 +1,45 @@
+# Leçon — method.measurement (numeric)
+id: exercise.measurement.relative
+type: numeric
+nodeId: method.measurement
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Une mesure donne $g = 9{,}8 \pm 0{,}2\ \mathrm{m/s^2}$.
+
+    Quelle est l'incertitude relative, en pourcent ?
+  en: |-
+    A measurement gives $g = 9.8 \pm 0.2\ \mathrm{m/s^2}$.
+
+    What is the relative uncertainty, in percent?
+numeric:
+  value: 2
+  tolerance:
+    kind: absolute
+    value: 0.1
+  inputLabel:
+    fr: incertitude relative (%)
+    en: relative uncertainty (%)
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: Incertitude relative = incertitude absolue divisée par la valeur.
+    en: Relative uncertainty = absolute uncertainty divided by the value.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $0{,}2 / 9{,}8 \approx 0{,}02$.
+    en: $0.2 / 9.8 \approx 0.02$.
+solution:
+  fr: $\dfrac{0{,}2}{9{,}8} \approx 0{,}020$, soit $2\,\%$. C'est ce chiffre qui dit si la mesure est bonne, pas l'écart absolu seul.
+  en: $\dfrac{0.2}{9.8} \approx 0.020$, that is $2\,\%$. This figure says whether the measurement is good, not the absolute error alone.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

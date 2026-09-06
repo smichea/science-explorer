@@ -1,0 +1,40 @@
+# Leçon — law.newton_second (numeric)
+id: exercise.newton.force
+type: numeric
+nodeId: law.newton_second
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: Quelle force résultante faut-il pour donner à une masse de $1{,}5\ \mathrm{kg}$ une accélération de $4\ \mathrm{m/s^2}$ ?
+  en: What net force is needed to give a mass of $1.5\ \mathrm{kg}$ an acceleration of $4\ \mathrm{m/s^2}$?
+numeric:
+  value: 6
+  tolerance:
+    kind: absolute
+    value: 0.01
+  inputLabel:
+    fr: F
+    en: F
+  unit: N
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: $F = m\,a$.
+    en: $F = m\,a$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $1{,}5 \times 4$.
+    en: $1.5 \times 4$.
+solution:
+  fr: '$F = m a = 1{,}5 \times 4 = 6\ \mathrm{N}$. À force égale, une masse double n''obtient qu''une accélération moitié : la masse mesure l''inertie.'
+  en: '$F = m a = 1.5 \times 4 = 6\ \mathrm{N}$. With the same force, twice the mass only gets half the acceleration: mass measures inertia.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

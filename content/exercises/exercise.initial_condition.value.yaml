@@ -1,0 +1,45 @@
+# Leçon — concept.initial_condition (numeric)
+id: exercise.initial_condition.value
+type: numeric
+nodeId: concept.initial_condition
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Avec $y(0) = 0$, la solution de $y' = 2 - y$ est $y(t) = 2(1 - e^{-t})$.
+
+    Calculez $y(1)$ (deux décimales).
+  en: |-
+    With $y(0) = 0$, the solution of $y' = 2 - y$ is $y(t) = 2(1 - e^{-t})$.
+
+    Compute $y(1)$ (two decimals).
+numeric:
+  value: 1.26
+  tolerance:
+    kind: absolute
+    value: 0.02
+  inputLabel:
+    fr: y(1)
+    en: y(1)
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: $e^{-1} \approx 0{,}368$.
+    en: $e^{-1} \approx 0.368$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $2 \times (1 - 0{,}368)$.
+    en: $2 \times (1 - 0.368)$.
+solution:
+  fr: '$y(1) = 2(1 - e^{-1}) \approx 1{,}26$ : après une unité de temps, la solution a parcouru $63\,\%$ du chemin vers $2$.'
+  en: '$y(1) = 2(1 - e^{-1}) \approx 1.26$: after one unit of time, the solution has covered $63\,\%$ of the way to $2$.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

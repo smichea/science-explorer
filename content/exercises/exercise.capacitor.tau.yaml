@@ -1,0 +1,40 @@
+# Leçon — phenomenon.circuit.capacitor_charging (numeric)
+id: exercise.capacitor.tau
+type: numeric
+nodeId: phenomenon.circuit.capacitor_charging
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: Avec $R = 1\ \mathrm{k\Omega}$ et $C = 1\ \mathrm{mF}$, quelle est la constante de temps $\tau = RC$ ?
+  en: With $R = 1\ \mathrm{k\Omega}$ and $C = 1\ \mathrm{mF}$, what is the time constant $\tau = RC$?
+numeric:
+  value: 1
+  tolerance:
+    kind: absolute
+    value: 0.01
+  inputLabel:
+    fr: τ
+    en: τ
+  unit: s
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: $1\ \mathrm{k\Omega} = 1000\ \Omega$, $1\ \mathrm{mF} = 10^{-3}\ \mathrm{F}$.
+    en: $1\ \mathrm{k\Omega} = 1000\ \Omega$, $1\ \mathrm{mF} = 10^{-3}\ \mathrm{F}$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $1000 \times 10^{-3}$.
+    en: $1000 \times 10^{-3}$.
+solution:
+  fr: '$\tau = 1000 \times 10^{-3} = 1\ \mathrm{s}$. Un ohm fois un farad fait une seconde : l''analyse dimensionnelle le confirme.'
+  en: '$\tau = 1000 \times 10^{-3} = 1\ \mathrm{s}$. One ohm times one farad makes one second: dimensional analysis confirms it.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

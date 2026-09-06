@@ -1,0 +1,45 @@
+# Leçon — tool.vector (numeric)
+id: exercise.vector.sum
+type: numeric
+nodeId: tool.vector
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Soit $\vec{u} = (3 ; 1)$ et $\vec{v} = (-1 ; 2)$.
+
+    Quelle est la composante horizontale de $\vec{u} + \vec{v}$ ?
+  en: |-
+    Let $\vec{u} = (3, 1)$ and $\vec{v} = (-1, 2)$.
+
+    What is the horizontal component of $\vec{u} + \vec{v}$?
+numeric:
+  value: 2
+  tolerance:
+    kind: absolute
+    value: 0.01
+  inputLabel:
+    fr: composante horizontale
+    en: horizontal component
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: Les composantes s'additionnent séparément.
+    en: Components add up separately.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $3 + (-1)$.
+    en: $3 + (-1)$.
+solution:
+  fr: $\vec{u} + \vec{v} = (3 - 1 ; 1 + 2) = (2 ; 3)$. Mettre les flèches bout à bout revient à additionner les composantes.
+  en: $\vec{u} + \vec{v} = (3 - 1, 1 + 2) = (2, 3)$. Placing the arrows head to tail amounts to adding the components.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

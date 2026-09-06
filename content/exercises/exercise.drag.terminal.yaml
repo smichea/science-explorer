@@ -1,0 +1,46 @@
+# Leçon — phenomenon.motion.with_drag (numeric)
+id: exercise.drag.terminal
+type: numeric
+nodeId: phenomenon.motion.with_drag
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Une bille tombe avec un frottement fluide : $v' = g - k\,v$ avec $k = 0{,}5\ \mathrm{s^{-1}}$ et $g = 9{,}8\ \mathrm{m/s^2}$.
+
+    Quelle est sa vitesse limite ?
+  en: |-
+    A ball falls with fluid drag: $v' = g - k\,v$ with $k = 0.5\ \mathrm{s^{-1}}$ and $g = 9.8\ \mathrm{m/s^2}$.
+
+    What is its terminal velocity?
+numeric:
+  value: 19.6
+  tolerance:
+    kind: absolute
+    value: 0.1
+  inputLabel:
+    fr: vitesse limite
+    en: terminal velocity
+  unit: m/s
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: 'À la vitesse limite, la vitesse ne varie plus : $v'' = 0$.'
+    en: 'At the terminal velocity, the speed no longer varies: $v'' = 0$.'
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $g - k\,v = 0$, donc $v = g/k$.
+    en: $g - k\,v = 0$, so $v = g/k$.
+solution:
+  fr: '$v_{\lim} = g/k = 9{,}8/0{,}5 = 19{,}6\ \mathrm{m/s}$ : le champ de pentes montre toutes les solutions converger vers cette valeur.'
+  en: '$v_{\lim} = g/k = 9.8/0.5 = 19.6\ \mathrm{m/s}$: the slope field shows every solution converging to that value.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

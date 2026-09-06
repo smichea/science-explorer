@@ -1,0 +1,82 @@
+# Leçon narrée — le vecteur, avec l'outil vecteurs (composantes, somme, produit par un nombre).
+id: lesson.tool.vector
+nodeId: tool.vector
+depth: 1
+tools:
+  - id: vectors
+    kind: vectors
+    view: { x: [-1, 6], y: [-1, 5] }
+    parameters:
+      - { id: k, label: { fr: "facteur k", en: "factor k" }, min: -2, max: 2, step: 0.25, value: 2 }
+    vectors:
+      - { id: u, x: 3, y: 1, label: { fr: "u", en: "u" }, components: true, drag: true }
+      - { id: v, x: 1, y: 2, from: u, label: { fr: "v", en: "v" }, drag: true, hidden: true }
+      - { id: w, x: "k*3", y: "k*1", label: { fr: "k·u", en: "k·u" }, color: "#ff8fab", hidden: true }
+    sums:
+      - { id: s, of: [u, v], label: { fr: "u + v", en: "u + v" }, hidden: true }
+steps:
+  - id: definition
+    title: { fr: "Une flèche et ses composantes", en: "An arrow and its components" }
+    text:
+      fr: >-
+        Un vecteur, c'est une flèche : une direction, un sens et une longueur.
+        Le vecteur u part de l'origine et arrive au point de coordonnées 3 et 1.
+        Ses coordonnées sont ses composantes : 3 selon l'axe horizontal, 1 selon l'axe vertical.
+        Sa norme, la longueur de la flèche, se calcule avec le théorème de Pythagore : racine de 9 plus 1, soit environ 3,16.
+      en: >-
+        A vector is an arrow: a direction, a sense and a length.
+        The vector u starts at the origin and ends at the point with coordinates 3 and 1.
+        Its coordinates are its components: 3 along the horizontal axis, 1 along the vertical axis.
+        Its norm, the length of the arrow, comes from Pythagoras: the square root of 9 plus 1, about 3.16.
+    actions: []
+  - id: sum
+    title: { fr: "Additionner bout à bout", en: "Adding head to tail" }
+    text:
+      fr: >-
+        Additionner deux vecteurs, c'est les mettre bout à bout.
+        Plaçons v, de composantes 1 et 2, à la pointe de u.
+        La somme u plus v va de l'origine à la pointe de v.
+        Ses composantes s'additionnent : 3 plus 1 et 1 plus 2, soit 4 et 3.
+      en: >-
+        Adding two vectors means placing them head to tail.
+        Let us put v, with components 1 and 2, at the tip of u.
+        The sum u plus v goes from the origin to the tip of v.
+        Its components add up: 3 plus 1 and 1 plus 2, that is 4 and 3.
+    actions:
+      - { at: 1, show: [v] }
+      - { at: 2, show: [s] }
+  - id: scale
+    title: { fr: "Multiplier par un nombre", en: "Multiplying by a number" }
+    text:
+      fr: >-
+        Multiplier un vecteur par un nombre k allonge ou raccourcit la flèche sans changer sa direction.
+        Avec k égal 2, le vecteur k u est deux fois plus long que u.
+        Avec k négatif, la flèche change de sens.
+      en: >-
+        Multiplying a vector by a number k stretches or shrinks the arrow without changing its direction.
+        With k equal to 2, the vector k u is twice as long as u.
+        With a negative k, the arrow reverses its sense.
+    actions:
+      - { at: 0, hide: [v, s], show: [w], set: { k: 2 } }
+      - { at: 2, set: { k: -1 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de manipuler", en: "Your turn to handle them" }
+    text:
+      fr: >-
+        À vous. Glissez la pointe de u ou de v, faites varier k, et lisez les composantes et les normes qui changent.
+      en: >-
+        Your turn. Drag the tip of u or of v, vary k, and read the components and the norms as they change.
+    actions:
+      - { at: 0, show: [v, s, w], set: { k: 2 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : une norme, puis une somme.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: a norm, then a sum.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.vector.norm, exercise.vector.sum]

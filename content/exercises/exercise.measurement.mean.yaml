@@ -1,0 +1,46 @@
+# Leçon — method.measurement (numeric)
+id: exercise.measurement.mean
+type: numeric
+nodeId: method.measurement
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Quatre mesures de $g$ ont donné $9{,}6$ ; $9{,}9$ ; $9{,}7$ et $10{,}0\ \mathrm{m/s^2}$.
+
+    Quelle valeur moyenne retenir ?
+  en: |-
+    Four measurements of $g$ gave $9.6$, $9.9$, $9.7$ and $10.0\ \mathrm{m/s^2}$.
+
+    Which mean value should be retained?
+numeric:
+  value: 9.8
+  tolerance:
+    kind: absolute
+    value: 0.01
+  inputLabel:
+    fr: moyenne
+    en: mean
+  unit: m/s²
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: Additionnez puis divisez par le nombre de mesures.
+    en: Add up, then divide by the number of measurements.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $39{,}2 / 4$.
+    en: $39.2 / 4$.
+solution:
+  fr: $\bar g = \dfrac{9{,}6 + 9{,}9 + 9{,}7 + 10{,}0}{4} = 9{,}8\ \mathrm{m/s^2}$. Répéter la mesure et prendre la moyenne réduit l'effet des erreurs aléatoires.
+  en: $\bar g = \dfrac{9.6 + 9.9 + 9.7 + 10.0}{4} = 9.8\ \mathrm{m/s^2}$. Repeating the measurement and averaging reduces the effect of random errors.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2
