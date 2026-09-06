@@ -129,7 +129,7 @@ export type StepDefinition = z.infer<typeof StepSchema>;
 
 export const DepthVariantSchema = z.object({
   id: z.enum(['discovery', 'terminale', 'mpsi', 'mp']),
-  depth: z.number().int().min(1).max(3),
+  depth: z.number().int().min(1).max(4),
   title: LocalisedText,
   minutes: z.number().min(0),
   skipSteps: z.array(z.string()).default([]),

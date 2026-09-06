@@ -1,0 +1,33 @@
+# Leçon — la loi de gravitation universelle : la force en 1/d² (traceur) et les deux forces réciproques entre deux corps (vecteurs).
+id: lesson.law.universal_gravitation
+nodeId: law.universal_gravitation
+depth: 1
+tools:
+  - id: plotter
+    kind: plotter
+    title: { fr: "F en fonction de d", en: "F against d" }
+    variable: d
+    view: { x: [0.5, 6], y: [0, 12] }
+    parameters:
+      - { id: k, label: { fr: "produit G m m' (unités commodes)", en: "product G m m' (convenient units)" }, min: 1, max: 10, step: 0.5, value: 4 }
+    input: false
+    initial:
+      - { view: { labels: { x: "d", y: "F" } } }
+      - { plot: { id: gravity, expr: "k/d^2", label: { fr: "F = G m m' / d²", en: "F = G m m' / d²" } } }
+      - { point: { id: one, on: gravity, x: 1, guides: true, label: { fr: "d = 1", en: "d = 1" } } }
+      - { point: { id: two, on: gravity, x: 2, guides: true, label: { fr: "d = 2 : F divisée par 4", en: "d = 2: F divided by 4" } } }
+  - id: vectors
+    kind: vectors
+    title: { fr: "Les deux forces", en: "The two forces" }
+    view: { x: [-1, 9], y: [-2, 2] }
+    parameters:
+      - { id: d, label: { fr: "distance d entre les centres", en: "distance d between the centres" }, min: 4, max: 8, step: 0.5, value: 6 }
+    points:
+      - { id: a, x: 0, y: 0, label: { fr: "A", en: "A" }, color: "#ffd166" }
+      - { id: b, x: "d", y: 0, label: { fr: "B", en: "B" }, color: "#7f9cff" }
+    segments:
+      - { id: ab, from: a, to: b, label: { fr: "AB", en: "AB" }, dashed: true }
+    vectors:
+      - { id: fba, x: "36/d^2", y: 0, label: { fr: "F B/A", en: "F B/A" }, color: "#ffd166" }
+      - { id: ob, x: "d", y: 0, label: { fr: "OB", en: "OB" }, color: "#070b17" }
+      - { id: fab, x: "-36/d^2", y: 0, from: ob, label: { fr: "F A/B", en: "F A/B" }, color: "#7f9cff" }

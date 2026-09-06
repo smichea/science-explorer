@@ -1,0 +1,73 @@
+# Fonctions de référence — l'ordre de x², x et √x sur ]0 ; 1[ (choix unique)
+id: exercise.reference.compare
+type: choice
+nodeId: tool.reference_functions
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Soit $x$ un réel de l'intervalle $]0\,;\,1[$, par exemple $x = 0{,}25$.
+
+    Dans quel ordre se rangent les trois nombres $x^2$, $x$ et $\sqrt{x}$ ?
+  en: |-
+    Let $x$ be a real in the interval $]0\,;\,1[$, for instance $x = 0.25$.
+
+    In which order do the three numbers $x^2$, $x$ and $\sqrt{x}$ line up?
+choice:
+  multiple: false
+  requireReasoning: false
+  choices:
+    - id: increasing_powers
+      text: { fr: "$\\sqrt{x} < x < x^2$", en: "$\\sqrt{x} < x < x^2$" }
+      feedback:
+        fr: |-
+          C'est l'ordre valable pour $x > 1$ : élever au carré un nombre plus grand que $1$ l'augmente. Testez avec $x = 0{,}25$ : $x^2 = 0{,}0625$ et $\sqrt{x} = 0{,}5$.
+        en: |-
+          That is the order valid for $x > 1$: squaring a number greater than $1$ makes it larger. Test with $x = 0.25$: $x^2 = 0.0625$ and $\sqrt{x} = 0.5$.
+    - id: correct
+      text: { fr: "$x^2 < x < \\sqrt{x}$", en: "$x^2 < x < \\sqrt{x}$" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : pour $0 < x < 1$, multiplier $x$ par lui-même le diminue ($x^2 < x$), et prendre la racine carrée l'augmente ($\sqrt{x} > x$). Avec $x = 0{,}25$ : $0{,}0625 < 0{,}25 < 0{,}5$.
+        en: |-
+          Correct: for $0 < x < 1$, multiplying $x$ by itself makes it smaller ($x^2 < x$), and taking the square root makes it larger ($\sqrt{x} > x$). With $x = 0.25$: $0.0625 < 0.25 < 0.5$.
+    - id: middle_square
+      text: { fr: "$x < x^2 < \\sqrt{x}$", en: "$x < x^2 < \\sqrt{x}$" }
+      feedback:
+        fr: |-
+          $x^2 < x$ dès que $0 < x < 1$ : en effet $x^2 - x = x(x - 1)$ est le produit d'un facteur positif et d'un facteur négatif. Le carré est donc le plus petit des trois.
+        en: |-
+          $x^2 < x$ as soon as $0 < x < 1$: indeed $x^2 - x = x(x - 1)$ is the product of a positive factor and a negative factor. The square is therefore the smallest of the three.
+    - id: root_middle
+      text: { fr: "$x^2 < \\sqrt{x} < x$", en: "$x^2 < \\sqrt{x} < x$" }
+      feedback:
+        fr: |-
+          $\sqrt{x} > x$ pour $0 < x < 1$ : par exemple $\sqrt{0{,}25} = 0{,}5 > 0{,}25$. La racine carrée est la plus grande des trois sur cet intervalle.
+        en: |-
+          $\sqrt{x} > x$ for $0 < x < 1$: for instance $\sqrt{0.25} = 0.5 > 0.25$. The square root is the largest of the three on this interval.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Testez avec $x = 0{,}25$ : calculez $x^2$ et $\sqrt{x}$, puis rangez les trois nombres.
+      en: |-
+        Test with $x = 0.25$: compute $x^2$ and $\sqrt{x}$, then order the three numbers.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $0{,}25^2 = 0{,}0625$ et $\sqrt{0{,}25} = 0{,}5$ car $0{,}5^2 = 0{,}25$.
+      en: |-
+        $0.25^2 = 0.0625$ and $\sqrt{0.25} = 0.5$ because $0.5^2 = 0.25$.
+solution:
+  fr: |-
+    Pour $0 < x < 1$ : $x^2 - x = x(x - 1) < 0$ car $x > 0$ et $x - 1 < 0$, donc $x^2 < x$. De même, en posant $y = \sqrt{x}$, on a $0 < y < 1$ donc $y^2 < y$, c'est-à-dire $x < \sqrt{x}$. Ainsi
+    $$x^2 < x < \sqrt{x} \quad \text{sur } ]0\,;\,1[.$$
+    Avec $x = 0{,}25$ : $0{,}0625 < 0{,}25 < 0{,}5$. Sur le graphique, entre $0$ et $1$ la parabole est sous la droite $y = x$ et la courbe de la racine carrée au-dessus ; les trois courbes se croisent en $0$ et en $1$, et l'ordre s'inverse au-delà de $1$.
+  en: |-
+    For $0 < x < 1$: $x^2 - x = x(x - 1) < 0$ since $x > 0$ and $x - 1 < 0$, so $x^2 < x$. Likewise, setting $y = \sqrt{x}$, we have $0 < y < 1$ so $y^2 < y$, that is $x < \sqrt{x}$. Thus
+    $$x^2 < x < \sqrt{x} \quad \text{on } ]0\,;\,1[.$$
+    With $x = 0.25$: $0.0625 < 0.25 < 0.5$. On the graph, between $0$ and $1$ the parabola lies below the line $y = x$ and the square root curve above; the three curves meet at $0$ and at $1$, and the order reverses beyond $1$.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

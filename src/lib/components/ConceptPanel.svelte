@@ -9,7 +9,7 @@
   import { makeEvidence } from '$lib/domain/evidence';
   import { speakableText } from '$lib/domain/speech';
   import { formatHistoricalDate, formatPercent } from '$lib/domain/i18n/format';
-  import { nodeStage } from '$lib/domain/horizon';
+  import { learnerDepth, nodeStage, stageFor } from '$lib/domain/horizon';
   import { content } from '$lib/state/content.svelte';
   import { learning } from '$lib/state/learning.svelte';
   import { L, LL, locale, t } from '$lib/state/locale.svelte';
@@ -49,7 +49,15 @@
   const missions = $derived(graph.getHistoricalMissions(node.id));
   const mission = $derived(node.type === 'mission' ? graph.getMission(node.id) : undefined);
   const openSession = $derived(node.type === 'mission' ? learning.sessionFor(node.id) : undefined);
-  const stage = $derived(nodeStage(node, pkg.horizon));
+  const horizon = $derived(profile.horizon(pkg.horizon));
+  /** The stage at which this destination meets the explorer (else the lowest stage taught). */
+  const stage = $derived(
+    horizon ? stageFor(node, horizon, pkg.horizon) : nodeStage(node, pkg.horizon)
+  );
+  const depthForLearner = $derived(horizon ? learnerDepth(node, horizon, pkg.horizon) : 1);
+  const lessonHref = $derived(
+    `${base}/lesson/${node.id}${depthForLearner > 1 ? `?depth=${depthForLearner}` : ''}`
+  );
   const sources = $derived(
     node.sources.map((id) => pkg.sources.find((s) => s.id === id)).filter((s) => !!s)
   );
@@ -149,7 +157,7 @@
     </div>
     {#if node.type !== 'mission'}
       <div class="cluster">
-        <a class="btn btn--primary" href="{base}/lesson/{node.id}" data-testid="follow-lesson"
+        <a class="btn btn--primary" href={lessonHref} data-testid="follow-lesson"
           >▶ {t('lesson.follow')}</a
         >
         {#if speech.available}
@@ -374,10 +382,7 @@
     <section class="stack-sm">
       <h2 style="font-size: var(--fs-lg)">{t('concept.depths')}</h2>
       {#each node.depths as depth (depth.depth)}
-        <details
-          class="card"
-          open={depth.stage === (profile.horizon(pkg.horizon)?.currentStage ?? 'terminale')}
-        >
+        <details class="card" open={depth.depth === depthForLearner}>
           <summary
             >{t('concept.depth', { n: depth.depth })} · {stageTitle(depth.stage)}
             <span class="muted small">({depth.role})</span></summary

@@ -33,7 +33,7 @@ description:
 
     The problem the gradient solves is the **variation of a quantity that depends on several parameters**: how potential energy varies with position (the force is $-\nabla E_p$), how temperature varies across a room (heat flows along $-\nabla T$), how an uncertainty propagates when several measured quantities are uncertain. It is also the heart of **optimisation**: at an extremum of a smooth function the gradient vanishes, and one walks down a valley by following $-\nabla f$ (gradient descent, used to train neural networks).
 
-    The gradient generalises the derivative: for a function of a single variable, $\nabla f = f'$. It therefore requires the derivative at MPSI level (the local approximation $f(a+h) \approx f(a) + f'(a)\,h$ becomes $f(a+h) \approx f(a) + \nabla f(a)\cdot h$) and the vector. It is an MP destination: a Terminale reader may visit it to see where the derivative leads.
+    The gradient generalises the derivative: for a function of a single variable, $\nabla f = f'$. It therefore requires the derivative at MPSI level (the local approximation $f(a+h) \approx f(a) + f'(a)\,h$ becomes $f(a+h) \approx f(a) + \nabla f(a)\cdot h$) and the vector. It is an MP destination: a Grade 12 reader may visit it to see where the derivative leads.
 tool:
   problemSolved:
     fr: "Décrire comment une grandeur dépendant de plusieurs variables varie autour d'un point, dans toutes les directions à la fois, et trouver ses extremums."

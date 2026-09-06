@@ -1,0 +1,12 @@
+# Leçon — transformations nucléaires : le noyau d'uranium 238 et ses désintégrations alpha et bêta (mode noyau).
+id: lesson.phenomenon.nuclear_transformation
+nodeId: phenomenon.nuclear_transformation
+depth: 1
+tools:
+  - id: nucleus
+    kind: periodic_table
+    title: { fr: "Le noyau et ses désintégrations", en: "The nucleus and its decays" }
+    max: 18
+    selected: 6
+    mode: nucleus
+    nucleus: { a: 238, z: 92 }

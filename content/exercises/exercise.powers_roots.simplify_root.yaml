@@ -1,0 +1,44 @@
+# Racines carrées — simplifier √50 avec √(ab) = √a √b (réponse symbolique)
+id: exercise.powers_roots.simplify_root
+type: symbolic
+nodeId: tool.powers_roots
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Écrivez $\sqrt{50}$ sous la forme $a\sqrt{b}$ avec $a$ et $b$ entiers, $b$ le plus petit possible.
+
+    Écrivez votre réponse comme une expression, par exemple `3*sqrt(5)` pour $3\sqrt{5}$.
+  en: |-
+    Write $\sqrt{50}$ in the form $a\sqrt{b}$ with $a$ and $b$ integers, $b$ as small as possible.
+
+    Write your answer as an expression, for instance `3*sqrt(5)` for $3\sqrt{5}$.
+symbolic:
+  variable: x
+  accepted: ["5*sqrt(2)", "sqrt(50)"]
+  display: "√50 ="
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Cherchez un carré parfait qui divise $50$ : $4$, $9$, $16$, $25$… Puis utilisez $\sqrt{ab} = \sqrt{a}\,\sqrt{b}$.
+      en: |-
+        Look for a perfect square dividing $50$: $4$, $9$, $16$, $25$… Then use $\sqrt{ab} = \sqrt{a}\,\sqrt{b}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $50 = 25 \times 2$ et $\sqrt{25} = 5$.
+      en: |-
+        $50 = 25 \times 2$ and $\sqrt{25} = 5$.
+solution:
+  fr: |-
+    On fait apparaître le plus grand carré parfait qui divise $50$ :
+    $$\sqrt{50} = \sqrt{25 \times 2} = \sqrt{25} \times \sqrt{2} = 5\sqrt{2}.$$
+    Vérification : $(5\sqrt{2})^2 = 25 \times 2 = 50$. Attention, on ne peut pas écrire $\sqrt{50} = \sqrt{49 + 1} = 7 + 1$ : la racine d'une somme n'est pas la somme des racines. La valeur approchée $5\sqrt{2} \approx 7{,}07$ confirme le calcul.
+  en: |-
+    We bring out the largest perfect square dividing $50$:
+    $$\sqrt{50} = \sqrt{25 \times 2} = \sqrt{25} \times \sqrt{2} = 5\sqrt{2}.$$
+    Check: $(5\sqrt{2})^2 = 25 \times 2 = 50$. Beware, one cannot write $\sqrt{50} = \sqrt{49 + 1} = 7 + 1$: the root of a sum is not the sum of the roots. The approximate value $5\sqrt{2} \approx 7.07$ confirms the computation.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

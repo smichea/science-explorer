@@ -1,0 +1,42 @@
+# Fonctions de référence — l'image de 0,25 par la fonction inverse (réponse numérique)
+id: exercise.reference.image
+type: numeric
+nodeId: tool.reference_functions
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Soit $f$ la fonction inverse, définie sur $]-\infty\,;\,0[\ \cup\ ]0\,;\,+\infty[$ par $f(x) = \dfrac{1}{x}$.
+
+    Calculez l'image de $0{,}25$ par $f$.
+  en: |-
+    Let $f$ be the reciprocal function, defined on $]-\infty\,;\,0[\ \cup\ ]0\,;\,+\infty[$ by $f(x) = \dfrac{1}{x}$.
+
+    Compute the image of $0.25$ under $f$.
+numeric:
+  value: 4
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "f(0,25)", en: "f(0.25)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Écrivez $0{,}25$ sous forme de fraction : $0{,}25 = \dfrac{1}{4}$. L'inverse d'une fraction s'obtient en échangeant numérateur et dénominateur.
+      en: |-
+        Write $0.25$ as a fraction: $0.25 = \dfrac{1}{4}$. The reciprocal of a fraction is obtained by swapping numerator and denominator.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\dfrac{1}{0{,}25}$ est le nombre qui, multiplié par $0{,}25$, donne $1$.
+      en: |-
+        $\dfrac{1}{0.25}$ is the number which, multiplied by $0.25$, gives $1$.
+solution:
+  fr: |-
+    $$f(0{,}25) = \frac{1}{0{,}25} = \frac{1}{1/4} = 4.$$
+    Vérification : $0{,}25 \times 4 = 1$. L'inverse d'un nombre compris entre $0$ et $1$ est plus grand que $1$ : sur la branche droite de l'hyperbole, la courbe monte très haut près de $0$. La fonction inverse est décroissante sur $]0\,;\,+\infty[$, ce qui est cohérent : $0{,}25 < 1$ et $f(0{,}25) = 4 > f(1) = 1$.
+  en: |-
+    $$f(0.25) = \frac{1}{0.25} = \frac{1}{1/4} = 4.$$
+    Check: $0.25 \times 4 = 1$. The reciprocal of a number between $0$ and $1$ is greater than $1$: on the right branch of the hyperbola, the curve rises very high near $0$. The reciprocal function is decreasing on $]0\,;\,+\infty[$, which is consistent: $0.25 < 1$ and $f(0.25) = 4 > f(1) = 1$.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

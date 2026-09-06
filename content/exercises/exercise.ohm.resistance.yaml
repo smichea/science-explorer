@@ -1,0 +1,43 @@
+# Leçon loi d'Ohm — résistance d'un conducteur ohmique à partir d'une tension et d'une intensité (réponse numérique)
+id: exercise.ohm.resistance
+type: numeric
+nodeId: law.ohm
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un conducteur ohmique est branché aux bornes d'un générateur. Le voltmètre indique $U = 6{,}0\ \mathrm{V}$ entre ses bornes et l'ampèremètre indique $I = 0{,}25\ \mathrm{A}$ dans le circuit.
+
+    Calculez la résistance $R$ de ce conducteur, en ohms.
+  en: |-
+    An ohmic conductor is connected across a generator. The voltmeter reads $U = 6.0\ \mathrm{V}$ across its terminals and the ammeter reads $I = 0.25\ \mathrm{A}$ in the circuit.
+
+    Compute the resistance $R$ of this conductor, in ohms.
+numeric:
+  value: 24
+  unit: "Ω"
+  tolerance: { kind: absolute, value: 0.1 }
+  inputLabel: { fr: "R", en: "R" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Loi d'Ohm : $U = R\,I$. Isolez $R$ : c'est le quotient de la tension par l'intensité.
+      en: |-
+        Ohm's law: $U = R\,I$. Isolate $R$: it is the quotient of the voltage by the current.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $R = \dfrac{U}{I} = \dfrac{6{,}0}{0{,}25}$.
+      en: |-
+        $R = \dfrac{U}{I} = \dfrac{6.0}{0.25}$.
+solution:
+  fr: |-
+    $$R = \frac{U}{I} = \frac{6{,}0}{0{,}25} = 24\ \Omega.$$
+    Sur la caractéristique $U(I)$ de ce conducteur, une droite passant par l'origine, $R$ est la pente : chaque ampère supplémentaire fait monter la tension de $24\ \mathrm{V}$. Si l'on double la tension, l'intensité double aussi : c'est la marque d'un conducteur ohmique, et cela ne serait pas vrai pour une lampe.
+  en: |-
+    $$R = \frac{U}{I} = \frac{6.0}{0.25} = 24\ \Omega.$$
+    On the characteristic $U(I)$ of this conductor, a straight line through the origin, $R$ is the slope: every additional ampere raises the voltage by $24\ \mathrm{V}$. If the voltage is doubled, the current doubles as well: this is the hallmark of an ohmic conductor, and it would not be true for a lamp.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

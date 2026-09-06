@@ -11,9 +11,10 @@ import { stableRandom } from './prng';
 const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
 const DEG = Math.PI / 180;
 
+// Foundations sit a little below the Terminale layer, the following years a little above it.
 const STAGE_INDEX: Record<Stage, number> = {
-  seconde: 0,
-  premiere: 0,
+  seconde: -1,
+  premiere: -0.5,
   terminale: 0,
   mpsi: 1,
   mp: 2,

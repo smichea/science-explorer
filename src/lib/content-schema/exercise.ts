@@ -41,7 +41,7 @@ export const ExerciseSchema = z.object({
   type: ExerciseTypeSchema,
   nodeId: Id,
   phenomenonId: Id.optional(),
-  depth: z.number().int().min(1).max(3),
+  depth: z.number().int().min(1).max(4),
   prompt: LocalisedText,
   context: LocalisedText.optional(),
   numeric: z

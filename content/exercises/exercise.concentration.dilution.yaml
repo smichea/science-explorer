@@ -1,0 +1,45 @@
+# Leçon concentration — volume de solution mère à prélever pour une dilution (réponse numérique)
+id: exercise.concentration.dilution
+type: numeric
+nodeId: concept.concentration
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On dispose d'une solution mère de sulfate de cuivre de concentration en masse $C_1 = 40\ \mathrm{g/L}$. On veut préparer, par dilution, $V_2 = 100\ \mathrm{mL}$ d'une solution fille de concentration $C_2 = 8{,}0\ \mathrm{g/L}$.
+
+    Quel volume $V_1$ de solution mère faut-il prélever, en $\mathrm{mL}$ ?
+  en: |-
+    A stock solution of copper sulfate has a mass concentration $C_1 = 40\ \mathrm{g/L}$. One wants to prepare, by dilution, $V_2 = 100\ \mathrm{mL}$ of a diluted solution of concentration $C_2 = 8.0\ \mathrm{g/L}$.
+
+    What volume $V_1$ of stock solution must be taken, in $\mathrm{mL}$?
+numeric:
+  value: 20
+  unit: "mL"
+  tolerance: { kind: absolute, value: 0.5 }
+  inputLabel: { fr: "V_1", en: "V_1" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Au cours d'une dilution, on ajoute de l'eau mais pas de soluté : la masse de soluté prélevée dans la solution mère se retrouve entière dans la solution fille.
+      en: |-
+        During a dilution, water is added but no solute: the mass of solute taken from the stock solution is found entire in the diluted solution.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Écrivez la conservation de la masse de soluté, $C_1 V_1 = C_2 V_2$, et isolez $V_1$.
+      en: |-
+        Write the conservation of the mass of solute, $C_1 V_1 = C_2 V_2$, and isolate $V_1$.
+solution:
+  fr: |-
+    La masse de soluté est la même avant et après la dilution : $m = C_1 V_1 = C_2 V_2$, d'où
+    $$V_1 = \frac{C_2\,V_2}{C_1} = \frac{8{,}0 \times 100}{40} = 20\ \mathrm{mL}.$$
+    Le facteur de dilution vaut $F = \dfrac{C_1}{C_2} = \dfrac{V_2}{V_1} = 5$ : la solution mère a été diluée cinq fois. Au laboratoire, on prélève ces $20\ \mathrm{mL}$ avec une pipette jaugée, on les verse dans une fiole jaugée de $100\ \mathrm{mL}$, on complète avec de l'eau distillée jusqu'au trait de jauge et on homogénéise.
+  en: |-
+    The mass of solute is the same before and after the dilution: $m = C_1 V_1 = C_2 V_2$, hence
+    $$V_1 = \frac{C_2\,V_2}{C_1} = \frac{8.0 \times 100}{40} = 20\ \mathrm{mL}.$$
+    The dilution factor is $F = \dfrac{C_1}{C_2} = \dfrac{V_2}{V_1} = 5$: the stock solution has been diluted five times. In the laboratory, these $20\ \mathrm{mL}$ are taken with a volumetric pipette, poured into a $100\ \mathrm{mL}$ volumetric flask, which is filled up with distilled water to the mark and homogenised.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

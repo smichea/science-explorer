@@ -1,0 +1,99 @@
+# Leçon narrée — les fonctions de référence, une courbe par phrase (paramètres m et p de la fonction affine).
+id: lesson.tool.reference_functions
+nodeId: tool.reference_functions
+depth: 1
+tools:
+  - id: plotter
+    kind: plotter
+    variable: x
+    view: { x: [-3, 3], y: [-3, 9] }
+    parameters:
+      - { id: m, label: { fr: "coefficient directeur m", en: "slope m" }, min: -3, max: 3, step: 0.1, value: 1 }
+      - { id: p, label: { fr: "ordonnée à l'origine p", en: "intercept p" }, min: -3, max: 3, step: 0.1, value: 1 }
+    input: true
+steps:
+  - id: affine
+    title: { fr: "La fonction affine", en: "The linear function" }
+    text:
+      fr: >-
+        Une fonction affine s'écrit f de x égale m x plus p.
+        Sa courbe est une droite : m est le coefficient directeur, p l'ordonnée à l'origine.
+        Quand m est positif, la droite monte ; quand m est négatif, elle descend.
+        Si p est nul, la fonction est linéaire et traduit une proportionnalité.
+      en: >-
+        A linear function reads f of x equals m x plus p.
+        Its curve is a straight line: m is the slope, p the intercept.
+        When m is positive, the line rises; when m is negative, it falls.
+        If p is zero, the function is proportional and expresses a proportionality.
+    actions:
+      - { at: 0, plot: { id: f, expr: "m*x+p", label: { fr: "f(x) = m x + p", en: "f(x) = m x + p" } } }
+      - { at: 2, set: { m: -2 } }
+      - { at: 3, set: { m: 1, p: 0 } }
+  - id: square
+    title: { fr: "Carré et cube", en: "Square and cube" }
+    text:
+      fr: >-
+        La fonction carré associe à x son carré : sa courbe est une parabole, symétrique par rapport à l'axe des ordonnées, car la fonction est paire.
+        Elle décroît sur les négatifs, croît sur les positifs, et son minimum vaut 0, atteint en 0.
+        La fonction cube est impaire : sa courbe est symétrique par rapport à l'origine, et elle est croissante sur tout l'ensemble des réels.
+      en: >-
+        The square function maps x to its square: its curve is a parabola, symmetric about the vertical axis, because the function is even.
+        It decreases on the negatives, increases on the positives, and its minimum is 0, reached at 0.
+        The cube function is odd: its curve is symmetric about the origin, and it is increasing on the whole set of reals.
+    actions:
+      - { at: 0, clear: true, plot: { id: sq, expr: "x^2", label: { fr: "x²", en: "x²" } } }
+      - { at: 2, plot: { id: cube, expr: "x^3", dashed: true, label: { fr: "x³", en: "x³" } } }
+  - id: inverse
+    title: { fr: "Inverse et racine carrée", en: "Reciprocal and square root" }
+    text:
+      fr: >-
+        La fonction inverse associe à x le nombre 1 sur x ; elle n'est pas définie en 0.
+        Sa courbe est une hyperbole à deux branches, symétrique par rapport à l'origine, et la fonction est décroissante sur chacun des deux intervalles, mais pas sur leur réunion.
+        La fonction racine carrée n'est définie que pour x positif ou nul : sa courbe est une demi-parabole couchée, et elle est croissante.
+      en: >-
+        The reciprocal function maps x to the number 1 over x; it is not defined at 0.
+        Its curve is a hyperbola with two branches, symmetric about the origin, and the function is decreasing on each of the two intervals, but not on their union.
+        The square root function is only defined for x positive or zero: its curve is a half-parabola lying on its side, and it is increasing.
+    actions:
+      - { at: 0, clear: true, view: { x: [-3, 3], y: [-4, 4] }, plot: { id: inv, expr: "1/x", label: { fr: "1/x", en: "1/x" } } }
+      - { at: 2, plot: { id: root, expr: "sqrt(x)", label: { fr: "√x", en: "√x" } } }
+  - id: compare
+    title: { fr: "Comparer entre 0 et 1", en: "Comparing between 0 and 1" }
+    text:
+      fr: >-
+        Entre 0 et 1, les courbes de x carré, de x et de racine de x se rangent dans un ordre fixe.
+        Le carré est en dessous, la racine carrée au-dessus : x carré est plus petit que x, lui-même plus petit que racine de x.
+        Au-delà de 1, l'ordre s'inverse : élever au carré un nombre plus grand que 1 l'augmente.
+      en: >-
+        Between 0 and 1, the curves of x squared, of x and of the square root of x line up in a fixed order.
+        The square is below, the square root above: x squared is smaller than x, itself smaller than the square root of x.
+        Beyond 1, the order reverses: squaring a number greater than 1 makes it larger.
+    actions:
+      - { at: 0, clear: true, view: { x: [0, 1.2], y: [0, 1.2] }, plot: { id: sq, expr: "x^2", label: { fr: "x²", en: "x²" } } }
+      - { at: 0, plot: { id: lin, expr: "x", dashed: true, label: { fr: "x", en: "x" } } }
+      - { at: 0, plot: { id: root, expr: "sqrt(x)", label: { fr: "√x", en: "√x" } } }
+      - { at: 2, view: { x: [0, 2.5], y: [0, 2.5] } }
+  - id: play
+    kind: play
+    title: { fr: "À vous d'explorer", en: "Your turn to explore" }
+    text:
+      fr: >-
+        À vous.
+        Tapez une fonction de référence, déplacez le marqueur pour lire des images, et réglez m et p pour voir la droite tourner et glisser.
+      en: >-
+        Your turn.
+        Type a reference function, move the marker to read images, and set m and p to watch the line turn and slide.
+    actions:
+      - { at: 0, clear: true, view: { x: [-3, 3], y: [-3, 9] }, set: { m: 1, p: 1 }, plot: { id: f, expr: "m*x+p", label: { fr: "f(x) = m x + p", en: "f(x) = m x + p" } } }
+      - { at: 0, plot: { id: sq, expr: "x^2", dashed: true, label: { fr: "x²", en: "x²" } } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : une image par la fonction inverse, puis l'ordre de x carré, x et racine de x entre 0 et 1.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: an image under the reciprocal function, then the order of x squared, x and the square root of x between 0 and 1.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.reference.image, exercise.reference.compare]

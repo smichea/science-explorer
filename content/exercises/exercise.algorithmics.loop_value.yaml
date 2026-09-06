@@ -1,0 +1,72 @@
+# Algorithmique — la valeur d'une variable à la sortie d'une boucle for (réponse numérique)
+id: exercise.algorithmics.loop_value
+type: numeric
+nodeId: tool.algorithmics
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On exécute le programme Python suivant :
+
+    ```python
+    s = 0
+    for i in range(1, 6):
+        s = s + i * i
+    ```
+
+    Quelle est la valeur de la variable `s` à la fin de l'exécution ? (Rappel : `range(1, 6)` parcourt les entiers de $1$ à $5$ inclus.)
+  en: |-
+    The following Python program is run:
+
+    ```python
+    s = 0
+    for i in range(1, 6):
+        s = s + i * i
+    ```
+
+    What is the value of the variable `s` at the end of the execution? (Reminder: `range(1, 6)` runs through the integers from $1$ to $5$ inclusive.)
+numeric:
+  value: 55
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "valeur de s", en: "value of s" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Suivez la boucle tour par tour dans un tableau : la valeur de `i`, puis la nouvelle valeur de `s`.
+      en: |-
+        Follow the loop turn by turn in a table: the value of `i`, then the new value of `s`.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        À chaque tour, on ajoute le carré de `i` : $1$, puis $4$, puis $9$, puis $16$, puis $25$.
+      en: |-
+        At each turn, the square of `i` is added: $1$, then $4$, then $9$, then $16$, then $25$.
+solution:
+  fr: |-
+    La variable `s` accumule les carrés des entiers de $1$ à $5$ :
+
+    | tour | `i` | `s` après le tour |
+    | --- | --- | --- |
+    | 1 | 1 | $0 + 1 = 1$ |
+    | 2 | 2 | $1 + 4 = 5$ |
+    | 3 | 3 | $5 + 9 = 14$ |
+    | 4 | 4 | $14 + 16 = 30$ |
+    | 5 | 5 | $30 + 25 = 55$ |
+
+    À la sortie, $s = 1 + 4 + 9 + 16 + 25 = 55$. L'affectation `s = s + i * i` n'est pas une équation : elle remplace la valeur de `s` par l'ancienne valeur augmentée de $i^2$. Le piège classique est de croire que `range(1, 6)` va jusqu'à $6$.
+  en: |-
+    The variable `s` accumulates the squares of the integers from $1$ to $5$:
+
+    | turn | `i` | `s` after the turn |
+    | --- | --- | --- |
+    | 1 | 1 | $0 + 1 = 1$ |
+    | 2 | 2 | $1 + 4 = 5$ |
+    | 3 | 3 | $5 + 9 = 14$ |
+    | 4 | 4 | $14 + 16 = 30$ |
+    | 5 | 5 | $30 + 25 = 55$ |
+
+    At the exit, $s = 1 + 4 + 9 + 16 + 25 = 55$. The assignment `s = s + i * i` is not an equation: it replaces the value of `s` by the old value increased by $i^2$. The classic trap is to believe that `range(1, 6)` goes up to $6$.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

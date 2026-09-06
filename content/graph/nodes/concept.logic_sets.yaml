@@ -1,0 +1,46 @@
+id: concept.logic_sets
+type: mathematical_concept
+world: world.mathematics
+region: region.math.numbers_algebra
+importance: 2
+tags: [lycee]
+title: { fr: "Vocabulaire ensembliste et logique", en: "Set vocabulary and logic" }
+shortPurpose:
+  fr: "Dire précisément ce qu'une affirmation mathématique affirme, pour qui elle le fait, et ce qu'il faut pour la démontrer ou la réfuter."
+  en: "State precisely what a mathematical statement claims, for which objects, and what it takes to prove or refute it."
+overview:
+  fr: >-
+    Avant de démontrer, il faut savoir lire une affirmation : appartenance et inclusion, intersection et réunion, implication et sa réciproque, sa contraposée, équivalence. Les quantificateurs disent si une propriété vaut pour tous les objets ou seulement pour l'un d'eux, et un seul contre-exemple suffit à réfuter une propriété universelle. C'est le vocabulaire de toutes les démonstrations du lycée.
+  en: >-
+    Before proving, one must know how to read a statement: membership and inclusion, intersection and union, implication and its converse, its contrapositive, equivalence. Quantifiers say whether a property holds for every object or only for one of them, and a single counter-example is enough to refute a universal property. It is the vocabulary of every proof in lycée.
+aliases:
+  fr: ["logique", "implication et équivalence", "réciproque et contraposée", "contre-exemple", "quantificateurs"]
+  en: ["logic", "implication and equivalence", "converse and contrapositive", "counter-example", "quantifiers"]
+description:
+  fr: |
+    Le **vocabulaire ensembliste** précise de quoi l'on parle. $x \in E$ signifie que $x$ appartient à l'ensemble $E$ ; $A \subset E$ signifie que $A$ est inclus dans $E$, c'est-à-dire que tout élément de $A$ appartient à $E$. L'**intersection** $A \cap B$ est l'ensemble des éléments qui sont dans $A$ et dans $B$, la **réunion** $A \cup B$ celui des éléments qui sont dans $A$ ou dans $B$, c'est-à-dire dans l'un au moins des deux. Par exemple $[0\,;\,3] \cap [2\,;\,5] = [2\,;\,3]$ et $[0\,;\,3] \cup [2\,;\,5] = [0\,;\,5]$ ; l'ensemble vide, qui n'a aucun élément, se note $\varnothing$.
+
+    Une **implication** « si $P$ alors $Q$ », notée $P \Rightarrow Q$, affirme que chaque fois que $P$ est vraie, $Q$ l'est aussi. Sa **réciproque** $Q \Rightarrow P$ est une autre affirmation, qui peut être fausse : « si $x > 2$ alors $x^2 > 4$ » est vraie, mais sa réciproque ne l'est pas, puisque $x = -3$ vérifie $x^2 > 4$ sans vérifier $x > 2$. Quand l'implication et sa réciproque sont toutes deux vraies, on a une **équivalence** $P \Leftrightarrow Q$. La **contraposée** « si non $Q$ alors non $P$ » est toujours équivalente à l'implication de départ : ici « si $x^2 \leq 4$ alors $x \leq 2$ », et démontrer la contraposée est souvent plus commode.
+
+    Les **quantificateurs** disent pour combien d'objets une propriété est affirmée : « pour tout réel $x$, $x^2 \geq 0$ » est une propriété universelle, « il existe un réel $x$ tel que $x^2 = 2$ » une propriété d'existence. Pour démontrer qu'une propriété universelle est fausse, un seul **contre-exemple** suffit : « tout nombre premier est impair » est faux, car $2$ est premier et pair ; pour la démontrer vraie, un exemple ne suffit jamais, il faut un raisonnement valable dans tous les cas. Ce vocabulaire est celui de toutes les démonstrations à venir, du raisonnement par l'absurde à la résolution des équations, où l'on distingue « cette valeur est solution » de « les solutions sont exactement ces valeurs ».
+  en: |
+    The **set vocabulary** makes precise what we are talking about. $x \in E$ means that $x$ belongs to the set $E$; $A \subset E$ means that $A$ is included in $E$, that is, every element of $A$ belongs to $E$. The **intersection** $A \cap B$ is the set of the elements that are in $A$ and in $B$, the **union** $A \cup B$ that of the elements that are in $A$ or in $B$, that is, in at least one of the two. For instance $[0\,;\,3] \cap [2\,;\,5] = [2\,;\,3]$ and $[0\,;\,3] \cup [2\,;\,5] = [0\,;\,5]$; the empty set, which has no element, is written $\varnothing$.
+
+    An **implication** "if $P$ then $Q$", written $P \Rightarrow Q$, asserts that whenever $P$ is true, $Q$ is true as well. Its **converse** $Q \Rightarrow P$ is another statement, which may be false: "if $x > 2$ then $x^2 > 4$" is true, but its converse is not, since $x = -3$ satisfies $x^2 > 4$ without satisfying $x > 2$. When the implication and its converse are both true, we have an **equivalence** $P \Leftrightarrow Q$. The **contrapositive** "if not $Q$ then not $P$" is always equivalent to the original implication: here "if $x^2 \leq 4$ then $x \leq 2$", and proving the contrapositive is often more convenient.
+
+    **Quantifiers** say for how many objects a property is asserted: "for every real $x$, $x^2 \geq 0$" is a universal property, "there exists a real $x$ such that $x^2 = 2$" an existence property. To prove that a universal property is false, a single **counter-example** is enough: "every prime number is odd" is false, because $2$ is prime and even; to prove it true, an example is never enough, a reasoning valid in every case is needed. This vocabulary is that of all the proofs to come, from proof by contradiction to solving equations, where one distinguishes "this value is a solution" from "the solutions are exactly these values".
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "utiliser les symboles ∈, ⊂, ∩, ∪ et décrire un ensemble par ses éléments ou par une propriété"
+        - "distinguer une implication, sa réciproque, sa contraposée et une équivalence"
+        - "utiliser les quantificateurs « pour tout » et « il existe » pour formuler une propriété"
+        - "réfuter une propriété universelle par un contre-exemple et comprendre qu'un exemple ne la démontre pas"
+      en:
+        - "use the symbols ∈, ⊂, ∩, ∪ and describe a set by its elements or by a property"
+        - "distinguish an implication, its converse, its contrapositive and an equivalence"
+        - "use the quantifiers 'for all' and 'there exists' to state a property"
+        - "refute a universal property with a counter-example and understand that an example does not prove it"

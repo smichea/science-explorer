@@ -1,0 +1,42 @@
+# Repérage — l'abscisse du milieu d'un segment (réponse numérique)
+id: exercise.coordinates.midpoint
+type: numeric
+nodeId: concept.coordinates
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Dans un repère, on donne $A(-3\,;\,2)$ et $B(5\,;\,-1)$. Soit $K$ le milieu du segment $[AB]$.
+
+    Donnez l'abscisse $x_K$ de $K$.
+  en: |-
+    In a frame, we are given $A(-3\,;\,2)$ and $B(5\,;\,-1)$. Let $K$ be the midpoint of the segment $[AB]$.
+
+    Give the abscissa $x_K$ of $K$.
+numeric:
+  value: 1
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "x_K", en: "x_K" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Les coordonnées du milieu sont les moyennes des coordonnées des extrémités : $x_K = \dfrac{x_A + x_B}{2}$.
+      en: |-
+        The coordinates of the midpoint are the averages of the coordinates of the endpoints: $x_K = \dfrac{x_A + x_B}{2}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $x_A + x_B = -3 + 5 = 2$.
+      en: |-
+        $x_A + x_B = -3 + 5 = 2$.
+solution:
+  fr: |-
+    $$x_K = \frac{x_A + x_B}{2} = \frac{-3 + 5}{2} = \frac{2}{2} = 1, \qquad y_K = \frac{y_A + y_B}{2} = \frac{2 + (-1)}{2} = 0{,}5.$$
+    Le milieu est $K(1\,;\,0{,}5)$. Vérification : $K$ est à égale distance de $A$ et de $B$, car $AK = \sqrt{4^2 + 1{,}5^2}$ et $KB = \sqrt{4^2 + 1{,}5^2}$ sont égales. La formule du milieu ne demande pas que le repère soit orthonormé, contrairement à la formule de la distance.
+  en: |-
+    $$x_K = \frac{x_A + x_B}{2} = \frac{-3 + 5}{2} = \frac{2}{2} = 1, \qquad y_K = \frac{y_A + y_B}{2} = \frac{2 + (-1)}{2} = 0.5.$$
+    The midpoint is $K(1\,;\,0.5)$. Check: $K$ is equidistant from $A$ and $B$, since $AK = \sqrt{4^2 + 1.5^2}$ and $KB = \sqrt{4^2 + 1.5^2}$ are equal. The midpoint formula does not require the frame to be orthonormal, unlike the distance formula.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

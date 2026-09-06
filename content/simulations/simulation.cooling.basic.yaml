@@ -1,0 +1,69 @@
+# Refroidissement d'un corps vers la température ambiante (loi de Newton) : θ(t) = θ_a + (θ_0 − θ_a) e^{−t/τ}.
+id: simulation.cooling.basic
+engine: first_order
+title: { fr: "Refroidissement d'une tasse de thé", en: "Cooling of a cup of tea" }
+description:
+  fr: |-
+    Une tasse de thé à $\theta_0 = 80\ ^\circ\mathrm{C}$ est posée dans une pièce à $\theta_a = 20\ ^\circ\mathrm{C}$. D'après la **loi de refroidissement de Newton**, la vitesse de refroidissement est proportionnelle à l'écart de température avec la pièce : $\dfrac{d\theta}{dt} = \dfrac{\theta_a - \theta}{\tau}$, d'où $\theta(t) = \theta_a + (\theta_0 - \theta_a)\,e^{-t/\tau}$. Avec $\tau = 300\ \mathrm{s}$, l'écart initial de $60\ ^\circ\mathrm{C}$ diminue de $0{,}2\ ^\circ\mathrm{C}$ par seconde au départ, puis de plus en plus lentement : la tasse est à $42\ ^\circ\mathrm{C}$ après $5\ \mathrm{min}$ ($t = \tau$), à $23\ ^\circ\mathrm{C}$ après $15\ \mathrm{min}$ ($t = 3\tau$), et sa température rejoint celle de la pièce sans jamais passer dessous.
+  en: |-
+    A cup of tea at $\theta_0 = 80\ ^\circ\mathrm{C}$ is placed in a room at $\theta_a = 20\ ^\circ\mathrm{C}$. According to **Newton's law of cooling**, the rate of cooling is proportional to the temperature difference with the room: $\dfrac{d\theta}{dt} = \dfrac{\theta_a - \theta}{\tau}$, hence $\theta(t) = \theta_a + (\theta_0 - \theta_a)\,e^{-t/\tau}$. With $\tau = 300\ \mathrm{s}$, the initial difference of $60\ ^\circ\mathrm{C}$ decreases by $0.2\ ^\circ\mathrm{C}$ per second at first, then more and more slowly: the cup is at $42\ ^\circ\mathrm{C}$ after $5\ \mathrm{min}$ ($t = \tau$), at $23\ ^\circ\mathrm{C}$ after $15\ \mathrm{min}$ ($t = 3\tau$), and its temperature reaches that of the room without ever going below it.
+seedPolicy: deterministic
+seed: 1701
+config:
+  scene: newton_cooling
+  target: 20
+  initial: 80
+  tau: 300
+  unit: "°C"
+  timeUnit: "s"
+  duration: 1800
+  dt: 0.5
+controls:
+  - { variable: tau, label: { fr: "Constante de temps τ", en: "Time constant τ" }, min: 60, max: 900, step: 30, unit: "s", default: 300 }
+  - { variable: target, label: { fr: "Température de la pièce", en: "Room temperature" }, min: 0, max: 40, step: 1, unit: "°C", default: 20 }
+observables: [quantity, rate, remaining]
+views: [quantity_time_graph, tangent, table]
+assumptions:
+  fr:
+    - "Le flux thermique cédé par le corps à l'air ambiant est proportionnel à l'écart de température $\\theta - \\theta_a$ (loi de Newton), avec un coefficient d'échange constant."
+    - "La température du corps est uniforme à chaque instant (le thé est brassé, la tasse est petite) : une seule température $\\theta(t)$ le décrit."
+    - |-
+      Bilan d'énergie $C\,\dfrac{d\theta}{dt} = -h\,S\,(\theta - \theta_a)$, d'où $\dfrac{d\theta}{dt} = \dfrac{\theta_a - \theta}{\tau}$ avec $\tau = \dfrac{C}{hS}$.
+    - "La pièce est un thermostat : sa température $\\theta_a$ ne change pas, quelle que soit l'énergie reçue du corps."
+  en:
+    - "The heat flow given by the body to the surrounding air is proportional to the temperature difference $\\theta - \\theta_a$ (Newton's law), with a constant exchange coefficient."
+    - "The temperature of the body is uniform at every instant (the tea is stirred, the cup is small): a single temperature $\\theta(t)$ describes it."
+    - |-
+      Energy balance $C\,\dfrac{d\theta}{dt} = -h\,S\,(\theta - \theta_a)$, hence $\dfrac{d\theta}{dt} = \dfrac{\theta_a - \theta}{\tau}$ with $\tau = \dfrac{C}{hS}$.
+    - "The room is a thermostat: its temperature $\\theta_a$ does not change, whatever the energy received from the body."
+validity:
+  fr: |-
+    La loi de Newton est une bonne approximation pour des écarts de température modérés (quelques dizaines de degrés) entre un corps et l'air calme qui l'entoure, sans changement d'état : ni ébullition, ni gel, ni évaporation notable. Constantes de temps de 1 min à 15 min : ordres de grandeur d'une tasse, d'un bol ou d'une petite casserole. Pour de grands écarts, le rayonnement et la convection naturelle rendent le refroidissement plus rapide au début que ne le prévoit la loi ; l'écart avec le modèle s'atténue ensuite.
+  en: |-
+    Newton's law is a good approximation for moderate temperature differences (a few tens of degrees) between a body and the still air around it, without a change of state: no boiling, no freezing, no significant evaporation. Time constants from 1 min to 15 min: orders of magnitude of a cup, a bowl or a small pan. For large differences, radiation and natural convection make the cooling faster at the start than the law predicts; the deviation from the model then fades.
+numericalMethod:
+  fr: |-
+    Runge-Kutta d'ordre 4, pas fixe $dt = 0{,}5\ \mathrm{s}$ (soit 3 600 pas sur les 30 min simulées). La solution exacte $\theta(t) = \theta_a + (\theta_0 - \theta_a)\,e^{-t/\tau}$ est connue ; l'écart numérique est inférieur à $10^{-10}$ en valeur relative et sert de contrôle.
+  en: |-
+    Fourth-order Runge-Kutta, fixed step $dt = 0.5\ \mathrm{s}$ (3,600 steps over the 30 min simulated). The exact solution $\theta(t) = \theta_a + (\theta_0 - \theta_a)\,e^{-t/\tau}$ is known; the numerical deviation is below $10^{-10}$ in relative value and serves as a check.
+ignoredEffects:
+  fr:
+    - "Rayonnement thermique du corps (loi de Stefan-Boltzmann), notable pour de grands écarts de température."
+    - "Variation du coefficient d'échange avec l'écart de température (convection naturelle) ou avec les courants d'air (convection forcée)."
+    - "Évaporation à la surface du liquide, qui accélère le refroidissement d'une boisson chaude."
+    - "Inertie thermique de la tasse elle-même et écarts de température à l'intérieur du liquide."
+  en:
+    - "Thermal radiation of the body (Stefan-Boltzmann law), significant for large temperature differences."
+    - "Variation of the exchange coefficient with the temperature difference (natural convection) or with draughts (forced convection)."
+    - "Evaporation at the surface of the liquid, which speeds up the cooling of a hot drink."
+    - "Thermal inertia of the cup itself and temperature differences inside the liquid."
+learningUse:
+  fr: |-
+    Première rencontre avec une grandeur qui « relaxe » vers une valeur d'équilibre : lire que la pente de la tangente est d'autant plus forte que le thé est loin de la température de la pièce, vérifier que la tangente à l'origine atteint la température ambiante à $t = \tau$, puis faire varier $\tau$ (une tasse isolée refroidit plus lentement) et la température de la pièce (la courbe change de cible, pas de forme). En lien avec les changements d'état : ici la température varie sans palier, car aucun changement d'état ne se produit. Plus tard, comparer avec la charge du condensateur, qui obéit à la même équation.
+  en: |-
+    First encounter with a quantity that "relaxes" towards an equilibrium value: read that the slope of the tangent is the steeper the further the tea is from the room temperature, check that the tangent at the origin reaches the room temperature at $t = \tau$, then vary $\tau$ (an insulated cup cools more slowly) and the room temperature (the curve changes target, not shape). In connection with changes of state: here the temperature varies without a plateau, because no change of state occurs. Later, compare with the charging of the capacitor, which obeys the same equation.
+a11y:
+  fr: |-
+    Représentation alternative : tableau de la température, de la vitesse de refroidissement et de l'écart restant avec la pièce toutes les 60 s, et description textuelle (« la température descend vite puis de plus en plus lentement vers 20 °C ; à 5 min elle vaut 42 °C »). La vue « tangente » est doublée d'une annonce vocale de la pente au point choisi ; curseurs manipulables au clavier.
+  en: |-
+    Alternative representation: a table of the temperature, the cooling rate and the remaining difference with the room every 60 s, and a textual description ("the temperature drops quickly then more and more slowly towards 20 °C; at 5 min it is 42 °C"). The "tangent" view is doubled by a spoken announcement of the slope at the chosen point; keyboard-operable sliders.

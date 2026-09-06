@@ -1,0 +1,55 @@
+# Leçon rédigée — la fonction en Terminale (profondeur 2) : composition et limites, avec le traceur.
+id: lesson.concept.function.terminale
+nodeId: concept.function
+depth: 2
+tools:
+  - id: plotter
+    kind: plotter
+    variable: x
+    view: { x: [-4, 4], y: [-2, 10] }
+    parameters:
+      - { id: a, label: { fr: "décalage a", en: "shift a" }, min: -3, max: 3, step: 0.1, value: 1 }
+    input: true
+steps:
+  - id: composition
+    title: { fr: "Composer deux fonctions", en: "Composing two functions" }
+    text:
+      fr: >-
+        En Terminale, une fonction se construit souvent à partir de deux autres. Composer u puis v, c'est appliquer u, puis appliquer v au résultat : on note v rond u. Avec u de x égale x moins a et v de x égale x carré, la composée est la parabole décalée de a vers la droite.
+      en: >-
+        In Grade 12, a function is often built from two others. Composing u then v means applying u, then applying v to the result: we write v circle u. With u of x equal to x minus a and v of x equal to x squared, the composite is the parabola shifted by a to the right.
+    actions:
+      - { at: 1, plot: { id: v, expr: "x^2", label: { fr: "v(x) = x²", en: "v(x) = x²" } } }
+      - { at: 2, plot: { id: c, expr: "(x-a)^2", label: { fr: "v∘u(x) = (x − a)²", en: "v∘u(x) = (x − a)²" } } }
+      - { at: 2, point: { id: p, on: c, x: "a", guides: true, label: { fr: "sommet en a", en: "vertex at a" } } }
+  - id: order
+    title: { fr: "L'ordre compte", en: "Order matters" }
+    text:
+      fr: >-
+        Attention, u rond v n'est pas v rond u. Ici u rond v donne x carré moins a : la parabole descend de a au lieu de se décaler. Les deux courbes ne coïncident que pour a égal zéro.
+      en: >-
+        Beware, u circle v is not v circle u. Here u circle v gives x squared minus a: the parabola moves down by a instead of shifting sideways. The two curves coincide only for a equal to zero.
+    actions:
+      - { at: 1, plot: { id: d, expr: "x^2-a", dashed: true, label: { fr: "u∘v(x) = x² − a", en: "u∘v(x) = x² − a" } } }
+      - { at: 2, set: { a: 0 } }
+  - id: limits
+    title: { fr: "Limites et asymptotes", en: "Limits and asymptotes" }
+    text:
+      fr: >-
+        La Terminale ajoute les limites : le comportement d'une fonction aux bords de son ensemble de définition. La fonction un sur x moins a tend vers l'infini près de a et vers zéro à l'infini. La droite verticale x égale a est une asymptote.
+      en: >-
+        Grade 12 adds limits: the behaviour of a function at the edges of its domain. The function one over x minus a tends to infinity near a and to zero at infinity. The vertical line x equals a is an asymptote.
+    actions:
+      - { at: 0, clear: true, set: { a: 1 }, view: { x: [-4, 4], y: [-6, 6] } }
+      - { at: 1, plot: { id: h, expr: "1/(x-a)", label: { fr: "1/(x − a)", en: "1/(x − a)" } } }
+      - { at: 2, line: { id: asym, a: 1, b: 0, c: "-a", dashed: true, label: { fr: "x = a", en: "x = a" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de composer", en: "Your turn to compose" }
+    text:
+      fr: >-
+        À vous : tapez une expression composée, par exemple sqrt(x^2+1) ou exp(-x^2), et déplacez a pour voir la courbe suivre. Repérez les limites aux bords de la fenêtre.
+      en: >-
+        Your turn: type a composite expression, for instance sqrt(x^2+1) or exp(-x^2), and move a to see the curve follow. Spot the limits at the edges of the window.
+    actions:
+      - { at: 0, clear: true, view: { x: [-4, 4], y: [-2, 10] }, plot: { id: c, expr: "(x-a)^2", label: { fr: "(x − a)²", en: "(x − a)²" } } }

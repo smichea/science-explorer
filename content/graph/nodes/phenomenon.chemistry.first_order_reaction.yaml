@@ -32,7 +32,7 @@ description:
 
     The **half-life** $t_{1/2}$, the time after which half of the initial reactant has disappeared, is $t_{1/2} = \dfrac{\ln 2}{k}$: it is **independent of the initial concentration**. This is the experimental test for order 1: if successive half-lives all last the same time, the order is 1. Unimolecular decompositions (dinitrogen pentoxide, hydrogen peroxide with a catalyst), the hydrolysis of an ester in a large excess of water (apparent first order) and radioactive decay follow this law.
 
-    Mathematically, it is the same equation as the discharge of a capacitor ($RC$ plays the role of $1/k$) or as radioactive decay ($\lambda$ plays the role of $k$). In Terminale, the law is established and $t_{1/2}$ is used; in MPSI, it is placed within the theory of reaction orders, used to determine an order, and $k$ is related to temperature by the Arrhenius law.
+    Mathematically, it is the same equation as the discharge of a capacitor ($RC$ plays the role of $1/k$) or as radioactive decay ($\lambda$ plays the role of $k$). In Grade 12, the law is established and $t_{1/2}$ is used; in MPSI, it is placed within the theory of reaction orders, used to determine an order, and $k$ is related to temperature by the Arrhenius law.
 depths:
   - depth: 1
     stage: terminale

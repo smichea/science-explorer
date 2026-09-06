@@ -1,0 +1,46 @@
+id: concept.number_sets
+type: mathematical_concept
+world: world.mathematics
+region: region.math.numbers_algebra
+importance: 2
+tags: [lycee]
+title: { fr: "Ensembles de nombres, intervalles et valeur absolue", en: "Number sets, intervals and absolute value" }
+shortPurpose:
+  fr: "Situer chaque nombre dans les ensembles emboîtés ℕ, ℤ, 𝔻, ℚ, ℝ, puis décrire une partie de la droite numérique par un intervalle ou par une distance."
+  en: "Place every number in the nested sets ℕ, ℤ, 𝔻, ℚ, ℝ, then describe a part of the number line by an interval or by a distance."
+overview:
+  fr: >-
+    Les nombres du lycée sont rangés dans des ensembles emboîtés : les entiers naturels, les entiers relatifs, les décimaux, les rationnels et enfin les réels, qui remplissent toute la droite numérique. Un intervalle désigne un morceau de cette droite, et la valeur absolue mesure la distance entre deux nombres. Ces notations reviennent partout, dans l'ensemble des solutions d'une inéquation comme dans l'encadrement d'une mesure.
+  en: >-
+    The numbers of lycée are arranged in nested sets: the natural numbers, the integers, the decimals, the rationals and finally the reals, which fill the whole number line. An interval names a piece of this line, and the absolute value measures the distance between two numbers. These notations come back everywhere, in the solution set of an inequality as in the bounds of a measurement.
+aliases:
+  fr: ["nombres réels", "droite numérique", "intervalle", "valeur absolue", "encadrement"]
+  en: ["real numbers", "number line", "interval", "absolute value", "bounds"]
+description:
+  fr: |
+    Les nombres se rangent dans des ensembles emboîtés : $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{D} \subset \mathbb{Q} \subset \mathbb{R}$. $\mathbb{N}$ est l'ensemble des entiers naturels $0, 1, 2, \ldots$, $\mathbb{Z}$ celui des entiers relatifs, $\mathbb{D}$ celui des nombres décimaux, qui s'écrivent $\dfrac{a}{10^n}$ avec $a$ entier, $\mathbb{Q}$ celui des rationnels, quotients $\dfrac{p}{q}$ de deux entiers avec $q \neq 0$, et $\mathbb{R}$ celui des réels, qui remplissent toute la droite numérique. Chaque inclusion est stricte : $\dfrac{1}{3} = 0{,}333\ldots$ est rationnel mais pas décimal, car aucune fraction $\dfrac{a}{10^n}$ ne vaut exactement $\dfrac13$ ; $\sqrt{2}$ est réel mais pas rationnel, ce que l'on démontre par l'absurde en raisonnant sur la parité. Un nombre décimal a un nombre fini de chiffres après la virgule, un rationnel non décimal a un développement périodique, et un irrationnel comme $\sqrt{2}$ ou $\pi$ n'a aucune période.
+
+    Sur la droite numérique, un **intervalle** est l'ensemble des réels compris entre deux bornes : $[-2\,;\,3]$ contient les réels $x$ tels que $-2 \leq x \leq 3$, le crochet tourné vers l'intérieur indiquant que la borne est comprise, tandis que $]-2\,;\,3[$ exclut les deux bornes. Les intervalles non bornés utilisent $-\infty$ et $+\infty$, toujours exclus : $[2\,;\,+\infty[$ est l'ensemble des réels supérieurs ou égaux à $2$. La **valeur absolue** $|x - a|$ est la distance entre les réels $x$ et $a$ sur la droite : $|x - 2| \leq 3$ signifie que $x$ est à une distance au plus $3$ de $2$, c'est-à-dire $x \in [-1\,;\,5]$. Réciproquement, tout intervalle $[a - r\,;\,a + r]$ se décrit par $|x - a| \leq r$ : $a$ est son centre et $r$ son rayon.
+
+    Ces notations servent à parler avec précision d'un nombre que l'on ne connaît qu'approximativement. Un **encadrement** de $\pi$ est $3{,}14 \leq \pi \leq 3{,}15$ ; son amplitude, $0{,}01$, dit la précision obtenue. Arrondir $\pi$ au centième donne $3{,}14$, le décimal à deux chiffres le plus proche, et l'écart $|\pi - 3{,}14|$ est inférieur à $0{,}005$, la demi-unité du dernier chiffre conservé. Deux pièges classiques : $|x| = 3$ a deux solutions, $3$ et $-3$ ; et $\sqrt{2}$ n'est pas égal à $1{,}414$, qui n'en est qu'une valeur approchée. Ces réflexes serviront à écrire l'ensemble des solutions d'une inéquation et à exprimer l'incertitude d'une mesure.
+  en: |
+    Numbers are arranged in nested sets: $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{D} \subset \mathbb{Q} \subset \mathbb{R}$. $\mathbb{N}$ is the set of natural numbers $0, 1, 2, \ldots$, $\mathbb{Z}$ that of the integers, $\mathbb{D}$ that of the decimal numbers, which can be written $\dfrac{a}{10^n}$ with $a$ an integer, $\mathbb{Q}$ that of the rationals, quotients $\dfrac{p}{q}$ of two integers with $q \neq 0$, and $\mathbb{R}$ that of the reals, which fill the whole number line. Each inclusion is strict: $\dfrac{1}{3} = 0.333\ldots$ is rational but not decimal, since no fraction $\dfrac{a}{10^n}$ equals $\dfrac13$ exactly; $\sqrt{2}$ is real but not rational, which is proved by contradiction using parity. A decimal number has finitely many digits after the point, a non-decimal rational has a repeating expansion, and an irrational such as $\sqrt{2}$ or $\pi$ has no period at all.
+
+    On the number line, an **interval** is the set of reals lying between two bounds: $[-2\,;\,3]$ contains the reals $x$ such that $-2 \leq x \leq 3$, the bracket turned inwards meaning that the bound is included, whereas $]-2\,;\,3[$ excludes both bounds. Unbounded intervals use $-\infty$ and $+\infty$, always excluded: $[2\,;\,+\infty[$ is the set of reals greater than or equal to $2$. The **absolute value** $|x - a|$ is the distance between the reals $x$ and $a$ on the line: $|x - 2| \leq 3$ means that $x$ lies at a distance at most $3$ from $2$, that is $x \in [-1\,;\,5]$. Conversely, every interval $[a - r\,;\,a + r]$ is described by $|x - a| \leq r$: $a$ is its centre and $r$ its radius.
+
+    These notations are used to speak precisely about a number that is only known approximately. A pair of **bounds** for $\pi$ is $3.14 \leq \pi \leq 3.15$; its width, $0.01$, states the precision obtained. Rounding $\pi$ to the nearest hundredth gives $3.14$, the closest two-digit decimal, and the gap $|\pi - 3.14|$ is smaller than $0.005$, half a unit of the last digit kept. Two classic traps: $|x| = 3$ has two solutions, $3$ and $-3$; and $\sqrt{2}$ is not equal to $1.414$, which is only an approximate value of it. These reflexes will serve to write the solution set of an inequality and to express the uncertainty of a measurement.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "situer un nombre dans les ensembles ℕ, ℤ, 𝔻, ℚ, ℝ et justifier qu'un rationnel n'est pas décimal ou qu'un réel n'est pas rationnel"
+        - "représenter un intervalle sur la droite numérique et traduire une inégalité par un intervalle, et réciproquement"
+        - "interpréter |x − a| comme une distance et résoudre une inéquation de la forme |x − a| ≤ r"
+        - "encadrer un nombre, donner une valeur approchée ou un arrondi à une précision donnée"
+      en:
+        - "place a number in the sets ℕ, ℤ, 𝔻, ℚ, ℝ and justify that a rational is not decimal or that a real is not rational"
+        - "represent an interval on the number line and translate an inequality into an interval, and conversely"
+        - "interpret |x − a| as a distance and solve an inequality of the form |x − a| ≤ r"
+        - "bound a number, give an approximate value or a rounding to a given precision"

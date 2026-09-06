@@ -2,7 +2,7 @@
 id: exercise.dimension.exponent
 type: numeric
 nodeId: concept.dimension_unit
-depth: 1
+depth: 2
 evidenceDimension: recognition_explanation
 prompt:
   fr: |-

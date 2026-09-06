@@ -4,7 +4,7 @@ stage: terminale
 subject: physics_chemistry
 title:
   fr: "Physique-chimie — Terminale générale, enseignement de spécialité"
-  en: "Physics and chemistry — Terminale (final year), specialised course"
+  en: "Physics and chemistry — Grade 12 (Terminale), specialised course"
 version: "2026-reference"
 validFrom: "2020-09-01"
 validTo: null
@@ -16,7 +16,7 @@ items:
     title: { fr: Décrire un mouvement, en: Describing motion }
     reference: "Mouvement et interactions — Décrire un mouvement"
     alignedNodes:
-      - { node: model.kinematics_point, depth: 1 }
+      - { node: model.kinematics_point, depth: 2 }
   - id: champ_uniforme
     title: { fr: Mouvement dans un champ uniforme, en: Motion in a uniform field }
     reference: "Mouvement et interactions — Relier les actions appliquées à un système à son mouvement : mouvement dans un champ uniforme"
@@ -46,5 +46,5 @@ items:
     title: { fr: Mesure et incertitudes, en: Measurement and uncertainties }
     reference: "Mesure et incertitudes (partie transversale du programme)"
     alignedNodes:
-      - { node: method.measurement, depth: 1 }
-      - { node: concept.dimension_unit, depth: 1 }
+      - { node: method.measurement, depth: 2 }
+      - { node: concept.dimension_unit, depth: 2 }

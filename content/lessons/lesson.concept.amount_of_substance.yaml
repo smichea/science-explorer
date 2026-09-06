@@ -1,0 +1,16 @@
+# Leçon — quantité de matière : n = m / M avec le traceur (la masse molaire en paramètre).
+id: lesson.concept.amount_of_substance
+nodeId: concept.amount_of_substance
+depth: 1
+tools:
+  - id: plotter
+    kind: plotter
+    title: { fr: "De la masse à la quantité de matière", en: "From mass to amount of substance" }
+    variable: m
+    view: { x: [0, 100], y: [0, 6] }
+    parameters:
+      - { id: w, label: { fr: "masse molaire M (g/mol)", en: "molar mass M (g/mol)" }, min: 1, max: 60, step: 0.5, value: 18 }
+    input: false
+    initial:
+      - { view: { labels: { x: "m (g)", y: "n (mol)" } }, plot: { id: n, expr: "m/w", label: { fr: "n = m / M", en: "n = m / M" } } }
+      - { point: { id: p, on: n, x: 36, guides: true, label: { fr: "m = 36 g", en: "m = 36 g" } } }

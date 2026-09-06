@@ -1,0 +1,55 @@
+id: tool.descriptive_statistics
+type: mathematical_tool
+world: world.mathematics
+region: region.math.probability_statistics
+importance: 2
+backpack: true
+tags: [lycee]
+title: { fr: "Statistiques descriptives", en: "Descriptive statistics" }
+shortPurpose:
+  fr: "Résumer une série de valeurs par des indicateurs de position et de dispersion, pour décrire, comparer et estimer."
+  en: "Summarise a series of values by indicators of position and dispersion, in order to describe, compare and estimate."
+overview:
+  fr: >-
+    Une série statistique est une longue liste de valeurs ; la décrire, c'est la résumer par quelques nombres. La moyenne et la médiane disent où se situent les valeurs, l'étendue, l'écart interquartile et l'écart type disent comment elles se dispersent. Ces indicateurs comparent deux classes ou deux séries de mesures, et donnent en physique la valeur retenue d'une mesure répétée et son incertitude.
+  en: >-
+    A statistical series is a long list of values; describing it means summarising it by a few numbers. The mean and the median say where the values lie, the range, the interquartile range and the standard deviation say how they spread. These indicators compare two classes or two series of measurements, and give in physics the retained value of a repeated measurement and its uncertainty.
+aliases:
+  fr: ["série statistique", "moyenne", "médiane", "quartiles", "écart type", "écart interquartile"]
+  en: ["statistical series", "mean", "median", "quartiles", "standard deviation", "interquartile range"]
+description:
+  fr: |
+    Une **série statistique** est la liste des valeurs $x_1, x_2, \ldots, x_p$ d'un caractère observé sur une population, chaque valeur $x_i$ apparaissant avec un **effectif** $n_i$ ; l'effectif total est $N = n_1 + \cdots + n_p$ et la **fréquence** de $x_i$ est $f_i = \dfrac{n_i}{N}$. La **moyenne** est $\bar{x} = \dfrac{n_1 x_1 + \cdots + n_p x_p}{N}$, la valeur que chacun aurait si le total était réparti également. La **médiane** est une valeur qui partage la série ordonnée en deux moitiés : au moins $50\,\%$ des valeurs lui sont inférieures ou égales et au moins $50\,\%$ supérieures ou égales ; pour un effectif pair, on prend la moyenne des deux valeurs centrales. Moyenne et médiane sont des indicateurs de **position** ; la médiane est insensible aux valeurs extrêmes, contrairement à la moyenne.
+
+    Les **quartiles** affinent la position : le premier quartile $Q_1$ est la plus petite valeur de la série telle qu'au moins $25\,\%$ des valeurs lui soient inférieures ou égales, le troisième quartile $Q_3$ la plus petite telle qu'au moins $75\,\%$ le soient. Les indicateurs de **dispersion** mesurent l'étalement : l'**étendue** $x_{\max} - x_{\min}$, l'**écart interquartile** $Q_3 - Q_1$, qui contient la moitié centrale des valeurs, et l'**écart type** $\sigma = \sqrt{\dfrac{n_1 (x_1 - \bar{x})^2 + \cdots + n_p (x_p - \bar{x})^2}{N}}$, racine carrée de la moyenne des carrés des écarts à la moyenne. L'écart type est dans la même unité que les valeurs ; il est petit quand les valeurs sont regroupées autour de la moyenne, grand quand elles sont dispersées.
+
+    Pour la série $4$, $6$, $6$, $8$, $11$, la moyenne vaut $7$, la médiane $6$, et les écarts à la moyenne sont $-3$, $-1$, $-1$, $1$, $4$, d'où $\sigma = \sqrt{\dfrac{9 + 1 + 1 + 1 + 16}{5}} = \sqrt{5{,}6} \approx 2{,}37$. Le couple médiane et écart interquartile résume une série par sa moitié centrale, ce que le diagramme en boîte représente ; le couple moyenne et écart type est celui de la physique, où une mesure répétée est une série dont la moyenne estime la valeur cherchée et l'écart type l'incertitude. Comparer deux séries, c'est toujours comparer un indicateur de position et un indicateur de dispersion, jamais l'un sans l'autre.
+  en: |
+    A **statistical series** is the list of the values $x_1, x_2, \ldots, x_p$ of a character observed on a population, each value $x_i$ appearing with a **count** $n_i$; the total count is $N = n_1 + \cdots + n_p$ and the **frequency** of $x_i$ is $f_i = \dfrac{n_i}{N}$. The **mean** is $\bar{x} = \dfrac{n_1 x_1 + \cdots + n_p x_p}{N}$, the value everyone would have if the total were shared equally. The **median** is a value that splits the ordered series into two halves: at least $50\,\%$ of the values are less than or equal to it and at least $50\,\%$ greater than or equal to it; for an even count, the average of the two central values is taken. Mean and median are indicators of **position**; the median is insensitive to extreme values, unlike the mean.
+
+    The **quartiles** refine the position: the first quartile $Q_1$ is the smallest value of the series such that at least $25\,\%$ of the values are less than or equal to it, the third quartile $Q_3$ the smallest such that at least $75\,\%$ are. The indicators of **dispersion** measure the spread: the **range** $x_{\max} - x_{\min}$, the **interquartile range** $Q_3 - Q_1$, which contains the central half of the values, and the **standard deviation** $\sigma = \sqrt{\dfrac{n_1 (x_1 - \bar{x})^2 + \cdots + n_p (x_p - \bar{x})^2}{N}}$, the square root of the mean of the squared deviations from the mean. The standard deviation is in the same unit as the values; it is small when the values are clustered around the mean, large when they are scattered.
+
+    For the series $4$, $6$, $6$, $8$, $11$, the mean is $7$, the median $6$, and the deviations from the mean are $-3$, $-1$, $-1$, $1$, $4$, whence $\sigma = \sqrt{\dfrac{9 + 1 + 1 + 1 + 16}{5}} = \sqrt{5.6} \approx 2.37$. The pair median and interquartile range summarises a series by its central half, which the box plot represents; the pair mean and standard deviation is that of physics, where a repeated measurement is a series whose mean estimates the sought value and whose standard deviation estimates the uncertainty. Comparing two series always means comparing an indicator of position and an indicator of dispersion, never one without the other.
+tool:
+  problemSolved:
+    fr: "Résumer une longue liste de valeurs par quelques nombres, de position et de dispersion, pour décrire une population, comparer deux séries ou estimer une grandeur mesurée plusieurs fois."
+    en: "Summarise a long list of values by a few numbers, of position and of dispersion, in order to describe a population, compare two series or estimate a quantity measured several times."
+  construction:
+    fr: "On ordonne les valeurs avec leurs effectifs ; la moyenne pondère chaque valeur par son effectif, la médiane et les quartiles se lisent sur la série ordonnée par leur rang, et l'écart type est la racine carrée de la moyenne des carrés des écarts à la moyenne."
+    en: "The values are ordered with their counts; the mean weights each value by its count, the median and the quartiles are read on the ordered series by their rank, and the standard deviation is the square root of the mean of the squared deviations from the mean."
+  icon: histogram
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "calculer la moyenne d'une série à partir des valeurs et des effectifs"
+        - "déterminer la médiane et les quartiles d'une série par leur rang dans la série ordonnée"
+        - "calculer l'étendue, l'écart interquartile et l'écart type, et interpréter la dispersion"
+        - "comparer deux séries à l'aide d'un indicateur de position et d'un indicateur de dispersion"
+      en:
+        - "compute the mean of a series from the values and the counts"
+        - "determine the median and the quartiles of a series by their rank in the ordered series"
+        - "compute the range, the interquartile range and the standard deviation, and interpret the dispersion"
+        - "compare two series using an indicator of position and an indicator of dispersion"

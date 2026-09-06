@@ -1,0 +1,73 @@
+# Leçon corps purs et mélanges — corps pur ou mélange d'après une courbe de chauffage (choix unique)
+id: exercise.pure_substances.identify
+type: choice
+nodeId: concept.pure_substances_mixtures
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    On chauffe doucement un liquide incolore dans un ballon muni d'un thermomètre, et l'on relève sa température toutes les trente secondes. Décrivons la courbe obtenue (il n'y a pas d'image) : la température monte régulièrement de $20\ ^\circ\mathrm{C}$ à $78\ ^\circ\mathrm{C}$, puis elle reste **constante à $78\ ^\circ\mathrm{C}$ pendant plusieurs minutes**, tandis que le liquide bout et que sa quantité diminue ; elle ne remonte que lorsqu'il ne reste presque plus de liquide.
+
+    Ce liquide est-il un corps pur ou un mélange ?
+  en: |-
+    A colourless liquid is gently heated in a flask fitted with a thermometer, and its temperature is recorded every thirty seconds. Let us describe the curve obtained (there is no picture): the temperature rises steadily from $20\ ^\circ\mathrm{C}$ to $78\ ^\circ\mathrm{C}$, then it stays **constant at $78\ ^\circ\mathrm{C}$ for several minutes**, while the liquid boils and its quantity decreases; it only rises again when almost no liquid is left.
+
+    Is this liquid a pure substance or a mixture?
+choice:
+  multiple: false
+  requireReasoning: false
+  choices:
+    - id: pure
+      text: { fr: "Un corps pur : sa température reste constante pendant toute l'ébullition.", en: "A pure substance: its temperature stays constant throughout the boiling." }
+      correct: true
+      feedback:
+        fr: |-
+          Exact. Un corps pur change d'état à température constante (palier) : le palier à $78\ ^\circ\mathrm{C}$ est la signature d'un corps pur, ici vraisemblablement l'éthanol, dont c'est la température d'ébullition.
+        en: |-
+          Correct. A pure substance changes state at constant temperature (plateau): the plateau at $78\ ^\circ\mathrm{C}$ is the signature of a pure substance, here most likely ethanol, whose boiling temperature it is.
+    - id: mixture_gas
+      text: { fr: "Un mélange : pendant l'ébullition, il y a à la fois du liquide et du gaz.", en: "A mixture: during the boiling, there is both liquid and gas." }
+      feedback:
+        fr: |-
+          Liquide et gaz d'une même espèce chimique ne font pas un mélange : les deux états contiennent les mêmes molécules. Ce qui compte est la composition, pas l'état physique.
+        en: |-
+          Liquid and gas of the same chemical species do not make a mixture: both states contain the same molecules. What matters is the composition, not the physical state.
+    - id: mixture_temperature
+      text: { fr: "Un mélange : 78 °C n'est pas la température d'ébullition de l'eau.", en: "A mixture: 78 °C is not the boiling temperature of water." }
+      feedback:
+        fr: |-
+          Rien n'indique que ce liquide est de l'eau. Un corps pur autre que l'eau bout à sa propre température d'ébullition ; $78\ ^\circ\mathrm{C}$ est justement celle de l'éthanol pur.
+        en: |-
+          Nothing says that this liquid is water. A pure substance other than water boils at its own boiling temperature; $78\ ^\circ\mathrm{C}$ is precisely that of pure ethanol.
+    - id: unknown
+      text: { fr: "On ne peut pas conclure sans mesurer aussi la masse volumique.", en: "One cannot conclude without also measuring the density." }
+      feedback:
+        fr: |-
+          Le palier de température suffit pour décider entre corps pur et mélange : un mélange verrait sa température continuer à monter pendant l'ébullition. La masse volumique servirait à identifier de quel corps pur il s'agit, pas à savoir s'il est pur.
+        en: |-
+          The temperature plateau is enough to decide between pure substance and mixture: a mixture would see its temperature keep rising during the boiling. The density would help identify which pure substance it is, not whether it is pure.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Que fait la température d'un corps pur pendant qu'il change d'état ? Et celle d'un mélange ?
+      en: |-
+        What does the temperature of a pure substance do while it changes state? And that of a mixture?
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Un corps pur présente un palier de température pendant son ébullition ; un mélange, non.
+      en: |-
+        A pure substance shows a temperature plateau during its boiling; a mixture does not.
+solution:
+  fr: |-
+    Pendant l'ébullition, la température reste bloquée à $78\ ^\circ\mathrm{C}$ : c'est un **palier de température**, caractéristique d'un **corps pur**. Dans un mélange, les espèces les plus volatiles partent en premier et la composition du liquide change au fur et à mesure, si bien que la température continue de monter pendant l'ébullition.
+
+    La valeur du palier identifie ensuite l'espèce : $78\ ^\circ\mathrm{C}$ est la température d'ébullition de l'éthanol sous la pression atmosphérique. Une mesure de masse volumique ($0{,}79\ \mathrm{g/mL}$ attendu) confirmerait cette identification.
+  en: |-
+    During the boiling, the temperature stays locked at $78\ ^\circ\mathrm{C}$: it is a **temperature plateau**, characteristic of a **pure substance**. In a mixture, the most volatile species leave first and the composition of the liquid changes as it goes, so that the temperature keeps rising during the boiling.
+
+    The value of the plateau then identifies the species: $78\ ^\circ\mathrm{C}$ is the boiling temperature of ethanol at atmospheric pressure. A density measurement ($0.79\ \mathrm{g/mL}$ expected) would confirm this identification.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

@@ -211,6 +211,18 @@ items:
     alignedNodes: [{ node: tool.derivative, depth: 1 }]
 ```
 
+**Stages, depths and foundations.** One idea is one node, whatever the years it is taught in:
+the node carries one depth per stage (`seconde`, `premiere`, `terminale`, `mpsi`, `mp`, depths 1
+to 4, in increasing order of stage). The stage of a destination *for a learner* is the lowest of
+its depths at or above the learner's current stage (`stageFor`): a node taught in Seconde and
+again in Terminale is a Terminale destination for a Terminale learner, who follows its depth 2
+lesson; a node taught only in earlier years is a **foundation** — visible a little below the
+current layer, kept by the stage filters, flown over by the bird's-eye flight only when the
+learner asks for the foundations. A route may declare its `stage` (`stage: seconde`): the flight
+skips it for a learner already past that year, and the recommendations do not push it. The
+curriculum of a stage aligns the depth taught that year (`{ node: concept.function, depth: 1 }`
+in Seconde, `depth: 2` in Terminale).
+
 ### `content/missions/<id>.yaml`
 
 See `src/lib/content-schema/mission.ts`. Skeleton:
@@ -407,6 +419,7 @@ entries:
 routes:
   - id: route.first_journey
     kind: recommended            # recommended | thematic | historical | review
+    # stage: seconde             # optional: the year the route belongs to (skipped by the flight of a later learner)
     title: { fr: "…", en: "…" }
     summary: { fr: "…", en: "…" }
     nodes: [concept.function, concept.graph, concept.rate_of_change, tool.derivative, mission.galileo.inclined_plane]
@@ -448,6 +461,7 @@ depth: 1                            # one lesson per node and depth
 tools:                              # one or several; a step shows one of them (`tool: <id>`)
   - id: plotter
     kind: plotter                   # plotter | simulation | vectors | slope_field | fit | field | dimensions | timeline
+                                    # | arithmetic | data | random | sequence | wave | optics | periodic_table | reaction
     variable: x
     view: { x: [-3, 3], y: [-2, 10] }
     parameters:                     # sliders of the free play, usable in expressions (a, a+h)
@@ -466,7 +480,8 @@ steps:
     actions:                        # fired at sentence `at` (0-based) while the text is read
       - { at: 1, plot: { id: f, expr: "x^2", label: { fr: "f(x) = x²", en: "f(x) = x²" } } }
       - { at: 1, point: { id: p, on: f, x: 2, guides: true, label: { fr: "f(2) = 4", en: "f(2) = 4" } } }
-      # plotter only: secant { id, on, from, to }  tangent { id, on, x }  interval { id, on, from, to }  clear
+      # plotter only: secant { id, on, from, to }  tangent { id, on, x }  interval { id, on?, from, to }  line { id, a, b, c }  clear
+      # (an interval without `on` is a band on the axis; `line` draws a·x + b·y + c = 0, vertical lines included)
       # every tool: show [ids]  hide [ids]  set { h: 0.5 }  view { x, y, labels: { x: "t (s)", y: "h (m)" } }
   - id: play
     kind: play
@@ -478,18 +493,27 @@ steps:
 ```
 
 The tools, all fed by the safe expression compiler (variable and parameters, `exp`, `ln`, `log`,
-`sqrt`, `sin`, `cos`, `tan`, `pi`, `e`):
+`sqrt`, `sin`, `cos`, `tan`, `abs`, `floor`, `pi`, `e`). Parameter ids are single lowercase
+letters and **never `e`** (the constant of the exponential shadows it; the compiler refuses it):
 
 | kind | what it shows | its items (declare `hidden: true` to reveal them with `show`) | free play |
 | --- | --- | --- | --- |
 | `plotter` | curves of one variable | drawn by the actions | typed expression, marker, tangent, sliders |
 | `simulation` | an existing simulation (`simulationId`) | — | the simulation's own controls |
-| `vectors` | arrows with components, sums, parametric paths | `vectors` (`x`, `y` may use parameters; `from` chains), `paths` (`x`, `y` of `s`), `sums` | drag the heads (`drag: true`), sliders |
+| `vectors` | arrows with components, sums, parametric paths, named points and segments | `vectors` (`x`, `y` may use parameters; `from` chains), `paths` (`x`, `y` of `s`), `sums`, `points`, `segments` (length and midpoint read out), `determinant: [u, v]` | drag the heads and the points (`drag: true`), sliders |
 | `slope_field` | the direction field of `y' = equation(x, y)` and solutions | `solutions` (`x0`, `y0`) | click to add an initial condition, sliders |
 | `fit` | measured points (`points` or a seeded `generator`) and candidate `models` | `models` | choose a model, tune sliders, `measure: true` adds points, `target` asks a prediction |
 | `field` | a scalar field `expr(x, y)` as a heat map with iso-lines and the gradient at a marker | — | drag the marker, sliders |
 | `dimensions` | a table of `quantities` with dimension exponents and SI units | `quantities` | rebuild a derived quantity (`base: false`) from the base ones |
 | `timeline` | events (`year`, or `start`–`end`) on lanes, a year cursor | `events` | drag the cursor |
+| `arithmetic` | a sieve of the integers up to `max` (multiples of `highlight`, primes), the divisors and factorisation of `number` | — | choose the integer and the multiples |
+| `data` | a statistical series (`values`, optional `counts`, `unit`, `bins`): histogram, box plot, mean, median, quartiles, range, standard deviation | — | edit the series |
+| `random` | a die (`sides`), a coin or an `urn`; frequencies of the outcomes against the probabilities (`mode: frequencies`) or the frequency of an `event` on samples of size `sample` with the interval p ± 1/√n (`mode: sampling`); seeded | — | draw, sample, start again |
+| `sequence` | the terms of a sequence given by an `expr` of `n` (`mode: explicit`) or of `u` and `n` from `first` (`mode: recurrence`, optional `cobweb`) | — | type a formula, number of terms, read u(n) and the sum, sliders |
+| `wave` | a progressive sinusoidal wave on a string (`period`, `wavelength` or `speed`, `amplitude`, `length`) and the signal at a point M | — | play / pause, time, move M |
+| `optics` | `mode: refraction` (indices `n1`, `n2`, incidence `angle`, total reflection, critical angle) or `mode: lens` (thin converging lens: `focal`, `object { distance, height }`, image and magnification) | — | sliders of the parameters used by the scalars |
+| `periodic_table` | the elements up to `max` with families, configuration, valence electrons and stable ion (`mode: table`), or a nucleus A, Z with α / β decays (`mode: nucleus`) | — | click an element, move A and Z, decay |
+| `reaction` | the extent table of `reactants` and `products` (`coefficient`, `initial`), the limiting reactant and the final state | `reactants`, `products` | move the extent, sliders of the initial amounts |
 
 - Without `steps`, the slides are cut from the node `description` (one paragraph each), followed
   by a free play when there is a tool and by the exercises of the node. Every node therefore has a

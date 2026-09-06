@@ -1,0 +1,16 @@
+# Leçon — corps purs et mélanges : masse et volume d'un liquide inconnu, la masse volumique comme pente (outil ajustement).
+id: lesson.concept.pure_substances_mixtures
+nodeId: concept.pure_substances_mixtures
+depth: 1
+tools:
+  - id: fit
+    kind: fit
+    title: { fr: "Masse volumique d'un liquide inconnu", en: "Density of an unknown liquid" }
+    view: { x: [0, 60], y: [0, 60] }
+    labels: { x: "V (mL)", y: "m (g)" }
+    parameters:
+      - { id: r, label: { fr: "masse volumique ρ (g/mL)", en: "density ρ (g/mL)" }, min: 0.5, max: 2, step: 0.01, value: 1 }
+    generator: { expr: "0.79*x", noise: 0.6, count: 6, from: 5, to: 50, seed: 2 }
+    models:
+      - { id: density, expr: "r*x", label: { fr: "m = ρ V", en: "m = ρ V" } }
+    measure: true

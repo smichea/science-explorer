@@ -1,0 +1,44 @@
+# Échantillonnage — la borne inférieure de l'intervalle de fluctuation p ± 1/√n (réponse numérique)
+id: exercise.sampling.interval_bound
+type: numeric
+nodeId: concept.sampling_fluctuation
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Dans une population, la proportion de personnes gauchères est $p = 0{,}3$ (valeur choisie pour l'exercice). On constitue des échantillons de taille $n = 400$.
+
+    Calculez la borne **inférieure** de l'intervalle de fluctuation $\left[p - \dfrac{1}{\sqrt{n}}\,;\,p + \dfrac{1}{\sqrt{n}}\right]$ des fréquences de gauchers dans ces échantillons.
+  en: |-
+    In a population, the proportion of left-handed people is $p = 0.3$ (a value chosen for the exercise). Samples of size $n = 400$ are formed.
+
+    Compute the **lower** bound of the fluctuation interval $\left[p - \dfrac{1}{\sqrt{n}}\,;\,p + \dfrac{1}{\sqrt{n}}\right]$ of the frequencies of left-handed people in these samples.
+numeric:
+  value: 0.25
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "borne inférieure", en: "lower bound" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Calculez d'abord $\sqrt{400}$, puis $\dfrac{1}{\sqrt{400}}$, la demi-largeur de l'intervalle.
+      en: |-
+        First compute $\sqrt{400}$, then $\dfrac{1}{\sqrt{400}}$, the half-width of the interval.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\sqrt{400} = 20$, donc $\dfrac{1}{\sqrt{n}} = 0{,}05$. Retranchez cette valeur à $p$.
+      en: |-
+        $\sqrt{400} = 20$, so $\dfrac{1}{\sqrt{n}} = 0.05$. Subtract this value from $p$.
+solution:
+  fr: |-
+    $\sqrt{400} = 20$, donc $\dfrac{1}{\sqrt{n}} = \dfrac{1}{20} = 0{,}05$. L'intervalle de fluctuation est
+    $$[0{,}3 - 0{,}05\,;\,0{,}3 + 0{,}05] = [0{,}25\,;\,0{,}35],$$
+    de borne inférieure $0{,}25$. Les conditions d'utilisation sont réunies ($n \geq 25$ et $0{,}2 \leq p \leq 0{,}8$) : environ $95\,\%$ des échantillons de $400$ personnes ont une fréquence de gauchers comprise entre $25\,\%$ et $35\,\%$. Avec $n = 100$, la demi-largeur serait $0{,}1$ : quatre fois plus de personnes divisent par deux l'incertitude.
+  en: |-
+    $\sqrt{400} = 20$, so $\dfrac{1}{\sqrt{n}} = \dfrac{1}{20} = 0.05$. The fluctuation interval is
+    $$[0.3 - 0.05\,;\,0.3 + 0.05] = [0.25\,;\,0.35],$$
+    with lower bound $0.25$. The conditions of use are met ($n \geq 25$ and $0.2 \leq p \leq 0.8$): about $95\,\%$ of the samples of $400$ people have a frequency of left-handed people between $25\,\%$ and $35\,\%$. With $n = 100$, the half-width would be $0.1$: four times as many people halve the uncertainty.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

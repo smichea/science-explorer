@@ -1,0 +1,73 @@
+# Leçon tableau périodique — l'ion formé par le magnésium (choix unique)
+id: exercise.periodic_table.magnesium_ion
+type: choice
+nodeId: model.periodic_table
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Le magnésium ($Z = 12$) est dans la colonne $2$ du tableau périodique, sur la troisième ligne ; sa configuration électronique est $1s^2\,2s^2\,2p^6\,3s^2$. Le gaz noble le plus proche est le néon ($Z = 10$).
+
+    Quel ion monoatomique l'atome de magnésium forme-t-il ?
+  en: |-
+    Magnesium ($Z = 12$) is in column $2$ of the periodic table, on the third row; its electron configuration is $1s^2\,2s^2\,2p^6\,3s^2$. The nearest noble gas is neon ($Z = 10$).
+
+    Which monoatomic ion does the magnesium atom form?
+choice:
+  multiple: false
+  requireReasoning: false
+  choices:
+    - id: plus_one
+      text: { fr: "Mg⁺", en: "Mg⁺" }
+      feedback:
+        fr: |-
+          En perdant un seul électron, le magnésium garderait la configuration $3s^1$ : sa couche externe ne serait pas vide et il n'aurait pas la structure d'un gaz noble. Il perd ses deux électrons de valence.
+        en: |-
+          By losing a single electron, magnesium would keep the configuration $3s^1$: its outer shell would not be empty and it would not have the structure of a noble gas. It loses both its valence electrons.
+    - id: plus_two
+      text: { fr: "Mg²⁺", en: "Mg²⁺" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : en perdant ses deux électrons de valence $3s^2$, le magnésium acquiert la configuration $1s^2\,2s^2\,2p^6$ du néon (règle de l'octet) et porte la charge $+2e$. La colonne $2$ donne directement la charge $+2$.
+        en: |-
+          Correct: by losing its two $3s^2$ valence electrons, magnesium acquires the $1s^2\,2s^2\,2p^6$ configuration of neon (octet rule) and carries the charge $+2e$. Column $2$ directly gives the charge $+2$.
+    - id: minus_two
+      text: { fr: "Mg²⁻", en: "Mg²⁻" }
+      feedback:
+        fr: |-
+          Gagner deux électrons donnerait $3s^2\,3p^2$, soit $4$ électrons sur la couche externe : ce n'est ni un duet ni un octet. Les atomes des premières colonnes perdent des électrons, ils n'en gagnent pas.
+        en: |-
+          Gaining two electrons would give $3s^2\,3p^2$, that is $4$ electrons in the outer shell: neither a duet nor an octet. Atoms of the first columns lose electrons, they do not gain any.
+    - id: minus_six
+      text: { fr: "Mg⁶⁻", en: "Mg⁶⁻" }
+      feedback:
+        fr: |-
+          Gagner six électrons donnerait bien l'octet $3s^2\,3p^6$ de l'argon, mais un atome ne fixe jamais autant d'électrons : la règle de l'octet retient le gaz noble le plus proche, ici le néon, atteint en perdant seulement deux électrons.
+        en: |-
+          Gaining six electrons would indeed give the $3s^2\,3p^6$ octet of argon, but an atom never binds that many electrons: the octet rule picks the nearest noble gas, here neon, reached by losing only two electrons.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Un atome forme l'ion qui lui donne la configuration électronique du gaz noble le plus proche, avec le moins d'électrons échangés possible.
+      en: |-
+        An atom forms the ion that gives it the electron configuration of the nearest noble gas, with as few electrons exchanged as possible.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Le magnésium a $2$ électrons de valence ; le néon a $10$ électrons. Faut-il en perdre ou en gagner, et combien ?
+      en: |-
+        Magnesium has $2$ valence electrons; neon has $10$ electrons. Should it lose or gain some, and how many?
+solution:
+  fr: |-
+    Le magnésium possède $2$ électrons de valence ($3s^2$). Pour acquérir la configuration du gaz noble le plus proche, le néon ($1s^2\,2s^2\,2p^6$), le plus économique est de **perdre ces deux électrons** : l'ion formé a $10$ électrons pour $12$ protons, sa charge est $+2e$, il s'écrit $\mathrm{Mg^{2+}}$.
+
+    C'est la règle générale des colonnes $1$ et $2$ : les métaux alcalins donnent des ions $+1$ ($\mathrm{Na^+}$, $\mathrm{K^+}$) et les alcalino-terreux des ions $+2$ ($\mathrm{Mg^{2+}}$, $\mathrm{Ca^{2+}}$). À l'inverse, les halogènes (colonne $17$) gagnent un électron et donnent des ions $-1$ comme $\mathrm{Cl^-}$.
+  en: |-
+    Magnesium has $2$ valence electrons ($3s^2$). To acquire the configuration of the nearest noble gas, neon ($1s^2\,2s^2\,2p^6$), the cheapest route is to **lose these two electrons**: the ion formed has $10$ electrons for $12$ protons, its charge is $+2e$, it is written $\mathrm{Mg^{2+}}$.
+
+    This is the general rule of columns $1$ and $2$: the alkali metals give $+1$ ions ($\mathrm{Na^+}$, $\mathrm{K^+}$) and the alkaline-earth metals $+2$ ions ($\mathrm{Mg^{2+}}$, $\mathrm{Ca^{2+}}$). Conversely, the halogens (column $17$) gain one electron and give $-1$ ions such as $\mathrm{Cl^-}$.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

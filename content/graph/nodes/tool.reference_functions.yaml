@@ -1,0 +1,55 @@
+id: tool.reference_functions
+type: mathematical_tool
+world: world.mathematics
+region: region.math.functions_analysis
+importance: 3
+backpack: true
+tags: [lycee]
+title: { fr: "Fonctions de référence", en: "Reference functions" }
+shortPurpose:
+  fr: "Connaître les quelques fonctions dont tout le reste se construit, avec leur courbe, leurs variations et leur signe, pour comparer, encadrer et modéliser."
+  en: "Know the few functions from which everything else is built, with their curve, variations and sign, in order to compare, bound and model."
+overview:
+  fr: >-
+    Cinq fonctions forment le répertoire de la Seconde : les fonctions affines, dont la courbe est une droite, la fonction carré et sa parabole, la fonction inverse et son hyperbole, la racine carrée et le cube. Connaître leur courbe, leurs variations et leur parité permet de comparer des nombres sans calculer, et de reconnaître une loi physique dans la forme d'une courbe : une proportionnalité, une loi en t carré.
+  en: >-
+    Five functions form the repertoire of Grade 10: the linear functions, whose curve is a straight line, the square function and its parabola, the reciprocal function and its hyperbola, the square root and the cube. Knowing their curve, variations and parity allows one to compare numbers without computing, and to recognise a physical law in the shape of a curve: a proportionality, a law in t squared.
+aliases:
+  fr: ["fonction affine", "fonction linéaire", "fonction carré", "fonction inverse", "fonction racine carrée", "fonction cube"]
+  en: ["linear function", "proportional function", "square function", "reciprocal function", "square root function", "cube function"]
+description:
+  fr: |
+    Les **fonctions de référence** de Seconde sont les fonctions affines $x \mapsto mx + p$, la fonction carré $x \mapsto x^2$, la fonction inverse $x \mapsto \dfrac{1}{x}$, la fonction racine carrée $x \mapsto \sqrt{x}$ et la fonction cube $x \mapsto x^3$. Chacune a son ensemble de définition : $\mathbb{R}$ pour les fonctions affines, le carré et le cube, $\mathbb{R}$ privé de $0$ pour l'inverse, $[0\,;\,+\infty[$ pour la racine carrée. Il faut connaître leur courbe, leurs variations et leur parité comme on connaît des visages : la parabole du carré, l'hyperbole de l'inverse, la demi-parabole couchée de la racine carrée.
+
+    Une **fonction affine** $f(x) = mx + p$ a pour courbe une droite de coefficient directeur $m$ et d'ordonnée à l'origine $p$ ; elle est croissante si $m > 0$, décroissante si $m < 0$, constante si $m = 0$, et $f(x)$ s'annule en $-\dfrac{p}{m}$, où elle change de signe. Le coefficient $m$ est le taux d'accroissement $\dfrac{f(v) - f(u)}{v - u}$, le même entre deux points quelconques ; quand $p = 0$, la fonction est **linéaire** et modélise une proportionnalité. La fonction carré est paire, décroissante sur $]-\infty\,;\,0]$ et croissante sur $[0\,;\,+\infty[$, avec le minimum $0$ ; la fonction cube est impaire et croissante sur $\mathbb{R}$ ; la fonction inverse est impaire et décroissante sur chacun des intervalles $]-\infty\,;\,0[$ et $]0\,;\,+\infty[$, mais pas sur leur réunion ; la fonction racine carrée est croissante sur $[0\,;\,+\infty[$.
+
+    Ces fonctions servent à comparer et à encadrer. Sur $[0\,;\,1]$, on a $x^2 \leq x \leq \sqrt{x}$, avec égalité seulement aux bornes, et l'ordre s'inverse pour $x \geq 1$ : élever au carré un nombre plus petit que $1$ le diminue. Leurs variations permettent de comparer des images sans calcul : comme la fonction carré est croissante sur $[0\,;\,+\infty[$, $0 \leq u \leq v$ entraîne $u^2 \leq v^2$, mais la même conclusion est fausse pour des nombres négatifs, où l'ordre se renverse. En physique, la position d'un mobile en mouvement uniforme est une fonction affine du temps, celle d'un mouvement uniformément accéléré une fonction carré, et la loi d'Ohm $U = RI$ est une fonction linéaire : reconnaître la forme d'une courbe, c'est déjà reconnaître une loi.
+  en: |
+    The **reference functions** of Grade 10 are the linear functions $x \mapsto mx + p$, the square function $x \mapsto x^2$, the reciprocal function $x \mapsto \dfrac{1}{x}$, the square root function $x \mapsto \sqrt{x}$ and the cube function $x \mapsto x^3$. Each has its domain: $\mathbb{R}$ for the linear functions, the square and the cube, $\mathbb{R}$ without $0$ for the reciprocal, $[0\,;\,+\infty[$ for the square root. Their curve, variations and parity must be known the way faces are known: the parabola of the square, the hyperbola of the reciprocal, the half-parabola lying on its side of the square root.
+
+    A **linear function** $f(x) = mx + p$ has as its curve a straight line of slope $m$ and intercept $p$; it is increasing if $m > 0$, decreasing if $m < 0$, constant if $m = 0$, and $f(x)$ vanishes at $-\dfrac{p}{m}$, where it changes sign. The coefficient $m$ is the rate of increase $\dfrac{f(v) - f(u)}{v - u}$, the same between any two points; when $p = 0$, the function is **proportional** (linear in the strict sense) and models a proportionality. The square function is even, decreasing on $]-\infty\,;\,0]$ and increasing on $[0\,;\,+\infty[$, with the minimum $0$; the cube function is odd and increasing on $\mathbb{R}$; the reciprocal function is odd and decreasing on each of the intervals $]-\infty\,;\,0[$ and $]0\,;\,+\infty[$, but not on their union; the square root function is increasing on $[0\,;\,+\infty[$.
+
+    These functions serve to compare and to bound. On $[0\,;\,1]$, we have $x^2 \leq x \leq \sqrt{x}$, with equality only at the bounds, and the order reverses for $x \geq 1$: squaring a number smaller than $1$ makes it smaller. Their variations allow images to be compared without computation: since the square function is increasing on $[0\,;\,+\infty[$, $0 \leq u \leq v$ implies $u^2 \leq v^2$, but the same conclusion is false for negative numbers, where the order reverses. In physics, the position of a body in uniform motion is a linear function of time, that of a uniformly accelerated motion a square function, and Ohm's law $U = RI$ is a proportional function: recognising the shape of a curve is already recognising a law.
+tool:
+  problemSolved:
+    fr: "Reconnaître et utiliser les quelques fonctions dont tout le reste se construit : leur courbe, leurs variations et leur signe permettent de comparer des nombres, d'encadrer et de modéliser une dépendance simple sans aucun calcul lourd."
+    en: "Recognise and use the few functions from which everything else is built: their curve, variations and sign allow one to compare numbers, to bound and to model a simple dependence without any heavy computation."
+  construction:
+    fr: "Chaque fonction est définie par sa formule ($mx + p$, $x^2$, $1/x$, $\\sqrt{x}$, $x^3$) sur son ensemble de définition ; ses variations se démontrent à partir de la définition, par conservation ou renversement de l'ordre, et sa courbe se mémorise."
+    en: "Each function is defined by its formula ($mx + p$, $x^2$, $1/x$, $\\sqrt{x}$, $x^3$) on its domain; its variations are proved from the definition, by preservation or reversal of order, and its curve is memorised."
+  icon: curves
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "donner l'ensemble de définition, les variations, la parité et la courbe de chaque fonction de référence"
+        - "étudier le sens de variation et le signe d'une fonction affine à partir de son coefficient directeur"
+        - "comparer x², x et √x sur [0 ; 1] et sur [1 ; +∞[, et comparer des images à l'aide des variations"
+        - "reconnaître une fonction de référence dans une situation concrète (proportionnalité, loi en t²)"
+      en:
+        - "give the domain, variations, parity and curve of each reference function"
+        - "study the direction of variation and the sign of a linear function from its slope"
+        - "compare x², x and √x on [0 ; 1] and on [1 ; +∞[, and compare images using the variations"
+        - "recognise a reference function in a concrete situation (proportionality, a law in t²)"

@@ -669,6 +669,12 @@ for (const { file, data } of lessonFiles) {
     if (toolIds.has(tool.id)) error(`${where}: duplicate tool id`, file, data.id);
     toolIds.add(tool.id);
     const parameters = 'parameters' in tool ? tool.parameters.map((p) => p.id) : [];
+    if (parameters.includes('e'))
+      error(
+        `${where}: a parameter cannot be named e (the constant of the exponential shadows it)`,
+        file,
+        data.id
+      );
     const items = new Set<string>();
     const scalar = (value: number | string | undefined, what: string) => {
       if (typeof value === 'string') compiles(value, parameters, `${where}: ${what}`);
@@ -699,6 +705,21 @@ for (const { file, data } of lessonFiles) {
             if (!tool.vectors.some((v) => v.id === id))
               error(`${where}: sum ${sum.id} uses unknown vector ${id}`, file, data.id);
         }
+        for (const point of tool.points) {
+          if (items.has(point.id)) error(`${where}: duplicate item ${point.id}`, file, data.id);
+          items.add(point.id);
+          scalar(point.x, `point ${point.id}`);
+          scalar(point.y, `point ${point.id}`);
+        }
+        for (const segment of tool.segments) {
+          items.add(segment.id);
+          for (const id of [segment.from, segment.to])
+            if (!tool.points.some((p) => p.id === id))
+              error(`${where}: segment ${segment.id} joins unknown point ${id}`, file, data.id);
+        }
+        for (const id of tool.determinant ?? [])
+          if (!tool.vectors.some((v) => v.id === id))
+            error(`${where}: determinant of unknown vector ${id}`, file, data.id);
         break;
       case 'slope_field':
         compiles(tool.equation, ['x', 'y', ...parameters], `${where}: equation`);
@@ -731,6 +752,81 @@ for (const { file, data } of lessonFiles) {
         }
         if (!tool.quantities.some((q) => !q.base))
           warn(`${where}: no derived quantity to reconstruct`, file, data.id);
+        break;
+      case 'arithmetic':
+        if (tool.number > tool.max)
+          warn(
+            `${where}: number ${tool.number} lies beyond the sieve (${tool.max})`,
+            file,
+            data.id
+          );
+        break;
+      case 'data':
+        if (tool.counts && tool.counts.length !== tool.values.length)
+          error(`${where}: counts and values differ in length`, file, data.id);
+        break;
+      case 'random': {
+        if (tool.experiment === 'urn' && tool.urn.length === 0)
+          error(`${where}: an urn needs at least one kind of ball`, file, data.id);
+        const outcomes = new Set(
+          tool.experiment === 'coin'
+            ? ['heads', 'tails']
+            : tool.experiment === 'urn'
+              ? tool.urn.map((b) => b.id)
+              : Array.from({ length: tool.sides }, (_, i) => String(i + 1))
+        );
+        for (const o of tool.event?.outcomes ?? [])
+          if (!outcomes.has(o))
+            error(
+              `${where}: event outcome ${o} is not an outcome of the experiment`,
+              file,
+              data.id
+            );
+        break;
+      }
+      case 'sequence':
+        compiles(
+          tool.expr,
+          tool.mode === 'explicit' ? ['n', ...parameters] : ['u', 'n', ...parameters],
+          `${where}: expr`
+        );
+        scalar(tool.first, 'first term');
+        break;
+      case 'wave':
+        scalar(tool.period, 'period');
+        scalar(tool.wavelength, 'wavelength');
+        scalar(tool.speed, 'speed');
+        if (tool.wavelength === undefined && tool.speed === undefined)
+          error(`${where}: give a wavelength or a speed`, file, data.id);
+        if (tool.point > tool.length)
+          warn(`${where}: the observation point lies beyond the string`, file, data.id);
+        break;
+      case 'optics':
+        scalar(tool.n1, 'n1');
+        scalar(tool.n2, 'n2');
+        scalar(tool.angle, 'angle');
+        scalar(tool.focal, 'focal length');
+        scalar(tool.object.distance, 'object distance');
+        scalar(tool.object.height, 'object height');
+        break;
+      case 'periodic_table':
+        if (tool.selected > tool.max)
+          warn(
+            `${where}: element ${tool.selected} lies beyond the table (${tool.max})`,
+            file,
+            data.id
+          );
+        if (tool.nucleus.z > tool.nucleus.a)
+          error(`${where}: a nucleus has at least as many nucleons as protons`, file, data.id);
+        break;
+      case 'reaction':
+        for (const species of [...tool.reactants, ...tool.products]) {
+          if (items.has(species.id))
+            error(`${where}: duplicate species ${species.id}`, file, data.id);
+          items.add(species.id);
+          scalar(species.initial, `species ${species.id}`);
+        }
+        scalar(tool.extent, 'extent');
         break;
       case 'timeline':
         for (const ev of tool.events) {
@@ -765,9 +861,19 @@ for (const { file, data } of lessonFiles) {
         action.tangent?.x,
         action.interval?.from,
         action.interval?.to,
+        action.line?.a,
+        action.line?.b,
+        action.line?.c,
       ];
       for (const s of scalars) if (typeof s === 'string') compiles(s, parameters, where);
-    } else if (action.plot || action.point || action.secant || action.tangent || action.interval) {
+    } else if (
+      action.plot ||
+      action.point ||
+      action.secant ||
+      action.tangent ||
+      action.interval ||
+      action.line
+    ) {
       error(
         `${where}: drawing actions need a plotter (tool ${tool.id} is a ${tool.kind})`,
         file,

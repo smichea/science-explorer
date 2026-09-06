@@ -1,0 +1,45 @@
+# Leçon réfraction — angle de réfraction de l'air vers le verre pour une incidence de 30° (réponse numérique)
+id: exercise.refraction.angle
+type: numeric
+nodeId: law.snell_descartes
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un rayon lumineux passe de l'air ($n_1 = 1{,}00$) dans un verre d'indice $n_2 = 1{,}50$, avec un angle d'incidence $i_1 = 30^\circ$ (mesuré par rapport à la normale).
+
+    Calculez l'angle de réfraction $i_2$, en degrés, à $0{,}1^\circ$ près.
+  en: |-
+    A light ray passes from air ($n_1 = 1.00$) into a glass of index $n_2 = 1.50$, with an angle of incidence $i_1 = 30^\circ$ (measured from the normal).
+
+    Compute the angle of refraction $i_2$, in degrees, to $0.1^\circ$.
+numeric:
+  value: 19.5
+  unit: "°"
+  tolerance: { kind: absolute, value: 0.5 }
+  inputLabel: { fr: "i₂", en: "i₂" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Loi de Snell-Descartes : $n_1 \sin i_1 = n_2 \sin i_2$. Isolez $\sin i_2$, puis utilisez la touche $\sin^{-1}$ (ou arcsin) de la calculatrice, en mode degrés.
+      en: |-
+        Snell's law: $n_1 \sin i_1 = n_2 \sin i_2$. Isolate $\sin i_2$, then use the $\sin^{-1}$ (or arcsin) key of the calculator, in degree mode.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\sin i_2 = \dfrac{1{,}00 \times \sin 30^\circ}{1{,}50} = \dfrac{0{,}500}{1{,}50}$.
+      en: |-
+        $\sin i_2 = \dfrac{1.00 \times \sin 30^\circ}{1.50} = \dfrac{0.500}{1.50}$.
+solution:
+  fr: |-
+    D'après la loi de Snell-Descartes, $n_1 \sin i_1 = n_2 \sin i_2$, donc
+    $$\sin i_2 = \frac{n_1 \sin i_1}{n_2} = \frac{1{,}00 \times 0{,}500}{1{,}50} = 0{,}333, \qquad i_2 = \sin^{-1}(0{,}333) \approx 19{,}5^\circ.$$
+    L'angle de réfraction est plus petit que l'angle d'incidence : en entrant dans le verre, milieu plus réfringent, le rayon se rapproche de la normale. Vérification rapide : $i_2$ doit être compris entre $0$ et $i_1$, ce qui est le cas.
+  en: |-
+    By Snell's law, $n_1 \sin i_1 = n_2 \sin i_2$, so
+    $$\sin i_2 = \frac{n_1 \sin i_1}{n_2} = \frac{1.00 \times 0.500}{1.50} = 0.333, \qquad i_2 = \sin^{-1}(0.333) \approx 19.5^\circ.$$
+    The angle of refraction is smaller than the angle of incidence: entering the glass, a more refractive medium, the ray moves closer to the normal. Quick check: $i_2$ must lie between $0$ and $i_1$, which is the case.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 1, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

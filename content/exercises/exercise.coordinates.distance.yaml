@@ -1,0 +1,44 @@
+# Repérage — la distance AB dans un repère orthonormé (réponse numérique)
+id: exercise.coordinates.distance
+type: numeric
+nodeId: concept.coordinates
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Dans un repère orthonormé, on donne $A(-2\,;\,1)$ et $B(4\,;\,9)$.
+
+    Calculez la distance $AB$.
+  en: |-
+    In an orthonormal frame, we are given $A(-2\,;\,1)$ and $B(4\,;\,9)$.
+
+    Compute the distance $AB$.
+numeric:
+  value: 10
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "AB", en: "AB" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Dans un repère orthonormé, $AB = \sqrt{(x_B - x_A)^2 + (y_B - y_A)^2}$ : c'est le théorème de Pythagore dans le triangle rectangle $AHB$ avec $H(x_B\,;\,y_A)$.
+      en: |-
+        In an orthonormal frame, $AB = \sqrt{(x_B - x_A)^2 + (y_B - y_A)^2}$: it is Pythagoras' theorem in the right triangle $AHB$ with $H(x_B\,;\,y_A)$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $x_B - x_A = 4 - (-2) = 6$ et $y_B - y_A = 9 - 1 = 8$.
+      en: |-
+        $x_B - x_A = 4 - (-2) = 6$ and $y_B - y_A = 9 - 1 = 8$.
+solution:
+  fr: |-
+    Le repère étant orthonormé, on applique la formule de la distance, c'est-à-dire le théorème de Pythagore dans le triangle $AHB$ rectangle en $H(4\,;\,1)$ :
+    $$AB = \sqrt{(x_B - x_A)^2 + (y_B - y_A)^2} = \sqrt{(4 - (-2))^2 + (9 - 1)^2} = \sqrt{6^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10.$$
+    Les différences de coordonnées peuvent être prises dans l'autre sens, $(-6)^2 = 36$ : le carré efface le signe. Attention, la formule n'est valable que si les deux axes portent la même unité.
+  en: |-
+    The frame being orthonormal, we apply the distance formula, that is Pythagoras' theorem in the triangle $AHB$ right-angled at $H(4\,;\,1)$:
+    $$AB = \sqrt{(x_B - x_A)^2 + (y_B - y_A)^2} = \sqrt{(4 - (-2))^2 + (9 - 1)^2} = \sqrt{6^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10.$$
+    The coordinate differences may be taken the other way round, $(-6)^2 = 36$: the square erases the sign. Beware, the formula is only valid if both axes carry the same unit.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

@@ -146,7 +146,7 @@ function tokenize(src: string): Token[] {
       let j = i;
       while (j < s.length && /[a-zA-Z]/.test(s[j])) j++;
       const word = s.slice(i, j);
-      const known = ['exp', 'ln', 'log', 'sqrt', 'sin', 'cos', 'tan', 'pi'];
+      const known = ['exp', 'ln', 'log', 'sqrt', 'sin', 'cos', 'tan', 'abs', 'floor', 'pi'];
       if (known.includes(word)) tokens.push({ kind: 'id', name: word });
       else for (const ch of word) tokens.push({ kind: 'id', name: ch });
       i = j;
@@ -174,6 +174,8 @@ const FUNCTIONS: Record<string, (x: number) => number> = {
   sin: Math.sin,
   cos: Math.cos,
   tan: Math.tan,
+  abs: Math.abs,
+  floor: Math.floor,
 };
 
 function parse(tokens: Token[], variables: string[]): Expr {

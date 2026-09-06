@@ -1,0 +1,73 @@
+# Logique — trouver le contre-exemple qui réfute « pour tout réel x, x² ≥ x » (choix unique)
+id: exercise.logic.counterexample
+type: choice
+nodeId: concept.logic_sets
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Un élève affirme : « pour tout réel $x$, on a $x^2 \geq x$ ».
+
+    Cette propriété universelle est fausse. Parmi les quatre nombres suivants, lequel est un **contre-exemple** ?
+  en: |-
+    A pupil claims: "for every real $x$, we have $x^2 \geq x$".
+
+    This universal property is false. Among the following four numbers, which one is a **counter-example**?
+choice:
+  multiple: false
+  requireReasoning: false
+  choices:
+    - id: two
+      text: { fr: "$x = 2$", en: "$x = 2$" }
+      feedback:
+        fr: |-
+          $2^2 = 4 \geq 2$ : la propriété est vraie pour $2$. Un exemple qui la vérifie ne la réfute pas, et ne la démontre pas non plus.
+        en: |-
+          $2^2 = 4 \geq 2$: the property holds for $2$. An example that satisfies it neither refutes nor proves it.
+    - id: minus_one
+      text: { fr: "$x = -1$", en: "$x = -1$" }
+      feedback:
+        fr: |-
+          $(-1)^2 = 1 \geq -1$ : la propriété est vraie pour $-1$, comme pour tout nombre négatif, dont le carré est positif.
+        en: |-
+          $(-1)^2 = 1 \geq -1$: the property holds for $-1$, as for every negative number, whose square is positive.
+    - id: half
+      text: { fr: "$x = 0{,}5$", en: "$x = 0.5$" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : $0{,}5^2 = 0{,}25 < 0{,}5$. Ce seul nombre réfute la propriété universelle. En fait $x^2 < x$ pour tout $x$ strictement compris entre $0$ et $1$.
+        en: |-
+          Correct: $0.5^2 = 0.25 < 0.5$. This single number refutes the universal property. In fact $x^2 < x$ for every $x$ strictly between $0$ and $1$.
+    - id: zero
+      text: { fr: "$x = 0$", en: "$x = 0$" }
+      feedback:
+        fr: |-
+          $0^2 = 0 \geq 0$ : l'inégalité est large, donc elle est vraie pour $0$. Un contre-exemple doit rendre la conclusion fausse.
+        en: |-
+          $0^2 = 0 \geq 0$: the inequality is non-strict, so it holds for $0$. A counter-example must make the conclusion false.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Un contre-exemple est un réel $x$ pour lequel $x^2 \geq x$ est **faux**, c'est-à-dire $x^2 < x$. Calculez $x^2$ pour chaque proposition.
+      en: |-
+        A counter-example is a real $x$ for which $x^2 \geq x$ is **false**, that is $x^2 < x$. Compute $x^2$ for each option.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Élever au carré un nombre compris entre $0$ et $1$ le rend plus petit.
+      en: |-
+        Squaring a number between $0$ and $1$ makes it smaller.
+solution:
+  fr: |-
+    On calcule $x^2$ pour chaque valeur : $2^2 = 4 \geq 2$, $(-1)^2 = 1 \geq -1$, $0^2 = 0 \geq 0$, mais $0{,}5^2 = 0{,}25 < 0{,}5$.
+
+    Le nombre $0{,}5$ est donc un contre-exemple : il vérifie l'hypothèse (c'est un réel) et rend la conclusion fausse. Une propriété universelle est réfutée par un seul contre-exemple, alors que trois exemples favorables ne la démontraient pas. La propriété correcte est : « pour tout réel $x$ n'appartenant pas à $]0\,;\,1[$, $x^2 \geq x$ ».
+  en: |-
+    We compute $x^2$ for each value: $2^2 = 4 \geq 2$, $(-1)^2 = 1 \geq -1$, $0^2 = 0 \geq 0$, but $0.5^2 = 0.25 < 0.5$.
+
+    The number $0.5$ is therefore a counter-example: it satisfies the hypothesis (it is a real) and makes the conclusion false. A universal property is refuted by a single counter-example, whereas three favourable examples did not prove it. The correct property is: "for every real $x$ not in $]0\,;\,1[$, $x^2 \geq x$".
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

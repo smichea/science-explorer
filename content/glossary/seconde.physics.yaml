@@ -1,0 +1,105 @@
+# Seconde physics glossary (BO spécial n°1 du 22 janvier 2019): preferred learner-facing terms and aliases, 2–3 entries per destination.
+entries:
+  # --- concept.force ----------------------------------------------------------
+  - id: glossary.force
+    nodeId: concept.force
+    fr: { preferred: force, aliases: [vecteur force, action mécanique, newton] }
+    en: { preferred: force, aliases: [force vector, mechanical action, newton] }
+    notes: "A force models an action of one object on another; four characteristics (point of application, direction, sense, value)."
+  - id: glossary.weight
+    nodeId: concept.force
+    fr: { preferred: poids, aliases: [force de pesanteur, P = m g, attraction terrestre] }
+    en: { preferred: weight, aliases: [gravitational force on a body, P = m g, Earth's pull] }
+    notes: "Weight is a force (newtons); mass (kilograms) is not."
+  - id: glossary.reciprocal_actions
+    nodeId: concept.force
+    fr: { preferred: principe des actions réciproques, aliases: [troisième loi de Newton, action et réaction, forces réciproques] }
+    en: { preferred: principle of reciprocal actions, aliases: [Newton's third law, action and reaction, reciprocal forces] }
+    notes: "The two forces of a pair act on two different objects; they never compensate on one system."
+  # --- law.inertia ------------------------------------------------------------
+  - id: glossary.inertia_principle
+    nodeId: law.inertia
+    fr: { preferred: principe d'inertie, aliases: [première loi de Newton, inertie, contraposée du principe d'inertie] }
+    en: { preferred: principle of inertia, aliases: [Newton's first law, inertia, contrapositive of the principle of inertia] }
+  - id: glossary.uniform_rectilinear_motion
+    nodeId: law.inertia
+    fr: { preferred: mouvement rectiligne uniforme, aliases: [vecteur vitesse constant, vitesse constante en ligne droite] }
+    en: { preferred: uniform rectilinear motion, aliases: [constant velocity vector, uniform straight-line motion] }
+    notes: "Constant velocity vector: a uniform circular motion is not one."
+  - id: glossary.frame_of_reference
+    nodeId: law.inertia
+    fr: { preferred: référentiel, aliases: [référentiel galiléen, référentiel terrestre, relativité du mouvement] }
+    en: { preferred: frame of reference, aliases: [Galilean frame, terrestrial frame, relativity of motion] }
+  # --- law.universal_gravitation ---------------------------------------------
+  - id: glossary.universal_gravitation
+    nodeId: law.universal_gravitation
+    fr: { preferred: gravitation universelle, aliases: [interaction gravitationnelle, attraction gravitationnelle, loi de Newton de la gravitation] }
+    en: { preferred: universal gravitation, aliases: [gravitational interaction, gravitational attraction, Newton's law of gravitation] }
+  - id: glossary.mass
+    nodeId: law.universal_gravitation
+    fr: { preferred: masse, aliases: [kilogramme, masse d'un corps, masse et poids] }
+    en: { preferred: mass, aliases: [kilogram, mass of a body, mass and weight] }
+    notes: "Mass does not change from one celestial body to another; weight does."
+  - id: glossary.gravitational_field_strength
+    nodeId: law.universal_gravitation
+    fr: { preferred: intensité de la pesanteur, aliases: [g, newton par kilogramme, pesanteur] }
+    en: { preferred: gravitational field strength, aliases: [g, newton per kilogram, gravity] }
+    notes: "9.81 N/kg on Earth, 1.62 N/kg on the Moon; equals G M / R² for a spherical body."
+  # --- phenomenon.sound -------------------------------------------------------
+  - id: glossary.sound_signal
+    nodeId: phenomenon.sound
+    fr: { preferred: signal sonore, aliases: [son, onde sonore, vibration sonore] }
+    en: { preferred: sound signal, aliases: [sound, sound wave, sound vibration] }
+  - id: glossary.frequency
+    nodeId: phenomenon.sound
+    fr: { preferred: fréquence, aliases: [hertz, période, hauteur d'un son] }
+    en: { preferred: frequency, aliases: [hertz, period, pitch of a sound] }
+    notes: "f = 1/T; the frequency sets the pitch, the amplitude sets the loudness."
+  - id: glossary.sound_level
+    nodeId: phenomenon.sound
+    fr: { preferred: niveau d'intensité sonore, aliases: [décibel, dB, intensité sonore] }
+    en: { preferred: sound intensity level, aliases: [decibel, dB, sound intensity] }
+    notes: "Logarithmic scale: +10 dB means a ten times larger intensity."
+  # --- law.snell_descartes ----------------------------------------------------
+  - id: glossary.refraction
+    nodeId: law.snell_descartes
+    fr: { preferred: réfraction, aliases: [lois de Snell-Descartes, lois de Descartes, angle de réfraction] }
+    en: { preferred: refraction, aliases: [Snell's law, Snell–Descartes laws, angle of refraction] }
+  - id: glossary.refractive_index
+    nodeId: law.snell_descartes
+    fr: { preferred: indice de réfraction, aliases: [indice optique, indice du milieu, n] }
+    en: { preferred: refractive index, aliases: [optical index, index of the medium, n] }
+    notes: "n = c / v; 1.00 for air, 1.33 for water, about 1.5 for glass."
+  - id: glossary.total_reflection
+    nodeId: law.snell_descartes
+    fr: { preferred: réflexion totale, aliases: [angle limite, fibre optique, réflexion totale interne] }
+    en: { preferred: total internal reflection, aliases: [critical angle, optical fibre, total reflection] }
+  # --- model.thin_lens --------------------------------------------------------
+  - id: glossary.converging_lens
+    nodeId: model.thin_lens
+    fr: { preferred: lentille mince convergente, aliases: [lentille convergente, distance focale, foyer, centre optique] }
+    en: { preferred: thin converging lens, aliases: [converging lens, focal length, focus, optical centre] }
+  - id: glossary.real_image
+    nodeId: model.thin_lens
+    fr: { preferred: image réelle, aliases: [image sur un écran, image renversée, construction de l'image] }
+    en: { preferred: real image, aliases: [image on a screen, inverted image, image construction] }
+  - id: glossary.magnification
+    nodeId: model.thin_lens
+    fr: { preferred: grandissement, aliases: [gamma, rapport des hauteurs, image agrandie ou réduite] }
+    en: { preferred: magnification, aliases: [gamma, ratio of heights, enlarged or reduced image] }
+    notes: "γ = A'B' / AB (algebraic); negative for an inverted image."
+  # --- law.ohm ----------------------------------------------------------------
+  - id: glossary.ohm_law
+    nodeId: law.ohm
+    fr: { preferred: loi d'Ohm, aliases: [U = R I, conducteur ohmique, résistance électrique] }
+    en: { preferred: Ohm's law, aliases: [U = R I, ohmic conductor, electrical resistance] }
+    notes: "Valid for ohmic conductors only (straight characteristic through the origin)."
+  - id: glossary.characteristic
+    nodeId: law.ohm
+    fr: { preferred: caractéristique tension-courant, aliases: [caractéristique d'un dipôle, courbe U(I), tension et intensité] }
+    en: { preferred: voltage–current characteristic, aliases: [characteristic of a component, U(I) curve, voltage and current] }
+  - id: glossary.sensor
+    nodeId: law.ohm
+    fr: { preferred: capteur, aliases: [capteur résistif, thermistance, photorésistance] }
+    en: { preferred: sensor, aliases: [resistive sensor, thermistor, photoresistor] }
+    notes: "A component whose resistance depends on a physical quantity; the circuit turns it into a voltage."

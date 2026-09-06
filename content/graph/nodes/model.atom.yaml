@@ -1,0 +1,69 @@
+id: model.atom
+type: model
+world: world.chemistry
+region: region.chemistry.atomic_molecular_structure
+importance: 3
+tags: [lycee]
+title: { fr: "L'atome : noyau, isotopes et cortège électronique", en: "The atom: nucleus, isotopes and electron cloud" }
+shortPurpose:
+  fr: Décrire un atome par son noyau de protons et de neutrons et par la répartition de ses électrons, pour expliquer sa masse, sa charge et son comportement chimique.
+  en: Describe an atom by its nucleus of protons and neutrons and by the arrangement of its electrons, to explain its mass, its charge and its chemical behaviour.
+overview:
+  fr: >-
+    Un atome, c'est un noyau minuscule, fait de protons et de neutrons, entouré d'électrons qui occupent presque tout son volume. Le nombre de protons dit de quel élément il s'agit, et la répartition des électrons en couches explique comment il réagit. Ce modèle est la clé du tableau périodique et de toute la chimie qui suit.
+  en: >-
+    An atom is a tiny nucleus, made of protons and neutrons, surrounded by electrons that occupy almost all of its volume. The number of protons says which element it is, and the arrangement of the electrons in shells explains how it reacts. This model is the key to the periodic table and to all the chemistry that follows.
+aliases:
+  fr: ["structure de l'atome", "numéro atomique", "nombre de masse", "configuration électronique"]
+  en: ["structure of the atom", "atomic number", "mass number", "electron configuration"]
+description:
+  fr: |
+    Un **atome** est formé d'un **noyau** et d'un cortège d'**électrons**. Le noyau contient $Z$ **protons**, chargés positivement, et $N$ **neutrons**, neutres ; ces nucléons sont au nombre de $A = Z + N$, le nombre de masse. On note le noyau $^{A}_{Z}\mathrm{X}$ : le carbone 12 s'écrit $^{12}_{6}\mathrm{C}$, avec $6$ protons et $6$ neutrons, et le chlore 35 s'écrit $^{35}_{17}\mathrm{Cl}$, avec $17$ protons et $18$ neutrons. Le numéro atomique $Z$ définit l'**élément chimique** ; deux noyaux de même $Z$ et de $N$ différents sont des **isotopes**, comme $^{12}_{6}\mathrm{C}$ et $^{14}_{6}\mathrm{C}$.
+
+    L'atome est électriquement **neutre** : il possède autant d'électrons, de charge $-e$, que de protons, de charge $+e$, avec $e = 1{,}60 \times 10^{-19}\ \mathrm{C}$. Les électrons se répartissent sur des **couches** et des **sous-couches** remplies dans l'ordre $1s$, $2s$, $2p$, $3s$, $3p$, une sous-couche $s$ acceptant au plus $2$ électrons et une sous-couche $p$ au plus $6$. La **configuration électronique** du sodium ($Z = 11$) est ainsi $1s^2\,2s^2\,2p^6\,3s^1$, celle du chlore ($Z = 17$) est $1s^2\,2s^2\,2p^6\,3s^2\,3p^5$. Les électrons de la dernière couche occupée, les **électrons de valence**, gouvernent le comportement chimique : un pour le sodium, sept pour le chlore.
+
+    Les ordres de grandeur surprennent : le rayon d'un atome vaut environ $10^{-10}\ \mathrm{m}$ et celui de son noyau environ $10^{-15}\ \mathrm{m}$, cent mille fois moins ; l'atome est essentiellement vide. La masse d'un proton ou d'un neutron, environ $1{,}67 \times 10^{-27}\ \mathrm{kg}$, est près de deux mille fois celle d'un électron ($9{,}1 \times 10^{-31}\ \mathrm{kg}$), si bien que la masse d'un atome est concentrée dans le noyau et vaut à peu près $A$ fois la masse d'un nucléon. Ce modèle répond aux questions de Seconde, mais il ne dit pas pourquoi les sous-couches contiennent $2$ ou $6$ électrons ni ce qui tient le noyau ensemble : la physique quantique et l'interaction forte viendront plus tard. L'image de petites billes tournant autour du noyau comme des planètes est fausse : les électrons n'ont pas de trajectoire.
+  en: |
+    An **atom** is made of a **nucleus** and of a cloud of **electrons**. The nucleus contains $Z$ **protons**, positively charged, and $N$ **neutrons**, neutral; these nucleons number $A = Z + N$, the mass number. The nucleus is written $^{A}_{Z}\mathrm{X}$: carbon-12 is written $^{12}_{6}\mathrm{C}$, with $6$ protons and $6$ neutrons, and chlorine-35 is written $^{35}_{17}\mathrm{Cl}$, with $17$ protons and $18$ neutrons. The atomic number $Z$ defines the **chemical element**; two nuclei with the same $Z$ and different $N$ are **isotopes**, like $^{12}_{6}\mathrm{C}$ and $^{14}_{6}\mathrm{C}$.
+
+    The atom is electrically **neutral**: it has as many electrons, of charge $-e$, as protons, of charge $+e$, with $e = 1.60 \times 10^{-19}\ \mathrm{C}$. The electrons are distributed over **shells** and **subshells** filled in the order $1s$, $2s$, $2p$, $3s$, $3p$, an $s$ subshell holding at most $2$ electrons and a $p$ subshell at most $6$. The **electron configuration** of sodium ($Z = 11$) is thus $1s^2\,2s^2\,2p^6\,3s^1$, that of chlorine ($Z = 17$) is $1s^2\,2s^2\,2p^6\,3s^2\,3p^5$. The electrons of the last occupied shell, the **valence electrons**, govern the chemical behaviour: one for sodium, seven for chlorine.
+
+    The orders of magnitude are surprising: the radius of an atom is about $10^{-10}\ \mathrm{m}$ and that of its nucleus about $10^{-15}\ \mathrm{m}$, a hundred thousand times less; the atom is essentially empty. The mass of a proton or a neutron, about $1.67 \times 10^{-27}\ \mathrm{kg}$, is nearly two thousand times that of an electron ($9.1 \times 10^{-31}\ \mathrm{kg}$), so that the mass of an atom is concentrated in the nucleus and is roughly $A$ times the mass of a nucleon. This model answers the questions of Grade 10, but it does not say why the subshells hold $2$ or $6$ electrons nor what holds the nucleus together: quantum physics and the strong interaction come later. The picture of little balls orbiting the nucleus like planets is wrong: electrons have no trajectory.
+model:
+  assumptions:
+    fr:
+      - "L'atome est constitué d'un noyau, formé de protons et de neutrons, et d'électrons ; la quasi-totalité de sa masse est dans le noyau."
+      - "Les charges sont des multiples de la charge élémentaire $e$ : $+e$ par proton, $-e$ par électron, zéro par neutron ; l'atome est neutre."
+      - "Les électrons se répartissent sur des sous-couches $1s$, $2s$, $2p$, $3s$, $3p$ remplies dans cet ordre, de capacités $2$, $2$, $6$, $2$ et $6$ électrons."
+      - "Un élément chimique est caractérisé par son numéro atomique $Z$ ; ses isotopes ne diffèrent que par leur nombre de neutrons."
+    en:
+      - "The atom consists of a nucleus, made of protons and neutrons, and of electrons; almost all of its mass is in the nucleus."
+      - "Charges are multiples of the elementary charge $e$: $+e$ per proton, $-e$ per electron, zero per neutron; the atom is neutral."
+      - "Electrons are distributed over subshells $1s$, $2s$, $2p$, $3s$, $3p$ filled in that order, with capacities $2$, $2$, $6$, $2$ and $6$ electrons."
+      - "A chemical element is characterised by its atomic number $Z$; its isotopes differ only by their number of neutrons."
+  limits:
+    fr:
+      - "La règle de remplissage $1s$, $2s$, $2p$, $3s$, $3p$ n'est valable que jusqu'à $Z = 18$ ; au-delà, la sous-couche $4s$ se remplit avant la $3d$."
+      - "Le modèle ne décrit pas les électrons comme des ondes de probabilité : il ne prédit ni les énergies exactes des couches ni la forme des orbitales (physique quantique)."
+      - "Il ne dit rien de ce qui assure la cohésion du noyau ni de l'énergie qu'il stocke : c'est l'objet des transformations nucléaires."
+      - "La masse d'un atome n'est qu'approximativement $A$ fois la masse d'un nucléon : le défaut de masse du noyau est négligé."
+    en:
+      - "The filling rule $1s$, $2s$, $2p$, $3s$, $3p$ only holds up to $Z = 18$; beyond, the $4s$ subshell fills before the $3d$."
+      - "The model does not describe electrons as probability waves: it predicts neither the exact energies of the shells nor the shape of the orbitals (quantum physics)."
+      - "It says nothing about what holds the nucleus together nor about the energy it stores: that is the subject of nuclear transformations."
+      - "The mass of an atom is only approximately $A$ times the mass of a nucleon: the mass defect of the nucleus is neglected."
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "décrire la constitution d'un atome et de son noyau et utiliser l'écriture symbolique $^{A}_{Z}X$ (numéro atomique, nombre de masse)"
+        - "déterminer le nombre de protons, de neutrons et d'électrons d'un atome ou d'un ion, et reconnaître des isotopes"
+        - "établir la configuration électronique d'un atome de numéro atomique $Z \\le 18$ et en déduire ses électrons de valence"
+        - "comparer les ordres de grandeur des dimensions et des masses de l'atome, du noyau et de l'électron"
+      en:
+        - "describe the constitution of an atom and of its nucleus and use the symbolic notation $^{A}_{Z}X$ (atomic number, mass number)"
+        - "determine the number of protons, neutrons and electrons of an atom or an ion, and recognise isotopes"
+        - "write the electron configuration of an atom of atomic number $Z \\le 18$ and deduce its valence electrons"
+        - "compare the orders of magnitude of the sizes and masses of the atom, the nucleus and the electron"

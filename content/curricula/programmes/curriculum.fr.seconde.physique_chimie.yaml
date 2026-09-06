@@ -1,0 +1,76 @@
+id: curriculum.fr.seconde.physique_chimie
+country: FR
+stage: seconde
+subject: physics_chemistry
+title:
+  fr: "Physique-chimie — Seconde générale et technologique"
+  en: "Physics and chemistry — Grade 10 (Seconde), general and technological track"
+version: "2026-reference"
+validFrom: "2019-09-01"
+validTo: null
+sourceReferences:
+  - title: "Programme de physique-chimie de seconde générale et technologique, arrêté du 17-1-2019, BO spécial n°1 du 22 janvier 2019"
+    note: "to verify"
+items:
+  - id: matiere_macro
+    title: { fr: "Description et caractérisation de la matière à l'échelle macroscopique", en: "Describing and characterising matter at the macroscopic scale" }
+    reference: "Constitution et transformations de la matière — Description et caractérisation de la matière à l'échelle macroscopique"
+    alignedNodes:
+      - { node: concept.pure_substances_mixtures, depth: 1 }
+      - { node: concept.concentration, depth: 1 }
+  - id: matiere_micro
+    title: { fr: "Modélisation de la matière à l'échelle microscopique", en: "Modelling matter at the microscopic scale" }
+    reference: "Constitution et transformations de la matière — Modélisation de la matière à l'échelle microscopique"
+    alignedNodes:
+      - { node: model.atom, depth: 1 }
+      - { node: model.periodic_table, depth: 1 }
+      - { node: concept.amount_of_substance, depth: 1 }
+  - id: transformations_physiques
+    title: { fr: Transformations physiques, en: Physical transformations }
+    reference: "Constitution et transformations de la matière — Transformations physiques"
+    alignedNodes:
+      - { node: phenomenon.state_changes, depth: 1 }
+  - id: transformations_chimiques
+    title: { fr: Transformations chimiques, en: Chemical transformations }
+    reference: "Constitution et transformations de la matière — Transformations chimiques"
+    alignedNodes:
+      - { node: model.chemical_reaction, depth: 1 }
+  - id: transformations_nucleaires
+    title: { fr: Transformations nucléaires, en: Nuclear transformations }
+    reference: "Constitution et transformations de la matière — Transformations nucléaires"
+    alignedNodes:
+      - { node: phenomenon.nuclear_transformation, depth: 1 }
+  - id: decrire_mouvement
+    title: { fr: Décrire un mouvement, en: Describing motion }
+    reference: "Mouvement et interactions — Décrire un mouvement"
+    alignedNodes:
+      - { node: model.kinematics_point, depth: 1 }
+  - id: modeliser_action
+    title: { fr: "Modéliser une action sur un système", en: "Modelling an action on a system" }
+    reference: "Mouvement et interactions — Modéliser une action sur un système"
+    alignedNodes:
+      - { node: concept.force, depth: 1 }
+      - { node: law.universal_gravitation, depth: 1 }
+      - { node: law.inertia, depth: 1 }
+  - id: son
+    title: { fr: "Émission et perception d'un son", en: "Emission and perception of a sound" }
+    reference: "Ondes et signaux — Émission et perception d'un son"
+    alignedNodes:
+      - { node: phenomenon.sound, depth: 1 }
+  - id: vision_image
+    title: { fr: Vision et image, en: Vision and image }
+    reference: "Ondes et signaux — Vision et image"
+    alignedNodes:
+      - { node: law.snell_descartes, depth: 1 }
+      - { node: model.thin_lens, depth: 1 }
+  - id: signaux_capteurs
+    title: { fr: Signaux et capteurs, en: Signals and sensors }
+    reference: "Ondes et signaux — Signaux et capteurs"
+    alignedNodes:
+      - { node: law.ohm, depth: 1 }
+  - id: mesure_incertitudes
+    title: { fr: Mesure et incertitudes, en: Measurement and uncertainties }
+    reference: "Mesure et incertitudes (partie transversale du programme)"
+    alignedNodes:
+      - { node: method.measurement, depth: 1 }
+      - { node: concept.dimension_unit, depth: 1 }

@@ -1,0 +1,103 @@
+# Leçon narrée — équations et inéquations du premier degré : la droite y = a x + b rencontre y = 3 (paramètres a et b).
+id: lesson.tool.linear_equations
+nodeId: tool.linear_equations
+depth: 1
+tools:
+  - id: plotter
+    kind: plotter
+    variable: x
+    view: { x: [-4, 6], y: [-4, 8] }
+    parameters:
+      - { id: a, label: { fr: "coefficient a", en: "coefficient a" }, min: -3, max: 3, step: 0.1, value: 2 }
+      - { id: b, label: { fr: "constante b", en: "constant b" }, min: -4, max: 4, step: 0.1, value: -1 }
+    input: true
+steps:
+  - id: equation
+    title: { fr: "Une équation, deux droites", en: "One equation, two lines" }
+    text:
+      fr: >-
+        Résoudre a x plus b égale 3, c'est chercher le nombre x qui rend l'égalité vraie.
+        Traçons la droite d'équation y égale a x plus b, avec a égal 2 et b égal moins 1.
+        Ajoutons la droite horizontale y égale 3.
+        La solution est l'abscisse de leur point d'intersection : ici 2, car deux fois 2 moins 1 fait bien 3.
+      en: >-
+        Solving a x plus b equals 3 means looking for the number x that makes the equality true.
+        Let us plot the line with equation y equals a x plus b, with a equal to 2 and b equal to minus 1.
+        Let us add the horizontal line y equals 3.
+        The solution is the abscissa of their intersection point: here 2, since two times 2 minus 1 does make 3.
+    actions:
+      - { at: 1, plot: { id: f, expr: "a*x+b", label: { fr: "y = a x + b", en: "y = a x + b" } } }
+      - { at: 2, line: { id: h, a: 0, b: 1, c: -3, label: { fr: "y = 3", en: "y = 3" } } }
+      - { at: 3, point: { id: s, on: f, x: "(3-b)/a", guides: true, label: { fr: "solution", en: "solution" } } }
+  - id: algebra
+    title: { fr: "Isoler l'inconnue", en: "Isolating the unknown" }
+    text:
+      fr: >-
+        Par le calcul, on effectue la même opération dans les deux membres.
+        On retranche b, puis on divise par a : x égale 3 moins b, le tout divisé par a.
+        Changeons a et b : le point d'intersection se déplace, et la formule le suit.
+        Si a valait zéro, la droite serait horizontale et il n'y aurait plus de solution, ou bien une infinité.
+      en: >-
+        By computation, the same operation is performed on both sides.
+        We subtract b, then divide by a: x equals 3 minus b, all divided by a.
+        Let us change a and b: the intersection point moves, and the formula follows it.
+        If a were zero, the line would be horizontal and there would be no solution any more, or infinitely many.
+    actions:
+      - { at: 2, set: { a: 0.5, b: 1 } }
+  - id: inequality
+    title: { fr: "Une inéquation, un intervalle", en: "One inequality, one interval" }
+    text:
+      fr: >-
+        Résoudre a x plus b supérieur à 3, c'est chercher les x pour lesquels la droite passe au-dessus de y égale 3.
+        Avec a positif, ce sont les abscisses situées à droite de la solution : l'ensemble des solutions est un intervalle ouvert, marqué sur l'axe.
+        Si a était négatif, la droite descendrait et l'intervalle serait de l'autre côté : c'est le changement de sens quand on divise par un nombre négatif.
+      en: >-
+        Solving a x plus b greater than 3 means looking for the x for which the line passes above y equals 3.
+        With a positive, these are the abscissae to the right of the solution: the solution set is an open interval, marked on the axis.
+        If a were negative, the line would go down and the interval would lie on the other side: that is the change of direction when dividing by a negative number.
+    actions:
+      - { at: 0, set: { a: 2, b: -1 } }
+      - { at: 1, interval: { id: i, from: "(3-b)/a", to: 6, label: { fr: "a x + b > 3", en: "a x + b > 3" } } }
+  - id: product
+    title: { fr: "Un produit nul", en: "A zero product" }
+    text:
+      fr: >-
+        Une équation produit se résout facteur par facteur.
+        Le produit de x moins 1 par x plus 2 est nul quand x moins 1 est nul, ou quand x plus 2 est nul.
+        Les solutions sont 1 et moins 2 : ce sont les deux points où la parabole coupe l'axe des abscisses.
+      en: >-
+        A product equation is solved factor by factor.
+        The product of x minus 1 by x plus 2 is zero when x minus 1 is zero, or when x plus 2 is zero.
+        The solutions are 1 and minus 2: these are the two points where the parabola crosses the horizontal axis.
+    actions:
+      - { at: 0, clear: true, view: { x: [-4, 4], y: [-4, 8] } }
+      - { at: 1, plot: { id: p, expr: "(x-1)*(x+2)", label: { fr: "(x − 1)(x + 2)", en: "(x − 1)(x + 2)" } } }
+      - { at: 2, point: { id: r1, on: p, x: 1, guides: true, label: { fr: "x = 1", en: "x = 1" } } }
+      - { at: 2, point: { id: r2, on: p, x: -2, guides: true, label: { fr: "x = −2", en: "x = −2" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de résoudre", en: "Your turn to solve" }
+    text:
+      fr: >-
+        À vous.
+        Déplacez a et b, puis lisez la solution de a x plus b égale 3 au point d'intersection et vérifiez-la avec la formule 3 moins b sur a.
+        Rendez a négatif et observez où la droite passe au-dessus de 3 : l'intervalle des solutions de l'inéquation change de côté.
+      en: >-
+        Your turn.
+        Move a and b, then read the solution of a x plus b equals 3 at the intersection point and check it with the formula 3 minus b over a.
+        Make a negative and observe where the line passes above 3: the solution interval of the inequality switches sides.
+    actions:
+      - { at: 0, clear: true, view: { x: [-4, 6], y: [-4, 8] }, set: { a: 2, b: -1 }, plot: { id: f, expr: "a*x+b", label: { fr: "y = a x + b", en: "y = a x + b" } } }
+      - { at: 0, line: { id: h, a: 0, b: 1, c: -3, label: { fr: "y = 3", en: "y = 3" } } }
+      - { at: 0, point: { id: s, on: f, x: "(3-b)/a", guides: true, label: { fr: "solution", en: "solution" } } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : une équation du premier degré, puis une équation produit nul.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: a linear equation, then a zero-product equation.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.linear_equations.solve, exercise.linear_equations.product_null]

@@ -1,0 +1,43 @@
+# Leçon corps purs et mélanges — masse volumique d'un liquide inconnu (réponse numérique)
+id: exercise.pure_substances.density
+type: numeric
+nodeId: concept.pure_substances_mixtures
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Au laboratoire, on verse un liquide incolore dans une éprouvette graduée : le volume lu est $V = 50{,}0\ \mathrm{mL}$. Sur la balance, la masse de ce liquide vaut $m = 39{,}5\ \mathrm{g}$.
+
+    Calculez la masse volumique $\rho$ de ce liquide, en $\mathrm{g/mL}$, avec deux décimales. Données : $\rho(\text{eau}) = 1{,}00\ \mathrm{g/mL}$, $\rho(\text{éthanol}) = 0{,}79\ \mathrm{g/mL}$, $\rho(\text{cyclohexane}) = 0{,}78\ \mathrm{g/mL}$.
+  en: |-
+    In the laboratory, a colourless liquid is poured into a graduated cylinder: the volume read is $V = 50.0\ \mathrm{mL}$. On the balance, the mass of this liquid is $m = 39.5\ \mathrm{g}$.
+
+    Compute the density $\rho$ of this liquid, in $\mathrm{g/mL}$, to two decimal places. Data: $\rho(\text{water}) = 1.00\ \mathrm{g/mL}$, $\rho(\text{ethanol}) = 0.79\ \mathrm{g/mL}$, $\rho(\text{cyclohexane}) = 0.78\ \mathrm{g/mL}$.
+numeric:
+  value: 0.79
+  unit: "g/mL"
+  tolerance: { kind: absolute, value: 0.02 }
+  inputLabel: { fr: "ρ", en: "ρ" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La masse volumique est la masse d'une unité de volume : $\rho = \dfrac{m}{V}$.
+      en: |-
+        Density is the mass of one unit of volume: $\rho = \dfrac{m}{V}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Divisez $39{,}5\ \mathrm{g}$ par $50{,}0\ \mathrm{mL}$ ; le résultat est en $\mathrm{g/mL}$.
+      en: |-
+        Divide $39.5\ \mathrm{g}$ by $50.0\ \mathrm{mL}$; the result is in $\mathrm{g/mL}$.
+solution:
+  fr: |-
+    $$\rho = \frac{m}{V} = \frac{39{,}5}{50{,}0} = 0{,}79\ \mathrm{g/mL}.$$
+    Cette valeur est celle de l'éthanol, mais elle est aussi très proche de celle du cyclohexane ($0{,}78\ \mathrm{g/mL}$) : la masse volumique seule ne suffit pas à trancher, à cause de l'incertitude de la mesure. Une température d'ébullition ($78\ ^\circ\mathrm{C}$ pour l'éthanol, $81\ ^\circ\mathrm{C}$ pour le cyclohexane) ou un test de miscibilité avec l'eau (l'éthanol est miscible, le cyclohexane non) permettraient de conclure. Identifier une espèce, c'est croiser plusieurs propriétés physiques.
+  en: |-
+    $$\rho = \frac{m}{V} = \frac{39.5}{50.0} = 0.79\ \mathrm{g/mL}.$$
+    This value is that of ethanol, but it is also very close to that of cyclohexane ($0.78\ \mathrm{g/mL}$): density alone is not enough to decide, because of the uncertainty of the measurement. A boiling temperature ($78\ ^\circ\mathrm{C}$ for ethanol, $81\ ^\circ\mathrm{C}$ for cyclohexane) or a miscibility test with water (ethanol is miscible, cyclohexane is not) would settle it. Identifying a species means cross-checking several physical properties.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

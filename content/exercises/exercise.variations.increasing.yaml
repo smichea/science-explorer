@@ -1,0 +1,73 @@
+# Variations — l'intervalle sur lequel (x − 1)² − 1 est croissante (choix unique)
+id: exercise.variations.increasing
+type: choice
+nodeId: concept.variations_extremums
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Soit $f$ la fonction définie sur $\mathbb{R}$ par $f(x) = (x - 1)^2 - 1$. Sa courbe est une parabole dont le point le plus bas a pour coordonnées $(1\,;\,-1)$.
+
+    Sur quel intervalle la fonction $f$ est-elle **croissante** ?
+  en: |-
+    Let $f$ be the function defined on $\mathbb{R}$ by $f(x) = (x - 1)^2 - 1$. Its curve is a parabola whose lowest point has coordinates $(1\,;\,-1)$.
+
+    On which interval is the function $f$ **increasing**?
+choice:
+  multiple: false
+  requireReasoning: false
+  choices:
+    - id: left
+      text: { fr: "$]-\\infty\\,;\\,1]$", en: "$]-\\infty\\,;\\,1]$" }
+      feedback:
+        fr: |-
+          Sur $]-\infty\,;\,1]$ la courbe **descend** vers son point le plus bas : $f$ y est décroissante. Par exemple $f(-1) = 3$ et $f(0) = 0$ : l'ordre est renversé.
+        en: |-
+          On $]-\infty\,;\,1]$ the curve **goes down** towards its lowest point: $f$ is decreasing there. For instance $f(-1) = 3$ and $f(0) = 0$: the order is reversed.
+    - id: right
+      text: { fr: "$[1\\,;\\,+\\infty[$", en: "$[1\\,;\\,+\\infty[$" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : à partir de l'abscisse $1$ du minimum, la courbe monte. Si $1 \leq u \leq v$, alors $0 \leq u - 1 \leq v - 1$, donc $(u - 1)^2 \leq (v - 1)^2$ et $f(u) \leq f(v)$.
+        en: |-
+          Correct: from the abscissa $1$ of the minimum onwards, the curve goes up. If $1 \leq u \leq v$, then $0 \leq u - 1 \leq v - 1$, so $(u - 1)^2 \leq (v - 1)^2$ and $f(u) \leq f(v)$.
+    - id: minus_one
+      text: { fr: "$[-1\\,;\\,+\\infty[$", en: "$[-1\\,;\\,+\\infty[$" }
+      feedback:
+        fr: |-
+          $-1$ est la **valeur** du minimum (une ordonnée), pas l'abscisse où il est atteint. Les variations se lisent sur l'axe des abscisses : le changement de sens a lieu en $x = 1$.
+        en: |-
+          $-1$ is the **value** of the minimum (an ordinate), not the abscissa where it is reached. Variations are read on the horizontal axis: the change of direction happens at $x = 1$.
+    - id: everywhere
+      text: { fr: "$\\mathbb{R}$ tout entier", en: "the whole of $\\mathbb{R}$" }
+      feedback:
+        fr: |-
+          Une parabole n'est jamais croissante sur $\mathbb{R}$ entier : elle descend puis remonte. $f(0) = 0 > f(1) = -1$ montre qu'elle décroît avant $1$.
+        en: |-
+          A parabola is never increasing on the whole of $\mathbb{R}$: it goes down then up again. $f(0) = 0 > f(1) = -1$ shows that it decreases before $1$.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Une fonction est croissante là où sa courbe monte quand on va de gauche à droite. Où se trouve le point le plus bas ?
+      en: |-
+        A function is increasing where its curve goes up as one travels from left to right. Where is the lowest point?
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Le minimum est atteint en $x = 1$ : la fonction descend avant cette abscisse et monte après.
+      en: |-
+        The minimum is reached at $x = 1$: the function goes down before this abscissa and up after.
+solution:
+  fr: |-
+    $f(x) = (x - 1)^2 - 1$ est une parabole tournée vers le haut dont le sommet est le point $(1\,;\,-1)$. La fonction est décroissante sur $]-\infty\,;\,1]$ et croissante sur $[1\,;\,+\infty[$.
+
+    Preuve sur $[1\,;\,+\infty[$ : si $1 \leq u \leq v$, alors $0 \leq u - 1 \leq v - 1$ ; la fonction carré étant croissante sur $[0\,;\,+\infty[$, $(u - 1)^2 \leq (v - 1)^2$, d'où $f(u) \leq f(v)$. Le tableau de variations porte une flèche descendante de $+\infty$ à $-1$ jusqu'à $x = 1$, puis une flèche montante. Attention à ne pas confondre l'abscisse $1$ du minimum et sa valeur $-1$.
+  en: |-
+    $f(x) = (x - 1)^2 - 1$ is an upward parabola whose vertex is the point $(1\,;\,-1)$. The function is decreasing on $]-\infty\,;\,1]$ and increasing on $[1\,;\,+\infty[$.
+
+    Proof on $[1\,;\,+\infty[$: if $1 \leq u \leq v$, then $0 \leq u - 1 \leq v - 1$; the square function being increasing on $[0\,;\,+\infty[$, $(u - 1)^2 \leq (v - 1)^2$, whence $f(u) \leq f(v)$. The variation table carries a downward arrow from $+\infty$ to $-1$ until $x = 1$, then an upward arrow. Mind not to confuse the abscissa $1$ of the minimum with its value $-1$.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

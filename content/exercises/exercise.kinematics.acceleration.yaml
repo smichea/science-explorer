@@ -2,7 +2,7 @@
 id: exercise.kinematics.acceleration
 type: numeric
 nodeId: model.kinematics_point
-depth: 1
+depth: 2
 evidenceDimension: procedural_execution
 prompt:
   fr: Toujours pour $\vec{r}(t) = (2t ; 6 - t^2)$, quelle est la valeur de l'accélération ?

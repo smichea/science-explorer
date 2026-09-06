@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { Id, LocalisedText } from './common';
+import { Id, LocalisedText, StageSchema } from './common';
 
 export const GlossaryEntrySchema = z.object({
   id: Id,
@@ -14,6 +14,8 @@ export type GlossaryEntry = z.infer<typeof GlossaryEntrySchema>;
 export const RouteSchema = z.object({
   id: Id,
   kind: z.enum(['recommended', 'thematic', 'historical', 'review']),
+  /** The school year the route belongs to: a flight skips it for a learner already past that year. */
+  stage: StageSchema.optional(),
   title: LocalisedText,
   summary: LocalisedText,
   nodes: z.array(Id).min(2),

@@ -16,8 +16,8 @@ items:
     title: { fr: "Description et paramétrage du mouvement d'un point", en: "Description and parametrisation of the motion of a point" }
     reference: "Mécanique — Description et paramétrage du mouvement d'un point"
     alignedNodes:
-      - { node: model.kinematics_point, depth: 2 }
-      - { node: tool.vector, depth: 2 }
+      - { node: model.kinematics_point, depth: 3 }
+      - { node: tool.vector, depth: 3 }
   - id: dynamique
     title: { fr: Lois de Newton, en: "Newton's laws" }
     reference: "Mécanique — Lois de Newton (mouvement dans le champ de pesanteur uniforme, influence de la résistance de l'air)"

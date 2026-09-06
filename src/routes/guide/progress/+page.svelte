@@ -16,7 +16,15 @@
       .filter((s) => s.status !== 'unknown')
       .sort((a, b) => (b.lastUsedAt ?? '').localeCompare(a.lastUsedAt ?? ''))
   );
-  const recommendations = $derived(recommend(graph, learning.snapshot, pkg.routes, 6));
+  const recommendations = $derived(
+    recommend(
+      graph,
+      learning.snapshot,
+      pkg.routes,
+      6,
+      horizon ? { horizon, config: pkg.horizon } : undefined
+    )
+  );
   const sessions = $derived(
     [...learning.sessions].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
   );

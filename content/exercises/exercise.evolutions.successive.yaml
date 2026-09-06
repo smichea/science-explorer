@@ -1,0 +1,44 @@
+# Évolutions — le taux global d'une hausse de 20 % suivie d'une baisse de 20 % (réponse numérique)
+id: exercise.evolutions.successive
+type: numeric
+nodeId: concept.proportions_evolutions
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Le prix d'un article augmente de $20\,\%$, puis baisse de $20\,\%$.
+
+    Quel est le taux d'évolution global du prix ? Donnez-le en pourcentage, avec son signe (par exemple `-7` pour une baisse de $7\,\%$).
+  en: |-
+    The price of an item increases by $20\,\%$, then decreases by $20\,\%$.
+
+    What is the overall rate of change of the price? Give it as a percentage, with its sign (for instance `-7` for a decrease of $7\,\%$).
+numeric:
+  value: -4
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "taux global (%)", en: "overall rate (%)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Traduisez chaque évolution par son coefficient multiplicateur $1 + t$, puis multipliez les deux coefficients.
+      en: |-
+        Translate each change into its multiplier $1 + t$, then multiply the two multipliers.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $1{,}2 \times 0{,}8 = 0{,}96$ : quel taux d'évolution correspond à ce coefficient ?
+      en: |-
+        $1.2 \times 0.8 = 0.96$: which rate of change corresponds to this multiplier?
+solution:
+  fr: |-
+    Une hausse de $20\,\%$ multiplie par $1 + 0{,}2 = 1{,}2$ ; une baisse de $20\,\%$ multiplie par $1 - 0{,}2 = 0{,}8$. Le coefficient global est
+    $$CM = 1{,}2 \times 0{,}8 = 0{,}96 = 1 + t, \qquad \text{donc } t = -0{,}04 = -4\,\%.$$
+    Le prix a globalement baissé de $4\,\%$ : la baisse de $20\,\%$ s'applique à un prix déjà augmenté, donc elle retire plus que la hausse n'avait ajouté. Avec un prix de $100$ euros : $120$ euros après la hausse, puis $96$ euros. Additionner les pourcentages ($+20 - 20 = 0$) est l'erreur classique.
+  en: |-
+    An increase of $20\,\%$ multiplies by $1 + 0.2 = 1.2$; a decrease of $20\,\%$ multiplies by $1 - 0.2 = 0.8$. The overall multiplier is
+    $$CM = 1.2 \times 0.8 = 0.96 = 1 + t, \qquad \text{so } t = -0.04 = -4\,\%.$$
+    The price has overall decreased by $4\,\%$: the $20\,\%$ decrease applies to an already increased price, so it removes more than the increase had added. With a price of $100$ euros: $120$ euros after the increase, then $96$ euros. Adding the percentages ($+20 - 20 = 0$) is the classic mistake.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

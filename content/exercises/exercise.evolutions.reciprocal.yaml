@@ -1,0 +1,44 @@
+# Évolutions — le taux réciproque d'une hausse de 25 % (réponse numérique)
+id: exercise.evolutions.reciprocal
+type: numeric
+nodeId: concept.proportions_evolutions
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un loyer a augmenté de $25\,\%$.
+
+    Quel taux d'évolution faudrait-il lui appliquer pour revenir à sa valeur initiale ? Donnez ce taux réciproque en pourcentage, avec son signe.
+  en: |-
+    A rent has increased by $25\,\%$.
+
+    Which rate of change should be applied to bring it back to its initial value? Give this reciprocal rate as a percentage, with its sign.
+numeric:
+  value: -20
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "taux réciproque (%)", en: "reciprocal rate (%)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le coefficient multiplicateur de la hausse est $1{,}25$. Le coefficient réciproque est son inverse $\dfrac{1}{1{,}25}$.
+      en: |-
+        The multiplier of the increase is $1.25$. The reciprocal multiplier is its reciprocal $\dfrac{1}{1.25}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\dfrac{1}{1{,}25} = \dfrac{4}{5} = 0{,}8$ : quel taux correspond à un coefficient de $0{,}8$ ?
+      en: |-
+        $\dfrac{1}{1.25} = \dfrac{4}{5} = 0.8$: which rate corresponds to a multiplier of $0.8$?
+solution:
+  fr: |-
+    La hausse de $25\,\%$ multiplie le loyer par $CM = 1{,}25$. Pour revenir à la valeur initiale, il faut multiplier par l'inverse :
+    $$CM' = \frac{1}{1{,}25} = 0{,}8 = 1 + t', \qquad \text{donc } t' = -0{,}2 = -20\,\%.$$
+    Le taux réciproque d'une hausse de $25\,\%$ est une baisse de $20\,\%$, et non de $25\,\%$ : avec un loyer de $400$ euros, la hausse mène à $500$ euros, et $20\,\%$ de $500$ euros font bien les $100$ euros à retirer. Une baisse de $25\,\%$ ramènerait à $375$ euros.
+  en: |-
+    The $25\,\%$ increase multiplies the rent by $CM = 1.25$. To return to the initial value, one must multiply by the reciprocal:
+    $$CM' = \frac{1}{1.25} = 0.8 = 1 + t', \qquad \text{so } t' = -0.2 = -20\,\%.$$
+    The reciprocal rate of a $25\,\%$ increase is a $20\,\%$ decrease, not $25\,\%$: with a rent of $400$ euros, the increase leads to $500$ euros, and $20\,\%$ of $500$ euros is indeed the $100$ euros to remove. A $25\,\%$ decrease would bring it down to $375$ euros.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

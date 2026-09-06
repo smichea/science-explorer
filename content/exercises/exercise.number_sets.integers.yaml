@@ -1,0 +1,44 @@
+# Ensembles de nombres — compter les entiers d'un intervalle en lisant ses crochets (réponse numérique)
+id: exercise.number_sets.integers
+type: numeric
+nodeId: concept.number_sets
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    On considère l'intervalle $I = [-4\,;\,3[$.
+
+    Combien d'entiers relatifs appartiennent à $I$ ? Attention au sens de chaque crochet.
+  en: |-
+    Consider the interval $I = [-4\,;\,3[$.
+
+    How many integers belong to $I$? Mind the direction of each bracket.
+numeric:
+  value: 7
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "nombre d'entiers", en: "number of integers" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        $[-4\,;\,3[$ est l'ensemble des réels $x$ tels que $-4 \leq x < 3$ : la borne $-4$ est comprise, la borne $3$ ne l'est pas.
+      en: |-
+        $[-4\,;\,3[$ is the set of reals $x$ such that $-4 \leq x < 3$: the bound $-4$ is included, the bound $3$ is not.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Écrivez la liste des entiers de $-4$ à $2$ et comptez-les.
+      en: |-
+        List the integers from $-4$ to $2$ and count them.
+solution:
+  fr: |-
+    L'intervalle $[-4\,;\,3[$ contient les réels $x$ tels que $-4 \leq x < 3$. Les entiers qui conviennent sont
+    $$-4,\ -3,\ -2,\ -1,\ 0,\ 1,\ 2,$$
+    soit $7$ entiers : $-4$ est compris (crochet fermé), $3$ est exclu (crochet ouvert). Avec $[-4\,;\,3]$, la réponse aurait été $8$ : le sens d'un crochet change l'ensemble.
+  en: |-
+    The interval $[-4\,;\,3[$ contains the reals $x$ such that $-4 \leq x < 3$. The suitable integers are
+    $$-4,\ -3,\ -2,\ -1,\ 0,\ 1,\ 2,$$
+    that is $7$ integers: $-4$ is included (closed bracket), $3$ is excluded (open bracket). With $[-4\,;\,3]$, the answer would have been $8$: the direction of a bracket changes the set.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

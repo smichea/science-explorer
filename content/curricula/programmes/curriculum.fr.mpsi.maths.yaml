@@ -27,4 +27,4 @@ items:
     reference: "Techniques fondamentales de calcul en analyse — Fonctions usuelles"
     alignedNodes:
       - { node: tool.exponential, depth: 2 }
-      - { node: concept.function, depth: 2 }
+      - { node: concept.function, depth: 3 }

@@ -1,0 +1,43 @@
+# Leçon lentille — hauteur de l'image à partir du grandissement lu sur la construction (réponse numérique)
+id: exercise.lens.image_height
+type: numeric
+nodeId: model.thin_lens
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une lentille mince convergente donne d'un objet $AB$ de hauteur $\overline{AB} = 4{,}0\ \mathrm{cm}$ une image réelle $A'B'$. Sur la construction, on lit le grandissement $\gamma = -0{,}60$.
+
+    Calculez la valeur algébrique $\overline{A'B'}$ de la hauteur de l'image, en centimètres (négative si l'image est renversée).
+  en: |-
+    A thin converging lens gives, of an object $AB$ of height $\overline{AB} = 4.0\ \mathrm{cm}$, a real image $A'B'$. On the construction, one reads the magnification $\gamma = -0.60$.
+
+    Compute the algebraic value $\overline{A'B'}$ of the height of the image, in centimetres (negative if the image is inverted).
+numeric:
+  value: -2.4
+  unit: "cm"
+  tolerance: { kind: absolute, value: 0.05 }
+  inputLabel: { fr: "A'B'", en: "A'B'" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le grandissement est le rapport des hauteurs : $\gamma = \dfrac{\overline{A'B'}}{\overline{AB}}$. Isolez $\overline{A'B'}$.
+      en: |-
+        The magnification is the ratio of the heights: $\gamma = \dfrac{\overline{A'B'}}{\overline{AB}}$. Isolate $\overline{A'B'}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\overline{A'B'} = \gamma \times \overline{AB} = -0{,}60 \times 4{,}0$.
+      en: |-
+        $\overline{A'B'} = \gamma \times \overline{AB} = -0.60 \times 4.0$.
+solution:
+  fr: |-
+    $$\overline{A'B'} = \gamma \times \overline{AB} = -0{,}60 \times 4{,}0 = -2{,}4\ \mathrm{cm}.$$
+    L'image mesure $2{,}4\ \mathrm{cm}$ : elle est plus petite que l'objet ($|\gamma| < 1$) et le signe négatif indique qu'elle est **renversée**, comme toute image réelle donnée par une lentille convergente. C'est ce que l'on observe sur un écran : l'image d'une bougie apparaît la flamme en bas.
+  en: |-
+    $$\overline{A'B'} = \gamma \times \overline{AB} = -0.60 \times 4.0 = -2.4\ \mathrm{cm}.$$
+    The image is $2.4\ \mathrm{cm}$ tall: it is smaller than the object ($|\gamma| < 1$) and the negative sign shows that it is **inverted**, like every real image given by a converging lens. This is what one observes on a screen: the image of a candle appears with the flame at the bottom.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

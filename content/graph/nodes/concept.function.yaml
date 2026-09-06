@@ -12,7 +12,7 @@ overview:
   fr: >-
     Une fonction associe à chaque valeur d'une variable une valeur et une seule. C'est le langage de base pour dire comment une grandeur dépend d'une autre : la position dépend du temps, la tension dépend de la charge. Tout le programme d'analyse, de la Terminale à la prépa, s'exprime avec elle.
   en: >-
-    A function assigns exactly one value to each value of a variable. It is the basic language for saying how one quantity depends on another: position depends on time, voltage depends on charge. The whole analysis programme, from Terminale to the preparatory classes, is written in this language.
+    A function assigns exactly one value to each value of a variable. It is the basic language for saying how one quantity depends on another: position depends on time, voltage depends on charge. The whole analysis programme, from Grade 12 to the preparatory classes, is written in this language.
 aliases:
   fr: ["fonction numérique", "application", "fonction d'une variable réelle", "loi de dépendance"]
   en: ["numerical function", "map", "function of one real variable", "dependence law"]
@@ -28,9 +28,23 @@ description:
 
     The problem the notion of function solves is that of **dependence**: saying precisely how one quantity depends on another, so that we can compute, compare and predict. A function can be given by a formula ($x \mapsto 3x^2 + 1$), by a table of measurements, by a curve, or by an equation it satisfies; these four faces are one and the same idea, and moving from one to another is the heart of modelling work.
 
-    In Terminale, work centres on reference functions (powers, exponential, logarithm, sine, cosine) and their combinations, through limits, continuity and variations. In MPSI, the function becomes an object whose properties are stated rigorously (regularity, inverse bijection, asymptotic behaviour) and which is also handled with complex values.
+    In Grade 12, work centres on reference functions (powers, exponential, logarithm, sine, cosine) and their combinations, through limits, continuity and variations. In MPSI, the function becomes an object whose properties are stated rigorously (regularity, inverse bijection, asymptotic behaviour) and which is also handled with complex values.
 depths:
   - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "définir une fonction : ensemble de définition, image, antécédent, notation f(x)"
+        - "calculer une image, déterminer un ou plusieurs antécédents à partir d'une formule ou d'un tableau"
+        - "résoudre graphiquement une équation f(x) = k ou une inéquation f(x) < k"
+        - "passer d'une expression à une courbe et d'une courbe à un tableau de variations"
+      en:
+        - "define a function: domain, image, preimage, the f(x) notation"
+        - "compute an image and find one or several preimages from a formula or a table"
+        - "solve an equation f(x) = k or an inequality f(x) < k graphically"
+        - "go from an expression to a curve and from a curve to a variation table"
+  - depth: 2
     stage: terminale
     role: core
     outcomes:
@@ -44,7 +58,7 @@ depths:
         - "determine a domain and compute images and preimages"
         - "compose two functions and read an expression of the form $v \\circ u$"
         - "study the variations and limits of a reference function and of its combinations"
-  - depth: 2
+  - depth: 3
     stage: mpsi
     role: core
     outcomes:

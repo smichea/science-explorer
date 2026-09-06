@@ -1,0 +1,44 @@
+# Arithmétique — compter les diviseurs de 72 à partir de sa décomposition (réponse numérique)
+id: exercise.arithmetic.divisors
+type: numeric
+nodeId: tool.arithmetic
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Combien l'entier $72$ possède-t-il de diviseurs positifs ?
+
+    Vous pouvez les lister, ou utiliser la décomposition en facteurs premiers de $72$.
+  en: |-
+    How many positive divisors does the integer $72$ have?
+
+    You may list them, or use the prime factorisation of $72$.
+numeric:
+  value: 12
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "nombre de diviseurs", en: "number of divisors" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Les diviseurs vont par paires dont le produit vaut $72$ : $1 \times 72$, $2 \times 36$, $3 \times 24$, … Cherchez toutes les paires.
+      en: |-
+        Divisors come in pairs whose product is $72$: $1 \times 72$, $2 \times 36$, $3 \times 24$, … Find all the pairs.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $72 = 2^3 \times 3^2$ : un diviseur s'écrit $2^i \times 3^j$ avec $i$ entre $0$ et $3$ et $j$ entre $0$ et $2$. Combien de choix pour $i$, combien pour $j$ ?
+      en: |-
+        $72 = 2^3 \times 3^2$: a divisor reads $2^i \times 3^j$ with $i$ from $0$ to $3$ and $j$ from $0$ to $2$. How many choices for $i$, how many for $j$?
+solution:
+  fr: |-
+    Par la décomposition $72 = 2^3 \times 3^2$, tout diviseur de $72$ s'écrit $2^i \times 3^j$ avec $i \in \{0, 1, 2, 3\}$ et $j \in \{0, 1, 2\}$ : cela fait $4 \times 3 = 12$ diviseurs.
+
+    En les listant : $1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72$, soit bien $12$ diviseurs, groupés en $6$ paires de produit $72$. La décomposition évite d'en oublier un.
+  en: |-
+    From the factorisation $72 = 2^3 \times 3^2$, every divisor of $72$ reads $2^i \times 3^j$ with $i \in \{0, 1, 2, 3\}$ and $j \in \{0, 1, 2\}$: that makes $4 \times 3 = 12$ divisors.
+
+    Listing them: $1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72$, indeed $12$ divisors, grouped into $6$ pairs of product $72$. The factorisation prevents forgetting one.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

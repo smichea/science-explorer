@@ -1,0 +1,67 @@
+id: model.thin_lens
+type: model
+world: world.physics
+region: region.physics.optics
+importance: 2
+tags: [lycee]
+title: { fr: "Lentille mince convergente et image", en: "Thin converging lens and image" }
+shortPurpose:
+  fr: "Construire l'image réelle d'un objet à travers une lentille mince convergente et calculer son grandissement."
+  en: "Construct the real image of an object through a thin converging lens and compute its magnification."
+overview:
+  fr: >-
+    Une lentille convergente fait converger la lumière : elle forme sur un écran une image renversée d'un objet, comme dans un appareil photo ou dans notre œil. Trois rayons particuliers suffisent à construire cette image, et le grandissement dit combien elle est plus grande ou plus petite que l'objet. L'œil lui-même se modélise par une lentille et un écran, la rétine.
+  en: >-
+    A converging lens makes light converge: it forms on a screen an inverted image of an object, as in a camera or in our eye. Three particular rays are enough to construct this image, and the magnification says how much larger or smaller it is than the object. The eye itself is modelled by a lens and a screen, the retina.
+aliases:
+  fr: ["lentille convergente", "image réelle", "grandissement", "modèle de l'œil réduit"]
+  en: ["converging lens", "real image", "magnification", "reduced-eye model"]
+description:
+  fr: |
+    Une **lentille mince convergente** est un bloc de verre plus épais au centre qu'au bord, modélisé par un segment fléché sur son axe optique. Trois points la caractérisent : le **centre optique** $O$, que les rayons traversent sans être déviés ; le **foyer image** $F'$, où convergent les rayons arrivant parallèles à l'axe ; et le **foyer objet** $F$, symétrique de $F'$ par rapport à $O$, tel qu'un rayon passant par $F$ ressort parallèle à l'axe. La **distance focale** $f' = OF'$ (en mètres ou en centimètres) est la seule grandeur du modèle ; sa vergence $C = 1/f'$ s'exprime en dioptries.
+
+    Pour un objet $AB$ placé perpendiculairement à l'axe, avec $A$ sur l'axe, l'**image** $A'B'$ se construit avec trois rayons issus de $B$ : celui qui passe par $O$ n'est pas dévié ; celui qui arrive parallèle à l'axe ressort par $F'$ ; celui qui passe par $F$ ressort parallèle à l'axe. Les trois se coupent en $B'$, et $A'$ est le pied de $B'$ sur l'axe. Si l'objet est plus loin que $F$, l'image est **réelle** : on peut la recueillir sur un écran, et elle est renversée. Exemple : $f' = 5{,}0\ \mathrm{cm}$, objet de hauteur $3{,}0\ \mathrm{cm}$ placé à $12\ \mathrm{cm}$ de la lentille ; la construction donne une image à $8{,}6\ \mathrm{cm}$ derrière la lentille, de hauteur $2{,}1\ \mathrm{cm}$, renversée. Le **grandissement** $\gamma = \dfrac{\overline{A'B'}}{\overline{AB}}$ compare les hauteurs (négatif quand l'image est renversée) : ici $\gamma \approx -0{,}71$.
+
+    L'**œil** se modélise par une lentille convergente (cornée et cristallin), un diaphragme (l'iris) et un écran fixe (la rétine) : c'est le modèle de l'œil réduit. Comme la distance lentille-rétine ne change pas, c'est la distance focale du cristallin qui varie pour que l'image se forme toujours sur la rétine : c'est l'**accommodation**, du très loin (œil au repos) au très près. Le modèle a ses limites : la lentille est supposée mince et les rayons peu inclinés sur l'axe (conditions de Gauss), sinon l'image se déforme ; l'indice dépendant de la couleur, les bords des images sont irisés. Si l'objet est plus près que $F$, il n'y a plus d'image réelle : la loupe donne une image virtuelle, droite et agrandie, que l'on verra en Première.
+  en: |
+    A **thin converging lens** is a block of glass thicker at the centre than at the edge, modelled by a segment with arrowheads on its optical axis. Three points characterise it: the **optical centre** $O$, through which rays pass without being deviated; the **image focus** $F'$, where rays arriving parallel to the axis converge; and the **object focus** $F$, symmetric of $F'$ with respect to $O$, such that a ray passing through $F$ leaves parallel to the axis. The **focal length** $f' = OF'$ (in metres or centimetres) is the only quantity of the model; its power $C = 1/f'$ is expressed in dioptres.
+
+    For an object $AB$ placed perpendicular to the axis, with $A$ on the axis, the **image** $A'B'$ is constructed with three rays coming from $B$: the one through $O$ is not deviated; the one arriving parallel to the axis leaves through $F'$; the one through $F$ leaves parallel to the axis. The three meet at $B'$, and $A'$ is the foot of $B'$ on the axis. If the object is farther than $F$, the image is **real**: it can be collected on a screen, and it is inverted. Example: $f' = 5.0\ \mathrm{cm}$, object of height $3.0\ \mathrm{cm}$ placed $12\ \mathrm{cm}$ from the lens; the construction gives an image $8.6\ \mathrm{cm}$ behind the lens, of height $2.1\ \mathrm{cm}$, inverted. The **magnification** $\gamma = \dfrac{\overline{A'B'}}{\overline{AB}}$ compares the heights (negative when the image is inverted): here $\gamma \approx -0.71$.
+
+    The **eye** is modelled by a converging lens (cornea and crystalline lens), a diaphragm (the iris) and a fixed screen (the retina): this is the reduced-eye model. Since the lens–retina distance does not change, it is the focal length of the crystalline lens that varies so that the image always forms on the retina: this is **accommodation**, from very far (relaxed eye) to very near. The model has its limits: the lens is assumed thin and the rays little inclined to the axis (Gauss conditions), otherwise the image is distorted; as the index depends on the colour, the edges of images are iridescent. If the object is closer than $F$, there is no real image any more: the magnifying glass gives a virtual, upright and enlarged image, to be seen in Grade 11.
+model:
+  assumptions:
+    fr:
+      - "La lentille est mince : son épaisseur est négligeable devant les rayons de courbure de ses faces, et elle est réduite à un plan passant par $O$."
+      - "Les rayons sont paraxiaux (conditions de Gauss) : peu inclinés et proches de l'axe optique."
+      - "La lumière est monochromatique ; l'indice du verre est le même pour tous les rayons."
+      - "L'objet est plan, perpendiculaire à l'axe, et l'on ne construit qu'un point $B$ hors de l'axe."
+    en:
+      - "The lens is thin: its thickness is negligible compared with the radii of curvature of its faces, and it is reduced to a plane through $O$."
+      - "The rays are paraxial (Gauss conditions): little inclined and close to the optical axis."
+      - "The light is monochromatic; the index of the glass is the same for every ray."
+      - "The object is flat, perpendicular to the axis, and only one point $B$ off the axis is constructed."
+  limits:
+    fr:
+      - "Hors des conditions de Gauss (grand diaphragme, objet très étendu), l'image n'est plus ponctuelle : aberrations géométriques, image floue ou déformée."
+      - "En lumière blanche, l'indice dépend de la couleur : les foyers du rouge et du violet ne coïncident pas (aberration chromatique)."
+      - "Le modèle ne décrit pas les lentilles épaisses ni les systèmes de plusieurs lentilles sans les combiner ; l'œil réel n'est pas une lentille unique."
+    en:
+      - "Outside the Gauss conditions (wide diaphragm, very extended object), the image is no longer a point: geometrical aberrations, blurred or distorted image."
+      - "In white light, the index depends on the colour: the foci for red and for violet do not coincide (chromatic aberration)."
+      - "The model does not describe thick lenses nor systems of several lenses without combining them; the real eye is not a single lens."
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "caractériser une lentille mince convergente par son centre optique, ses foyers et sa distance focale"
+        - "construire graphiquement l'image réelle d'un objet plan à l'aide des trois rayons particuliers"
+        - "définir et calculer le grandissement $\\gamma$ à partir des hauteurs de l'objet et de l'image"
+        - "modéliser l'œil par le système lentille-écran (œil réduit) et expliquer l'accommodation"
+      en:
+        - "characterise a thin converging lens by its optical centre, its foci and its focal length"
+        - "construct graphically the real image of a flat object using the three particular rays"
+        - "define and compute the magnification $\\gamma$ from the heights of the object and of the image"
+        - "model the eye by the lens–screen system (reduced eye) and explain accommodation"

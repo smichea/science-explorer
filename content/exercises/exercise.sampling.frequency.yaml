@@ -1,0 +1,42 @@
+# Échantillonnage — la fréquence d'une issue dans un échantillon (réponse numérique)
+id: exercise.sampling.frequency
+type: numeric
+nodeId: concept.sampling_fluctuation
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une urne contient des boules rouges et des boules bleues. On tire une boule au hasard, on la remet, et on recommence : sur $60$ tirages, on obtient $21$ boules rouges.
+
+    Quelle est la fréquence des boules rouges dans cet échantillon ? Donnez-la sous forme décimale.
+  en: |-
+    An urn contains red balls and blue balls. A ball is drawn at random, put back, and the draw is repeated: over $60$ draws, $21$ red balls are obtained.
+
+    What is the frequency of red balls in this sample? Give it in decimal form.
+numeric:
+  value: 0.35
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "fréquence f", en: "frequency f" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La fréquence est le quotient du nombre d'apparitions de l'issue par la taille de l'échantillon.
+      en: |-
+        The frequency is the quotient of the number of occurrences of the outcome by the size of the sample.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $f = \dfrac{21}{60}$ ; simplifiez par $3$ ou effectuez la division.
+      en: |-
+        $f = \dfrac{21}{60}$; simplify by $3$ or carry out the division.
+solution:
+  fr: |-
+    $$f = \frac{21}{60} = \frac{7}{20} = 0{,}35.$$
+    La fréquence observée est $0{,}35$, soit $35\,\%$ de boules rouges dans cet échantillon de taille $60$. Un autre échantillon de $60$ tirages donnerait sans doute une autre fréquence : c'est la fluctuation d'échantillonnage. Si l'urne contenait $2$ rouges pour $5$ boules, $p = 0{,}4$ et l'intervalle de fluctuation $\left[0{,}4 - \frac{1}{\sqrt{60}}\,;\,0{,}4 + \frac{1}{\sqrt{60}}\right] \approx [0{,}27\,;\,0{,}53]$ contiendrait bien $0{,}35$.
+  en: |-
+    $$f = \frac{21}{60} = \frac{7}{20} = 0.35.$$
+    The observed frequency is $0.35$, that is $35\,\%$ of red balls in this sample of size $60$. Another sample of $60$ draws would probably give another frequency: this is sampling fluctuation. If the urn contained $2$ red balls out of $5$, $p = 0.4$ and the fluctuation interval $\left[0.4 - \frac{1}{\sqrt{60}}\,;\,0.4 + \frac{1}{\sqrt{60}}\right] \approx [0.27\,;\,0.53]$ would indeed contain $0.35$.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

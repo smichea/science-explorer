@@ -1,0 +1,59 @@
+id: tool.algorithmics
+type: mathematical_tool
+world: world.mathematics
+region: region.math.numerical_methods
+importance: 2
+backpack: false
+tags: [lycee]
+title: { fr: "Algorithmique et programmation", en: "Algorithmics and programming" }
+shortPurpose:
+  fr: "Décrire un calcul par une suite d'instructions, variables, tests et boucles, et l'exécuter en Python pour calculer, chercher ou simuler."
+  en: "Describe a computation by a sequence of instructions, variables, tests and loops, and run it in Python to compute, search or simulate."
+overview:
+  fr: >-
+    Un algorithme est une suite finie d'instructions qui produit un résultat à partir de données. Avec des variables, une instruction conditionnelle et deux sortes de boucles, on calcule les termes d'une suite, on cherche un nombre premier ou l'on simule cent lancers de pièce. Écrit en Python, l'algorithme s'exécute, se vérifie et se corrige : c'est un laboratoire pour les mathématiques.
+  en: >-
+    An algorithm is a finite sequence of instructions that produces a result from data. With variables, a conditional statement and two kinds of loops, one computes the terms of a sequence, searches for a prime number or simulates a hundred coin tosses. Written in Python, the algorithm runs, is checked and corrected: it is a laboratory for mathematics.
+aliases:
+  fr: ["algorithme", "programmation en Python", "variable et affectation", "boucle for et boucle while", "fonction en Python", "simulation"]
+  en: ["algorithm", "programming in Python", "variable and assignment", "for loop and while loop", "function in Python", "simulation"]
+description:
+  fr: |
+    En **algorithmique**, une **variable** est un nom qui désigne une valeur rangée en mémoire, et l'**affectation** `u = 2 * u + 1` calcule d'abord le membre de droite avec la valeur actuelle de `u`, puis range le résultat dans `u`. Le signe `=` n'est donc pas une égalité mathématique mais une action, et `u = u + 1` signifie « augmenter `u` de un ». Une **instruction conditionnelle** `if condition:` suivie éventuellement de `else:` exécute un bloc ou l'autre selon qu'une condition est vraie ou fausse ; en Python, les blocs sont délimités par l'indentation, et les comparaisons s'écrivent `==`, `!=`, `<`, `<=`. Un algorithme est une suite finie d'instructions qui, à partir de données, produit un résultat ; l'écrire en Python le rend exécutable et vérifiable.
+
+    Une **boucle bornée** `for i in range(n):` répète un bloc un nombre de fois connu à l'avance ; `range(4)` parcourt $0, 1, 2, 3$. Le programme
+    ```python
+    u = 1
+    for i in range(4):
+        u = 2 * u + 1
+    ```
+    calcule successivement $3$, $7$, $15$ et $31$ : ce sont les premiers termes de la suite définie par $u_{n+1} = 2u_n + 1$ et $u_0 = 1$. Une **boucle non bornée** `while condition:` répète tant que la condition reste vraie, et le nombre de tours n'est pas connu d'avance : `n = 0` puis `while 2 ** n < 1000: n = n + 1` s'arrête avec `n` égal à $10$, car $2^{10} = 1024$ est la première puissance de $2$ qui dépasse $1000$. Il faut s'assurer que la condition finira par devenir fausse, sans quoi la boucle ne s'arrête jamais.
+
+    Une **fonction** regroupe des instructions sous un nom, avec des paramètres et un résultat renvoyé par `return` : `def image(x): return x ** 2 - 3 * x` définit la fonction mathématique $x \mapsto x^2 - 3x$, et `image(5)` vaut $10$. Les fonctions permettent aussi de **simuler** une expérience aléatoire : `random()` renvoie un réel au hasard dans $[0\,;\,1[$, donc `random() < 0.5` vaut `True` avec la probabilité $\dfrac12$, comme un lancer de pièce. Répéter ce tirage dans une boucle et compter les succès donne la fréquence d'un échantillon, et l'on observe la fluctuation d'échantillonnage sans manipuler une seule pièce : c'est ainsi que les probabilités deviennent expérimentales.
+  en: |
+    In **algorithmics**, a **variable** is a name that refers to a value stored in memory, and the **assignment** `u = 2 * u + 1` first computes the right-hand side with the current value of `u`, then stores the result in `u`. The `=` sign is therefore not a mathematical equality but an action, and `u = u + 1` means "increase `u` by one". A **conditional statement** `if condition:` possibly followed by `else:` runs one block or the other depending on whether a condition is true or false; in Python, blocks are delimited by indentation, and comparisons are written `==`, `!=`, `<`, `<=`. An algorithm is a finite sequence of instructions which, from data, produces a result; writing it in Python makes it executable and checkable.
+
+    A **bounded loop** `for i in range(n):` repeats a block a number of times known in advance; `range(4)` runs through $0, 1, 2, 3$. The program
+    ```python
+    u = 1
+    for i in range(4):
+        u = 2 * u + 1
+    ```
+    successively computes $3$, $7$, $15$ and $31$: these are the first terms of the sequence defined by $u_{n+1} = 2u_n + 1$ and $u_0 = 1$. An **unbounded loop** `while condition:` repeats as long as the condition stays true, and the number of turns is not known beforehand: `n = 0` then `while 2 ** n < 1000: n = n + 1` stops with `n` equal to $10$, because $2^{10} = 1024$ is the first power of $2$ exceeding $1000$. One must make sure that the condition will eventually become false, otherwise the loop never stops.
+
+    A **function** gathers instructions under a name, with parameters and a result returned by `return`: `def image(x): return x ** 2 - 3 * x` defines the mathematical function $x \mapsto x^2 - 3x$, and `image(5)` is $10$. Functions also allow one to **simulate** a random experiment: `random()` returns a real at random in $[0\,;\,1[$, so `random() < 0.5` is `True` with probability $\dfrac12$, like a coin toss. Repeating this draw in a loop and counting the successes gives the frequency of a sample, and sampling fluctuation is observed without handling a single coin: this is how probabilities become experimental.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "utiliser des variables, des affectations et une instruction conditionnelle pour écrire un algorithme simple"
+        - "programmer une boucle bornée (for) et une boucle non bornée (while), et prévoir la valeur des variables à la sortie"
+        - "définir et appeler une fonction en Python, avec des paramètres et une valeur renvoyée"
+        - "simuler une expérience aléatoire avec random() et calculer la fréquence d'un événement sur un échantillon"
+      en:
+        - "use variables, assignments and a conditional statement to write a simple algorithm"
+        - "program a bounded loop (for) and an unbounded loop (while), and predict the value of the variables at the exit"
+        - "define and call a function in Python, with parameters and a returned value"
+        - "simulate a random experiment with random() and compute the frequency of an event on a sample"

@@ -1,0 +1,46 @@
+id: phenomenon.nuclear_transformation
+type: phenomenon
+world: world.chemistry
+region: region.chemistry.atomic_molecular_structure
+importance: 2
+tags: [lycee]
+title: { fr: Transformations nucléaires, en: Nuclear transformations }
+shortPurpose:
+  fr: Décrire les transformations qui changent le noyau lui-même, avec les lois de conservation qui les gouvernent et les énergies colossales qu'elles mettent en jeu.
+  en: Describe the transformations that change the nucleus itself, with the conservation laws that govern them and the colossal energies they involve.
+overview:
+  fr: >-
+    Une réaction chimique réarrange les électrons, mais ne touche jamais au noyau. Une transformation nucléaire, elle, change le noyau, un élément devient un autre, par désintégration, par fusion ou par fission. Le nombre de nucléons et la charge se conservent, et l'énergie libérée est un million de fois celle d'une combustion, c'est celle du Soleil et des centrales nucléaires.
+  en: >-
+    A chemical reaction rearranges the electrons but never touches the nucleus. A nuclear transformation, on the other hand, changes the nucleus, one element becomes another, by disintegration, by fusion or by fission. The number of nucleons and the charge are conserved, and the energy released is a million times that of a combustion, it is the energy of the Sun and of nuclear power stations.
+aliases:
+  fr: ["réaction nucléaire", "radioactivité alpha et bêta", "fission et fusion", "lois de conservation de Soddy"]
+  en: ["nuclear reaction", "alpha and beta radioactivity", "fission and fusion", "Soddy's conservation laws"]
+description:
+  fr: |
+    Le noyau d'un atome, $^{A}_{Z}\mathrm{X}$, contient $Z$ protons et $A - Z$ neutrons ; les isotopes d'un élément partagent $Z$ et diffèrent par $A$. Une **transformation nucléaire** modifie le noyau lui-même, alors qu'une transformation chimique ne réarrange que les électrons et laisse chaque noyau intact : après une transformation nucléaire, l'élément a changé. Certains noyaux sont instables et se désintègrent spontanément : c'est la **radioactivité**. Dans toute transformation nucléaire, le **nombre de nucléons** $A$ et la **charge électrique** $Z$ se conservent : ce sont les **lois de conservation de Soddy**, qui permettent d'écrire l'équation et d'identifier le noyau formé.
+
+    La désintégration **alpha** émet un noyau d'hélium $^{4}_{2}\mathrm{He}$ : l'uranium 238 donne du thorium, $^{238}_{92}\mathrm{U} \to {}^{234}_{90}\mathrm{Th} + {}^{4}_{2}\mathrm{He}$, avec $238 = 234 + 4$ et $92 = 90 + 2$. La désintégration **bêta moins** émet un électron $^{0}_{-1}\mathrm{e}$ : un neutron se change en proton, et le carbone 14 devient de l'azote, $^{14}_{6}\mathrm{C} \to {}^{14}_{7}\mathrm{N} + {}^{0}_{-1}\mathrm{e}$ ; la désintégration **bêta plus** émet un positon $^{0}_{1}\mathrm{e}$ et fait l'inverse. La **fusion** assemble des noyaux légers en un noyau plus lourd, comme dans le Soleil : $^{2}_{1}\mathrm{H} + {}^{3}_{1}\mathrm{H} \to {}^{4}_{2}\mathrm{He} + {}^{1}_{0}\mathrm{n}$. La **fission** casse un noyau lourd frappé par un neutron en deux noyaux plus légers et quelques neutrons, comme dans les centrales nucléaires : $^{235}_{92}\mathrm{U} + {}^{1}_{0}\mathrm{n} \to {}^{94}_{38}\mathrm{Sr} + {}^{140}_{54}\mathrm{Xe} + 2\,{}^{1}_{0}\mathrm{n}$.
+
+    Les énergies mises en jeu n'ont rien à voir avec celles de la chimie. La combustion d'un gramme de méthane libère environ $55\ \mathrm{kJ}$ ; la fission d'un gramme d'uranium 235 libère environ $8 \times 10^{10}\ \mathrm{J}$, soit un million de fois plus, et la fusion d'un gramme d'hydrogène davantage encore. Cette énergie provient d'une infime perte de masse du noyau, reliée à l'énergie par $E = m\,c^2$. La radioactivité sert à dater (carbone 14), à soigner et à produire de l'électricité, mais les rayonnements émis sont dangereux et les déchets restent radioactifs pendant des durées qui se comptent en siècles ou en millénaires : la loi de décroissance, étudiée en Terminale, dit à quelle vitesse.
+  en: |
+    The nucleus of an atom, $^{A}_{Z}\mathrm{X}$, contains $Z$ protons and $A - Z$ neutrons; the isotopes of an element share $Z$ and differ by $A$. A **nuclear transformation** modifies the nucleus itself, whereas a chemical transformation only rearranges the electrons and leaves every nucleus intact: after a nuclear transformation, the element has changed. Some nuclei are unstable and disintegrate spontaneously: this is **radioactivity**. In every nuclear transformation, the **number of nucleons** $A$ and the **electric charge** $Z$ are conserved: these are **Soddy's conservation laws**, which make it possible to write the equation and identify the nucleus formed.
+
+    **Alpha** decay emits a helium nucleus $^{4}_{2}\mathrm{He}$: uranium-238 gives thorium, $^{238}_{92}\mathrm{U} \to {}^{234}_{90}\mathrm{Th} + {}^{4}_{2}\mathrm{He}$, with $238 = 234 + 4$ and $92 = 90 + 2$. **Beta minus** decay emits an electron $^{0}_{-1}\mathrm{e}$: a neutron turns into a proton, and carbon-14 becomes nitrogen, $^{14}_{6}\mathrm{C} \to {}^{14}_{7}\mathrm{N} + {}^{0}_{-1}\mathrm{e}$; **beta plus** decay emits a positron $^{0}_{1}\mathrm{e}$ and does the opposite. **Fusion** assembles light nuclei into a heavier one, as in the Sun: $^{2}_{1}\mathrm{H} + {}^{3}_{1}\mathrm{H} \to {}^{4}_{2}\mathrm{He} + {}^{1}_{0}\mathrm{n}$. **Fission** breaks a heavy nucleus struck by a neutron into two lighter nuclei and a few neutrons, as in nuclear power stations: $^{235}_{92}\mathrm{U} + {}^{1}_{0}\mathrm{n} \to {}^{94}_{38}\mathrm{Sr} + {}^{140}_{54}\mathrm{Xe} + 2\,{}^{1}_{0}\mathrm{n}$.
+
+    The energies involved have nothing to do with those of chemistry. Burning one gram of methane releases about $55\ \mathrm{kJ}$; the fission of one gram of uranium-235 releases about $8 \times 10^{10}\ \mathrm{J}$, a million times more, and the fusion of one gram of hydrogen even more. This energy comes from a tiny loss of mass of the nucleus, related to energy by $E = m\,c^2$. Radioactivity is used for dating (carbon-14), for treatment and for producing electricity, but the radiation emitted is dangerous and the waste stays radioactive for durations counted in centuries or millennia: the decay law, studied in Grade 12, says how fast.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "distinguer une transformation nucléaire d'une transformation chimique et d'une transformation physique"
+        - "écrire l'équation d'une désintégration alpha ou bêta en appliquant les lois de conservation du nombre de nucléons et de la charge"
+        - "identifier le noyau fils d'une désintégration à l'aide du tableau périodique"
+        - "décrire qualitativement la fusion et la fission et comparer les ordres de grandeur des énergies nucléaires et chimiques"
+      en:
+        - "distinguish a nuclear transformation from a chemical and from a physical transformation"
+        - "write the equation of an alpha or beta decay by applying the conservation laws of the number of nucleons and of the charge"
+        - "identify the daughter nucleus of a decay using the periodic table"
+        - "describe fusion and fission qualitatively and compare the orders of magnitude of nuclear and chemical energies"

@@ -1,0 +1,18 @@
+# Leçon — équations de droites : y = m x + p (pente et ordonnée à l'origine réglables), la verticale x = 2 et une seconde droite qu'elle coupe.
+id: lesson.tool.line_equations
+nodeId: tool.line_equations
+depth: 1
+tools:
+  - id: plotter
+    kind: plotter
+    variable: x
+    view: { x: [-4, 6], y: [-4, 6] }
+    parameters:
+      - { id: m, label: { fr: "coefficient directeur m", en: "slope m" }, min: -3, max: 3, step: 0.1, value: 1 }
+      - { id: p, label: { fr: "ordonnée à l'origine p", en: "intercept p" }, min: -3, max: 3, step: 0.1, value: -1 }
+    input: true
+    initial:
+      - { plot: { id: d, expr: "m*x+p", label: { fr: "y = m x + p", en: "y = m x + p" } } }
+      - { line: { id: v, a: 1, b: 0, c: -2, label: { fr: "x = 2", en: "x = 2" } } }
+      - { plot: { id: g, expr: "-0.5*x+2", dashed: true, label: { fr: "y = −0,5 x + 2", en: "y = −0.5 x + 2" } } }
+      - { point: { id: i, on: d, x: "(2-p)/(m+0.5)", guides: true, label: { fr: "intersection", en: "intersection" } } }

@@ -30,6 +30,18 @@ description:
     Dimensional analysis also makes it possible to **guess** the form of a law: the period of a pendulum can only depend on $\sqrt{\ell/g}$, the terminal velocity of a linearly damped ball only on $mg/k$. It is the first check to perform on any result, even before the numerical computation.
 depths:
   - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "connaître les unités du Système international des grandeurs de base et convertir des unités (préfixes, temps, volumes)"
+        - "estimer un ordre de grandeur et l'écrire en notation scientifique"
+        - "vérifier qu'une relation est homogène en comparant les unités des deux membres"
+      en:
+        - "know the SI units of the base quantities and convert units (prefixes, time, volumes)"
+        - "estimate an order of magnitude and write it in scientific notation"
+        - "check that a relation is homogeneous by comparing the units of both sides"
+  - depth: 2
     stage: terminale
     role: core
     outcomes:
@@ -41,7 +53,7 @@ depths:
         - "give the dimension and SI unit of common quantities (velocity, acceleration, force, capacitance, rate constant)"
         - "check the homogeneity of a formula and spot that the argument of an exponential is dimensionless"
         - "convert units and check an order of magnitude"
-  - depth: 2
+  - depth: 3
     stage: mpsi
     role: core
     outcomes:

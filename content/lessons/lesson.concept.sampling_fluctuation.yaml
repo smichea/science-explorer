@@ -1,0 +1,16 @@
+# Leçon — échantillonnage : une urne (3 rouges, 2 bleues), la fréquence des rouges sur des échantillons de 50 tirages et l'intervalle p ± 1/√n.
+id: lesson.concept.sampling_fluctuation
+nodeId: concept.sampling_fluctuation
+depth: 1
+tools:
+  - id: urn
+    kind: random
+    title: { fr: "Des échantillons de 50 tirages dans l'urne", en: "Samples of 50 draws from the urn" }
+    experiment: urn
+    urn:
+      - { id: red, label: { fr: "rouge", en: "red" }, count: 3, color: "#e5484d" }
+      - { id: blue, label: { fr: "bleue", en: "blue" }, count: 2, color: "#3e63dd" }
+    event: { label: { fr: "boule rouge", en: "red ball" }, outcomes: ["red"] }
+    mode: sampling
+    sample: 50
+    seed: 3

@@ -68,6 +68,10 @@ class TourState {
     return !!prefs.prefs.tourIncludeDone;
   }
 
+  get includeFoundations(): boolean {
+    return !!prefs.prefs.tourIncludeFoundations;
+  }
+
   private build(): TourStep[] | null {
     const definition = content.pkg?.tours[0];
     const ctx = learning.destinationContext();
@@ -81,7 +85,7 @@ class TourState {
         config: ctx.config,
         snapshot: ctx.snapshot,
       },
-      { includeDone: this.includeDone }
+      { includeDone: this.includeDone, includeFoundations: this.includeFoundations }
     );
   }
 
@@ -188,6 +192,11 @@ class TourState {
 
   setIncludeDone(value: boolean): void {
     prefs.update({ tourIncludeDone: value });
+    if (this.active) this.start();
+  }
+
+  setIncludeFoundations(value: boolean): void {
+    prefs.update({ tourIncludeFoundations: value });
     if (this.active) this.start();
   }
 

@@ -1,0 +1,24 @@
+# Leçon — algorithmique : une boucle qui calcule les termes de u(n+1) = 2 u(n) + 1, et une simulation de Monte-Carlo de cent lancers de pièce.
+id: lesson.tool.algorithmics
+nodeId: tool.algorithmics
+depth: 1
+tools:
+  - id: loop
+    kind: sequence
+    title: { fr: "Une boucle : u = 2 u + 1, dix fois", en: "A loop: u = 2 u + 1, ten times" }
+    view: { x: [0, 10], y: [0, 1100] }
+    parameters: []
+    mode: recurrence
+    expr: "2*u+1"
+    first: 1
+    start: 0
+    count: 10
+    input: true
+  - id: coin
+    kind: random
+    title: { fr: "Simuler cent lancers de pièce", en: "Simulating a hundred coin tosses" }
+    experiment: coin
+    event: { label: { fr: "pile", en: "heads" }, outcomes: ["heads"] }
+    mode: sampling
+    sample: 100
+    seed: 5

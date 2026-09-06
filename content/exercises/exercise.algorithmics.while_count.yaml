@@ -1,0 +1,60 @@
+# Algorithmique — le nombre de tours d'une boucle while (réponse numérique)
+id: exercise.algorithmics.while_count
+type: numeric
+nodeId: tool.algorithmics
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On exécute le programme Python suivant :
+
+    ```python
+    n = 0
+    s = 0
+    while s < 100:
+        n = n + 1
+        s = s + n * n
+    ```
+
+    Combien de fois le corps de la boucle `while` est-il exécuté ? (C'est aussi la valeur finale de `n`.)
+  en: |-
+    The following Python program is run:
+
+    ```python
+    n = 0
+    s = 0
+    while s < 100:
+        n = n + 1
+        s = s + n * n
+    ```
+
+    How many times is the body of the `while` loop executed? (It is also the final value of `n`.)
+numeric:
+  value: 7
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "nombre de tours", en: "number of turns" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La boucle continue tant que $s < 100$ et s'arrête dès que $s \geq 100$. Calculez les valeurs successives de $s$ : $1$, $1 + 4$, $1 + 4 + 9$, …
+      en: |-
+        The loop goes on as long as $s < 100$ and stops as soon as $s \geq 100$. Compute the successive values of $s$: $1$, $1 + 4$, $1 + 4 + 9$, …
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Les sommes successives sont $1, 5, 14, 30, 55, 91, 140$. À partir de quel tour la somme atteint-elle $100$ ?
+      en: |-
+        The successive sums are $1, 5, 14, 30, 55, 91, 140$. From which turn on does the sum reach $100$?
+solution:
+  fr: |-
+    À chaque tour, `n` augmente de $1$ et `s` reçoit le carré de `n` en plus. Les valeurs de $s$ après chaque tour sont
+    $$1,\ 5,\ 14,\ 30,\ 55,\ 91,\ 140.$$
+    Après le sixième tour, $s = 91 < 100$ : la condition est encore vraie, la boucle continue. Après le septième tour, $s = 140 \geq 100$ : la condition devient fausse et la boucle s'arrête. Le corps de la boucle a été exécuté $7$ fois et $n = 7$ à la sortie. Cette boucle est non bornée : le nombre de tours n'était pas connu d'avance, il a fallu la dérouler ; elle s'arrête sûrement, car $s$ augmente strictement à chaque tour.
+  en: |-
+    At each turn, `n` increases by $1$ and `s` gets the square of `n` added. The values of $s$ after each turn are
+    $$1,\ 5,\ 14,\ 30,\ 55,\ 91,\ 140.$$
+    After the sixth turn, $s = 91 < 100$: the condition is still true, the loop goes on. After the seventh turn, $s = 140 \geq 100$: the condition becomes false and the loop stops. The body of the loop has been executed $7$ times and $n = 7$ at the exit. This loop is unbounded: the number of turns was not known in advance, it had to be unrolled; it surely stops, because $s$ strictly increases at each turn.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

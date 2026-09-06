@@ -1,0 +1,47 @@
+id: tool.algebraic_identities
+type: mathematical_tool
+world: world.mathematics
+region: region.math.numbers_algebra
+importance: 3
+backpack: false
+tags: [lycee]
+title: { fr: "Calcul littéral et identités remarquables", en: "Algebraic manipulation and remarkable identities" }
+shortPurpose:
+  fr: "Transformer une expression littérale, en la développant ou en la factorisant, pour lui donner la forme qui répond à la question posée."
+  en: "Transform an algebraic expression, by expanding or factoring it, to give it the form that answers the question asked."
+overview:
+  fr: >-
+    Le calcul littéral manipule des expressions où des lettres tiennent la place de nombres quelconques. Développer transforme un produit en somme, factoriser fait le chemin inverse, et trois identités remarquables accélèrent les deux. Choisir la bonne forme, développée pour calculer, factorisée pour résoudre, est le geste central de toute l'algèbre du lycée.
+  en: >-
+    Algebraic manipulation handles expressions in which letters stand for arbitrary numbers. Expanding turns a product into a sum, factoring goes the other way, and three remarkable identities speed up both. Choosing the right form, expanded to compute, factored to solve, is the central gesture of all lycée algebra.
+aliases:
+  fr: ["calcul littéral", "développer", "factoriser", "identités remarquables", "forme développée et forme factorisée"]
+  en: ["algebraic manipulation", "expand", "factor", "remarkable identities", "expanded and factored forms"]
+description:
+  fr: |
+    Le **calcul littéral** manipule des expressions contenant des lettres, qui désignent des nombres quelconques. **Développer**, c'est transformer un produit en somme : $3x(x - 2) = 3x^2 - 6x$ ; **factoriser**, c'est le chemin inverse, transformer une somme en produit : $x^2 - 5x = x(x - 5)$ ; **réduire**, c'est regrouper les termes semblables. Deux expressions sont égales si elles prennent la même valeur pour toutes les valeurs des lettres, et une seule valeur qui les distingue suffit à prouver qu'elles ne le sont pas : $x = 1$ donne $4$ pour $(x + 1)^2$ et $2$ pour $x^2 + 1$.
+
+    Trois **identités remarquables**, vraies pour tous réels $a$ et $b$, s'utilisent dans les deux sens : $(a + b)^2 = a^2 + 2ab + b^2$, $(a - b)^2 = a^2 - 2ab + b^2$ et $(a - b)(a + b) = a^2 - b^2$. Ainsi $(x + 3)^2 = x^2 + 6x + 9$ : le double produit $2 \times x \times 3$ est le terme que l'on oublie quand on écrit à tort $x^2 + 9$. Dans l'autre sens, $x^2 - 9 = (x - 3)(x + 3)$ puisque $9 = 3^2$, et $4x^2 + 12x + 9 = (2x + 3)^2$. Ces trois formules se démontrent en développant, et se vérifient sur la courbe : les deux membres, tracés comme des fonctions de $x$, donnent exactement la même courbe.
+
+    Le choix de la forme dépend de la question. La forme **développée** sert à calculer une image ou à comparer avec une autre expression ; la forme **factorisée** sert à résoudre une équation ou à étudier un signe, car un produit est nul si et seulement si l'un de ses facteurs l'est. Pour $f(x) = x^2 - 9$, la forme factorisée $(x - 3)(x + 3)$ donne aussitôt les solutions $3$ et $-3$ de $f(x) = 0$, que la forme développée cache. Le piège le plus fréquent est de « factoriser » une somme dont les termes n'ont pas de facteur commun ; le bon réflexe est de vérifier chaque transformation en la relisant dans l'autre sens, ou en testant une valeur de $x$.
+  en: |
+    **Algebraic manipulation** handles expressions containing letters, which stand for arbitrary numbers. **Expanding** means turning a product into a sum: $3x(x - 2) = 3x^2 - 6x$; **factoring** is the reverse path, turning a sum into a product: $x^2 - 5x = x(x - 5)$; **simplifying** means collecting like terms. Two expressions are equal if they take the same value for all values of the letters, and a single value that tells them apart is enough to prove that they are not: $x = 1$ gives $4$ for $(x + 1)^2$ and $2$ for $x^2 + 1$.
+
+    Three **remarkable identities**, true for all reals $a$ and $b$, are used in both directions: $(a + b)^2 = a^2 + 2ab + b^2$, $(a - b)^2 = a^2 - 2ab + b^2$ and $(a - b)(a + b) = a^2 - b^2$. Thus $(x + 3)^2 = x^2 + 6x + 9$: the double product $2 \times x \times 3$ is the term forgotten when one wrongly writes $x^2 + 9$. In the other direction, $x^2 - 9 = (x - 3)(x + 3)$ since $9 = 3^2$, and $4x^2 + 12x + 9 = (2x + 3)^2$. These three formulas are proved by expanding, and checked on the graph: both sides, plotted as functions of $x$, give exactly the same curve.
+
+    The choice of form depends on the question. The **expanded** form serves to compute an image or to compare with another expression; the **factored** form serves to solve an equation or to study a sign, because a product is zero if and only if one of its factors is. For $f(x) = x^2 - 9$, the factored form $(x - 3)(x + 3)$ immediately gives the solutions $3$ and $-3$ of $f(x) = 0$, which the expanded form hides. The most frequent trap is to "factor" a sum whose terms have no common factor; the right reflex is to check every transformation by reading it back the other way, or by testing a value of $x$.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "développer et réduire une expression en utilisant la distributivité et les trois identités remarquables"
+        - "factoriser une expression en repérant un facteur commun ou une identité remarquable"
+        - "choisir la forme développée ou factorisée adaptée à la question posée (calcul, équation, signe)"
+        - "vérifier une égalité entre deux expressions, ou la réfuter par une valeur particulière"
+      en:
+        - "expand and simplify an expression using distributivity and the three remarkable identities"
+        - "factor an expression by spotting a common factor or a remarkable identity"
+        - "choose the expanded or factored form suited to the question asked (computation, equation, sign)"
+        - "check an equality between two expressions, or refute it with a particular value"

@@ -1,0 +1,50 @@
+id: phenomenon.sound
+type: phenomenon
+world: world.physics
+region: region.physics.waves
+importance: 2
+tags: [lycee]
+title: { fr: "Émission et perception d'un son", en: "Emission and perception of a sound" }
+shortPurpose:
+  fr: "Décrire un son comme une vibration qui se propage dans un milieu, avec sa fréquence, sa vitesse et son niveau sonore."
+  en: "Describe a sound as a vibration travelling through a medium, with its frequency, its speed and its sound level."
+overview:
+  fr: >-
+    Un son naît d'une vibration, celle d'une corde ou d'une membrane, qui se transmet de proche en proche dans l'air jusqu'à notre oreille. Sa fréquence fait sa hauteur, son amplitude fait son intensité, et il voyage à environ trois cent quarante mètres par seconde dans l'air. Sans matière pour vibrer, pas de son : l'espace est silencieux.
+  en: >-
+    A sound is born from a vibration, that of a string or a membrane, passed on step by step through the air to our ear. Its frequency makes its pitch, its amplitude makes its loudness, and it travels at about three hundred and forty metres per second in air. Without matter to vibrate, no sound: space is silent.
+aliases:
+  fr: ["signal sonore", "onde sonore", "fréquence et période d'un son", "niveau d'intensité sonore"]
+  en: ["sound signal", "sound wave", "frequency and period of a sound", "sound intensity level"]
+description:
+  fr: |
+    Un **signal sonore** est produit par la vibration d'un objet (corde, membrane, colonne d'air) et se propage dans un milieu matériel, sans transport de matière : les couches d'air se compriment et se détendent de proche en proche. Dans le vide, il n'y a rien pour vibrer et le son ne se propage pas. Un son pur est un signal **périodique** : il se répète identique à lui-même au bout d'une durée $T$, la **période** (en secondes), et sa **fréquence** $f$ (en hertz, $\mathrm{Hz}$) est le nombre de périodes par seconde :
+    $$f = \frac{1}{T}.$$
+    Le la du diapason a pour fréquence $440\ \mathrm{Hz}$, donc pour période $T = 1/440 \approx 2{,}27 \times 10^{-3}\ \mathrm{s}$.
+
+    Le son met du temps à arriver : sa **vitesse de propagation** dans l'air vaut environ $v = 340\ \mathrm{m/s}$ à $20\ \mathrm{^\circ C}$ (plus dans l'eau, $1500\ \mathrm{m/s}$, et dans l'acier, $5000\ \mathrm{m/s}$). On la mesure avec deux microphones distants de $d$ reliés à une carte d'acquisition : le signal atteint le second micro avec un retard $\Delta t$ et $v = d / \Delta t$ ; pour $d = 1{,}00\ \mathrm{m}$ on lit $\Delta t \approx 2{,}9\ \mathrm{ms}$. C'est aussi ce retard qui sépare l'éclair du tonnerre : trois secondes de délai correspondent à environ un kilomètre. La lumière, elle, va près d'un million de fois plus vite, si bien que l'éclair est vu quasi instantanément.
+
+    L'oreille perçoit trois caractères. La **hauteur** est liée à la fréquence : un son est d'autant plus aigu que $f$ est grande, et l'oreille humaine entend de $20\ \mathrm{Hz}$ à $20\,000\ \mathrm{Hz}$ environ. Le **timbre** distingue deux instruments jouant la même note : leurs signaux ont la même période mais pas la même forme. L'**intensité** dépend de l'amplitude du signal ; on la mesure par le **niveau d'intensité sonore** $L$, en décibels ($\mathrm{dB}$), une échelle où $+10\ \mathrm{dB}$ correspond à une intensité dix fois plus grande : $0\ \mathrm{dB}$ au seuil d'audition, $60\ \mathrm{dB}$ pour une conversation, $85\ \mathrm{dB}$ le seuil de risque pour une exposition prolongée, $120\ \mathrm{dB}$ le seuil de douleur. Protéger son audition, c'est limiter à la fois le niveau et la durée d'exposition.
+  en: |
+    A **sound signal** is produced by the vibration of an object (string, membrane, air column) and travels through a material medium, without transport of matter: the layers of air compress and expand step by step. In a vacuum, there is nothing to vibrate and the sound does not travel. A pure sound is a **periodic** signal: it repeats identically after a duration $T$, the **period** (in seconds), and its **frequency** $f$ (in hertz, $\mathrm{Hz}$) is the number of periods per second:
+    $$f = \frac{1}{T}.$$
+    The A of a tuning fork has frequency $440\ \mathrm{Hz}$, hence period $T = 1/440 \approx 2.27 \times 10^{-3}\ \mathrm{s}$.
+
+    Sound takes time to arrive: its **speed of propagation** in air is about $v = 340\ \mathrm{m/s}$ at $20\ \mathrm{^\circ C}$ (more in water, $1500\ \mathrm{m/s}$, and in steel, $5000\ \mathrm{m/s}$). It is measured with two microphones a distance $d$ apart connected to an acquisition card: the signal reaches the second microphone with a delay $\Delta t$ and $v = d / \Delta t$; for $d = 1.00\ \mathrm{m}$ one reads $\Delta t \approx 2.9\ \mathrm{ms}$. This delay is also what separates the lightning from the thunder: three seconds of delay correspond to about one kilometre. Light, for its part, travels nearly a million times faster, so that the flash is seen almost instantly.
+
+    The ear perceives three characters. **Pitch** is linked to frequency: a sound is all the higher as $f$ is large, and the human ear hears from about $20\ \mathrm{Hz}$ to $20\,000\ \mathrm{Hz}$. **Timbre** tells apart two instruments playing the same note: their signals have the same period but not the same shape. **Loudness** depends on the amplitude of the signal; it is measured by the **sound intensity level** $L$, in decibels ($\mathrm{dB}$), a scale on which $+10\ \mathrm{dB}$ corresponds to a ten times larger intensity: $0\ \mathrm{dB}$ at the hearing threshold, $60\ \mathrm{dB}$ for a conversation, $85\ \mathrm{dB}$ the risk threshold for prolonged exposure, $120\ \mathrm{dB}$ the pain threshold. Protecting one's hearing means limiting both the level and the duration of exposure.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "décrire le principe de l'émission d'un signal sonore par la vibration d'un objet et sa propagation dans un milieu matériel"
+        - "déterminer la période et la fréquence d'un signal périodique sur un enregistrement et utiliser $f = 1/T$"
+        - "mesurer ou exploiter la vitesse de propagation d'un signal sonore ($v = d / \\Delta t$)"
+        - "relier hauteur et fréquence, timbre et forme du signal, intensité et niveau sonore en décibels, et connaître les risques pour l'audition"
+      en:
+        - "describe how a sound signal is emitted by the vibration of an object and travels through a material medium"
+        - "determine the period and the frequency of a periodic signal on a recording and use $f = 1/T$"
+        - "measure or use the speed of propagation of a sound signal ($v = d / \\Delta t$)"
+        - "relate pitch to frequency, timbre to the shape of the signal, loudness to the sound level in decibels, and know the risks for hearing"

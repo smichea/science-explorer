@@ -1,0 +1,32 @@
+# Seconde physics (BO spécial n°1 du 22 janvier 2019, « Mouvement et interactions », « Ondes et signaux ») :
+# prerequisites among the seven destinations of the year and links to the existing Terminale nodes.
+# Direction: requires_* from the prerequisite TO the dependent node; explains from the law TO the phenomenon.
+# Cross-subject edges (mathematics, chemistry) are written separately.
+edges:
+  # --- requires_essentially -------------------------------------------------
+  - { from: tool.vector, to: concept.force, type: requires_essentially, weight: 1,
+      note: { fr: "Une force est un vecteur : point d'application, direction, sens, valeur.", en: "A force is a vector: point of application, direction, sense, value." } }
+  - { from: concept.force, to: law.inertia, type: requires_essentially, weight: 1,
+      note: { fr: "Le principe d'inertie compare les forces exercées sur le système.", en: "The principle of inertia compares the forces exerted on the system." } }
+  - { from: model.kinematics_point, to: law.inertia, type: requires_essentially, weight: 1,
+      note: { fr: "Le principe s'énonce pour un point matériel dont on décrit le vecteur vitesse dans un référentiel.", en: "The principle is stated for a point mass whose velocity vector is described in a frame of reference." } }
+  - { from: concept.force, to: law.universal_gravitation, type: requires_essentially, weight: 1,
+      note: { fr: "La force gravitationnelle est une force d'interaction à distance, avec ses quatre caractéristiques.", en: "The gravitational force is a force of interaction at a distance, with its four characteristics." } }
+  - { from: concept.force, to: law.newton_second, type: requires_essentially, weight: 1,
+      note: { fr: "La deuxième loi de Newton relie la somme des forces à l'accélération : il faut d'abord savoir modéliser une action par une force.", en: "Newton's second law relates the sum of the forces to the acceleration: one must first know how to model an action by a force." } }
+  # --- requires_recommended -------------------------------------------------
+  - { from: law.inertia, to: law.newton_second, type: requires_recommended, weight: 0.8,
+      note: { fr: "La deuxième loi contient la première : forces compensées, accélération nulle.", en: "The second law contains the first: compensated forces, zero acceleration." } }
+  - { from: law.snell_descartes, to: model.thin_lens, type: requires_recommended, weight: 0.8,
+      note: { fr: "Une lentille dévie la lumière par deux réfractions ; le modèle en retient les foyers.", en: "A lens bends light through two refractions; the model keeps only the foci." } }
+  - { from: method.measurement, to: law.ohm, type: requires_recommended, weight: 0.7,
+      note: { fr: "La caractéristique d'un dipôle est un relevé de mesures de tension et d'intensité.", en: "The characteristic of a component is a record of voltage and current measurements." } }
+  - { from: law.ohm, to: model.rc_circuit, type: requires_recommended, weight: 0.9,
+      note: { fr: "Le circuit RC utilise la loi d'Ohm aux bornes de la résistance et la loi des mailles.", en: "The RC circuit uses Ohm's law across the resistor and the loop law." } }
+  - { from: concept.dimension_unit, to: phenomenon.sound, type: requires_recommended, weight: 0.6,
+      note: { fr: "Période en secondes, fréquence en hertz, vitesse en mètres par seconde : les unités portent le raisonnement.", en: "Period in seconds, frequency in hertz, speed in metres per second: the units carry the reasoning." } }
+  # --- explains (law → phenomenon) -------------------------------------------
+  - { from: law.universal_gravitation, to: phenomenon.motion.free_fall, type: explains, weight: 1,
+      note: { fr: "Le poids qui fait tomber les corps est l'attraction gravitationnelle de la Terre : $g = G M_T / R_T^2$.", en: "The weight that makes bodies fall is the gravitational attraction of the Earth: $g = G M_T / R_T^2$." } }
+  - { from: law.universal_gravitation, to: phenomenon.motion.uniformly_accelerated, type: explains, weight: 0.6,
+      note: { fr: "Près du sol, l'attraction est quasi constante : la chute est un mouvement uniformément accéléré.", en: "Near the ground, the attraction is nearly constant: the fall is a uniformly accelerated motion." } }

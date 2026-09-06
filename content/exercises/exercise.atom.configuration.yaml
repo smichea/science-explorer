@@ -1,0 +1,73 @@
+# Leçon atome — configuration électronique du sodium (choix unique)
+id: exercise.atom.configuration
+type: choice
+nodeId: model.atom
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    L'atome de sodium a pour numéro atomique $Z = 11$. Les sous-couches se remplissent dans l'ordre $1s$, $2s$, $2p$, $3s$, $3p$ ; une sous-couche $s$ contient au plus $2$ électrons et une sous-couche $p$ au plus $6$.
+
+    Quelle est la configuration électronique de l'atome de sodium dans son état fondamental ?
+  en: |-
+    The sodium atom has atomic number $Z = 11$. The subshells fill in the order $1s$, $2s$, $2p$, $3s$, $3p$; an $s$ subshell holds at most $2$ electrons and a $p$ subshell at most $6$.
+
+    What is the electron configuration of the sodium atom in its ground state?
+choice:
+  multiple: false
+  requireReasoning: false
+  choices:
+    - id: correct
+      text: { fr: "1s² 2s² 2p⁶ 3s¹", en: "1s² 2s² 2p⁶ 3s¹" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : $2 + 2 + 6 + 1 = 11$ électrons, autant que de protons. La couche externe ($n = 3$) ne porte qu'un électron de valence : le sodium le cède facilement et forme l'ion $\mathrm{Na^+}$.
+        en: |-
+          Correct: $2 + 2 + 6 + 1 = 11$ electrons, as many as protons. The outer shell ($n = 3$) carries only one valence electron: sodium gives it up easily and forms the $\mathrm{Na^+}$ ion.
+    - id: overfull_p
+      text: { fr: "1s² 2s² 2p⁷", en: "1s² 2s² 2p⁷" }
+      feedback:
+        fr: |-
+          Le compte fait bien $11$, mais une sous-couche $p$ ne peut contenir que $6$ électrons : le onzième électron doit aller dans la sous-couche suivante, $3s$.
+        en: |-
+          The count is indeed $11$, but a $p$ subshell can only hold $6$ electrons: the eleventh electron must go into the next subshell, $3s$.
+    - id: aluminium
+      text: { fr: "1s² 2s² 2p⁶ 3s² 3p¹", en: "1s² 2s² 2p⁶ 3s² 3p¹" }
+      feedback:
+        fr: |-
+          Cette configuration compte $2 + 2 + 6 + 2 + 1 = 13$ électrons : c'est celle de l'aluminium ($Z = 13$), pas celle du sodium. Le nombre d'électrons d'un atome neutre est égal à $Z$.
+        en: |-
+          This configuration counts $2 + 2 + 6 + 2 + 1 = 13$ electrons: it is that of aluminium ($Z = 13$), not that of sodium. The number of electrons of a neutral atom equals $Z$.
+    - id: overfull_s
+      text: { fr: "1s² 2s⁸ 3s¹", en: "1s² 2s⁸ 3s¹" }
+      feedback:
+        fr: |-
+          Une sous-couche $s$ ne contient jamais plus de $2$ électrons. Les $8$ électrons de la deuxième couche se répartissent en $2s^2$ et $2p^6$.
+        en: |-
+          An $s$ subshell never holds more than $2$ electrons. The $8$ electrons of the second shell are split into $2s^2$ and $2p^6$.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Comptez d'abord le nombre total d'électrons : un atome neutre en a autant que de protons.
+      en: |-
+        First count the total number of electrons: a neutral atom has as many as protons.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Remplissez dans l'ordre sans dépasser les capacités : $2$ dans $1s$, $2$ dans $2s$, $6$ dans $2p$, et il reste un électron.
+      en: |-
+        Fill in order without exceeding the capacities: $2$ in $1s$, $2$ in $2s$, $6$ in $2p$, and one electron remains.
+solution:
+  fr: |-
+    Un atome de sodium neutre possède $Z = 11$ électrons. On remplit les sous-couches dans l'ordre en respectant leurs capacités : $1s^2$ ($2$ électrons), $2s^2$ ($4$ au total), $2p^6$ ($10$ au total), puis le onzième électron entre dans $3s$ :
+    $$1s^2\,2s^2\,2p^6\,3s^1.$$
+    La couche externe est la troisième, avec un seul électron de valence : le sodium est dans la première colonne du tableau périodique (métaux alcalins) et forme l'ion $\mathrm{Na^+}$ en perdant cet électron, ce qui lui donne la configuration du néon.
+  en: |-
+    A neutral sodium atom has $Z = 11$ electrons. The subshells are filled in order, respecting their capacities: $1s^2$ ($2$ electrons), $2s^2$ ($4$ in total), $2p^6$ ($10$ in total), then the eleventh electron enters $3s$:
+    $$1s^2\,2s^2\,2p^6\,3s^1.$$
+    The outer shell is the third one, with a single valence electron: sodium is in the first column of the periodic table (alkali metals) and forms the $\mathrm{Na^+}$ ion by losing this electron, which gives it the configuration of neon.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

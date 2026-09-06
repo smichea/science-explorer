@@ -1,0 +1,11 @@
+# Leçon — multiples, diviseurs et nombres premiers : le crible des entiers jusqu'à 120, les multiples de 7 et les diviseurs de 84.
+id: lesson.tool.arithmetic
+nodeId: tool.arithmetic
+depth: 1
+tools:
+  - id: sieve
+    kind: arithmetic
+    title: { fr: "Crible, diviseurs et facteurs premiers", en: "Sieve, divisors and prime factors" }
+    max: 120
+    highlight: 7
+    number: 84

@@ -1,0 +1,56 @@
+# Tableau de signes — la plus petite solution de (2x + 3)(5 − x) ≥ 0 (réponse numérique)
+id: exercise.sign_table.bound
+type: numeric
+nodeId: tool.sign_table
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On résout l'inéquation $(2x + 3)(5 - x) \geq 0$ à l'aide d'un tableau de signes.
+
+    L'ensemble des solutions est un intervalle fermé $[m\,;\,M]$. Donnez sa borne inférieure $m$, sous forme décimale.
+  en: |-
+    We solve the inequality $(2x + 3)(5 - x) \geq 0$ with a sign table.
+
+    The solution set is a closed interval $[m\,;\,M]$. Give its lower bound $m$, in decimal form.
+numeric:
+  value: -1.5
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "borne inférieure m", en: "lower bound m" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Cherchez la racine de chaque facteur : $2x + 3 = 0$ et $5 - x = 0$. Attention, le coefficient de $x$ dans $5 - x$ est négatif : ce facteur est positif **avant** sa racine.
+      en: |-
+        Find the root of each factor: $2x + 3 = 0$ and $5 - x = 0$. Beware, the coefficient of $x$ in $5 - x$ is negative: this factor is positive **before** its root.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Les racines sont $-\dfrac32$ et $5$. Entre les deux, $2x + 3 > 0$ et $5 - x > 0$ : le produit est positif. À l'extérieur, un facteur est négatif.
+      en: |-
+        The roots are $-\dfrac32$ and $5$. Between them, $2x + 3 > 0$ and $5 - x > 0$: the product is positive. Outside, one factor is negative.
+solution:
+  fr: |-
+    Racines : $2x + 3 = 0 \iff x = -1{,}5$ et $5 - x = 0 \iff x = 5$. Le facteur $2x + 3$ est négatif avant $-1{,}5$ et positif après ; le facteur $5 - x$ est positif avant $5$ et négatif après (coefficient de $x$ négatif).
+
+    | $x$ | $-\infty$ | | $-1{,}5$ | | $5$ | | $+\infty$ |
+    | --- | --- | --- | --- | --- | --- | --- | --- |
+    | $2x + 3$ | | $-$ | $0$ | $+$ | | $+$ | |
+    | $5 - x$ | | $+$ | | $+$ | $0$ | $-$ | |
+    | produit | | $-$ | $0$ | $+$ | $0$ | $-$ | |
+
+    Le produit est positif ou nul sur $[-1{,}5\,;\,5]$ : la borne inférieure est $m = -1{,}5$ (et $M = 5$). Le piège était le facteur $5 - x$, dont le signe est celui de $-1$ après la racine.
+  en: |-
+    Roots: $2x + 3 = 0 \iff x = -1.5$ and $5 - x = 0 \iff x = 5$. The factor $2x + 3$ is negative before $-1.5$ and positive after; the factor $5 - x$ is positive before $5$ and negative after (negative coefficient of $x$).
+
+    | $x$ | $-\infty$ | | $-1.5$ | | $5$ | | $+\infty$ |
+    | --- | --- | --- | --- | --- | --- | --- | --- |
+    | $2x + 3$ | | $-$ | $0$ | $+$ | | $+$ | |
+    | $5 - x$ | | $+$ | | $+$ | $0$ | $-$ | |
+    | product | | $-$ | $0$ | $+$ | $0$ | $-$ | |
+
+    The product is positive or zero on $[-1.5\,;\,5]$: the lower bound is $m = -1.5$ (and $M = 5$). The trap was the factor $5 - x$, whose sign is that of $-1$ after the root.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

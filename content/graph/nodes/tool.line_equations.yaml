@@ -1,0 +1,55 @@
+id: tool.line_equations
+type: mathematical_tool
+world: world.mathematics
+region: region.math.geometry
+importance: 2
+backpack: true
+tags: [lycee]
+title: { fr: "Équations de droites", en: "Equations of lines" }
+shortPurpose:
+  fr: "Décrire une droite du plan par une équation, en lire la pente et la direction, et trouver le point commun à deux droites."
+  en: "Describe a line of the plane by an equation, read its slope and direction from it, and find the point common to two lines."
+overview:
+  fr: >-
+    Dans un repère, une droite devient une équation : une équation cartésienne, avec un vecteur directeur, ou l'équation réduite y égale m x plus p, où m est la pente et p l'ordonnée à l'origine. Deux droites de même pente sont parallèles ; sinon, leur point d'intersection se calcule en résolvant un système. C'est ainsi que la physique lit une vitesse sur un graphique, ou l'instant où deux mobiles se croisent.
+  en: >-
+    In a frame, a line becomes an equation: a Cartesian equation, with a direction vector, or the reduced equation y equals m x plus p, where m is the slope and p the intercept. Two lines with the same slope are parallel; otherwise, their intersection point is computed by solving a system. This is how physics reads a speed on a graph, or the instant when two moving bodies cross.
+aliases:
+  fr: ["équation réduite", "équation cartésienne", "coefficient directeur", "pente d'une droite", "vecteur directeur", "droites parallèles et sécantes"]
+  en: ["reduced equation", "Cartesian equation", "gradient", "slope of a line", "direction vector", "parallel and secant lines"]
+description:
+  fr: |
+    Dans un repère, une **droite** est l'ensemble des points $M(x\,;\,y)$ dont les coordonnées vérifient une **équation cartésienne** $ax + by + c = 0$, avec $(a\,;\,b) \neq (0\,;\,0)$ ; le vecteur $\vec u(-b\,;\,a)$ est un **vecteur directeur** de la droite, et tout vecteur colinéaire à $\vec u$ en est un aussi. Une droite non verticale possède une unique **équation réduite** $y = mx + p$ : $m$ est son coefficient directeur, ou pente, et $p$ son ordonnée à l'origine. Une droite verticale a une équation de la forme $x = c$ et n'a pas de coefficient directeur.
+
+    La pente se calcule à partir de deux points distincts $A$ et $B$ de la droite : $m = \dfrac{y_B - y_A}{x_B - x_A}$, l'accroissement vertical par unité horizontale. Pour $A(1\,;\,1)$ et $B(3\,;\,5)$, $m = \dfrac{5 - 1}{3 - 1} = 2$, puis $p$ s'obtient en écrivant que $A$ est sur la droite : $1 = 2 \times 1 + p$, donc $p = -1$ et la droite a pour équation $y = 2x - 1$. Deux droites non verticales sont **parallèles** si et seulement si elles ont le même coefficient directeur ; sinon elles sont sécantes en un unique point. Un point est sur la droite si et seulement si ses coordonnées vérifient l'équation, ce qui permet de tester l'alignement de trois points.
+
+    Le point d'intersection de deux droites sécantes se trouve en résolvant le **système** formé par leurs deux équations : pour $y = 2x - 1$ et $y = -0{,}5x + 2$, on écrit $2x - 1 = -0{,}5x + 2$, d'où $x = 1{,}2$ puis $y = 1{,}4$. Ce calcul est le même que celui de l'instant où deux mobiles se croisent, ou du point d'équilibre entre deux tarifs affines. Deux pièges : confondre la pente et l'ordonnée à l'origine, et chercher une équation réduite pour une droite verticale ; la bonne habitude est de vérifier qu'un point connu satisfait bien l'équation trouvée.
+  en: |
+    In a frame, a **line** is the set of points $M(x\,;\,y)$ whose coordinates satisfy a **Cartesian equation** $ax + by + c = 0$, with $(a\,;\,b) \neq (0\,;\,0)$; the vector $\vec u(-b\,;\,a)$ is a **direction vector** of the line, and every vector collinear with $\vec u$ is one too. A non-vertical line has a unique **reduced equation** $y = mx + p$: $m$ is its slope, or gradient, and $p$ its intercept. A vertical line has an equation of the form $x = c$ and has no slope.
+
+    The slope is computed from two distinct points $A$ and $B$ of the line: $m = \dfrac{y_B - y_A}{x_B - x_A}$, the vertical increase per horizontal unit. For $A(1\,;\,1)$ and $B(3\,;\,5)$, $m = \dfrac{5 - 1}{3 - 1} = 2$, then $p$ is obtained by writing that $A$ lies on the line: $1 = 2 \times 1 + p$, so $p = -1$ and the line has equation $y = 2x - 1$. Two non-vertical lines are **parallel** if and only if they have the same slope; otherwise they meet at a single point. A point lies on the line if and only if its coordinates satisfy the equation, which allows one to test whether three points are aligned.
+
+    The intersection point of two secant lines is found by solving the **system** formed by their two equations: for $y = 2x - 1$ and $y = -0.5x + 2$, we write $2x - 1 = -0.5x + 2$, whence $x = 1.2$ then $y = 1.4$. This computation is the same as that of the instant when two moving bodies cross, or of the break-even point between two linear tariffs. Two traps: confusing the slope with the intercept, and looking for a reduced equation for a vertical line; the good habit is to check that a known point does satisfy the equation found.
+tool:
+  problemSolved:
+    fr: "Décrire une droite du plan par une équation, en lire la pente et un vecteur directeur, décider si deux droites sont parallèles et calculer leur point d'intersection en résolvant un système."
+    en: "Describe a line of the plane by an equation, read its slope and a direction vector from it, decide whether two lines are parallel and compute their intersection point by solving a system."
+  construction:
+    fr: "Un point et un vecteur directeur, ou deux points, déterminent la droite ; la colinéarité de $\\overrightarrow{AM}$ et de $\\vec u$ donne l'équation cartésienne $ax + by + c = 0$, que l'on résout en $y$ pour obtenir l'équation réduite $y = mx + p$ lorsque $b \\neq 0$."
+    en: "A point and a direction vector, or two points, determine the line; the collinearity of $\\overrightarrow{AM}$ and $\\vec u$ gives the Cartesian equation $ax + by + c = 0$, which is solved for $y$ to obtain the reduced equation $y = mx + p$ when $b \\neq 0$."
+  icon: line
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "déterminer une équation cartésienne ou réduite d'une droite à partir de deux points, ou d'un point et d'un vecteur directeur"
+        - "lire sur une équation la pente, l'ordonnée à l'origine et un vecteur directeur, et tracer la droite"
+        - "reconnaître deux droites parallèles ou sécantes et déterminer leur point d'intersection en résolvant un système"
+        - "vérifier qu'un point appartient à une droite et tester l'alignement de trois points"
+      en:
+        - "find a Cartesian or reduced equation of a line from two points, or from a point and a direction vector"
+        - "read from an equation the slope, the intercept and a direction vector, and draw the line"
+        - "recognise two parallel or secant lines and find their intersection point by solving a system"
+        - "check that a point lies on a line and test whether three points are aligned"

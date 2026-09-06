@@ -11,7 +11,15 @@
   const graph = $derived(content.graph!);
   const pkg = $derived(content.pkg!);
   const horizon = $derived(profile.horizon(pkg.horizon));
-  const recommendations = $derived(recommend(graph, learning.snapshot, pkg.routes, 4));
+  const recommendations = $derived(
+    recommend(
+      graph,
+      learning.snapshot,
+      pkg.routes,
+      4,
+      horizon ? { horizon, config: pkg.horizon } : undefined
+    )
+  );
   const plannedStops = $derived.by(() => {
     void learning.snapshot;
     return tour.plannedStops();

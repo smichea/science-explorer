@@ -1,0 +1,44 @@
+# Arithmétique — décomposer 360 en produit de facteurs premiers (réponse symbolique)
+id: exercise.arithmetic.factorisation
+type: symbolic
+nodeId: tool.arithmetic
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Donnez la décomposition en produit de facteurs premiers de $360$.
+
+    Écrivez-la avec des puissances, par exemple `2^2*3*7` pour $84 = 2^2 \times 3 \times 7$.
+  en: |-
+    Give the prime factorisation of $360$.
+
+    Write it with powers, for instance `2^2*3*7` for $84 = 2^2 \times 3 \times 7$.
+symbolic:
+  variable: x
+  accepted: ["2^3*3^2*5", "8*9*5", "360"]
+  display: "360 ="
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Divisez par $2$ tant que c'est possible, puis par $3$, puis par $5$ : $360 = 2 \times 180 = 2 \times 2 \times 90 = \ldots$
+      en: |-
+        Divide by $2$ as long as possible, then by $3$, then by $5$: $360 = 2 \times 180 = 2 \times 2 \times 90 = \ldots$
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $360 = 2 \times 2 \times 2 \times 45$ et $45 = 3 \times 3 \times 5$. Regroupez les facteurs égaux en puissances.
+      en: |-
+        $360 = 2 \times 2 \times 2 \times 45$ and $45 = 3 \times 3 \times 5$. Group equal factors into powers.
+solution:
+  fr: |-
+    On divise par les nombres premiers dans l'ordre croissant :
+    $$360 = 2 \times 180 = 2^2 \times 90 = 2^3 \times 45 = 2^3 \times 3 \times 15 = 2^3 \times 3^2 \times 5.$$
+    Cette écriture est unique à l'ordre près. Elle donne le nombre de diviseurs de $360$ : $(3 + 1)(2 + 1)(1 + 1) = 24$, et elle permet de simplifier une fraction comme $\dfrac{84}{360} = \dfrac{2^2 \times 3 \times 7}{2^3 \times 3^2 \times 5} = \dfrac{7}{30}$.
+  en: |-
+    We divide by the primes in increasing order:
+    $$360 = 2 \times 180 = 2^2 \times 90 = 2^3 \times 45 = 2^3 \times 3 \times 15 = 2^3 \times 3^2 \times 5.$$
+    This writing is unique up to order. It gives the number of divisors of $360$: $(3 + 1)(2 + 1)(1 + 1) = 24$, and it allows one to simplify a fraction such as $\dfrac{84}{360} = \dfrac{2^2 \times 3 \times 7}{2^3 \times 3^2 \times 5} = \dfrac{7}{30}$.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

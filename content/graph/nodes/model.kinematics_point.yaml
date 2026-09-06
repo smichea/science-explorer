@@ -56,6 +56,20 @@ model:
       - "The model describes but does not explain: a law (Newton) is needed to link acceleration to forces."
 depths:
   - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "choisir un système et un référentiel, décrire une trajectoire"
+        - "calculer une vitesse moyenne et approcher une vitesse instantanée sur un relevé de positions"
+        - "représenter le vecteur vitesse (direction, sens, valeur) en un point d'une trajectoire"
+        - "reconnaître un mouvement rectiligne uniforme, accéléré ou ralenti, et un mouvement circulaire"
+      en:
+        - "choose a system and a frame of reference, describe a trajectory"
+        - "compute an average speed and approximate an instantaneous speed on a record of positions"
+        - "draw the velocity vector (direction, sense, value) at a point of a trajectory"
+        - "recognise a uniform, accelerated or decelerated rectilinear motion, and a circular motion"
+  - depth: 2
     stage: terminale
     role: core
     outcomes:
@@ -78,7 +92,7 @@ depths:
         **Vectors of motion.** In a frame of reference with coordinate system $(O ;\, \vec i, \vec j, \vec k)$, the position of the point $M$ at time $t$ is $\overrightarrow{OM}(t) = x(t)\,\vec i + y(t)\,\vec j + z(t)\,\vec k$. The velocity vector is the derivative of the position vector, $\vec v = \dfrac{\mathrm{d}\overrightarrow{OM}}{\mathrm{d}t}$, with coordinates $(\dot x, \dot y, \dot z)$; it is tangent to the trajectory and points in the direction of motion. The acceleration vector is $\vec a = \dfrac{\mathrm{d}\vec v}{\mathrm{d}t}$, with coordinates $(\ddot x, \ddot y, \ddot z)$. On an experimental record, $\vec v(t_i)$ is approximated by $\dfrac{\overrightarrow{M_{i-1}M_{i+1}}}{t_{i+1} - t_{i-1}}$: a rate of change.
 
         **Reference motions.** Uniform rectilinear: $\vec a = \vec 0$, $\vec v$ constant, $x(t) = v\,t + x_0$. Uniformly accelerated rectilinear: $\vec a$ constant and collinear with $\vec v$, $x(t) = \tfrac12\,a\,t^2 + v_0\,t + x_0$. Uniform circular: the magnitude of $\vec v$ is constant but its direction turns, so $\vec a \neq \vec 0$; the acceleration is centripetal, of magnitude $v^2/R$. In every case, knowing $\vec a(t)$, $\overrightarrow{OM}(0)$ and $\vec v(0)$ is enough to reconstruct the motion.
-  - depth: 2
+  - depth: 3
     stage: mpsi
     role: core
     outcomes:

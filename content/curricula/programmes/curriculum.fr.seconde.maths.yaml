@@ -1,0 +1,73 @@
+id: curriculum.fr.seconde.maths
+country: FR
+stage: seconde
+subject: mathematics
+title:
+  fr: "Mathématiques — Seconde générale et technologique"
+  en: "Mathematics — Grade 10 (Seconde), general and technological track"
+version: "2026-reference"
+validFrom: "2019-09-01"
+validTo: null
+sourceReferences:
+  - title: "Programme de mathématiques de seconde générale et technologique, arrêté du 17-1-2019, BO spécial n°1 du 22 janvier 2019"
+    note: "to verify"
+items:
+  - id: logique
+    title: { fr: Vocabulaire ensembliste et logique, en: Set vocabulary and logic }
+    reference: "Vocabulaire ensembliste et logique"
+    alignedNodes:
+      - { node: concept.logic_sets, depth: 1 }
+  - id: nombres_reels
+    title: { fr: Manipuler les nombres réels, en: Handling real numbers }
+    reference: "Nombres et calculs — Manipuler les nombres réels"
+    alignedNodes:
+      - { node: concept.number_sets, depth: 1 }
+      - { node: tool.powers_roots, depth: 1 }
+  - id: arithmetique
+    title: { fr: "Multiples, diviseurs, nombres premiers", en: "Multiples, divisors, prime numbers" }
+    reference: "Nombres et calculs — Utiliser les notions de multiple, diviseur et de nombre premier"
+    alignedNodes:
+      - { node: tool.arithmetic, depth: 1 }
+  - id: calcul_litteral
+    title: { fr: Utiliser le calcul littéral, en: Using algebraic manipulation }
+    reference: "Nombres et calculs — Utiliser le calcul littéral"
+    alignedNodes:
+      - { node: tool.algebraic_identities, depth: 1 }
+      - { node: tool.linear_equations, depth: 1 }
+      - { node: tool.sign_table, depth: 1 }
+  - id: vecteurs
+    title: { fr: Manipuler les vecteurs du plan, en: Handling vectors of the plane }
+    reference: "Géométrie — Manipuler les vecteurs du plan"
+    alignedNodes:
+      - { node: tool.vector, depth: 1 }
+  - id: geometrie_reperee
+    title: { fr: "Repérage et droites", en: "Coordinates and lines" }
+    reference: "Géométrie — Résoudre des problèmes de géométrie (repérage, équations de droites)"
+    alignedNodes:
+      - { node: concept.coordinates, depth: 1 }
+      - { node: tool.line_equations, depth: 1 }
+  - id: fonctions
+    title: { fr: "Fonctions : notion, courbe, variations, fonctions de référence", en: "Functions: notion, curve, variations, reference functions" }
+    reference: "Fonctions — Se constituer un répertoire de fonctions de référence ; représenter algébriquement et graphiquement les fonctions"
+    alignedNodes:
+      - { node: concept.function, depth: 1 }
+      - { node: concept.graph, depth: 1 }
+      - { node: concept.variations_extremums, depth: 1 }
+      - { node: tool.reference_functions, depth: 1 }
+  - id: information_chiffree
+    title: { fr: "Information chiffrée et statistique descriptive", en: "Percentages and descriptive statistics" }
+    reference: "Statistiques et probabilités — Utiliser l'information chiffrée et statistique descriptive"
+    alignedNodes:
+      - { node: concept.proportions_evolutions, depth: 1 }
+      - { node: tool.descriptive_statistics, depth: 1 }
+  - id: probabilites
+    title: { fr: "Probabilités et échantillonnage", en: "Probability and sampling" }
+    reference: "Statistiques et probabilités — Modéliser le hasard, calculer des probabilités ; échantillonnage"
+    alignedNodes:
+      - { node: concept.probability, depth: 1 }
+      - { node: concept.sampling_fluctuation, depth: 1 }
+  - id: algorithmique
+    title: { fr: Algorithmique et programmation, en: Algorithmics and programming }
+    reference: "Algorithmique et programmation"
+    alignedNodes:
+      - { node: tool.algorithmics, depth: 1 }

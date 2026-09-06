@@ -1,0 +1,85 @@
+# Tableau de signes — l'ensemble des solutions de (x − 1)(x + 2) ≤ 0 (choix unique)
+id: exercise.sign_table.product_set
+type: choice
+nodeId: tool.sign_table
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    On veut résoudre l'inéquation $(x - 1)(x + 2) \leq 0$.
+
+    Après avoir dressé le tableau de signes du produit, quel est l'ensemble des solutions ?
+  en: |-
+    We want to solve the inequality $(x - 1)(x + 2) \leq 0$.
+
+    After drawing up the sign table of the product, what is the solution set?
+choice:
+  multiple: false
+  requireReasoning: false
+  choices:
+    - id: between
+      text: { fr: "$[-2\\,;\\,1]$", en: "$[-2\\,;\\,1]$" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : $x - 1$ est négatif avant $1$ et $x + 2$ est positif après $-2$, donc le produit est négatif entre $-2$ et $1$, et nul aux deux racines, qui sont comprises à cause du « ou égal ».
+        en: |-
+          Correct: $x - 1$ is negative before $1$ and $x + 2$ is positive after $-2$, so the product is negative between $-2$ and $1$, and zero at both roots, which are included because of the "or equal".
+    - id: outside
+      text: { fr: "$]-\\infty\\,;\\,-2] \\cup [1\\,;\\,+\\infty[$", en: "$]-\\infty\\,;\\,-2] \\cup [1\\,;\\,+\\infty[$" }
+      feedback:
+        fr: |-
+          C'est l'ensemble où le produit est **positif** ou nul : avant $-2$ les deux facteurs sont négatifs, après $1$ ils sont tous deux positifs. L'inéquation demande le signe négatif.
+        en: |-
+          That is the set where the product is **positive** or zero: before $-2$ both factors are negative, after $1$ both are positive. The inequality asks for the negative sign.
+    - id: swapped
+      text: { fr: "$[-1\\,;\\,2]$", en: "$[-1\\,;\\,2]$" }
+      feedback:
+        fr: |-
+          Les racines sont mal calculées : $x - 1 = 0$ donne $x = 1$ et $x + 2 = 0$ donne $x = -2$, pas l'inverse. Le signe des racines se lit en résolvant chaque facteur.
+        en: |-
+          The roots are miscomputed: $x - 1 = 0$ gives $x = 1$ and $x + 2 = 0$ gives $x = -2$, not the other way round. The sign of the roots is read by solving each factor.
+    - id: open
+      text: { fr: "$]-2\\,;\\,1[$", en: "$]-2\\,;\\,1[$" }
+      feedback:
+        fr: |-
+          Presque : le produit est bien négatif entre les racines, mais l'inéquation est large ($\leq 0$), et en $-2$ comme en $1$ le produit vaut $0$. Les bornes sont donc des solutions.
+        en: |-
+          Almost: the product is indeed negative between the roots, but the inequality is non-strict ($\leq 0$), and at $-2$ as at $1$ the product equals $0$. The bounds are therefore solutions.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Cherchez la racine de chaque facteur, rangez-les dans l'ordre croissant, puis remplissez une ligne par facteur.
+      en: |-
+        Find the root of each factor, arrange them in increasing order, then fill one row per factor.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Les racines sont $-2$ et $1$. Sur $]-2\,;\,1[$, $x + 2 > 0$ et $x - 1 < 0$ : quel est le signe du produit ?
+      en: |-
+        The roots are $-2$ and $1$. On $]-2\,;\,1[$, $x + 2 > 0$ and $x - 1 < 0$: what is the sign of the product?
+solution:
+  fr: |-
+    Racines : $x - 1 = 0 \iff x = 1$ et $x + 2 = 0 \iff x = -2$. Tableau de signes, avec $-2 < 1$ :
+
+    | $x$ | $-\infty$ | | $-2$ | | $1$ | | $+\infty$ |
+    | --- | --- | --- | --- | --- | --- | --- | --- |
+    | $x + 2$ | | $-$ | $0$ | $+$ | | $+$ | |
+    | $x - 1$ | | $-$ | | $-$ | $0$ | $+$ | |
+    | produit | | $+$ | $0$ | $-$ | $0$ | $+$ | |
+
+    Le produit est négatif ou nul exactement sur $[-2\,;\,1]$ : c'est l'ensemble des solutions. Sur la courbe de $x \mapsto (x - 1)(x + 2)$, c'est l'intervalle où la parabole est sous l'axe des abscisses, bornes comprises.
+  en: |-
+    Roots: $x - 1 = 0 \iff x = 1$ and $x + 2 = 0 \iff x = -2$. Sign table, with $-2 < 1$:
+
+    | $x$ | $-\infty$ | | $-2$ | | $1$ | | $+\infty$ |
+    | --- | --- | --- | --- | --- | --- | --- | --- |
+    | $x + 2$ | | $-$ | $0$ | $+$ | | $+$ | |
+    | $x - 1$ | | $-$ | | $-$ | $0$ | $+$ | |
+    | product | | $+$ | $0$ | $-$ | $0$ | $+$ | |
+
+    The product is negative or zero exactly on $[-2\,;\,1]$: that is the solution set. On the curve of $x \mapsto (x - 1)(x + 2)$, it is the interval where the parabola lies below the horizontal axis, bounds included.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

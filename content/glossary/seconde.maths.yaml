@@ -1,0 +1,186 @@
+# Seconde — mathématiques : termes préférés et alias des seize destinations (deux à trois entrées par nœud).
+entries:
+  - id: glossary.number_sets
+    nodeId: concept.number_sets
+    fr: { preferred: ensembles de nombres, aliases: [entiers naturels, entiers relatifs, nombres décimaux, nombres rationnels, nombres réels] }
+    en: { preferred: number sets, aliases: [natural numbers, integers, decimal numbers, rational numbers, real numbers] }
+  - id: glossary.interval
+    nodeId: concept.number_sets
+    fr: { preferred: intervalle, aliases: [intervalle ouvert, intervalle fermé, droite numérique, encadrement] }
+    en: { preferred: interval, aliases: [open interval, closed interval, number line, bounds] }
+  - id: glossary.absolute_value
+    nodeId: concept.number_sets
+    fr: { preferred: valeur absolue, aliases: [distance entre deux réels, distance à zéro] }
+    en: { preferred: absolute value, aliases: [distance between two reals, distance to zero] }
+  - id: glossary.divisor
+    nodeId: tool.arithmetic
+    fr: { preferred: diviseur, aliases: [multiple, divisibilité, parité] }
+    en: { preferred: divisor, aliases: [multiple, divisibility, parity] }
+  - id: glossary.prime_number
+    nodeId: tool.arithmetic
+    fr: { preferred: nombre premier, aliases: [premier, crible d'Ératosthène, primalité] }
+    en: { preferred: prime number, aliases: [prime, sieve of Eratosthenes, primality] }
+  - id: glossary.prime_factorisation
+    nodeId: tool.arithmetic
+    fr: { preferred: décomposition en facteurs premiers, aliases: [décomposition en produit de facteurs premiers, factorisation d'un entier] }
+    en: { preferred: prime factorisation, aliases: [decomposition into prime factors, factorisation of an integer] }
+  - id: glossary.power
+    nodeId: tool.powers_roots
+    fr: { preferred: puissance, aliases: [exposant, exposant négatif, puissance de dix] }
+    en: { preferred: power, aliases: [exponent, negative exponent, power of ten] }
+  - id: glossary.scientific_notation
+    nodeId: tool.powers_roots
+    fr: { preferred: notation scientifique, aliases: [écriture scientifique, ordre de grandeur] }
+    en: { preferred: scientific notation, aliases: [standard form, order of magnitude] }
+  - id: glossary.square_root
+    nodeId: tool.powers_roots
+    fr: { preferred: racine carrée, aliases: [racine, radical] }
+    en: { preferred: square root, aliases: [root, radical] }
+  - id: glossary.remarkable_identity
+    nodeId: tool.algebraic_identities
+    fr: { preferred: identité remarquable, aliases: [identités remarquables, carré d'une somme, différence de deux carrés] }
+    en: { preferred: remarkable identity, aliases: [remarkable identities, square of a sum, difference of two squares] }
+  - id: glossary.expand
+    nodeId: tool.algebraic_identities
+    fr: { preferred: développer, aliases: [développement, forme développée, réduire] }
+    en: { preferred: expand, aliases: [expansion, expanded form, simplify] }
+  - id: glossary.factor
+    nodeId: tool.algebraic_identities
+    fr: { preferred: factoriser, aliases: [factorisation, forme factorisée, facteur commun] }
+    en: { preferred: factor, aliases: [factorisation, factored form, common factor] }
+  - id: glossary.linear_equation
+    nodeId: tool.linear_equations
+    fr: { preferred: équation du premier degré, aliases: [équation, résoudre une équation, inconnue] }
+    en: { preferred: linear equation, aliases: [equation, solve an equation, unknown] }
+  - id: glossary.inequality
+    nodeId: tool.linear_equations
+    fr: { preferred: inéquation, aliases: [inéquation du premier degré, ensemble des solutions] }
+    en: { preferred: inequality, aliases: [linear inequality, solution set] }
+  - id: glossary.zero_product
+    nodeId: tool.linear_equations
+    fr: { preferred: équation produit nul, aliases: [produit nul, règle du produit nul] }
+    en: { preferred: zero-product equation, aliases: [zero product, zero-product rule] }
+  - id: glossary.sign_table
+    nodeId: tool.sign_table
+    fr: { preferred: tableau de signes, aliases: [signe d'un produit, signe d'un quotient, règle des signes] }
+    en: { preferred: sign table, aliases: [sign of a product, sign of a quotient, rule of signs] }
+  - id: glossary.product_inequality
+    nodeId: tool.sign_table
+    fr: { preferred: inéquation produit, aliases: [inéquation quotient, signe d'une expression du premier degré] }
+    en: { preferred: product inequality, aliases: [quotient inequality, sign of a linear expression] }
+  - id: glossary.implication
+    nodeId: concept.logic_sets
+    fr: { preferred: implication, aliases: [réciproque, contraposée, équivalence, condition nécessaire et suffisante] }
+    en: { preferred: implication, aliases: [converse, contrapositive, equivalence, necessary and sufficient condition] }
+  - id: glossary.counterexample
+    nodeId: concept.logic_sets
+    fr: { preferred: contre-exemple, aliases: [réfuter, propriété universelle] }
+    en: { preferred: counter-example, aliases: [refute, universal property] }
+  - id: glossary.set_operations
+    nodeId: concept.logic_sets
+    fr: { preferred: intersection et réunion, aliases: [appartenance, inclusion, ensemble vide, quantificateur] }
+    en: { preferred: intersection and union, aliases: [membership, inclusion, empty set, quantifier] }
+  - id: glossary.variations
+    nodeId: concept.variations_extremums
+    fr: { preferred: sens de variation, aliases: [fonction croissante, fonction décroissante, tableau de variations, monotone] }
+    en: { preferred: direction of variation, aliases: [increasing function, decreasing function, variation table, monotonic] }
+  - id: glossary.extremum
+    nodeId: concept.variations_extremums
+    fr: { preferred: extremum, aliases: [maximum, minimum, extremums] }
+    en: { preferred: extremum, aliases: [maximum, minimum, extrema] }
+  - id: glossary.parity_function
+    nodeId: concept.variations_extremums
+    fr: { preferred: parité d'une fonction, aliases: [fonction paire, fonction impaire, symétrie de la courbe] }
+    en: { preferred: parity of a function, aliases: [even function, odd function, symmetry of the curve] }
+  - id: glossary.reference_functions
+    nodeId: tool.reference_functions
+    fr: { preferred: fonctions de référence, aliases: [fonction carré, fonction inverse, fonction racine carrée, fonction cube] }
+    en: { preferred: reference functions, aliases: [square function, reciprocal function, square root function, cube function] }
+  - id: glossary.affine_function
+    nodeId: tool.reference_functions
+    fr: { preferred: fonction affine, aliases: [fonction linéaire, coefficient directeur, ordonnée à l'origine] }
+    en: { preferred: linear function, aliases: [proportional function, slope, intercept] }
+  - id: glossary.orthonormal_frame
+    nodeId: concept.coordinates
+    fr: { preferred: repère orthonormé, aliases: [repère, coordonnées, abscisse et ordonnée] }
+    en: { preferred: orthonormal frame, aliases: [coordinate system, coordinates, abscissa and ordinate] }
+  - id: glossary.midpoint
+    nodeId: concept.coordinates
+    fr: { preferred: milieu d'un segment, aliases: [milieu, coordonnées du milieu] }
+    en: { preferred: midpoint of a segment, aliases: [midpoint, coordinates of the midpoint] }
+  - id: glossary.distance_projection
+    nodeId: concept.coordinates
+    fr: { preferred: distance entre deux points, aliases: [longueur d'un segment, projeté orthogonal, distance d'un point à une droite] }
+    en: { preferred: distance between two points, aliases: [length of a segment, orthogonal projection, distance from a point to a line] }
+  - id: glossary.line_equation
+    nodeId: tool.line_equations
+    fr: { preferred: équation de droite, aliases: [équation réduite, équation cartésienne, droites parallèles, droites sécantes] }
+    en: { preferred: equation of a line, aliases: [reduced equation, Cartesian equation, parallel lines, secant lines] }
+  - id: glossary.slope
+    nodeId: tool.line_equations
+    fr: { preferred: coefficient directeur, aliases: [pente, ordonnée à l'origine d'une droite] }
+    en: { preferred: slope, aliases: [gradient, intercept of a line] }
+  - id: glossary.direction_vector
+    nodeId: tool.line_equations
+    fr: { preferred: vecteur directeur, aliases: [direction d'une droite, colinéarité] }
+    en: { preferred: direction vector, aliases: [direction of a line, collinearity] }
+  - id: glossary.percentage
+    nodeId: concept.proportions_evolutions
+    fr: { preferred: pourcentage, aliases: [proportion, fréquence, proportion de proportion] }
+    en: { preferred: percentage, aliases: [proportion, frequency, proportion of a proportion] }
+  - id: glossary.multiplier
+    nodeId: concept.proportions_evolutions
+    fr: { preferred: coefficient multiplicateur, aliases: [taux d'évolution, hausse, baisse] }
+    en: { preferred: multiplier, aliases: [rate of change, increase, decrease] }
+  - id: glossary.successive_changes
+    nodeId: concept.proportions_evolutions
+    fr: { preferred: évolutions successives, aliases: [évolution réciproque, taux global] }
+    en: { preferred: successive changes, aliases: [reciprocal change, overall rate] }
+  - id: glossary.mean
+    nodeId: tool.descriptive_statistics
+    fr: { preferred: moyenne, aliases: [moyenne pondérée, série statistique, effectif] }
+    en: { preferred: mean, aliases: [weighted mean, statistical series, count] }
+  - id: glossary.median
+    nodeId: tool.descriptive_statistics
+    fr: { preferred: médiane, aliases: [quartiles, premier quartile, troisième quartile, écart interquartile] }
+    en: { preferred: median, aliases: [quartiles, first quartile, third quartile, interquartile range] }
+  - id: glossary.standard_deviation
+    nodeId: tool.descriptive_statistics
+    fr: { preferred: écart type, aliases: [écart-type, dispersion, étendue, variance] }
+    en: { preferred: standard deviation, aliases: [spread, dispersion, range, variance] }
+  - id: glossary.sample_space
+    nodeId: concept.probability
+    fr: { preferred: univers, aliases: [expérience aléatoire, issue, issues] }
+    en: { preferred: sample space, aliases: [random experiment, outcome, outcomes] }
+  - id: glossary.event
+    nodeId: concept.probability
+    fr: { preferred: événement, aliases: [événement contraire, intersection d'événements, réunion d'événements, événements incompatibles] }
+    en: { preferred: event, aliases: [complementary event, intersection of events, union of events, incompatible events] }
+  - id: glossary.equiprobability
+    nodeId: concept.probability
+    fr: { preferred: équiprobabilité, aliases: [issues équiprobables, dénombrement, dé équilibré] }
+    en: { preferred: equiprobability, aliases: [equally likely outcomes, counting, fair die] }
+  - id: glossary.sample
+    nodeId: concept.sampling_fluctuation
+    fr: { preferred: échantillon, aliases: [échantillon de taille n, fréquence observée, échantillonnage] }
+    en: { preferred: sample, aliases: [sample of size n, observed frequency, sampling] }
+  - id: glossary.sampling_fluctuation
+    nodeId: concept.sampling_fluctuation
+    fr: { preferred: fluctuation d'échantillonnage, aliases: [intervalle de fluctuation, simulation, loi des grands nombres] }
+    en: { preferred: sampling fluctuation, aliases: [fluctuation interval, simulation, law of large numbers] }
+  - id: glossary.estimation
+    nodeId: concept.sampling_fluctuation
+    fr: { preferred: estimation d'une proportion, aliases: [estimer, sondage] }
+    en: { preferred: estimation of a proportion, aliases: [estimate, opinion poll] }
+  - id: glossary.algorithm
+    nodeId: tool.algorithmics
+    fr: { preferred: algorithme, aliases: [programme, Python, instruction conditionnelle, fonction en Python] }
+    en: { preferred: algorithm, aliases: [program, Python, conditional statement, function in Python] }
+  - id: glossary.loop
+    nodeId: tool.algorithmics
+    fr: { preferred: boucle, aliases: [boucle bornée, boucle non bornée, boucle for, boucle while] }
+    en: { preferred: loop, aliases: [bounded loop, unbounded loop, for loop, while loop] }
+  - id: glossary.variable_assignment
+    nodeId: tool.algorithmics
+    fr: { preferred: affectation, aliases: [variable, affecter une valeur, initialisation] }
+    en: { preferred: assignment, aliases: [variable, assign a value, initialisation] }

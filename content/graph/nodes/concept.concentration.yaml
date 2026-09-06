@@ -1,0 +1,46 @@
+id: concept.concentration
+type: method
+world: world.chemistry
+region: region.chemistry.amount_measurement
+importance: 2
+tags: [lycee]
+title: { fr: Solutions aqueuses et concentration en masse, en: Aqueous solutions and mass concentration }
+shortPurpose:
+  fr: Décrire la composition d'une solution par la masse de soluté dissoute par litre, et préparer une solution de concentration voulue par dissolution ou par dilution.
+  en: Describe the composition of a solution by the mass of solute dissolved per litre, and prepare a solution of a chosen concentration by dissolution or by dilution.
+overview:
+  fr: >-
+    Une solution aqueuse est un mélange homogène obtenu en dissolvant un soluté dans l'eau. Sa concentration en masse dit combien de grammes de soluté chaque litre contient. Savoir la calculer, préparer une solution par dissolution ou par dilution, et l'estimer avec une échelle de teintes, c'est le quotidien du laboratoire, de la pharmacie à l'analyse des eaux.
+  en: >-
+    An aqueous solution is a homogeneous mixture obtained by dissolving a solute in water. Its mass concentration says how many grams of solute each litre contains. Computing it, preparing a solution by dissolution or by dilution, and estimating it with a colour scale is everyday laboratory work, from the pharmacy to water analysis.
+aliases:
+  fr: ["concentration massique", "soluté et solvant", "dissolution et dilution", "échelle de teintes"]
+  en: ["mass concentration", "solute and solvent", "dissolution and dilution", "colour scale"]
+description:
+  fr: |
+    Une **solution aqueuse** est un mélange homogène obtenu en dissolvant une espèce chimique, le **soluté**, dans l'eau, le **solvant** : le sel disparaît dans l'eau, mais il est toujours là, sous forme d'ions dispersés. La **concentration en masse** d'un soluté est la masse de soluté dissoute par unité de volume de solution : $C_m = \dfrac{m}{V}$, en $\mathrm{g/L}$ si $m$ est en grammes et $V$ en litres. Ainsi $5{,}0\ \mathrm{g}$ de sucre dissous dans de l'eau pour obtenir $250\ \mathrm{mL}$ de solution donnent $C_m = \dfrac{5{,}0}{0{,}250} = 20\ \mathrm{g/L}$. Il ne faut pas la confondre avec la masse volumique de la solution, qui rapporte la masse totale de la solution à son volume.
+
+    On prépare une solution de concentration donnée de deux façons. Par **dissolution** : on pèse la masse $m = C_m \times V$ de soluté, on l'introduit dans une fiole jaugée de volume $V$, on ajoute de l'eau, on agite, puis on complète jusqu'au trait de jauge. Par **dilution** : on prélève un volume $V_1$ d'une solution mère de concentration $C_1$ que l'on complète avec de l'eau jusqu'au volume $V_2$ ; la masse de soluté se conserve, d'où $C_1 V_1 = C_2 V_2$, et le **facteur de dilution** $F = \dfrac{C_1}{C_2} = \dfrac{V_2}{V_1}$ dit combien de fois la solution a été diluée. Pour obtenir $100\ \mathrm{mL}$ à $8{,}0\ \mathrm{g/L}$ à partir d'une solution mère à $40\ \mathrm{g/L}$, on prélève $V_1 = \dfrac{8{,}0 \times 100}{40} = 20\ \mathrm{mL}$ (facteur $5$).
+
+    Une solution colorée permet d'**estimer** une concentration sans calcul : on prépare une **échelle de teintes**, une série de solutions de concentrations connues, et l'on compare la couleur de la solution inconnue à celles de l'échelle ; l'intensité de la teinte croît avec la concentration, ce qui prépare la spectrophotométrie de Première. Deux limites à garder en tête : on ne peut pas dissoudre une masse quelconque, la concentration a une valeur maximale au-delà de laquelle le soluté ne se dissout plus (environ $360\ \mathrm{g/L}$ pour le sel dans l'eau à $20\ ^\circ\mathrm{C}$) ; et le volume de la formule est celui de la solution, pas celui de l'eau ajoutée. Une concentration s'écrit toujours avec son unité et un nombre de chiffres significatifs cohérent avec les mesures.
+  en: |
+    An **aqueous solution** is a homogeneous mixture obtained by dissolving a chemical species, the **solute**, in water, the **solvent**: the salt disappears into the water, but it is still there, as dispersed ions. The **mass concentration** of a solute is the mass of solute dissolved per unit volume of solution: $C_m = \dfrac{m}{V}$, in $\mathrm{g/L}$ if $m$ is in grams and $V$ in litres. Thus $5.0\ \mathrm{g}$ of sugar dissolved in water to obtain $250\ \mathrm{mL}$ of solution give $C_m = \dfrac{5.0}{0.250} = 20\ \mathrm{g/L}$. It must not be confused with the density of the solution, which relates the total mass of the solution to its volume.
+
+    A solution of given concentration is prepared in two ways. By **dissolution**: weigh the mass $m = C_m \times V$ of solute, put it into a volumetric flask of volume $V$, add water, shake, then fill up to the mark. By **dilution**: take a volume $V_1$ of a stock solution of concentration $C_1$ and fill up with water to the volume $V_2$; the mass of solute is conserved, hence $C_1 V_1 = C_2 V_2$, and the **dilution factor** $F = \dfrac{C_1}{C_2} = \dfrac{V_2}{V_1}$ says how many times the solution has been diluted. To obtain $100\ \mathrm{mL}$ at $8.0\ \mathrm{g/L}$ from a stock solution at $40\ \mathrm{g/L}$, take $V_1 = \dfrac{8.0 \times 100}{40} = 20\ \mathrm{mL}$ (factor $5$).
+
+    A coloured solution lets one **estimate** a concentration without calculation: prepare a **colour scale**, a series of solutions of known concentrations, and compare the colour of the unknown solution with those of the scale; the intensity of the tint grows with the concentration, which prepares the spectrophotometry of Grade 11. Two limits to keep in mind: one cannot dissolve any mass whatsoever, the concentration has a maximum value beyond which the solute no longer dissolves (about $360\ \mathrm{g/L}$ for salt in water at $20\ ^\circ\mathrm{C}$); and the volume in the formula is that of the solution, not that of the added water. A concentration is always written with its unit and a number of significant figures consistent with the measurements.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "identifier le soluté et le solvant d'une solution aqueuse et distinguer concentration en masse et masse volumique"
+        - "calculer une concentration en masse à partir d'une masse de soluté et d'un volume de solution"
+        - "déterminer la concentration d'une solution préparée par dissolution ou par dilution à partir du mode opératoire"
+        - "estimer une concentration en masse à l'aide d'une échelle de teintes"
+      en:
+        - "identify the solute and the solvent of an aqueous solution and distinguish mass concentration from density"
+        - "compute a mass concentration from a mass of solute and a volume of solution"
+        - "determine the concentration of a solution prepared by dissolution or by dilution from the procedure"
+        - "estimate a mass concentration using a colour scale"

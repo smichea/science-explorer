@@ -1,0 +1,50 @@
+# Seconde — mathématiques : arêtes intra-disciplinaires (prérequis entre les seize destinations et vers les nœuds
+# existants, applications à l'intérieur des mathématiques). Les applications vers la physique et la chimie sont
+# dans seconde.cross.yaml. Direction : requires_* du prérequis vers le dépendant ; applies_to de l'outil vers l'application.
+edges:
+  # --- requires_essentially -------------------------------------------------
+  - { from: concept.number_sets, to: tool.linear_equations, type: requires_essentially, weight: 1,
+      note: { fr: "L'ensemble des solutions d'une inéquation s'écrit avec des intervalles.", en: "The solution set of an inequality is written with intervals." } }
+  - { from: tool.algebraic_identities, to: tool.linear_equations, type: requires_essentially, weight: 1,
+      note: { fr: "Factoriser avant d'appliquer la règle du produit nul.", en: "Factor before applying the zero-product rule." } }
+  - { from: tool.linear_equations, to: tool.sign_table, type: requires_essentially, weight: 1,
+      note: { fr: "La racine de chaque facteur est la solution d'une équation du premier degré.", en: "The root of each factor is the solution of a linear equation." } }
+  - { from: concept.function, to: concept.variations_extremums, type: requires_essentially, weight: 1 }
+  - { from: concept.graph, to: concept.variations_extremums, type: requires_essentially, weight: 1,
+      note: { fr: "Les variations se lisent d'abord sur la courbe.", en: "Variations are first read on the curve." } }
+  - { from: concept.function, to: tool.reference_functions, type: requires_essentially, weight: 1 }
+  - { from: tool.vector, to: concept.coordinates, type: requires_essentially, weight: 1,
+      note: { fr: "Les coordonnées d'un point sont celles du vecteur qui le repère depuis l'origine.", en: "The coordinates of a point are those of the vector locating it from the origin." } }
+  - { from: concept.coordinates, to: tool.line_equations, type: requires_essentially, weight: 1 }
+  - { from: tool.linear_equations, to: tool.line_equations, type: requires_essentially, weight: 1,
+      note: { fr: "Le point d'intersection de deux droites se trouve en résolvant une équation du premier degré.", en: "The intersection point of two lines is found by solving a linear equation." } }
+  - { from: tool.descriptive_statistics, to: concept.sampling_fluctuation, type: requires_essentially, weight: 1,
+      note: { fr: "La fréquence d'un échantillon est une notion de statistique descriptive.", en: "The frequency of a sample is a notion of descriptive statistics." } }
+  - { from: concept.probability, to: concept.sampling_fluctuation, type: requires_essentially, weight: 1,
+      note: { fr: "La fluctuation se mesure autour de la probabilité p.", en: "Fluctuation is measured around the probability p." } }
+  # --- requires_recommended -------------------------------------------------
+  - { from: tool.arithmetic, to: tool.powers_roots, type: requires_recommended, weight: 0.7,
+      note: { fr: "Simplifier une racine carrée demande de repérer un carré parfait dans une décomposition.", en: "Simplifying a square root requires spotting a perfect square in a factorisation." } }
+  - { from: tool.powers_roots, to: tool.algebraic_identities, type: requires_recommended, weight: 0.8,
+      note: { fr: "Les identités remarquables manipulent des carrés et des racines carrées.", en: "The remarkable identities handle squares and square roots." } }
+  - { from: concept.logic_sets, to: tool.linear_equations, type: requires_recommended, weight: 0.6,
+      note: { fr: "Résoudre, c'est écrire une chaîne d'équivalences et distinguer condition nécessaire et suffisante.", en: "Solving means writing a chain of equivalences and telling necessary from sufficient conditions." } }
+  - { from: concept.probability, to: tool.algorithmics, type: requires_recommended, weight: 0.7,
+      note: { fr: "Simuler une expérience aléatoire suppose d'en connaître le modèle probabiliste.", en: "Simulating a random experiment presupposes knowing its probabilistic model." } }
+  - { from: tool.reference_functions, to: concept.rate_of_change, type: requires_recommended, weight: 0.8,
+      note: { fr: "Le coefficient directeur d'une fonction affine est le premier taux de variation.", en: "The slope of a linear function is the first rate of change." } }
+  # --- applies_to inside mathematics (not counted in the coverage of the backpack tools) --------
+  - { from: tool.linear_equations, to: tool.line_equations, type: applies_to, coverageEligible: false, weight: 0.8,
+      note: { fr: "Le point d'intersection de deux droites sécantes est la solution d'un système de deux équations.", en: "The intersection point of two secant lines is the solution of a system of two equations." } }
+  - { from: tool.linear_equations, to: concept.proportions_evolutions, type: applies_to, coverageEligible: false, weight: 0.6,
+      note: { fr: "Le taux réciproque t' vérifie (1 + t)(1 + t') = 1, une équation du premier degré en t'.", en: "The reciprocal rate t' satisfies (1 + t)(1 + t') = 1, a linear equation in t'." } }
+  - { from: tool.algebraic_identities, to: concept.variations_extremums, type: applies_to, coverageEligible: false, weight: 0.7,
+      note: { fr: "La forme canonique (x − a)² + b, obtenue par une identité remarquable, révèle l'extremum.", en: "The canonical form (x − a)² + b, obtained by a remarkable identity, reveals the extremum." } }
+  - { from: tool.powers_roots, to: concept.coordinates, type: applies_to, coverageEligible: false, weight: 0.7,
+      note: { fr: "La distance entre deux points est une racine carrée d'une somme de carrés.", en: "The distance between two points is a square root of a sum of squares." } }
+  - { from: tool.arithmetic, to: tool.algorithmics, type: applies_to, coverageEligible: false, weight: 0.6,
+      note: { fr: "Tester la primalité d'un entier ou lister ses diviseurs est un premier algorithme à boucle.", en: "Testing the primality of an integer or listing its divisors is a first loop algorithm." } }
+  - { from: tool.sign_table, to: tool.reference_functions, type: applies_to, coverageEligible: false, weight: 0.6,
+      note: { fr: "Comparer x² et x revient à étudier le signe de x(x − 1).", en: "Comparing x² and x amounts to studying the sign of x(x − 1)." } }
+  - { from: tool.reference_functions, to: concept.proportions_evolutions, type: applies_to, coverageEligible: false, weight: 0.6,
+      note: { fr: "Une évolution de taux t est la fonction linéaire x ↦ (1 + t) x.", en: "A change of rate t is the proportional function x ↦ (1 + t) x." } }

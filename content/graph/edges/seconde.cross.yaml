@@ -1,0 +1,88 @@
+# Seconde — edges across subjects: the applications of the mathematical tools of the year in
+# physics and chemistry, and the prerequisites that cross the worlds.
+edges:
+  - from: tool.reference_functions
+    to: law.ohm
+    type: applies_to
+    coverageEligible: true
+    weight: 0.8
+    note: { fr: "La caractéristique d'un conducteur ohmique, U = R I, est une fonction linéaire.", en: "The characteristic of an ohmic conductor, U = R I, is a linear function." }
+  - from: tool.reference_functions
+    to: law.universal_gravitation
+    type: applies_to
+    coverageEligible: true
+    weight: 0.7
+    note: { fr: "La force de gravitation varie comme l'inverse du carré de la distance.", en: "The gravitational force varies as the inverse of the squared distance." }
+  - from: tool.reference_functions
+    to: concept.amount_of_substance
+    type: applies_to
+    coverageEligible: true
+    weight: 0.6
+    note: { fr: "La quantité de matière n = m / M est une fonction linéaire de la masse.", en: "The amount of substance n = m / M is a linear function of the mass." }
+  - from: tool.reference_functions
+    to: phenomenon.motion.uniformly_accelerated
+    type: applies_to
+    coverageEligible: true
+    weight: 0.7
+    note: { fr: "La distance parcourue croît comme le carré du temps : une parabole.", en: "The distance covered grows as the square of the time: a parabola." }
+  - from: tool.linear_equations
+    to: concept.concentration
+    type: applies_to
+    coverageEligible: true
+    weight: 0.8
+    note: { fr: "Une dilution se calcule avec l'équation C₁ V₁ = C₂ V₂.", en: "A dilution is computed with the equation C₁ V₁ = C₂ V₂." }
+  - from: tool.linear_equations
+    to: law.ohm
+    type: applies_to
+    coverageEligible: true
+    weight: 0.7
+    note: { fr: "Trouver un courant ou une résistance revient à résoudre U = R I.", en: "Finding a current or a resistance amounts to solving U = R I." }
+  - from: tool.linear_equations
+    to: model.chemical_reaction
+    type: applies_to
+    coverageEligible: true
+    weight: 0.6
+    note: { fr: "Le réactif limitant s'obtient en résolvant n₀ − ν x = 0.", en: "The limiting reactant is found by solving n₀ − ν x = 0." }
+  - from: tool.descriptive_statistics
+    to: method.measurement
+    type: applies_to
+    coverageEligible: true
+    weight: 0.9
+    note: { fr: "Moyenne et écart-type d'une série de mesures donnent la valeur retenue et son incertitude.", en: "Mean and standard deviation of a series of measurements give the retained value and its uncertainty." }
+  - from: tool.descriptive_statistics
+    to: concept.sampling_fluctuation
+    type: applies_to
+    coverageEligible: true
+    weight: 0.8
+    note: { fr: "La fréquence d'un échantillon est une statistique qui fluctue.", en: "The frequency of a sample is a statistic that fluctuates." }
+  - from: tool.line_equations
+    to: law.ohm
+    type: applies_to
+    coverageEligible: true
+    weight: 0.6
+    note: { fr: "La caractéristique U(I) est une droite passant par l'origine, de pente R.", en: "The characteristic U(I) is a line through the origin, of slope R." }
+  - from: tool.line_equations
+    to: model.kinematics_point
+    type: applies_to
+    coverageEligible: true
+    weight: 0.7
+    note: { fr: "Un mouvement rectiligne uniforme a pour loi horaire une droite x = v t + x₀.", en: "A uniform rectilinear motion has a straight line x = v t + x₀ as its time law." }
+  - { from: tool.algorithmics, to: concept.sampling_fluctuation, type: applies_to, weight: 0.7,
+      note: { fr: "Simuler des échantillons demande une boucle et un générateur aléatoire.", en: "Simulating samples takes a loop and a random generator." } }
+  - { from: tool.arithmetic, to: concept.probability, type: applies_to, weight: 0.5,
+      note: { fr: "Dénombrer les issues d'une expérience équiprobable.", en: "Counting the outcomes of an equiprobable experiment." } }
+  - { from: tool.powers_roots, to: concept.dimension_unit, type: applies_to, weight: 0.7,
+      note: { fr: "Les ordres de grandeur s'écrivent avec les puissances de dix.", en: "Orders of magnitude are written with powers of ten." } }
+  - { from: tool.powers_roots, to: concept.amount_of_substance, type: applies_to, weight: 0.6,
+      note: { fr: "La constante d'Avogadro est un nombre en notation scientifique.", en: "Avogadro's constant is a number in scientific notation." } }
+  - { from: tool.algebraic_identities, to: tool.sign_table, type: applies_to, weight: 0.6,
+      note: { fr: "Factoriser une expression pour étudier son signe.", en: "Factoring an expression to study its sign." } }
+  - { from: tool.sign_table, to: concept.variations_extremums, type: applies_to, weight: 0.5,
+      note: { fr: "Le signe d'une expression sur un intervalle.", en: "The sign of an expression on an interval." } }
+  # prerequisites across the worlds
+  - { from: concept.proportions_evolutions, to: concept.concentration, type: requires_recommended, weight: 0.5 }
+  - { from: tool.powers_roots, to: concept.amount_of_substance, type: requires_recommended, weight: 0.6 }
+  - { from: tool.powers_roots, to: concept.dimension_unit, type: requires_recommended, weight: 0.5 }
+  - { from: tool.reference_functions, to: law.ohm, type: requires_recommended, weight: 0.5 }
+  - { from: concept.coordinates, to: model.kinematics_point, type: requires_recommended, weight: 0.6 }
+  - { from: tool.descriptive_statistics, to: method.measurement, type: requires_recommended, weight: 0.6 }

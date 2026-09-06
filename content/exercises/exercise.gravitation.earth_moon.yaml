@@ -1,0 +1,43 @@
+# Leçon gravitation — la force d'attraction exercée par la Terre sur la Lune (réponse numérique, notation scientifique)
+id: exercise.gravitation.earth_moon
+type: numeric
+nodeId: law.universal_gravitation
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Données : $G = 6{,}67 \times 10^{-11}\ \mathrm{N \cdot m^2 \cdot kg^{-2}}$ ; masse de la Terre $M_T = 5{,}97 \times 10^{24}\ \mathrm{kg}$ ; masse de la Lune $M_L = 7{,}35 \times 10^{22}\ \mathrm{kg}$ ; distance entre les centres de la Terre et de la Lune $d = 3{,}84 \times 10^{8}\ \mathrm{m}$.
+
+    Calculez la valeur $F$ de la force d'attraction gravitationnelle exercée par la Terre sur la Lune, en newtons. Écrivez le résultat en notation scientifique, par exemple `2,5e20` pour $2{,}5 \times 10^{20}$.
+  en: |-
+    Data: $G = 6.67 \times 10^{-11}\ \mathrm{N \cdot m^2 \cdot kg^{-2}}$; mass of the Earth $M_T = 5.97 \times 10^{24}\ \mathrm{kg}$; mass of the Moon $M_L = 7.35 \times 10^{22}\ \mathrm{kg}$; distance between the centres of the Earth and the Moon $d = 3.84 \times 10^{8}\ \mathrm{m}$.
+
+    Compute the value $F$ of the gravitational attraction exerted by the Earth on the Moon, in newtons. Write the result in scientific notation, for instance `2.5e20` for $2.5 \times 10^{20}$.
+numeric:
+  value: 1.98e20
+  unit: "N"
+  tolerance: { kind: relative, value: 0.05 }
+  inputLabel: { fr: "F", en: "F" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Appliquez la loi de gravitation universelle, $F = G\,\dfrac{M_T\, M_L}{d^2}$, avec toutes les grandeurs en unités du Système international (kilogrammes, mètres).
+      en: |-
+        Apply the law of universal gravitation, $F = G\,\dfrac{M_T\, M_L}{d^2}$, with every quantity in SI units (kilograms, metres).
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Séparez les nombres et les puissances de dix : $\dfrac{6{,}67 \times 5{,}97 \times 7{,}35}{3{,}84^2} \times \dfrac{10^{-11} \times 10^{24} \times 10^{22}}{10^{16}}$.
+      en: |-
+        Separate the numbers from the powers of ten: $\dfrac{6.67 \times 5.97 \times 7.35}{3.84^2} \times \dfrac{10^{-11} \times 10^{24} \times 10^{22}}{10^{16}}$.
+solution:
+  fr: |-
+    $$F = G\,\frac{M_T\, M_L}{d^2} = \frac{6{,}67 \times 10^{-11} \times 5{,}97 \times 10^{24} \times 7{,}35 \times 10^{22}}{(3{,}84 \times 10^{8})^2} \approx 1{,}98 \times 10^{20}\ \mathrm{N}.$$
+    D'après le principe des actions réciproques, la Lune exerce sur la Terre une force de même valeur, dirigée en sens opposé. C'est cette force, énorme mais invisible, qui courbe sans cesse la trajectoire de la Lune : sans elle, d'après le principe d'inertie, la Lune filerait en ligne droite.
+  en: |-
+    $$F = G\,\frac{M_T\, M_L}{d^2} = \frac{6.67 \times 10^{-11} \times 5.97 \times 10^{24} \times 7.35 \times 10^{22}}{(3.84 \times 10^{8})^2} \approx 1.98 \times 10^{20}\ \mathrm{N}.$$
+    By the principle of reciprocal actions, the Moon exerts on the Earth a force of the same value, pointing in the opposite sense. This force, enormous yet invisible, is what keeps bending the trajectory of the Moon: without it, by the principle of inertia, the Moon would fly off in a straight line.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 1, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

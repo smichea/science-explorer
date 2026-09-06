@@ -16,7 +16,10 @@
   const sc = $derived(scales(tstate.view));
   /** Heads moved by the learner, in data units. */
   let dragged = $state<Record<string, [number, number]>>({});
+  /** Points moved by the learner, in data units. */
+  let draggedPoints = $state<Record<string, [number, number]>>({});
   let dragging: string | null = null;
+  let draggingPoint: string | null = null;
   let svg = $state<SVGSVGElement | null>(null);
 
   interface Placed {
@@ -121,6 +124,53 @@
       })
   );
 
+  /** Named points of the frame, draggable during the free play. */
+  const points = $derived(
+    tool.points
+      .filter((p) => itemVisible(p, tstate))
+      .map((p, i) => {
+        const override = draggedPoints[p.id];
+        return {
+          id: p.id,
+          x: override ? override[0] : evaluateScalar(p.x, tstate.params),
+          y: override ? override[1] : evaluateScalar(p.y, tstate.params),
+          color: p.color ?? PALETTE[(i + 5) % PALETTE.length],
+          label: p.label ? L(p.label) : p.id.toUpperCase(),
+          drag: p.drag,
+        };
+      })
+      .filter((p) => Number.isFinite(p.x) && Number.isFinite(p.y))
+  );
+  /** Segments between two points, with their length and their midpoint. */
+  const segments = $derived(
+    tool.segments
+      .filter((s) => itemVisible(s, tstate))
+      .flatMap((s) => {
+        const a = points.find((p) => p.id === s.from);
+        const b = points.find((p) => p.id === s.to);
+        if (!a || !b) return [];
+        return [
+          {
+            id: s.id,
+            a,
+            b,
+            dashed: s.dashed,
+            label: s.label ? L(s.label) : `${a.label}${b.label}`,
+            length: Math.hypot(b.x - a.x, b.y - a.y),
+            mid: [(a.x + b.x) / 2, (a.y + b.y) / 2] as [number, number],
+          },
+        ];
+      })
+  );
+  /** Determinant of the two named vectors: zero exactly when they are colinear. */
+  const determinant = $derived.by(() => {
+    if (!tool.determinant) return null;
+    const u = placed.find((p) => p.id === tool.determinant?.[0]);
+    const v = placed.find((p) => p.id === tool.determinant?.[1]);
+    if (!u || !v) return null;
+    return { u, v, value: u.x * v.y - u.y * v.x };
+  });
+
   /** Arrow head polygon at the tip of a segment (screen coordinates). */
   function arrowHead(tail: [number, number], head: [number, number]): string {
     const x1 = sc.sx(tail[0]);
@@ -147,14 +197,25 @@
     if (!at) return;
     const px = sc.sx(at[0]);
     const py = sc.sy(at[1]);
-    let best: { id: string; d: number } | null = null;
+    let best: { id: string; d: number; point: boolean } | null = null;
     for (const p of placed) {
       if (!p.drag) continue;
       const d = Math.hypot(sc.sx(p.head[0]) - px, sc.sy(p.head[1]) - py);
-      if (d < 18 && (!best || d < best.d)) best = { id: p.id, d };
+      if (d < 18 && (!best || d < best.d)) best = { id: p.id, d, point: false };
     }
-    dragging = best?.id ?? null;
+    for (const p of points) {
+      if (!p.drag) continue;
+      const d = Math.hypot(sc.sx(p.x) - px, sc.sy(p.y) - py);
+      if (d < 18 && (!best || d < best.d)) best = { id: p.id, d, point: true };
+    }
+    dragging = best && !best.point ? best.id : null;
+    draggingPoint = best && best.point ? best.id : null;
     if (dragging) moveTo(dragging, at);
+    if (draggingPoint) movePointTo(draggingPoint, at);
+  }
+  function movePointTo(id: string, at: [number, number]) {
+    const snap = (v: number) => Math.round(v * 4) / 4;
+    draggedPoints = { ...draggedPoints, [id]: [snap(at[0]), snap(at[1])] };
   }
   function moveTo(id: string, at: [number, number]) {
     const p = placed.find((x) => x.id === id);
@@ -163,15 +224,20 @@
     dragged = { ...dragged, [id]: [snap(at[0] - p.tail[0]), snap(at[1] - p.tail[1])] };
   }
   function onPointerMove(event: PointerEvent) {
-    if (!dragging) return;
     const at = dataAt(event);
-    if (at) moveTo(dragging, at);
+    if (!at) return;
+    if (dragging) moveTo(dragging, at);
+    if (draggingPoint) movePointTo(draggingPoint, at);
   }
   function onPointerUp() {
     dragging = null;
+    draggingPoint = null;
   }
   $effect(() => {
-    if (!interactive) dragged = {};
+    if (!interactive) {
+      dragged = {};
+      draggedPoints = {};
+    }
   });
   const norm = (p: { x: number; y: number }) => Math.hypot(p.x, p.y);
 </script>
@@ -181,7 +247,8 @@
     bind:this={svg}
     viewBox="0 0 {sc.W} {sc.H}"
     class="tool__svg"
-    class:tool__svg--drag={interactive && placed.some((p) => p.drag)}
+    class:tool__svg--drag={interactive &&
+      (placed.some((p) => p.drag) || points.some((p) => p.drag))}
     role="img"
     aria-label={t('lesson.tool.vectors')}
     data-testid="vectors-tool"
@@ -215,6 +282,28 @@
       />
       <text x={sc.pad.l - 6} y={sc.sy(v) + 3} class="tick" text-anchor="end"
         >{fmt(v, locale.current)}</text
+      >
+    {/each}
+    {#each segments as s (s.id)}
+      <line
+        x1={sc.sx(s.a.x)}
+        y1={sc.sy(s.a.y)}
+        x2={sc.sx(s.b.x)}
+        y2={sc.sy(s.b.y)}
+        stroke="#eef1f8"
+        stroke-width="2"
+        stroke-dasharray={s.dashed ? '6 5' : undefined}
+        opacity="0.8"
+      />
+      <circle cx={sc.sx(s.mid[0])} cy={sc.sy(s.mid[1])} r="3" fill="#ffd166" />
+    {/each}
+    {#each points as p (p.id)}
+      {#if p.drag && interactive}
+        <circle cx={sc.sx(p.x)} cy={sc.sy(p.y)} r="10" fill={p.color} opacity="0.25" />
+      {/if}
+      <circle cx={sc.sx(p.x)} cy={sc.sy(p.y)} r="4.5" fill={p.color} stroke="#0b1020" />
+      <text x={sc.sx(p.x) + 7} y={sc.sy(p.y) - 7} class="note" fill={p.color}
+        >{p.label} ({fmt(p.x, locale.current)} ; {fmt(p.y, locale.current)})</text
       >
     {/each}
     {#each paths as p (p.id)}
@@ -317,8 +406,28 @@
         {fmt(norm(s), locale.current)}
       </li>
     {/each}
+    {#each segments as s (s.id)}
+      <li>
+        <strong>{s.label}</strong> : {t('lesson.vectors.length')}
+        {fmt(s.length, locale.current)}, {t('lesson.vectors.midpoint')} ({fmt(
+          s.mid[0],
+          locale.current
+        )} ; {fmt(s.mid[1], locale.current)})
+      </li>
+    {/each}
+    {#if determinant}
+      <li data-testid="vectors-determinant">
+        det({determinant.u.label}, {determinant.v.label}) = {fmt(determinant.value, locale.current)}
+        → {Math.abs(determinant.value) < 1e-9
+          ? t('lesson.vectors.colinear')
+          : t('lesson.vectors.notColinear')}
+      </li>
+    {/if}
   </ul>
-  {#if interactive && placed.some((p) => p.drag)}<p class="small muted" style="margin: 0">
+  {#if interactive && (placed.some((p) => p.drag) || points.some((p) => p.drag))}<p
+      class="small muted"
+      style="margin: 0"
+    >
       {t('lesson.vectors.dragHint')}
     </p>{/if}
 </div>

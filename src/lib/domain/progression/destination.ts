@@ -1,6 +1,6 @@
 import type { CompiledNode, HorizonConfig } from '../../content-schema';
 import type { GraphIndex } from '../graph';
-import { bandOf, nodeStage, type Band, type Horizon } from '../horizon';
+import { bandOf, learnerDepth, stageFor, type Band, type Horizon } from '../horizon';
 import { satisfiesPrerequisite, type ProgressionSnapshot } from './index';
 
 /** Visual states of PRODUCT_SPECIFICATION §9.5, derived from graph + horizon + progression + planning. */
@@ -38,8 +38,12 @@ export interface DestinationContext {
 
 export function destinationState(node: CompiledNode, ctx: DestinationContext): DestinationState {
   const { graph, config, horizon, snapshot } = ctx;
-  const band = bandOf(nodeStage(node, config), horizon, config);
-  const { essential, recommended } = graph.prerequisitesOf(node.id);
+  const band = bandOf(stageFor(node, horizon, config), horizon, config);
+  // Prerequisites of a later depth of the node do not hold at the depth the learner follows.
+  const { essential, recommended } = graph.prerequisitesOf(
+    node.id,
+    learnerDepth(node, horizon, config)
+  );
   const status = (id: string) => snapshot?.nodeStates.get(id)?.status ?? 'unknown';
   const missingEssential = essential.filter((p) => !satisfiesPrerequisite(status(p.id)));
   const missingRecommended = recommended.filter((p) => !satisfiesPrerequisite(status(p.id)));

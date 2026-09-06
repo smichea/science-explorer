@@ -1,0 +1,72 @@
+# Leçon lentille — nature de l'image d'un objet situé au-delà de 2f' (choix unique)
+id: exercise.lens.image_nature
+type: choice
+nodeId: model.thin_lens
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Un objet est placé devant une lentille mince convergente de distance focale $f' = 5{,}0\ \mathrm{cm}$, à une distance de $15\ \mathrm{cm}$ de la lentille, c'est-à-dire au-delà de $2f'$.
+
+    Quelle est la nature de l'image $A'B'$ ?
+  en: |-
+    An object is placed in front of a thin converging lens of focal length $f' = 5.0\ \mathrm{cm}$, at a distance of $15\ \mathrm{cm}$ from the lens, that is, beyond $2f'$.
+
+    What is the nature of the image $A'B'$?
+choice:
+  multiple: false
+  choices:
+    - id: real_inverted_smaller
+      text: { fr: "Réelle, renversée et plus petite que l'objet", en: "Real, inverted and smaller than the object" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : la construction donne une image à $7{,}5\ \mathrm{cm}$ derrière la lentille, avec $\gamma = -0{,}5$. Elle est réelle (on peut la recueillir sur un écran), renversée ($\gamma < 0$) et deux fois plus petite que l'objet.
+        en: |-
+          Correct: the construction gives an image $7.5\ \mathrm{cm}$ behind the lens, with $\gamma = -0.5$. It is real (it can be collected on a screen), inverted ($\gamma < 0$) and half the size of the object.
+    - id: real_upright_larger
+      text: { fr: "Réelle, droite et plus grande que l'objet", en: "Real, upright and larger than the object" }
+      feedback:
+        fr: |-
+          Une image réelle donnée par une lentille convergente est toujours renversée. Et l'image n'est plus grande que l'objet que lorsque celui-ci est entre $F$ et $2F$, pas au-delà.
+        en: |-
+          A real image given by a converging lens is always inverted. And the image is larger than the object only when the object lies between $F$ and $2F$, not beyond.
+    - id: virtual_upright_larger
+      text: { fr: "Virtuelle, droite et plus grande que l'objet", en: "Virtual, upright and larger than the object" }
+      feedback:
+        fr: |-
+          C'est le cas de la loupe, lorsque l'objet est placé entre le foyer objet $F$ et la lentille. Ici l'objet est loin, au-delà de $2F$ : l'image est réelle.
+        en: |-
+          This is the case of the magnifying glass, when the object is placed between the object focus $F$ and the lens. Here the object is far, beyond $2F$: the image is real.
+    - id: no_image
+      text: { fr: "Il n'y a pas d'image : l'objet est trop loin de la lentille", en: "There is no image: the object is too far from the lens" }
+      feedback:
+        fr: |-
+          Plus l'objet est loin, plus l'image se rapproche du foyer image $F'$, mais elle existe toujours ; pour un objet à l'infini, elle se forme exactement en $F'$.
+        en: |-
+          The farther the object, the closer the image gets to the image focus $F'$, but it always exists; for an object at infinity, it forms exactly at $F'$.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Construisez l'image avec deux rayons issus de $B$ : celui qui passe par $O$ et celui qui arrive parallèle à l'axe et ressort par $F'$. De quel côté de la lentille se coupent-ils ?
+      en: |-
+        Construct the image with two rays from $B$: the one through $O$ and the one arriving parallel to the axis and leaving through $F'$. On which side of the lens do they meet?
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Les rayons se coupent derrière la lentille, sous l'axe : l'image est réelle et renversée. Comparez sa hauteur à celle de l'objet.
+      en: |-
+        The rays meet behind the lens, below the axis: the image is real and inverted. Compare its height with that of the object.
+solution:
+  fr: |-
+    Avec $\overline{OA} = -15\ \mathrm{cm}$ et $f' = 5{,}0\ \mathrm{cm}$, la construction (ou la relation de conjugaison $\dfrac{1}{\overline{OA'}} - \dfrac{1}{\overline{OA}} = \dfrac{1}{f'}$) donne $\overline{OA'} = 7{,}5\ \mathrm{cm}$ : l'image se forme **derrière** la lentille, elle est donc **réelle** et l'on peut la recueillir sur un écran. Le grandissement vaut $\gamma = \dfrac{\overline{OA'}}{\overline{OA}} = \dfrac{7{,}5}{-15} = -0{,}5$ : image **renversée** et **deux fois plus petite** que l'objet.
+
+    Règle générale pour une lentille convergente : objet au-delà de $2F$, image réelle, renversée, plus petite (appareil photo, œil) ; objet entre $F$ et $2F$, image réelle, renversée, plus grande (projecteur) ; objet entre $F$ et $O$, image virtuelle, droite, plus grande (loupe).
+  en: |-
+    With $\overline{OA} = -15\ \mathrm{cm}$ and $f' = 5.0\ \mathrm{cm}$, the construction (or the conjugation relation $\dfrac{1}{\overline{OA'}} - \dfrac{1}{\overline{OA}} = \dfrac{1}{f'}$) gives $\overline{OA'} = 7.5\ \mathrm{cm}$: the image forms **behind** the lens, so it is **real** and can be collected on a screen. The magnification is $\gamma = \dfrac{\overline{OA'}}{\overline{OA}} = \dfrac{7.5}{-15} = -0.5$: image **inverted** and **half the size** of the object.
+
+    General rule for a converging lens: object beyond $2F$, real, inverted, smaller image (camera, eye); object between $F$ and $2F$, real, inverted, larger image (projector); object between $F$ and $O$, virtual, upright, larger image (magnifying glass).
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

@@ -1,0 +1,46 @@
+id: concept.pure_substances_mixtures
+type: method
+world: world.chemistry
+region: region.chemistry.micro_macro
+importance: 2
+tags: [lycee]
+title: { fr: Corps purs et mélanges, en: Pure substances and mixtures }
+shortPurpose:
+  fr: Distinguer un corps pur d'un mélange, décrire la composition d'un mélange et identifier une espèce chimique par ses propriétés physiques.
+  en: Tell a pure substance from a mixture, describe the composition of a mixture and identify a chemical species from its physical properties.
+overview:
+  fr: >-
+    Un corps pur ne contient qu'une seule espèce chimique, un mélange en contient plusieurs. Pour savoir ce qu'il y a dans un flacon, on mesure des propriétés physiques, une température de fusion ou d'ébullition, une masse volumique, ou l'on sépare les espèces par chromatographie. C'est la première méthode du chimiste : identifier avant de transformer.
+  en: >-
+    A pure substance contains a single chemical species, a mixture contains several. To find out what a flask holds, one measures physical properties, a melting or boiling temperature, a density, or one separates the species by chromatography. It is the chemist's first method: identify before transforming.
+aliases:
+  fr: ["espèce chimique", "corps pur", "mélange homogène", "chromatographie sur couche mince"]
+  en: ["chemical species", "pure substance", "homogeneous mixture", "thin-layer chromatography"]
+description:
+  fr: |
+    Une **espèce chimique** est un ensemble d'entités identiques : des molécules d'eau, des atomes de fer, des ions sodium. Un **corps pur** est constitué d'une seule espèce chimique ; un **mélange** en contient plusieurs. Le mélange est **homogène** quand on ne distingue pas ses constituants à l'œil nu (l'air, l'eau salée) et **hétérogène** dans le cas contraire (eau et huile, granite). On décrit la composition d'un mélange par des proportions : la proportion en masse d'une espèce est $\dfrac{m_{\text{espèce}}}{m_{\text{mélange}}}$ et sa proportion en volume $\dfrac{V_{\text{espèce}}}{V_{\text{mélange}}}$ ; l'air contient ainsi environ $78\ \%$ de diazote et $21\ \%$ de dioxygène en volume.
+
+    Pour identifier une espèce, on mesure ses **propriétés physiques** et on les compare à des valeurs de référence. Un corps pur change d'état à une température fixe : l'eau bout à $100\ ^\circ\mathrm{C}$ et l'éthanol à $78\ ^\circ\mathrm{C}$ sous la pression atmosphérique, alors que la température d'un mélange continue de varier pendant l'ébullition. La **masse volumique** $\rho = \dfrac{m}{V}$ est une autre carte d'identité : $1{,}00\ \mathrm{g/mL}$ pour l'eau, $0{,}79\ \mathrm{g/mL}$ pour l'éthanol ; un échantillon de $50{,}0\ \mathrm{mL}$ qui pèse $39{,}5\ \mathrm{g}$ a donc la masse volumique de l'éthanol. La **chromatographie sur couche mince** sépare les espèces d'un mélange déposé sur une plaque, entraînées plus ou moins loin par un éluant : un corps pur donne une seule tache, et l'on identifie une espèce en comparant la hauteur de sa tache à celle d'une référence déposée à côté.
+
+    Quelques pièges : « pur » au sens courant n'est pas « pur » au sens chimique, une eau minérale est un mélange d'eau et d'ions ; la masse volumique s'exprime en $\mathrm{g/mL}$, en $\mathrm{g/cm^3}$ ou en $\mathrm{kg/m^3}$ ($1\ \mathrm{g/mL} = 1000\ \mathrm{kg/m^3}$), et il faut toujours l'écrire avec son unité ; enfin la masse volumique d'un mélange n'est pas, en général, la moyenne de celles de ses constituants. Une propriété physique mesurée doit être comparée à la référence en tenant compte de l'incertitude : un écart de quelques centièmes ne permet pas de conclure. Ces méthodes d'identification préparent la suite : une solution aqueuse est un mélange homogène dont on décrira la composition par une concentration.
+  en: |
+    A **chemical species** is a collection of identical entities: water molecules, iron atoms, sodium ions. A **pure substance** is made of a single chemical species; a **mixture** contains several. The mixture is **homogeneous** when its constituents cannot be told apart with the naked eye (air, salt water) and **heterogeneous** otherwise (water and oil, granite). The composition of a mixture is described by proportions: the proportion by mass of a species is $\dfrac{m_{\text{species}}}{m_{\text{mixture}}}$ and its proportion by volume $\dfrac{V_{\text{species}}}{V_{\text{mixture}}}$; air thus contains about $78\ \%$ nitrogen and $21\ \%$ oxygen by volume.
+
+    To identify a species, one measures its **physical properties** and compares them with reference values. A pure substance changes state at a fixed temperature: water boils at $100\ ^\circ\mathrm{C}$ and ethanol at $78\ ^\circ\mathrm{C}$ at atmospheric pressure, whereas the temperature of a mixture keeps changing during boiling. The **density** $\rho = \dfrac{m}{V}$ is another identity card: $1.00\ \mathrm{g/mL}$ for water, $0.79\ \mathrm{g/mL}$ for ethanol; a $50.0\ \mathrm{mL}$ sample that weighs $39.5\ \mathrm{g}$ therefore has the density of ethanol. **Thin-layer chromatography** separates the species of a mixture spotted on a plate, carried more or less far by an eluent: a pure substance gives a single spot, and a species is identified by comparing the height of its spot with that of a reference spotted next to it.
+
+    A few pitfalls: "pure" in everyday language is not "pure" in the chemical sense, a mineral water is a mixture of water and ions; density is expressed in $\mathrm{g/mL}$, $\mathrm{g/cm^3}$ or $\mathrm{kg/m^3}$ ($1\ \mathrm{g/mL} = 1000\ \mathrm{kg/m^3}$), and it must always be written with its unit; finally the density of a mixture is not, in general, the average of those of its constituents. A measured physical property must be compared with the reference taking the uncertainty into account: a difference of a few hundredths does not settle the question. These identification methods prepare what follows: an aqueous solution is a homogeneous mixture whose composition will be described by a concentration.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "distinguer un corps pur d'un mélange, et un mélange homogène d'un mélange hétérogène"
+        - "décrire la composition d'un mélange par des proportions en masse ou en volume"
+        - "identifier une espèce chimique par une température de changement d'état ou une masse volumique mesurée"
+        - "exploiter une chromatographie sur couche mince pour identifier les espèces d'un mélange"
+      en:
+        - "tell a pure substance from a mixture, and a homogeneous mixture from a heterogeneous one"
+        - "describe the composition of a mixture by proportions by mass or by volume"
+        - "identify a chemical species from a measured change-of-state temperature or density"
+        - "use thin-layer chromatography to identify the species of a mixture"

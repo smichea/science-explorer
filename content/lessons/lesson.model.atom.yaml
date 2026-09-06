@@ -1,0 +1,11 @@
+# Leçon — l'atome : les dix-huit premiers éléments, fiche de chacun (Z, A, configuration électronique).
+id: lesson.model.atom
+nodeId: model.atom
+depth: 1
+tools:
+  - id: table
+    kind: periodic_table
+    title: { fr: "Les dix-huit premiers éléments", en: "The first eighteen elements" }
+    max: 18
+    selected: 6
+    mode: table

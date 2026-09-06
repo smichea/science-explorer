@@ -1,0 +1,57 @@
+id: law.ohm
+type: law
+world: world.physics
+region: region.physics.electricity_circuits
+importance: 2
+tags: [lycee]
+title: { fr: "Loi d'Ohm et circuits", en: "Ohm's law and circuits" }
+shortPurpose:
+  fr: "Relier la tension aux bornes d'un conducteur ohmique à l'intensité qui le traverse, et lire les circuits en série et en dérivation."
+  en: "Relate the voltage across an ohmic conductor to the current through it, and read series and parallel circuits."
+overview:
+  fr: >-
+    Dans un circuit, la tension pousse et l'intensité est le débit de charges qui en résulte. Pour un conducteur ohmique, les deux sont proportionnelles : c'est la loi d'Ohm, et le coefficient est la résistance. Avec les lois des mailles et des nœuds, elle permet de prévoir ce qui se passe dans un circuit, et de comprendre comment un capteur transforme une température ou une lumière en signal électrique.
+  en: >-
+    In a circuit, the voltage pushes and the current is the resulting flow of charges. For an ohmic conductor, the two are proportional: this is Ohm's law, and the coefficient is the resistance. Together with the loop and node laws, it lets us predict what happens in a circuit, and understand how a sensor turns a temperature or a light into an electrical signal.
+aliases:
+  fr: ["loi d'Ohm", "conducteur ohmique", "caractéristique tension-courant", "résistance électrique"]
+  en: ["Ohm's law", "ohmic conductor", "voltage–current characteristic", "electrical resistance"]
+description:
+  fr: |
+    Dans un circuit électrique, la **tension** $U$ entre deux points (en volts, $\mathrm{V}$, mesurée avec un voltmètre branché en dérivation) et l'**intensité** $I$ du courant dans une branche (en ampères, $\mathrm{A}$, mesurée avec un ampèremètre branché en série) sont les deux grandeurs de base. La **caractéristique** d'un dipôle est la courbe $U$ en fonction de $I$ relevée point par point. Pour un **conducteur ohmique** (une résistance), c'est une droite passant par l'origine : c'est la **loi d'Ohm**,
+    $$U = R\,I,$$
+    où la **résistance** $R$ se mesure en ohms ($\Omega$). Un conducteur de $220\ \Omega$ traversé par $I = 20\ \mathrm{mA}$ a entre ses bornes $U = 220 \times 0{,}020 = 4{,}4\ \mathrm{V}$.
+
+    Deux lois organisent un circuit. La **loi des mailles** : le long d'une boucle fermée, la somme des tensions est nulle ; dans un circuit en **série**, la tension du générateur se partage donc entre les dipôles, $U = U_1 + U_2$, tandis que l'intensité est la même partout. La **loi des nœuds** : l'intensité qui arrive à un nœud est égale à celle qui en repart ; dans un circuit en **dérivation**, le courant se partage entre les branches, $I = I_1 + I_2$, tandis que la tension est la même aux bornes de chaque branche. Exemple : deux conducteurs de $100\ \Omega$ et $200\ \Omega$ en série sous $9\ \mathrm{V}$ sont traversés par $I = 9/300 = 0{,}030\ \mathrm{A}$, et les tensions valent $3\ \mathrm{V}$ et $6\ \mathrm{V}$ : la plus grande résistance prend la plus grande tension.
+
+    La loi d'Ohm n'est pas universelle : elle ne vaut que pour les **conducteurs ohmiques**, dont la caractéristique est une droite. Une lampe à incandescence s'échauffe et sa résistance augmente avec l'intensité ; une diode ne conduit que dans un sens ; leurs caractéristiques ne sont pas des droites, et le rapport $U/I$ n'y est pas constant. Cette dépendance devient utile dans un **capteur** : une thermistance est un dipôle dont la résistance varie avec la température, une photorésistance avec l'éclairement ; placé dans un circuit, un tel dipôle transforme la grandeur physique en une tension que l'on peut mesurer, tracer et enregistrer. Étalonner le capteur, c'est relever la courbe qui relie la grandeur à la tension. En Terminale, la loi d'Ohm s'associe au condensateur pour décrire la charge d'un circuit RC.
+  en: |
+    In an electric circuit, the **voltage** $U$ between two points (in volts, $\mathrm{V}$, measured with a voltmeter connected in parallel) and the **current** $I$ in a branch (in amperes, $\mathrm{A}$, measured with an ammeter connected in series) are the two basic quantities. The **characteristic** of a component is the curve of $U$ against $I$ recorded point by point. For an **ohmic conductor** (a resistor), it is a straight line through the origin: this is **Ohm's law**,
+    $$U = R\,I,$$
+    where the **resistance** $R$ is measured in ohms ($\Omega$). A $220\ \Omega$ conductor carrying $I = 20\ \mathrm{mA}$ has across its terminals $U = 220 \times 0.020 = 4.4\ \mathrm{V}$.
+
+    Two laws organise a circuit. The **loop law**: along a closed loop, the sum of the voltages is zero; in a **series** circuit, the voltage of the generator is therefore shared between the components, $U = U_1 + U_2$, while the current is the same everywhere. The **node law**: the current arriving at a node equals the current leaving it; in a **parallel** circuit, the current is shared between the branches, $I = I_1 + I_2$, while the voltage is the same across each branch. Example: two conductors of $100\ \Omega$ and $200\ \Omega$ in series under $9\ \mathrm{V}$ carry $I = 9/300 = 0.030\ \mathrm{A}$, and the voltages are $3\ \mathrm{V}$ and $6\ \mathrm{V}$: the larger resistance takes the larger voltage.
+
+    Ohm's law is not universal: it holds only for **ohmic conductors**, whose characteristic is a straight line. An incandescent lamp heats up and its resistance increases with the current; a diode conducts in one direction only; their characteristics are not straight lines, and the ratio $U/I$ is not constant there. This dependence becomes useful in a **sensor**: a thermistor is a component whose resistance varies with temperature, a photoresistor with illumination; placed in a circuit, such a component turns the physical quantity into a voltage that can be measured, plotted and recorded. Calibrating the sensor means recording the curve linking the quantity to the voltage. In Grade 12, Ohm's law is combined with the capacitor to describe the charging of an RC circuit.
+law:
+  statement:
+    fr: "Aux bornes d'un conducteur ohmique de résistance $R$, la tension est proportionnelle à l'intensité du courant qui le traverse : $U = R\\,I$ ($U$ en volts, $I$ en ampères, $R$ en ohms)."
+    en: "Across an ohmic conductor of resistance $R$, the voltage is proportional to the current flowing through it: $U = R\\,I$ ($U$ in volts, $I$ in amperes, $R$ in ohms)."
+  validity:
+    fr: "Conducteurs ohmiques uniquement (résistances, fils métalliques à température constante) ; ne s'applique pas aux lampes, diodes, électrolyseurs ni aux capteurs dont la résistance varie avec une grandeur physique."
+    en: "Ohmic conductors only (resistors, metal wires at constant temperature); does not apply to lamps, diodes, electrolysers nor to sensors whose resistance varies with a physical quantity."
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "mesurer une tension et une intensité avec un voltmètre et un ampèremètre correctement branchés"
+        - "relever la caractéristique tension-courant d'un dipôle et reconnaître un conducteur ohmique"
+        - "utiliser la loi d'Ohm $U = R\\,I$ pour calculer une tension, une intensité ou une résistance"
+        - "exploiter les lois des mailles et des nœuds dans un circuit série ou en dérivation, et décrire le principe d'un capteur résistif"
+      en:
+        - "measure a voltage and a current with a voltmeter and an ammeter correctly connected"
+        - "record the voltage–current characteristic of a component and recognise an ohmic conductor"
+        - "use Ohm's law $U = R\\,I$ to compute a voltage, a current or a resistance"
+        - "use the loop and node laws in a series or parallel circuit, and describe the principle of a resistive sensor"

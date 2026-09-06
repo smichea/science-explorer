@@ -1,0 +1,72 @@
+# Leçon force — identifier la force réciproque du poids d'un livre (choix unique, principe des actions réciproques)
+id: exercise.force.reciprocal
+type: choice
+nodeId: concept.force
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Un livre est posé sur une table. Son poids est la force exercée par la Terre sur le livre.
+
+    D'après le principe des actions réciproques, quelle est la force **réciproque** du poids du livre ?
+  en: |-
+    A book rests on a table. Its weight is the force exerted by the Earth on the book.
+
+    According to the principle of reciprocal actions, what is the **reciprocal** of the weight of the book?
+choice:
+  multiple: false
+  choices:
+    - id: table_reaction
+      text: { fr: "La réaction de la table sur le livre", en: "The reaction of the table on the book" }
+      feedback:
+        fr: |-
+          La réaction de la table et le poids s'appliquent tous deux sur le livre : ce sont deux forces qui se compensent, pas un couple action-réaction. Un couple action-réaction concerne deux objets, chacun agissant sur l'autre.
+        en: |-
+          The reaction of the table and the weight both act on the book: they are two forces that compensate, not an action–reaction pair. An action–reaction pair involves two objects, each acting on the other.
+    - id: book_on_table
+      text: { fr: "La force exercée par le livre sur la table", en: "The force exerted by the book on the table" }
+      feedback:
+        fr: |-
+          C'est la réciproque de la réaction de la table (une interaction de contact), pas celle du poids, qui est une interaction à distance entre la Terre et le livre.
+        en: |-
+          This is the reciprocal of the reaction of the table (a contact interaction), not that of the weight, which is an interaction at a distance between the Earth and the book.
+    - id: book_on_earth
+      text: { fr: "La force d'attraction exercée par le livre sur la Terre", en: "The attractive force exerted by the book on the Earth" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : le poids est la force exercée par la Terre sur le livre ; sa réciproque est la force exercée par le livre sur la Terre, de même direction, de même valeur et de sens opposé.
+        en: |-
+          Correct: the weight is the force exerted by the Earth on the book; its reciprocal is the force exerted by the book on the Earth, with the same direction, the same value and the opposite sense.
+    - id: none
+      text: { fr: "Il n'y en a pas : le livre est trop léger pour attirer la Terre", en: "There is none: the book is too light to pull the Earth" }
+      feedback:
+        fr: |-
+          Toute force a sa réciproque, quelle que soit la masse. Le livre attire la Terre avec une force de même valeur que son poids ; l'effet sur la Terre est simplement imperceptible, à cause de sa masse énorme.
+        en: |-
+          Every force has its reciprocal, whatever the mass. The book pulls the Earth with a force of the same value as its weight; the effect on the Earth is simply imperceptible, because of its enormous mass.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Nommez les deux objets de l'interaction « poids » : qui exerce la force, et sur quoi ? La réciproque échange ces deux rôles.
+      en: |-
+        Name the two objects of the "weight" interaction: who exerts the force, and on what? The reciprocal swaps these two roles.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Le poids est $\vec F_{\text{Terre}/\text{livre}}$ ; sa réciproque est $\vec F_{\text{livre}/\text{Terre}}$.
+      en: |-
+        The weight is $\vec F_{\text{Earth}/\text{book}}$; its reciprocal is $\vec F_{\text{book}/\text{Earth}}$.
+solution:
+  fr: |-
+    Le poids est la force exercée *par la Terre sur le livre*. Le principe des actions réciproques dit que le livre exerce alors sur la Terre une force $\vec F_{\text{livre}/\text{Terre}} = -\vec F_{\text{Terre}/\text{livre}}$ : même direction (la verticale), même valeur, sens opposé (vers le haut). C'est cette force, exercée sur la Terre, qui est la réciproque du poids.
+
+    La réaction de la table, elle, s'applique sur le livre comme le poids : ces deux forces se compensent parce que le livre est immobile (principe d'inertie), mais elles ne forment pas un couple action-réaction, car elles concernent le même objet. Un couple action-réaction concerne toujours deux objets différents.
+  en: |-
+    The weight is the force exerted *by the Earth on the book*. The principle of reciprocal actions says that the book then exerts on the Earth a force $\vec F_{\text{book}/\text{Earth}} = -\vec F_{\text{Earth}/\text{book}}$: same direction (the vertical), same value, opposite sense (upwards). This force, exerted on the Earth, is the reciprocal of the weight.
+
+    The reaction of the table, for its part, acts on the book just like the weight: these two forces compensate because the book is at rest (principle of inertia), but they do not form an action–reaction pair, since they involve the same object. An action–reaction pair always involves two different objects.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

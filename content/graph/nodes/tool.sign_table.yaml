@@ -1,0 +1,47 @@
+id: tool.sign_table
+type: mathematical_tool
+world: world.mathematics
+region: region.math.numbers_algebra
+importance: 2
+backpack: false
+tags: [lycee]
+title: { fr: "Tableau de signes et inéquations produit", en: "Sign tables and product inequalities" }
+shortPurpose:
+  fr: "Déterminer le signe d'un produit ou d'un quotient de facteurs du premier degré pour résoudre une inéquation."
+  en: "Determine the sign of a product or a quotient of linear factors to solve an inequality."
+overview:
+  fr: >-
+    Une expression du premier degré change de signe une seule fois, en sa racine. Pour un produit ou un quotient de telles expressions, le tableau de signes range les racines dans l'ordre et applique la règle des signes ligne par ligne. La dernière ligne donne d'un coup l'ensemble des solutions d'une inéquation, et le même tableau servira plus tard à lire les variations d'une fonction à partir du signe de sa dérivée.
+  en: >-
+    A linear expression changes sign only once, at its root. For a product or a quotient of such expressions, the sign table lines up the roots in order and applies the rule of signs row by row. The last row gives at once the solution set of an inequality, and the same table will later serve to read the variations of a function from the sign of its derivative.
+aliases:
+  fr: ["tableau de signes", "signe d'un produit", "inéquation produit", "inéquation quotient", "règle des signes"]
+  en: ["sign table", "sign of a product", "product inequality", "quotient inequality", "rule of signs"]
+description:
+  fr: |
+    Le **signe** d'une expression du premier degré $ax + b$, avec $a \neq 0$, change une seule fois, en sa racine $x_0 = -\dfrac{b}{a}$ : elle est du signe de $-a$ avant $x_0$ et du signe de $a$ après. Ainsi $3x - 6$ est négatif sur $]-\infty\,;\,2[$, nul en $2$ et positif sur $]2\,;\,+\infty[$, tandis que $5 - x$ est positif avant $5$ et négatif après. Un **tableau de signes** résume cette information : une ligne pour $x$ avec les racines rangées dans l'ordre croissant, puis une ligne par facteur avec les signes $+$ et $-$ et un $0$ à la racine.
+
+    Le signe d'un **produit** ou d'un **quotient** se déduit ligne par ligne par la règle des signes : la dernière ligne du tableau porte le signe du produit sur chaque intervalle, un $0$ aux racines du numérateur et une double barre là où le dénominateur s'annule, valeur interdite. Pour $(x - 1)(x + 2)$, les racines sont $-2$ et $1$ : le produit est positif avant $-2$, négatif entre $-2$ et $1$, positif après $1$. La courbe de $x \mapsto (x - 1)(x + 2)$ confirme cette lecture : elle passe sous l'axe des abscisses exactement entre les deux racines. Plus généralement, le produit $(x - a)(x - b)$ est négatif entre ses deux racines $a$ et $b$, et positif à l'extérieur.
+
+    Résoudre une **inéquation produit** comme $(x - 1)(x + 2) \leq 0$, c'est lire dans la dernière ligne les intervalles où apparaît le signe demandé : ici $[-2\,;\,1]$, bornes comprises à cause du « ou égal ». Une inéquation qui n'est pas donnée sous forme de produit se ramène à cette situation en regroupant tout dans un membre, puis en factorisant, car on ne peut pas diviser par une expression dont on ignore le signe. Le tableau de signes est l'outil qui rend ces résolutions sûres ; il servira ensuite à étudier le signe d'une dérivée, donc les variations d'une fonction.
+  en: |
+    The **sign** of a linear expression $ax + b$, with $a \neq 0$, changes only once, at its root $x_0 = -\dfrac{b}{a}$: it has the sign of $-a$ before $x_0$ and the sign of $a$ after. Thus $3x - 6$ is negative on $]-\infty\,;\,2[$, zero at $2$ and positive on $]2\,;\,+\infty[$, whereas $5 - x$ is positive before $5$ and negative after. A **sign table** summarises this information: a row for $x$ with the roots arranged in increasing order, then one row per factor with the signs $+$ and $-$ and a $0$ at the root.
+
+    The sign of a **product** or of a **quotient** is deduced row by row with the rule of signs: the last row of the table carries the sign of the product on each interval, a $0$ at the roots of the numerator and a double bar where the denominator vanishes, a forbidden value. For $(x - 1)(x + 2)$, the roots are $-2$ and $1$: the product is positive before $-2$, negative between $-2$ and $1$, positive after $1$. The curve of $x \mapsto (x - 1)(x + 2)$ confirms this reading: it passes below the horizontal axis exactly between the two roots. More generally, the product $(x - a)(x - b)$ is negative between its two roots $a$ and $b$, and positive outside.
+
+    Solving a **product inequality** such as $(x - 1)(x + 2) \leq 0$ means reading in the last row the intervals where the requested sign appears: here $[-2\,;\,1]$, bounds included because of the "or equal". An inequality not given as a product is brought back to this situation by gathering everything on one side, then factoring, because one cannot divide by an expression whose sign is unknown. The sign table is the tool that makes these resolutions safe; it will later serve to study the sign of a derivative, hence the variations of a function.
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "déterminer le signe d'une expression du premier degré ax + b selon les valeurs de x"
+        - "dresser le tableau de signes d'un produit ou d'un quotient de facteurs du premier degré"
+        - "résoudre une inéquation produit ou quotient et écrire l'ensemble des solutions avec des intervalles"
+        - "ramener une inéquation à une comparaison à zéro par factorisation avant d'utiliser un tableau de signes"
+      en:
+        - "determine the sign of a linear expression ax + b according to the values of x"
+        - "draw up the sign table of a product or a quotient of linear factors"
+        - "solve a product or quotient inequality and write the solution set with intervals"
+        - "reduce an inequality to a comparison with zero by factoring before using a sign table"

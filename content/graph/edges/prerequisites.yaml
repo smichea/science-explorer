@@ -13,7 +13,8 @@ edges:
   - { from: tool.derivative, to: tool.gradient, type: requires_essentially, weight: 1, depthRange: [2, 3],
       note: { fr: "Le gradient demande la dérivée au niveau MPSI (approximation locale, développement limité à l'ordre 1).", en: "The gradient requires the derivative at MPSI level (local approximation, first-order Taylor expansion)." } }
   - { from: tool.vector, to: tool.gradient, type: requires_essentially, weight: 1 }
-  - { from: tool.derivative, to: model.kinematics_point, type: requires_essentially, weight: 1 }
+  - { from: tool.derivative, to: model.kinematics_point, type: requires_essentially, weight: 1, depthRange: [2, 3],
+      note: { fr: "À partir de la Terminale : la vitesse est la dérivée de la position. En Seconde, la vitesse moyenne suffit.", en: "From Grade 12 on: the velocity is the derivative of the position. In Grade 10, the average speed is enough." } }
   - { from: model.kinematics_point, to: phenomenon.motion.uniformly_accelerated, type: requires_essentially, weight: 1 }
   - { from: tool.derivative, to: law.newton_second, type: requires_essentially, weight: 1 }
   - { from: model.kinematics_point, to: law.newton_second, type: requires_essentially, weight: 1 }
@@ -28,7 +29,7 @@ edges:
   - { from: phenomenon.motion.uniformly_accelerated, to: phenomenon.motion.free_fall, type: requires_recommended, weight: 0.9 }
   - { from: phenomenon.motion.uniformly_accelerated, to: phenomenon.motion.inclined_plane, type: requires_recommended, weight: 0.9 }
   - { from: method.measurement, to: phenomenon.motion.inclined_plane, type: requires_recommended, weight: 0.7 }
-  - { from: method.modelling, to: model.kinematics_point, type: requires_recommended, weight: 0.7 }
+  - { from: method.modelling, to: model.kinematics_point, type: requires_recommended, weight: 0.7, depthRange: [2, 3] }
   - { from: method.modelling, to: model.rc_circuit, type: requires_recommended, weight: 0.8 }
   - { from: method.modelling, to: model.reaction_order_one, type: requires_recommended, weight: 0.8 }
   - { from: tool.ode_first_order, to: model.rc_circuit, type: requires_recommended, weight: 0.9 }

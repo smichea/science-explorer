@@ -1,0 +1,44 @@
+# Équations — résoudre 3x − 7 = 2 (réponse numérique)
+id: exercise.linear_equations.solve
+type: numeric
+nodeId: tool.linear_equations
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Résolvez dans $\mathbb{R}$ l'équation $3x - 7 = 2$.
+
+    Donnez la solution.
+  en: |-
+    Solve in $\mathbb{R}$ the equation $3x - 7 = 2$.
+
+    Give the solution.
+numeric:
+  value: 3
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "x", en: "x" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Faites la même opération dans les deux membres pour isoler $3x$ : ajoutez $7$ des deux côtés.
+      en: |-
+        Do the same operation on both sides to isolate $3x$: add $7$ to both sides.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $3x = 9$ ; il reste à diviser les deux membres par $3$.
+      en: |-
+        $3x = 9$; it remains to divide both sides by $3$.
+solution:
+  fr: |-
+    On isole l'inconnue en effectuant la même opération dans les deux membres :
+    $$3x - 7 = 2 \iff 3x = 9 \iff x = 3.$$
+    Vérification : $3 \times 3 - 7 = 9 - 7 = 2$. Graphiquement, $3$ est l'abscisse du point où la droite $y = 3x - 7$ coupe la droite horizontale $y = 2$.
+  en: |-
+    The unknown is isolated by performing the same operation on both sides:
+    $$3x - 7 = 2 \iff 3x = 9 \iff x = 3.$$
+    Check: $3 \times 3 - 7 = 9 - 7 = 2$. Graphically, $3$ is the abscissa of the point where the line $y = 3x - 7$ meets the horizontal line $y = 2$.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

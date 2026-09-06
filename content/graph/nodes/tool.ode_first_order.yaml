@@ -15,7 +15,7 @@ overview:
   fr: >-
     Une équation différentielle du premier ordre relie une grandeur à sa vitesse de variation. La résoudre, c'est retrouver toute l'évolution à partir de la loi et de la condition initiale. C'est l'outil qui unifie les circuits, la cinétique chimique et la mécanique, de la Terminale à la MP.
   en: >-
-    A first-order differential equation links a quantity to its rate of change. Solving it means recovering the whole evolution from the law and the initial condition. It is the tool that unifies circuits, chemical kinetics and mechanics, from Terminale to MP.
+    A first-order differential equation links a quantity to its rate of change. Solving it means recovering the whole evolution from the law and the initial condition. It is the tool that unifies circuits, chemical kinetics and mechanics, from Grade 12 to MP.
 aliases:
   fr: ["équation différentielle linéaire du premier ordre", "équation y' = ay + b", "équation différentielle linéaire", "problème de Cauchy"]
   en: ["first-order linear differential equation", "equation y' = ay + b", "linear differential equation", "Cauchy problem"]
@@ -35,7 +35,7 @@ description:
 
     The problem it solves is **prediction**: physics and chemistry deliver laws about rates (Newton's law, Kirchhoff's voltage law, rate law), not directly about trajectories. Solving the differential equation means climbing back from the law to the function. The RC circuit ($RC\,u_C' + u_C = E$), the first-order reaction ($[A]' = -k\,[A]$), radioactive decay ($N' = -\lambda N$) and fall with drag ($m\,v' = mg - k\,v$) are *the same equation*: solve it once and you have solved them all.
 
-    In Terminale, one solves $y' = ay$ then $y' = ay + b$ with the exponential. In MPSI, linear equations with variable coefficients $y' + a(t)\,y = b(t)$ are handled by the variation of constants method, together with second-order equations with constant coefficients. In MP, one moves on to systems $X' = AX$ and to the matrix exponential, which unifies everything.
+    In Grade 12, one solves $y' = ay$ then $y' = ay + b$ with the exponential. In MPSI, linear equations with variable coefficients $y' + a(t)\,y = b(t)$ are handled by the variation of constants method, together with second-order equations with constant coefficients. In MP, one moves on to systems $X' = AX$ and to the matrix exponential, which unifies everything.
 tool:
   problemSolved:
     fr: "Prédire l'évolution d'une grandeur lorsque l'on connaît la loi de sa vitesse de variation et sa valeur initiale : passer de « comment ça change » à « ce que ça vaut à chaque instant »."

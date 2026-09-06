@@ -1,0 +1,33 @@
+# Programme de Seconde — chimie (BO spécial n°1 du 22 janvier 2019, « Constitution et transformations de la matière »).
+# requires_* : du prérequis vers le nœud qui en dépend ; models : du modèle vers le phénomène.
+# Les arêtes vers les mathématiques et la physique de Seconde seront ajoutées séparément.
+edges:
+  # --- requires_essentially -------------------------------------------------
+  - { from: model.atom, to: model.periodic_table, type: requires_essentially, weight: 1,
+      note: { fr: "La position d'un élément dans le tableau se lit dans sa configuration électronique.", en: "The position of an element in the table is read from its electron configuration." } }
+  - { from: concept.amount_of_substance, to: model.chemical_reaction, type: requires_essentially, weight: 1,
+      note: { fr: "Le réactif limitant se détermine à partir des quantités de matière initiales.", en: "The limiting reactant is determined from the initial amounts of substance." } }
+  - { from: model.atom, to: phenomenon.nuclear_transformation, type: requires_essentially, weight: 1,
+      note: { fr: "Écrire une désintégration demande la notation A Z X et la distinction entre noyau et cortège électronique.", en: "Writing a decay requires the A Z X notation and the distinction between nucleus and electron cloud." } }
+  # --- requires_recommended -------------------------------------------------
+  - { from: model.periodic_table, to: model.chemical_reaction, type: requires_recommended, weight: 0.7,
+      note: { fr: "Les formules des molécules et des ions engagés dans une réaction découlent de la stabilité des entités.", en: "The formulas of the molecules and ions involved in a reaction follow from the stability of the species." } }
+  - { from: concept.pure_substances_mixtures, to: concept.concentration, type: requires_recommended, weight: 0.8,
+      note: { fr: "Une solution aqueuse est un mélange homogène ; la concentration en masse se distingue de la masse volumique.", en: "An aqueous solution is a homogeneous mixture; mass concentration is distinguished from density." } }
+  - { from: concept.pure_substances_mixtures, to: phenomenon.state_changes, type: requires_recommended, weight: 0.7,
+      note: { fr: "Le palier de température d'un corps pur est un critère de pureté.", en: "The temperature plateau of a pure substance is a criterion of purity." } }
+  - { from: model.atom, to: concept.amount_of_substance, type: requires_recommended, weight: 0.7,
+      note: { fr: "La masse d'une entité se déduit des masses des atomes qui la composent.", en: "The mass of an entity is deduced from the masses of the atoms that make it up." } }
+  - { from: method.measurement, to: concept.pure_substances_mixtures, type: requires_recommended, weight: 0.6,
+      note: { fr: "Identifier une espèce par sa masse volumique ou sa température d'ébullition demande de comparer une mesure à une référence, incertitude comprise.", en: "Identifying a species by its density or boiling temperature requires comparing a measurement with a reference, uncertainty included." } }
+  - { from: phenomenon.nuclear_transformation, to: phenomenon.nuclear.radioactive_decay, type: requires_recommended, weight: 0.8,
+      note: { fr: "La loi de décroissance de Terminale dit à quelle vitesse se produisent les désintégrations vues en Seconde.", en: "The decay law of Grade 12 says how fast the disintegrations seen in Grade 10 occur." } }
+  - { from: concept.concentration, to: phenomenon.chemistry.concentration_over_time, type: requires_recommended, weight: 0.7,
+      note: { fr: "Suivre une concentration au cours du temps suppose de savoir ce qu'est une concentration.", en: "Following a concentration over time presupposes knowing what a concentration is." } }
+  - { from: model.chemical_reaction, to: phenomenon.chemistry.first_order_reaction, type: requires_recommended, weight: 0.7,
+      note: { fr: "L'équation de réaction et l'avancement précèdent l'étude de la vitesse.", en: "The reaction equation and the extent come before the study of the rate." } }
+  # --- models ---------------------------------------------------------------
+  - { from: model.atom, to: phenomenon.nuclear_transformation, type: models, weight: 1,
+      note: { fr: "Le modèle du noyau (protons, neutrons, A et Z) rend compte des lois de conservation des transformations nucléaires.", en: "The model of the nucleus (protons, neutrons, A and Z) accounts for the conservation laws of nuclear transformations." } }
+  - { from: model.chemical_reaction, to: phenomenon.chemistry.first_order_reaction, type: models, coverageEligible: false, weight: 0.6,
+      note: { fr: "La réaction d'ordre 1 est d'abord une réaction chimique, avec son équation et son avancement.", en: "A first-order reaction is first of all a chemical reaction, with its equation and its extent." } }

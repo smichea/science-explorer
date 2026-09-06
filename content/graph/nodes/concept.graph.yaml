@@ -31,16 +31,28 @@ description:
     The slope of the chord between two points of the graph is an average rate of change; the slope of the tangent at a point is the derivative. The graph is thus the geometric doorway to the derivative.
 depths:
   - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "tracer point par point la courbe d'une fonction à partir d'un tableau de valeurs"
+        - "lire graphiquement une image, un antécédent, un maximum ou un minimum"
+        - "résoudre graphiquement f(x) = k et comparer deux fonctions par leurs courbes"
+        - "reconnaître la courbe d'une fonction de référence"
+      en:
+        - "plot the curve of a function point by point from a table of values"
+        - "read an image, a preimage, a maximum or a minimum from the graph"
+        - "solve f(x) = k graphically and compare two functions by their curves"
+        - "recognise the curve of a reference function"
+  - depth: 2
     stage: terminale
     role: core
     outcomes:
       fr:
-        - "tracer et lire la courbe d'une fonction de référence"
-        - "lire graphiquement une image, un antécédent, un extremum, une limite"
         - "lire un nombre dérivé comme la pente d'une tangente"
+        - "lire graphiquement une limite ou une asymptote"
         - "confronter un nuage de points de mesure à une courbe modèle"
       en:
-        - "sketch and read the graph of a reference function"
-        - "read an image, a preimage, an extremum and a limit from the graph"
         - "read a derivative as the slope of a tangent"
+        - "read a limit or an asymptote from the graph"
         - "compare a cloud of measured points with a model curve"

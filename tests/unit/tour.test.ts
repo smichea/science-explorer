@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { TourDefinition } from '../../src/lib/content-schema';
-import { inferHorizon } from '../../src/lib/domain/horizon';
+import { bandOf, inferHorizon, stageFor } from '../../src/lib/domain/horizon';
 import type { NodeState, ProgressionSnapshot } from '../../src/lib/domain/progression';
 import {
   buildTour,
@@ -15,7 +15,12 @@ const graph = loadGraph();
 const pkg = loadPackage();
 const tour = pkg.tours[0];
 const config = pkg.horizon;
-const lessons = graph.graph.nodes.filter((n) => n.type !== 'mission');
+const allLessons = graph.graph.nodes.filter((n) => n.type !== 'mission');
+const paul = inferHorizon(17, config);
+/** The lessons flown for Paul: everything but the foundations of the years before Terminale. */
+const lessons = allLessons.filter(
+  (n) => bandOf(stageFor(n, paul, config), paul, config) !== 'foundation'
+);
 
 function snapshotWith(statuses: Record<string, NodeState['status']>): ProgressionSnapshot {
   const nodeStates = new Map<string, NodeState>();
@@ -72,7 +77,8 @@ describe('bird’s-eye flight', () => {
       kind: 'group',
       ids: firstLeg?.kind === 'leg' ? firstLeg.nodeIds : [],
     });
-    const history = steps.find((s) => s.kind === 'leg' && s.legIndex === 2);
+    const historyIndex = tour.legs.findIndex((l) => l.route === 'route.galileo_history');
+    const history = steps.find((s) => s.kind === 'leg' && s.legIndex === historyIndex);
     expect(history?.kind === 'leg' && history.nodeIds).not.toContain(
       'mission.galileo.inclined_plane'
     );
@@ -180,7 +186,8 @@ describe('bird’s-eye flight', () => {
     const done = Object.fromEntries(galileoRoute.nodes.map((id) => [id, 'mastered' as const]));
     const steps = buildTour(tour, { ...ctx, snapshot: snapshotWith(done) });
     const legs = steps.filter((s) => s.kind === 'leg');
-    expect(legs.some((l) => l.kind === 'leg' && l.legIndex === 2)).toBe(false);
+    const historyIndex = tour.legs.findIndex((l) => l.route === 'route.galileo_history');
+    expect(legs.some((l) => l.kind === 'leg' && l.legIndex === historyIndex)).toBe(false);
     expect(legs.length).toBe(flown.length - 1);
   });
 
@@ -190,19 +197,35 @@ describe('bird’s-eye flight', () => {
     const youngIds = stops(buildTour(tour, { ...ctx, horizon: young })).map((s) => s.node.id);
     expect(youngIds).toContain('tool.derivative');
     expect(youngIds).not.toContain('tool.gradient');
-    expect(youngIds.length).toBe(lessons.length - 1);
-    // A horizon that stops at Seconde keeps only the stage-less destinations (history, questions).
+    expect(youngIds.length).toBe(allLessons.length - 1);
+    // A horizon that stops at Seconde keeps the Seconde destinations and the stage-less ones.
     const seconde = { ...young, stages: ['seconde' as const] };
     const ids = stops(buildTour(tour, { ...ctx, horizon: seconde })).map((s) => s.node.id);
     expect(ids).toContain('person.galileo_galilei');
     expect(ids).toContain('question.how_to_predict_motion');
+    expect(ids).toContain('concept.number_sets');
     expect(ids).not.toContain('tool.derivative');
-    expect(ids.length).toBeLessThan(lessons.length / 2);
+    expect(ids.length).toBeLessThan(allLessons.length);
+  });
+
+  it('flies the foundations only when asked, the routes of the earlier years first', () => {
+    const own = stops(buildTour(tour, ctx)).map((s) => s.node.id);
+    expect(own).not.toContain('concept.number_sets');
+    expect(own).toContain('concept.function');
+    const steps = buildTour(tour, ctx, { includeFoundations: true });
+    const ids = stops(steps).map((s) => s.node.id);
+    expect(ids).toContain('concept.number_sets');
+    expect(ids.length).toBe(allLessons.length);
+    const firstLeg = steps.find((s) => s.kind === 'leg');
+    expect(firstLeg?.kind === 'leg' && firstLeg.title.fr).toContain('Seconde');
+    expect(prerequisiteInversions(steps, graph)).toEqual([]);
   });
 
   it('orders automatic legs by stage, region and importance, then by prerequisites', () => {
     const steps = buildTour(tour, ctx);
-    const maths = steps.find((s) => s.kind === 'leg' && s.legIndex === 4);
+    const maths = steps.find(
+      (s) => s.kind === 'leg' && s.focus.kind === 'world' && s.focus.id === 'world.mathematics'
+    );
     expect(maths?.kind === 'leg' && maths.focus).toEqual({
       kind: 'world',
       id: 'world.mathematics',

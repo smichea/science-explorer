@@ -1,0 +1,69 @@
+id: model.chemical_reaction
+type: model
+world: world.chemistry
+region: region.chemistry.reactions_stoichiometry
+importance: 3
+tags: [lycee]
+title: { fr: Transformation chimique et réaction, en: Chemical transformation and reaction }
+shortPurpose:
+  fr: Modéliser une transformation chimique par une équation de réaction qui conserve les éléments, et prévoir quel réactif s'épuise en premier.
+  en: Model a chemical transformation by a reaction equation that conserves the elements, and predict which reactant runs out first.
+overview:
+  fr: >-
+    Quand le méthane brûle, des espèces disparaissent et d'autres apparaissent, c'est une transformation chimique. On la modélise par une réaction, écrite comme une équation dont les nombres devant les formules garantissent que chaque élément est conservé. Avec cette équation et les quantités de départ, on prévoit ce qu'il reste à la fin et quel réactif manque en premier.
+  en: >-
+    When methane burns, some species disappear and others appear, it is a chemical transformation. It is modelled by a reaction, written as an equation whose numbers in front of the formulas guarantee that every element is conserved. With that equation and the starting amounts, one predicts what is left at the end and which reactant runs out first.
+aliases:
+  fr: ["équation de réaction", "réactifs et produits", "réactif limitant", "nombres stœchiométriques"]
+  en: ["reaction equation", "reactants and products", "limiting reactant", "stoichiometric coefficients"]
+description:
+  fr: |
+    Un **système chimique** évolue d'un **état initial** vers un **état final** : des espèces, les **réactifs**, sont consommées, et d'autres, les **produits**, sont formées ; c'est une **transformation chimique**, à la différence d'un changement d'état où les espèces sont conservées. On la modélise par une **réaction chimique**, écrite sous la forme d'une **équation** : pour la combustion du méthane, $\mathrm{CH_4} + 2\,\mathrm{O_2} \to \mathrm{CO_2} + 2\,\mathrm{H_2O}$. Les nombres placés devant les formules, les **nombres stœchiométriques**, sont choisis pour que les **éléments** et la **charge** soient conservés : un carbone, quatre hydrogènes et quatre oxygènes de chaque côté. Une équation ne s'ajuste jamais en modifiant une formule, seulement ces nombres.
+
+    L'équation se lit à l'échelle microscopique, une molécule de méthane pour deux de dioxygène, comme à l'échelle macroscopique, une mole pour deux moles. Les quantités consommées et formées sont dans les proportions des nombres stœchiométriques : si la réaction a eu lieu $x$ fois (en moles), il a disparu $x$ mole de méthane et $2x$ moles de dioxygène, et il s'est formé $x$ mole de dioxyde de carbone et $2x$ moles d'eau ; $x$ est l'**avancement**. La transformation s'arrête quand un réactif est épuisé : c'est le **réactif limitant**, l'autre est en excès. Avec $2{,}0\ \mathrm{mol}$ de méthane et $3{,}0\ \mathrm{mol}$ de dioxygène, le méthane permettrait $x = 2{,}0$ et le dioxygène seulement $x = \dfrac{3{,}0}{2} = 1{,}5$ : le dioxygène est limitant, l'avancement maximal vaut $1{,}5\ \mathrm{mol}$, il se forme $1{,}5\ \mathrm{mol}$ de $\mathrm{CO_2}$ et il reste $0{,}5\ \mathrm{mol}$ de méthane. Quand les réactifs sont dans les proportions de l'équation, le mélange est **stœchiométrique** et ils disparaissent ensemble.
+
+    Une transformation chimique s'accompagne d'un transfert d'énergie : elle est **exothermique** quand elle libère de l'énergie vers l'extérieur (combustions, réaction du sodium avec l'eau) et **endothermique** quand elle en absorbe (dissolution de certains sels, qui refroidit la solution). Les espèces présentes qui ne réagissent pas, comme les ions spectateurs d'une solution, ne figurent pas dans l'équation. Le modèle a ses limites : il ne dit ni combien de temps dure la transformation, ni si elle est totale, ni par quelles étapes elle passe ; une combustion réelle en manque de dioxygène produit aussi du monoxyde de carbone et de la suie. Ces questions, vitesse, équilibre, mécanisme, sont celles des années suivantes.
+  en: |
+    A **chemical system** evolves from an **initial state** to a **final state**: some species, the **reactants**, are consumed, and others, the **products**, are formed; this is a **chemical transformation**, unlike a change of state where the species are conserved. It is modelled by a **chemical reaction**, written as an **equation**: for the combustion of methane, $\mathrm{CH_4} + 2\,\mathrm{O_2} \to \mathrm{CO_2} + 2\,\mathrm{H_2O}$. The numbers placed in front of the formulas, the **stoichiometric coefficients**, are chosen so that the **elements** and the **charge** are conserved: one carbon, four hydrogens and four oxygens on each side. An equation is never balanced by changing a formula, only these numbers.
+
+    The equation reads at the microscopic scale, one molecule of methane for two of oxygen, as at the macroscopic scale, one mole for two moles. The amounts consumed and formed are in the proportions of the stoichiometric coefficients: if the reaction has taken place $x$ times (in moles), $x$ mole of methane and $2x$ moles of oxygen have disappeared, and $x$ mole of carbon dioxide and $2x$ moles of water have formed; $x$ is the **extent** of reaction. The transformation stops when one reactant is used up: it is the **limiting reactant**, the other is in excess. With $2.0\ \mathrm{mol}$ of methane and $3.0\ \mathrm{mol}$ of oxygen, methane would allow $x = 2.0$ and oxygen only $x = \dfrac{3.0}{2} = 1.5$: oxygen is limiting, the maximum extent is $1.5\ \mathrm{mol}$, $1.5\ \mathrm{mol}$ of $\mathrm{CO_2}$ is formed and $0.5\ \mathrm{mol}$ of methane is left. When the reactants are in the proportions of the equation, the mixture is **stoichiometric** and they disappear together.
+
+    A chemical transformation comes with an energy transfer: it is **exothermic** when it releases energy to the surroundings (combustions, the reaction of sodium with water) and **endothermic** when it absorbs some (the dissolution of certain salts, which cools the solution). The species present that do not react, such as the spectator ions of a solution, do not appear in the equation. The model has its limits: it says neither how long the transformation takes, nor whether it is complete, nor through which steps it goes; a real combustion short of oxygen also produces carbon monoxide and soot. These questions, rate, equilibrium, mechanism, belong to the following years.
+model:
+  assumptions:
+    fr:
+      - "La transformation est modélisée par une seule réaction, dont l'équation conserve les éléments et la charge électrique."
+      - "Les quantités de réactifs consommés et de produits formés sont proportionnelles aux nombres stœchiométriques : un seul avancement décrit l'évolution."
+      - "La transformation est totale : elle s'arrête quand un réactif, le réactif limitant, est entièrement consommé."
+      - "Le système est fermé, et les espèces qui ne réagissent pas (spectatrices) n'interviennent pas dans l'équation."
+    en:
+      - "The transformation is modelled by a single reaction, whose equation conserves the elements and the electric charge."
+      - "The amounts of reactants consumed and products formed are proportional to the stoichiometric coefficients: a single extent describes the evolution."
+      - "The transformation is complete: it stops when one reactant, the limiting reactant, is entirely consumed."
+      - "The system is closed, and the species that do not react (spectators) do not appear in the equation."
+  limits:
+    fr:
+      - "L'équation ne dit rien de la durée de la transformation ni de son mécanisme : la cinétique est étudiée en Terminale."
+      - "Certaines transformations ne sont pas totales et s'arrêtent avant l'épuisement d'un réactif : c'est l'objet des équilibres chimiques."
+      - "Des réactions parasites (combustion incomplète produisant du monoxyde de carbone et de la suie) échappent au bilan d'une seule équation."
+      - "Le sens de l'énergie échangée est prévu qualitativement, mais sa valeur demande des données thermochimiques."
+    en:
+      - "The equation says nothing about the duration of the transformation nor about its mechanism: kinetics is studied in Grade 12."
+      - "Some transformations are not complete and stop before a reactant runs out: that is the subject of chemical equilibria."
+      - "Side reactions (incomplete combustion producing carbon monoxide and soot) escape the balance of a single equation."
+      - "The direction of the energy exchanged is predicted qualitatively, but its value requires thermochemical data."
+depths:
+  - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "identifier réactifs et produits, et distinguer une transformation chimique d'une transformation physique"
+        - "écrire et ajuster l'équation d'une réaction en respectant la conservation des éléments et de la charge"
+        - "déterminer le réactif limitant à partir des quantités de matière initiales et de l'équation, et en déduire l'état final"
+        - "reconnaître une transformation exothermique ou endothermique et une espèce spectatrice"
+      en:
+        - "identify reactants and products, and distinguish a chemical transformation from a physical one"
+        - "write and balance the equation of a reaction, respecting the conservation of the elements and of the charge"
+        - "determine the limiting reactant from the initial amounts of substance and the equation, and deduce the final state"
+        - "recognise an exothermic or endothermic transformation and a spectator species"

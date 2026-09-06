@@ -1,0 +1,114 @@
+# Leçon narrée — la réfraction et les lois de Snell-Descartes, avec deux outils d'optique (air vers verre, verre vers air).
+id: lesson.law.snell_descartes
+nodeId: law.snell_descartes
+depth: 1
+tools:
+  - id: refraction
+    kind: optics
+    title: { fr: "Air vers verre", en: "Air to glass" }
+    mode: refraction
+    parameters:
+      - { id: i, label: { fr: "angle d'incidence i (°)", en: "angle of incidence i (°)" }, min: 0, max: 89, step: 1, value: 30 }
+      - { id: n, label: { fr: "indice n du verre", en: "index n of the glass" }, min: 1, max: 2.4, step: 0.01, value: 1.5 }
+    n1: 1
+    n2: "n"
+    angle: "i"
+  - id: total
+    kind: optics
+    title: { fr: "Verre vers air", en: "Glass to air" }
+    mode: refraction
+    parameters:
+      - { id: i, label: { fr: "angle d'incidence i (°)", en: "angle of incidence i (°)" }, min: 0, max: 89, step: 1, value: 30 }
+      - { id: n, label: { fr: "indice n du verre", en: "index n of the glass" }, min: 1, max: 2.4, step: 0.01, value: 1.5 }
+    n1: "n"
+    n2: 1
+    angle: "i"
+steps:
+  - id: normal
+    title: { fr: "Le rayon et la normale", en: "The ray and the normal" }
+    tool: refraction
+    text:
+      fr: >-
+        La lumière se propage en ligne droite dans un milieu transparent, comme l'air ou le verre.
+        Quand elle rencontre la surface d'un autre milieu, on repère sa direction par l'angle qu'elle fait avec la normale, la perpendiculaire à la surface au point d'incidence.
+        Ici, le rayon jaune arrive de l'air avec un angle d'incidence de 30 degrés ; une partie de la lumière est réfléchie avec le même angle.
+      en: >-
+        Light travels in a straight line in a transparent medium, such as air or glass.
+        When it meets the surface of another medium, its direction is located by the angle it makes with the normal, the perpendicular to the surface at the point of incidence.
+        Here, the yellow ray comes from the air with an angle of incidence of 30 degrees; part of the light is reflected with the same angle.
+    actions:
+      - { at: 0, set: { i: 30, n: 1.5 } }
+  - id: refraction
+    title: { fr: "La réfraction", en: "Refraction" }
+    tool: refraction
+    text:
+      fr: >-
+        Le rayon vert qui entre dans le verre est dévié : c'est la réfraction.
+        La loi de Snell-Descartes s'écrit : n 1 fois sinus de i 1 égale n 2 fois sinus de i 2.
+        Avec un indice n 2 égal à 1,5 et un angle d'incidence de 30 degrés, le sinus de i 2 vaut 0,5 divisé par 1,5, et i 2 vaut environ 19,5 degrés.
+        En entrant dans un milieu d'indice plus grand, le rayon se rapproche de la normale ; plus l'indice est grand, plus il s'en rapproche.
+      en: >-
+        The green ray entering the glass is deviated: this is refraction.
+        Snell's law reads: n 1 times sine of i 1 equals n 2 times sine of i 2.
+        With an index n 2 equal to 1.5 and an angle of incidence of 30 degrees, the sine of i 2 is 0.5 divided by 1.5, and i 2 is about 19.5 degrees.
+        Entering a medium of larger index, the ray moves closer to the normal; the larger the index, the closer it moves.
+    actions:
+      - { at: 2, set: { i: 30, n: 1.5 } }
+      - { at: 3, set: { n: 2.4 } }
+  - id: total
+    title: { fr: "La réflexion totale", en: "Total internal reflection" }
+    tool: total
+    text:
+      fr: >-
+        Inversons le trajet : la lumière va maintenant du verre vers l'air.
+        Le rayon réfracté s'écarte de la normale : avec 30 degrés d'incidence, il sort à environ 48,6 degrés.
+        Augmentons l'incidence : vers 41,8 degrés, l'angle limite, le rayon réfracté rase la surface.
+        Au-delà, la loi n'a plus de solution : plus de rayon réfracté, la lumière est totalement réfléchie, comme dans une fibre optique.
+      en: >-
+        Let us reverse the path: the light now goes from the glass to the air.
+        The refracted ray moves away from the normal: with 30 degrees of incidence, it leaves at about 48.6 degrees.
+        Let us increase the incidence: near 41.8 degrees, the critical angle, the refracted ray grazes the surface.
+        Beyond it, the law has no solution any more: no refracted ray, the light is totally reflected, as in an optical fibre.
+    actions:
+      - { at: 0, set: { i: 30, n: 1.5 } }
+      - { at: 2, set: { i: 41 } }
+      - { at: 3, set: { i: 55 } }
+  - id: dispersion
+    title: { fr: "La dispersion", en: "Dispersion" }
+    tool: refraction
+    text:
+      fr: >-
+        L'indice d'un milieu dépend un peu de la couleur de la lumière : dans le verre, il est plus grand pour le violet que pour le rouge.
+        Le violet est donc un peu plus dévié que le rouge : un prisme étale la lumière blanche en un spectre, c'est la dispersion.
+        Une remarque pour finir : les angles se mesurent toujours par rapport à la normale, jamais par rapport à la surface.
+      en: >-
+        The index of a medium depends slightly on the colour of the light: in glass, it is larger for violet than for red.
+        Violet is therefore deviated a little more than red: a prism spreads white light into a spectrum, this is dispersion.
+        One last remark: angles are always measured from the normal, never from the surface.
+    actions:
+      - { at: 0, set: { i: 60, n: 1.5 } }
+      - { at: 1, set: { n: 1.53 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de réfracter", en: "Your turn to refract" }
+    tool: refraction
+    text:
+      fr: >-
+        À vous. Faites varier l'angle d'incidence et l'indice du verre, et lisez l'angle de réfraction et l'angle limite.
+        Puis passez à l'outil « verre vers air » et cherchez l'incidence à partir de laquelle la lumière est totalement réfléchie.
+      en: >-
+        Your turn. Vary the angle of incidence and the index of the glass, and read the angle of refraction and the critical angle.
+        Then switch to the "glass to air" tool and look for the incidence from which the light is totally reflected.
+    actions:
+      - { at: 0, set: { i: 30, n: 1.5 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : un angle de réfraction, puis un indice de réfraction.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: an angle of refraction, then a refractive index.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.refraction.angle, exercise.refraction.index]
