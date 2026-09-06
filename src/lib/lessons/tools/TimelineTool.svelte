@@ -38,29 +38,34 @@
   const current = $derived(events.filter((e) => e.start <= year && year <= e.end));
   /** Labels of one lane alternate above and below its line so that neighbours do not collide. */
   const staggered = $derived.by(() => {
-    // Labels of one lane take the first of three levels that is free at their abscissa; when a
-    // decade is too dense, the label shrinks to the year alone (the readout below lists the
-    // events at the cursor). A label near an edge is anchored inwards.
+    // Labels of one lane take the first of three levels where they fit next to the previous
+    // label (widths estimated from the text); when a decade is too dense, the label shrinks to
+    // the year alone (the readout below lists the events at the cursor). A label near an edge is
+    // anchored inwards.
     const LEVELS = [-11, 24, 37];
-    const ROOM = 135;
-    const taken = new SvelteMap<string, number[]>();
+    const CHAR = 6.2;
+    const GAP = 10;
+    const rights = new SvelteMap<string, number[]>();
     return [...events]
       .sort((a, b) => a.start - b.start)
       .map((e) => {
         const x = sx(e.start);
-        const lane = taken.get(e.kind) ?? LEVELS.map(() => -Infinity);
-        let level = lane.findIndex((lastX) => x - lastX >= ROOM);
-        const short = level < 0;
-        if (short) level = lane.indexOf(Math.min(...lane));
-        lane[level] = short ? lane[level] : x + (e.point ? 0 : sx(e.end) - x);
-        if (short) lane[level] = Math.max(lane[level], x - ROOM + 40);
-        taken.set(e.kind, lane);
+        const lane = rights.get(e.kind) ?? LEVELS.map(() => -Infinity);
+        const full = e.point ? `${e.label} (${e.start})` : `${e.label} (${e.start}–${e.end})`;
         const anchor = !e.point ? 'start' : x < 110 ? 'start' : x > W - 110 ? 'end' : 'middle';
-        const text = short
-          ? `${e.start}`
-          : e.point
-            ? `${e.label} (${e.start})`
-            : `${e.label} (${e.start}–${e.end})`;
+        const left = (width: number) =>
+          anchor === 'middle' ? x - width / 2 : anchor === 'end' ? x - width : x;
+        let width = full.length * CHAR;
+        let level = lane.findIndex((right) => left(width) >= right + GAP);
+        let text = full;
+        if (level < 0) {
+          text = `${e.start}`;
+          width = text.length * CHAR;
+          level = lane.findIndex((right) => left(width) >= right + GAP);
+          if (level < 0) level = lane.indexOf(Math.min(...lane));
+        }
+        lane[level] = Math.max(lane[level], left(width) + width);
+        rights.set(e.kind, lane);
         return { ...e, dy: LEVELS[level], anchor, text };
       });
   });
@@ -126,7 +131,7 @@
     {#each staggered as e (e.id)}
       {#if e.point}
         <circle cx={sx(e.start)} cy={laneY(e.kind)} r="6" fill={KIND_COLOR[e.kind]} class="fade" />
-        <text x={sx(e.start)} y={laneY(e.kind) + e.dy} class="note" text-anchor="middle"
+        <text x={sx(e.start)} y={laneY(e.kind) + e.dy} class="note" text-anchor={e.anchor}
           >{e.text}</text
         >
       {:else}
