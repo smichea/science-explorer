@@ -110,9 +110,22 @@ export class GraphIndex {
   }
 
   /** Direct prerequisites of a node (edges point from the prerequisite to the dependent node). */
-  prerequisitesOf(id: string): { essential: CompiledNode[]; recommended: CompiledNode[] } {
-    const essential = this.getNeighbours(id, ['requires_essentially'], 'in').map((n) => n.node);
-    const recommended = this.getNeighbours(id, ['requires_recommended'], 'in').map((n) => n.node);
+  /**
+   * Prerequisites of a node; with a depth, only the edges that apply at that depth (an edge with a
+   * `depthRange` starting above it belongs to a later year of the node).
+   */
+  prerequisitesOf(
+    id: string,
+    depth?: number
+  ): { essential: CompiledNode[]; recommended: CompiledNode[] } {
+    const applies = (edge: { depthRange?: [number, number] }) =>
+      depth === undefined || !edge.depthRange || edge.depthRange[0] <= depth;
+    const essential = this.getNeighbours(id, ['requires_essentially'], 'in')
+      .filter((n) => applies(n.edge))
+      .map((n) => n.node);
+    const recommended = this.getNeighbours(id, ['requires_recommended'], 'in')
+      .filter((n) => applies(n.edge))
+      .map((n) => n.node);
     return { essential, recommended };
   }
 

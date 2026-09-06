@@ -8,7 +8,7 @@ import type {
   TourLeg,
 } from '../content-schema';
 import type { GraphIndex } from './graph';
-import { bandOf, nodeStage, stageFor, stageIndex, type Horizon } from './horizon';
+import { bandOf, learnerDepth, nodeStage, stageFor, stageIndex, type Horizon } from './horizon';
 import { coverageScope, statusOf, type NodeStatus, type ProgressionSnapshot } from './progression';
 
 /** Camera target of a step (structurally the atlas FocusTarget, kept out of the UI layer). */
@@ -66,6 +66,8 @@ export interface TourStopStep {
   legIndex: number;
   legTitle: LocalisedText;
   node: CompiledNode;
+  /** The depth at which the destination is flown (the learner's depth, 1 for a content check). */
+  depth: number;
   status: NodeStatus;
   /** The spoken presentation excerpt (node overview, or its short purpose). */
   text: LocalisedText;
@@ -88,6 +90,11 @@ export interface PrerequisiteInversion {
 }
 
 const PREREQUISITE_TYPES: EdgeType[] = ['requires_essentially', 'requires_recommended'];
+
+/** A prerequisite edge applies at a depth unless its `depthRange` starts above it. */
+function edgeApplies(edge: { depthRange?: [number, number] }, depth: number): boolean {
+  return !edge.depthRange || edge.depthRange[0] <= depth;
+}
 const HISTORY_TYPES = new Set(['person', 'place', 'period']);
 const HISTORY_ORDER: Record<string, number> = { period: 0, place: 1, person: 2 };
 
@@ -122,6 +129,8 @@ export function buildTour(
       .filter((n) => n.type !== 'mission' && inScope(n) && !isDone(n))
       .map((n) => [n.id, n])
   );
+  const flownDepth = (node: CompiledNode) =>
+    horizon && !options.everything ? learnerDepth(node, horizon, config) : 1;
   const visited = new Set<string>();
   const steps: TourStep[] = [
     { kind: 'intro', title: tour.title, text: tour.intro, focus: { kind: 'universe' } },
@@ -141,7 +150,8 @@ export function buildTour(
       return;
     const nodes = orderByPrerequisites(
       legNodes(leg, route, candidates, visited, graph, config),
-      graph
+      graph,
+      flownDepth
     );
     if (nodes.length === 0) return;
     const title = route?.title ?? leg.title ?? tour.title;
@@ -162,6 +172,7 @@ export function buildTour(
         legIndex,
         legTitle: title,
         node,
+        depth: flownDepth(node),
         status: statusOf(snapshot, node.id),
         text: node.overview ?? node.shortPurpose,
         focus: { kind: 'node', id: node.id },
@@ -231,7 +242,12 @@ function stageOrder(node: CompiledNode, config: HorizonConfig): number {
  * before that node, together with its own prerequisites. Prerequisites outside the list are
  * ignored (they belong to another leg; the content compiler checks the whole flight).
  */
-export function orderByPrerequisites(nodes: CompiledNode[], graph: GraphIndex): CompiledNode[] {
+export function orderByPrerequisites(
+  nodes: CompiledNode[],
+  graph: GraphIndex,
+  /** The depth at which each node is flown: prerequisites of later depths do not count. */
+  depthOf: (node: CompiledNode) => number = () => 1
+): CompiledNode[] {
   const index = new Map(nodes.map((n, i) => [n.id, i]));
   const placed = new Set<string>();
   const visiting = new Set<string>();
@@ -239,8 +255,10 @@ export function orderByPrerequisites(nodes: CompiledNode[], graph: GraphIndex): 
   const place = (node: CompiledNode) => {
     if (placed.has(node.id) || visiting.has(node.id)) return;
     visiting.add(node.id);
+    const depth = depthOf(node);
     const prerequisites = graph
       .getNeighbours(node.id, PREREQUISITE_TYPES, 'in')
+      .filter(({ edge }) => edgeApplies(edge, depth))
       .map((n) => n.node)
       .filter((n) => index.has(n.id))
       .sort((a, b) => index.get(a.id)! - index.get(b.id)!);
@@ -262,13 +280,15 @@ export function prerequisiteInversions(
   steps: TourStep[],
   graph: GraphIndex
 ): PrerequisiteInversion[] {
-  const position = new Map<string, { order: number; leg: number }>();
+  const position = new Map<string, { order: number; leg: number; depth: number }>();
   steps.forEach((step, order) => {
-    if (step.kind === 'stop') position.set(step.node.id, { order, leg: step.legIndex });
+    if (step.kind === 'stop')
+      position.set(step.node.id, { order, leg: step.legIndex, depth: step.depth });
   });
   const out: PrerequisiteInversion[] = [];
   for (const [id, at] of position) {
     for (const { node, edge } of graph.getNeighbours(id, PREREQUISITE_TYPES, 'in')) {
+      if (!edgeApplies(edge, at.depth)) continue;
       const before = position.get(node.id);
       if (!before || before.order < at.order) continue;
       out.push({
