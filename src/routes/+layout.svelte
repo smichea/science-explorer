@@ -10,6 +10,7 @@
   import { content } from '$lib/state/content.svelte';
   import { locale, t } from '$lib/state/locale.svelte';
   import { prefs } from '$lib/state/prefs.svelte';
+  import { speech } from '$lib/state/speech.svelte';
   import { profile } from '$lib/state/profile.svelte';
   import { learning } from '$lib/state/learning.svelte';
 
@@ -25,6 +26,7 @@
   onMount(() => {
     locale.init();
     prefs.init();
+    speech.init();
     online = navigator.onLine;
     const up = () => (online = true);
     const down = () => (online = false);

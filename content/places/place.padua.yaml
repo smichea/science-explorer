@@ -6,6 +6,11 @@ title: { fr: Padoue, en: Padua }
 shortPurpose:
   fr: "La ville universitaire où Galilée étudie le mouvement de 1592 à 1610."
   en: "The university town where Galileo studied motion from 1592 to 1610."
+overview:
+  fr: >-
+    Padoue, ville universitaire de la République de Venise. Galilée y enseigne dix-huit ans, y construit ses instruments et y mène ses expériences sur le mouvement. C'est le décor de votre première mission historique.
+  en: >-
+    Padua, university town of the Republic of Venice. Galileo taught there for eighteen years, built his instruments and conducted his experiments on motion there. It is the setting of your first historical mission.
 modernName: { fr: "Padoue (Italie)", en: "Padua (Italy)" }
 coordinates: { lat: 45.4064, lon: 11.8768 }
 locationCertainty: exact

@@ -8,6 +8,11 @@ title: { fr: Décroissance radioactive, en: Radioactive decay }
 shortPurpose:
   fr: Des noyaux instables se désintègrent au hasard ; leur nombre décroît exponentiellement, avec une demi-vie caractéristique.
   en: Unstable nuclei disintegrate at random; their number decays exponentially, with a characteristic half-life.
+overview:
+  fr: >-
+    Des noyaux instables se désintègrent au hasard, et pourtant leur nombre décroît de façon parfaitement régulière : exponentiellement, avec une demi-vie caractéristique. La datation au carbone quatorze repose sur cette loi. Encore la même équation, dans un troisième monde.
+  en: >-
+    Unstable nuclei disintegrate at random, yet their number decreases in a perfectly regular way: exponentially, with a characteristic half-life. Carbon-fourteen dating rests on this law. The same equation once more, in a third world.
 aliases:
   fr: ["radioactivité", "loi de décroissance radioactive", "demi-vie radioactive", "activité d'une source"]
   en: ["radioactivity", "radioactive decay law", "radioactive half-life", "activity of a source"]

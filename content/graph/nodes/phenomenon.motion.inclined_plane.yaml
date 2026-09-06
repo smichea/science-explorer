@@ -8,6 +8,11 @@ title: { fr: Mouvement sur un plan incliné, en: Motion on an inclined plane }
 shortPurpose:
   fr: Ralentir la pesanteur pour pouvoir chronométrer la chute sans en changer la loi.
   en: Slow gravity down so that fall can be timed without changing its law.
+overview:
+  fr: >-
+    Le plan incliné ralentit la pesanteur sans changer sa loi. Galilée pouvait ainsi chronométrer la descente d'une bille avec une horloge à eau. C'est le décor de votre première mission historique, où la dérivée naît d'une mesure.
+  en: >-
+    The inclined plane slows gravity without changing its law. Galileo could thus time a ball rolling down with a water clock. It is the setting of your first historical mission, where the derivative is born from a measurement.
 aliases:
   fr: ["plan incliné", "descente d'un plan incliné", "bille sur un plan incliné", "expérience du plan incliné de Galilée"]
   en: ["inclined plane", "descent of an inclined plane", "ball on an inclined plane", "Galileo's inclined plane experiment"]

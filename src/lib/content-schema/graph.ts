@@ -48,6 +48,8 @@ export const NodeBase = z.object({
   anchorNode: Id.optional(),
   title: LocalisedText,
   shortPurpose: LocalisedText,
+  /** Spoken presentation excerpt for guided flights: 2–4 plain sentences, no LaTeX or Markdown. */
+  overview: LocalisedText.optional(),
   /** Markdown + LaTeX. */
   description: LocalisedText.optional(),
   aliases: LocalisedList.optional(),

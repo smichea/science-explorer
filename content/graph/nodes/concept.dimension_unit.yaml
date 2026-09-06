@@ -7,6 +7,11 @@ title: { fr: Dimension et unité, en: Dimension and unit }
 shortPurpose:
   fr: Savoir de quelle nature est une grandeur, l'exprimer dans une unité et vérifier qu'une formule est homogène.
   en: Know the nature of a quantity, express it in a unit and check that a formula is homogeneous.
+overview:
+  fr: >-
+    Chaque grandeur a une nature, une longueur, un temps, une masse, et s'exprime dans une unité. Vérifier qu'une formule est homogène évite la plupart des erreurs de calcul. C'est un réflexe attendu à chaque épreuve de physique, du bac aux concours.
+  en: >-
+    Every quantity has a nature, a length, a time, a mass, and is expressed in a unit. Checking that a formula is homogeneous avoids most calculation errors. It is a reflex expected in every physics examination, from the baccalauréat to the entrance exams.
 aliases:
   fr: ["analyse dimensionnelle", "homogénéité", "unités du Système international", "équation aux dimensions"]
   en: ["dimensional analysis", "homogeneity", "SI units", "dimensional equation"]

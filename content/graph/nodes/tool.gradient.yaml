@@ -9,6 +9,11 @@ title: { fr: Gradient, en: Gradient }
 shortPurpose:
   fr: Étendre la dérivée aux fonctions de plusieurs variables et indiquer la direction de plus forte pente.
   en: Extend the derivative to functions of several variables and point in the direction of steepest ascent.
+overview:
+  fr: >-
+    Le gradient étend la dérivée aux fonctions de plusieurs variables. Il indique la direction de plus forte pente d'un relief ou d'un champ. C'est une destination de MP, la dernière étape de votre horizon : la dérivée que vous construisez aujourd'hui en est le premier pas.
+  en: >-
+    The gradient extends the derivative to functions of several variables. It points in the direction of steepest ascent of a landscape or a field. It is an MP destination, the last stage of your horizon: the derivative you build today is its first step.
 aliases:
   fr: ["vecteur gradient", "nabla", "dérivées partielles", "différentielle"]
   en: ["gradient vector", "nabla", "partial derivatives", "differential"]

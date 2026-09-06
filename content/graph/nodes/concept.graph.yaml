@@ -8,6 +8,11 @@ title: { fr: Courbe représentative, en: Graph of a function }
 shortPurpose:
   fr: Voir une fonction d'un seul coup d'œil et y lire pentes, extremums et limites.
   en: See a function at a glance and read slopes, extrema and limits from it.
+overview:
+  fr: >-
+    La courbe représentative montre une fonction d'un seul coup d'œil. On y lit les pentes, les maximums et les limites avant tout calcul. Galilée traçait déjà des figures pour comparer des distances et des temps : lire une courbe est le premier geste de l'analyse.
+  en: >-
+    The graph shows a function at a glance. Slopes, maxima and limits can be read from it before any calculation. Galileo already drew figures to compare distances and times: reading a curve is the first gesture of analysis.
 aliases:
   fr: ["graphe d'une fonction", "représentation graphique", "courbe"]
   en: ["curve of a function", "graphical representation", "plot"]

@@ -55,6 +55,11 @@ title: { fr: Dérivée, en: Derivative }
 shortPurpose:
   fr: Décrire une variation instantanée.
   en: Describe an instantaneous rate of change.
+overview:                    # spoken presentation for the bird's-eye flight: 2–4 plain sentences,
+  fr: >-                     # no LaTeX, no Markdown (read aloud as is); falls back to shortPurpose
+    La dérivée est l'outil central de tout le voyage. …
+  en: >-
+    The derivative is the central tool of the whole journey. …
 aliases:
   fr: [nombre dérivé, fonction dérivée, taux de variation instantané]
   en: [differential coefficient, instantaneous rate of change]
@@ -405,7 +410,27 @@ routes:
     title: { fr: "…", en: "…" }
     summary: { fr: "…", en: "…" }
     nodes: [concept.function, concept.graph, concept.rate_of_change, tool.derivative, mission.galileo.inclined_plane]
+tours:                           # guided flights ("bird's-eye"): an ordered sequence of legs
+  - id: tour.horizon_flight
+    title: { fr: "Vol d'oiseau", en: "Bird's-eye flight" }
+    intro: { fr: "…", en: "…" }  # spoken before the first leg
+    legs:
+      - route: route.first_journey                 # an authored route (its summary opens the leg)
+      - route: route.galileo_history
+        transition: { fr: "…", en: "…" }           # REQUIRED from the second leg: links the previous leg to this one
+      - world: world.mathematics                   # automatic leg: what remains in a world (horizon scope)
+        title: { fr: "…", en: "…" }
+        transition: { fr: "…", en: "…" }
+      - history: true                              # remaining people, places, periods, missions
+        title: { fr: "…", en: "…" }
+        transition: { fr: "…", en: "…" }
+      - bridges: true                              # remaining bridge nodes (methods, shared concepts, questions)
+        title: { fr: "…", en: "…" }
+        transition: { fr: "…", en: "…" }
+    outro: { fr: "…", en: "…" }
 ```
+
+A flight visits each destination once: first along its routes, then in the automatic legs. Destinations already practised or mastered are skipped (unless the learner asks to include them), and a leg left empty is skipped together with its transition, so write every transition so that it still reads well when the previous leg was not flown ("Cap maintenant sur…"). The compiler refuses a leg without a transition (after the first) and warns when a node on a flown route has no `overview`.
 
 ## Historical honesty checklist
 

@@ -8,6 +8,11 @@ title: { fr: Chute libre, en: Free fall }
 shortPurpose:
   fr: Un corps soumis à son seul poids tombe avec la même accélération quelle que soit sa masse.
   en: A body subject to its weight alone falls with the same acceleration whatever its mass.
+overview:
+  fr: >-
+    En chute libre, un corps soumis à son seul poids tombe avec la même accélération quelle que soit sa masse. Cette accélération, notée g, vaut environ neuf virgule huit mètres par seconde carrée. Le plan incliné de Galilée n'était qu'une chute libre ralentie.
+  en: >-
+    In free fall, a body subject to its weight alone falls with the same acceleration whatever its mass. This acceleration, written g, is about nine point eight metres per second squared. Galileo's inclined plane was nothing but a slowed-down free fall.
 aliases:
   fr: ["chute des corps", "chute dans le champ de pesanteur", "mouvement dans un champ de pesanteur uniforme", "chute verticale"]
   en: ["falling bodies", "fall in the gravitational field", "motion in a uniform gravitational field", "vertical fall"]

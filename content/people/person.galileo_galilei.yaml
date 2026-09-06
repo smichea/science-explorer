@@ -6,6 +6,11 @@ title: { fr: Galilée, en: Galileo Galilei }
 shortPurpose:
   fr: "Fonder l'étude mathématique du mouvement par l'expérience du plan incliné."
   en: "Found the mathematical study of motion through the inclined-plane experiment."
+overview:
+  fr: >-
+    Galilée, professeur de mathématiques à Padoue de mille cinq cent quatre-vingt-douze à mille six cent dix. Sur son plan incliné, il découvre la loi de la chute des corps et fonde la méthode expérimentale : mesurer, puis chercher la loi. Vous serez son assistant le temps d'une mission.
+  en: >-
+    Galileo, professor of mathematics in Padua from fifteen ninety-two to sixteen ten. On his inclined plane he discovered the law of falling bodies and founded the experimental method: measure, then look for the law. You will be his assistant for the length of a mission.
 description:
   fr: "Mathématicien, physicien et astronome toscan (1564–1642), auteur des *Discorsi* de 1638 sur le mouvement."
   en: "Tuscan mathematician, physicist and astronomer (1564–1642), author of the 1638 *Discorsi* on motion."

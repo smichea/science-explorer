@@ -6,6 +6,11 @@ title: { fr: Les années padouanes de Galilée, en: "Galileo's Padua years" }
 shortPurpose:
   fr: "Dix-huit années à Padoue où prend forme la science du mouvement."
   en: "Eighteen years in Padua during which the science of motion took shape."
+overview:
+  fr: >-
+    De mille cinq cent quatre-vingt-douze à mille six cent dix, Galilée enseigne à Padoue. C'est la période des expériences sur le plan incliné, de la lettre à Sarpi et, à la fin, de la lunette astronomique. Le récit publié ne viendra qu'en mille six cent trente-huit.
+  en: >-
+    From fifteen ninety-two to sixteen ten, Galileo taught in Padua. It is the period of the inclined-plane experiments, of the letter to Sarpi and, at the end, of the astronomical telescope. The published account would only come in sixteen thirty-eight.
 date:
   certainty: interval
   from: "1592"

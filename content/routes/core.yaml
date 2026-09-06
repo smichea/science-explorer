@@ -45,3 +45,71 @@ routes:
       - person.galileo_galilei
       - mission.galileo.inclined_plane
       - phenomenon.motion.uniformly_accelerated
+
+# Guided flights ("bird's-eye"): an ordered sequence of legs flown over automatically. A leg is an
+# authored route, or an automatic group collecting the destinations of the learner's horizon not yet
+# covered by an earlier leg (one world, the remaining history nodes, or the bridges). Every leg after
+# the first carries the sentence that links the previous leg to this one; write it so that it still
+# makes sense when the previous leg was skipped because everything in it was already practised.
+tours:
+  - id: tour.horizon_flight
+    title: { fr: "Vol d'oiseau", en: "Bird's-eye flight" }
+    intro:
+      fr: >-
+        Bienvenue à bord. Ce vol survole tout ce qu'il vous reste à voir d'ici les concours : d'abord les routes conseillées, puis ce qui reste dans chaque monde. À chaque escale, une courte présentation ; vous pourrez ouvrir la leçon complète plus tard.
+      en: >-
+        Welcome aboard. This flight passes over everything you still have to see before the entrance exams: first the recommended routes, then what remains in each world. A short presentation at each stop; you can open the full lesson later.
+    legs:
+      - route: route.first_journey
+      - route: route.galileo_history
+        transition:
+          fr: >-
+            Vous venez de voir la dérivée naître d'une mesure. Remontons maintenant le temps pour rencontrer l'homme, la ville et l'époque de cette mesure : Galilée à Padoue.
+          en: >-
+            You have just seen the derivative born from a measurement. Let us now go back in time to meet the man, the town and the era of that measurement: Galileo in Padua.
+      - route: route.exponential_everywhere
+        transition:
+          fr: >-
+            Galilée a montré comment une loi sort d'une mesure. La route suivante montre comment une seule loi traverse trois mondes : partout où la vitesse est proportionnelle à ce qui reste, l'exponentielle apparaît.
+          en: >-
+            Galileo showed how a law comes out of a measurement. The next route shows how a single law crosses three worlds: wherever the rate is proportional to what remains, the exponential appears.
+      - world: world.mathematics
+        title: { fr: "Ce qui reste en mathématiques", en: "What remains in mathematics" }
+        transition:
+          fr: >-
+            Les routes conseillées sont derrière nous. Cap maintenant sur les destinations restantes, monde par monde, en commençant par les mathématiques.
+          en: >-
+            The recommended routes are behind us. Heading now for the remaining destinations, world by world, starting with mathematics.
+      - world: world.physics
+        title: { fr: "Ce qui reste en physique", en: "What remains in physics" }
+        transition:
+          fr: >-
+            Les outils mathématiques restants sont repérés. Traversons vers la physique, où ils servent à décrire et à prédire le mouvement.
+          en: >-
+            The remaining mathematical tools are located. Let us cross over to physics, where they serve to describe and predict motion.
+      - world: world.chemistry
+        title: { fr: "Ce qui reste en chimie", en: "What remains in chemistry" }
+        transition:
+          fr: >-
+            De la physique à la chimie, la même dérivée change de nom : elle devient vitesse de réaction. Voici ce qui reste à voir dans le monde de la chimie.
+          en: >-
+            From physics to chemistry, the same derivative changes its name: it becomes the rate of reaction. Here is what remains to be seen in the world of chemistry.
+      - history: true
+        title: { fr: "Les acteurs et les lieux restants", en: "The remaining people and places" }
+        transition:
+          fr: >-
+            Avant les ponts, un détour par l'histoire : les personnes, les lieux et les époques qu'aucune route n'a encore visités.
+          en: >-
+            Before the bridges, a detour through history: the people, places and periods no route has visited yet.
+      - bridges: true
+        title: { fr: "Les ponts entre les mondes", en: "The bridges between worlds" }
+        transition:
+          fr: >-
+            Pour finir, les ponts : les méthodes et les idées que les trois mondes partagent, mesure, modélisation, conditions initiales.
+          en: >-
+            Finally, the bridges: the methods and ideas shared by the three worlds, measurement, modelling, initial conditions.
+    outro:
+      fr: >-
+        Fin du survol. Vous avez maintenant une vue d'ensemble de votre horizon. Choisissez une destination, ou commencez par la mission de Galilée : c'est là que la dérivée se construit.
+      en: >-
+        End of the flight. You now have an overview of your horizon. Choose a destination, or start with Galileo's mission: that is where the derivative gets built.

@@ -43,6 +43,7 @@ import {
   type CompiledEdge,
   type CompiledGraph,
   type CompiledNode,
+  type TourDefinition,
   type CompiledRegion,
   type CompiledWorld,
   type ContentManifest,
@@ -269,6 +270,7 @@ for (const { file, data } of nodeFiles) {
       anchorNode: data.anchorNode,
       title: data.title,
       shortPurpose: data.shortPurpose,
+      overview: data.overview,
       description: data.description,
       aliases: data.aliases,
       importance: data.importance,
@@ -306,6 +308,7 @@ for (const { file, data } of personFiles) {
       anchorNode: data.anchorNode,
       title: data.title,
       shortPurpose: data.shortPurpose,
+      overview: data.overview,
       description: data.description,
       aliases: data.aliases,
       importance: data.importance,
@@ -339,6 +342,7 @@ for (const { file, data } of placeFiles) {
       anchorNode: data.anchorNode,
       title: data.title,
       shortPurpose: data.shortPurpose,
+      overview: data.overview,
       description: data.description,
       aliases: data.aliases,
       importance: data.importance,
@@ -366,6 +370,7 @@ for (const { file, data } of periodFiles) {
       anchorNode: data.anchorNode,
       title: data.title,
       shortPurpose: data.shortPurpose,
+      overview: data.overview,
       description: data.description,
       aliases: data.aliases,
       importance: data.importance,
@@ -389,6 +394,7 @@ for (const { file, data } of missionFiles) {
       anchorNode: data.anchorNode ?? data.learning.phenomena[0],
       title: data.title,
       shortPurpose: data.summary,
+      overview: data.overview,
       importance: data.importance,
       tags: [],
       sources: data.historicalContext.sources,
@@ -820,6 +826,46 @@ for (const { file, data } of routeFiles) {
   }
 }
 
+// Guided flights: every leg after the first must carry its transition sentence, and the nodes
+// flown over should have a spoken overview (otherwise the short purpose is read instead).
+const tours: TourDefinition[] = [];
+const speakableProblem = (text: string) =>
+  /\$|\*\*|^#|\[[^\]]+\]\(/m.test(text) ? 'contains LaTeX or Markdown' : null;
+for (const { file, data } of routeFiles) {
+  for (const tour of data.tours) {
+    if (tours.some((x) => x.id === tour.id)) error(`duplicate tour ${tour.id}`, file, tour.id);
+    else tours.push(tour);
+    tour.legs.forEach((leg, i) => {
+      const label = `tour ${tour.id}, leg ${i + 1}`;
+      if (leg.route && !routes.some((r) => r.id === leg.route))
+        error(`${label}: unknown route ${leg.route}`, file, tour.id);
+      if (leg.world && !worldById.has(leg.world))
+        error(`${label}: unknown world ${leg.world}`, file, tour.id);
+      if (i > 0 && !leg.transition)
+        error(`${label}: a transition sentence is required between two legs`, file, tour.id);
+      if (leg.route) {
+        const route = routes.find((r) => r.id === leg.route);
+        for (const id of route?.nodes ?? []) {
+          const node = nodeById.get(id);
+          if (!node) continue;
+          if (!node.overview)
+            warn(`${label}: ${id} has no overview (its short purpose will be read)`, file, id);
+        }
+      }
+    });
+  }
+}
+for (const node of nodes) {
+  const text = node.overview ? `${node.overview.fr}\n${node.overview.en}` : '';
+  const problem = text && speakableProblem(text);
+  if (problem)
+    warn(
+      `${node.id}: overview ${problem}; it is read aloud as plain text`,
+      nodeFileById.get(node.id) ?? '',
+      node.id
+    );
+}
+
 // ---------------------------------------------------------------------------
 // Warnings about pedagogical shape
 // ---------------------------------------------------------------------------
@@ -944,6 +990,7 @@ function report(): ValidationReport {
     quotations: quotations.length,
     glossary: glossaryEntries.length,
     routes: routes.length,
+    tours: tours.length,
     curricula: curricula.length,
   };
   const r: ValidationReport = { createdAt: new Date().toISOString(), errors, warnings, counts };
@@ -1001,6 +1048,7 @@ emit('glossary.en.json', glossary.en);
 emit('search.fr.json', search.fr);
 emit('search.en.json', search.en);
 emit('routes.json', routes);
+emit('tours.json', tours);
 emit('glossary-entries.json', glossaryEntries);
 emit('asset-manifest.json', { assets: [] });
 emit('report.json', validation);

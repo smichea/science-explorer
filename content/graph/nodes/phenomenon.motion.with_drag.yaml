@@ -8,6 +8,11 @@ title: { fr: Chute avec frottement fluide, en: Fall with fluid drag }
 shortPurpose:
   fr: Freiné par l'air, un corps qui tombe tend exponentiellement vers une vitesse limite.
   en: Slowed by the air, a falling body tends exponentially towards a terminal velocity.
+overview:
+  fr: >-
+    Freiné par l'air, un corps qui tombe ne s'accélère pas indéfiniment : sa vitesse tend exponentiellement vers une vitesse limite. C'est le même schéma que la charge d'un condensateur, appliqué à la mécanique. Un transfert typique attendu en MPSI.
+  en: >-
+    Slowed by the air, a falling body does not accelerate forever: its velocity tends exponentially towards a terminal velocity. It is the same pattern as capacitor charging, applied to mechanics. A typical transfer expected in MPSI.
 aliases:
   fr: ["frottement fluide linéaire", "vitesse limite", "chute freinée", "résistance de l'air"]
   en: ["linear drag", "terminal velocity", "fall with air resistance", "air resistance"]

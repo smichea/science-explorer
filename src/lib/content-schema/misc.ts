@@ -18,8 +18,43 @@ export const RouteSchema = z.object({
   summary: LocalisedText,
   nodes: z.array(Id).min(2),
 });
-export const RoutesFileSchema = z.object({ routes: z.array(RouteSchema) });
+/**
+ * One leg of a guided flight: an authored route, or an automatic group that collects the
+ * destinations of the horizon not covered by an earlier leg (one world, the bridges, or the
+ * remaining history nodes). Every leg after the first carries the sentence that links it to
+ * the previous one.
+ */
+export const TourLegSchema = z
+  .object({
+    route: Id.optional(),
+    world: Id.optional(),
+    bridges: z.literal(true).optional(),
+    history: z.literal(true).optional(),
+    /** Title of an automatic leg (routes use their own title). */
+    title: LocalisedText.optional(),
+    /** Spoken when entering this leg: links the previous leg to this one. */
+    transition: LocalisedText.optional(),
+  })
+  .refine((leg) => [leg.route, leg.world, leg.bridges, leg.history].filter(Boolean).length === 1, {
+    message: 'a leg is exactly one of route, world, bridges or history',
+  })
+  .refine((leg) => !!leg.route || !!leg.title, {
+    message: 'an automatic leg (world, bridges, history) needs a title',
+  });
+export const TourSchema = z.object({
+  id: Id,
+  title: LocalisedText,
+  intro: LocalisedText,
+  outro: LocalisedText,
+  legs: z.array(TourLegSchema).min(1),
+});
+export const RoutesFileSchema = z.object({
+  routes: z.array(RouteSchema).default([]),
+  tours: z.array(TourSchema).default([]),
+});
 export type RouteDefinition = z.infer<typeof RouteSchema>;
+export type TourLeg = z.infer<typeof TourLegSchema>;
+export type TourDefinition = z.infer<typeof TourSchema>;
 
 /** Authored anchors: worlds on a ring, bridges near the centre, regions around their world. */
 export const LayoutAnchorsSchema = z.object({

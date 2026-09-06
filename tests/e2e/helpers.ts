@@ -13,7 +13,13 @@ export const test = base.extend({
     await context.addInitScript(() => {
       window.localStorage.setItem(
         'science-explorer.ui-preferences',
-        JSON.stringify({ performanceMode: '2d', reducedMotion: true, textScale: 1, mapView: '2d' })
+        JSON.stringify({
+          performanceMode: '2d',
+          reducedMotion: true,
+          textScale: 1,
+          mapView: '2d',
+          tourVoice: false,
+        })
       );
     });
     await use(context);

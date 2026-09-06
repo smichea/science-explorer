@@ -33,6 +33,10 @@ export interface UiPreferences {
   lastRoute?: string;
   /** Primary drag gesture in the 3D atlas: orbit (default) or pan. */
   atlasDrag?: 'rotate' | 'pan';
+  /** Read the bird's-eye flight aloud with the browser voice (default: yes). */
+  tourVoice?: boolean;
+  /** Fly over destinations already practised as well (default: only what remains). */
+  tourIncludeDone?: boolean;
 }
 
 export const DEFAULT_UI_PREFERENCES: UiPreferences = {

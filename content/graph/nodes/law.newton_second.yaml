@@ -8,6 +8,11 @@ title: { fr: Deuxième loi de Newton, en: Newton's second law }
 shortPurpose:
   fr: Relier les forces exercées sur un système à la variation de sa vitesse.
   en: Relate the forces acting on a system to the change of its velocity.
+overview:
+  fr: >-
+    La deuxième loi de Newton relie les forces exercées sur un système à la variation de sa vitesse. Avec elle, connaître les forces permet de prédire le mouvement. Écrite avec des vecteurs et des dérivées, elle transforme chaque problème de mécanique en une équation différentielle.
+  en: >-
+    Newton's second law relates the forces acting on a system to the change of its velocity. With it, knowing the forces makes the motion predictable. Written with vectors and derivatives, it turns every mechanics problem into a differential equation.
 aliases:
   fr: ["principe fondamental de la dynamique", "PFD", "relation fondamentale de la dynamique", "deuxième loi du mouvement"]
   en: ["fundamental principle of dynamics", "F = ma", "equation of motion", "second law of motion"]

@@ -9,6 +9,11 @@ title:
 shortPurpose:
   fr: La question qui organise cinématique, lois de Newton, dérivée et équations différentielles.
   en: The question that organises kinematics, Newton's laws, the derivative and differential equations.
+overview:
+  fr: >-
+    Comment prédire un mouvement ? Cette question organise toute la mécanique : décrire avec la cinématique, expliquer avec les lois de Newton, calculer avec la dérivée et les équations différentielles. Elle vous accompagnera de la Terminale jusqu'aux concours.
+  en: >-
+    How can motion be predicted? This question organises all of mechanics: describe with kinematics, explain with Newton's laws, compute with the derivative and differential equations. It will accompany you from Terminale to the entrance exams.
 aliases:
   fr: ["prédiction du mouvement", "prévoir une trajectoire", "origine des équations du mouvement"]
   en: ["predicting motion", "forecasting a trajectory", "origin of the equations of motion"]

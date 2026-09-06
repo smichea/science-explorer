@@ -8,6 +8,11 @@ title: { fr: Mouvement uniformément accéléré, en: Uniformly accelerated moti
 shortPurpose:
   fr: Le mouvement dont la vitesse croît régulièrement ; la distance parcourue croît comme le carré du temps.
   en: The motion whose velocity grows steadily; the distance covered grows as the square of time.
+overview:
+  fr: >-
+    Dans un mouvement uniformément accéléré, la vitesse croît régulièrement et la distance parcourue croît comme le carré du temps. C'est la loi que Galilée a découverte sur son plan incliné, avec des rapports de distances un, trois, cinq, sept. La dérivée en donne l'expression exacte.
+  en: >-
+    In uniformly accelerated motion, velocity grows steadily and the distance covered grows as the square of time. This is the law Galileo discovered on his inclined plane, with distance ratios one, three, five, seven. The derivative gives it its exact expression.
 aliases:
   fr: ["mouvement rectiligne uniformément accéléré", "mouvement à accélération constante", "loi des carrés des temps", "mouvement naturellement accéléré"]
   en: ["uniformly accelerated rectilinear motion", "constant-acceleration motion", "times-squared law", "naturally accelerated motion"]

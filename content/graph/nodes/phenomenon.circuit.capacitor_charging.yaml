@@ -8,6 +8,11 @@ title: { fr: Charge d'un condensateur, en: Capacitor charging }
 shortPurpose:
   fr: La tension aux bornes d'un condensateur monte vers celle du générateur en suivant une exponentielle de constante de temps RC.
   en: The voltage across a capacitor rises towards that of the source along an exponential with time constant RC.
+overview:
+  fr: >-
+    Quand on branche un condensateur sur un générateur à travers une résistance, sa tension monte vers celle du générateur en suivant une exponentielle. La constante de temps RC fixe la vitesse de cette montée. C'est le premier transfert de la dérivée hors de la mécanique.
+  en: >-
+    When a capacitor is connected to a source through a resistor, its voltage rises towards that of the source along an exponential. The time constant RC sets the pace of that rise. It is the first transfer of the derivative outside mechanics.
 aliases:
   fr: ["charge et décharge d'un condensateur", "régime transitoire du circuit RC", "constante de temps RC", "réponse d'un circuit RC à un échelon de tension"]
   en: ["capacitor charge and discharge", "RC circuit transient", "RC time constant", "step response of an RC circuit"]

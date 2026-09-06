@@ -8,6 +8,11 @@ title: { fr: Réaction d'ordre 1, en: First-order reaction }
 shortPurpose:
   fr: Une réaction dont la vitesse est proportionnelle à la concentration du réactif ; la concentration décroît exponentiellement.
   en: A reaction whose rate is proportional to the reactant concentration; the concentration decays exponentially.
+overview:
+  fr: >-
+    Dans une réaction d'ordre un, la vitesse est proportionnelle à la concentration du réactif. La concentration décroît alors exponentiellement, avec un temps de demi-réaction constant. C'est la version chimique de la décroissance radioactive.
+  en: >-
+    In a first-order reaction, the rate is proportional to the reactant concentration. The concentration then decays exponentially, with a constant half-life. It is the chemical version of radioactive decay.
 aliases:
   fr: ["cinétique d'ordre 1", "loi de vitesse d'ordre 1", "décroissance exponentielle d'une concentration", "temps de demi-réaction"]
   en: ["first-order kinetics", "first-order rate law", "exponential decay of a concentration", "reaction half-life"]

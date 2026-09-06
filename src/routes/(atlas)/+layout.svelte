@@ -18,6 +18,8 @@
   import { L, locale, t } from '$lib/state/locale.svelte';
   import { prefs } from '$lib/state/prefs.svelte';
   import { selection } from '$lib/state/selection.svelte';
+  import { tour } from '$lib/state/tour.svelte';
+  import TourCard from '$lib/atlas/TourCard.svelte';
 
   let { children } = $props();
 
@@ -31,15 +33,18 @@
       ...ctx,
       filter: selection.filter,
       layer: selection.layer,
-      selectedId: selection.selectedId,
+      selectedId: tour.active ? tour.currentNodeId : selection.selectedId,
       toolId: selection.toolId,
       locale: locale.current,
+      highlightIds: tour.active ? tour.highlightIds : undefined,
+      tourPath: tour.active ? tour.legNodeIds : undefined,
     };
   });
   const styles = $derived(styleCtx ? computeNodeStyles(styleCtx) : new Map<string, NodeStyle>());
   const routes = $derived(styleCtx ? computeRoutes(styleCtx, learning.snapshot) : []);
 
   const focus = $derived.by((): FocusTarget => {
+    if (tour.active && tour.focus) return tour.focus;
     if (selection.selectedId) return { kind: 'node', id: selection.selectedId };
     if (selection.regionId) return { kind: 'region', id: selection.regionId };
     if (selection.worldId) return { kind: 'world', id: selection.worldId };
@@ -51,8 +56,11 @@
     prefs.performanceMode === '2d' && selection.view === '3d' ? '2d' : selection.view
   );
   const dragMode = $derived(prefs.prefs.atlasDrag ?? 'rotate');
+  /** During a flight the current stop is the selection shown by the map and the list. */
+  const activeSelectedId = $derived(tour.active ? tour.currentNodeId : selection.selectedId);
   const hasPanel = $derived(
-    !!(selection.selectedId || selection.regionId || selection.worldId) ||
+    tour.active ||
+      !!(selection.selectedId || selection.regionId || selection.worldId) ||
       page.url.pathname.endsWith('/universe')
   );
   let panelExpanded = $state(false);
@@ -165,6 +173,14 @@
         <button class="btn btn--sm" type="button" onclick={overview}
           >{t('universe.overview')}</button
         >
+        {#if pkg.tours.length && !tour.active}
+          <button
+            class="btn btn--sm btn--primary"
+            type="button"
+            data-testid="tour-start"
+            onclick={() => tour.start()}>🕊 {t('tour.title')}</button
+          >
+        {/if}
       </div>
     </div>
     {#if results.length}
@@ -205,7 +221,7 @@
           {styles}
           {routes}
           {focus}
-          {focusKey}
+          focusKey={focusKey + tour.tick}
           locale={locale.current}
           performance={prefs.performanceMode}
           reducedMotion={prefs.reducedMotion}
@@ -236,7 +252,7 @@
         <DestinationList
           {graph}
           {styles}
-          selectedId={selection.selectedId}
+          selectedId={activeSelectedId}
           {labelText}
           {stateLabel}
           {href}
@@ -249,7 +265,7 @@
           layout={pkg.layout}
           {styles}
           {routes}
-          selectedId={selection.selectedId}
+          selectedId={activeSelectedId}
           focusId={focus.id ?? null}
           {labelText}
           {stateLabel}
@@ -272,7 +288,11 @@
         ></button>
       </div>
       <div class="panel__content">
-        {@render children()}
+        {#if tour.active}
+          <TourCard />
+        {:else}
+          {@render children()}
+        {/if}
       </div>
     </aside>
   {/if}
