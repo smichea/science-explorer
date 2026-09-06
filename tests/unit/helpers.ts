@@ -12,6 +12,7 @@ import type {
   ExerciseDefinition,
   RouteDefinition,
   TourDefinition,
+  LessonDefinition,
 } from '../../src/lib/content-schema';
 import { GraphIndex } from '../../src/lib/domain/graph';
 
@@ -32,6 +33,7 @@ export function loadPackage(): Pick<
   | 'simulations'
   | 'routes'
   | 'tours'
+  | 'lessons'
   | 'curricula'
   | 'search'
 > {
@@ -48,6 +50,7 @@ export function loadPackage(): Pick<
     simulations: read<SimulationDefinition[]>('simulations.json'),
     routes: read<RouteDefinition[]>('routes.json'),
     tours: read<TourDefinition[]>('tours.json'),
+    lessons: read<LessonDefinition[]>('lessons.json'),
     search: {
       fr: read<SearchEntry[]>('search.fr.json'),
       en: read<SearchEntry[]>('search.en.json'),

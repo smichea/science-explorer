@@ -1,0 +1,45 @@
+# Leçon — tool.ode_first_order (numeric)
+id: exercise.ode.value
+type: numeric
+nodeId: tool.ode_first_order
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    La solution de $y' = y$ avec $y(0) = 2$ est $y(x) = 2e^{x}$.
+
+    Calculez $y(1)$ (deux décimales).
+  en: |-
+    The solution of $y' = y$ with $y(0) = 2$ is $y(x) = 2e^{x}$.
+
+    Compute $y(1)$ (two decimals).
+numeric:
+  value: 5.44
+  tolerance:
+    kind: absolute
+    value: 0.02
+  inputLabel:
+    fr: y(1)
+    en: y(1)
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: $e \approx 2{,}718$.
+    en: $e \approx 2.718$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $2 \times 2{,}718$.
+    en: $2 \times 2.718$.
+solution:
+  fr: $y(1) = 2e \approx 5{,}44$. Sur le champ de pentes, la solution partant de $2$ passe par ce point.
+  en: $y(1) = 2e \approx 5.44$. On the slope field, the solution starting from $2$ goes through that point.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

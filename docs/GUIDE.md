@@ -25,6 +25,12 @@ Le bouton **🕊 Vol d'oiseau** (dans le bandeau de l'univers et dans le panneau
 
 Conseil pour la première séance : faites le vol complet une fois (une quinzaine de minutes avec la voix), puis demandez à l'explorateur où il veut aller en premier.
 
+## 2 ter. Les leçons : diapositives, outil, exercices
+
+Chaque destination s'ouvre avec sa **présentation lue à voix haute** (bouton 🔊 pour la rejouer, réglage « Lire à voix haute » dans Réglages pour couper la voix). Le bouton **▶ Suivre la leçon** ouvre la leçon en trois temps : des **diapositives** lues phrase par phrase, avec à droite un **outil** qui suit les mots (le traceur de courbes fait apparaître les courbes, les points, les cordes et les tangentes au moment où le texte les nomme ; les leçons de physique et de chimie montrent une simulation) ; un **jeu libre** où l'explorateur tape ses propres fonctions, déplace un marqueur, fait varier les réglages ; puis des **exercices à réponse saisie** (nombres, expressions), avec indices, dont les résultats comptent dans la progression. Une leçon sans script rédigé est composée à partir de la description de la destination.
+
+Conseil : laissez l'explorateur manipuler l'outil avant les exercices, et demandez-lui de dire à voix haute ce que montre la courbe.
+
 ## 3. La vue guide
 
 Accessible depuis le menu **Guide** (code éventuel demandé une fois par onglet) :

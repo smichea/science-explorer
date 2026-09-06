@@ -1,0 +1,44 @@
+# Leçon — tool.ode_first_order (symbolic)
+id: exercise.ode.solution
+type: symbolic
+nodeId: tool.ode_first_order
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Résolvez l'équation différentielle $y' = 2y$ avec la condition initiale $y(0) = 3$.
+
+    Écrivez $y(x)$ comme une expression en $x$ (par exemple `2*exp(5*x)`).
+  en: |-
+    Solve the differential equation $y' = 2y$ with the initial condition $y(0) = 3$.
+
+    Write $y(x)$ as an expression in $x$ (for example `2*exp(5*x)`).
+symbolic:
+  variable: x
+  accepted:
+  - 3*exp(2*x)
+  - 3exp(2x)
+  - exp(2*x)*3
+  display: y(x) =
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: Les solutions de $y' = ky$ sont les $C\,e^{kx}$.
+    en: The solutions of $y' = ky$ are the $C\,e^{kx}$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $y(0) = C = 3$.
+    en: $y(0) = C = 3$.
+solution:
+  fr: '$y(x) = 3\,e^{2x}$ : la constante est fixée par la valeur en zéro, et l''exposant par le coefficient de l''équation.'
+  en: '$y(x) = 3\,e^{2x}$: the constant is set by the value at zero, the exponent by the coefficient of the equation.'
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 2
+  linkedConcepts: 2
+  transfer: 2
+  autonomy: 3

@@ -60,11 +60,16 @@ import {
   type SearchEntry,
   type SimulationDefinition,
   type SourceDefinition,
+  LessonSchema,
+  type LessonDefinition,
+  type PlotterAction,
   type ValidationMessage,
   type ValidationReport,
 } from '../src/lib/content-schema/index';
 import { GraphIndex } from '../src/lib/domain/graph';
+import { compileExpression } from '../src/lib/domain/answers';
 import { computeLayout } from '../src/lib/domain/layout';
+import { speakableText, splitSentences } from '../src/lib/domain/speech';
 import { buildTour, prerequisiteInversions } from '../src/lib/domain/tour';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -187,6 +192,7 @@ const periodFiles = parseDir(PeriodSchema, join(CONTENT_DIR, 'periods'));
 const sourceFiles = parseDir(SourcesFileSchema, join(CONTENT_DIR, 'sources'));
 const glossaryFiles = parseDir(GlossaryFileSchema, join(CONTENT_DIR, 'glossary'));
 const routeFiles = parseDir(RoutesFileSchema, join(CONTENT_DIR, 'routes'));
+const lessonFiles = parseDir(LessonSchema, join(CONTENT_DIR, 'lessons'));
 
 for (const group of [
   nodeFiles,
@@ -625,6 +631,200 @@ for (const { file, data } of simulationFiles) {
 const simulationById = new Map(simulations.map((s) => [s.id, s]));
 
 // ---------------------------------------------------------------------------
+// Lessons: one per node and depth, a known tool, exercises of the node, expressions that compile,
+// actions that fall inside the spoken text.
+// ---------------------------------------------------------------------------
+
+const lessons: LessonDefinition[] = [];
+for (const { file, data } of lessonFiles) {
+  if (lessons.some((l) => l.id === data.id)) {
+    error(`duplicate lesson ${data.id}`, file, data.id);
+    continue;
+  }
+  if (lessons.some((l) => l.nodeId === data.nodeId && l.depth === data.depth))
+    error(
+      `lesson ${data.id}: ${data.nodeId} already has a lesson at depth ${data.depth}`,
+      file,
+      data.id
+    );
+  lessons.push(data);
+  const node = nodeById.get(data.nodeId);
+  if (!node) error(`lesson ${data.id}: unknown node ${data.nodeId}`, file, data.id);
+  else if (node.type === 'mission')
+    error(`lesson ${data.id}: a mission is practised, not taught`, file, data.id);
+  if (data.tools.length === 0) warn(`lesson ${data.id} has no tool`, file, data.id);
+
+  const compiles = (expr: string, variables: string[], where: string) => {
+    try {
+      compileExpression(expr, variables);
+    } catch (e) {
+      error(`${where}: ${expr}: ${(e as Error).message}`, file, data.id);
+    }
+  };
+  const toolIds = new Set<string>();
+  /** Items a slide may show or hide, per tool. */
+  const itemsOf = new Map<string, Set<string>>();
+  for (const tool of data.tools) {
+    const where = `lesson ${data.id}, tool ${tool.id}`;
+    if (toolIds.has(tool.id)) error(`${where}: duplicate tool id`, file, data.id);
+    toolIds.add(tool.id);
+    const parameters = 'parameters' in tool ? tool.parameters.map((p) => p.id) : [];
+    const items = new Set<string>();
+    const scalar = (value: number | string | undefined, what: string) => {
+      if (typeof value === 'string') compiles(value, parameters, `${where}: ${what}`);
+    };
+    switch (tool.kind) {
+      case 'simulation':
+        if (!simulationById.has(tool.simulationId))
+          error(`${where}: unknown simulation ${tool.simulationId}`, file, data.id);
+        break;
+      case 'plotter':
+        break;
+      case 'vectors':
+        for (const v of tool.vectors) {
+          items.add(v.id);
+          scalar(v.x, `vector ${v.id}`);
+          scalar(v.y, `vector ${v.id}`);
+          if (v.from && !tool.vectors.some((o) => o.id === v.from))
+            error(`${where}: vector ${v.id} starts from unknown vector ${v.from}`, file, data.id);
+        }
+        for (const path of tool.paths) {
+          items.add(path.id);
+          compiles(path.x, ['s', ...parameters], `${where}: path ${path.id}`);
+          compiles(path.y, ['s', ...parameters], `${where}: path ${path.id}`);
+        }
+        for (const sum of tool.sums) {
+          items.add(sum.id);
+          for (const id of sum.of)
+            if (!tool.vectors.some((v) => v.id === id))
+              error(`${where}: sum ${sum.id} uses unknown vector ${id}`, file, data.id);
+        }
+        break;
+      case 'slope_field':
+        compiles(tool.equation, ['x', 'y', ...parameters], `${where}: equation`);
+        for (const sol of tool.solutions) {
+          items.add(sol.id);
+          scalar(sol.x0, `solution ${sol.id}`);
+          scalar(sol.y0, `solution ${sol.id}`);
+        }
+        break;
+      case 'fit':
+        if (tool.generator)
+          compiles(tool.generator.expr, ['x', ...parameters], `${where}: generator`);
+        else if (tool.points.length === 0)
+          error(`${where}: no points and no generator`, file, data.id);
+        if (tool.measure && !tool.generator)
+          error(`${where}: measuring again needs a generator`, file, data.id);
+        for (const model of tool.models) {
+          items.add(model.id);
+          compiles(model.expr, ['x', ...parameters], `${where}: model ${model.id}`);
+        }
+        scalar(tool.target, 'target');
+        break;
+      case 'field':
+        compiles(tool.expr, ['x', 'y', ...parameters], `${where}: field`);
+        break;
+      case 'dimensions':
+        for (const q of tool.quantities) {
+          if (items.has(q.id)) error(`${where}: duplicate quantity ${q.id}`, file, data.id);
+          items.add(q.id);
+        }
+        if (!tool.quantities.some((q) => !q.base))
+          warn(`${where}: no derived quantity to reconstruct`, file, data.id);
+        break;
+      case 'timeline':
+        for (const ev of tool.events) {
+          items.add(ev.id);
+          const years = [ev.year, ev.start, ev.end].filter((y): y is number => y !== undefined);
+          if (years.length === 0) error(`${where}: event ${ev.id} has no year`, file, data.id);
+          for (const y of years)
+            if (y < tool.from || y > tool.to)
+              warn(
+                `${where}: event ${ev.id} (${y}) is outside ${tool.from}–${tool.to}`,
+                file,
+                data.id
+              );
+        }
+        break;
+    }
+    itemsOf.set(tool.id, items);
+    if (tool.kind === 'plotter')
+      tool.initial.forEach((a, i) => checkAction(tool, a, `${where}: initial action ${i + 1}`));
+  }
+
+  function checkAction(tool: (typeof data.tools)[number], action: PlotterAction, where: string) {
+    const parameters = 'parameters' in tool ? tool.parameters.map((p) => p.id) : [];
+    const items = itemsOf.get(tool.id) ?? new Set<string>();
+    if (tool.kind === 'plotter') {
+      const variables = [tool.variable, ...parameters];
+      if (action.plot) compiles(action.plot.expr, variables, `${where}: curve ${action.plot.id}`);
+      const scalars = [
+        action.point?.x,
+        action.secant?.from,
+        action.secant?.to,
+        action.tangent?.x,
+        action.interval?.from,
+        action.interval?.to,
+      ];
+      for (const s of scalars) if (typeof s === 'string') compiles(s, parameters, where);
+    } else if (action.plot || action.point || action.secant || action.tangent || action.interval) {
+      error(
+        `${where}: drawing actions need a plotter (tool ${tool.id} is a ${tool.kind})`,
+        file,
+        data.id
+      );
+    }
+    for (const id of action.show)
+      if (!items.has(id))
+        warn(`${where}: shows unknown item ${id} of tool ${tool.id}`, file, data.id);
+    if (tool.kind !== 'plotter')
+      for (const id of action.hide)
+        if (!items.has(id))
+          warn(`${where}: hides unknown item ${id} of tool ${tool.id}`, file, data.id);
+    for (const id of Object.keys(action.set ?? {}))
+      if (!parameters.includes(id)) error(`${where}: unknown parameter ${id}`, file, data.id);
+  }
+
+  const stepIds = new Set<string>();
+  for (const step of data.steps ?? []) {
+    const where = `lesson ${data.id}, step ${step.id}`;
+    if (stepIds.has(step.id)) error(`${where}: duplicate step id`, file, data.id);
+    stepIds.add(step.id);
+    if (step.tool && !toolIds.has(step.tool))
+      error(`${where}: unknown tool ${step.tool}`, file, data.id);
+    const tool = data.tools.find((t) => t.id === step.tool) ?? data.tools[0];
+    if (step.actions.length && !tool) error(`${where}: actions without a tool`, file, data.id);
+    const sentences = splitSentences(speakableText(step.text.fr, 'fr')).length;
+    step.actions.forEach((action, i) => {
+      if (tool) checkAction(tool, action, `${where}, action ${i + 1}`);
+      if (action.at >= sentences)
+        warn(
+          `${where}: action ${i + 1} fires at sentence ${action.at + 1} but the French text has ${sentences}`,
+          file,
+          data.id
+        );
+    });
+    if (step.kind === 'exercises' && step.exercises.length === 0)
+      error(`${where}: an exercises step needs exercises`, file, data.id);
+    if (step.kind !== 'exercises' && step.exercises.length)
+      warn(`${where}: exercises listed on a ${step.kind} step are ignored`, file, data.id);
+    for (const id of step.exercises) {
+      const exercise = exerciseById.get(id);
+      if (!exercise) error(`${where}: unknown exercise ${id}`, file, data.id);
+      else if (exercise.nodeId !== data.nodeId)
+        warn(`${where}: exercise ${id} belongs to ${exercise.nodeId}`, file, data.id);
+    }
+  }
+  if (data.steps && data.tools.length && !data.steps.some((s) => s.kind === 'play'))
+    warn(`lesson ${data.id} has tools but no free play step`, file, data.id);
+  const nodeExercises = exercises.filter(
+    (e) => e.nodeId === data.nodeId && e.type !== 'free_explanation'
+  );
+  if (nodeExercises.length === 0)
+    warn(`lesson ${data.id}: ${data.nodeId} has no exercise`, file, data.id);
+}
+
+// ---------------------------------------------------------------------------
 // Missions
 // ---------------------------------------------------------------------------
 
@@ -1016,6 +1216,7 @@ function report(): ValidationReport {
     glossary: glossaryEntries.length,
     routes: routes.length,
     tours: tours.length,
+    lessons: lessons.length,
     curricula: curricula.length,
   };
   const r: ValidationReport = { createdAt: new Date().toISOString(), errors, warnings, counts };
@@ -1074,6 +1275,7 @@ emit('search.fr.json', search.fr);
 emit('search.en.json', search.en);
 emit('routes.json', routes);
 emit('tours.json', tours);
+emit('lessons.json', lessons);
 emit('glossary-entries.json', glossaryEntries);
 emit('asset-manifest.json', { assets: [] });
 emit('report.json', validation);

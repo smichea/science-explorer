@@ -11,6 +11,7 @@ import type { ExerciseDefinition } from './exercise';
 import type { DepthDescriptor, EdgeType, NodeType } from './graph';
 import type { MissionDefinition } from './mission';
 import type { GlossaryEntry, RouteDefinition, TourDefinition } from './misc';
+import type { LessonDefinition } from './lesson';
 import type { SimulationDefinition } from './simulation';
 import type { QuotationDefinition, SourceDefinition } from './source';
 
@@ -171,6 +172,7 @@ export interface ContentPackage {
   search: Record<Locale, SearchEntry[]>;
   routes: RouteDefinition[];
   tours: TourDefinition[];
+  lessons: LessonDefinition[];
   glossaryEntries: GlossaryEntry[];
   report: ValidationReport;
 }

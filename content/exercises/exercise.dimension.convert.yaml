@@ -1,0 +1,40 @@
+# Leçon — concept.dimension_unit (numeric)
+id: exercise.dimension.convert
+type: numeric
+nodeId: concept.dimension_unit
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: Convertissez $72\ \mathrm{km/h}$ en $\mathrm{m/s}$.
+  en: Convert $72\ \mathrm{km/h}$ into $\mathrm{m/s}$.
+numeric:
+  value: 20
+  tolerance:
+    kind: absolute
+    value: 0.05
+  inputLabel:
+    fr: vitesse
+    en: speed
+  unit: m/s
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: $1\ \mathrm{km} = 1000\ \mathrm{m}$ et $1\ \mathrm{h} = 3600\ \mathrm{s}$.
+    en: $1\ \mathrm{km} = 1000\ \mathrm{m}$ and $1\ \mathrm{h} = 3600\ \mathrm{s}$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $72 \times 1000 / 3600$.
+    en: $72 \times 1000 / 3600$.
+solution:
+  fr: $72\ \mathrm{km/h} = 72 \times \dfrac{1000}{3600}\ \mathrm{m/s} = 20\ \mathrm{m/s}$. Changer d'unité change le nombre, jamais la dimension.
+  en: $72\ \mathrm{km/h} = 72 \times \dfrac{1000}{3600}\ \mathrm{m/s} = 20\ \mathrm{m/s}$. Changing the unit changes the number, never the dimension.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

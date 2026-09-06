@@ -1,0 +1,11 @@
+# Leçon — le gradient, avec le champ scalaire et sa flèche de plus forte pente.
+id: lesson.tool.gradient
+nodeId: tool.gradient
+depth: 2
+tools:
+  - id: field
+    kind: field
+    view: { x: [-2, 2], y: [-2, 2] }
+    expr: "x^2 + 2*y^2"
+    levels: 10
+    marker: { x: 1, y: 0.5 }

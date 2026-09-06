@@ -1,0 +1,40 @@
+# Leçon — method.modelling (numeric)
+id: exercise.modelling.predict
+type: numeric
+nodeId: method.modelling
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: Avec le modèle $d = 4{,}9\,t^2$, prédisez la distance parcourue à $t = 3\ \mathrm{s}$.
+  en: With the model $d = 4.9\,t^2$, predict the distance covered at $t = 3\ \mathrm{s}$.
+numeric:
+  value: 44.1
+  tolerance:
+    kind: absolute
+    value: 0.2
+  inputLabel:
+    fr: d(3)
+    en: d(3)
+  unit: m
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: Remplacez $t$ par $3$.
+    en: Replace $t$ with $3$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $4{,}9 \times 9$.
+    en: $4.9 \times 9$.
+solution:
+  fr: '$d(3) = 4{,}9 \times 3^2 = 44{,}1\ \mathrm{m}$. Un modèle sert à cela : prédire une mesure qu''on n''a pas encore faite, puis la confronter au réel.'
+  en: '$d(3) = 4.9 \times 3^2 = 44.1\ \mathrm{m}$. That is what a model is for: predicting a measurement not yet made, then confronting it with reality.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

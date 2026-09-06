@@ -37,14 +37,24 @@ class SpeechState {
     );
   }
 
-  /** Speaks the text; resolves true when read to the end, false when cancelled or unavailable. */
-  async speak(text: string, locale: Locale): Promise<boolean> {
+  /**
+   * Speaks the text sentence by sentence; resolves true when read to the end, false when
+   * cancelled or unavailable. `onSentence` is called as each sentence starts (a lesson uses it
+   * to make its tool follow the words).
+   */
+  async speak(
+    text: string,
+    locale: Locale,
+    onSentence?: (index: number, total: number) => void
+  ): Promise<boolean> {
     if (!this.synth || !this.available || !text.trim()) return false;
     this.cancel();
     const token = ++this.token;
     this.speaking = true;
-    for (const chunk of splitSentences(text)) {
+    const sentences = splitSentences(text);
+    for (const [index, chunk] of sentences.entries()) {
       if (token !== this.token) return false;
+      onSentence?.(index, sentences.length);
       const finished = await this.utter(chunk, locale, token);
       if (!finished) return false;
     }

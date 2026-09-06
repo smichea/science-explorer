@@ -1,0 +1,15 @@
+# Leçon — vitesse proportionnelle à la quantité restante, avec le champ de pentes.
+id: lesson.concept.rate_proportional_to_quantity
+nodeId: concept.rate_proportional_to_quantity
+depth: 1
+tools:
+  - id: field
+    kind: slope_field
+    view: { x: [0, 5], y: [0, 5] }
+    parameters:
+      - { id: k, label: { fr: "coefficient k", en: "coefficient k" }, min: -1, max: 1, step: 0.05, value: -0.5 }
+    equation: "k*y"
+    labels: { x: "t", y: "N" }
+    solutions:
+      - { id: s1, x0: 0, y0: 4, label: { fr: "N(0) = 4", en: "N(0) = 4" } }
+      - { id: s2, x0: 0, y0: 2, label: { fr: "N(0) = 2", en: "N(0) = 2" } }

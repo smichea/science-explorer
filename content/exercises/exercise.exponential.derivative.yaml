@@ -1,0 +1,49 @@
+# Leçon exponentielle — dériver exp(3x) (réponse symbolique)
+id: exercise.exponential.derivative
+type: symbolic
+nodeId: tool.exponential
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Soit $f(x) = e^{3x}$.
+
+    Donnez l'expression de $f'(x)$ (écrivez l'exponentielle `exp(...)`, par exemple `2*exp(2*x)`).
+  en: |-
+    Let $f(x) = e^{3x}$.
+
+    Give the expression of $f'(x)$ (write the exponential as `exp(...)`, for example `2*exp(2*x)`).
+symbolic:
+  variable: x
+  accepted: ["3*exp(3*x)", "3exp(3x)", "exp(3*x)*3"]
+  display: "f'(x) ="
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La dérivée de $e^{kx}$ est $k\,e^{kx}$ : l'exponentielle reste, multipliée par le coefficient de $x$.
+      en: |-
+        The derivative of $e^{kx}$ is $k\,e^{kx}$: the exponential stays, multiplied by the coefficient of $x$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Ici $k = 3$.
+      en: |-
+        Here $k = 3$.
+solution:
+  fr: |-
+    $$f'(x) = 3\,e^{3x}.$$
+    La pente de la tangente vaut toujours $3$ fois la hauteur du point : c'est ce que montre le jeu libre avec $k = 3$. Cette propriété, « la vitesse est proportionnelle à la quantité », est la raison pour laquelle l'exponentielle apparaît partout.
+  en: |-
+    $$f'(x) = 3\,e^{3x}.$$
+    The slope of the tangent is always $3$ times the height of the point: this is what the free play shows with $k = 3$. This property, "the rate is proportional to the quantity", is why the exponential appears everywhere.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 3

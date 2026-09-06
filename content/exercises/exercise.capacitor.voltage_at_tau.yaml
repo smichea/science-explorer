@@ -1,0 +1,46 @@
+# Leçon — phenomenon.circuit.capacitor_charging (numeric)
+id: exercise.capacitor.voltage_at_tau
+type: numeric
+nodeId: phenomenon.circuit.capacitor_charging
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un condensateur se charge sous $E = 6\ \mathrm{V}$ : $u_C(t) = E(1 - e^{-t/\tau})$.
+
+    Calculez $u_C(\tau)$ (deux décimales).
+  en: |-
+    A capacitor charges under $E = 6\ \mathrm{V}$: $u_C(t) = E(1 - e^{-t/\tau})$.
+
+    Compute $u_C(\tau)$ (two decimals).
+numeric:
+  value: 3.79
+  tolerance:
+    kind: absolute
+    value: 0.03
+  inputLabel:
+    fr: u_C(τ)
+    en: u_C(τ)
+  unit: V
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: À $t = \tau$, l'exposant vaut $-1$.
+    en: At $t = \tau$, the exponent is $-1$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $6 \times (1 - 0{,}368)$.
+    en: $6 \times (1 - 0.368)$.
+solution:
+  fr: '$u_C(\tau) = 6(1 - e^{-1}) \approx 3{,}79\ \mathrm{V}$, soit $63\,\%$ de $E$ : c''est la signature de la constante de temps.'
+  en: '$u_C(\tau) = 6(1 - e^{-1}) \approx 3.79\ \mathrm{V}$, that is $63\,\%$ of $E$: the signature of the time constant.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

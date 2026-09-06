@@ -1,0 +1,49 @@
+# Leçon — place.pisa (choice)
+id: exercise.pisa.role
+type: choice
+nodeId: place.pisa
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: Que représente Pise pour Galilée ?
+  en: What does Pisa represent for Galileo?
+choice:
+  multiple: false
+  choices:
+  - id: birth_first
+    text:
+      fr: Sa ville natale et son premier poste d'enseignant (1589–1592).
+      en: His birthplace and his first teaching post (1589–1592).
+    correct: true
+  - id: plane
+    text:
+      fr: La ville des expériences du plan incliné.
+      en: The city of the inclined-plane experiments.
+    correct: false
+  - id: death
+    text:
+      fr: La ville où il meurt en 1642.
+      en: The city where he dies in 1642.
+    correct: false
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: Regardez le début de la frise.
+    en: Look at the beginning of the timeline.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: Il meurt à Arcetri, près de Florence.
+    en: He dies in Arcetri, near Florence.
+solution:
+  fr: Galilée naît à Pise en 1564 et y enseigne de 1589 à 1592. L'expérience de la tour de Pise est disputée par les historiens ; les mesures sur plan incliné sont padouanes.
+  en: Galileo is born in Pisa in 1564 and teaches there from 1589 to 1592. The Leaning Tower experiment is disputed by historians; the inclined-plane measurements are Paduan.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

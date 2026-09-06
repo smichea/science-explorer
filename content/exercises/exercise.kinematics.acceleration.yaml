@@ -1,0 +1,40 @@
+# Leçon — model.kinematics_point (numeric)
+id: exercise.kinematics.acceleration
+type: numeric
+nodeId: model.kinematics_point
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: Toujours pour $\vec{r}(t) = (2t ; 6 - t^2)$, quelle est la valeur de l'accélération ?
+  en: Still for $\vec{r}(t) = (2t, 6 - t^2)$, what is the magnitude of the acceleration?
+numeric:
+  value: 2
+  tolerance:
+    kind: absolute
+    value: 0.01
+  inputLabel:
+    fr: ‖a‖
+    en: ‖a‖
+  unit: m/s²
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: L'accélération est la dérivée de la vitesse $(2 ; -2t)$.
+    en: Acceleration is the derivative of the velocity $(2, -2t)$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $\vec a = (0 ; -2)$.
+    en: $\vec a = (0, -2)$.
+solution:
+  fr: '$\vec a = (0 ; -2)$ : constante, dirigée vers le bas, de valeur $2\ \mathrm{m/s^2}$. La trajectoire est une parabole, comme une chute.'
+  en: '$\vec a = (0, -2)$: constant, pointing down, of magnitude $2\ \mathrm{m/s^2}$. The trajectory is a parabola, like a fall.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

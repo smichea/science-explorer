@@ -1,0 +1,46 @@
+# Leçon — question.how_to_predict_motion (numeric)
+id: exercise.question.predict
+type: numeric
+nodeId: question.how_to_predict_motion
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Une bille lâchée sans vitesse est tombée de $4{,}9\ \mathrm{m}$ en $1\ \mathrm{s}$ et de $19{,}6\ \mathrm{m}$ en $2\ \mathrm{s}$.
+
+    Prédisez la hauteur de chute après $3\ \mathrm{s}$.
+  en: |-
+    A ball released at rest fell $4.9\ \mathrm{m}$ in $1\ \mathrm{s}$ and $19.6\ \mathrm{m}$ in $2\ \mathrm{s}$.
+
+    Predict the height fallen after $3\ \mathrm{s}$.
+numeric:
+  value: 44.1
+  tolerance:
+    kind: absolute
+    value: 1.5
+  inputLabel:
+    fr: hauteur
+    en: height
+  unit: m
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: 'Quand le temps double, la hauteur est multipliée par 4 : une loi en $t^2$.'
+    en: 'When the time doubles, the height is multiplied by 4: a law in $t^2$.'
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $h = 4{,}9\,t^2$ avec $t = 3$.
+    en: $h = 4.9\,t^2$ with $t = 3$.
+solution:
+  fr: $h(3) = 4{,}9 \times 9 \approx 44\ \mathrm{m}$. Prédire un mouvement, c'est trouver la loi qui relie les mesures, puis l'extrapoler.
+  en: $h(3) = 4.9 \times 9 \approx 44\ \mathrm{m}$. Predicting a motion means finding the law that links the measurements, then extrapolating it.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

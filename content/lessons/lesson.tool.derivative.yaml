@@ -1,0 +1,109 @@
+# Leçon narrée — la dérivée, avec le traceur (paramètre a).
+id: lesson.tool.derivative
+nodeId: tool.derivative
+depth: 1
+tools:
+  - id: plotter
+    kind: plotter
+    variable: x
+    view: { x: [-3, 3], y: [-2, 9] }
+    parameters:
+      - { id: a, label: { fr: "abscisse a", en: "abscissa a" }, min: -2.5, max: 2.5, step: 0.05, value: 1 }
+    input: false
+steps:
+  - id: definition
+    title: { fr: "La pente de la tangente", en: "The slope of the tangent" }
+    text:
+      fr: >-
+        La dérivée de f en a est la limite du taux de variation entre a et a plus h, quand h tend vers zéro.
+        C'est la pente de la tangente à la courbe au point d'abscisse a.
+        Pour f de x égale x carré, en a égal 1, la pente vaut 2 : on écrit f prime de 1 égale 2.
+      en: >-
+        The derivative of f at a is the limit of the rate of change between a and a plus h, as h tends to zero.
+        It is the slope of the tangent to the curve at the point with abscissa a.
+        For f of x equals x squared, at a equal to 1, the slope is 2: we write f prime of 1 equals 2.
+    actions:
+      - { at: 0, plot: { id: f, expr: "x^2", label: { fr: "f(x) = x²", en: "f(x) = x²" } } }
+      - { at: 1, tangent: { id: t1, on: f, x: 1, label: { fr: "tangente en 1", en: "tangent at 1" } } }
+      - { at: 2, point: { id: p1, on: f, x: 1, guides: true, label: { fr: "f'(1) = 2", en: "f'(1) = 2" } } }
+  - id: function
+    title: { fr: "La fonction dérivée", en: "The derivative function" }
+    text:
+      fr: >-
+        En chaque point, la tangente a une pente.
+        Cette pente dépend de a : c'est une nouvelle fonction, la fonction dérivée.
+        Pour x carré, la dérivée est deux x : en 2 la pente vaut 4, en moins 1 elle vaut moins 2.
+      en: >-
+        At every point, the tangent has a slope.
+        That slope depends on a: it is a new function, the derivative function.
+        For x squared, the derivative is two x: at 2 the slope is 4, at minus 1 it is minus 2.
+    actions:
+      - { at: 1, plot: { id: fp, expr: "2*x", dashed: true, label: { fr: "f'(x) = 2x", en: "f'(x) = 2x" } } }
+      - { at: 2, tangent: { id: t2, on: f, x: 2, label: { fr: "tangente en 2", en: "tangent at 2" } } }
+      - { at: 2, tangent: { id: t3, on: f, x: -1, label: { fr: "tangente en −1", en: "tangent at −1" } } }
+  - id: rules
+    title: { fr: "Les règles de calcul", en: "The calculation rules" }
+    text:
+      fr: >-
+        Des règles évitent de refaire la limite à chaque fois.
+        La dérivée de x puissance n est n fois x puissance n moins 1.
+        La dérivée d'une somme est la somme des dérivées, et une constante multiplicative se conserve.
+        Ainsi, trois x carré plus deux x a pour dérivée six x plus deux.
+      en: >-
+        Rules avoid redoing the limit every time.
+        The derivative of x to the power n is n times x to the power n minus 1.
+        The derivative of a sum is the sum of the derivatives, and a multiplicative constant is kept.
+        So three x squared plus two x has derivative six x plus two.
+    actions:
+      - { at: 0, clear: true, view: { x: [-3, 3], y: [-4, 12] } }
+      - { at: 3, plot: { id: g, expr: "3*x^2+2*x", label: { fr: "g(x) = 3x² + 2x", en: "g(x) = 3x² + 2x" } } }
+      - { at: 3, plot: { id: gp, expr: "6*x+2", dashed: true, label: { fr: "g'(x) = 6x + 2", en: "g'(x) = 6x + 2" } } }
+  - id: physics
+    title: { fr: "Position, vitesse, accélération", en: "Position, velocity, acceleration" }
+    text:
+      fr: >-
+        En physique, la dérivée de la position par rapport au temps est la vitesse, et la dérivée de la vitesse est l'accélération.
+        Sur le plan incliné de Galilée, la position croît comme le carré du temps.
+        La vitesse croît donc linéairement, et l'accélération est constante.
+        C'est l'outil que Galilée n'avait pas.
+      en: >-
+        In physics, the derivative of position with respect to time is velocity, and the derivative of velocity is acceleration.
+        On Galileo's inclined plane, position grows like the square of time.
+        Velocity therefore grows linearly, and acceleration is constant.
+        This is the tool Galileo did not have.
+    actions:
+      - { at: 0, clear: true, view: { x: [0, 4], y: [0, 10], labels: { x: "t (s)", y: "" } } }
+      - { at: 1, plot: { id: pos, expr: "0.6*x^2", domain: [0, 4], label: { fr: "x(t) = 0,6 t²", en: "x(t) = 0.6 t²" } } }
+      - { at: 2, plot: { id: vel, expr: "1.2*x", domain: [0, 4], dashed: true, label: { fr: "v(t) = 1,2 t", en: "v(t) = 1.2 t" } } }
+      - { at: 2, plot: { id: acc, expr: "1.2", domain: [0, 4], dashed: true, label: { fr: "a = 1,2", en: "a = 1.2" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de suivre la tangente", en: "Your turn to follow the tangent" }
+    text:
+      fr: >-
+        À vous. Déplacez a le long de la courbe : la tangente suit, et sa pente est la valeur de la dérivée.
+        Comparez-la au point de la courbe en pointillés, qui est la dérivée.
+      en: >-
+        Your turn. Move a along the curve: the tangent follows, and its slope is the value of the derivative.
+        Compare it with the point on the dashed curve, which is the derivative.
+    actions:
+      - { at: 0, clear: true, view: { x: [-3, 3], y: [-4, 9], labels: { x: "x", y: "y" } }, plot: { id: f, expr: "x^2", label: { fr: "f(x) = x²", en: "f(x) = x²" } } }
+      - { at: 0, plot: { id: fp, expr: "2*x", dashed: true, label: { fr: "f'(x) = 2x", en: "f'(x) = 2x" } } }
+      - { at: 0, tangent: { id: t, on: f, x: "a", label: { fr: "tangente en a", en: "tangent at a" } } }
+      - { at: 0, point: { id: pa, on: fp, x: "a", guides: true, label: { fr: "f'(a)", en: "f'(a)" } } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Atelier", en: "Workshop" }
+    text:
+      fr: >-
+        L'atelier de la dérivée : un taux de variation, sa limite, la lecture d'une tangente, une règle de calcul, puis l'ordre des étapes.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        The derivative workshop: a rate of change, its limit, reading a tangent, a calculation rule, then the order of the steps.
+        Type your answers; a hint is available if you get stuck.
+    exercises:
+      - exercise.workshop.difference_quotient
+      - exercise.workshop.limit_value
+      - exercise.workshop.tangent_reading
+      - exercise.workshop.power_rule
+      - exercise.workshop.method_order

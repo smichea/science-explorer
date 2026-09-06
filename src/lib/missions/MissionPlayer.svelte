@@ -45,13 +45,26 @@
 
   const ctx = () => ({ learnerId: profile.active!.id, contentVersion: pkg.manifest.version });
 
+  // The explorer's sessions are read from IndexedDB after the profile is restored: whether there
+  // is a session to resume is decided once they are loaded, never from the empty list of a page
+  // that mounted first (a reload or a deep link would otherwise offer to start a second session).
+  const loaded = $derived(
+    !!profile.active && learning.learnerId === profile.active.id && !learning.loading
+  );
+
+  $effect(() => {
+    if (ready || !loaded) return;
+    untrack(() => {
+      const open = learning.sessionFor(mission.id);
+      if (open) {
+        session = open;
+        completed = open.status === 'completed';
+      }
+      ready = true;
+    });
+  });
+
   onMount(() => {
-    const open = learning.sessionFor(mission.id);
-    if (open) {
-      session = open;
-      completed = open.status === 'completed';
-    }
-    ready = true;
     void profile.setLastVisited('mission', mission.id);
   });
 

@@ -49,19 +49,23 @@ class LearningState {
     this.evidence = [];
     this.sessions = [];
     this.journal = [];
+    this.loading = !!learnerId;
     if (!learnerId) return;
-    this.loading = true;
-    const [evidence, sessions, journal] = await Promise.all([
-      evidenceRepo.listByLearner(learnerId),
-      sessionRepo.listByLearner(learnerId),
-      journalRepo.listByLearner(learnerId),
-    ]);
-    if (this.learnerId !== learnerId) return;
-    this.evidence = evidence;
-    this.sessions = sessions;
-    this.journal = journal;
-    this.clock = Date.now();
-    this.loading = false;
+    try {
+      const [evidence, sessions, journal] = await Promise.all([
+        evidenceRepo.listByLearner(learnerId),
+        sessionRepo.listByLearner(learnerId),
+        journalRepo.listByLearner(learnerId),
+      ]);
+      if (this.learnerId !== learnerId) return;
+      this.evidence = evidence;
+      this.sessions = sessions;
+      this.journal = journal;
+      this.clock = Date.now();
+    } finally {
+      // A failed read must not leave the pages waiting for the sessions forever.
+      if (this.learnerId === learnerId) this.loading = false;
+    }
   }
 
   async append(events: EvidenceEvent[]): Promise<EvidenceEvent[]> {

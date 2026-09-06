@@ -1,0 +1,17 @@
+# Leçon — comment prédire un mouvement ? Des mesures, deux modèles, une prédiction.
+id: lesson.question.how_to_predict_motion
+nodeId: question.how_to_predict_motion
+depth: 1
+tools:
+  - id: fit
+    kind: fit
+    view: { x: [0, 3.2], y: [0, 50] }
+    labels: { x: "t (s)", y: "h (m)" }
+    parameters:
+      - { id: a, label: { fr: "coefficient a", en: "coefficient a" }, min: 0, max: 10, step: 0.1, value: 4 }
+      - { id: b, label: { fr: "coefficient b", en: "coefficient b" }, min: 0, max: 20, step: 0.5, value: 8 }
+    points: [[0, 0], [0.5, 1.2], [1, 4.9], [1.5, 11.1], [2, 19.6]]
+    models:
+      - { id: linear, expr: "b*x", label: { fr: "linéaire : h = b t", en: "linear: h = b t" } }
+      - { id: quadratic, expr: "a*x^2", label: { fr: "quadratique : h = a t²", en: "quadratic: h = a t²" } }
+    target: 3

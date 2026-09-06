@@ -1,0 +1,40 @@
+# Leçon — phenomenon.chemistry.first_order_reaction (numeric)
+id: exercise.first_order.remaining
+type: numeric
+nodeId: phenomenon.chemistry.first_order_reaction
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: Avec $[A]_0 = 1\ \mathrm{mol/L}$ et $k = 0{,}1\ \mathrm{s^{-1}}$, calculez $[A](10)$ (deux décimales).
+  en: With $[A]_0 = 1\ \mathrm{mol/L}$ and $k = 0.1\ \mathrm{s^{-1}}$, compute $[A](10)$ (two decimals).
+numeric:
+  value: 0.37
+  tolerance:
+    kind: absolute
+    value: 0.01
+  inputLabel:
+    fr: '[A](10)'
+    en: '[A](10)'
+  unit: mol/L
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: $[A](t) = [A]_0\,e^{-kt}$.
+    en: $[A](t) = [A]_0\,e^{-kt}$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $e^{-1} \approx 0{,}368$.
+    en: $e^{-1} \approx 0.368$.
+solution:
+  fr: '$[A](10) = e^{-0{,}1 \times 10} = e^{-1} \approx 0{,}37\ \mathrm{mol/L}$ : après une durée $1/k$, il reste $37\,\%$.'
+  en: '$[A](10) = e^{-0.1 \times 10} = e^{-1} \approx 0.37\ \mathrm{mol/L}$: after a time $1/k$, $37\,\%$ remains.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

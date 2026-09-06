@@ -1,0 +1,49 @@
+# Leçon — place.padua (choice)
+id: exercise.padua.role
+type: choice
+nodeId: place.padua
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: Pourquoi Padoue compte-t-elle dans l'histoire de la chute des corps ?
+  en: Why does Padua matter in the history of falling bodies?
+choice:
+  multiple: false
+  choices:
+  - id: chair
+    text:
+      fr: Galilée y enseigne de 1592 à 1610 et y mesure la chute sur un plan incliné.
+      en: Galileo teaches there from 1592 to 1610 and measures the fall on an inclined plane there.
+    correct: true
+  - id: birth
+    text:
+      fr: Galilée y est né en 1564.
+      en: Galileo was born there in 1564.
+    correct: false
+  - id: discorsi
+    text:
+      fr: Les Discorsi y sont imprimés en 1638.
+      en: The Discorsi are printed there in 1638.
+    correct: false
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: 'Consultez la frise : la barre « Padoue » couvre 1592–1610.'
+    en: 'Check the timeline: the "Padua" bar covers 1592–1610.'
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: Les Discorsi paraissent à Leyde, aux Pays-Bas.
+    en: The Discorsi appear in Leiden, in the Netherlands.
+solution:
+  fr: 'Padoue est la ville de la chaire de Galilée (1592–1610), dans la République de Venise : les expériences du plan incliné y sont menées vers 1604–1608. Il est né à Pise ; les Discorsi sont imprimés à Leyde.'
+  en: 'Padua is the city of Galileo''s chair (1592–1610), in the Republic of Venice: the inclined-plane experiments are carried out there around 1604–1608. He was born in Pisa; the Discorsi are printed in Leiden.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

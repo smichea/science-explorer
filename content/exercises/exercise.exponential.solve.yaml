@@ -1,0 +1,49 @@
+# Leçon exponentielle — résoudre une équation (réponse numérique)
+id: exercise.exponential.solve
+type: numeric
+nodeId: tool.exponential
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Une quantité décroît selon $N(t) = 5\,e^{-t}$.
+
+    À quel instant $t$ vaut-elle $1$ ? Donnez $t$ arrondi au centième.
+  en: |-
+    A quantity decays according to $N(t) = 5\,e^{-t}$.
+
+    At what instant $t$ is it equal to $1$? Give $t$ rounded to the nearest hundredth.
+numeric:
+  value: 1.609
+  tolerance: { kind: absolute, value: 0.02 }
+  inputLabel: { fr: "t", en: "t" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        $5\,e^{-t} = 1$ équivaut à $e^{-t} = \tfrac{1}{5}$, puis à $e^{t} = 5$.
+      en: |-
+        $5\,e^{-t} = 1$ is equivalent to $e^{-t} = \tfrac{1}{5}$, then to $e^{t} = 5$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Le logarithme népérien défait l'exponentielle : $t = \ln 5$.
+      en: |-
+        The natural logarithm undoes the exponential: $t = \ln 5$.
+solution:
+  fr: |-
+    $$5\,e^{-t} = 1 \iff e^{t} = 5 \iff t = \ln 5 \approx 1{,}61.$$
+    Sur la courbe de $5\,e^{-t}$, c'est l'abscisse où l'ordonnée vaut $1$. Résoudre une équation exponentielle, c'est toujours revenir au logarithme.
+  en: |-
+    $$5\,e^{-t} = 1 \iff e^{t} = 5 \iff t = \ln 5 \approx 1.61.$$
+    On the curve of $5\,e^{-t}$, it is the abscissa where the ordinate equals $1$. Solving an exponential equation always comes back to the logarithm.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 2
+  linkedConcepts: 2
+  transfer: 2
+  autonomy: 3

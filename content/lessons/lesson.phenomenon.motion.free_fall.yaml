@@ -1,0 +1,8 @@
+# Leçon à outil simulation : les diapositives sont composées depuis la description du nœud.
+id: lesson.phenomenon.motion.free_fall
+nodeId: phenomenon.motion.free_fall
+depth: 1
+tools:
+  - id: simulation
+    kind: simulation
+    simulationId: simulation.free_fall.basic

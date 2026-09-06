@@ -1,0 +1,17 @@
+# Leçon — dimension et unité, avec l'outil dimensions (table et reconstruction d'une grandeur).
+id: lesson.concept.dimension_unit
+nodeId: concept.dimension_unit
+depth: 1
+tools:
+  - id: dims
+    kind: dimensions
+    quantities:
+      - { id: length, symbol: "ℓ", label: { fr: "longueur", en: "length" }, unit: "m", dims: { L: 1 } }
+      - { id: mass, symbol: "m", label: { fr: "masse", en: "mass" }, unit: "kg", dims: { M: 1 } }
+      - { id: time, symbol: "t", label: { fr: "temps", en: "time" }, unit: "s", dims: { T: 1 } }
+      - { id: current, symbol: "I", label: { fr: "intensité", en: "current" }, unit: "A", dims: { I: 1 } }
+      - { id: speed, symbol: "v", label: { fr: "vitesse", en: "speed" }, unit: "m/s", dims: { L: 1, T: -1 }, base: false }
+      - { id: acceleration, symbol: "a", label: { fr: "accélération", en: "acceleration" }, unit: "m/s²", dims: { L: 1, T: -2 }, base: false }
+      - { id: force, symbol: "F", label: { fr: "force", en: "force" }, unit: "N", dims: { M: 1, L: 1, T: -2 }, base: false }
+      - { id: energy, symbol: "E", label: { fr: "énergie", en: "energy" }, unit: "J", dims: { M: 1, L: 2, T: -2 }, base: false }
+      - { id: charge, symbol: "q", label: { fr: "charge électrique", en: "electric charge" }, unit: "C", dims: { I: 1, T: 1 }, base: false }

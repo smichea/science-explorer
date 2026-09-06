@@ -1,0 +1,55 @@
+# Leçon — method.modelling (choice)
+id: exercise.modelling.choose
+type: choice
+nodeId: method.modelling
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Des mesures de distance parcourue par une bille donnent, aux instants $1$, $2$ et $3\ \mathrm{s}$ : $4{,}9$ ; $19{,}6$ et $44{,}1\ \mathrm{m}$.
+
+    Quel modèle rend compte de ces mesures ?
+  en: |-
+    Measurements of the distance covered by a ball give, at $1$, $2$ and $3\ \mathrm{s}$: $4.9$, $19.6$ and $44.1\ \mathrm{m}$.
+
+    Which model accounts for these measurements?
+choice:
+  multiple: false
+  choices:
+  - id: linear
+    text:
+      fr: 'Linéaire : $d = b\,t$'
+      en: 'Linear: $d = b\,t$'
+    correct: false
+  - id: quadratic
+    text:
+      fr: 'Quadratique : $d = a\,t^2$'
+      en: 'Quadratic: $d = a\,t^2$'
+    correct: true
+  - id: exponential
+    text:
+      fr: 'Exponentielle : $d = e^{a t} - 1$'
+      en: 'Exponential: $d = e^{a t} - 1$'
+    correct: false
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: Comparez les rapports $d/t$ et $d/t^2$.
+    en: Compare the ratios $d/t$ and $d/t^2$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $4{,}9/1 = 4{,}9$, $19{,}6/4 = 4{,}9$, $44{,}1/9 = 4{,}9$.
+    en: $4.9/1 = 4.9$, $19.6/4 = 4.9$, $44.1/9 = 4.9$.
+solution:
+  fr: 'Les distances sont proportionnelles au carré du temps ($d/t^2 = 4{,}9$ constant) : le modèle quadratique $d = 4{,}9\,t^2$ est le bon, c''est la chute libre.'
+  en: 'The distances are proportional to the square of time ($d/t^2 = 4.9$ constant): the quadratic model $d = 4.9\,t^2$ is the right one, this is free fall.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

@@ -1,0 +1,46 @@
+# Leçon — model.kinematics_point (numeric)
+id: exercise.kinematics.speed
+type: numeric
+nodeId: model.kinematics_point
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un point a pour position $\vec{r}(t) = (2t ; 6 - t^2)$ (en mètres, $t$ en secondes).
+
+    Calculez la valeur de sa vitesse à $t = 1\ \mathrm{s}$ (deux décimales).
+  en: |-
+    A point has position $\vec{r}(t) = (2t, 6 - t^2)$ (in metres, $t$ in seconds).
+
+    Compute the magnitude of its velocity at $t = 1\ \mathrm{s}$ (two decimals).
+numeric:
+  value: 2.83
+  tolerance:
+    kind: absolute
+    value: 0.02
+  inputLabel:
+    fr: ‖v(1)‖
+    en: ‖v(1)‖
+  unit: m/s
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: La vitesse est la dérivée de la position, composante par composante.
+    en: Velocity is the derivative of position, component by component.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $\vec v = (2 ; -2t)$, donc $\vec v(1) = (2 ; -2)$.
+    en: $\vec v = (2, -2t)$, so $\vec v(1) = (2, -2)$.
+solution:
+  fr: $\vec v(t) = (2 ; -2t)$, $\vec v(1) = (2 ; -2)$, $\|\vec v(1)\| = \sqrt{8} \approx 2{,}83\ \mathrm{m/s}$.
+  en: $\vec v(t) = (2, -2t)$, $\vec v(1) = (2, -2)$, $\|\vec v(1)\| = \sqrt{8} \approx 2.83\ \mathrm{m/s}$.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

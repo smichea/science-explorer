@@ -1,0 +1,46 @@
+# Leçon — model.rc_circuit (numeric)
+id: exercise.rc.initial_current
+type: numeric
+nodeId: model.rc_circuit
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    À la fermeture du circuit ($u_C = 0$), le condensateur se charge sous $E = 6\ \mathrm{V}$ à travers $R = 2000\ \Omega$.
+
+    Quelle est l'intensité initiale, en $\mathrm{mA}$ ?
+  en: |-
+    When the circuit is closed ($u_C = 0$), the capacitor charges under $E = 6\ \mathrm{V}$ through $R = 2000\ \Omega$.
+
+    What is the initial current, in $\mathrm{mA}$?
+numeric:
+  value: 3
+  tolerance:
+    kind: absolute
+    value: 0.01
+  inputLabel:
+    fr: i(0)
+    en: i(0)
+  unit: mA
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: 'Loi des mailles : $E = R\,i + u_C$ avec $u_C = 0$ au départ.'
+    en: 'Kirchhoff''s loop law: $E = R\,i + u_C$ with $u_C = 0$ at the start.'
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $i = E/R = 6/2000\ \mathrm{A}$.
+    en: $i = E/R = 6/2000\ \mathrm{A}$.
+solution:
+  fr: $i(0) = E/R = 3 \times 10^{-3}\ \mathrm{A} = 3\ \mathrm{mA}$ ; ensuite le courant décroît exponentiellement à mesure que $u_C$ monte.
+  en: $i(0) = E/R = 3 \times 10^{-3}\ \mathrm{A} = 3\ \mathrm{mA}$; afterwards the current decays exponentially as $u_C$ rises.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

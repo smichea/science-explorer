@@ -49,3 +49,18 @@ describe('estimateReadingMs', () => {
     expect(estimateReadingMs(long)).toBe(60_800);
   });
 });
+
+describe('sentences of a lesson', () => {
+  it('ends a sentence on a lower-case variable but glues a capitalised abbreviation', () => {
+    expect(
+      splitSentences('Prenons f de x égale x carré moins deux x. Pour x égal 3, l’image vaut 3.')
+    ).toHaveLength(2);
+    expect(splitSentences('Voici M. Galilei. Il mesure.')).toEqual([
+      'Voici M. Galilei.',
+      'Il mesure.',
+    ]);
+    expect(
+      splitSentences('C’est le nombre e. En chaque point, la pente vaut la hauteur.')
+    ).toHaveLength(2);
+  });
+});

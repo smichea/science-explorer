@@ -1,0 +1,51 @@
+# Leçon fonction — retrouver un antécédent (réponse numérique)
+id: exercise.function.preimage
+type: numeric
+nodeId: concept.function
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Soit la fonction $f$ définie sur $\mathbb{R}$ par $f(x) = 2x - 3$.
+
+    Quel réel $x$ a pour image $7$ par $f$ ? (On cherche l'antécédent de $7$.)
+  en: |-
+    Let $f$ be the function defined on $\mathbb{R}$ by $f(x) = 2x - 3$.
+
+    Which real number $x$ has image $7$ under $f$? (We are looking for the preimage of $7$.)
+numeric:
+  value: 5
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "x", en: "x" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Chercher un antécédent, c'est résoudre l'équation $f(x) = 7$, c'est-à-dire $2x - 3 = 7$.
+      en: |-
+        Finding a preimage means solving the equation $f(x) = 7$, that is $2x - 3 = 7$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Ajoutez $3$ des deux côtés : $2x = 10$.
+      en: |-
+        Add $3$ to both sides: $2x = 10$.
+solution:
+  fr: |-
+    On résout $2x - 3 = 7$ : $2x = 10$, donc $x = 5$. Vérification : $f(5) = 2 \times 5 - 3 = 7$.
+
+    Une image se calcule en remplaçant ; un antécédent se cherche en résolvant une équation. Sur la courbe, on part de l'ordonnée $7$, on va horizontalement jusqu'à la courbe, puis on descend lire l'abscisse.
+  en: |-
+    Solve $2x - 3 = 7$: $2x = 10$, so $x = 5$. Check: $f(5) = 2 \times 5 - 3 = 7$.
+
+    An image is computed by substituting; a preimage is found by solving an equation. On the curve, start from the ordinate $7$, go horizontally to the curve, then down to read the abscissa.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

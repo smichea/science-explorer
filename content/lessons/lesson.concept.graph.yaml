@@ -1,0 +1,105 @@
+# Leçon narrée — la courbe représentative, avec le traceur.
+id: lesson.concept.graph
+nodeId: concept.graph
+depth: 1
+tools:
+  - id: plotter
+    kind: plotter
+    variable: x
+    view: { x: [-3, 4], y: [-2, 10] }
+    parameters: []
+    input: true
+steps:
+  - id: points
+    title: { fr: "Une courbe est faite de points", en: "A curve is made of points" }
+    text:
+      fr: >-
+        La courbe d'une fonction est l'ensemble des points de coordonnées x et f de x.
+        Prenons f de x égale x carré moins deux x.
+        Pour x égal 3, l'image vaut 3 : le point de coordonnées 3 et 3 est sur la courbe.
+        Pour x égal 1, l'image vaut moins 1 : c'est le point le plus bas de la courbe.
+      en: >-
+        The curve of a function is the set of points with coordinates x and f of x.
+        Take f of x equals x squared minus two x.
+        For x equal to 3, the image is 3: the point with coordinates 3 and 3 lies on the curve.
+        For x equal to 1, the image is minus 1: it is the lowest point of the curve.
+    actions:
+      - { at: 1, plot: { id: f, expr: "x^2-2*x", label: { fr: "f(x) = x² − 2x", en: "f(x) = x² − 2x" } } }
+      - { at: 2, point: { id: p3, on: f, x: 3, guides: true, label: { fr: "(3 ; 3)", en: "(3, 3)" } } }
+      - { at: 3, point: { id: p1, on: f, x: 1, guides: true, label: { fr: "(1 ; −1)", en: "(1, −1)" } } }
+  - id: reading
+    title: { fr: "Lire une image, lire un antécédent", en: "Reading an image, reading a preimage" }
+    text:
+      fr: >-
+        Lire une image, c'est partir de l'axe des abscisses, monter jusqu'à la courbe, puis lire l'ordonnée.
+        Lire un antécédent, c'est le chemin inverse : partir d'une ordonnée, rejoindre la courbe, puis redescendre lire l'abscisse.
+        Ici, l'ordonnée 3 a deux antécédents : moins 1 et 3.
+      en: >-
+        Reading an image means starting from the horizontal axis, going up to the curve, then reading the ordinate.
+        Reading a preimage is the reverse path: start from an ordinate, reach the curve, then go down to read the abscissa.
+        Here, the ordinate 3 has two preimages: minus 1 and 3.
+    actions:
+      - { at: 0, hide: [p1] }
+      - { at: 2, point: { id: pm1, on: f, x: -1, guides: true, label: { fr: "(−1 ; 3)", en: "(−1, 3)" } } }
+  - id: variations
+    title: { fr: "Les variations se lisent d'un coup d'œil", en: "Variations are read at a glance" }
+    text:
+      fr: >-
+        La courbe montre les variations d'un seul coup d'œil.
+        Elle descend jusqu'à x égal 1 : la fonction est décroissante sur cet intervalle.
+        Puis elle remonte : la fonction est croissante.
+        Le minimum, moins un, est atteint en x égal 1.
+      en: >-
+        The curve shows the variations at a glance.
+        It goes down until x equals 1: the function is decreasing on that interval.
+        Then it goes up again: the function is increasing.
+        The minimum, minus one, is reached at x equal to 1.
+    actions:
+      - { at: 0, hide: [p3, pm1] }
+      - { at: 1, interval: { id: dec, on: f, from: -3, to: 1, label: { fr: "décroissante", en: "decreasing" } } }
+      - { at: 2, interval: { id: inc, on: f, from: 1, to: 4, label: { fr: "croissante", en: "increasing" } } }
+      - { at: 3, point: { id: pmin, on: f, x: 1, guides: true, label: { fr: "minimum : −1", en: "minimum: −1" } } }
+  - id: galileo
+    title: { fr: "Choisir l'abscisse, c'est déjà modéliser", en: "Choosing the abscissa is already modelling" }
+    text:
+      fr: >-
+        Galilée a mesuré des distances à des instants successifs, puis il a tracé.
+        La distance en fonction du temps donne une parabole.
+        Mais la distance en fonction du carré du temps donne une droite : c'est la signature d'une loi en t carré.
+        Choisir ce que l'on met en abscisse, c'est déjà modéliser.
+      en: >-
+        Galileo measured distances at successive instants, then he plotted them.
+        Distance against time gives a parabola.
+        But distance against the square of time gives a straight line: it is the signature of a law in t squared.
+        Choosing what goes on the horizontal axis is already modelling.
+    actions:
+      - { at: 0, clear: true, view: { x: [0, 4], y: [0, 20], labels: { x: "t (s)", y: "d (m)" } } }
+      - { at: 1, plot: { id: d, expr: "1.2*x^2", domain: [0, 4], label: { fr: "d(t) = 1,2 t²", en: "d(t) = 1.2 t²" } } }
+      - { at: 2, clear: true, view: { x: [0, 16], y: [0, 20], labels: { x: "t² (s²)", y: "d (m)" } }, plot: { id: dl, expr: "1.2*x", domain: [0, 16], label: { fr: "d = 1,2 × t²", en: "d = 1.2 × t²" } } }
+      - { at: 2, point: { id: q1, on: dl, x: 1 } }
+      - { at: 2, point: { id: q2, on: dl, x: 4 } }
+      - { at: 2, point: { id: q3, on: dl, x: 9 } }
+      - { at: 2, point: { id: q4, on: dl, x: 16 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de lire la courbe", en: "Your turn to read the curve" }
+    text:
+      fr: >-
+        À vous. Tapez une fonction et lisez ses images avec le marqueur.
+        Cherchez son minimum ou son maximum, puis les intervalles où elle monte et ceux où elle descend.
+      en: >-
+        Your turn. Type a function and read its images with the marker.
+        Look for its minimum or its maximum, then the intervals where it goes up and those where it goes down.
+    actions:
+      - { at: 0, clear: true, view: { x: [-4, 4], y: [-6, 10], labels: { x: "x", y: "y" } }, plot: { id: g, expr: "x^2-2*x", label: { fr: "x² − 2x", en: "x² − 2x" } } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Trois exercices : lire une image sur la courbe, situer un minimum, puis retrouver le graphique qui révèle une loi.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Three exercises: read an image on the curve, locate a minimum, then find the graph that reveals a law.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.graph.read_image, exercise.graph.minimum, exercise.galileo.graph_linearise]

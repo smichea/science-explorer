@@ -1,0 +1,49 @@
+# Leçon fonction — une même fonction sous une autre forme (réponse symbolique)
+id: exercise.function.expand
+type: symbolic
+nodeId: concept.function
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    La fonction $f$ est définie par $f(x) = (x + 1)^2$.
+
+    Écrivez $f(x)$ sous forme développée, comme une expression en $x$ (par exemple `x^2+3*x+2`).
+  en: |-
+    The function $f$ is defined by $f(x) = (x + 1)^2$.
+
+    Write $f(x)$ in expanded form, as an expression in $x$ (for example `x^2+3*x+2`).
+symbolic:
+  variable: x
+  accepted: ["x^2+2*x+1", "x^2+2x+1", "1+2x+x^2"]
+  display: "f(x) ="
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Utilisez l'identité remarquable $(a + b)^2 = a^2 + 2ab + b^2$ avec $a = x$ et $b = 1$.
+      en: |-
+        Use the identity $(a + b)^2 = a^2 + 2ab + b^2$ with $a = x$ and $b = 1$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $x^2 + 2 \times x \times 1 + 1^2$.
+      en: |-
+        $x^2 + 2 \times x \times 1 + 1^2$.
+solution:
+  fr: |-
+    $$(x + 1)^2 = x^2 + 2x + 1.$$
+    Les deux écritures définissent la même fonction : elles donnent la même image à chaque $x$, et la même courbe. La forme factorisée montre d'un coup d'œil que $f(-1) = 0$ ; la forme développée se dérive terme à terme. Choisir la bonne forme selon la question, c'est déjà faire des mathématiques.
+  en: |-
+    $$(x + 1)^2 = x^2 + 2x + 1.$$
+    Both expressions define the same function: they give the same image to every $x$, and the same curve. The factored form shows at a glance that $f(-1) = 0$; the expanded form differentiates term by term. Choosing the right form for the question is already doing mathematics.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

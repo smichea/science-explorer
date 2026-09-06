@@ -1,0 +1,45 @@
+# Leçon — period.galileo_padua_1592_1610 (numeric)
+id: exercise.padua_years.duration
+type: numeric
+nodeId: period.galileo_padua_1592_1610
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Galilée occupe la chaire de mathématiques de Padoue de 1592 à 1610.
+
+    Combien d'années cela représente-t-il ?
+  en: |-
+    Galileo holds the chair of mathematics in Padua from 1592 to 1610.
+
+    How many years is that?
+numeric:
+  value: 18
+  tolerance:
+    kind: absolute
+    value: 0.5
+  inputLabel:
+    fr: années
+    en: years
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: Soustrayez les deux dates.
+    en: Subtract the two dates.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $1610 - 1592$.
+    en: $1610 - 1592$.
+solution:
+  fr: '$1610 - 1592 = 18$ ans, que Galilée appellera plus tard les meilleures années de sa vie : c''est là qu''il mesure la chute et construit sa lunette.'
+  en: '$1610 - 1592 = 18$ years, which Galileo would later call the best years of his life: there he measured the fall and built his telescope.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

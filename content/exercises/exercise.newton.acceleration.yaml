@@ -1,0 +1,46 @@
+# Leçon — law.newton_second (numeric)
+id: exercise.newton.acceleration
+type: numeric
+nodeId: law.newton_second
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une force résultante de $6\ \mathrm{N}$ s'exerce sur une masse de $2\ \mathrm{kg}$.
+
+    Quelle accélération en résulte ?
+  en: |-
+    A net force of $6\ \mathrm{N}$ acts on a mass of $2\ \mathrm{kg}$.
+
+    What acceleration results?
+numeric:
+  value: 3
+  tolerance:
+    kind: absolute
+    value: 0.01
+  inputLabel:
+    fr: a
+    en: a
+  unit: m/s²
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: 'Deuxième loi : $\sum \vec F = m\,\vec a$.'
+    en: 'Second law: $\sum \vec F = m\,\vec a$.'
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $a = F/m = 6/2$.
+    en: $a = F/m = 6/2$.
+solution:
+  fr: $a = F/m = 6/2 = 3\ \mathrm{m/s^2}$, dans la direction de la force.
+  en: $a = F/m = 6/2 = 3\ \mathrm{m/s^2}$, in the direction of the force.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

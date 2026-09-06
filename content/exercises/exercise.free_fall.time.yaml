@@ -1,0 +1,46 @@
+# Leçon — phenomenon.motion.free_fall (numeric)
+id: exercise.free_fall.time
+type: numeric
+nodeId: phenomenon.motion.free_fall
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une bille est lâchée sans vitesse d'une hauteur de $20\ \mathrm{m}$ ($g = 9{,}8\ \mathrm{m/s^2}$).
+
+    Combien de temps dure la chute (deux décimales) ?
+  en: |-
+    A ball is released at rest from a height of $20\ \mathrm{m}$ ($g = 9.8\ \mathrm{m/s^2}$).
+
+    How long does the fall last (two decimals)?
+numeric:
+  value: 2.02
+  tolerance:
+    kind: absolute
+    value: 0.03
+  inputLabel:
+    fr: durée
+    en: duration
+  unit: s
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: $h = \tfrac12 g t^2$, donc $t = \sqrt{2h/g}$.
+    en: $h = \tfrac12 g t^2$, so $t = \sqrt{2h/g}$.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $\sqrt{40/9{,}8}$.
+    en: $\sqrt{40/9.8}$.
+solution:
+  fr: $t = \sqrt{2 \times 20 / 9{,}8} \approx 2{,}02\ \mathrm{s}$. Sans frottement, la masse ne joue aucun rôle.
+  en: $t = \sqrt{2 \times 20 / 9.8} \approx 2.02\ \mathrm{s}$. Without friction, the mass plays no role.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

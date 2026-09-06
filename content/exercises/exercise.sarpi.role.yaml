@@ -1,0 +1,49 @@
+# Leçon — person.paolo_sarpi (choice)
+id: exercise.sarpi.role
+type: choice
+nodeId: person.paolo_sarpi
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: Quel rôle Paolo Sarpi joue-t-il dans l'histoire de la loi de la chute ?
+  en: What part does Paolo Sarpi play in the story of the law of falling bodies?
+choice:
+  multiple: false
+  choices:
+  - id: letter
+    text:
+      fr: Il reçoit en 1604 la lettre où Galilée énonce la loi des carrés des temps.
+      en: He receives in 1604 the letter in which Galileo states the times-squared law.
+    correct: true
+  - id: measure
+    text:
+      fr: Il réalise lui-même les mesures du plan incliné.
+      en: He carries out the inclined-plane measurements himself.
+    correct: false
+  - id: trial
+    text:
+      fr: Il préside le procès de Galilée en 1633.
+      en: He presides over Galileo's trial in 1633.
+    correct: false
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: Sarpi est un correspondant et un ami vénitien de Galilée.
+    en: Sarpi is a Venetian correspondent and friend of Galileo.
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: La lettre du 16 octobre 1604 lui est adressée.
+    en: The letter of 16 October 1604 is addressed to him.
+solution:
+  fr: 'Sarpi est le destinataire de la lettre du 16 octobre 1604 : Galilée y énonce la loi des carrés des temps, en la déduisant d''une hypothèse fausse. Il ne mesure pas lui-même et meurt dix ans avant le procès.'
+  en: 'Sarpi is the addressee of the letter of 16 October 1604: in it Galileo states the times-squared law, deriving it from a false hypothesis. He does not measure himself and dies ten years before the trial.'
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

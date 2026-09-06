@@ -1,0 +1,47 @@
+# Leçon courbe — lire une image sur la courbe (réponse numérique)
+id: exercise.graph.read_image
+type: numeric
+nodeId: concept.graph
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    La courbe de la fonction $f(x) = x^2 - 2x$ est tracée dans le traceur.
+
+    En lisant la courbe (ou par le calcul), donnez $f(2)$.
+  en: |-
+    The curve of the function $f(x) = x^2 - 2x$ is drawn in the plotter.
+
+    By reading the curve (or by computing), give $f(2)$.
+numeric:
+  value: 0
+  tolerance: { kind: absolute, value: 0.05 }
+  inputLabel: { fr: "f(2)", en: "f(2)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Placez le marqueur en $x = 2$ : le point de la courbe est sur l'axe des abscisses.
+      en: |-
+        Put the marker at $x = 2$: the point of the curve lies on the horizontal axis.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Par le calcul : $2^2 - 2 \times 2 = 4 - 4$.
+      en: |-
+        By computing: $2^2 - 2 \times 2 = 4 - 4$.
+solution:
+  fr: |-
+    $f(2) = 2^2 - 2 \times 2 = 0$ : la courbe coupe l'axe des abscisses en $x = 2$ (et en $x = 0$). Une image nulle se lit là où la courbe traverse l'axe horizontal.
+  en: |-
+    $f(2) = 2^2 - 2 \times 2 = 0$: the curve crosses the horizontal axis at $x = 2$ (and at $x = 0$). A zero image is read where the curve crosses the horizontal axis.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

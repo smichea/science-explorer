@@ -7,6 +7,7 @@ const ROUTES = [
   'mission/mission.galileo.inclined_plane',
   'backpack',
   'journal',
+  'lesson/concept.function',
   'timeline',
   'settings',
   'guide/progress',

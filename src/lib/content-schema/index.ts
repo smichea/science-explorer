@@ -6,4 +6,5 @@ export * from './exercise';
 export * from './simulation';
 export * from './source';
 export * from './misc';
+export * from './lesson';
 export * from './compiled';

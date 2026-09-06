@@ -1,0 +1,51 @@
+# Leçon taux de variation — un taux à calculer (réponse numérique)
+id: exercise.rate.average
+type: numeric
+nodeId: concept.rate_of_change
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Soit $f(x) = x^2$.
+
+    Calculez le taux de variation moyen de $f$ entre $2$ et $3$ :
+    $$\frac{f(3) - f(2)}{3 - 2}.$$
+  en: |-
+    Let $f(x) = x^2$.
+
+    Compute the average rate of change of $f$ between $2$ and $3$:
+    $$\frac{f(3) - f(2)}{3 - 2}.$$
+numeric:
+  value: 5
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "Taux de variation", en: "Rate of change" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        $f(3) = 9$ et $f(2) = 4$.
+      en: |-
+        $f(3) = 9$ and $f(2) = 4$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La différence $9 - 4$ divisée par la durée $1$.
+      en: |-
+        The difference $9 - 4$ divided by the length $1$.
+solution:
+  fr: |-
+    $$\frac{f(3) - f(2)}{3 - 2} = \frac{9 - 4}{1} = 5.$$
+    C'est la pente de la corde joignant les points $(2 ; 4)$ et $(3 ; 9)$ de la parabole. Entre $1$ et $2$ le taux valait $3$ : sur une parabole, le taux moyen augmente quand on se déplace vers la droite.
+  en: |-
+    $$\frac{f(3) - f(2)}{3 - 2} = \frac{9 - 4}{1} = 5.$$
+    It is the slope of the chord joining the points $(2, 4)$ and $(3, 9)$ of the parabola. Between $1$ and $2$ the rate was $3$: on a parabola, the average rate increases as we move to the right.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

@@ -1,0 +1,45 @@
+# Leçon — tool.vector (numeric)
+id: exercise.vector.norm
+type: numeric
+nodeId: tool.vector
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Soit le vecteur $\vec{u}$ de composantes $(3 ; 4)$.
+
+    Calculez sa norme $\|\vec{u}\|$.
+  en: |-
+    Let $\vec{u}$ be the vector with components $(3, 4)$.
+
+    Compute its norm $\|\vec{u}\|$.
+numeric:
+  value: 5
+  tolerance:
+    kind: absolute
+    value: 0.01
+  inputLabel:
+    fr: norme
+    en: norm
+hints:
+- id: h1
+  autonomy: 0.8
+  text:
+    fr: 'La norme est la longueur de la flèche : théorème de Pythagore avec les deux composantes.'
+    en: 'The norm is the length of the arrow: Pythagoras with the two components.'
+- id: h2
+  autonomy: 0.6
+  text:
+    fr: $\sqrt{3^2 + 4^2} = \sqrt{9 + 16}$.
+    en: $\sqrt{3^2 + 4^2} = \sqrt{9 + 16}$.
+solution:
+  fr: $\|\vec{u}\| = \sqrt{3^2 + 4^2} = \sqrt{25} = 5$. Le triangle 3, 4, 5 est le plus célèbre des triangles rectangles.
+  en: $\|\vec{u}\| = \sqrt{3^2 + 4^2} = \sqrt{25} = 5$. The 3, 4, 5 triangle is the most famous right triangle.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

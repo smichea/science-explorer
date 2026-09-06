@@ -61,7 +61,7 @@ class TourState {
   }
 
   get voiceOn(): boolean {
-    return prefs.prefs.tourVoice ?? true;
+    return prefs.prefs.voice ?? prefs.prefs.tourVoice ?? true;
   }
 
   get includeDone(): boolean {
@@ -181,7 +181,7 @@ class TourState {
   }
 
   setVoice(on: boolean): void {
-    prefs.update({ tourVoice: on });
+    prefs.update({ voice: on, tourVoice: on });
     if (this.status === 'playing') void this.play();
     else speech.cancel();
   }

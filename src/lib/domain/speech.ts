@@ -35,10 +35,11 @@ export function splitSentences(text: string): string[] {
     .filter(Boolean);
   const out: string[] = [];
   for (const part of parts) {
-    // Glue what cannot stand alone: after an abbreviation ("M." in "M. Galilei"), very short
-    // fragments, or a fragment that starts in lower case.
+    // Glue what cannot stand alone: after a capitalised abbreviation ("M." in "M. Galilei"; a
+    // lower-case single letter such as a variable "x." ends a sentence), very short fragments,
+    // or a fragment that starts in lower case.
     const previous = out[out.length - 1];
-    const afterAbbreviation = !!previous && /(^|\s)[A-Za-zÀ-ÿ]{1,2}\.$/.test(previous);
+    const afterAbbreviation = !!previous && /(^|\s)[A-ZÀ-Ý][a-zà-ÿ]?\.$/.test(previous);
     if (previous && (afterAbbreviation || part.length < 4 || /^[a-zà-ÿ]/.test(part)))
       out[out.length - 1] = `${previous} ${part}`;
     else out.push(part);

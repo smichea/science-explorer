@@ -1,0 +1,20 @@
+# Leçon — le modèle de la réaction d'ordre 1 : l'équation et la simulation cinétique.
+id: lesson.model.reaction_order_one
+nodeId: model.reaction_order_one
+depth: 1
+tools:
+  - id: field
+    kind: slope_field
+    title: { fr: "Équation cinétique", en: "Rate equation" }
+    view: { x: [0, 30], y: [0, 1.2] }
+    parameters:
+      - { id: k, label: { fr: "constante k (s⁻¹)", en: "rate constant k (s⁻¹)" }, min: 0.02, max: 0.4, step: 0.01, value: 0.1 }
+    equation: "-k*y"
+    labels: { x: "t (s)", y: "[A] (mol/L)" }
+    solutions:
+      - { id: one, x0: 0, y0: 1, label: { fr: "[A]₀ = 1", en: "[A]₀ = 1" } }
+      - { id: half, x0: 0, y0: 0.5, label: { fr: "[A]₀ = 0,5", en: "[A]₀ = 0.5" } }
+  - id: simulation
+    kind: simulation
+    title: { fr: "Simulation", en: "Simulation" }
+    simulationId: simulation.kinetics.first_order
