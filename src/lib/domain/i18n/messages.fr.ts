@@ -140,6 +140,15 @@ export const fr: Record<MessageKey, string> = {
   'filter.mpsi': 'MPSI',
   'filter.mp': 'MP',
   'filter.entire': 'Univers entier',
+  'filterHint.my_horizon': 'Mon horizon : {stages} ; le reste en filigrane',
+  'filterHint.ready':
+    'Prêtes à explorer : les destinations dont les prérequis essentiels sont acquis',
+  'filterHint.current_stage': 'Étape courante : {stage} (et les destinations sans étape)',
+  'filterHint.terminale': 'Programme de {stage} (et les destinations sans étape)',
+  'filterHint.mpsi': 'Programme de {stage} (et les destinations sans étape)',
+  'filterHint.mp': 'Programme de {stage} (et les destinations sans étape)',
+  'filterHint.entire': 'Tout l’univers, sans mise en avant',
+  'universe.filterCount': '{n} destinations sur {total}',
 
   'layer.concepts': 'Concepts',
   'layer.applications': 'Applications',

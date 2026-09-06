@@ -43,9 +43,14 @@ export interface NodeStyle {
   labelPriority: number;
   selected: boolean;
   highlighted: boolean;
+  /** Outside the current filter or layer: drawn as an outline, named only when hovered. */
+  muted: boolean;
   stage: string | null;
   band: string;
 }
+
+/** Below this emphasis a destination is outside the selection of the filter or the layer. */
+export const MUTED_EMPHASIS = 0.5;
 
 export interface StyleContext extends DestinationContext {
   filter: MapFilter;
@@ -119,6 +124,7 @@ export function computeNodeStyles(ctx: StyleContext): Map<string, NodeStyle> {
       !!ctx.highlightIds?.has(node.id);
     if (selected) emphasis = 1;
     else if (highlighted) emphasis = Math.max(emphasis, 0.85);
+    const muted = !selected && !highlighted && emphasis < MUTED_EMPHASIS;
     const size =
       0.55 +
       node.importance * 0.28 +
@@ -141,6 +147,7 @@ export function computeNodeStyles(ctx: StyleContext): Map<string, NodeStyle> {
       labelPriority: node.importance * emphasis * stateWeight + (highlighted ? 2 : 0),
       selected,
       highlighted,
+      muted,
       stage,
       band: state.band,
     });

@@ -41,6 +41,22 @@
     };
   });
   const styles = $derived(styleCtx ? computeNodeStyles(styleCtx) : new Map<string, NodeStyle>());
+  /** What the filter puts forward, in words, with the number of destinations kept. */
+  const filterHint = $derived.by((): string => {
+    if (!styleCtx) return '';
+    const { config, horizon } = styleCtx;
+    const short = (id: string) => {
+      const stage = config.stages.find((s) => s.id === id);
+      return stage ? L(stage.short) : id;
+    };
+    const filter = selection.filter;
+    const text = t(`filterHint.${filter}`, {
+      stages: horizon.stages.map(short).join(' → '),
+      stage: short(filter === 'current_stage' ? horizon.currentStage : filter),
+    });
+    const kept = [...styles.values()].filter((s) => !s.muted).length;
+    return `${text} · ${t('universe.filterCount', { n: kept, total: styles.size })}`;
+  });
   const routes = $derived(styleCtx ? computeRoutes(styleCtx, learning.snapshot) : []);
 
   const focus = $derived.by((): FocusTarget => {
@@ -137,6 +153,7 @@
           <select
             class="input"
             value={selection.filter}
+            title={filterHint}
             onchange={(e) => selection.setFilter(e.currentTarget.value as never)}
             data-testid="atlas-filter"
           >
@@ -183,6 +200,7 @@
         {/if}
       </div>
     </div>
+    <p class="hud__hint" data-testid="atlas-filter-hint">{filterHint}</p>
     {#if results.length}
       <ul class="hud__results" role="listbox" aria-label={t('universe.search')}>
         {#each results as hit (hit.entry.id)}
@@ -334,6 +352,11 @@
   .hud__select .input {
     min-width: 9rem;
   }
+  .hud__hint {
+    margin: var(--space-1) 0 0;
+    font-size: var(--fs-sm);
+    color: var(--muted);
+  }
   .hud__results {
     list-style: none;
     margin: var(--space-2) 0 0;
@@ -449,6 +472,12 @@
     }
     .hud--open .hud__controls {
       display: flex;
+    }
+    .hud__hint {
+      display: none;
+    }
+    .hud--open .hud__hint {
+      display: block;
     }
     /* The bottom sheet covers the lower part of the stage: the scene keeps clear of it. */
     .panel-open .stage {
