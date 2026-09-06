@@ -184,10 +184,20 @@ export interface PlotterPoint {
 }
 export interface PlotterSegment {
   id: string;
-  on: string;
+  /** The curve the segment sits on; an interval without a curve is a band on the axis. */
+  on?: string;
   from: number | string;
   to: number | string;
   label?: LocalisedText;
+}
+export interface PlotterLine {
+  id: string;
+  a: number | string;
+  b: number | string;
+  c: number | string;
+  label?: LocalisedText;
+  color?: string;
+  dashed: boolean;
 }
 export interface PlotterTangent {
   id: string;
@@ -208,6 +218,7 @@ export interface PlotterState {
   secants: PlotterSegment[];
   tangents: PlotterTangent[];
   intervals: PlotterSegment[];
+  lines: PlotterLine[];
   /** Ids in the order they appeared, so that the newest item can be animated. */
   order: string[];
 }
@@ -249,6 +260,7 @@ export function initialPlotterState(tool: PlotterTool): PlotterState {
     secants: [],
     tangents: [],
     intervals: [],
+    lines: [],
     order: [],
   };
   return tool.initial.reduce(applyPlotterAction, state);
@@ -285,7 +297,16 @@ function applyView(view: PlotterView, action: PlotterAction): PlotterView {
 export function applyPlotterAction(state: PlotterState, action: PlotterAction): PlotterState {
   let next: PlotterState = { ...state, order: [...state.order] };
   if (action.clear)
-    next = { ...next, curves: [], points: [], secants: [], tangents: [], intervals: [], order: [] };
+    next = {
+      ...next,
+      curves: [],
+      points: [],
+      secants: [],
+      tangents: [],
+      intervals: [],
+      lines: [],
+      order: [],
+    };
   if (action.hide.length) {
     const hidden = new Set(action.hide);
     const keep = <T extends { id: string; on?: string }>(list: T[]) =>
@@ -297,6 +318,7 @@ export function applyPlotterAction(state: PlotterState, action: PlotterAction): 
       secants: keep(next.secants),
       tangents: keep(next.tangents),
       intervals: keep(next.intervals),
+      lines: next.lines.filter((l) => !hidden.has(l.id)),
       order: next.order.filter((id) => !hidden.has(id)),
     };
   }
@@ -324,6 +346,10 @@ export function applyPlotterAction(state: PlotterState, action: PlotterAction): 
   if (action.interval) {
     next.intervals = upsert(next.intervals, action.interval);
     touch(action.interval.id);
+  }
+  if (action.line) {
+    next.lines = upsert(next.lines, action.line);
+    touch(action.line.id);
   }
   return next;
 }

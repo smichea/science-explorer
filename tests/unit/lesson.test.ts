@@ -140,6 +140,8 @@ describe('lessons', () => {
             { id: 'v', x: 1, y: 2, components: false, drag: false, hidden: true },
           ],
           paths: [],
+          points: [],
+          segments: [],
           sums: [],
         },
       ],

@@ -131,6 +131,15 @@
     />
     {t('tour.includeDone')}
   </label>
+  <label class="small tour__option">
+    <input
+      type="checkbox"
+      checked={tour.includeFoundations}
+      data-testid="tour-include-foundations"
+      onchange={(e) => tour.setIncludeFoundations(e.currentTarget.checked)}
+    />
+    {t('tour.includeFoundations')}
+  </label>
 </div>
 
 <style>

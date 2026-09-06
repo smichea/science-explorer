@@ -27,7 +27,7 @@ export const DepthRoleSchema = z.enum(['core', 'extension_and_application', 'dis
 
 /** One curriculum depth of a canonical node (one node, several depths — never duplicated per year). */
 export const DepthDescriptor = z.object({
-  depth: z.number().int().min(1).max(3),
+  depth: z.number().int().min(1).max(4),
   stage: StageSchema,
   role: DepthRoleSchema.default('core'),
   outcomes: LocalisedList,
@@ -162,7 +162,7 @@ export const EdgeSchema = z.object({
   type: EdgeTypeSchema,
   weight: z.number().min(0).max(1).default(1),
   coverageEligible: z.boolean().default(false),
-  depthRange: z.tuple([z.number().int().min(1), z.number().int().max(3)]).optional(),
+  depthRange: z.tuple([z.number().int().min(1), z.number().int().max(4)]).optional(),
   visibleBeforeDiscovery: z.boolean().default(true),
   evidenceStatus: EvidenceStatusSchema.optional(),
   sources: z.array(Id).default([]),

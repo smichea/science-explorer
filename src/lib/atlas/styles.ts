@@ -1,6 +1,6 @@
 import type { CompiledNode, CompiledRegion, Locale } from '$lib/content-schema';
 import type { GraphIndex } from '$lib/domain/graph';
-import { emphasisFor, nodeStage, type MapFilter, type MapLayer } from '$lib/domain/horizon';
+import { emphasisFor, stageFor, type MapFilter, type MapLayer } from '$lib/domain/horizon';
 import type { ProgressionSnapshot } from '$lib/domain/progression';
 import {
   destinationState,
@@ -98,9 +98,16 @@ export function computeNodeStyles(ctx: StyleContext): Map<string, NodeStyle> {
 
   for (const node of graph.graph.nodes) {
     const state = destinationState(node, ctx);
-    const stage = nodeStage(node, config);
+    const stage = stageFor(node, horizon, config);
     const ready = state.kind !== 'missing_essential' && state.kind !== 'missing_recommended';
-    let emphasis = emphasisFor(stage, horizon, filter, config, ready);
+    let emphasis = emphasisFor(
+      stage,
+      horizon,
+      filter,
+      config,
+      ready,
+      node.depths.map((d) => d.stage)
+    );
     if (layer === 'history')
       emphasis *=
         node.type === 'mission' ||

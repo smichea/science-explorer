@@ -6,7 +6,7 @@ export const CurriculumItemSchema = z.object({
   title: LocalisedText,
   /** Official heading or reference in the programme (kept in its original language). */
   reference: z.string().optional(),
-  alignedNodes: z.array(z.object({ node: Id, depth: z.number().int().min(1).max(3) })).default([]),
+  alignedNodes: z.array(z.object({ node: Id, depth: z.number().int().min(1).max(4) })).default([]),
 });
 
 /** A versioned curriculum package (official programmes change). */

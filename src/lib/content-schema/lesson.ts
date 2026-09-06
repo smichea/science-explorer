@@ -70,9 +70,27 @@ export const PlotterActionSchema = z.object({
   tangent: z
     .object({ id: ItemId, on: ItemId, x: Scalar, label: LocalisedText.optional() })
     .optional(),
-  /** Shade the curve between two abscissae (variations, an interval of study). */
+  /** Shade the curve between two abscissae (variations, an interval of study); without `on`, a band on the axis (the solutions of an inequality). */
   interval: z
-    .object({ id: ItemId, on: ItemId, from: Scalar, to: Scalar, label: LocalisedText.optional() })
+    .object({
+      id: ItemId,
+      on: ItemId.optional(),
+      from: Scalar,
+      to: Scalar,
+      label: LocalisedText.optional(),
+    })
+    .optional(),
+  /** A straight line a·x + b·y + c = 0 (vertical lines included), drawn across the view. */
+  line: z
+    .object({
+      id: ItemId,
+      a: Scalar,
+      b: Scalar,
+      c: Scalar,
+      label: LocalisedText.optional(),
+      color: z.string().optional(),
+      dashed: z.boolean().default(false),
+    })
     .optional(),
 });
 export type PlotterAction = z.infer<typeof PlotterActionSchema>;
@@ -162,6 +180,48 @@ export const QuantityItemSchema = z.object({
 });
 export type QuantityItem = z.infer<typeof QuantityItemSchema>;
 
+/** A named point of the vectors tool (a frame of reference): draggable during the free play. */
+export const PointItemSchema = z.object({
+  id: ItemId,
+  x: Scalar,
+  y: Scalar,
+  label: LocalisedText.optional(),
+  color: z.string().optional(),
+  drag: z.boolean().default(false),
+  hidden: Hidden,
+});
+export type PointItem = z.infer<typeof PointItemSchema>;
+
+/** A segment between two points: its length and its midpoint are read out. */
+export const SegmentItemSchema = z.object({
+  id: ItemId,
+  from: ItemId,
+  to: ItemId,
+  label: LocalisedText.optional(),
+  dashed: z.boolean().default(false),
+  hidden: Hidden,
+});
+export type SegmentItem = z.infer<typeof SegmentItemSchema>;
+
+/** A species of a reaction: formula, stoichiometric coefficient, initial amount (an expression of the parameters). */
+export const SpeciesItemSchema = z.object({
+  id: ItemId,
+  formula: z.string().min(1),
+  coefficient: z.number().int().min(1).default(1),
+  initial: Scalar.default(0),
+  label: LocalisedText.optional(),
+});
+export type SpeciesItem = z.infer<typeof SpeciesItemSchema>;
+
+/** A kind of ball of an urn, with its count. */
+export const UrnItemSchema = z.object({
+  id: ItemId,
+  label: LocalisedText,
+  count: z.number().int().min(1),
+  color: z.string().optional(),
+});
+export type UrnItem = z.infer<typeof UrnItemSchema>;
+
 const ToolBase = { id: ItemId, title: LocalisedText.optional() };
 
 export const LessonToolSchema = z.discriminatedUnion('kind', [
@@ -187,6 +247,10 @@ export const LessonToolSchema = z.discriminatedUnion('kind', [
     parameters: Parameters,
     vectors: z.array(VectorItemSchema).default([]),
     paths: z.array(PathItemSchema).default([]),
+    points: z.array(PointItemSchema).default([]),
+    segments: z.array(SegmentItemSchema).default([]),
+    /** Two vectors whose determinant (the colinearity test) is read out. */
+    determinant: z.tuple([ItemId, ItemId]).optional(),
     /** Sums drawn as a parallelogram / chain: the resultant of the listed vectors. */
     sums: z
       .array(
@@ -264,6 +328,117 @@ export const LessonToolSchema = z.discriminatedUnion('kind', [
     /** Year shown by the cursor before the learner moves it. */
     cursor: z.number().optional(),
   }),
+  z.object({
+    ...ToolBase,
+    kind: z.literal('arithmetic'),
+    /** Largest integer of the sieve. */
+    max: z.number().int().min(20).max(400).default(120),
+    /** Multiples of this integer are highlighted at first. */
+    highlight: z.number().int().min(2).default(3),
+    /** Integer whose divisors and prime factorisation are shown at first. */
+    number: z.number().int().min(1).default(36),
+  }),
+  z.object({
+    ...ToolBase,
+    kind: z.literal('data'),
+    /** The statistical series (values; optional counts of the same length). */
+    values: z.array(z.number()).min(3),
+    counts: z.array(z.number().int().min(1)).optional(),
+    label: LocalisedText.optional(),
+    unit: z.string().optional(),
+    /** Number of classes of the histogram. */
+    bins: z.number().int().min(2).max(24).default(8),
+  }),
+  z.object({
+    ...ToolBase,
+    kind: z.literal('random'),
+    experiment: z.enum(['die', 'coin', 'urn']).default('die'),
+    /** Faces of the die. */
+    sides: z.number().int().min(2).max(20).default(6),
+    urn: z.array(UrnItemSchema).default([]),
+    /** The event followed: its outcomes (faces as strings, `heads`/`tails`, urn item ids). */
+    event: z
+      .object({ label: LocalisedText, outcomes: z.array(z.string().min(1)).min(1) })
+      .optional(),
+    /** `frequencies`: frequencies of every outcome; `sampling`: frequency of the event on samples of size n. */
+    mode: z.enum(['frequencies', 'sampling']).default('frequencies'),
+    /** Sample size of the sampling mode. */
+    sample: z.number().int().min(1).max(10000).default(50),
+    seed: z.number().int().default(1),
+  }),
+  z.object({
+    ...ToolBase,
+    kind: z.literal('sequence'),
+    view: View,
+    parameters: Parameters,
+    /** `explicit`: u(n) is an expression of n; `recurrence`: u(n+1) is an expression of u (the previous term) and n. */
+    mode: z.enum(['explicit', 'recurrence']).default('explicit'),
+    expr: z.string().min(1),
+    /** First term of a recurrence (an expression of the parameters). */
+    first: Scalar.default(1),
+    /** Index of the first term. */
+    start: z.number().int().min(0).default(0),
+    count: z.number().int().min(2).max(60).default(12),
+    /** Draw the staircase u(n+1) = f(u(n)) against y = x (recurrence). */
+    cobweb: z.boolean().default(false),
+    /** Let the learner type their own formula during the free play. */
+    input: z.boolean().default(true),
+  }),
+  z.object({
+    ...ToolBase,
+    kind: z.literal('wave'),
+    parameters: Parameters,
+    /** Period (s), wavelength (m) or speed (m/s): expressions of the parameters. */
+    period: Scalar.default(1),
+    wavelength: Scalar.optional(),
+    speed: Scalar.optional(),
+    amplitude: z.number().positive().default(1),
+    /** Length of the string shown (m). */
+    length: z.number().positive().default(4),
+    /** Position of the observation point M (m). */
+    point: z.number().min(0).default(1.5),
+    labels: z
+      .object({ x: z.string().default('x (m)'), t: z.string().default('t (s)') })
+      .default({ x: 'x (m)', t: 't (s)' }),
+  }),
+  z.object({
+    ...ToolBase,
+    kind: z.literal('optics'),
+    parameters: Parameters,
+    mode: z.enum(['refraction', 'lens']).default('refraction'),
+    /** Refraction: indices and incidence (degrees), expressions of the parameters. */
+    n1: Scalar.default(1),
+    n2: Scalar.default(1.5),
+    angle: Scalar.default(30),
+    /** Lens: focal length and object (distance to the lens, height), in centimetres. */
+    focal: Scalar.default(5),
+    object: z
+      .object({ distance: Scalar.default(12), height: Scalar.default(3) })
+      .default({ distance: 12, height: 3 }),
+  }),
+  z.object({
+    ...ToolBase,
+    kind: z.literal('periodic_table'),
+    /** Largest atomic number shown. */
+    max: z.number().int().min(10).max(36).default(18),
+    /** Element selected at first. */
+    selected: z.number().int().min(1).max(36).default(6),
+    mode: z.enum(['table', 'nucleus']).default('table'),
+    /** Nucleus shown at first in the nucleus mode. */
+    nucleus: z
+      .object({ a: z.number().int().min(1), z: z.number().int().min(1) })
+      .default({ a: 12, z: 6 }),
+  }),
+  z.object({
+    ...ToolBase,
+    kind: z.literal('reaction'),
+    parameters: Parameters,
+    reactants: z.array(SpeciesItemSchema).min(1),
+    products: z.array(SpeciesItemSchema).min(1),
+    unit: z.string().default('mol'),
+    /** Extent shown at first (an expression of the parameters); the maximum by default. */
+    extent: Scalar.optional(),
+  }),
 ]);
 export type LessonTool = z.infer<typeof LessonToolSchema>;
 export type LessonToolKind = LessonTool['kind'];
@@ -293,7 +468,7 @@ export type LessonStep = z.infer<typeof LessonStepSchema>;
 export const LessonSchema = z.object({
   id: Id,
   nodeId: Id,
-  depth: z.number().int().min(1).max(3).default(1),
+  depth: z.number().int().min(1).max(4).default(1),
   tools: z.array(LessonToolSchema).default([]),
   steps: z.array(LessonStepSchema).min(1).optional(),
 });

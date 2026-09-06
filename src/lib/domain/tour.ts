@@ -8,7 +8,7 @@ import type {
   TourLeg,
 } from '../content-schema';
 import type { GraphIndex } from './graph';
-import { nodeStage, stageIndex, type Horizon } from './horizon';
+import { bandOf, nodeStage, stageFor, stageIndex, type Horizon } from './horizon';
 import { coverageScope, statusOf, type NodeStatus, type ProgressionSnapshot } from './progression';
 
 /** Camera target of a step (structurally the atlas FocusTarget, kept out of the UI layer). */
@@ -31,6 +31,8 @@ export interface TourContext {
 export interface TourOptions {
   /** Also fly over destinations already practised or mastered (default: only what remains). */
   includeDone?: boolean;
+  /** Also fly over the foundations, the years before the learner's stage (default: no). */
+  includeFoundations?: boolean;
   /** Ignore the horizon and the statuses: every lesson of the universe (content checks). */
   everything?: boolean;
 }
@@ -104,9 +106,11 @@ export function buildTour(
   const { graph, routes, horizon, config, snapshot } = ctx;
   const scope = horizon && !options.everything ? new Set(coverageScope(horizon, config)) : null;
   const inScope = (node: CompiledNode) => {
-    if (!scope) return true;
-    const stage = nodeStage(node, config);
-    return stage === null || scope.has(stage);
+    if (!scope || !horizon) return true;
+    const stage = stageFor(node, horizon, config);
+    if (stage === null) return true;
+    if (!scope.has(stage)) return false;
+    return options.includeFoundations || bandOf(stage, horizon, config) !== 'foundation';
   };
   const isDone = (node: CompiledNode) => {
     if (options.everything || options.includeDone) return false;
@@ -125,6 +129,16 @@ export function buildTour(
 
   tour.legs.forEach((leg, legIndex) => {
     const route = leg.route ? routes.find((r) => r.id === leg.route) : undefined;
+    // A route of an earlier year is flown with the foundations only: its destinations taught again
+    // later fall to the legs of the learner's own years.
+    if (
+      route?.stage &&
+      horizon &&
+      !options.everything &&
+      !options.includeFoundations &&
+      stageIndex(route.stage, config) < stageIndex(horizon.currentStage, config)
+    )
+      return;
     const nodes = orderByPrerequisites(
       legNodes(leg, route, candidates, visited, graph, config),
       graph

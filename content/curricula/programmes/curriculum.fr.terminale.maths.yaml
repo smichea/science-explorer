@@ -33,10 +33,10 @@ items:
     title: { fr: "Fonctions : limites et continuité", en: "Functions: limits and continuity" }
     reference: "Analyse — Limites des fonctions ; Continuité des fonctions d'une variable réelle"
     alignedNodes:
-      - { node: concept.function, depth: 1 }
-      - { node: concept.graph, depth: 1 }
+      - { node: concept.function, depth: 2 }
+      - { node: concept.graph, depth: 2 }
   - id: vecteurs
     title: { fr: "Vecteurs, droites et plans de l'espace", en: "Vectors, lines and planes in space" }
     reference: "Géométrie — Manipuler les vecteurs, les droites et les plans de l'espace ; Orthogonalité et distances dans l'espace"
     alignedNodes:
-      - { node: tool.vector, depth: 1 }
+      - { node: tool.vector, depth: 2 }

@@ -11,7 +11,7 @@ stages:
   - { id: beyond,    order: 5, title: { fr: Au-delà du programme, en: Beyond the programme }, short: { fr: Au-delà, en: Beyond } }
 rules:
   - { ageMin: 5,  ageMax: 15,  currentStage: seconde,   defaultHorizonYears: 3, pathId: fr-seconde-premiere-terminale,
-      note: { fr: Les régions détaillées de cet atlas commencent en Terminale ; tout reste visible., en: Detailed regions of this atlas start in Terminale; everything remains visible. } }
+      note: { fr: "Les destinations détaillées commencent en Seconde ; les années suivantes restent visibles, un peu plus loin.", en: "Detailed destinations start in Seconde; the following years remain visible, a little further away." } }
   - { ageMin: 16, ageMax: 16,  currentStage: premiere,  defaultHorizonYears: 3, pathId: fr-premiere-terminale-mpsi }
   - { ageMin: 17, ageMax: 17,  currentStage: terminale, defaultHorizonYears: 3, pathId: fr-terminale-mpsi-mp }
   - { ageMin: 18, ageMax: 18,  currentStage: mpsi,      defaultHorizonYears: 2, pathId: fr-mpsi-mp }

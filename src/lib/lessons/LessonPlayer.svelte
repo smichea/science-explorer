@@ -7,6 +7,7 @@
   import SimulationView from '$lib/simulations/SimulationView.svelte';
   import type { AnswerCheck } from '$lib/domain/answers';
   import { autonomyFromHints, makeEvidence } from '$lib/domain/evidence';
+  import { learnerDepth } from '$lib/domain/horizon';
   import { nextLessonOnRoute, type LessonPlan } from '$lib/domain/lesson';
   import { splitSentences } from '$lib/domain/speech';
   import { content } from '$lib/state/content.svelte';
@@ -17,12 +18,20 @@
   import { speech } from '$lib/state/speech.svelte';
   import LessonBoard from './LessonBoard.svelte';
   import Plotter from './Plotter.svelte';
+  import ArithmeticTool from './tools/ArithmeticTool.svelte';
+  import DataTool from './tools/DataTool.svelte';
   import DimensionsTool from './tools/DimensionsTool.svelte';
   import FieldTool from './tools/FieldTool.svelte';
   import FitTool from './tools/FitTool.svelte';
+  import OpticsTool from './tools/OpticsTool.svelte';
+  import PeriodicTableTool from './tools/PeriodicTableTool.svelte';
+  import RandomTool from './tools/RandomTool.svelte';
+  import ReactionTool from './tools/ReactionTool.svelte';
+  import SequenceTool from './tools/SequenceTool.svelte';
   import SlopeFieldTool from './tools/SlopeFieldTool.svelte';
   import TimelineTool from './tools/TimelineTool.svelte';
   import VectorsTool from './tools/VectorsTool.svelte';
+  import WaveTool from './tools/WaveTool.svelte';
 
   let { plan }: { plan: LessonPlan } = $props();
 
@@ -51,6 +60,12 @@
     plan.steps.filter((s) => s.kind === 'exercises').reduce((n, s) => n + s.exercises.length, 0)
   );
   const nextNode = $derived(nextLessonOnRoute(plan.node.id, pkg.routes, (id) => graph.getNode(id)));
+  const nextHref = $derived.by(() => {
+    if (!nextNode) return '';
+    const horizon = profile.horizon(pkg.horizon);
+    const depth = horizon ? learnerDepth(nextNode, horizon, pkg.horizon) : 1;
+    return `${base}/lesson/${nextNode.id}${depth > 1 ? `?depth=${depth}` : ''}`;
+  });
   const text = $derived(step ? L(step.text) : '');
   /** Plain prose is shown sentence by sentence (the one being read stands out); Markdown as is. */
   const plain = $derived(!/[$*#_`[\n]/.test(text));
@@ -196,10 +211,7 @@
       </p>
       <div class="cluster">
         {#if nextNode}
-          <a
-            class="btn btn--primary"
-            href="{base}/lesson/{nextNode.id}"
-            data-testid="lesson-next-lesson"
+          <a class="btn btn--primary" href={nextHref} data-testid="lesson-next-lesson"
             >{t('lesson.nextLesson', { title: L(nextNode.title) })}</a
           >
         {/if}
@@ -352,6 +364,22 @@
               <DimensionsTool {tool} interactive={lesson.interactive} />
             {:else if tool.kind === 'timeline'}
               <TimelineTool {tool} tstate={toolState} interactive={lesson.interactive} />
+            {:else if tool.kind === 'arithmetic'}
+              <ArithmeticTool {tool} interactive={lesson.interactive} />
+            {:else if tool.kind === 'data'}
+              <DataTool {tool} interactive={lesson.interactive} />
+            {:else if tool.kind === 'random'}
+              <RandomTool {tool} interactive={lesson.interactive} />
+            {:else if tool.kind === 'sequence'}
+              <SequenceTool {tool} tstate={toolState} interactive={lesson.interactive} />
+            {:else if tool.kind === 'wave'}
+              <WaveTool {tool} tstate={toolState} interactive={lesson.interactive} />
+            {:else if tool.kind === 'optics'}
+              <OpticsTool {tool} tstate={toolState} />
+            {:else if tool.kind === 'periodic_table'}
+              <PeriodicTableTool {tool} interactive={lesson.interactive} />
+            {:else if tool.kind === 'reaction'}
+              <ReactionTool {tool} tstate={toolState} interactive={lesson.interactive} />
             {/if}
             {#if lesson.interactive && (parameters.length || plotterTool)}
               <div class="stack-sm" data-testid="tool-controls">

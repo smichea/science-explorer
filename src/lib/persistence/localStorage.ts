@@ -39,6 +39,8 @@ export interface UiPreferences {
   tourVoice?: boolean;
   /** Fly over destinations already practised as well (default: only what remains). */
   tourIncludeDone?: boolean;
+  /** Fly over the foundations (the years before the learner's stage) as well (default: no). */
+  tourIncludeFoundations?: boolean;
 }
 
 export const DEFAULT_UI_PREFERENCES: UiPreferences = {

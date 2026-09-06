@@ -40,6 +40,20 @@ tool:
   icon: arrow
 depths:
   - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "définir un vecteur par une translation et reconnaître des vecteurs égaux"
+        - "calculer les coordonnées d'un vecteur dans un repère, celles d'une somme et d'un produit par un réel"
+        - "utiliser la relation de Chasles et calculer la norme d'un vecteur"
+        - "tester la colinéarité de deux vecteurs avec le déterminant x y' − y x'"
+      en:
+        - "define a vector by a translation and recognise equal vectors"
+        - "compute the coordinates of a vector in a frame, of a sum and of a product by a real number"
+        - "use Chasles' relation and compute the norm of a vector"
+        - "test the colinearity of two vectors with the determinant x y' − y x'"
+  - depth: 2
     stage: terminale
     role: core
     outcomes:
@@ -66,7 +80,7 @@ depths:
         **Projection.** Projecting a vector onto an axis with unit vector $\vec e$ amounts to computing $\vec u \cdot \vec e$. On an inclined plane of angle $\theta$, the weight $\vec P = m\vec g$ has component $mg\sin\theta$ along the plane and normal component $-mg\cos\theta$: choosing an axis parallel to the plane turns a two-dimensional problem into a one-dimensional one.
 
         **Differentiation.** If $\overrightarrow{OM}(t) = x(t)\,\vec i + y(t)\,\vec j + z(t)\,\vec k$ in a fixed basis, then $\vec v(t) = \dot x\,\vec i + \dot y\,\vec j + \dot z\,\vec k$ and $\vec a(t) = \ddot x\,\vec i + \ddot y\,\vec j + \ddot z\,\vec k$: each coordinate is differentiated like an ordinary function. For a projectile, $\vec a = \vec g$ gives $x(t) = v_0\cos\alpha\, t$ and $z(t) = -\tfrac12 g t^2 + v_0 \sin\alpha\, t$, two independent motions.
-  - depth: 2
+  - depth: 3
     stage: mpsi
     role: core
     outcomes:

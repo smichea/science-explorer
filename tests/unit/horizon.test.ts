@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { bandOf, effectiveHorizon, emphasisFor, inferHorizon } from '../../src/lib/domain/horizon';
+import {
+  MAP_FILTERS,
+  bandOf,
+  effectiveHorizon,
+  emphasisFor,
+  inferHorizon,
+  learnerDepth,
+  stageFor,
+} from '../../src/lib/domain/horizon';
 import {
   buildProfile,
   needsAgeConfirmation,
@@ -93,5 +101,62 @@ describe('profile', () => {
     expect(h.overridden).toBe(true);
     expect(h.stages[0]).toBe('mp');
     expect(effectiveHorizon(p, config).overridden).toBe(false);
+  });
+});
+
+describe('stage relative to the learner', () => {
+  const stages = (...list: Array<[number, 'seconde' | 'premiere' | 'terminale' | 'mpsi' | 'mp']>) =>
+    ({
+      id: 'concept.test',
+      depths: list.map(([depth, stage]) => ({
+        depth,
+        stage,
+        role: 'core',
+        outcomes: { fr: [], en: [] },
+      })),
+    }) as unknown as import('../../src/lib/content-schema').CompiledNode;
+
+  it('meets a node at its lowest depth at or above the current stage', () => {
+    const paul = inferHorizon(17, config);
+    const young = inferHorizon(15, config);
+    const both = stages([1, 'seconde'], [2, 'terminale'], [3, 'mpsi']);
+    expect(stageFor(both, paul, config)).toBe('terminale');
+    expect(learnerDepth(both, paul, config)).toBe(2);
+    expect(stageFor(both, young, config)).toBe('seconde');
+    expect(learnerDepth(both, young, config)).toBe(1);
+    expect(bandOf(stageFor(both, paul, config), paul, config)).toBe('current');
+  });
+
+  it('treats a node taught only in earlier years as a foundation', () => {
+    const paul = inferHorizon(17, config);
+    const early = stages([1, 'seconde']);
+    expect(stageFor(early, paul, config)).toBe('seconde');
+    expect(learnerDepth(early, paul, config)).toBe(1);
+    expect(bandOf(stageFor(early, paul, config), paul, config)).toBe('foundation');
+    expect(stageFor(stages(), paul, config)).toBeNull();
+    // Later years keep their own stage: an MP-only node stays MP for a Terminale learner.
+    expect(stageFor(stages([3, 'mp']), paul, config)).toBe('mp');
+  });
+
+  it('offers a filter per stage of the enumeration and keeps a node taught at that stage', () => {
+    expect(MAP_FILTERS).toEqual([
+      'my_horizon',
+      'ready',
+      'current_stage',
+      'seconde',
+      'premiere',
+      'terminale',
+      'mpsi',
+      'mp',
+      'entire',
+    ]);
+    const paul = inferHorizon(17, config);
+    expect(emphasisFor('terminale', paul, 'seconde', config, true, ['seconde', 'terminale'])).toBe(
+      1
+    );
+    expect(emphasisFor('terminale', paul, 'seconde', config, true, ['terminale'])).toBeLessThan(
+      0.5
+    );
+    expect(emphasisFor(null, paul, 'premiere', config)).toBe(1);
   });
 });

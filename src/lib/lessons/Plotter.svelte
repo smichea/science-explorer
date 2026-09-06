@@ -134,7 +134,7 @@
   );
   const secants = $derived(
     plot.secants.flatMap((s) => {
-      const fn = fnOf(s.on);
+      const fn = s.on ? fnOf(s.on) : null;
       const x1 = evaluateScalar(s.from, plot.params);
       const x2 = evaluateScalar(s.to, plot.params);
       if (!fn || !Number.isFinite(x1) || !Number.isFinite(x2) || x1 === x2) return [];
@@ -178,10 +178,10 @@
   );
   const intervals = $derived(
     plot.intervals.flatMap((iv) => {
-      const c = curves.find((x) => x.id === iv.on);
+      const c = iv.on ? curves.find((x) => x.id === iv.on) : null;
       const a = evaluateScalar(iv.from, plot.params);
       const b = evaluateScalar(iv.to, plot.params);
-      if (!c?.fn || !Number.isFinite(a) || !Number.isFinite(b)) return [];
+      if ((iv.on && !c?.fn) || !Number.isFinite(a) || !Number.isFinite(b)) return [];
       const lo = Math.min(a, b);
       const hi = Math.max(a, b);
       return [
@@ -189,9 +189,57 @@
           id: iv.id,
           a: lo,
           b: hi,
-          color: c.color,
-          path: pathOf(c.fn, [lo, hi]),
+          color: c?.color ?? '#ffd166',
+          // Without a curve, the interval is a band along the axis (the solutions of an inequality).
+          path: c?.fn ? pathOf(c.fn, [lo, hi]) : '',
+          onAxis: !c,
           label: iv.label ? L(iv.label) : undefined,
+        },
+      ];
+    })
+  );
+  /** Straight lines a·x + b·y + c = 0 drawn across the view (vertical ones included). */
+  const lines = $derived(
+    plot.lines.flatMap((ln, i) => {
+      const a = evaluateScalar(ln.a, plot.params);
+      const b = evaluateScalar(ln.b, plot.params);
+      const c = evaluateScalar(ln.c, plot.params);
+      if (![a, b, c].every(Number.isFinite) || (a === 0 && b === 0)) return [];
+      const color = ln.color ?? PALETTE[(i + 1) % PALETTE.length];
+      const label = ln.label ? L(ln.label) : undefined;
+      if (b === 0) {
+        const x = -c / a;
+        return [
+          {
+            id: ln.id,
+            x1: sx(x),
+            y1: sy(yMin),
+            x2: sx(x),
+            y2: sy(yMax),
+            color,
+            dashed: ln.dashed,
+            label,
+            lx: sx(x) + 6,
+            ly: pad.t + 14,
+          },
+        ];
+      }
+      const y = (x: number) => -(a * x + c) / b;
+      // The label sits where the line enters the view from the right.
+      const xr = xMax - (xMax - xMin) * 0.06;
+      const yr = Math.max(yMin, Math.min(yMax, y(xr)));
+      return [
+        {
+          id: ln.id,
+          x1: sx(xMin),
+          y1: sy(y(xMin)),
+          x2: sx(xMax),
+          y2: sy(y(xMax)),
+          color,
+          dashed: ln.dashed,
+          label,
+          lx: sx(xr),
+          ly: sy(yr) - 8,
         },
       ];
     })
@@ -320,14 +368,27 @@
           fill={iv.color}
           opacity="0.12"
         />
-        <path
-          d={iv.path}
-          fill="none"
-          stroke={iv.color}
-          stroke-width="6"
-          opacity="0.45"
-          stroke-linecap="round"
-        />
+        {#if iv.onAxis}
+          <line
+            x1={sx(iv.a)}
+            y1={sy(Math.max(yMin, Math.min(yMax, 0)))}
+            x2={sx(iv.b)}
+            y2={sy(Math.max(yMin, Math.min(yMax, 0)))}
+            stroke={iv.color}
+            stroke-width="6"
+            opacity="0.7"
+            stroke-linecap="round"
+          />
+        {:else}
+          <path
+            d={iv.path}
+            fill="none"
+            stroke={iv.color}
+            stroke-width="6"
+            opacity="0.45"
+            stroke-linecap="round"
+          />
+        {/if}
         {#if iv.label}<text
             x={(sx(iv.a) + sx(iv.b)) / 2}
             y={H - pad.b - 8}
@@ -361,6 +422,19 @@
           data-curve-id="custom"
         />
       {/if}
+      {#each lines as ln (ln.id)}
+        <line
+          x1={ln.x1}
+          y1={ln.y1}
+          x2={ln.x2}
+          y2={ln.y2}
+          stroke={ln.color}
+          stroke-width="2.2"
+          stroke-dasharray={ln.dashed ? '6 5' : undefined}
+          class="plotter__fade"
+          data-line-id={ln.id}
+        />
+      {/each}
       {#each secants as s (s.id)}
         <line
           {...s.line}
@@ -430,6 +504,18 @@
           class="plotter__note"
           fill={c.color}
           text-anchor={flip ? 'end' : 'start'}>{c.label}</text
+        >
+      {/if}
+    {/each}
+    {#each lines as ln (ln.id)}
+      {#if ln.label}
+        {@const flip = ln.lx + ln.label.length * 7.5 > W - pad.r}
+        <text
+          x={flip ? ln.lx - 6 : ln.lx}
+          y={ln.ly}
+          class="plotter__note"
+          fill={ln.color}
+          text-anchor={flip ? 'end' : 'start'}>{ln.label}</text
         >
       {/if}
     {/each}

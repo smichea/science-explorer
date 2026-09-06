@@ -1,5 +1,6 @@
-import type { CompiledNode, RouteDefinition } from '../../content-schema';
+import type { CompiledNode, HorizonConfig, RouteDefinition } from '../../content-schema';
 import type { GraphIndex } from '../graph';
+import { bandOf, stageFor, type Horizon } from '../horizon';
 import type { ProgressionSnapshot } from './index';
 
 export type RecommendationKind =
@@ -25,12 +26,18 @@ export function recommend(
   graph: GraphIndex,
   snapshot: ProgressionSnapshot | null,
   routes: RouteDefinition[],
-  limit = 5
+  limit = 5,
+  /** The learner's horizon: routes whose next destination is a foundation are not pushed. */
+  horizon?: { horizon: Horizon; config: HorizonConfig }
 ): Recommendation[] {
   const out: Recommendation[] = [];
   const status = (id: string) => snapshot?.nodeStates.get(id)?.status ?? 'unknown';
   const done = (id: string) =>
     status(id) === 'practised' || status(id) === 'mastered' || snapshot?.completedMissions.has(id);
+  const foundation = (node: CompiledNode) =>
+    !!horizon &&
+    bandOf(stageFor(node, horizon.horizon, horizon.config), horizon.horizon, horizon.config) ===
+      'foundation';
 
   const firstMission = graph.graph.nodes.find((n) => n.type === 'mission');
   if (firstMission && !snapshot?.completedMissions.has(firstMission.id)) {
@@ -38,9 +45,15 @@ export function recommend(
   }
 
   for (const route of routes.filter((r) => r.kind === 'recommended')) {
+    if (
+      route.stage &&
+      horizon &&
+      bandOf(route.stage, horizon.horizon, horizon.config) === 'foundation'
+    )
+      continue;
     const next = route.nodes
       .map((id) => graph.getNode(id))
-      .find((n) => n && !done(n.id) && n.type !== 'mission');
+      .find((n) => n && !done(n.id) && n.type !== 'mission' && !foundation(n));
     if (next && !out.some((r) => r.node.id === next.id))
       out.push({ kind: 'continue_route', node: next, routeId: route.id });
   }

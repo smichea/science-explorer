@@ -30,6 +30,20 @@ description:
     Galileo had neither stopwatch nor oscilloscope: he weighed the water that flowed out of a vessel during the descent of a ball and reports having repeated the experiment a good hundred times so that the ratios would be confirmed. The question he asked himself is still ours: is this regularity real, or is it the noise of my instruments?
 depths:
   - depth: 1
+    stage: seconde
+    role: core
+    outcomes:
+      fr:
+        - "distinguer une valeur mesurée, une valeur de référence et la variabilité d'une série de mesures"
+        - "estimer une incertitude-type à partir de plusieurs mesures ou de la résolution de l'instrument"
+        - "écrire un résultat avec son unité et un nombre de chiffres significatifs cohérent"
+        - "comparer un résultat à une valeur de référence en tenant compte de l'incertitude"
+      en:
+        - "distinguish a measured value, a reference value and the variability of a series of measurements"
+        - "estimate a standard uncertainty from several measurements or from the instrument's resolution"
+        - "write a result with its unit and a consistent number of significant figures"
+        - "compare a result with a reference value, taking the uncertainty into account"
+  - depth: 2
     stage: terminale
     role: core
     outcomes:
@@ -52,7 +66,7 @@ depths:
         **Standard uncertainty.** For $n$ measurements $x_1, \dots, x_n$ with mean $\bar x$ and standard deviation $\sigma$, the standard uncertainty on the mean is $u(\bar x) = \dfrac{\sigma}{\sqrt{n}}$ (type A evaluation). For a single reading on an instrument of resolution $\delta$, one takes $u = \dfrac{\delta}{\sqrt{12}}$ or the manufacturer's specification (type B). The result is written $x = \bar x \pm u(x)$, with one or two significant figures for $u$ and the same decimal position for $\bar x$.
 
         **Comparison.** To confront a measurement $x \pm u$ with a reference value $x_{\text{ref}}$ (or a model prediction), compute $z = \dfrac{|x - x_{\text{ref}}|}{u}$; the values are considered compatible if $z \le 2$. On the inclined plane, measuring $a$ then comparing it with $g\sin\theta$ or with $\tfrac57 g\sin\theta$ decides which model (sliding or rolling) is compatible with the experiment.
-  - depth: 2
+  - depth: 3
     stage: mpsi
     role: core
     outcomes:

@@ -12,7 +12,8 @@ async function nextUntil(page: import('@playwright/test').Page, kind: string, ma
 
 test.describe('narrated lessons', () => {
   test('follows a lesson: slides with a plotter, free play, typed exercises', async ({ page }) => {
-    await createExplorer(page);
+    // Aged 15: the function opens at its Seconde depth (a Terminale explorer follows depth 2).
+    await createExplorer(page, { age: 15 });
     await page.goto('concept/concept.function');
     await page.getByTestId('follow-lesson').click();
     await expect(page).toHaveURL(/\/lesson\/concept\.function$/);

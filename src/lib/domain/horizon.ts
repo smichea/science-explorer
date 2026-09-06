@@ -1,4 +1,5 @@
 import type { CompiledNode, HorizonConfig, HorizonRule, Stage } from '../content-schema';
+import { StageSchema } from '../content-schema';
 import type { LearnerProfile } from '../persistence/db';
 
 export interface Horizon {
@@ -22,17 +23,22 @@ export const BAND_EMPHASIS: Record<Band, number> = {
   beyond: 0.38,
 };
 
-export type MapFilter =
-  'my_horizon' | 'ready' | 'current_stage' | 'terminale' | 'mpsi' | 'mp' | 'entire';
+/** Stages a filter can put forward: every stage of the enumeration but "beyond". */
+export type StageFilter = Exclude<Stage, 'beyond'>;
+export const STAGE_FILTERS: StageFilter[] = StageSchema.options.filter(
+  (s): s is StageFilter => s !== 'beyond'
+);
+export type MapFilter = 'my_horizon' | 'ready' | 'current_stage' | 'entire' | StageFilter;
 export const MAP_FILTERS: MapFilter[] = [
   'my_horizon',
   'ready',
   'current_stage',
-  'terminale',
-  'mpsi',
-  'mp',
+  ...STAGE_FILTERS,
   'entire',
 ];
+export function isStageFilter(filter: MapFilter): filter is StageFilter {
+  return (STAGE_FILTERS as string[]).includes(filter);
+}
 
 export type MapLayer =
   'concepts' | 'applications' | 'history' | 'progress' | 'prerequisites' | 'curriculum';
@@ -129,6 +135,32 @@ export function nodeStage(node: CompiledNode, config: HorizonConfig): Stage | nu
   );
 }
 
+/**
+ * The stage at which a node meets this learner: the lowest of its depths at or above the current
+ * stage (a node taught in Seconde and again in Terminale is a Terminale destination for a
+ * Terminale learner), else its highest depth — a foundation from an earlier year. Null when the
+ * node has no curriculum depth.
+ */
+export function stageFor(
+  node: CompiledNode,
+  horizon: Horizon,
+  config: HorizonConfig
+): Stage | null {
+  if (node.depths.length === 0) return null;
+  const current = stageIndex(horizon.currentStage, config);
+  const stages = [...new Set(node.depths.map((d) => d.stage))].sort(
+    (a, b) => stageIndex(a, config) - stageIndex(b, config)
+  );
+  return stages.find((s) => stageIndex(s, config) >= current) ?? stages[stages.length - 1];
+}
+
+/** The depth of a node a learner is expected to follow: the lowest depth taught at `stageFor`. */
+export function learnerDepth(node: CompiledNode, horizon: Horizon, config: HorizonConfig): number {
+  const stage = stageFor(node, horizon, config);
+  const depths = node.depths.filter((d) => d.stage === stage).map((d) => d.depth);
+  return depths.length ? Math.min(...depths) : 1;
+}
+
 export function bandOf(stage: Stage | null, horizon: Horizon, config: HorizonConfig): Band {
   if (stage === null) return 'current';
   const s = stageIndex(stage, config);
@@ -148,9 +180,13 @@ export function emphasisFor(
   horizon: Horizon,
   filter: MapFilter,
   config: HorizonConfig,
-  ready = true
+  ready = true,
+  /** Every stage the node is taught at (a stage filter keeps a node taught at that stage). */
+  stages?: Stage[]
 ): number {
   const band = bandOf(stage, horizon, config);
+  if (isStageFilter(filter))
+    return stage === null || (stages ?? [stage]).includes(filter) ? 1 : 0.3;
   switch (filter) {
     case 'entire':
       return 1;
@@ -160,10 +196,6 @@ export function emphasisFor(
       return band === 'current' ? 1 : 0.35;
     case 'ready':
       return ready ? 1 : 0.3;
-    case 'terminale':
-    case 'mpsi':
-    case 'mp':
-      return stage === filter || stage === null ? 1 : 0.3;
     default:
       return 1;
   }

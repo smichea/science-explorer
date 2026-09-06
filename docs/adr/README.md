@@ -18,3 +18,4 @@ Decisions that shape the implementation of the vertical slice. Each record state
 | [0012](0012-typed-i18n-and-localised-content-fields.md) | Typed interface dictionaries and localised content fields |
 | [0013](0013-browser-speech-synthesis-for-guided-flights.md) | Browser speech synthesis for the bird's-eye flight |
 | [0014](0014-narrated-interactive-lessons.md) | Narrated, interactive lessons: slides, a tool that follows the words, free play, typed exercises |
+| [0015](0015-learner-relative-stage-and-foundations.md) | The stage of a destination is relative to the learner; foundations stay out of the flight unless asked for |
