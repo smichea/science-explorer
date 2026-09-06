@@ -542,6 +542,11 @@ table.data td {
 .atlas-label.is-highlighted {
   border-color: var(--label-color);
 }
+.atlas-label.is-muted {
+  border-style: dashed;
+  border-color: var(--label-color);
+  color: #d5dcf0;
+}
 @media (max-width: 600px) {
   /* Wide content (tables, code) scrolls in its own container: the page never scrolls sideways. */
   .table-scroll {

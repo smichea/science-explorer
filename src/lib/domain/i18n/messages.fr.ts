@@ -111,12 +111,13 @@ export const fr: Record<MessageKey, string> = {
 
   'tour.title': 'Vol d’oiseau',
   'tour.intro':
-    'Survoler tout ce qu’il reste à voir pour votre objectif, le long des routes conseillées : une courte présentation lue à chaque escale, jamais la leçon complète.',
+    'Survoler tout ce qu’il reste à voir pour votre objectif, le long des routes conseillées et dans l’ordre des prérequis : une courte présentation lue à chaque leçon, jamais la leçon complète.',
   'tour.start': 'Survoler ce qui reste à voir',
   'tour.startCount': '{n} destinations',
   'tour.step': 'Étape {n} sur {total}',
   'tour.leg': 'Route suivante',
-  'tour.legCount': '{n} destinations sur cette route',
+  'tour.legCount': '{n} leçons sur cette route, dans l’ordre des prérequis',
+  'tour.legStops': 'Escales de la route',
   'tour.prev': 'Escale précédente',
   'tour.next': 'Escale suivante',
   'tour.pause': 'Pause',
@@ -139,6 +140,15 @@ export const fr: Record<MessageKey, string> = {
   'filter.mpsi': 'MPSI',
   'filter.mp': 'MP',
   'filter.entire': 'Univers entier',
+  'filterHint.my_horizon': 'Mon horizon : {stages} ; le reste en filigrane',
+  'filterHint.ready':
+    'Prêtes à explorer : les destinations dont les prérequis essentiels sont acquis',
+  'filterHint.current_stage': 'Étape courante : {stage} (et les destinations sans étape)',
+  'filterHint.terminale': 'Programme de {stage} (et les destinations sans étape)',
+  'filterHint.mpsi': 'Programme de {stage} (et les destinations sans étape)',
+  'filterHint.mp': 'Programme de {stage} (et les destinations sans étape)',
+  'filterHint.entire': 'Tout l’univers, sans mise en avant',
+  'universe.filterCount': '{n} destinations sur {total}',
 
   'layer.concepts': 'Concepts',
   'layer.applications': 'Applications',

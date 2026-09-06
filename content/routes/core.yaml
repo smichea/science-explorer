@@ -1,4 +1,7 @@
 # Authored routes through the universe (recommended, thematic, historical).
+# The nodes of a route are written in the order they are meant to be visited: a prerequisite
+# always before the destinations that need it (the compiler checks the flights built from them).
+# Missions belong to routes as practice steps; the bird's-eye flight never stops on them.
 routes:
   - id: route.first_journey
     kind: recommended
@@ -6,67 +9,98 @@ routes:
       fr: "Premier voyage : de la fonction à la dérivée"
       en: "First journey: from function to derivative"
     summary:
-      fr: "Le parcours conseillé pour une première session : construire la dérivée pas à pas, la forger dans la mission de Galilée, puis la réutiliser sur la charge d'un condensateur."
-      en: "The recommended path for a first session: build the derivative step by step, forge it in Galileo's mission, then reuse it on a charging capacitor."
+      fr: "Le parcours conseillé pour une première session : de la fonction et de sa courbe au taux de variation, puis à la dérivée, l'outil central du voyage."
+      en: "The recommended path for a first session: from the function and its graph to the rate of change, then to the derivative, the central tool of the journey."
     nodes:
       - concept.function
       - concept.graph
       - concept.rate_of_change
       - tool.derivative
       - mission.galileo.inclined_plane
-      - phenomenon.circuit.capacitor_charging
-  - id: route.exponential_everywhere
+  - id: route.motion
     kind: thematic
     title:
-      fr: "L'exponentielle est partout"
-      en: "The exponential is everywhere"
+      fr: "Décrire et prédire le mouvement"
+      en: "Describing and predicting motion"
     summary:
-      fr: "Quatre phénomènes de trois mondes, une seule équation : reconnaître le schéma « vitesse proportionnelle à la quantité restante », puis retrouver l'exponentielle et l'équation différentielle qui le résolvent."
-      en: "Four phenomena from three worlds, one equation: recognise the pattern \"rate proportional to the remaining quantity\", then recover the exponential and the differential equation that solve it."
+      fr: "Une question, les outils de la mesure et de la modélisation, puis la cinématique et la deuxième loi de Newton : de quoi décrire un mouvement, le prédire, et retrouver le plan incliné et la chute libre."
+      en: "A question, the tools of measurement and modelling, then kinematics and Newton's second law: enough to describe a motion, predict it, and recover the inclined plane and free fall."
     nodes:
-      - concept.rate_proportional_to_quantity
-      - phenomenon.circuit.capacitor_charging
-      - phenomenon.chemistry.first_order_reaction
-      - phenomenon.nuclear.radioactive_decay
-      - phenomenon.motion.with_drag
-      - tool.exponential
-      - tool.ode_first_order
+      - question.how_to_predict_motion
+      - concept.dimension_unit
+      - method.measurement
+      - method.modelling
+      - tool.vector
+      - model.kinematics_point
+      - law.newton_second
+      - phenomenon.motion.uniformly_accelerated
+      - phenomenon.motion.inclined_plane
+      - phenomenon.motion.free_fall
   - id: route.galileo_history
     kind: historical
     title:
       fr: "Galilée à Padoue"
       en: "Galileo in Padua"
     summary:
-      fr: "Le temps, le lieu, l'homme, puis l'expérience et la loi qu'elle a révélée : le mouvement uniformément accéléré tel qu'il a été mesuré avant d'être expliqué."
-      en: "The time, the place, the man, then the experiment and the law it revealed: uniformly accelerated motion as it was measured before it was explained."
+      fr: "Le temps, les lieux, l'homme et son correspondant : l'époque où le mouvement a été mesuré avant d'être expliqué."
+      en: "The time, the places, the man and his correspondent: the era when motion was measured before it was explained."
     nodes:
       - period.galileo_padua_1592_1610
       - place.padua
+      - place.pisa
       - person.galileo_galilei
+      - person.paolo_sarpi
       - mission.galileo.inclined_plane
-      - phenomenon.motion.uniformly_accelerated
+  - id: route.exponential_everywhere
+    kind: thematic
+    title:
+      fr: "L'exponentielle est partout"
+      en: "The exponential is everywhere"
+    summary:
+      fr: "Une seule équation pour trois mondes : l'exponentielle, la condition initiale et l'équation différentielle, puis le schéma « vitesse proportionnelle à la quantité restante » retrouvé dans un circuit, une réaction, un noyau et une chute freinée."
+      en: "One equation for three worlds: the exponential, the initial condition and the differential equation, then the pattern \"rate proportional to the remaining quantity\" found again in a circuit, a reaction, a nucleus and a braked fall."
+    nodes:
+      - tool.exponential
+      - concept.initial_condition
+      - tool.ode_first_order
+      - concept.rate_proportional_to_quantity
+      - model.rc_circuit
+      - phenomenon.circuit.capacitor_charging
+      - phenomenon.chemistry.concentration_over_time
+      - model.reaction_order_one
+      - phenomenon.chemistry.first_order_reaction
+      - phenomenon.nuclear.radioactive_decay
+      - phenomenon.motion.with_drag
 
 # Guided flights ("bird's-eye"): an ordered sequence of legs flown over automatically. A leg is an
-# authored route, or an automatic group collecting the destinations of the learner's horizon not yet
+# authored route, or an automatic group collecting the lessons of the learner's horizon not yet
 # covered by an earlier leg (one world, the remaining history nodes, or the bridges). Every leg after
 # the first carries the sentence that links the previous leg to this one; write it so that it still
 # makes sense when the previous leg was skipped because everything in it was already practised.
+# The flight follows the prerequisites: the compiler refuses a flight where an essential
+# prerequisite is flown after a destination that needs it.
 tours:
   - id: tour.horizon_flight
     title: { fr: "Vol d'oiseau", en: "Bird's-eye flight" }
     intro:
       fr: >-
-        Bienvenue à bord. Ce vol survole tout ce qu'il vous reste à voir d'ici les concours : d'abord les routes conseillées, puis ce qui reste dans chaque monde. À chaque escale, une courte présentation ; vous pourrez ouvrir la leçon complète plus tard.
+        Bienvenue à bord. Ce vol survole tout ce qu'il vous reste à voir d'ici les concours, dans l'ordre où les notions se construisent : chaque escale vient après celles dont elle dépend. D'abord les routes conseillées, puis ce qui reste dans chaque monde. À chaque escale, une courte présentation ; vous pourrez ouvrir la leçon complète plus tard.
       en: >-
-        Welcome aboard. This flight passes over everything you still have to see before the entrance exams: first the recommended routes, then what remains in each world. A short presentation at each stop; you can open the full lesson later.
+        Welcome aboard. This flight passes over everything you still have to see before the entrance exams, in the order in which the notions build on one another: each stop comes after the ones it depends on. First the recommended routes, then what remains in each world. A short presentation at each stop; you can open the full lesson later.
     legs:
       - route: route.first_journey
+      - route: route.motion
+        transition:
+          fr: >-
+            La dérivée est forgée. Voyons ce qu'elle permet en physique : d'abord décrire un mouvement, position, vitesse, accélération, puis le prédire avec la deuxième loi de Newton.
+          en: >-
+            The derivative is forged. Let us see what it makes possible in physics: first describing a motion, position, velocity, acceleration, then predicting it with Newton's second law.
       - route: route.galileo_history
         transition:
           fr: >-
-            Vous venez de voir la dérivée naître d'une mesure. Remontons maintenant le temps pour rencontrer l'homme, la ville et l'époque de cette mesure : Galilée à Padoue.
+            Ces lois ont une histoire. Remontons le temps jusqu'à Padoue, vers mille six cent quatre, pour rencontrer l'homme, les lieux et l'époque où le mouvement a été mesuré avant d'être expliqué.
           en: >-
-            You have just seen the derivative born from a measurement. Let us now go back in time to meet the man, the town and the era of that measurement: Galileo in Padua.
+            These laws have a history. Let us go back in time to Padua, around sixteen hundred and four, to meet the man, the places and the era when motion was measured before it was explained.
       - route: route.exponential_everywhere
         transition:
           fr: >-
@@ -110,6 +144,6 @@ tours:
             Finally, the bridges: the methods and ideas shared by the three worlds, measurement, modelling, initial conditions.
     outro:
       fr: >-
-        Fin du survol. Vous avez maintenant une vue d'ensemble de votre horizon. Choisissez une destination, ou commencez par la mission de Galilée : c'est là que la dérivée se construit.
+        Fin du survol. Vous avez maintenant une vue d'ensemble de votre horizon, dans l'ordre où les notions se construisent. Choisissez une destination et ouvrez sa leçon : la carte vous montrera ce qu'elle demande et ce qu'elle ouvre.
       en: >-
-        End of the flight. You now have an overview of your horizon. Choose a destination, or start with Galileo's mission: that is where the derivative gets built.
+        End of the flight. You now have an overview of your horizon, in the order in which the notions build on one another. Choose a destination and open its lesson: the map will show you what it requires and what it opens.

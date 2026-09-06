@@ -17,6 +17,7 @@ import {
   FOCUS_DISTANCE,
   LABEL_BUDGET,
   MAX_CAMERA_DISTANCE,
+  groupDistance,
   overviewDistance,
   zoomLevelForDistance,
   type ZoomLevel,
@@ -25,9 +26,25 @@ import {
 /** What the primary drag (left button, one finger) does. */
 export type DragMode = 'rotate' | 'pan';
 
+/** Space kept around a framed group of nodes so that labels and glows stay in view. */
+const GROUP_MARGIN = 8;
+
+/** Glow of the hovered destination, whatever its style. */
+const HOVER_EMISSIVE = 0.9;
+
+/** Glow of a destination at rest: bright when selected, faint outside the selection. */
+function emissiveFor(style: NodeStyle): number {
+  if (style.selected) return 1;
+  if (style.highlighted) return 0.6;
+  if (style.muted) return 0.12;
+  return 0.3 * style.emphasis + 0.05;
+}
+
 export interface FocusTarget {
-  kind: 'universe' | 'world' | 'region' | 'node';
+  kind: 'universe' | 'world' | 'region' | 'node' | 'group';
   id?: string;
+  /** The nodes framed together by a `group` target. */
+  ids?: string[];
 }
 
 export interface AtlasCallbacks {
@@ -473,12 +490,10 @@ export class AtlasScene {
       const colour = new THREE.Color(style.color);
       material.color.copy(colour);
       material.emissive.copy(colour);
-      material.emissiveIntensity = style.selected
-        ? 1.0
-        : style.highlighted
-          ? 0.6
-          : 0.3 * style.emphasis + 0.05;
-      material.opacity = 0.3 + 0.7 * style.emphasis;
+      material.emissiveIntensity = id === this.hovered ? HOVER_EMISSIVE : emissiveFor(style);
+      // Outside the selection only the edges of the shape remain: the filter reads at a glance.
+      material.wireframe = style.muted;
+      material.opacity = style.muted ? 0.5 : 0.3 + 0.7 * style.emphasis;
       const scale = style.size * (style.selected ? 1.25 : 1);
       mesh.scale.setScalar(scale);
       this.updateRings(id, mesh, style);
@@ -488,7 +503,8 @@ export class AtlasScene {
         label.glyphEl.textContent = style.glyph;
         label.element.classList.toggle('is-selected', style.selected);
         label.element.classList.toggle('is-highlighted', style.highlighted);
-        label.element.style.opacity = String(0.45 + 0.55 * style.emphasis);
+        label.element.classList.toggle('is-muted', style.muted);
+        label.element.style.opacity = String(style.muted ? 0.85 : 0.45 + 0.55 * style.emphasis);
         label.element.style.setProperty('--label-color', style.color);
       }
     }
@@ -698,6 +714,19 @@ export class AtlasScene {
         distance: node?.type === 'mission' ? FOCUS_DISTANCE.mission : FOCUS_DISTANCE.node,
       };
     }
+    if (target.kind === 'group' && target.ids?.length) {
+      // Frame every node of the group: look at their centre from far enough to see them all.
+      const points = target.ids
+        .map((id) => this.layout.positions[id])
+        .filter((p): p is Vec3 => !!p)
+        .map(toVec);
+      if (points.length === 0) return null;
+      const centre = points
+        .reduce((sum, p) => sum.add(p), new THREE.Vector3())
+        .divideScalar(points.length);
+      const radius = Math.max(...points.map((p) => p.distanceTo(centre))) + GROUP_MARGIN;
+      return { centre, distance: groupDistance(radius, this.camera.fov, this.camera.aspect) };
+    }
     return null;
   }
 
@@ -804,16 +833,18 @@ export class AtlasScene {
   private setHover(id: string | null) {
     if (id === this.hovered) return;
     const previous = this.hovered ? this.nodeMeshes.get(this.hovered) : undefined;
-    if (previous)
-      (previous.material as THREE.MeshStandardMaterial).emissiveIntensity = this.styles.get(
-        this.hovered!
-      )?.selected
-        ? 1
+    if (previous) {
+      const style = this.styles.get(this.hovered!);
+      (previous.material as THREE.MeshStandardMaterial).emissiveIntensity = style
+        ? emissiveFor(style)
         : 0.3;
+    }
     this.hovered = id;
     const next = id ? this.nodeMeshes.get(id) : undefined;
-    if (next) (next.material as THREE.MeshStandardMaterial).emissiveIntensity = 0.9;
+    if (next) (next.material as THREE.MeshStandardMaterial).emissiveIntensity = HOVER_EMISSIVE;
     this.callbacks.onHover(id);
+    // A muted destination is named only while hovered: refresh the labels at once.
+    this.updateLabels(true);
     this.needsRender = true;
   }
 
@@ -834,11 +865,19 @@ export class AtlasScene {
       let score = label.priority;
       const distance = label.position.distanceTo(target);
       if (label.kind === 'node') {
-        if (level === 'universe') score *= 0.06;
-        else if (level === 'world') score *= 0.45;
-        score *= 1 / (1 + distance / 40);
         const style = this.styles.get(label.id);
-        if (style && style.emphasis < 0.32 && !style.selected) score *= 0.2;
+        const hovered = label.id === this.hovered;
+        // Outside the selection a destination is named only while hovered.
+        if (style?.muted && !hovered) {
+          label.object.visible = false;
+          continue;
+        }
+        if (hovered) score = Number.MAX_SAFE_INTEGER;
+        else {
+          if (level === 'universe') score *= 0.06;
+          else if (level === 'world') score *= 0.45;
+          score *= 1 / (1 + distance / 40);
+        }
       } else if (label.kind === 'region') {
         if (level === 'universe') score *= 0.3;
         if (level === 'concept') score *= 0.4;
@@ -863,8 +902,10 @@ export class AtlasScene {
           const x = ((tmp.x + 1) / 2) * rect.width;
           const y = ((1 - tmp.y) / 2) * rect.height;
           const key = `${Math.round(x / 150)}:${Math.round(y / 34)}`;
-          const isSelected = label.kind === 'node' && this.styles.get(label.id)?.selected;
-          if (occupied.has(key) && !isSelected && label.kind !== 'world') visible = false;
+          const pinned =
+            label.kind === 'node' &&
+            (this.styles.get(label.id)?.selected || label.id === this.hovered);
+          if (occupied.has(key) && !pinned && label.kind !== 'world') visible = false;
           else occupied.add(key);
         }
       }

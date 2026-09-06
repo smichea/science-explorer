@@ -410,6 +410,7 @@ routes:
     title: { fr: "…", en: "…" }
     summary: { fr: "…", en: "…" }
     nodes: [concept.function, concept.graph, concept.rate_of_change, tool.derivative, mission.galileo.inclined_plane]
+                                 # in visiting order: a prerequisite before what needs it; missions are practice steps
 tours:                           # guided flights ("bird's-eye"): an ordered sequence of legs
   - id: tour.horizon_flight
     title: { fr: "Vol d'oiseau", en: "Bird's-eye flight" }
@@ -421,7 +422,7 @@ tours:                           # guided flights ("bird's-eye"): an ordered seq
       - world: world.mathematics                   # automatic leg: what remains in a world (horizon scope)
         title: { fr: "…", en: "…" }
         transition: { fr: "…", en: "…" }
-      - history: true                              # remaining people, places, periods, missions
+      - history: true                              # remaining people, places, periods
         title: { fr: "…", en: "…" }
         transition: { fr: "…", en: "…" }
       - bridges: true                              # remaining bridge nodes (methods, shared concepts, questions)
@@ -430,7 +431,9 @@ tours:                           # guided flights ("bird's-eye"): an ordered seq
     outro: { fr: "…", en: "…" }
 ```
 
-A flight visits each destination once: first along its routes, then in the automatic legs. Destinations already practised or mastered are skipped (unless the learner asks to include them), and a leg left empty is skipped together with its transition, so write every transition so that it still reads well when the previous leg was not flown ("Cap maintenant sur…"). The compiler refuses a leg without a transition (after the first) and warns when a node on a flown route has no `overview`.
+A flight visits each lesson once: first along its routes, then in the automatic legs. Missions are never stops (they are practised, not presented), so no text of a flight should mention them. Lessons already practised or mastered are skipped (unless the learner asks to include them), and a leg left empty is skipped together with its transition, so write every transition so that it still reads well when the previous leg was not flown ("Cap maintenant sur…"). The compiler refuses a leg without a transition (after the first) and warns when a lesson on a flown route has no `overview`.
+
+A flight follows the prerequisites (`requires_essentially` and `requires_recommended` edges): a destination is always flown after the prerequisites flown before it. Inside a leg the order is fixed automatically (a prerequisite written after a node that needs it is pulled forward, just before that node); across legs the compiler rebuilds the complete flight, over the whole universe, and reports every inversion: an **error** for an essential prerequisite, a **warning** for a recommended one. Order the routes and the legs so that the compilation stays silent.
 
 ## Historical honesty checklist
 

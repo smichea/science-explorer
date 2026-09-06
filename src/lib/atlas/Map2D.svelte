@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { CompiledLayout } from '$lib/content-schema';
+  import type { CompiledLayout, Vec3 } from '$lib/content-schema';
   import type { GraphIndex } from '$lib/domain/graph';
   import {
     colorOfRegion,
@@ -17,6 +17,8 @@
     routes: RouteStyle[];
     selectedId: string | null;
     focusId: string | null;
+    /** Destinations framed together when no single element is focused (a leg of a flight). */
+    focusIds?: string[] | null;
     labelText: (id: string, kind: 'node' | 'region' | 'world' | 'hub') => string;
     stateLabel: (id: string) => string;
     href: (id: string, kind: 'node' | 'region' | 'world') => string;
@@ -30,6 +32,7 @@
     routes,
     selectedId,
     focusId,
+    focusIds = null,
     labelText,
     stateLabel,
     href,
@@ -127,18 +130,29 @@
     tz = 0;
   }
 
-  // Centre the view on the focused element.
+  // Centre the view on the focused element, or frame a group of destinations.
   $effect(() => {
-    if (!focusId) return;
-    const p = layout.positions[focusId] ?? layout.regions[focusId] ?? layout.worlds[focusId];
-    if (!p) return;
-    const target = Math.max(
-      scale,
-      layout.positions[focusId] ? 3 : layout.regions[focusId] ? 2 : 1.2
-    );
-    scale = target;
-    tx = p[0] - minX - width / scale / 2;
-    tz = p[2] - minZ - height / scale / 2;
+    if (focusId) {
+      const p = layout.positions[focusId] ?? layout.regions[focusId] ?? layout.worlds[focusId];
+      if (!p) return;
+      const target = Math.max(
+        scale,
+        layout.positions[focusId] ? 3 : layout.regions[focusId] ? 2 : 1.2
+      );
+      scale = target;
+      tx = p[0] - minX - width / scale / 2;
+      tz = p[2] - minZ - height / scale / 2;
+      return;
+    }
+    const points = (focusIds ?? []).map((id) => layout.positions[id]).filter((p): p is Vec3 => !!p);
+    if (points.length === 0) return;
+    const xs = points.map((p) => p[0]);
+    const zs = points.map((p) => p[2]);
+    const spanX = Math.max(...xs) - Math.min(...xs) + 2 * pad;
+    const spanZ = Math.max(...zs) - Math.min(...zs) + 2 * pad;
+    scale = Math.max(1, Math.min(3, width / spanX, height / spanZ));
+    tx = (Math.min(...xs) + Math.max(...xs)) / 2 - minX - width / scale / 2;
+    tz = (Math.min(...zs) + Math.max(...zs)) / 2 - minZ - height / scale / 2;
   });
 
   function shapePath(type: string, r: number): string {
@@ -306,7 +320,9 @@
           aria-current={node.id === selectedId ? 'true' : undefined}
           data-node-id={node.id}
           data-state={style.kind}
-          style={`opacity: ${0.35 + 0.65 * style.emphasis}`}
+          data-muted={style.muted ? 'true' : undefined}
+          class:node--muted={style.muted}
+          style={`opacity: ${style.muted ? 0.6 : 0.35 + 0.65 * style.emphasis}`}
         >
           {#if style.selected}
             <circle cx={p[0]} cy={p[1]} r={r + 1.1} fill="none" stroke="#fff" stroke-width="0.3" />
@@ -322,13 +338,16 @@
               stroke-dasharray={style.kind === 'due_for_review' ? '0.5 0.3' : undefined}
             />
           {/if}
+          <!-- Outside the selection only the outline of the shape is drawn (a faint fill keeps
+               the whole shape hoverable: an unfilled shape only reacts on its stroke). -->
           {#if path}
             <path
               d={path}
               transform={`translate(${p[0]} ${p[1]})`}
               fill={style.color}
-              stroke="#0b1020"
-              stroke-width="0.15"
+              fill-opacity={style.muted ? 0.1 : 1}
+              stroke={style.muted ? style.color : '#0b1020'}
+              stroke-width={style.muted ? 0.22 : 0.15}
             />
           {:else}
             <circle
@@ -336,11 +355,13 @@
               cy={p[1]}
               r={r * 0.9}
               fill={style.color}
-              stroke="#0b1020"
-              stroke-width="0.15"
+              fill-opacity={style.muted ? 0.1 : 1}
+              stroke={style.muted ? style.color : '#0b1020'}
+              stroke-width={style.muted ? 0.22 : 0.15}
             />
           {/if}
-          {#if showNodeLabels || style.selected || style.highlighted || node.importance >= 3}
+          {#if style.muted || showNodeLabels || style.selected || style.highlighted || node.importance >= 3}
+            <!-- A muted destination keeps its name for hover and focus only (see .node--muted). -->
             <text
               x={p[0] + r + 0.6}
               y={p[1] + 0.5}
@@ -411,6 +432,17 @@
   }
   .label--selected {
     font-weight: 700;
+  }
+  .node--muted .label {
+    display: none;
+  }
+  .node--muted:hover .label,
+  .node--muted:focus-visible .label {
+    display: initial;
+  }
+  .node--muted:hover,
+  .node--muted:focus-visible {
+    opacity: 1 !important;
   }
   a:focus-visible circle,
   a:focus-visible path {

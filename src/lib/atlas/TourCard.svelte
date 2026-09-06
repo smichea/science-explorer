@@ -49,7 +49,10 @@
     <p class="small muted" style="margin: 0">{t('tour.leg')}</p>
     <h1 class="tour__title" tabindex="-1" bind:this={heading}>{L(step.title)}</h1>
     <p class="lead" data-testid="tour-transition">{L(step.text)}</p>
-    <p class="small muted">{t('tour.legCount', { n: step.nodeIds.length })}</p>
+    <p class="small muted" style="margin: 0">{t('tour.legCount', { n: step.stops.length })}</p>
+    <ol class="tour__stops small" data-testid="tour-leg-stops" aria-label={t('tour.legStops')}>
+      {#each step.stops as stop (stop.id)}<li>{L(stop.title)}</li>{/each}
+    </ol>
   {:else if step?.kind === 'stop'}
     <p class="small muted" style="margin: 0">
       {L(step.legTitle)} · {step.indexInLeg + 1} / {step.legCount}
@@ -149,5 +152,11 @@
     display: flex;
     gap: 0.5rem;
     align-items: center;
+  }
+  .tour__stops {
+    margin: 0;
+    padding-left: 1.5rem;
+    display: grid;
+    gap: 0.2rem;
   }
 </style>

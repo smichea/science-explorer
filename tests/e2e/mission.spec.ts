@@ -4,6 +4,7 @@ import {
   currentStepId,
   expect,
   expectNoHorizontalScroll,
+  expectStoredStep,
   solveExercise,
   test,
 } from './helpers';
@@ -49,6 +50,8 @@ test.describe('historical mission', () => {
     await continueStep(page);
     expect(await currentStepId(page)).toBe('graph_construction');
 
+    // The checkpoint is written after the step changes on screen: wait for it before reloading.
+    await expectStoredStep(page, 'mission.galileo.inclined_plane', 'graph_construction');
     await page.reload();
     await expect(page.getByTestId('mission-step')).toHaveAttribute(
       'data-step-id',

@@ -11,13 +11,14 @@ async function nextUntil(page: import('@playwright/test').Page, kind: string, ma
 }
 
 test.describe('bird’s-eye flight', () => {
-  test('flies over the remaining programme along the routes, with authored transitions', async ({
+  test('flies over the remaining lessons along the routes, with authored transitions', async ({
     page,
   }) => {
     await createExplorer(page);
     await page.goto('universe');
     const start = page.getByTestId('tour-start-panel');
-    await expect(start).toContainText(/32 destinations/);
+    // 32 destinations in the slice, minus the mission: the flight only stops on lessons.
+    await expect(start).toContainText(/31 destinations/);
     await start.click();
 
     const card = page.getByTestId('tour-card');
@@ -28,9 +29,17 @@ test.describe('bird’s-eye flight', () => {
     // The URL never changes during a flight.
     await expect(page).toHaveURL(/\/universe$/);
 
+    // The first leg lists its stops in order: foundations first, the derivative last.
     await page.getByTestId('tour-next').click();
     await expect(card).toHaveAttribute('data-step-kind', 'leg');
     await expect(card).toContainText('Premier voyage');
+    const stops = card.getByTestId('tour-leg-stops').locator('li');
+    await expect(stops).toHaveText([
+      'Fonction',
+      'Courbe représentative',
+      'Taux de variation',
+      'Dérivée',
+    ]);
     await page.getByTestId('tour-next').click();
     await expect(card).toHaveAttribute('data-step-kind', 'stop');
     await expect(card.getByRole('heading', { level: 1 })).toHaveText('Fonction');
@@ -39,21 +48,25 @@ test.describe('bird’s-eye flight', () => {
     await expect(
       page.locator('[data-testid="atlas-2d"] a[data-node-id="concept.function"]')
     ).toHaveAttribute('aria-current', 'true');
-    await expect(page.locator('[data-testid="atlas-2d"] line[stroke="#ffffff"]')).toHaveCount(5);
+    await expect(page.locator('[data-testid="atlas-2d"] line[stroke="#ffffff"]')).toHaveCount(3);
 
     // Moving on to the second route shows its transition sentence before its stops.
     await page.getByTestId('tour-next').click();
     await nextUntil(page, 'leg');
-    await expect(card.getByTestId('tour-transition')).toContainText(
-      /Remontons maintenant le temps/
+    await expect(card.getByTestId('tour-transition')).toContainText(/deuxième loi de Newton/);
+    await expect(card).toContainText('Décrire et prédire le mouvement');
+    await expect(card.getByTestId('tour-leg-stops').locator('li').first()).toHaveText(
+      'Comment prédire un mouvement ?'
     );
-    await expect(card).toContainText('Galilée à Padoue');
 
     // Opening the full lesson leaves the flight and navigates to the concept page.
     await page.getByTestId('tour-next').click();
     await expect(card).toHaveAttribute('data-step-kind', 'stop');
+    await expect(card.getByRole('heading', { level: 1 })).toHaveText(
+      'Comment prédire un mouvement ?'
+    );
     await page.getByTestId('tour-open').click();
-    await expect(page).toHaveURL(/\/concept\/period\.galileo_padua_1592_1610/);
+    await expect(page).toHaveURL(/\/concept\/question\.how_to_predict_motion/);
     await expect(page.getByTestId('tour-card')).toHaveCount(0);
     await expect(page.getByTestId('concept-panel')).toBeVisible();
 
