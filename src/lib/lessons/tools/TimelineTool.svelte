@@ -38,19 +38,30 @@
   const current = $derived(events.filter((e) => e.start <= year && year <= e.end));
   /** Labels of one lane alternate above and below its line so that neighbours do not collide. */
   const staggered = $derived.by(() => {
-    // Labels of one lane climb through three levels when neighbours are close, so that a dense
-    // decade stays readable; a label near an edge is anchored inwards.
+    // Labels of one lane take the first of three levels that is free at their abscissa; when a
+    // decade is too dense, the label shrinks to the year alone (the readout below lists the
+    // events at the cursor). A label near an edge is anchored inwards.
     const LEVELS = [-11, 24, 37];
-    const last = new SvelteMap<string, { x: number; level: number }>();
+    const ROOM = 135;
+    const taken = new SvelteMap<string, number[]>();
     return [...events]
       .sort((a, b) => a.start - b.start)
       .map((e) => {
         const x = sx(e.start);
-        const previous = last.get(e.kind);
-        const level = previous && x - previous.x < 130 ? (previous.level + 1) % LEVELS.length : 0;
-        last.set(e.kind, { x, level });
+        const lane = taken.get(e.kind) ?? LEVELS.map(() => -Infinity);
+        let level = lane.findIndex((lastX) => x - lastX >= ROOM);
+        const short = level < 0;
+        if (short) level = lane.indexOf(Math.min(...lane));
+        lane[level] = short ? lane[level] : x + (e.point ? 0 : sx(e.end) - x);
+        if (short) lane[level] = Math.max(lane[level], x - ROOM + 40);
+        taken.set(e.kind, lane);
         const anchor = !e.point ? 'start' : x < 110 ? 'start' : x > W - 110 ? 'end' : 'middle';
-        return { ...e, dy: LEVELS[level], anchor };
+        const text = short
+          ? `${e.start}`
+          : e.point
+            ? `${e.label} (${e.start})`
+            : `${e.label} (${e.start}–${e.end})`;
+        return { ...e, dy: LEVELS[level], anchor, text };
       });
   });
   const decades = $derived.by(() => {
@@ -116,7 +127,7 @@
       {#if e.point}
         <circle cx={sx(e.start)} cy={laneY(e.kind)} r="6" fill={KIND_COLOR[e.kind]} class="fade" />
         <text x={sx(e.start)} y={laneY(e.kind) + e.dy} class="note" text-anchor="middle"
-          >{e.label} ({e.start})</text
+          >{e.text}</text
         >
       {:else}
         <rect
@@ -129,9 +140,7 @@
           opacity="0.75"
           class="fade"
         />
-        <text x={sx(e.start)} y={laneY(e.kind) + e.dy} class="note"
-          >{e.label} ({e.start}–{e.end})</text
-        >
+        <text x={sx(e.start)} y={laneY(e.kind) + e.dy} class="note">{e.text}</text>
       {/if}
     {/each}
     <line x1={sx(year)} y1={pad.t} x2={sx(year)} y2={H - pad.b} class="cursor" />
