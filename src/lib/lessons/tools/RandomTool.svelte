@@ -269,7 +269,7 @@
           {#each tree.second as b (b.id)}
             <tr>
               <th scope="row">{t('lesson.random.total')} P({L(b.label)})</th>
-              <td>{f(totalProbability(tree, b.id))}</td>
+              <td class="num">{f(totalProbability(tree, b.id))}</td>
               <td></td>
             </tr>
           {/each}
@@ -282,7 +282,7 @@
                   {t('lesson.random.given')}
                   {L(eventB.label)})</th
                 >
-                <td>{f(conditionalProbability(tree, a.id, eventB.id))}</td>
+                <td class="num">{f(conditionalProbability(tree, a.id, eventB.id))}</td>
                 <td
                   >P<sub>{L(a.label)}</sub>({L(eventB.label)}) = {f(
                     givenProbability(tree, a.id, eventB.id)
@@ -524,7 +524,7 @@
     border: 1px solid var(--border);
     text-align: center;
   }
-  .law th[scope='row'] {
+  .law td.num {
     white-space: nowrap;
   }
   .law th[scope='row'] {
