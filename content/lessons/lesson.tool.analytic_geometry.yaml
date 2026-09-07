@@ -1,0 +1,26 @@
+# Leçon — géométrie repérée : la droite a x + b y + c = 0 tracée comme chemin paramétré avec son vecteur normal (a ; b),
+# et le cercle de centre (1 ; 1) et de rayon 2 avec un rayon dessiné en segment (paramètres a, b, c réglables).
+id: lesson.tool.analytic_geometry
+nodeId: tool.analytic_geometry
+depth: 1
+tools:
+  - id: figure
+    kind: vectors
+    title: { fr: "Une droite, son vecteur normal, un cercle", en: "A line, its normal vector, a circle" }
+    view: { x: [-3, 6], y: [-3, 6] }
+    parameters:
+      - { id: a, label: { fr: "coefficient a", en: "coefficient a" }, min: -3, max: 3, step: 0.5, value: 1 }
+      - { id: b, label: { fr: "coefficient b", en: "coefficient b" }, min: 0.5, max: 3, step: 0.5, value: 2 }
+      - { id: c, label: { fr: "constante c", en: "constant c" }, min: -6, max: 6, step: 0.5, value: -4 }
+    vectors:
+      - { id: n, x: "a", y: "b", label: { fr: "n (a ; b), normal à d", en: "n (a ; b), normal to d" }, components: true }
+      - { id: u, x: "-b", y: "a", label: { fr: "u (−b ; a), directeur de d", en: "u (−b ; a), direction of d" }, color: "#ffd166" }
+    paths:
+      - { id: line, x: "s", y: "(-a*s-c)/b", range: [-3, 6], label: { fr: "d : a x + b y + c = 0", en: "d: a x + b y + c = 0" } }
+      - { id: circle, x: "1+2*cos(s)", y: "1+2*sin(s)", range: [0, 6.2832], dashed: true, label: { fr: "C : (x − 1)² + (y − 1)² = 4", en: "C: (x − 1)² + (y − 1)² = 4" } }
+    points:
+      - { id: omega, x: 1, y: 1, label: { fr: "Ω (1 ; 1), centre", en: "Ω (1 ; 1), centre" } }
+      - { id: pn, x: 3, y: 1, label: { fr: "N (3 ; 1), sur le cercle", en: "N (3 ; 1), on the circle" } }
+      - { id: pm, x: 0, y: "-c/b", label: { fr: "M (0 ; −c/b), sur d", en: "M (0 ; −c/b), on d" }, drag: true }
+    segments:
+      - { id: radius, from: omega, to: pn, dashed: true, label: { fr: "rayon = 2", en: "radius = 2" } }

@@ -1,0 +1,109 @@
+# Leçon rédigée — produit scalaire : u fixe de norme 4, v de norme 3 tournant avec le paramètre t, la lecture du produit
+# scalaire et de l'angle, le projeté orthogonal, l'orthogonalité à pi demi, puis le triangle A B C pour Al-Kashi.
+id: lesson.tool.dot_product
+nodeId: tool.dot_product
+depth: 1
+tools:
+  - id: vectors
+    kind: vectors
+    title: { fr: "Deux vecteurs et leur produit scalaire", en: "Two vectors and their dot product" }
+    view: { x: [-4, 6], y: [-2, 5] }
+    parameters:
+      - { id: t, label: { fr: "angle de v (radians)", en: "angle of v (radians)" }, min: 0, max: 3.1, step: 0.05, value: 1.0472 }
+    vectors:
+      - { id: u, x: 4, y: 0, label: { fr: "u", en: "u" }, components: true, drag: true }
+      - { id: v, x: "3*cos(t)", y: "3*sin(t)", label: { fr: "v", en: "v" }, color: "#ffd166" }
+      - { id: w, x: "3*cos(t)", y: 0, label: { fr: "projeté de v sur u", en: "projection of v onto u" }, color: "#8ce99a", hidden: true }
+    points:
+      - { id: pa, x: 0, y: 0, label: { fr: "A", en: "A" }, hidden: true }
+      - { id: pb, x: 4, y: 0, label: { fr: "B", en: "B" }, hidden: true }
+      - { id: pc, x: "3*cos(t)", y: "3*sin(t)", label: { fr: "C", en: "C" }, hidden: true }
+    segments:
+      - { id: ab, from: pa, to: pb, hidden: true, label: { fr: "AB", en: "AB" } }
+      - { id: ac, from: pa, to: pc, hidden: true, label: { fr: "AC", en: "AC" } }
+      - { id: bc, from: pb, to: pc, dashed: true, hidden: true, label: { fr: "BC", en: "BC" } }
+    dot: [u, v]
+steps:
+  - id: definition
+    title: { fr: "Un produit qui rend un nombre", en: "A product that returns a number" }
+    text:
+      fr: >-
+        Le produit scalaire de deux vecteurs est un nombre, et non un vecteur : c'est de là que vient son nom.
+        Il vaut le produit des deux normes par le cosinus de l'angle qu'ils forment.
+        Ici u mesure quatre, v mesure trois et l'angle vaut pi tiers, soit soixante degrés : le produit scalaire vaut quatre fois trois fois un demi, c'est-à-dire six.
+        Son signe suffit à lire la géométrie : positif pour un angle aigu, nul pour un angle droit, négatif pour un angle obtus.
+      en: >-
+        The dot product of two vectors is a number, not a vector: this is where its name comes from.
+        It equals the product of the two norms by the cosine of the angle between them.
+        Here u measures four, v measures three and the angle is pi over three, that is sixty degrees: the dot product is four times three times one half, that is six.
+        Its sign alone reads the geometry: positive for an acute angle, zero for a right angle, negative for an obtuse angle.
+    actions:
+      - { at: 0, set: { t: 1.0472 } }
+  - id: coordinates
+    title: { fr: "La formule des coordonnées et le projeté", en: "The coordinate formula and the projection" }
+    text:
+      fr: >-
+        Dans un repère orthonormé, le calcul devient élémentaire : on multiplie les abscisses entre elles, les ordonnées entre elles, et on additionne.
+        Ici u a pour coordonnées quatre et zéro, v environ 1,5 et 2,6 : le produit donne quatre fois 1,5 plus zéro fois 2,6, soit six à nouveau.
+        On peut aussi projeter v sur la droite portée par u : le produit scalaire est alors le produit de la longueur de u par la mesure algébrique de ce projeté, quatre fois 1,5.
+      en: >-
+        In an orthonormal frame, the computation becomes elementary: multiply the abscissae together, the ordinates together, and add.
+        Here u has coordinates four and zero, v about 1.5 and 2.6: the product gives four times 1.5 plus zero times 2.6, that is six again.
+        One may also project v onto the line carrying u: the dot product is then the product of the length of u by the signed measure of that projection, four times 1.5.
+    actions:
+      - { at: 2, show: [w] }
+  - id: orthogonality
+    title: { fr: "L'orthogonalité", en: "Orthogonality" }
+    text:
+      fr: >-
+        Faisons tourner v jusqu'à l'angle droit.
+        Le cosinus s'annule, donc le produit scalaire aussi : deux vecteurs non nuls sont orthogonaux si et seulement si leur produit scalaire est nul.
+        C'est le test le plus simple qui soit, puisqu'il suffit de vérifier que x fois x prime plus y fois y prime vaut zéro, sans mesurer aucun angle.
+        Au-delà de l'angle droit, le produit devient négatif et le projeté change de sens.
+      en: >-
+        Let us turn v to the right angle.
+        The cosine vanishes, so the dot product does too: two non-zero vectors are orthogonal if and only if their dot product is zero.
+        It is the simplest test there is, since it is enough to check that x times x prime plus y times y prime is zero, without measuring any angle.
+        Beyond the right angle, the product becomes negative and the projection reverses.
+    actions:
+      - { at: 0, set: { t: 1.5708 } }
+      - { at: 3, set: { t: 2.3 } }
+  - id: alkashi
+    title: { fr: "Le théorème d'Al-Kashi", en: "The law of cosines" }
+    text:
+      fr: >-
+        Plaçons le triangle A B C, avec A à l'origine, B au bout de u et C au bout de v.
+        En développant la norme au carré du vecteur B C, on obtient le théorème d'Al-Kashi : B C au carré égale A B au carré plus A C au carré moins deux fois A B fois A C fois le cosinus de l'angle en A, celui que forment les deux vecteurs.
+        Avec A B égal quatre, A C égal trois et un angle de pi tiers, on trouve seize plus neuf moins douze, soit treize, donc B C vaut environ 3,61.
+        Quand l'angle devient droit, le dernier terme disparaît et l'on retrouve exactement le théorème de Pythagore.
+      en: >-
+        Let us place the triangle A B C, with A at the origin, B at the tip of u and C at the tip of v.
+        Expanding the squared norm of the vector B C gives the law of cosines: B C squared equals A B squared plus A C squared minus twice A B times A C times the cosine of the angle at A, the one formed by the two vectors.
+        With A B equal to four, A C equal to three and an angle of pi over three, one finds sixteen plus nine minus twelve, that is thirteen, so B C is about 3.61.
+        When the angle becomes right, the last term disappears and one recovers exactly Pythagoras' theorem.
+    actions:
+      - { at: 0, hide: [w], show: [pa, pb, pc, ab, ac, bc], set: { t: 1.0472 } }
+      - { at: 3, set: { t: 1.5708 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de faire tourner v", en: "Your turn to turn v" }
+    text:
+      fr: >-
+        À vous. Faites varier l'angle t et lisez le produit scalaire changer de signe en passant par zéro à l'angle droit.
+        Glissez ensuite la pointe de u pour changer sa norme, et vérifiez que le produit scalaire est bien proportionnel à la longueur de chacun des deux vecteurs.
+      en: >-
+        Your turn. Vary the angle t and watch the dot product change sign, passing through zero at the right angle.
+        Then drag the tip of u to change its norm, and check that the dot product is indeed proportional to the length of each of the two vectors.
+    actions:
+      - { at: 0, hide: [pa, pb, pc, ab, ac, bc], show: [w], set: { t: 1.0472 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : un produit scalaire par les coordonnées, puis un angle retrouvé à partir du produit scalaire et des normes.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: a dot product from the coordinates, then an angle recovered from the dot product and the norms.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.dot_product.coordinates, exercise.dot_product.angle]

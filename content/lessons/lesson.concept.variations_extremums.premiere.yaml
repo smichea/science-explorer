@@ -1,0 +1,88 @@
+# Leçon rédigée — variations et extremums en Première (profondeur 2) : la cubique −x³ + 3x, le signe de sa dérivée, les tangentes horizontales aux extremums, avec le traceur (paramètre a).
+id: lesson.concept.variations_extremums.premiere
+nodeId: concept.variations_extremums
+depth: 2
+tools:
+  - id: plotter
+    kind: plotter
+    variable: x
+    view: { x: [-3, 3], y: [-5, 5] }
+    parameters:
+      - { id: a, label: { fr: "abscisse a", en: "abscissa a" }, min: -2.5, max: 2.5, step: 0.05, value: 0.5 }
+    input: true
+steps:
+  - id: derivative
+    title: { fr: "Une fonction et sa dérivée", en: "A function and its derivative" }
+    text:
+      fr: >-
+        Voici une fonction du troisième degré : f de x égale moins x cube plus 3 x.
+        En Seconde, on lisait ses variations sur la courbe.
+        En Première, on les calcule : la dérivée f prime de x égale moins 3 x carré plus 3, tracée en pointillés, est un trinôme dont on sait trouver le signe.
+      en: >-
+        Here is a function of the third degree: f of x equals minus x cubed plus 3 x.
+        In Grade 10, its variations were read on the curve.
+        In Grade 11, they are computed: the derivative f prime of x equals minus 3 x squared plus 3, drawn dashed, is a trinomial whose sign we know how to find.
+    actions:
+      - { at: 0, plot: { id: f, expr: "-x^3+3*x", label: { fr: "f(x) = −x³ + 3x", en: "f(x) = −x³ + 3x" } } }
+      - { at: 2, plot: { id: fp, expr: "-3*x^2+3", dashed: true, label: { fr: "f'(x) = −3x² + 3", en: "f'(x) = −3x² + 3" } } }
+  - id: sign
+    title: { fr: "Le signe de la dérivée", en: "The sign of the derivative" }
+    text:
+      fr: >-
+        Le signe de f prime dicte le sens de variation.
+        Là où f prime est positive, entre moins 1 et 1, la fonction f est croissante.
+        Là où f prime est négative, à gauche de moins 1 et à droite de 1, elle est décroissante.
+        Le tableau de variations se dresse donc à partir du tableau de signes de la dérivée.
+      en: >-
+        The sign of f prime dictates the direction of variation.
+        Where f prime is positive, between minus 1 and 1, the function f is increasing.
+        Where f prime is negative, to the left of minus 1 and to the right of 1, it is decreasing.
+        The variation table is therefore drawn up from the sign table of the derivative.
+    actions:
+      - { at: 1, interval: { id: inc, on: f, from: -1, to: 1, label: { fr: "f' > 0 : f croissante", en: "f' > 0: f increasing" } } }
+      - { at: 2, interval: { id: dec1, on: f, from: -3, to: -1, label: { fr: "f' < 0 : f décroissante", en: "f' < 0: f decreasing" } } }
+      - { at: 2, interval: { id: dec2, on: f, from: 1, to: 3, label: { fr: "f' < 0 : f décroissante", en: "f' < 0: f decreasing" } } }
+  - id: extrema
+    title: { fr: "Les extremums locaux", en: "Local extrema" }
+    text:
+      fr: >-
+        Aux points où f prime s'annule en changeant de signe, la tangente est horizontale et f atteint un extremum local.
+        En moins 1, f passe de décroissante à croissante : c'est un minimum local, qui vaut moins 2.
+        En 1, elle passe de croissante à décroissante : c'est un maximum local, qui vaut 2.
+        Ces extremums sont seulement locaux : plus loin, la courbe descend plus bas et monte plus haut.
+      en: >-
+        At the points where f prime vanishes and changes sign, the tangent is horizontal and f reaches a local extremum.
+        At minus 1, f goes from decreasing to increasing: it is a local minimum, worth minus 2.
+        At 1, it goes from increasing to decreasing: it is a local maximum, worth 2.
+        These extrema are only local: farther away, the curve goes lower and rises higher.
+    actions:
+      - { at: 0, tangent: { id: tm, on: f, x: -1, label: { fr: "tangente horizontale", en: "horizontal tangent" } } }
+      - { at: 0, tangent: { id: tp, on: f, x: 1, label: { fr: "tangente horizontale", en: "horizontal tangent" } } }
+      - { at: 1, point: { id: pm, on: f, x: -1, guides: true, label: { fr: "minimum local −2", en: "local minimum −2" } } }
+      - { at: 2, point: { id: pp, on: f, x: 1, guides: true, label: { fr: "maximum local 2", en: "local maximum 2" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de lire la pente", en: "Your turn to read the slope" }
+    text:
+      fr: >-
+        À vous. Déplacez a : la tangente en a suit la courbe, et la pente affichée est f prime de a, lue aussi sur la courbe en pointillés.
+        Repérez les deux abscisses où la pente s'annule, puis tapez une autre fonction, par exemple x^3-3x^2+1, et dressez son tableau de variations.
+      en: >-
+        Your turn. Move a: the tangent at a follows the curve, and the displayed slope is f prime of a, also read on the dashed curve.
+        Spot the two abscissae where the slope vanishes, then type another function, for instance x^3-3x^2+1, and draw up its variation table.
+    actions:
+      - { at: 0, clear: true, plot: { id: f, expr: "-x^3+3*x", label: { fr: "f(x) = −x³ + 3x", en: "f(x) = −x³ + 3x" } } }
+      - { at: 0, plot: { id: fp, expr: "-3*x^2+3", dashed: true, label: { fr: "f'(x)", en: "f'(x)" } } }
+      - { at: 0, tangent: { id: ta, on: f, x: "a", label: { fr: "tangente en a", en: "tangent at a" } } }
+      - { at: 0, point: { id: pa, on: fp, x: "a", guides: true, label: { fr: "f'(a)", en: "f'(a)" } } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : l'abscisse d'un maximum local par le signe de la dérivée, puis un problème d'optimisation.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the abscissa of a local maximum from the sign of the derivative, then an optimisation problem.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.variations.derivative_sign, exercise.variations.extremum_value]

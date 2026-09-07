@@ -1,0 +1,49 @@
+# Puissance électrique — énergie dissipée par effet Joule dans un conducteur ohmique (réponse numérique)
+id: exercise.power.joule
+type: numeric
+nodeId: concept.electrical_power
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un conducteur ohmique de résistance $R = 22\ \Omega$ est parcouru par un courant d'intensité constante $I = 0{,}50\ \mathrm{A}$ pendant une durée $\Delta t = 3{,}0\ \mathrm{min}$.
+
+    Calculez l'énergie dissipée par effet Joule dans ce conducteur, en joules, avec deux chiffres significatifs.
+  en: |-
+    An ohmic conductor of resistance $R = 22\ \Omega$ carries a constant current of intensity $I = 0.50\ \mathrm{A}$ during a duration $\Delta t = 3.0\ \mathrm{min}$.
+
+    Compute the energy dissipated by the Joule effect in this conductor, in joules, with two significant figures.
+numeric:
+  value: 990
+  unit: "J"
+  tolerance: { kind: relative, value: 0.03 }
+  inputLabel: { fr: "E", en: "E" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Calculez d'abord la puissance dissipée, $P_J = R\,I^2$, puis multipliez-la par la durée : $E = P_J\,\Delta t$.
+      en: |-
+        First compute the dissipated power, $P_J = R\,I^2$, then multiply it by the duration: $E = P_J\,\Delta t$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La durée doit être en secondes pour obtenir des joules : $3{,}0\ \mathrm{min} = 180\ \mathrm{s}$.
+      en: |-
+        The duration must be in seconds to obtain joules: $3.0\ \mathrm{min} = 180\ \mathrm{s}$.
+solution:
+  fr: |-
+    La puissance dissipée par effet Joule vaut
+    $$P_J = R\,I^2 = 22 \times (0{,}50)^2 = 5{,}5\ \mathrm{W},$$
+    et l'énergie correspondante, pendant $\Delta t = 180\ \mathrm{s}$,
+    $$E = P_J\,\Delta t = 5{,}5 \times 180 = 9{,}9 \times 10^{2}\ \mathrm{J}.$$
+    Cette énergie n'est pas perdue : elle est intégralement transférée au conducteur et à son environnement sous forme thermique. Attention à l'intensité au carré : doubler le courant quadruple l'échauffement.
+  en: |-
+    The power dissipated by the Joule effect is
+    $$P_J = R\,I^2 = 22 \times (0.50)^2 = 5.5\ \mathrm{W},$$
+    and the corresponding energy, during $\Delta t = 180\ \mathrm{s}$,
+    $$E = P_J\,\Delta t = 5.5 \times 180 = 9.9 \times 10^{2}\ \mathrm{J}.$$
+    This energy is not lost: it is entirely transferred to the conductor and to its surroundings as heat. Beware of the squared current: doubling the current quadruples the heating.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

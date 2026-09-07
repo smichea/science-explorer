@@ -1,0 +1,88 @@
+id: curriculum.fr.premiere.physique_chimie
+country: FR
+stage: premiere
+subject: physics_chemistry
+title:
+  fr: "Physique-chimie — Première générale, enseignement de spécialité"
+  en: "Physics and chemistry — Grade 11 (Première), specialisation"
+version: "2026-reference"
+validFrom: "2019-09-01"
+validTo: null
+sourceReferences:
+  - title: "Programme de physique-chimie de première générale (spécialité), arrêté du 17-1-2019, BO spécial n°1 du 22 janvier 2019"
+    note: "to verify"
+items:
+  - id: mesure_incertitudes
+    title: { fr: Mesure et incertitudes, en: Measurement and uncertainties }
+    reference: "Mesure et incertitudes (partie transversale du programme)"
+    alignedNodes:
+      - { node: method.measurement, depth: 2 }
+  - id: interactions_champs
+    title: { fr: "Interactions fondamentales et notion de champ", en: "Fundamental interactions and the notion of field" }
+    reference: "Mouvement et interactions — Interactions fondamentales et introduction à la notion de champ"
+    alignedNodes:
+      - { node: law.coulomb, depth: 1 }
+      - { node: concept.field, depth: 1 }
+  - id: fluide_au_repos
+    title: { fr: "Description d'un fluide au repos", en: "Describing a fluid at rest" }
+    reference: "Mouvement et interactions — Description d'un fluide au repos"
+    alignedNodes:
+      - { node: law.fluid_statics, depth: 1 }
+  - id: mouvement_systeme
+    title: { fr: "Mouvement d'un système", en: "Motion of a system" }
+    reference: "Mouvement et interactions — Mouvement d'un système"
+    alignedNodes:
+      - { node: model.kinematics_point, depth: 2 }
+      - { node: law.newton_second, depth: 1 }
+  - id: energie_electrique
+    title: { fr: "Aspects énergétiques des phénomènes électriques", en: "Energy aspects of electrical phenomena" }
+    reference: "L'énergie : conversions et transferts — Aspects énergétiques des phénomènes électriques"
+    alignedNodes:
+      - { node: concept.electrical_power, depth: 1 }
+  - id: energie_mecanique
+    title: { fr: "Aspects énergétiques des phénomènes mécaniques", en: "Energy aspects of mechanical phenomena" }
+    reference: "L'énergie : conversions et transferts — Aspects énergétiques des phénomènes mécaniques"
+    alignedNodes:
+      - { node: concept.kinetic_energy_work, depth: 1 }
+      - { node: concept.mechanical_energy, depth: 1 }
+  - id: ondes_mecaniques
+    title: { fr: "Ondes mécaniques", en: "Mechanical waves" }
+    reference: "Ondes et signaux — Ondes mécaniques"
+    alignedNodes:
+      - { node: phenomenon.mechanical_wave, depth: 1 }
+  - id: lumiere_images_couleurs
+    title: { fr: "La lumière : images et couleurs, modèles ondulatoire et particulaire", en: "Light: images and colours, wave and particle models" }
+    reference: "Ondes et signaux — La lumière : images et couleurs, modèles ondulatoire et particulaire de la lumière"
+    alignedNodes:
+      - { node: phenomenon.colour, depth: 1 }
+      - { node: model.thin_lens, depth: 2 }
+      - { node: model.photon, depth: 1 }
+  - id: suivi_transformation
+    title:
+      fr: "Suivi de l'évolution d'un système, siège d'une transformation"
+      en: "Following the evolution of a system undergoing a transformation"
+    reference: "Constitution et transformations de la matière — Suivi de l'évolution d'un système, siège d'une transformation"
+    alignedNodes:
+      - { node: model.chemical_reaction, depth: 2 }
+      - { node: concept.concentration, depth: 2 }
+      - { node: method.titration, depth: 1 }
+      - { node: model.redox, depth: 1 }
+  - id: structure_entites
+    title:
+      fr: "De la structure des entités aux propriétés physiques de la matière"
+      en: "From the structure of chemical species to the physical properties of matter"
+    reference: "Constitution et transformations de la matière — De la structure des entités aux propriétés physiques de la matière"
+    alignedNodes:
+      - { node: model.lewis_structure, depth: 1 }
+      - { node: concept.cohesion_dissolution, depth: 1 }
+      - { node: model.organic_molecules, depth: 1 }
+      - { node: method.ir_spectroscopy, depth: 1 }
+  - id: synthese_combustion
+    title:
+      fr: "Propriétés physico-chimiques, synthèses et combustions de molécules organiques"
+      en: "Physico-chemical properties, syntheses and combustions of organic molecules"
+    reference: "Constitution et transformations de la matière — Propriétés physico-chimiques, synthèses et combustions de molécules organiques"
+    alignedNodes:
+      - { node: method.organic_synthesis, depth: 1 }
+      - { node: phenomenon.combustion, depth: 1 }
+

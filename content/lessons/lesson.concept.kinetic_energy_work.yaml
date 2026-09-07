@@ -1,0 +1,114 @@
+# Leçon narrée — énergie cinétique, travail d'une force et théorème de l'énergie cinétique : le produit scalaire F·AB (outil vecteurs), puis la chute libre et ses énergies (simulation).
+id: lesson.concept.kinetic_energy_work
+nodeId: concept.kinetic_energy_work
+depth: 1
+tools:
+  - id: work
+    kind: vectors
+    title: { fr: "Le travail, produit scalaire de la force et du déplacement", en: "Work, dot product of the force and the displacement" }
+    view: { x: [-3, 21], y: [-9, 13] }
+    parameters:
+      - { id: n, label: { fr: "valeur de la force F (N)", en: "value of the force F (N)" }, min: 0, max: 20, step: 1, value: 20 }
+      - { id: t, label: { fr: "angle de F avec le déplacement (°)", en: "angle of F with the displacement (°)" }, min: -180, max: 180, step: 5, value: 30 }
+      - { id: d, label: { fr: "longueur du déplacement AB (m)", en: "length of the displacement AB (m)" }, min: 1, max: 8, step: 0.5, value: 5 }
+    points:
+      - { id: pa, x: 0, y: 0, label: { fr: "A", en: "A" } }
+      - { id: pb, x: "d", y: 0, label: { fr: "B", en: "B" } }
+    vectors:
+      - { id: f, x: "n*cos(t*pi/180)", y: "n*sin(t*pi/180)", label: { fr: "F (N)", en: "F (N)" }, color: "#ffb347", components: true }
+      - { id: v, x: "d", y: 0, label: { fr: "AB (m)", en: "AB (m)" }, color: "#5ee6a8" }
+    dot: [f, v]
+  - id: fall
+    kind: simulation
+    title: { fr: "Chute libre et énergies", en: "Free fall and energies" }
+    simulationId: simulation.free_fall.basic
+steps:
+  - id: definition
+    title: { fr: "Le travail d'une force", en: "The work of a force" }
+    tool: work
+    text:
+      fr: >-
+        Un enfant tire un traîneau du point A au point B, sur 5 mètres, avec une corde qui fait un angle de 30 degrés avec l'horizontale.
+        La force vaut 20 newtons, mais seule sa composante horizontale accompagne le déplacement : c'est elle qui donne de l'énergie au traîneau.
+        Le travail de la force est le produit scalaire de la force par le déplacement, c'est-à-dire la valeur de la force multipliée par la longueur du déplacement et par le cosinus de l'angle.
+        Ici, 20 fois 5 fois cosinus de 30 degrés, soit 87 joules : le travail est une énergie, il se mesure en joules et non en newtons.
+      en: >-
+        A child pulls a sledge from the point A to the point B, over 5 metres, with a rope making an angle of 30 degrees with the horizontal.
+        The force is 20 newtons, but only its horizontal component accompanies the displacement: it is the one that gives energy to the sledge.
+        The work of the force is the dot product of the force by the displacement, that is, the value of the force multiplied by the length of the displacement and by the cosine of the angle.
+        Here, 20 times 5 times cosine of 30 degrees, that is 87 joules: work is an energy, it is measured in joules and not in newtons.
+    actions:
+      - { at: 0, set: { n: 20, t: 30, d: 5 } }
+  - id: sign
+    title: { fr: "Moteur, nul ou résistant", en: "Motive, zero or resistive" }
+    tool: work
+    text:
+      fr: >-
+        Le signe du travail se lit dans l'angle.
+        Tant que l'angle reste inférieur à 90 degrés, le cosinus est positif et le travail est moteur : la force apporte de l'énergie.
+        Redressons la force à la verticale, à 90 degrés : le produit scalaire s'annule, le travail est nul, et c'est le cas du poids et de la réaction du sol sur un déplacement horizontal.
+        Au-delà de 90 degrés, le cosinus devient négatif et le travail est résistant : c'est ce que font les frottements et le freinage, qui retirent de l'énergie au système.
+      en: >-
+        The sign of the work is read in the angle.
+        As long as the angle stays below 90 degrees, the cosine is positive and the work is motive: the force brings energy.
+        Let us straighten the force to the vertical, at 90 degrees: the dot product vanishes, the work is zero, and this is the case of the weight and of the reaction of the ground over a horizontal displacement.
+        Beyond 90 degrees, the cosine becomes negative and the work is resistive: this is what friction and braking do, taking energy away from the system.
+    actions:
+      - { at: 2, set: { t: 90 } }
+      - { at: 3, set: { t: 150 } }
+  - id: theorem
+    title: { fr: "Le théorème de l'énergie cinétique", en: "The work–energy theorem" }
+    tool: fall
+    text:
+      fr: >-
+        L'énergie cinétique d'un système vaut la moitié de la masse multipliée par le carré de la vitesse, en joules.
+        Le théorème de l'énergie cinétique dit que sa variation, entre deux instants, est égale à la somme des travaux des forces qui s'exercent sur le système.
+        Lâchons une bille d'un kilogramme de 10 mètres de haut : la seule force est le poids, qui travaille de m g h, soit 98 joules.
+        Partant du repos, la bille arrive donc au sol avec 98 joules d'énergie cinétique, c'est-à-dire à 14 mètres par seconde, quelle que soit sa masse.
+      en: >-
+        The kinetic energy of a system is half the mass multiplied by the square of the speed, in joules.
+        The work–energy theorem says that its change, between two instants, equals the sum of the works of the forces acting on the system.
+        Let us drop a ball of one kilogram from 10 metres high: the only force is the weight, whose work is m g h, that is 98 joules.
+        Starting from rest, the ball therefore reaches the ground with 98 joules of kinetic energy, that is at 14 metres per second, whatever its mass.
+    actions: []
+  - id: reading
+    title: { fr: "Lire les énergies pendant la chute", en: "Reading the energies during the fall" }
+    tool: fall
+    text:
+      fr: >-
+        Sur le graphique des énergies, la courbe rouge de l'énergie cinétique part de zéro et monte jusqu'à 98 joules au moment de l'impact.
+        La montée n'est pas droite : l'énergie cinétique varie comme le carré de la vitesse, donc comme le carré du temps de chute.
+        Activons maintenant le frottement fluide : la bille arrive plus lentement, et l'énergie cinétique finale est nettement plus faible.
+        La différence n'a pas disparu, elle a été emportée par le travail résistant du frottement, sous forme de chaleur.
+      en: >-
+        On the energy graph, the red curve of the kinetic energy starts from zero and rises to 98 joules at the moment of impact.
+        The rise is not straight: the kinetic energy varies as the square of the speed, therefore as the square of the falling time.
+        Let us now switch on the fluid drag: the ball arrives more slowly, and the final kinetic energy is clearly smaller.
+        The difference has not vanished, it has been carried away by the resistive work of the drag, as heat.
+    actions: []
+  - id: play
+    kind: play
+    title: { fr: "À vous de calculer un travail", en: "Your turn to compute a work" }
+    tool: work
+    text:
+      fr: >-
+        À vous.
+        Faites varier la valeur de la force, son angle et la longueur du déplacement, et lisez le produit scalaire : cherchez l'angle qui rend le travail exactement nul.
+        Passez ensuite à la simulation de chute libre et comparez l'énergie cinétique à l'arrivée avec et sans frottement.
+      en: >-
+        Your turn.
+        Vary the value of the force, its angle and the length of the displacement, and read the dot product: look for the angle that makes the work exactly zero.
+        Then switch to the free fall simulation and compare the kinetic energy on arrival with and without drag.
+    actions:
+      - { at: 0, set: { n: 20, t: 30, d: 5 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : le travail d'une force inclinée, puis une force de freinage obtenue par le théorème de l'énergie cinétique.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the work of an inclined force, then a braking force obtained through the work–energy theorem.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.kinetic.work, exercise.kinetic.theorem]

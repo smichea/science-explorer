@@ -1,0 +1,69 @@
+id: model.redox
+type: model
+world: world.chemistry
+region: region.chemistry.redox
+importance: 3
+tags: [lycee]
+title: { fr: "Oxydant, réducteur, couple, demi-équation, réaction d'oxydoréduction", en: "Oxidant, reductant, couple, half-equation, redox reaction" }
+shortPurpose:
+  fr: "Modéliser une transformation par un transfert d'électrons entre le réducteur d'un couple et l'oxydant d'un autre, et en écrire l'équation à partir des demi-équations électroniques."
+  en: "Model a transformation by a transfer of electrons between the reductant of one couple and the oxidant of another, and write its equation from the electronic half-equations."
+overview:
+  fr: >-
+    Une lame de zinc plongée dans une solution de sulfate de cuivre se couvre de cuivre et le bleu s'efface : des électrons sont passés du zinc aux ions cuivre. C'est une réaction d'oxydoréduction, un transfert d'électrons entre un réducteur, qui les cède, et un oxydant, qui les capte. Les demi-équations de chaque couple permettent d'écrire l'équation complète, et ce modèle explique aussi bien les piles et la corrosion que les combustions.
+  en: >-
+    A zinc plate dipped into a copper sulfate solution gets coated with copper and the blue fades away: electrons have passed from the zinc to the copper ions. This is a redox reaction, a transfer of electrons between a reductant, which gives them away, and an oxidant, which gains them. The half-equations of each couple make it possible to write the complete equation, and this model explains batteries and corrosion as well as combustions.
+aliases:
+  fr: ["oxydoréduction", "couple oxydant-réducteur", "demi-équation électronique", "transfert d'électrons", "oxydation et réduction"]
+  en: ["redox", "oxidant–reductant couple", "electronic half-equation", "electron transfer", "oxidation and reduction"]
+description:
+  fr: |
+    Un **oxydant** est une espèce chimique capable de capter un ou plusieurs électrons ; un **réducteur** est une espèce capable d'en céder. Un oxydant et un réducteur qui se transforment l'un en l'autre par un transfert d'électrons forment un **couple oxydant-réducteur**, noté $\mathrm{Ox/Red}$ et décrit par une **demi-équation électronique** $\mathrm{Ox} + n\,\mathrm{e^-} = \mathrm{Red}$ : $\mathrm{Cu^{2+}} + 2\,\mathrm{e^-} = \mathrm{Cu}$ pour le couple $\mathrm{Cu^{2+}/Cu}$, $\mathrm{Fe^{3+}} + \mathrm{e^-} = \mathrm{Fe^{2+}}$ pour $\mathrm{Fe^{3+}/Fe^{2+}}$, $2\,\mathrm{H^+} + 2\,\mathrm{e^-} = \mathrm{H_2}$ pour $\mathrm{H^+/H_2}$. Pour ajuster une demi-équation en solution aqueuse acide, on conserve l'élément principal, puis l'oxygène avec des molécules d'eau, l'hydrogène avec des ions $\mathrm{H^+}$, et enfin la charge avec des électrons : $\mathrm{MnO_4^-} + 8\,\mathrm{H^+} + 5\,\mathrm{e^-} = \mathrm{Mn^{2+}} + 4\,\mathrm{H_2O}$. Une **oxydation** est une perte d'électrons, une **réduction** un gain ; le signe égal rappelle qu'une demi-équation peut se lire dans les deux sens.
+
+    Une **réaction d'oxydoréduction** est un transfert d'électrons du réducteur d'un couple vers l'oxydant d'un autre couple. Les électrons ne s'accumulent pas en solution : ils ne figurent pas dans l'équation de réaction, que l'on obtient en combinant les deux demi-équations, multipliées si nécessaire pour que le nombre d'électrons cédés soit égal au nombre d'électrons captés. Une lame de zinc plongée dans une solution de sulfate de cuivre se recouvre de cuivre rouge tandis que le bleu s'estompe : $\mathrm{Zn} = \mathrm{Zn^{2+}} + 2\,\mathrm{e^-}$ et $\mathrm{Cu^{2+}} + 2\,\mathrm{e^-} = \mathrm{Cu}$ donnent $\mathrm{Zn} + \mathrm{Cu^{2+}} \to \mathrm{Zn^{2+}} + \mathrm{Cu}$ ; le zinc est le réducteur, oxydé en $\mathrm{Zn^{2+}}$, et $\mathrm{Cu^{2+}}$ est l'oxydant, réduit en cuivre. Avec les ions fer III, qui ne captent qu'un électron chacun, on multiplie leur demi-équation par deux : $\mathrm{Zn} + 2\,\mathrm{Fe^{3+}} \to \mathrm{Zn^{2+}} + 2\,\mathrm{Fe^{2+}}$.
+
+    Pour reconnaître une réaction d'oxydoréduction à partir de son équation, on cherche les deux couples : l'espèce qui cède des électrons, dont la charge augmente, est oxydée, celle qui les capte est l'oxydant. Le modèle rend compte de la corrosion, des piles et des accumulateurs, où les électrons circulent dans un circuit extérieur, de la respiration et des **combustions**, où le dioxygène est l'oxydant et le combustible le réducteur ; le tableau d'avancement s'applique à ces réactions comme à toutes les autres. Il ne dit pas dans quel sens le transfert est spontané, ni à quelle vitesse il se produit : ce sont des questions de Terminale. Deux pièges : confondre l'oxydant, une espèce, et l'oxydation, une transformation ; et oublier de compenser les électrons avant d'additionner les demi-équations.
+  en: |
+    An **oxidant** is a chemical species able to gain one or more electrons; a **reductant** is a species able to give some away. An oxidant and a reductant that turn into each other by a transfer of electrons form an **oxidant–reductant couple**, written $\mathrm{Ox/Red}$ and described by an **electronic half-equation** $\mathrm{Ox} + n\,\mathrm{e^-} = \mathrm{Red}$: $\mathrm{Cu^{2+}} + 2\,\mathrm{e^-} = \mathrm{Cu}$ for the couple $\mathrm{Cu^{2+}/Cu}$, $\mathrm{Fe^{3+}} + \mathrm{e^-} = \mathrm{Fe^{2+}}$ for $\mathrm{Fe^{3+}/Fe^{2+}}$, $2\,\mathrm{H^+} + 2\,\mathrm{e^-} = \mathrm{H_2}$ for $\mathrm{H^+/H_2}$. To balance a half-equation in acidic aqueous solution, one conserves the main element, then oxygen with water molecules, hydrogen with $\mathrm{H^+}$ ions, and finally the charge with electrons: $\mathrm{MnO_4^-} + 8\,\mathrm{H^+} + 5\,\mathrm{e^-} = \mathrm{Mn^{2+}} + 4\,\mathrm{H_2O}$. An **oxidation** is a loss of electrons, a **reduction** a gain; the equals sign recalls that a half-equation can be read both ways.
+
+    A **redox reaction** is a transfer of electrons from the reductant of one couple to the oxidant of another couple. Electrons do not accumulate in solution: they do not appear in the reaction equation, which is obtained by combining the two half-equations, multiplied if necessary so that the number of electrons given equals the number of electrons gained. A zinc plate dipped into a copper sulfate solution gets coated with red copper while the blue fades: $\mathrm{Zn} = \mathrm{Zn^{2+}} + 2\,\mathrm{e^-}$ and $\mathrm{Cu^{2+}} + 2\,\mathrm{e^-} = \mathrm{Cu}$ give $\mathrm{Zn} + \mathrm{Cu^{2+}} \to \mathrm{Zn^{2+}} + \mathrm{Cu}$; zinc is the reductant, oxidised into $\mathrm{Zn^{2+}}$, and $\mathrm{Cu^{2+}}$ is the oxidant, reduced into copper. With iron III ions, which each gain only one electron, their half-equation is multiplied by two: $\mathrm{Zn} + 2\,\mathrm{Fe^{3+}} \to \mathrm{Zn^{2+}} + 2\,\mathrm{Fe^{2+}}$.
+
+    To recognise a redox reaction from its equation, one looks for the two couples: the species that gives electrons away, whose charge increases, is oxidised, the one that gains them is the oxidant. The model accounts for corrosion, for batteries and accumulators, where the electrons flow through an external circuit, for respiration and for **combustions**, where oxygen is the oxidant and the fuel the reductant; the extent table applies to these reactions as to all others. It does not say in which direction the transfer is spontaneous, nor how fast it takes place: those are questions for Grade 12. Two traps: confusing the oxidant, a species, with the oxidation, a transformation; and forgetting to balance the electrons before adding the half-equations.
+model:
+  assumptions:
+    fr:
+      - "Une réaction d'oxydoréduction est un transfert d'électrons du réducteur d'un couple vers l'oxydant d'un autre couple."
+      - "Chaque couple Ox/Red est décrit par une demi-équation électronique Ox + n e⁻ = Red, ajustée avec des ions H⁺ et des molécules d'eau en solution aqueuse acide."
+      - "Les électrons échangés ne s'accumulent pas : l'équation de réaction combine les demi-équations de façon que les électrons cédés et captés se compensent."
+      - "La transformation est modélisée par une réaction unique, supposée totale, à laquelle s'applique le tableau d'avancement."
+    en:
+      - "A redox reaction is a transfer of electrons from the reductant of one couple to the oxidant of another couple."
+      - "Each Ox/Red couple is described by an electronic half-equation Ox + n e⁻ = Red, balanced with H⁺ ions and water molecules in acidic aqueous solution."
+      - "The electrons exchanged do not accumulate: the reaction equation combines the half-equations so that the electrons given and gained cancel out."
+      - "The transformation is modelled by a single reaction, assumed complete, to which the extent table applies."
+  limits:
+    fr:
+      - "Le modèle ne dit pas dans quel sens un transfert est spontané ni s'il a lieu : la comparaison des couples (potentiels) vient en Terminale."
+      - "Il ne dit rien de la vitesse du transfert, qui peut être quasi nulle malgré une réaction possible."
+      - "En milieu basique, ou pour des couples complexes, l'ajustement demande des règles supplémentaires (ions HO⁻)."
+      - "Entre espèces covalentes, comme dans une combustion, les électrons ne sont pas transférés sous forme d'ions : le modèle reste un bilan, pas une description du mécanisme."
+    en:
+      - "The model does not say in which direction a transfer is spontaneous nor whether it takes place: the comparison of couples (potentials) comes in Grade 12."
+      - "It says nothing about the rate of the transfer, which may be almost zero even though a reaction is possible."
+      - "In basic medium, or for complex couples, balancing requires extra rules (HO⁻ ions)."
+      - "Between covalent species, as in a combustion, the electrons are not transferred as ions: the model remains a balance, not a description of the mechanism."
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "définir un oxydant, un réducteur et un couple oxydant-réducteur, et identifier une oxydation et une réduction comme une perte et un gain d'électrons"
+        - "établir la demi-équation électronique d'un couple, y compris en solution aqueuse acide avec des ions H⁺ et des molécules d'eau"
+        - "combiner deux demi-équations pour établir l'équation d'une réaction d'oxydoréduction, en compensant les électrons échangés"
+        - "identifier, à partir de son équation, une réaction d'oxydoréduction, l'oxydant et le réducteur qui réagissent et les couples mis en jeu"
+      en:
+        - "define an oxidant, a reductant and an oxidant–reductant couple, and identify an oxidation and a reduction as a loss and a gain of electrons"
+        - "establish the electronic half-equation of a couple, including in acidic aqueous solution with H⁺ ions and water molecules"
+        - "combine two half-equations to establish the equation of a redox reaction, balancing the electrons exchanged"
+        - "identify, from its equation, a redox reaction, the oxidant and the reductant that react and the couples involved"

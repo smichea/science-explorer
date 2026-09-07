@@ -1,0 +1,55 @@
+# Suites arithmétiques et géométriques — le terme de rang 10 d'une suite géométrique de premier terme 5 et de raison 2 (réponse numérique)
+id: exercise.sequences.geometric_term
+type: numeric
+nodeId: tool.arithmetic_geometric_sequences
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une colonie de bactéries double toutes les heures. À l'instant initial elle compte $5$ milliers de bactéries, et l'on note $u_n$ son effectif, en milliers, au bout de $n$ heures.
+
+    La suite $(u_n)$ est géométrique de premier terme $u_0 = 5$ et de raison $q = 2$. Calculez $u_{10}$, en milliers de bactéries.
+  en: |-
+    A colony of bacteria doubles every hour. At the initial instant it contains $5$ thousand bacteria, and $u_n$ denotes its size, in thousands, after $n$ hours.
+
+    The sequence $(u_n)$ is geometric with first term $u_0 = 5$ and ratio $q = 2$. Compute $u_{10}$, in thousands of bacteria.
+numeric:
+  value: 5120
+  tolerance: { kind: absolute, value: 0.5 }
+  inputLabel: { fr: "u(10) en milliers", en: "u(10) in thousands" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le terme général d'une suite géométrique est $u_n = u_0 \times q^{\,n}$ : nul besoin de dérouler les dix heures une par une.
+      en: |-
+        The general term of a geometric sequence is $u_n = u_0 \times q^{\,n}$: there is no need to unroll the ten hours one by one.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $u_{10} = 5 \times 2^{10}$, et $2^{10} = 1024$.
+      en: |-
+        $u_{10} = 5 \times 2^{10}$, and $2^{10} = 1024$.
+solution:
+  fr: |-
+    La suite est géométrique de raison $q = 2$, donc son terme général est $u_n = u_0\,q^{\,n} = 5 \times 2^{\,n}$. Au bout de dix heures :
+    $$u_{10} = 5 \times 2^{10} = 5 \times 1024 = 5120.$$
+    La colonie compte donc $5\,120$ milliers de bactéries, soit un peu plus de cinq millions.
+
+    **Interprétation.** En dix heures l'effectif a été multiplié par mille : c'est le propre d'une croissance géométrique, dont l'emballement n'a rien de comparable à une croissance arithmétique. Si la colonie avait au contraire gagné $5$ milliers de bactéries par heure — une suite arithmétique de raison $5$ —, elle n'en compterait que $5 + 10 \times 5 = 55$ milliers.
+  en: |-
+    The sequence is geometric with ratio $q = 2$, so its general term is $u_n = u_0\,q^{\,n} = 5 \times 2^{\,n}$. After ten hours:
+    $$u_{10} = 5 \times 2^{10} = 5 \times 1024 = 5120.$$
+    The colony therefore contains $5{,}120$ thousand bacteria, a little over five million.
+
+    **Interpretation.** In ten hours the population has been multiplied by a thousand: this is the mark of geometric growth, whose runaway has nothing comparable in arithmetic growth. Had the colony instead gained $5$ thousand bacteria per hour — an arithmetic sequence of common difference $5$ — it would only contain $5 + 10 \times 5 = 55$ thousand.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 2
+  linkedConcepts: 2
+  transfer: 2
+  autonomy: 2

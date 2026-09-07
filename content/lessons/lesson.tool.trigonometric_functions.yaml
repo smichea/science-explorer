@@ -1,0 +1,116 @@
+# Leçon rédigée — trigonométrie : l'enroulement de la droite numérique sur le cercle (paramètre a = l'angle en radians),
+# les angles remarquables, les symétries pour cos(−x) et cos(π − x), puis les deux courbes sur le traceur.
+id: lesson.tool.trigonometric_functions
+nodeId: tool.trigonometric_functions
+depth: 1
+tools:
+  - id: circle
+    kind: unit_circle
+    title: { fr: "Le cercle trigonométrique", en: "The unit circle" }
+    parameters:
+      - { id: a, label: { fr: "angle a en radians", en: "angle a in radians" }, min: -6.2832, max: 6.2832, step: 0.0873, value: 1.0472 }
+    angle: "a"
+    degrees: false
+    marks: true
+    curves: true
+  - id: plotter
+    kind: plotter
+    title: { fr: "Les courbes du cosinus et du sinus", en: "The cosine and sine curves" }
+    variable: x
+    view: { x: [-6.3, 6.3], y: [-1.6, 1.6] }
+    input: true
+steps:
+  - id: winding
+    title: { fr: "Enrouler la droite des nombres", en: "Winding the number line" }
+    tool: circle
+    text:
+      fr: >-
+        Le cercle trigonométrique a pour centre l'origine et pour rayon un, et il est orienté dans le sens inverse des aiguilles d'une montre.
+        On enroule la droite des nombres autour de lui : à chaque réel correspond un point du cercle, atteint en parcourant un arc de cette longueur depuis le point de coordonnées un et zéro.
+        C'est la définition du radian : un angle d'un radian intercepte un arc de longueur un, le tour complet vaut deux pi, soit trois cent soixante degrés.
+        Le point affiché correspond à pi tiers, environ 1,05 radian, c'est-à-dire soixante degrés.
+      en: >-
+        The unit circle has the origin as its centre and one as its radius, and it is oriented anticlockwise.
+        The number line is wound around it: to every real number corresponds a point of the circle, reached by travelling an arc of that length from the point with coordinates one and zero.
+        This is the definition of the radian: an angle of one radian intercepts an arc of length one, the full turn is two pi, that is three hundred and sixty degrees.
+        The point displayed corresponds to pi over three, about 1.05 radian, that is sixty degrees.
+    actions:
+      - { at: 0, set: { a: 0 } }
+      - { at: 3, set: { a: 1.0472 } }
+  - id: values
+    title: { fr: "Cosinus, sinus et angles remarquables", en: "Cosine, sine and remarkable angles" }
+    tool: circle
+    text:
+      fr: >-
+        Le cosinus de x est l'abscisse de ce point, et le sinus son ordonnée.
+        Comme le point reste sur le cercle, les deux nombres restent entre moins un et un, et le théorème de Pythagore donne la relation cosinus carré plus sinus carré égale un.
+        Pour pi quart, les deux coordonnées sont égales et valent racine de deux sur deux, environ 0,71.
+        Pour pi demi, le point est en haut du cercle : le cosinus s'annule et le sinus vaut un.
+      en: >-
+        The cosine of x is the abscissa of that point, and the sine its ordinate.
+        Since the point stays on the circle, both numbers stay between minus one and one, and Pythagoras' theorem gives the relation cosine squared plus sine squared equals one.
+        For pi over four, the two coordinates are equal and worth the square root of two over two, about 0.71.
+        For pi over two, the point is at the top of the circle: the cosine vanishes and the sine equals one.
+    actions:
+      - { at: 2, set: { a: 0.7854 } }
+      - { at: 3, set: { a: 1.5708 } }
+  - id: symmetries
+    title: { fr: "Les symétries du cercle", en: "The symmetries of the circle" }
+    tool: circle
+    text:
+      fr: >-
+        Les symétries du cercle donnent les formules sans rien apprendre par cœur.
+        Le point de moins x est le symétrique de celui de x par rapport à l'axe horizontal : le cosinus ne change pas, le sinus change de signe.
+        Le point de pi moins x est le symétrique par rapport à l'axe vertical : le sinus ne change pas, le cosinus change de signe.
+        Ainsi le cosinus de deux pi tiers vaut moins un demi, l'opposé du cosinus de pi tiers, tandis que les deux sinus sont égaux.
+      en: >-
+        The symmetries of the circle give the formulas without learning anything by heart.
+        The point of minus x is the mirror image of that of x across the horizontal axis: the cosine does not change, the sine changes sign.
+        The point of pi minus x is the mirror image across the vertical axis: the sine does not change, the cosine changes sign.
+        Thus the cosine of two pi over three is minus one half, the opposite of the cosine of pi over three, while the two sines are equal.
+    actions:
+      - { at: 0, set: { a: 1.0472 } }
+      - { at: 1, set: { a: -1.0472 } }
+      - { at: 2, set: { a: 2.0944 } }
+  - id: curves
+    title: { fr: "Les deux courbes", en: "The two curves" }
+    tool: plotter
+    text:
+      fr: >-
+        Reportons ces valeurs dans un repère, en portant x en abscisse et son cosinus ou son sinus en ordonnée.
+        La courbe du cosinus part de un et ondule entre moins un et un ; celle du sinus part de zéro et fait la même onde, décalée de pi demi.
+        Comme le point revient au même endroit après un tour, les deux courbes se répètent à l'identique tous les deux pi : elles sont périodiques.
+        C'est cette répétition qui décrit une corde qui vibre, une tension alternative ou le retour des saisons.
+      en: >-
+        Let us carry these values into a coordinate system, with x on the horizontal axis and its cosine or sine on the vertical one.
+        The cosine curve starts at one and waves between minus one and one; the sine curve starts at zero and makes the same wave, shifted by pi over two.
+        Since the point returns to the same place after one turn, both curves repeat identically every two pi: they are periodic.
+        It is this repetition that describes a vibrating string, an alternating voltage or the return of the seasons.
+    actions:
+      - { at: 0, plot: { id: cosine, expr: "cos(x)", label: { fr: "cos x", en: "cos x" } } }
+      - { at: 1, plot: { id: sine, expr: "sin(x)", dashed: true, label: { fr: "sin x", en: "sin x" } } }
+      - { at: 2, interval: { id: period, on: cosine, from: 0, to: 6.2832, label: { fr: "une période 2π", en: "one period 2π" } } }
+  - id: play
+    kind: play
+    tool: circle
+    title: { fr: "À vous de tourner autour du cercle", en: "Your turn to travel around the circle" }
+    text:
+      fr: >-
+        À vous. Déplacez le point sur le cercle, ou faites varier l'angle a, et lisez le cosinus et le sinus qui changent en même temps que les deux courbes.
+        Cherchez les quatre positions où le cosinus vaut zéro ou plus ou moins un, puis vérifiez qu'un tour complet de deux pi ramène exactement aux mêmes valeurs.
+      en: >-
+        Your turn. Drag the point on the circle, or vary the angle a, and read the cosine and the sine changing along with the two curves.
+        Look for the four positions where the cosine is zero or plus or minus one, then check that a full turn of two pi brings back exactly the same values.
+    actions:
+      - { at: 0, set: { a: 1.0472 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : le cosinus d'un angle obtenu par symétrie, puis une conversion de degrés en radians.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the cosine of an angle obtained by symmetry, then a conversion from degrees to radians.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.trigonometry.cosine_value, exercise.trigonometry.radian_measure]

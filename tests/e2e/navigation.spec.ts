@@ -1,4 +1,11 @@
-import { createExplorer, expect, expectNoHorizontalScroll, openHudControls, test } from './helpers';
+import {
+  createExplorer,
+  expect,
+  expectNoHorizontalScroll,
+  openHudControls,
+  openMap,
+  test,
+} from './helpers';
 
 test.describe('universe navigation', () => {
   test.beforeEach(async ({ page }) => {
@@ -68,12 +75,38 @@ test.describe('universe navigation', () => {
     await expect(page).toHaveURL(/filter=mp/);
   });
 
+  test('the map names what it can read, and the rest on demand', async ({ page }) => {
+    await openMap(page);
+    const map = page.getByTestId('atlas-2d');
+    const names = map.locator('.label--node');
+    // The whole universe: a handful of destinations named, not the eighty-eight of the atlas.
+    const wide = await names.count();
+    expect(wide).toBeGreaterThan(0);
+    expect(wide).toBeLessThanOrEqual(20);
+    // The three worlds keep their name, whatever the crowd.
+    await expect(map.locator('.label--world')).toHaveCount(3);
+    // Zooming in names more of them: fewer destinations compete for the same space.
+    for (let i = 0; i < 3; i++) await map.getByRole('button', { name: '+' }).click();
+    await expect
+      .poll(async () => (await names.count()) + (await map.locator('.label--region').count()))
+      .toBeGreaterThan(0);
+    await map.getByRole('button', { name: /Réinitialiser|Reset/ }).click();
+    // A destination the map could not name says it under the pointer.
+    const silent = map
+      .locator('a[data-node-id]')
+      .filter({ hasNot: page.locator('text') })
+      .first();
+    const id = await silent.getAttribute('data-node-id');
+    await silent.hover();
+    await expect(map.locator(`a[data-node-id="${id}"] text`)).toHaveCount(1);
+  });
+
   test('worlds and regions have their own accessible pages', async ({ page }) => {
     await page.goto('world/world.physics');
     await expect(page.getByTestId('world-panel')).toContainText('Physique');
     await page.goto('region/region.chemistry.kinetics');
     await expect(page.getByTestId('region-panel')).toContainText('Cinétique');
-    await page.goto('region/region.physics.quantum');
+    await page.goto('region/region.physics.oscillations');
     await expect(page.getByTestId('region-panel')).toContainText(/pas encore de destination/);
   });
 });

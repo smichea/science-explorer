@@ -1,0 +1,34 @@
+# Leçon — puissance et énergie électriques : la caractéristique U = E − r I et la courbe de puissance (traceur), puis l'ajustement d'une caractéristique mesurée (outil d'ajustement).
+id: lesson.concept.electrical_power
+nodeId: concept.electrical_power
+depth: 1
+tools:
+  - id: characteristic
+    kind: plotter
+    title: { fr: "Caractéristique et puissance d'une source réelle", en: "Characteristic and power of a real source" }
+    variable: x
+    view: { x: [0, 3.2], y: [-0.5, 5.5] }
+    input: false
+    parameters:
+      - { id: g, label: { fr: "force électromotrice E (V)", en: "electromotive force E (V)" }, min: 1.5, max: 6, step: 0.5, value: 4.5 }
+      - { id: r, label: { fr: "résistance interne r (Ω)", en: "internal resistance r (Ω)" }, min: 0.5, max: 3, step: 0.5, value: 1.5 }
+    initial:
+      - { at: 0, view: { labels: { x: "I (A)", y: "U (V) et P (W)" } },
+          plot: { id: u, expr: "g-r*x", label: { fr: "U = E − r I  (V)", en: "U = E − r I  (V)" } } }
+      - { at: 0, plot: { id: p, expr: "(g-r*x)*x", label: { fr: "P = U I  (W)", en: "P = U I  (W)" }, color: "#ffb347" } }
+      - { at: 0, plot: { id: j, expr: "r*x*x", label: { fr: "P dissipée dans r  (W)", en: "P dissipated in r  (W)" }, color: "#ff8fab", dashed: true } }
+      - { at: 0, point: { id: work, on: u, x: 1, guides: true, label: { fr: "U = 3,0 V pour I = 1,0 A", en: "U = 3.0 V for I = 1.0 A" } } }
+  - id: source
+    kind: fit
+    title: { fr: "Une caractéristique mesurée", en: "A measured characteristic" }
+    view: { x: [0, 1.6], y: [0, 5.5] }
+    labels: { x: "I (A)", y: "U (V)" }
+    parameters:
+      - { id: g, label: { fr: "force électromotrice E (V)", en: "electromotive force E (V)" }, min: 3, max: 6, step: 0.1, value: 4 }
+      - { id: r, label: { fr: "résistance interne r (Ω)", en: "internal resistance r (Ω)" }, min: 0, max: 3, step: 0.1, value: 0.5 }
+    generator: { expr: "4.5-1.5*x", noise: 0.08, count: 8, from: 0.1, to: 1.4, seed: 11 }
+    models:
+      - { id: real, expr: "g-r*x", label: { fr: "source réelle : U = E − r I", en: "real source: U = E − r I" } }
+      - { id: ideal, expr: "g", label: { fr: "source idéale : U = E", en: "ideal source: U = E" } }
+    target: 1.2
+    measure: true

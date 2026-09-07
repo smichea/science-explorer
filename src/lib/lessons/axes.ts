@@ -1,3 +1,5 @@
+import { superscript } from '../domain/lessonTools';
+
 /** Shared SVG scales for the lesson tools: a view in data units mapped onto a fixed canvas. */
 export interface Scales {
   W: number;
@@ -86,4 +88,18 @@ export function gaussian(random: () => number, sigma: number): number {
   let sum = 0;
   for (let i = 0; i < 6; i++) sum += random();
   return (sum - 3) * sigma;
+}
+
+/** Formats a physical value: plain between 10⁻³ and 10⁴ (and zero), `8.99 × 10⁹` beyond. */
+export function fmtSci(value: number, locale: string, digits = 2): string {
+  if (!Number.isFinite(value)) return '—';
+  const abs = Math.abs(value);
+  if (abs === 0 || (abs >= 1e-3 && abs < 1e4)) return fmt(value, locale, digits);
+  let exponent = Math.floor(Math.log10(abs));
+  let mantissa = value / 10 ** exponent;
+  if (Math.abs(Number(mantissa.toFixed(digits))) >= 10) {
+    exponent += 1;
+    mantissa /= 10;
+  }
+  return `${fmt(mantissa, locale, digits)} × 10${superscript(exponent)}`;
 }

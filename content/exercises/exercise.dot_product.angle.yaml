@@ -1,0 +1,56 @@
+# Produit scalaire — retrouver l'angle de deux vecteurs à partir du produit scalaire et des normes (réponse numérique en degrés)
+id: exercise.dot_product.angle
+type: numeric
+nodeId: tool.dot_product
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Deux vecteurs $\vec u$ et $\vec v$ vérifient $\|\vec u\| = 4$, $\|\vec v\| = 3$ et $\vec u \cdot \vec v = 6$.
+
+    Déterminez la mesure de l'angle $\theta$ qu'ils forment, en **degrés**.
+  en: |-
+    Two vectors $\vec u$ and $\vec v$ satisfy $\|\vec u\| = 4$, $\|\vec v\| = 3$ and $\vec u \cdot \vec v = 6$.
+
+    Determine the measure of the angle $\theta$ between them, in **degrees**.
+numeric:
+  value: 60
+  unit: "°"
+  tolerance: { kind: absolute, value: 0.5 }
+  inputLabel: { fr: "angle θ", en: "angle θ" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La définition du produit scalaire avec l'angle est $\vec u \cdot \vec v = \|\vec u\| \times \|\vec v\| \times \cos\theta$ : isolez $\cos\theta$.
+      en: |-
+        The definition of the dot product with the angle is $\vec u \cdot \vec v = \|\vec u\| \times \|\vec v\| \times \cos\theta$: isolate $\cos\theta$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\cos\theta = \dfrac{6}{4 \times 3} = \dfrac12$. Quel angle remarquable a pour cosinus un demi ?
+      en: |-
+        $\cos\theta = \dfrac{6}{4 \times 3} = \dfrac12$. Which remarkable angle has cosine one half?
+solution:
+  fr: |-
+    On part de la définition $\vec u \cdot \vec v = \|\vec u\|\,\|\vec v\|\cos\theta$ et on isole le cosinus :
+    $$\cos\theta = \frac{\vec u \cdot \vec v}{\|\vec u\| \times \|\vec v\|} = \frac{6}{4 \times 3} = \frac12.$$
+    L'angle de deux vecteurs étant compris entre $0$ et $\pi$, la seule solution est $\theta = \dfrac{\pi}{3}$, soit $60°$.
+
+    **Interprétation.** Le produit scalaire relie une information de longueur à une information d'angle : connaissant deux des trois quantités, on obtient la troisième. Le signe positif annonçait déjà un angle aigu. Si le produit scalaire avait valu $0$, l'angle aurait été droit ; s'il avait valu $-6$, on aurait trouvé $120°$. Ce même calcul, appliqué à une force et à un déplacement, donne la part de la force qui travaille réellement.
+  en: |-
+    Start from the definition $\vec u \cdot \vec v = \|\vec u\|\,\|\vec v\|\cos\theta$ and isolate the cosine:
+    $$\cos\theta = \frac{\vec u \cdot \vec v}{\|\vec u\| \times \|\vec v\|} = \frac{6}{4 \times 3} = \frac12.$$
+    Since the angle between two vectors lies between $0$ and $\pi$, the only solution is $\theta = \dfrac{\pi}{3}$, that is $60°$.
+
+    **Interpretation.** The dot product links length information to angle information: knowing two of the three quantities gives the third. The positive sign already announced an acute angle. Had the dot product been $0$, the angle would have been right; had it been $-6$, one would have found $120°$. This same computation, applied to a force and a displacement, gives the part of the force that really does work.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 3
+  transfer: 2
+  autonomy: 2

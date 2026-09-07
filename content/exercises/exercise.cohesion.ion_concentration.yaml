@@ -1,0 +1,55 @@
+# Leçon cohésion et dissolution — concentration en ions chlorure d'une solution de chlorure de fer III (réponse numérique)
+id: exercise.cohesion.ion_concentration
+type: numeric
+nodeId: concept.cohesion_dissolution
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On dissout $0{,}050\ \mathrm{mol}$ de chlorure de fer III $\mathrm{FeCl_3}$ dans de l'eau, et l'on complète à $V = 500\ \mathrm{mL}$ de solution. La dissolution est totale.
+
+    Écrivez l'équation de dissolution, puis donnez la concentration en quantité de matière des ions chlorure $[\mathrm{Cl^-}]$, en $\mathrm{mol/L}$.
+  en: |-
+    $0.050\ \mathrm{mol}$ of iron III chloride $\mathrm{FeCl_3}$ is dissolved in water, and the solution is filled up to $V = 500\ \mathrm{mL}$. The dissolution is complete.
+
+    Write the dissolution equation, then give the concentration in amount of substance of the chloride ions $[\mathrm{Cl^-}]$, in $\mathrm{mol/L}$.
+numeric:
+  value: 0.3
+  unit: "mol/L"
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "[Cl⁻]", en: "[Cl⁻]" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        L'équation de dissolution conserve les éléments et la charge : combien d'ions chlorure une seule formule $\mathrm{FeCl_3}$ libère-t-elle ?
+      en: |-
+        The dissolution equation conserves the elements and the charge: how many chloride ions does a single $\mathrm{FeCl_3}$ formula release?
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La quantité d'ions chlorure vaut trois fois celle du solide dissous ; divisez ensuite par le volume, exprimé en litres.
+      en: |-
+        The amount of chloride ions is three times that of the dissolved solid; then divide by the volume, expressed in litres.
+solution:
+  fr: |-
+    Dans l'eau, solvant polaire, le solide ionique se dissocie, ses ions se solvatent puis se dispersent. L'équation de dissolution conserve les éléments et la charge :
+    $$\mathrm{FeCl_3(s)} \to \mathrm{Fe^{3+}(aq)} + 3\,\mathrm{Cl^-(aq)}.$$
+
+    Les nombres stœchiométriques donnent les quantités d'ions formées : $n(\mathrm{Fe^{3+}}) = 0{,}050\ \mathrm{mol}$ et $n(\mathrm{Cl^-}) = 3 \times 0{,}050 = 0{,}15\ \mathrm{mol}$. Avec $V = 500\ \mathrm{mL} = 0{,}500\ \mathrm{L}$ :
+    $$[\mathrm{Cl^-}] = \frac{n(\mathrm{Cl^-})}{V} = \frac{0{,}15}{0{,}500} = 0{,}30\ \mathrm{mol/L},$$
+    tandis que $[\mathrm{Fe^{3+}}] = \dfrac{0{,}050}{0{,}500} = 0{,}10\ \mathrm{mol/L}$.
+
+    On vérifie que la solution reste électriquement neutre : $3 \times [\mathrm{Fe^{3+}}] = 3 \times 0{,}10 = 0{,}30 = [\mathrm{Cl^-}]$. Le piège classique est d'oublier le $3$ de la formule et de répondre $0{,}10\ \mathrm{mol/L}$.
+  en: |-
+    In water, a polar solvent, the ionic solid dissociates, its ions get solvated then disperse. The dissolution equation conserves the elements and the charge:
+    $$\mathrm{FeCl_3(s)} \to \mathrm{Fe^{3+}(aq)} + 3\,\mathrm{Cl^-(aq)}.$$
+
+    The stoichiometric coefficients give the amounts of ions formed: $n(\mathrm{Fe^{3+}}) = 0.050\ \mathrm{mol}$ and $n(\mathrm{Cl^-}) = 3 \times 0.050 = 0.15\ \mathrm{mol}$. With $V = 500\ \mathrm{mL} = 0.500\ \mathrm{L}$:
+    $$[\mathrm{Cl^-}] = \frac{n(\mathrm{Cl^-})}{V} = \frac{0.15}{0.500} = 0.30\ \mathrm{mol/L},$$
+    while $[\mathrm{Fe^{3+}}] = \dfrac{0.050}{0.500} = 0.10\ \mathrm{mol/L}$.
+
+    One checks that the solution stays electrically neutral: $3 \times [\mathrm{Fe^{3+}}] = 3 \times 0.10 = 0.30 = [\mathrm{Cl^-}]$. The classic trap is to forget the $3$ of the formula and answer $0.10\ \mathrm{mol/L}$.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 3, transfer: 1, autonomy: 2 }

@@ -1,0 +1,114 @@
+# Leçon rédigée — probabilités conditionnelles : l'arbre pondéré d'un dépistage (2 % de malades, 99 % de vrais positifs,
+# 5 % de faux positifs), la probabilité totale, la remontée de l'arbre, puis un dé équilibré pour l'indépendance.
+id: lesson.concept.conditional_probability
+nodeId: concept.conditional_probability
+depth: 1
+tools:
+  - id: screening
+    kind: random
+    title: { fr: "L'arbre pondéré d'un dépistage", en: "The weighted tree of a screening test" }
+    mode: tree
+    seed: 11
+    tree:
+      first:
+        - { id: ill, label: { fr: "malade", en: "ill" }, p: 0.02 }
+        - { id: healthy, label: { fr: "non malade", en: "not ill" }, p: 0.98 }
+      second:
+        - { id: positive, label: { fr: "test positif", en: "positive test" } }
+        - { id: negative, label: { fr: "test négatif", en: "negative test" } }
+      given:
+        ill: [0.99, 0.01]
+        healthy: [0.05, 0.95]
+    event: { label: { fr: "test positif", en: "positive test" }, outcomes: ["positive"] }
+  - id: die
+    kind: random
+    title: { fr: "Un dé équilibré : pair et multiple de trois", en: "A fair die: even and multiple of three" }
+    experiment: die
+    sides: 6
+    event: { label: { fr: "multiple de 3", en: "multiple of 3" }, outcomes: ["3", "6"] }
+    mode: frequencies
+    seed: 5
+steps:
+  - id: conditioning
+    title: { fr: "Conditionner, c'est restreindre l'univers", en: "Conditioning means restricting the sample space" }
+    tool: screening
+    text:
+      fr: >-
+        Deux pour cent d'une population porte une maladie, et l'on dispose d'un test de dépistage.
+        Ce test est positif chez quatre-vingt-dix-neuf pour cent des malades : c'est une probabilité conditionnelle, la probabilité d'un test positif sachant que la personne est malade.
+        Conditionner, c'est restreindre l'univers aux seuls malades et y mesurer la part des tests positifs.
+        Chez les non-malades, le test est tout de même positif dans cinq pour cent des cas : ce sont les faux positifs.
+      en: >-
+        Two per cent of a population carries a disease, and a screening test is available.
+        This test is positive for ninety-nine per cent of the ill: that is a conditional probability, the probability of a positive test given that the person is ill.
+        Conditioning means restricting the sample space to the ill alone and measuring the share of positive tests inside it.
+        Among the healthy, the test is nevertheless positive in five per cent of cases: these are the false positives.
+    actions: []
+  - id: total
+    title: { fr: "L'arbre et la probabilité totale", en: "The tree and the total probability" }
+    tool: screening
+    text:
+      fr: >-
+        L'arbre range tout cela en deux étages.
+        Au premier niveau, malade ou non malade ; au second, test positif ou négatif, chaque branche portant une probabilité conditionnelle, et les branches issues d'un même nœud totalisant un.
+        La probabilité d'un chemin est le produit des probabilités rencontrées : zéro virgule zéro deux fois zéro virgule quatre-vingt-dix-neuf donne environ zéro virgule zéro deux.
+        Comme malade et non malade forment une partition, on additionne les deux chemins menant à un test positif : la probabilité totale d'un test positif vaut environ six virgule neuf pour cent.
+      en: >-
+        The tree arranges all this in two levels.
+        On the first level, ill or not ill; on the second, positive or negative test, each branch carrying a conditional probability, and the branches issued from one node totalling one.
+        The probability of a path is the product of the probabilities met along it: zero point zero two times zero point ninety-nine gives about zero point zero two.
+        Since ill and not ill form a partition, the two paths leading to a positive test are added: the total probability of a positive test is about six point nine per cent.
+    actions: []
+  - id: reverse
+    title: { fr: "Remonter l'arbre", en: "Climbing back up the tree" }
+    tool: screening
+    text:
+      fr: >-
+        Renversons maintenant la question : sachant que le test est positif, quelle est la probabilité d'être réellement malade ?
+        On divise la probabilité du chemin malade et positif par la probabilité totale d'un test positif.
+        Le résultat surprend : environ vingt-neuf pour cent seulement, alors que le test ne se trompe presque jamais.
+        C'est la rareté de la maladie qui domine, car les non-malades sont si nombreux que leurs cinq pour cent de faux positifs écrasent les vrais positifs.
+      en: >-
+        Let us now reverse the question: given that the test is positive, what is the probability of really being ill?
+        One divides the probability of the ill-and-positive path by the total probability of a positive test.
+        The result is surprising: only about twenty-nine per cent, although the test is almost never wrong.
+        It is the rarity of the disease that dominates, because the healthy are so numerous that their five per cent of false positives swamp the true positives.
+    actions: []
+  - id: independence
+    title: { fr: "L'indépendance", en: "Independence" }
+    tool: die
+    text:
+      fr: >-
+        Deux événements sont indépendants quand la probabilité de leur intersection est le produit de leurs probabilités.
+        Avec un dé équilibré, prenons l'événement nombre pair, de probabilité un demi, et l'événement multiple de trois, de probabilité un tiers.
+        Leur intersection est le seul six, de probabilité un sixième, exactement le produit d'un demi par un tiers : ils sont indépendants.
+        Savoir que le résultat est pair n'apprend donc rien sur le fait qu'il soit multiple de trois, et il ne faut surtout pas confondre indépendance et incompatibilité.
+      en: >-
+        Two events are independent when the probability of their intersection is the product of their probabilities.
+        With a fair die, take the event even number, of probability one half, and the event multiple of three, of probability one third.
+        Their intersection is the single six, of probability one sixth, exactly the product of one half by one third: they are independent.
+        Knowing that the result is even therefore teaches nothing about it being a multiple of three, and independence must never be confused with incompatibility.
+    actions: []
+  - id: play
+    kind: play
+    tool: screening
+    title: { fr: "À vous de tirer dans l'arbre", en: "Your turn to draw along the tree" }
+    text:
+      fr: >-
+        À vous. Tirez des personnes au hasard dans l'arbre et regardez les fréquences des quatre chemins s'approcher de leurs probabilités.
+        Comptez, parmi les tests positifs obtenus, ceux qui correspondent à un malade : la proportion se stabilise autour de vingt-neuf pour cent.
+      en: >-
+        Your turn. Draw people at random along the tree and watch the frequencies of the four paths approach their probabilities.
+        Among the positive tests obtained, count those corresponding to an ill person: the proportion settles around twenty-nine per cent.
+    actions: []
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : la probabilité d'être malade sachant que le test est positif, puis un test d'indépendance sur un dé.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the probability of being ill given a positive test, then an independence test on a die.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.conditional.tree_probability, exercise.conditional.independence]

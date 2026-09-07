@@ -68,6 +68,7 @@ import {
 } from '../src/lib/content-schema/index';
 import { GraphIndex } from '../src/lib/domain/graph';
 import { compileExpression } from '../src/lib/domain/answers';
+import { elementBySymbol } from '../src/lib/domain/lessonTools';
 import { computeLayout } from '../src/lib/domain/layout';
 import { speakableText, splitSentences } from '../src/lib/domain/speech';
 import { buildTour, prerequisiteInversions } from '../src/lib/domain/tour';
@@ -537,9 +538,12 @@ for (const { file, data } of curriculumFiles) {
   for (const item of data.items) {
     if (item.alignedNodes.length === 0)
       warn(`curriculum item ${data.id}/${item.id} is not aligned with any node`, file, item.id);
-    for (const a of item.alignedNodes)
-      if (!nodeById.has(a.node))
-        error(`curriculum item ${item.id}: unknown node ${a.node}`, file, item.id);
+    for (const a of item.alignedNodes) {
+      const target = nodeById.get(a.node);
+      if (!target) error(`curriculum item ${item.id}: unknown node ${a.node}`, file, item.id);
+      else if (target.depths.length && !target.depths.some((d) => d.depth === a.depth))
+        error(`curriculum item ${item.id}: ${a.node} has no depth ${a.depth}`, file, item.id);
+    }
   }
 }
 const pathIds = new Set(horizon.paths.map((p) => p.id));
@@ -720,6 +724,9 @@ for (const { file, data } of lessonFiles) {
         for (const id of tool.determinant ?? [])
           if (!tool.vectors.some((v) => v.id === id))
             error(`${where}: determinant of unknown vector ${id}`, file, data.id);
+        for (const id of tool.dot ?? [])
+          if (!tool.vectors.some((v) => v.id === id))
+            error(`${where}: dot product of unknown vector ${id}`, file, data.id);
         break;
       case 'slope_field':
         compiles(tool.equation, ['x', 'y', ...parameters], `${where}: equation`);
@@ -775,13 +782,64 @@ for (const { file, data } of lessonFiles) {
               ? tool.urn.map((b) => b.id)
               : Array.from({ length: tool.sides }, (_, i) => String(i + 1))
         );
+        if (tool.mode === 'tree' && !tool.tree)
+          error(`${where}: the tree mode needs a tree`, file, data.id);
+        let universe = outcomes;
+        if (tool.tree) {
+          const tree = tool.tree;
+          const total = tree.first.reduce((s, f) => s + f.p, 0);
+          if (Math.abs(total - 1) > 1e-6)
+            error(`${where}: the first-level probabilities sum to ${total}, not 1`, file, data.id);
+          const firstIds = new Set(tree.first.map((f) => f.id));
+          for (const f of tree.first) {
+            const row = tree.given[f.id];
+            if (!row) {
+              error(`${where}: no conditional probabilities given ${f.id}`, file, data.id);
+              continue;
+            }
+            if (row.length !== tree.second.length)
+              error(
+                `${where}: ${row.length} conditional probabilities given ${f.id} for ${tree.second.length} outcomes`,
+                file,
+                data.id
+              );
+            const sum = row.reduce((s, q) => s + q, 0);
+            if (Math.abs(sum - 1) > 1e-6)
+              error(
+                `${where}: the probabilities given ${f.id} sum to ${sum}, not 1`,
+                file,
+                data.id
+              );
+          }
+          for (const id of Object.keys(tree.given))
+            if (!firstIds.has(id))
+              error(
+                `${where}: conditional probabilities given unknown outcome ${id}`,
+                file,
+                data.id
+              );
+          if (tool.mode === 'tree') universe = new Set(tree.second.map((sec) => sec.id));
+        }
         for (const o of tool.event?.outcomes ?? [])
-          if (!outcomes.has(o))
+          if (!universe.has(o))
             error(
               `${where}: event outcome ${o} is not an outcome of the experiment`,
               file,
               data.id
             );
+        if (tool.variable) {
+          const tree = tool.tree;
+          const valued =
+            tool.mode === 'tree' && tree
+              ? new Set(tree.first.flatMap((f) => tree.second.map((sec) => `${f.id}_${sec.id}`)))
+              : outcomes;
+          for (const key of Object.keys(tool.variable.values))
+            if (!valued.has(key))
+              error(`${where}: the variable values an unknown outcome ${key}`, file, data.id);
+          for (const o of valued)
+            if (!(o in tool.variable.values))
+              error(`${where}: the variable gives no value to the outcome ${o}`, file, data.id);
+        }
         break;
       }
       case 'sequence':
@@ -808,6 +866,9 @@ for (const { file, data } of lessonFiles) {
         scalar(tool.focal, 'focal length');
         scalar(tool.object.distance, 'object distance');
         scalar(tool.object.height, 'object height');
+        if (tool.mode === 'colour' && !tool.colour)
+          error(`${where}: the colour mode needs a colour setup`, file, data.id);
+        for (const c of tool.colour?.source ?? []) scalar(c, 'source light');
         break;
       case 'periodic_table':
         if (tool.selected > tool.max)
@@ -827,7 +888,92 @@ for (const { file, data } of lessonFiles) {
           scalar(species.initial, `species ${species.id}`);
         }
         scalar(tool.extent, 'extent');
+        scalar(tool.obtained, 'obtained amount');
+        for (const bond of tool.bonds) {
+          if (items.has(bond.id)) error(`${where}: duplicate item ${bond.id}`, file, data.id);
+          items.add(bond.id);
+        }
+        if (tool.halfEquations.length === 1)
+          error(
+            `${where}: two half-equations are needed, one oxidation and one reduction`,
+            file,
+            data.id
+          );
+        if (
+          tool.halfEquations.length === 2 &&
+          tool.halfEquations[0].role === tool.halfEquations[1].role
+        )
+          error(
+            `${where}: the half-equations must be one oxidation and one reduction`,
+            file,
+            data.id
+          );
         break;
+      case 'unit_circle':
+        scalar(tool.angle, 'angle');
+        break;
+      case 'vector_field':
+        for (const source of tool.sources) {
+          if (items.has(source.id)) error(`${where}: duplicate source ${source.id}`, file, data.id);
+          items.add(source.id);
+          scalar(source.x, `source ${source.id}`);
+          scalar(source.y, `source ${source.id}`);
+          scalar(source.value, `source ${source.id}`);
+        }
+        scalar(tool.constant, 'constant');
+        scalar(tool.uniform.x, 'uniform field');
+        scalar(tool.uniform.y, 'uniform field');
+        scalar(tool.test, 'test charge');
+        if (tool.mode !== 'uniform' && tool.sources.length === 0)
+          warn(`${where}: no source: the field is zero everywhere`, file, data.id);
+        break;
+      case 'energy_levels': {
+        const levelIds = new Set<string>();
+        for (const level of tool.levels) {
+          if (levelIds.has(level.id)) error(`${where}: duplicate level ${level.id}`, file, data.id);
+          levelIds.add(level.id);
+          items.add(level.id);
+        }
+        for (const id of tool.selected ?? [])
+          if (!levelIds.has(id)) error(`${where}: selected unknown level ${id}`, file, data.id);
+        for (const transition of tool.transitions) {
+          if (items.has(transition.id))
+            error(`${where}: duplicate item ${transition.id}`, file, data.id);
+          items.add(transition.id);
+          for (const id of [transition.from, transition.to])
+            if (!levelIds.has(id))
+              error(
+                `${where}: transition ${transition.id} joins unknown level ${id}`,
+                file,
+                data.id
+              );
+        }
+        break;
+      }
+      case 'molecule': {
+        const atomIds = new Set<string>();
+        for (const atom of tool.atoms) {
+          if (atomIds.has(atom.id)) error(`${where}: duplicate atom ${atom.id}`, file, data.id);
+          atomIds.add(atom.id);
+          if (!elementBySymbol(atom.element))
+            error(`${where}: unknown element ${atom.element} (atom ${atom.id})`, file, data.id);
+        }
+        for (const bond of tool.bonds) {
+          if (items.has(bond.id)) error(`${where}: duplicate item ${bond.id}`, file, data.id);
+          items.add(bond.id);
+          for (const id of [bond.from, bond.to])
+            if (!atomIds.has(id))
+              error(`${where}: bond ${bond.id} joins unknown atom ${id}`, file, data.id);
+        }
+        for (const group of tool.groups) {
+          if (items.has(group.id)) error(`${where}: duplicate item ${group.id}`, file, data.id);
+          items.add(group.id);
+          for (const id of group.atoms)
+            if (!atomIds.has(id))
+              error(`${where}: group ${group.id} gathers unknown atom ${id}`, file, data.id);
+        }
+        break;
+      }
       case 'timeline':
         for (const ev of tool.events) {
           items.add(ev.id);

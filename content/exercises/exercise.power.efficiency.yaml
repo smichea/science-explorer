@@ -1,0 +1,46 @@
+# Puissance électrique — rendement d'une pile réelle alimentant un conducteur ohmique (réponse numérique)
+id: exercise.power.efficiency
+type: numeric
+nodeId: concept.electrical_power
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Une pile de force électromotrice $E = 4{,}5\ \mathrm{V}$ et de résistance interne $r = 1{,}5\ \Omega$ alimente un conducteur ohmique de résistance $R = 3{,}0\ \Omega$. La loi des mailles s'écrit $E = (R + r)\,I$.
+
+    Quel est le rendement de la pile, c'est-à-dire le quotient de la puissance fournie au conducteur par la puissance totale convertie par la pile ? Répondez en pourcentage, arrondi à l'unité (par exemple : 42).
+  en: |-
+    A battery of electromotive force $E = 4.5\ \mathrm{V}$ and internal resistance $r = 1.5\ \Omega$ feeds an ohmic conductor of resistance $R = 3.0\ \Omega$. The loop law reads $E = (R + r)\,I$.
+
+    What is the efficiency of the battery, that is, the quotient of the power delivered to the conductor by the total power converted by the battery? Answer as a percentage, rounded to the unit (for example: 42).
+numeric:
+  value: 67
+  tolerance: { kind: absolute, value: 1 }
+  inputLabel: { fr: "η (%)", en: "η (%)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Calculez d'abord l'intensité avec $I = \dfrac{E}{R + r}$, puis la tension aux bornes de la pile, $U = E - r\,I$.
+      en: |-
+        First compute the current with $I = \dfrac{E}{R + r}$, then the voltage across the battery, $U = E - r\,I$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La puissance utile vaut $U\,I$ et la puissance totale $E\,I$ : dans le quotient, l'intensité se simplifie et il reste $\eta = U/E$.
+      en: |-
+        The useful power is $U\,I$ and the total power $E\,I$: in the quotient the current cancels and $\eta = U/E$ is left.
+solution:
+  fr: |-
+    L'intensité du courant vaut $I = \dfrac{E}{R + r} = \dfrac{4{,}5}{3{,}0 + 1{,}5} = 1{,}0\ \mathrm{A}$, et la tension aux bornes de la pile $U = E - r\,I = 4{,}5 - 1{,}5 \times 1{,}0 = 3{,}0\ \mathrm{V}$. Le bilan de puissance s'écrit alors
+    $$P_{\text{tot}} = E\,I = 4{,}5\ \mathrm{W}, \qquad P_{\text{interne}} = r\,I^2 = 1{,}5\ \mathrm{W}, \qquad P_{\text{utile}} = U\,I = 3{,}0\ \mathrm{W},$$
+    d'où $\eta = \dfrac{U\,I}{E\,I} = \dfrac{U}{E} = \dfrac{3{,}0}{4{,}5} = 0{,}67$, soit $67\ \%$.
+    Un tiers de l'énergie chimique convertie chauffe donc la pile elle-même. Ce rendement dépend du circuit : plus $R$ est grand devant $r$, plus l'intensité est faible, et meilleur est le rendement.
+  en: |-
+    The current is $I = \dfrac{E}{R + r} = \dfrac{4.5}{3.0 + 1.5} = 1.0\ \mathrm{A}$, and the voltage across the battery $U = E - r\,I = 4.5 - 1.5 \times 1.0 = 3.0\ \mathrm{V}$. The power balance then reads
+    $$P_{\text{tot}} = E\,I = 4.5\ \mathrm{W}, \qquad P_{\text{internal}} = r\,I^2 = 1.5\ \mathrm{W}, \qquad P_{\text{useful}} = U\,I = 3.0\ \mathrm{W},$$
+    hence $\eta = \dfrac{U\,I}{E\,I} = \dfrac{U}{E} = \dfrac{3.0}{4.5} = 0.67$, that is $67\ \%$.
+    One third of the chemical energy converted therefore heats the battery itself. This efficiency depends on the circuit: the larger $R$ is compared with $r$, the smaller the current, and the better the efficiency.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 3, calculationLength: 3, modellingOpenness: 2, linkedConcepts: 3, transfer: 2, autonomy: 3 }

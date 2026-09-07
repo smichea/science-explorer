@@ -1,0 +1,56 @@
+# Trigonométrie — convertir 135 degrés en radians (réponse numérique en rad)
+id: exercise.trigonometry.radian_measure
+type: numeric
+nodeId: tool.trigonometric_functions
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un angle mesure $135°$.
+
+    Donnez sa mesure en **radians**, sous forme décimale arrondie au centième.
+  en: |-
+    An angle measures $135°$.
+
+    Give its measure in **radians**, in decimal form rounded to the nearest hundredth.
+numeric:
+  value: 2.36
+  unit: "rad"
+  tolerance: { kind: absolute, value: 0.02 }
+  inputLabel: { fr: "mesure en radians", en: "measure in radians" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La mesure en radians est proportionnelle à la mesure en degrés, et $180°$ correspond à $\pi$ radians.
+      en: |-
+        The measure in radians is proportional to the measure in degrees, and $180°$ corresponds to $\pi$ radians.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Un produit en croix donne la mesure en radians : $\dfrac{135 \times \pi}{180}$. Simplifiez la fraction $\dfrac{135}{180}$ avant de calculer.
+      en: |-
+        Cross-multiplication gives the measure in radians: $\dfrac{135 \times \pi}{180}$. Simplify the fraction $\dfrac{135}{180}$ before computing.
+solution:
+  fr: |-
+    La conversion est une proportionnalité de coefficient $\dfrac{\pi}{180}$ :
+    $$135° = \frac{135 \times \pi}{180} = \frac{3\pi}{4} \text{ rad} \approx 2{,}36 \text{ rad},$$
+    puisque $\dfrac{135}{180} = \dfrac34$ et $\dfrac{3 \times 3{,}1416}{4} \approx 2{,}356$.
+
+    **Interprétation.** Le radian n'est pas une unité arbitraire : c'est la longueur de l'arc intercepté sur le cercle de rayon $1$. Un angle de $\dfrac{3\pi}{4}$ correspond donc à trois huitièmes de tour, puisque le tour complet vaut $2\pi$. On peut contrôler le résultat par un ordre de grandeur : $135°$ est un peu plus que l'angle droit, qui vaut $\dfrac{\pi}{2} \approx 1{,}57$ rad, et un peu moins que l'angle plat, qui vaut $\pi \approx 3{,}14$ rad.
+  en: |-
+    The conversion is a proportionality with coefficient $\dfrac{\pi}{180}$:
+    $$135° = \frac{135 \times \pi}{180} = \frac{3\pi}{4} \text{ rad} \approx 2.36 \text{ rad},$$
+    since $\dfrac{135}{180} = \dfrac34$ and $\dfrac{3 \times 3.1416}{4} \approx 2.356$.
+
+    **Interpretation.** The radian is not an arbitrary unit: it is the length of the arc intercepted on the circle of radius $1$. An angle of $\dfrac{3\pi}{4}$ therefore corresponds to three eighths of a turn, since the full turn is $2\pi$. The result can be checked by an order of magnitude: $135°$ is a little more than the right angle, which is $\dfrac{\pi}{2} \approx 1.57$ rad, and a little less than the straight angle, which is $\pi \approx 3.14$ rad.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

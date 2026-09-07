@@ -80,6 +80,67 @@ test.describe('narrated lessons', () => {
     await expectNoHorizontalScroll(page);
   });
 
+  test('the Première tools answer to the learner: circle, field, levels, molecule, energies', async ({
+    page,
+  }) => {
+    test.skip(test.info().project.name !== 'desktop', 'checked once, on desktop');
+    await createExplorer(page, { name: 'Nour', age: 16 });
+    /** Clicks the tool tabs until the shown tool has the wanted kind. */
+    const showTool = async (kind: string) => {
+      const tabs = page.locator('[data-testid^="lesson-tab-"]');
+      for (let i = 0; i < (await tabs.count()); i++) {
+        if ((await page.getByTestId('lesson-tool').getAttribute('data-tool')) === kind) return;
+        await tabs.nth(i).click();
+      }
+      await expect(page.getByTestId('lesson-tool')).toHaveAttribute('data-tool', kind);
+    };
+    // The unit circle follows the keyboard: a step of π/12 changes the angle.
+    await page.goto('lesson/tool.trigonometric_functions');
+    await nextUntil(page, 'play');
+    await showTool('unit_circle');
+    const circle = page.getByTestId('unit-circle-tool');
+    const angleBefore = await circle.getAttribute('data-angle');
+    await circle.locator('svg').first().focus();
+    await page.keyboard.press('ArrowRight');
+    await expect(circle).not.toHaveAttribute('data-angle', angleBefore ?? '');
+    await expect(page.getByTestId('unit-circle-reading')).toContainText(/cos/i);
+    // The field is read at the marker: dragging it changes the reading.
+    await page.goto('lesson/concept.field');
+    await nextUntil(page, 'play');
+    await showTool('vector_field');
+    const field = page.getByTestId('vector-field-tool');
+    const readingBefore = await page.getByTestId('vector-field-reading').innerText();
+    const box = await field.locator('svg').first().boundingBox();
+    if (box) {
+      await page.mouse.move(box.x + box.width * 0.5, box.y + box.height * 0.5);
+      await page.mouse.down();
+      await page.mouse.move(box.x + box.width * 0.7, box.y + box.height * 0.3, { steps: 6 });
+      await page.mouse.up();
+    }
+    await expect(page.getByTestId('vector-field-reading')).not.toHaveText(readingBefore);
+    // Two clicked levels give the photon exchanged, with its wavelength in nanometres.
+    await page.goto('lesson/model.photon');
+    await nextUntil(page, 'play');
+    await showTool('energy_levels');
+    const levels = page.locator('[data-testid^="level-"]');
+    await levels.nth(0).click();
+    await levels.nth(2).click();
+    await expect(page.getByTestId('energy-levels-reading')).toContainText('nm');
+    // A clicked atom shows its electrons and its octet.
+    await page.goto('lesson/model.lewis_structure');
+    await nextUntil(page, 'play');
+    await showTool('molecule');
+    await page.locator('[data-testid^="atom-"]').first().click();
+    await expect(page.getByTestId('molecule-atom')).toContainText(/octet|duet/i);
+    await expect(page.getByTestId('molecule-reading')).toContainText(/H₂O|H2O/);
+    // The motion simulations now show their energies.
+    await page.goto('lesson/law.newton_second');
+    await nextUntil(page, 'play');
+    await showTool('simulation');
+    await expect(page.getByTestId('sim-energy-graph')).toBeVisible();
+    await expectNoHorizontalScroll(page);
+  });
+
   test('the Seconde tools answer to the learner: series, reaction, periodic table, optics', async ({
     page,
   }) => {

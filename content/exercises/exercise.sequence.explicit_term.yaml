@@ -1,0 +1,53 @@
+# Suites en Première — calculer un terme d'une suite définie explicitement par u(n) = n² − 3n + 2 (réponse numérique)
+id: exercise.sequence.explicit_term
+type: numeric
+nodeId: concept.sequence
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    La suite $(u_n)$ est définie **explicitement** sur $\mathbb{N}$ par $u_n = n^2 - 3n + 2$.
+
+    Calculez le terme de rang $5$, c'est-à-dire $u_5$.
+  en: |-
+    The sequence $(u_n)$ is defined **explicitly** on $\mathbb{N}$ by $u_n = n^2 - 3n + 2$.
+
+    Compute the term of rank $5$, that is $u_5$.
+numeric:
+  value: 12
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "u(5)", en: "u(5)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La définition est explicite : il suffit de remplacer $n$ par $5$ dans la formule, sans calculer les termes précédents.
+      en: |-
+        The definition is explicit: just replace $n$ by $5$ in the formula, without computing the preceding terms.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $u_5 = 5^2 - 3 \times 5 + 2$. Attention à l'ordre des opérations : le carré d'abord, puis le produit, puis les additions.
+      en: |-
+        $u_5 = 5^2 - 3 \times 5 + 2$. Mind the order of operations: the square first, then the product, then the additions.
+solution:
+  fr: |-
+    La suite étant définie explicitement, chaque terme se calcule directement à partir de son rang :
+    $$u_5 = 5^2 - 3 \times 5 + 2 = 25 - 15 + 2 = 12.$$
+
+    **Interprétation.** C'est là tout l'avantage d'une définition explicite : on peut sauter directement au rang voulu, par exemple $u_{100} = 10000 - 300 + 2 = 9702$, alors qu'une définition par récurrence aurait exigé les cent termes précédents. Notons au passage que cette suite n'est pas monotone : $u_0 = 2$, $u_1 = 0$, $u_2 = 0$, $u_3 = 2$, elle décroît puis croît.
+  en: |-
+    Since the sequence is defined explicitly, each term is computed directly from its rank:
+    $$u_5 = 5^2 - 3 \times 5 + 2 = 25 - 15 + 2 = 12.$$
+
+    **Interpretation.** This is the whole advantage of an explicit definition: one may jump straight to the desired rank, for instance $u_{100} = 10000 - 300 + 2 = 9702$, whereas a recursive definition would have required the hundred preceding terms. Note in passing that this sequence is not monotonic: $u_0 = 2$, $u_1 = 0$, $u_2 = 0$, $u_3 = 2$, it decreases then increases.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

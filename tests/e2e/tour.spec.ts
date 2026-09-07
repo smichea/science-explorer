@@ -17,8 +17,8 @@ test.describe('bird’s-eye flight', () => {
     await createExplorer(page);
     await page.goto('universe');
     const start = page.getByTestId('tour-start-panel');
-    // 32 destinations in the slice, minus the mission: the flight only stops on lessons.
-    await expect(start).toContainText(/31 destinations/);
+    // 31 Terminale-and-beyond lessons minus the rate of change, a Première foundation for Paul.
+    await expect(start).toContainText(/30 destinations/);
     await start.click();
 
     const card = page.getByTestId('tour-card');
@@ -34,12 +34,7 @@ test.describe('bird’s-eye flight', () => {
     await expect(card).toHaveAttribute('data-step-kind', 'leg');
     await expect(card).toContainText('Premier voyage');
     const stops = card.getByTestId('tour-leg-stops').locator('li');
-    await expect(stops).toHaveText([
-      'Fonction',
-      'Courbe représentative',
-      'Taux de variation',
-      'Dérivée',
-    ]);
+    await expect(stops).toHaveText(['Fonction', 'Courbe représentative', 'Dérivée']);
     await page.getByTestId('tour-next').click();
     await expect(card).toHaveAttribute('data-step-kind', 'stop');
     await expect(card.getByRole('heading', { level: 1 })).toHaveText('Fonction');
@@ -48,7 +43,7 @@ test.describe('bird’s-eye flight', () => {
     await expect(
       page.locator('[data-testid="atlas-2d"] a[data-node-id="concept.function"]')
     ).toHaveAttribute('aria-current', 'true');
-    await expect(page.locator('[data-testid="atlas-2d"] line[stroke="#ffffff"]')).toHaveCount(3);
+    await expect(page.locator('[data-testid="atlas-2d"] line[stroke="#ffffff"]')).toHaveCount(2);
 
     // Moving on to the second route shows its transition sentence before its stops.
     await page.getByTestId('tour-next').click();

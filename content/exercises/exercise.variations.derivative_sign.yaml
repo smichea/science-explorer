@@ -1,0 +1,51 @@
+# Variations en Première — l'abscisse du maximum local de −x³ + 3x par le signe de la dérivée (réponse numérique)
+id: exercise.variations.derivative_sign
+type: numeric
+nodeId: concept.variations_extremums
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Soit $f$ la fonction définie sur $\mathbb{R}$ par $f(x) = -x^3 + 3x$.
+
+    Calculez $f'(x)$, étudiez son signe, puis donnez l'abscisse du **maximum local** de $f$.
+  en: |-
+    Let $f$ be the function defined on $\mathbb{R}$ by $f(x) = -x^3 + 3x$.
+
+    Compute $f'(x)$, study its sign, then give the abscissa of the **local maximum** of $f$.
+numeric:
+  value: 1
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "abscisse du maximum local", en: "abscissa of the local maximum" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        $f'(x) = -3x^2 + 3 = -3(x^2 - 1) = -3(x - 1)(x + 1)$ : un trinôme dont on connaît les racines.
+      en: |-
+        $f'(x) = -3x^2 + 3 = -3(x^2 - 1) = -3(x - 1)(x + 1)$: a trinomial whose roots we know.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Un maximum local est atteint là où $f'$ s'annule en passant du positif au négatif. Dressez le tableau de signes de $f'$.
+      en: |-
+        A local maximum is reached where $f'$ vanishes going from positive to negative. Draw up the sign table of $f'$.
+solution:
+  fr: |-
+    $f'(x) = -3x^2 + 3 = -3(x - 1)(x + 1)$ s'annule en $-1$ et en $1$. Le coefficient de $x^2$ est négatif, donc $f'$ est positive **entre** les racines et négative à l'extérieur : $f$ est décroissante sur $]-\infty\,;\,-1]$, croissante sur $[-1\,;\,1]$ et décroissante sur $[1\,;\,+\infty[$.
+
+    En $x = 1$, $f'$ s'annule en passant du positif au négatif : $f$ admet un **maximum local** en $1$, de valeur $f(1) = 2$. En $x = -1$, elle admet un minimum local, de valeur $-2$. Ces extremums sont locaux : pour $x < -2$, $f(x) > 2$, et pour $x > 2$, $f(x) < -2$.
+  en: |-
+    $f'(x) = -3x^2 + 3 = -3(x - 1)(x + 1)$ vanishes at $-1$ and at $1$. The coefficient of $x^2$ is negative, so $f'$ is positive **between** the roots and negative outside: $f$ is decreasing on $]-\infty\,;\,-1]$, increasing on $[-1\,;\,1]$ and decreasing on $[1\,;\,+\infty[$.
+
+    At $x = 1$, $f'$ vanishes going from positive to negative: $f$ has a **local maximum** at $1$, of value $f(1) = 2$. At $x = -1$, it has a local minimum, of value $-2$. These extrema are local: for $x < -2$, $f(x) > 2$, and for $x > 2$, $f(x) < -2$.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 3

@@ -1,0 +1,65 @@
+id: concept.electrical_power
+type: model
+world: world.physics
+region: region.physics.electricity_circuits
+importance: 2
+tags: [lycee]
+title: { fr: "Puissance et énergie électriques, effet Joule, rendement", en: "Electrical power and energy, Joule effect, efficiency" }
+shortPurpose:
+  fr: "Calculer la puissance et l'énergie échangées dans un circuit, décrire une source réelle par sa force électromotrice et sa résistance interne, et évaluer un rendement."
+  en: "Compute the power and the energy exchanged in a circuit, describe a real source by its electromotive force and its internal resistance, and evaluate an efficiency."
+overview:
+  fr: >-
+    Une pile ne fournit jamais toute l'énergie qu'elle convertit : une partie chauffe la pile elle-même. La puissance échangée par un dipôle est le produit de la tension par l'intensité, et l'énergie s'obtient en multipliant cette puissance par la durée. Dans une résistance, tout part en chaleur, c'est l'effet Joule, utile dans une bouilloire et nuisible dans une ligne électrique. Le rendement, quotient de la puissance utile par la puissance reçue, mesure ce qui reste vraiment.
+  en: >-
+    A battery never delivers all the energy it converts: part of it heats the battery itself. The power exchanged by a component is the product of the voltage by the current, and the energy is obtained by multiplying this power by the duration. In a resistor, everything turns into heat, this is the Joule effect, useful in a kettle and harmful in a power line. The efficiency, the quotient of the useful power by the received power, measures what is really left.
+aliases:
+  fr: ["puissance électrique", "effet Joule", "force électromotrice", "résistance interne", "rendement"]
+  en: ["electrical power", "Joule effect", "electromotive force", "internal resistance", "efficiency"]
+description:
+  fr: |
+    Un dipôle parcouru par un courant d'intensité $I$ et soumis à la tension $U$ entre ses bornes échange une **puissance électrique** $P = U\,I$, en watts. Pendant une durée $\Delta t$, l'**énergie** échangée vaut $E = P\,\Delta t$, en joules ; les factures d'électricité la comptent en kilowattheures, avec $1\ \mathrm{kWh} = 3{,}6 \times 10^{6}\ \mathrm{J}$. Dans un conducteur ohmique de résistance $R$, toute l'énergie reçue est convertie en énergie thermique : c'est l'**effet Joule**, de puissance $P_J = U\,I = R\,I^2 = \dfrac{U^2}{R}$. Une **source réelle** de force électromotrice $E$ et de résistance interne $r$ délivre entre ses bornes la tension $U = E - r\,I$, plus faible que $E$ dès qu'un courant circule.
+
+    Ces relations répondent à une question très concrète : où passe l'énergie dans un circuit, et combien s'en perd-il en route ? Prenons une pile de force électromotrice $E = 4{,}5\ \mathrm{V}$ et de résistance interne $r = 1{,}5\ \Omega$ qui alimente un conducteur ohmique $R = 3{,}0\ \Omega$. La loi des mailles donne $E = (R + r)\,I$, donc $I = 1{,}0\ \mathrm{A}$ et $U = E - r\,I = 3{,}0\ \mathrm{V}$. La pile convertit une puissance totale $E\,I = 4{,}5\ \mathrm{W}$, en dissipe $r\,I^2 = 1{,}5\ \mathrm{W}$ dans sa propre résistance interne et n'en fournit que $U\,I = 3{,}0\ \mathrm{W}$ au conducteur : le **rendement** vaut $\eta = \dfrac{U\,I}{E\,I} = \dfrac{U}{E} = 0{,}67$, soit $67\ \%$.
+
+    Le rendement d'un convertisseur est toujours le quotient de la puissance utile par la puissance reçue, un nombre sans unité, inférieur à $1$ : un moteur de rendement $0{,}90$ transforme neuf dixièmes de l'énergie électrique reçue en énergie mécanique et le reste en chaleur. L'effet Joule est recherché dans un radiateur, subi dans un ordinateur et dans les lignes de transport, ce qui explique le choix de la très haute tension : à puissance transportée fixée, multiplier la tension par dix divise l'intensité par dix et les pertes $R\,I^2$ par cent. Pièges classiques : confondre la puissance, en watts, et l'énergie, en joules ; oublier que $E$ désigne ici une force électromotrice en volts et non une énergie ; croire que la tension aux bornes d'une pile garde toujours sa valeur nominale, alors qu'elle chute dès que l'intensité augmente. En Terminale, ces bilans de puissance se retrouvent dans la charge d'un condensateur et dans toutes les chaînes de conversion d'énergie.
+  en: |
+    A component carrying a current of intensity $I$ and under the voltage $U$ between its terminals exchanges an **electrical power** $P = U\,I$, in watts. During a duration $\Delta t$, the **energy** exchanged is $E = P\,\Delta t$, in joules; electricity bills count it in kilowatt-hours, with $1\ \mathrm{kWh} = 3.6 \times 10^{6}\ \mathrm{J}$. In an ohmic conductor of resistance $R$, all the energy received is converted into thermal energy: this is the **Joule effect**, of power $P_J = U\,I = R\,I^2 = \dfrac{U^2}{R}$. A **real source** of electromotive force $E$ and internal resistance $r$ delivers between its terminals the voltage $U = E - r\,I$, smaller than $E$ as soon as a current flows.
+
+    These relations answer a very concrete question: where does the energy go in a circuit, and how much of it is lost on the way? Take a battery of electromotive force $E = 4.5\ \mathrm{V}$ and internal resistance $r = 1.5\ \Omega$ feeding an ohmic conductor $R = 3.0\ \Omega$. The loop law gives $E = (R + r)\,I$, so $I = 1.0\ \mathrm{A}$ and $U = E - r\,I = 3.0\ \mathrm{V}$. The battery converts a total power $E\,I = 4.5\ \mathrm{W}$, dissipates $r\,I^2 = 1.5\ \mathrm{W}$ in its own internal resistance and delivers only $U\,I = 3.0\ \mathrm{W}$ to the conductor: the **efficiency** is $\eta = \dfrac{U\,I}{E\,I} = \dfrac{U}{E} = 0.67$, that is $67\ \%$.
+
+    The efficiency of a converter is always the quotient of the useful power by the received power, a number without a unit, smaller than $1$: a motor of efficiency $0.90$ turns nine tenths of the electrical energy received into mechanical energy and the rest into heat. The Joule effect is sought in a radiator, suffered in a computer and in transmission lines, which explains the choice of very high voltage: at a fixed transported power, multiplying the voltage by ten divides the current by ten and the losses $R\,I^2$ by a hundred. Classic traps: confusing power, in watts, with energy, in joules; forgetting that $E$ here denotes an electromotive force in volts and not an energy; believing that the voltage across a battery always keeps its nominal value, when it drops as soon as the current increases. In Grade 12, these power balances reappear in the charging of a capacitor and in every energy conversion chain.
+model:
+  assumptions:
+    fr:
+      - "Une source réelle est modélisée par une force électromotrice $E$ constante en série avec une résistance interne $r$ constante : $U = E - r\\,I$."
+      - "Un récepteur purement ohmique de résistance $R$ convertit toute la puissance reçue en énergie thermique : $P_J = R\\,I^2$."
+      - "Les fils de connexion sont sans résistance et le régime est permanent : l'intensité est la même en tout point d'une branche."
+    en:
+      - "A real source is modelled by a constant electromotive force $E$ in series with a constant internal resistance $r$: $U = E - r\\,I$."
+      - "A purely ohmic receiver of resistance $R$ converts all the power it receives into thermal energy: $P_J = R\\,I^2$."
+      - "The connecting wires have no resistance and the regime is steady: the current is the same at every point of a branch."
+  limits:
+    fr:
+      - "La force électromotrice et la résistance interne d'une pile varient en réalité avec l'usure et avec la température ; le modèle linéaire ne vaut que sur une plage limitée d'intensités."
+      - "Un moteur, une lampe ou une diode ne sont pas des conducteurs ohmiques : leur caractéristique n'est pas une droite et $P = U\\,I$ ne se réduit pas à $R\\,I^2$."
+      - "Le modèle décrit un régime permanent : il ne dit rien des transitoires de mise sous tension, étudiés en Terminale avec le circuit RC."
+    en:
+      - "The electromotive force and the internal resistance of a battery in fact vary with wear and with temperature; the linear model only holds over a limited range of currents."
+      - "A motor, a lamp or a diode is not an ohmic conductor: its characteristic is not a straight line and $P = U\\,I$ does not reduce to $R\\,I^2$."
+      - "The model describes a steady regime: it says nothing about the switch-on transients, studied in Grade 12 with the RC circuit."
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "calculer la puissance électrique $P = U\\,I$ échangée par un dipôle et l'énergie $E = P\\,\\Delta t$ qu'il reçoit ou fournit"
+        - "exprimer la puissance dissipée par effet Joule dans un conducteur ohmique sous les formes $R\\,I^2$ et $U^2/R$"
+        - "utiliser le modèle d'une source réelle, $U = E - r\\,I$, et exploiter sa caractéristique tension-intensité"
+        - "établir un bilan de puissance dans un circuit et en déduire un rendement $\\eta = P_{\\text{utile}} / P_{\\text{reçue}}$"
+      en:
+        - "compute the electrical power $P = U\\,I$ exchanged by a component and the energy $E = P\\,\\Delta t$ it receives or delivers"
+        - "express the power dissipated by the Joule effect in an ohmic conductor in the forms $R\\,I^2$ and $U^2/R$"
+        - "use the model of a real source, $U = E - r\\,I$, and exploit its voltage–current characteristic"
+        - "draw up a power balance in a circuit and deduce an efficiency $\\eta = P_{\\text{useful}} / P_{\\text{received}}$"

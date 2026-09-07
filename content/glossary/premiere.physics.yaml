@@ -1,0 +1,174 @@
+# Première physics glossary (BO spécial n°1 du 22 janvier 2019, enseignement de spécialité):
+# preferred learner-facing terms and aliases, 2–3 entries per destination of the year,
+# plus the terms introduced by the new Première depths of the realigned nodes.
+entries:
+  # --- law.coulomb -------------------------------------------------------------
+  - id: glossary.electric_charge
+    nodeId: law.coulomb
+    fr: { preferred: charge électrique, aliases: [coulomb, corps électrisé, conservation de la charge] }
+    en: { preferred: electric charge, aliases: [coulomb, electrified body, conservation of charge] }
+    notes: "Two signs; measured in coulombs; the total charge of an isolated system is conserved."
+  - id: glossary.coulomb_law
+    nodeId: law.coulomb
+    fr: { preferred: loi de Coulomb, aliases: [force électrostatique, interaction électrostatique, constante de Coulomb] }
+    en: { preferred: Coulomb's law, aliases: [electrostatic force, electrostatic interaction, Coulomb constant] }
+    notes: "F = k |qA qB| / d²; same 1/d² form as gravitation, but it can repel."
+  - id: glossary.elementary_charge
+    nodeId: law.coulomb
+    fr: { preferred: charge élémentaire, aliases: [e, quantification de la charge, charge du proton] }
+    en: { preferred: elementary charge, aliases: [e, quantisation of charge, charge of the proton] }
+    notes: "1.60 × 10⁻¹⁹ C; every charge is an integer multiple of it."
+  # --- concept.field -----------------------------------------------------------
+  - id: glossary.electric_field
+    nodeId: concept.field
+    fr: { preferred: champ électrique, aliases: [vecteur champ électrique, volt par mètre, ligne de champ] }
+    en: { preferred: electric field, aliases: [electric field vector, volt per metre, field line] }
+    notes: "E = F / q: a field is not a force; multiply by a charge to get one."
+  - id: glossary.gravitational_field
+    nodeId: concept.field
+    fr: { preferred: champ de gravitation, aliases: [champ de pesanteur, newton par kilogramme, vecteur g] }
+    en: { preferred: gravitational field, aliases: [gravity field, newton per kilogram, vector g] }
+    notes: "The same construction as the electric field, with a mass instead of a charge."
+  - id: glossary.uniform_field
+    nodeId: concept.field
+    fr: { preferred: champ uniforme, aliases: [condensateur plan, armatures, E = U / d] }
+    en: { preferred: uniform field, aliases: [plane capacitor, plates, E = U / d] }
+    notes: "Same direction, sense and value everywhere; only far from the edges of the plates."
+  # --- law.fluid_statics -------------------------------------------------------
+  - id: glossary.pressure
+    nodeId: law.fluid_statics
+    fr: { preferred: pression, aliases: [pascal, bar, force pressante, P = F / S] }
+    en: { preferred: pressure, aliases: [pascal, bar, pressing force, P = F / S] }
+    notes: "A number in pascals; the pressing force is a vector in newtons."
+  - id: glossary.mariotte_law
+    nodeId: law.fluid_statics
+    fr: { preferred: loi de Mariotte, aliases: [loi de Boyle-Mariotte, P V constant, compression isotherme] }
+    en: { preferred: Boyle–Mariotte law, aliases: [Boyle's law, P V constant, isothermal compression] }
+    notes: "Given amount of a dilute gas at constant temperature."
+  - id: glossary.hydrostatic_law
+    nodeId: law.fluid_statics
+    fr: { preferred: loi fondamentale de la statique des fluides, aliases: [pression et profondeur, statique des fluides, un bar tous les dix mètres] }
+    en: { preferred: fundamental law of fluid statics, aliases: [pressure and depth, fluid statics, one bar every ten metres] }
+    notes: "Incompressible fluid at rest: the pressure depends only on the depth, not on the shape of the container."
+  # --- concept.electrical_power ------------------------------------------------
+  - id: glossary.electrical_power
+    nodeId: concept.electrical_power
+    fr: { preferred: puissance électrique, aliases: [watt, P = U I, énergie électrique, kilowattheure] }
+    en: { preferred: electrical power, aliases: [watt, P = U I, electrical energy, kilowatt-hour] }
+    notes: "Power in watts, energy in joules: E = P Δt; 1 kWh = 3.6 × 10⁶ J."
+  - id: glossary.joule_effect
+    nodeId: concept.electrical_power
+    fr: { preferred: effet Joule, aliases: [dissipation thermique, P = R I², échauffement d'une résistance] }
+    en: { preferred: Joule effect, aliases: [thermal dissipation, P = R I², heating of a resistor] }
+    notes: "Sought in a kettle, suffered in a transmission line; varies as the square of the current."
+  - id: glossary.electromotive_force
+    nodeId: concept.electrical_power
+    fr: { preferred: force électromotrice, aliases: [f.é.m., résistance interne, source réelle, rendement] }
+    en: { preferred: electromotive force, aliases: [emf, internal resistance, real source, efficiency] }
+    notes: "U = E − r I: E is a voltage in volts, not an energy."
+  # --- concept.kinetic_energy_work ---------------------------------------------
+  - id: glossary.kinetic_energy
+    nodeId: concept.kinetic_energy_work
+    fr: { preferred: énergie cinétique, aliases: [demi m v carré, énergie de vitesse, joule] }
+    en: { preferred: kinetic energy, aliases: [half m v squared, energy of speed, joule] }
+    notes: "Always positive, frame-dependent, varies as the square of the speed."
+  - id: glossary.work
+    nodeId: concept.kinetic_energy_work
+    fr: { preferred: travail d'une force, aliases: [produit scalaire force déplacement, travail moteur, travail résistant] }
+    en: { preferred: work of a force, aliases: [dot product of force and displacement, motive work, resistive work] }
+    notes: "An energy in joules; zero for a force perpendicular to the displacement."
+  - id: glossary.kinetic_energy_theorem
+    nodeId: concept.kinetic_energy_work
+    fr: { preferred: théorème de l'énergie cinétique, aliases: [variation d'énergie cinétique, somme des travaux, distance de freinage] }
+    en: { preferred: work–energy theorem, aliases: [change of kinetic energy, sum of the works, braking distance] }
+    notes: "Gives a speed or a force without ever computing the trajectory."
+  # --- concept.mechanical_energy -----------------------------------------------
+  - id: glossary.potential_energy
+    nodeId: concept.mechanical_energy
+    fr: { preferred: énergie potentielle de pesanteur, aliases: [m g z, énergie de position, altitude de référence] }
+    en: { preferred: gravitational potential energy, aliases: [m g z, energy of position, reference altitude] }
+    notes: "Defined only once the reference altitude has been chosen."
+  - id: glossary.mechanical_energy
+    nodeId: concept.mechanical_energy
+    fr: { preferred: énergie mécanique, aliases: [somme énergie cinétique et potentielle, Em, bilan énergétique] }
+    en: { preferred: mechanical energy, aliases: [sum of kinetic and potential energy, Em, energy balance] }
+    notes: "Em = Ec + Epp; a horizontal line on a graph is the signature of conservation."
+  - id: glossary.energy_conservation
+    nodeId: concept.mechanical_energy
+    fr: { preferred: conservation de l'énergie mécanique, aliases: [force conservative, dissipation par frottement, transfert thermique] }
+    en: { preferred: conservation of mechanical energy, aliases: [conservative force, dissipation by friction, thermal transfer] }
+    notes: "Conserved when only the weight works; otherwise it decreases, and the energy is not lost but transferred."
+  # --- phenomenon.mechanical_wave ----------------------------------------------
+  - id: glossary.mechanical_wave
+    nodeId: phenomenon.mechanical_wave
+    fr: { preferred: onde mécanique progressive, aliases: [perturbation, onde transversale, onde longitudinale, célérité] }
+    en: { preferred: progressive mechanical wave, aliases: [perturbation, transverse wave, longitudinal wave, wave speed] }
+    notes: "Transports energy without transport of matter; the speed is a property of the medium."
+  - id: glossary.wavelength
+    nodeId: phenomenon.mechanical_wave
+    fr: { preferred: longueur d'onde, aliases: [lambda, double périodicité, onde périodique, λ = v T] }
+    en: { preferred: wavelength, aliases: [lambda, double periodicity, periodic wave, λ = v T] }
+    notes: "A distance in metres; the period is a duration in seconds."
+  - id: glossary.propagation_delay
+    nodeId: phenomenon.mechanical_wave
+    fr: { preferred: retard de propagation, aliases: [tau, retard en un point M, localisation d'un séisme] }
+    en: { preferred: propagation delay, aliases: [tau, delay at a point M, locating an earthquake] }
+    notes: "τ = d / v: each point repeats the motion of the source, later."
+  # --- phenomenon.colour -------------------------------------------------------
+  - id: glossary.additive_synthesis
+    nodeId: phenomenon.colour
+    fr: { preferred: synthèse additive, aliases: [rouge vert bleu, couleurs primaires, superposition de lumières, écran] }
+    en: { preferred: additive synthesis, aliases: [red green blue, primary colours, superposition of lights, screen] }
+    notes: "Superposing lights; red + green + blue = white."
+  - id: glossary.subtractive_synthesis
+    nodeId: phenomenon.colour
+    fr: { preferred: synthèse soustractive, aliases: [filtre coloré, cyan magenta jaune, absorption, pigments] }
+    en: { preferred: subtractive synthesis, aliases: [coloured filter, cyan magenta yellow, absorption, pigments] }
+    notes: "A filter never makes a colour, it only removes radiations."
+  - id: glossary.object_colour
+    nodeId: phenomenon.colour
+    fr: { preferred: couleur d'un objet, aliases: [diffusion, lumière diffusée, spectre d'émission, spectre d'absorption] }
+    en: { preferred: colour of an object, aliases: [diffusion, diffused light, emission spectrum, absorption spectrum] }
+    notes: "The colour depends on the lighting: a red object under green light looks black."
+  # --- model.photon ------------------------------------------------------------
+  - id: glossary.photon
+    nodeId: model.photon
+    fr: { preferred: photon, aliases: [grain de lumière, E = h nu, constante de Planck, électronvolt] }
+    en: { preferred: photon, aliases: [grain of light, E = h nu, Planck constant, electronvolt] }
+    notes: "h = 6.63 × 10⁻³⁴ J·s; 1 eV = 1.60 × 10⁻¹⁹ J."
+  - id: glossary.energy_level
+    nodeId: model.photon
+    fr: { preferred: niveau d'énergie, aliases: [quantification, état fondamental, état excité, ionisation] }
+    en: { preferred: energy level, aliases: [quantisation, ground state, excited state, ionisation] }
+    notes: "Counted negatively from the ionised atom taken as zero."
+  - id: glossary.line_spectrum
+    nodeId: model.photon
+    fr: { preferred: spectre de raies, aliases: [raie d'émission, raie d'absorption, transition, signature d'un élément] }
+    en: { preferred: line spectrum, aliases: [emission line, absorption line, transition, signature of an element] }
+    notes: "Each element emits and absorbs exactly the wavelengths of its level gaps."
+  # --- new Première depths of the realigned nodes -------------------------------
+  - id: glossary.delta_v
+    nodeId: law.newton_second
+    fr: { preferred: vecteur variation de vitesse, aliases: [delta v, variation du vecteur vitesse, direction de la somme des forces] }
+    en: { preferred: velocity-variation vector, aliases: [delta v, change of the velocity vector, direction of the sum of the forces] }
+    notes: "Grade 11 form of Newton's second law: the sum of the forces has the direction and sense of Δv, never those of v."
+  - id: glossary.velocity_vector
+    nodeId: model.kinematics_point
+    fr: { preferred: vecteur vitesse, aliases: [vitesse instantanée, tangent à la trajectoire, positions à intervalles égaux] }
+    en: { preferred: velocity vector, aliases: [instantaneous velocity, tangent to the trajectory, positions at equal time intervals] }
+    notes: "Direction, sense and magnitude; read between two recorded positions."
+  - id: glossary.standard_uncertainty
+    nodeId: method.measurement
+    fr: { preferred: incertitude-type, aliases: [type A, type B, écart-type expérimental, u = s sur racine de n] }
+    en: { preferred: standard uncertainty, aliases: [type A, type B, sample standard deviation, u = s over root n] }
+    notes: "Type A from a series of measurements, type B from a single reading of an instrument."
+  - id: glossary.normalised_gap
+    nodeId: method.measurement
+    fr: { preferred: écart normalisé, aliases: [compatibilité d'une mesure, valeur de référence, critère inférieur à 2] }
+    en: { preferred: normalised gap, aliases: [compatibility of a measurement, reference value, criterion at most 2] }
+    notes: "|x̄ − x_ref| / u ≤ 2: compatible; beyond, look for a systematic error."
+  - id: glossary.conjugation_relation
+    nodeId: model.thin_lens
+    fr: { preferred: relation de conjugaison, aliases: [mesure algébrique, OA prime, image virtuelle, œil et appareil photo] }
+    en: { preferred: conjugation relation, aliases: [algebraic distance, OA prime, virtual image, eye and camera] }
+    notes: "1/OA' − 1/OA = 1/f'; algebraic distances counted positively in the direction of propagation."

@@ -1,0 +1,46 @@
+id: concept.random_variable
+type: mathematical_concept
+world: world.mathematics
+region: region.math.probability_statistics
+importance: 3
+tags: [lycee]
+title: { fr: "Variables aléatoires réelles : loi, espérance, variance, écart-type", en: "Real random variables: distribution, expectation, variance, standard deviation" }
+shortPurpose:
+  fr: "Attacher un nombre au résultat d'une expérience aléatoire, puis résumer tous les gains possibles par une valeur moyenne attendue et une mesure de leur dispersion."
+  en: "Attach a number to the result of a random experiment, then summarise all the possible outcomes by an expected average value and a measure of their spread."
+overview:
+  fr: >-
+    Quand le hasard produit un résultat, on lui attache souvent un nombre : un gain, une durée, un nombre de pannes. Ce nombre est une variable aléatoire, et sa loi dit avec quelle probabilité chaque valeur sort. L'espérance donne la moyenne que l'on obtiendrait en répétant l'expérience un très grand nombre de fois, et l'écart-type dit à quel point les résultats s'en écartent : c'est ainsi qu'une compagnie d'assurance ou un casino calcule ce qu'il gagne à long terme.
+  en: >-
+    When chance produces a result, a number is often attached to it: a gain, a duration, a number of breakdowns. That number is a random variable, and its distribution says with what probability each value comes out. The expectation gives the average one would obtain by repeating the experiment a very large number of times, and the standard deviation says how far the results stray from it: this is how an insurance company or a casino computes what it earns in the long run.
+aliases:
+  fr: ["variable aléatoire", "loi de probabilité", "espérance", "variance", "écart-type", "jeu équitable"]
+  en: ["random variable", "probability distribution", "expectation", "variance", "standard deviation", "fair game"]
+description:
+  fr: |
+    Une **variable aléatoire réelle** $X$ est une fonction qui associe un nombre réel à chaque issue de l'univers $\Omega$. Sa **loi de probabilité** est la donnée de toutes les valeurs possibles $x_i$ et de leurs probabilités $p_i = P(X = x_i)$, dont la somme vaut $1$. On la présente dans un tableau. Exemple : on lance un dé équilibré et l'on gagne $2$ euros si le résultat est $5$ ou $6$, on perd $1$ euro sinon ; alors $X$ prend la valeur $2$ avec la probabilité $\dfrac26 = \dfrac13$ et la valeur $-1$ avec la probabilité $\dfrac46 = \dfrac23$.
+
+    L'**espérance** est la moyenne des valeurs pondérée par leurs probabilités : $E(X) = \sum_i p_i x_i$. Elle s'interprète comme la valeur moyenne obtenue en répétant l'expérience un très grand nombre de fois, et non comme un résultat que l'on va observer : dans l'exemple, $E(X) = \dfrac13 \times 2 + \dfrac23 \times (-1) = 0$, alors que $X$ ne vaut jamais $0$. Un jeu dont l'espérance de gain est nulle est dit **équitable** ; si l'on paie une mise de $2$ euros pour recevoir la valeur du dé, le gain est $X = D - 2$ et $E(X) = 3{,}5 - 2 = 1{,}5$ euro, le jeu est favorable au joueur.
+
+    La **variance** mesure la dispersion autour de l'espérance : $V(X) = \sum_i p_i \left(x_i - E(X)\right)^2$, que l'on calcule souvent avec la formule $V(X) = E(X^2) - \left(E(X)\right)^2$. Comme elle s'exprime dans le carré de l'unité, on lui préfère l'**écart-type** $\sigma(X) = \sqrt{V(X)}$, qui a l'unité de $X$. Dans l'exemple du jeu équitable, $E(X^2) = \dfrac13 \times 4 + \dfrac23 \times 1 = 2$, donc $V(X) = 2 - 0 = 2$ et $\sigma(X) = \sqrt2 \approx 1{,}41$ euro. Deux transformations sont utiles : $E(aX + b) = a\,E(X) + b$ et $V(aX + b) = a^2 V(X)$, l'ajout d'une constante déplaçant la moyenne sans changer la dispersion. Deux pièges : confondre l'espérance, valeur théorique, avec la moyenne d'un échantillon, valeur observée qui fluctue autour d'elle, et oublier d'élever $a$ au carré dans la variance.
+  en: |
+    A **real random variable** $X$ is a function associating a real number with each outcome of the sample space $\Omega$. Its **probability distribution** is the list of all the possible values $x_i$ together with their probabilities $p_i = P(X = x_i)$, whose sum is $1$. It is presented in a table. Example: a fair die is rolled and one wins $2$ euros if the result is $5$ or $6$, and loses $1$ euro otherwise; then $X$ takes the value $2$ with probability $\dfrac26 = \dfrac13$ and the value $-1$ with probability $\dfrac46 = \dfrac23$.
+
+    The **expectation** is the average of the values weighted by their probabilities: $E(X) = \sum_i p_i x_i$. It is interpreted as the mean value obtained by repeating the experiment a very large number of times, and not as a result one is going to observe: in the example, $E(X) = \dfrac13 \times 2 + \dfrac23 \times (-1) = 0$, whereas $X$ is never equal to $0$. A game whose expected gain is zero is called **fair**; if one pays a stake of $2$ euros to receive the value of the die, the gain is $X = D - 2$ and $E(X) = 3.5 - 2 = 1.5$ euro, the game favours the player.
+
+    The **variance** measures the spread around the expectation: $V(X) = \sum_i p_i \left(x_i - E(X)\right)^2$, often computed with the formula $V(X) = E(X^2) - \left(E(X)\right)^2$. Since it is expressed in the square of the unit, the **standard deviation** $\sigma(X) = \sqrt{V(X)}$, which has the unit of $X$, is preferred. In the fair-game example, $E(X^2) = \dfrac13 \times 4 + \dfrac23 \times 1 = 2$, so $V(X) = 2 - 0 = 2$ and $\sigma(X) = \sqrt2 \approx 1.41$ euro. Two transformations are useful: $E(aX + b) = a\,E(X) + b$ and $V(aX + b) = a^2 V(X)$, adding a constant shifting the mean without changing the spread. Two traps: confusing the expectation, a theoretical value, with the mean of a sample, an observed value fluctuating around it, and forgetting to square $a$ in the variance.
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "modéliser une situation par une variable aléatoire et donner sa loi de probabilité dans un tableau"
+        - "calculer l'espérance E(X) et l'interpréter comme la valeur moyenne sur un très grand nombre de répétitions"
+        - "calculer la variance et l'écart-type d'une variable aléatoire et les interpréter comme une dispersion"
+        - "simuler une variable aléatoire, comparer la moyenne d'un échantillon à l'espérance et utiliser E(aX + b) et V(aX + b)"
+      en:
+        - "model a situation by a random variable and give its probability distribution in a table"
+        - "compute the expectation E(X) and interpret it as the mean value over a very large number of repetitions"
+        - "compute the variance and the standard deviation of a random variable and interpret them as a spread"
+        - "simulate a random variable, compare the mean of a sample with the expectation and use E(aX + b) and V(aX + b)"

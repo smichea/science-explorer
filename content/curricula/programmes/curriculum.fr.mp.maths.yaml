@@ -17,7 +17,7 @@ items:
     reference: "Calcul différentiel — Fonctions de classe C¹ : dérivées partielles, différentielle, gradient ; règle de la chaîne ; optimisation (points critiques, extremums locaux)"
     alignedNodes:
       - { node: tool.gradient, depth: 3 }
-      - { node: tool.derivative, depth: 3 }
+      - { node: tool.derivative, depth: 4 }
   - id: equations_differentielles
     title: { fr: Équations différentielles linéaires, en: Linear differential equations }
     reference: "Équations différentielles linéaires — Systèmes différentiels linéaires à coefficients constants ; exponentielle d'un endomorphisme, d'une matrice"

@@ -1,0 +1,125 @@
+# Leçon narrée — la charge électrique et la loi de Coulomb : carte de champ de deux charges (outil champ vectoriel), puis la décroissance en 1/d² (outil traceur).
+id: lesson.law.coulomb
+nodeId: law.coulomb
+depth: 1
+tools:
+  - id: charges
+    kind: vector_field
+    title: { fr: "Deux charges et leurs forces", en: "Two charges and their forces" }
+    view: { x: [-0.3, 0.3], y: [-0.3, 0.3] }
+    mode: electric
+    grid: 12
+    parameters:
+      - { id: a, label: { fr: "charge qA (µC)", en: "charge qA (µC)" }, min: -4, max: 4, step: 0.5, value: 2 }
+      - { id: b, label: { fr: "charge qB (µC)", en: "charge qB (µC)" }, min: -4, max: 4, step: 0.5, value: -3 }
+    sources:
+      - { id: qa, x: -0.075, y: 0, value: "a*1e-6", label: { fr: "qA", en: "qA" }, drag: true }
+      - { id: qb, x: 0.075, y: 0, value: "b*1e-6", label: { fr: "qB", en: "qB" }, drag: true, hidden: true }
+    marker: { x: 0, y: 0.16 }
+    test: 1e-9
+    labels: { x: "x (m)", y: "y (m)" }
+  - id: law
+    kind: plotter
+    title: { fr: "La force en fonction de la distance", en: "The force against the distance" }
+    variable: x
+    view: { x: [0, 0.5], y: [0, 6] }
+    input: false
+    parameters:
+      - { id: a, label: { fr: "charge qA (µC)", en: "charge qA (µC)" }, min: 0.5, max: 4, step: 0.5, value: 2 }
+      - { id: b, label: { fr: "charge qB (µC)", en: "charge qB (µC)" }, min: 0.5, max: 4, step: 0.5, value: 3 }
+    initial:
+      - { at: 0, view: { labels: { x: "d (m)", y: "F (N)" } } }
+steps:
+  - id: charge
+    title: { fr: "La charge électrique", en: "Electric charge" }
+    tool: charges
+    text:
+      fr: >-
+        Frottez une règle en plastique sur un pull : elle attire ensuite de petits morceaux de papier.
+        C'est qu'elle a gagné ou perdu des électrons, et qu'elle porte maintenant une charge électrique, positive ou négative, mesurée en coulombs.
+        Toute charge est un multiple entier de la charge élémentaire, environ 1,6 fois dix puissance moins dix-neuf coulomb, et la charge totale se conserve : elle ne fait que passer d'un corps à l'autre.
+        Voici une première charge, positive, de 2 microcoulombs : les flèches dessinent le champ qu'elle crée tout autour d'elle, dirigé vers l'extérieur et d'autant plus fort qu'on est près d'elle.
+      en: >-
+        Rub a plastic ruler on a jumper: it then attracts small pieces of paper.
+        The reason is that it has gained or lost electrons, and that it now carries an electric charge, positive or negative, measured in coulombs.
+        Every charge is an integer multiple of the elementary charge, about 1.6 times ten to the power minus nineteen coulomb, and the total charge is conserved: it only moves from one body to another.
+        Here is a first charge, positive, of 2 microcoulombs: the arrows draw the field it creates all around it, pointing outwards and the stronger the closer one gets.
+    actions:
+      - { at: 3, set: { a: 2 } }
+  - id: interaction
+    title: { fr: "Deux charges en interaction", en: "Two charges interacting" }
+    tool: charges
+    text:
+      fr: >-
+        Approchons une seconde charge, négative cette fois, de moins 3 microcoulombs, à 15 centimètres de la première.
+        Chacune exerce sur l'autre une force portée par la droite qui les joint : attractive ici, puisque les signes sont contraires, répulsive si les deux charges avaient le même signe.
+        Les deux forces ont exactement la même valeur et des sens opposés, comme l'exige le principe des actions réciproques, même si l'une des charges est bien plus grande que l'autre.
+        Rendons les deux charges positives : le champ change complètement d'allure, et les charges se repoussent.
+      en: >-
+        Let us bring in a second charge, negative this time, of minus 3 microcoulombs, 15 centimetres from the first.
+        Each exerts on the other a force carried by the line joining them: attractive here, since the signs are opposite, repulsive if the two charges had the same sign.
+        The two forces have exactly the same value and opposite senses, as the principle of reciprocal actions requires, even if one of the charges is much larger than the other.
+        Let us make both charges positive: the field changes appearance completely, and the charges repel each other.
+    actions:
+      - { at: 0, show: [qb] }
+      - { at: 3, set: { b: 3 } }
+  - id: distance
+    title: { fr: "La loi de Coulomb", en: "Coulomb's law" }
+    tool: law
+    text:
+      fr: >-
+        La loi de Coulomb donne la valeur de cette force : la constante k multipliée par le produit des charges en valeur absolue, divisé par le carré de la distance.
+        La constante k vaut 9 fois dix puissance 9 dans les unités du Système international.
+        Avec 2 et 3 microcoulombs séparés de 15 centimètres, la force vaut 2,4 newtons, à peu près le poids de 250 grammes.
+        Doublons la distance, à 30 centimètres : la force est divisée par quatre et tombe à 0,6 newton, car elle décroît comme un sur d au carré.
+      en: >-
+        Coulomb's law gives the value of this force: the constant k multiplied by the product of the charges in absolute value, divided by the square of the distance.
+        The constant k is 9 times ten to the power 9 in SI units.
+        With 2 and 3 microcoulombs 15 centimetres apart, the force is 2.4 newtons, about the weight of 250 grams.
+        Let us double the distance, to 30 centimetres: the force is divided by four and drops to 0.6 newton, because it decreases as one over d squared.
+    actions:
+      - { at: 0, plot: { id: f, expr: "0.009*a*b/x^2", label: { fr: "F(d) = k qA qB / d²", en: "F(d) = k qA qB / d²" }, domain: [0.1, 0.5] } }
+      - { at: 2, point: { id: p1, on: f, x: 0.15, guides: true, label: { fr: "2,4 N à 15 cm", en: "2.4 N at 15 cm" } } }
+      - { at: 3, point: { id: p2, on: f, x: 0.3, guides: true, label: { fr: "0,6 N à 30 cm", en: "0.6 N at 30 cm" } } }
+  - id: analogy
+    title: { fr: "La sœur jumelle de la gravitation", en: "The twin sister of gravitation" }
+    tool: law
+    text:
+      fr: >-
+        Cette loi est la sœur jumelle de la loi de gravitation universelle : même décroissance en un sur d au carré, produit des charges au lieu du produit des masses, constante de Coulomb au lieu de constante de gravitation.
+        Deux différences pourtant, et elles comptent.
+        La gravitation est toujours attractive, alors que l'interaction électrostatique peut aussi repousser.
+        Et l'interaction électrostatique est immensément plus intense : entre le proton et l'électron d'un atome d'hydrogène, elle est dix puissance trente-neuf fois plus grande que leur attraction gravitationnelle, et c'est elle qui tient les atomes ensemble.
+      en: >-
+        This law is the twin sister of the law of universal gravitation: the same decrease as one over d squared, the product of the charges instead of the product of the masses, the Coulomb constant instead of the gravitational constant.
+        Two differences all the same, and they matter.
+        Gravitation is always attractive, whereas the electrostatic interaction can also repel.
+        And the electrostatic interaction is immensely stronger: between the proton and the electron of a hydrogen atom, it is ten to the power thirty-nine times larger than their gravitational attraction, and it is what holds atoms together.
+    actions:
+      - { at: 3, set: { a: 4, b: 4 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de charger", en: "Your turn to charge" }
+    tool: charges
+    text:
+      fr: >-
+        À vous.
+        Déplacez les deux charges, changez leur signe et leur valeur, et déplacez le marqueur pour lire le champ et la force en un point.
+        Cherchez le point situé entre les deux charges où le champ s'annule, puis passez au traceur pour retrouver la décroissance en un sur d au carré.
+      en: >-
+        Your turn.
+        Move the two charges, change their sign and their value, and move the marker to read the field and the force at a point.
+        Look for the point between the two charges where the field vanishes, then switch to the plotter to recover the decrease as one over d squared.
+    actions:
+      - { at: 0, show: [qb], set: { a: 2, b: -3 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : la valeur d'une force électrostatique, puis la distance à laquelle elle prend une valeur donnée.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the value of an electrostatic force, then the distance at which it takes a given value.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.coulomb.force, exercise.coulomb.distance]

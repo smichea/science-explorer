@@ -1,0 +1,69 @@
+# Algorithmique en Première — parcourir une liste et sommer les éléments qui vérifient une condition (réponse numérique)
+id: exercise.algorithmics.list_sum
+type: numeric
+nodeId: tool.algorithmics
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On exécute le programme Python suivant :
+
+    ```python
+    L = [4, 9, 2, 7, 5]
+    s = 0
+    for x in L:
+        if x > 4:
+            s = s + x
+    print(s)
+    ```
+
+    Quelle valeur est affichée ?
+  en: |-
+    The following Python program is run:
+
+    ```python
+    L = [4, 9, 2, 7, 5]
+    s = 0
+    for x in L:
+        if x > 4:
+            s = s + x
+    print(s)
+    ```
+
+    Which value is displayed?
+numeric:
+  value: 21
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "valeur affichée", en: "displayed value" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La boucle `for x in L:` parcourt les éléments de la liste dans l'ordre : `x` vaut successivement $4$, $9$, $2$, $7$ puis $5$.
+      en: |-
+        The loop `for x in L:` runs through the elements of the list in order: `x` is successively $4$, $9$, $2$, $7$ then $5$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Seuls les éléments strictement supérieurs à $4$ sont ajoutés à `s` : $4$ lui-même ne l'est pas.
+      en: |-
+        Only the elements strictly greater than $4$ are added to `s`: $4$ itself is not.
+solution:
+  fr: |-
+    La variable `s` part de $0$. La boucle parcourt la liste élément par élément : $4$ n'est pas strictement supérieur à $4$, on passe ; $9 > 4$, donc `s` devient $9$ ; $2$ est ignoré ; $7 > 4$, `s` devient $16$ ; $5 > 4$, `s` devient $21$. Le programme affiche $21$.
+
+    **Interprétation.** Parcourir une liste avec `for x in L:` évite de manipuler les indices ; la même somme s'écrirait aussi `for i in range(len(L)):` avec `L[i]`. La condition `if` filtre les éléments : c'est le schéma de tout calcul de somme, de moyenne ou de fréquence sur une liste.
+  en: |-
+    The variable `s` starts at $0$. The loop runs through the list element by element: $4$ is not strictly greater than $4$, skip; $9 > 4$, so `s` becomes $9$; $2$ is ignored; $7 > 4$, `s` becomes $16$; $5 > 4$, `s` becomes $21$. The program displays $21$.
+
+    **Interpretation.** Traversing a list with `for x in L:` avoids handling the indices; the same sum could also be written `for i in range(len(L)):` with `L[i]`. The `if` condition filters the elements: this is the pattern of every computation of a sum, a mean or a frequency over a list.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 2
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

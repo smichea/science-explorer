@@ -1,0 +1,55 @@
+id: tool.arithmetic_geometric_sequences
+type: mathematical_tool
+world: world.mathematics
+region: region.math.sequences_series
+importance: 3
+backpack: true
+tags: [lycee]
+title: { fr: "Suites arithmétiques et géométriques", en: "Arithmetic and geometric sequences" }
+shortPurpose:
+  fr: "Modéliser les deux évolutions élémentaires — ajouter toujours la même quantité, ou multiplier toujours par le même nombre — et calculer directement n'importe quel terme et n'importe quelle somme."
+  en: "Model the two elementary evolutions — always adding the same quantity, or always multiplying by the same number — and compute directly any term and any sum."
+overview:
+  fr: >-
+    Deux suites reviennent partout parce que deux évolutions reviennent partout : ajouter toujours la même quantité, ou multiplier toujours par le même nombre. La première est arithmétique et ses points sont alignés ; la seconde est géométrique et sa croissance s'emballe ou s'éteint. Un salaire augmenté de cinquante euros par an et un capital placé à trois pour cent ne suivent pas la même loi, et l'écart devient spectaculaire au bout de quelques dizaines d'années.
+  en: >-
+    Two sequences appear everywhere because two evolutions appear everywhere: always adding the same quantity, or always multiplying by the same number. The first is arithmetic and its points are aligned; the second is geometric and its growth runs away or dies out. A salary raised by fifty euros a year and a capital invested at three per cent do not follow the same law, and the gap becomes spectacular after a few decades.
+aliases:
+  fr: ["suite arithmétique", "raison d'une suite", "suite géométrique", "somme des premiers entiers", "somme des termes d'une suite géométrique", "croissance linéaire et croissance exponentielle"]
+  en: ["arithmetic sequence", "common difference and common ratio", "geometric sequence", "sum of the first integers", "sum of the terms of a geometric sequence", "linear growth and exponential growth"]
+description:
+  fr: |
+    Une suite est **arithmétique** de **raison** $r$ quand on passe d'un terme au suivant en ajoutant toujours le même réel : $u_{n+1} = u_n + r$. Son terme général s'obtient alors sans récurrence, $u_n = u_0 + nr$, ou $u_n = u_p + (n - p)r$ à partir d'un rang quelconque : c'est une fonction affine du rang, donc les points $(n\,;\,u_n)$ sont **alignés**. Le signe de $r$ donne immédiatement le sens de variation, puisque $u_{n+1} - u_n = r$ : croissante si $r > 0$, décroissante si $r < 0$, constante si $r = 0$.
+
+    Une suite est **géométrique** de **raison** $q$ quand on passe d'un terme au suivant en multipliant toujours par le même réel : $u_{n+1} = q\,u_n$, d'où $u_n = u_0\,q^n$. Une évolution de $+3\%$ par an est la suite géométrique de raison $1{,}03$ : un capital de $2000$ euros devient $2000 \times 1{,}03^{10} \approx 2688$ euros en dix ans, alors qu'une augmentation arithmétique de $60$ euros par an ne donnerait que $2600$ euros. Pour $u_0 > 0$, la suite croît si $q > 1$, décroît si $0 < q < 1$, et alterne de signe si $q < 0$ : c'est la loi de tout ce qui se multiplie, d'un placement à une population, d'une décroissance radioactive à un médicament éliminé.
+
+    Les **sommes** de ces deux suites se calculent en une ligne. Pour la somme des premiers entiers, $1 + 2 + \dots + n = \dfrac{n(n+1)}{2}$, formule que l'on démontre en additionnant la somme et la somme écrite à l'envers ; plus généralement, la somme de termes consécutifs d'une suite arithmétique vaut le nombre de termes multiplié par la moyenne du premier et du dernier. Pour la somme géométrique, $1 + q + \dots + q^n = \dfrac{1 - q^{n+1}}{1 - q}$ dès que $q \neq 1$. Deux pièges : oublier que $u_n = u_0 q^n$ compte $n$ multiplications mais $n + 1$ termes de $u_0$ à $u_n$, et confondre une hausse de $20\%$ suivie d'une baisse de $20\%$ avec un retour à la valeur initiale, alors que $1{,}2 \times 0{,}8 = 0{,}96$.
+  en: |
+    A sequence is **arithmetic** with **common difference** $r$ when one moves from a term to the next by always adding the same real number: $u_{n+1} = u_n + r$. Its general term is then obtained without recurrence, $u_n = u_0 + nr$, or $u_n = u_p + (n - p)r$ from any rank: it is a linear function of the rank, so the points $(n\,;\,u_n)$ are **aligned**. The sign of $r$ immediately gives the direction of variation, since $u_{n+1} - u_n = r$: increasing if $r > 0$, decreasing if $r < 0$, constant if $r = 0$.
+
+    A sequence is **geometric** with **common ratio** $q$ when one moves from a term to the next by always multiplying by the same real number: $u_{n+1} = q\,u_n$, hence $u_n = u_0\,q^n$. A change of $+3\%$ a year is the geometric sequence of ratio $1.03$: a capital of $2000$ euros becomes $2000 \times 1.03^{10} \approx 2688$ euros in ten years, whereas an arithmetic increase of $60$ euros a year would only give $2600$ euros. For $u_0 > 0$, the sequence increases if $q > 1$, decreases if $0 < q < 1$, and alternates in sign if $q < 0$: it is the law of everything that multiplies, from an investment to a population, from a radioactive decay to a drug being eliminated.
+
+    The **sums** of these two sequences are computed in one line. For the sum of the first integers, $1 + 2 + \dots + n = \dfrac{n(n+1)}{2}$, a formula proved by adding the sum to the sum written backwards; more generally, the sum of consecutive terms of an arithmetic sequence is the number of terms multiplied by the average of the first and the last. For the geometric sum, $1 + q + \dots + q^n = \dfrac{1 - q^{n+1}}{1 - q}$ as soon as $q \neq 1$. Two traps: forgetting that $u_n = u_0 q^n$ counts $n$ multiplications but $n + 1$ terms from $u_0$ to $u_n$, and confusing a rise of $20\%$ followed by a fall of $20\%$ with a return to the initial value, whereas $1.2 \times 0.8 = 0.96$.
+tool:
+  problemSolved:
+    fr: "Calculer directement le terme de rang n et la somme des premiers termes d'une évolution qui ajoute toujours la même quantité ou qui multiplie toujours par le même nombre, sans dérouler la récurrence pas à pas."
+    en: "Compute directly the term of rank n and the sum of the first terms of an evolution that always adds the same quantity or always multiplies by the same number, without unrolling the recurrence step by step."
+  construction:
+    fr: "On part de la relation de récurrence, $u_{n+1} = u_n + r$ ou $u_{n+1} = q\\,u_n$, que l'on itère depuis le premier terme : les additions successives donnent $u_n = u_0 + nr$, les multiplications successives $u_n = u_0 q^n$, et les sommes se ferment par le renversement de la somme ou par la mise en facteur de $1 - q$."
+    en: "One starts from the recurrence relation, $u_{n+1} = u_n + r$ or $u_{n+1} = q\\,u_n$, and iterates it from the first term: the successive additions give $u_n = u_0 + nr$, the successive multiplications $u_n = u_0 q^n$, and the sums close by reversing the sum or by factoring out $1 - q$."
+  icon: stairs
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "reconnaître une suite arithmétique ou géométrique dans un énoncé et donner sa raison"
+        - "calculer le terme de rang n avec u(n) = u(0) + n r ou u(n) = u(0) q^n, et déterminer le sens de variation"
+        - "calculer la somme 1 + 2 + … + n et la somme 1 + q + … + q^n"
+        - "modéliser une évolution à taux constant par une suite géométrique et comparer croissance linéaire et croissance exponentielle"
+      en:
+        - "recognise an arithmetic or geometric sequence in a statement and give its common difference or ratio"
+        - "compute the term of rank n with u(n) = u(0) + n r or u(n) = u(0) q^n, and determine the direction of variation"
+        - "compute the sum 1 + 2 + … + n and the sum 1 + q + … + q^n"
+        - "model an evolution at a constant rate by a geometric sequence and compare linear with exponential growth"

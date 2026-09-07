@@ -1,0 +1,53 @@
+id: concept.mechanical_energy
+type: law
+world: world.physics
+region: region.physics.motion_mechanics
+importance: 3
+tags: [lycee]
+title: { fr: "Énergie potentielle, énergie mécanique, conservation", en: "Potential energy, mechanical energy, conservation" }
+shortPurpose:
+  fr: "Suivre l'échange entre énergie de position et énergie de vitesse, et reconnaître quand la somme des deux se conserve."
+  en: "Follow the exchange between energy of position and energy of speed, and recognise when the sum of the two is conserved."
+overview:
+  fr: >-
+    Une bille lancée vers le haut ralentit puis redescend : elle troque de la vitesse contre de la hauteur, puis de la hauteur contre de la vitesse. L'énergie potentielle de pesanteur mesure cette réserve liée à l'altitude ; ajoutée à l'énergie cinétique, elle donne l'énergie mécanique. Sans frottement, cette somme reste constante tout au long du mouvement, et une simple ligne horizontale sur un graphique le montre. Dès qu'il y a des frottements, l'énergie mécanique décroît : elle part en chaleur, elle ne disparaît pas.
+  en: >-
+    A ball thrown upwards slows down then comes back: it trades speed for height, then height for speed. The gravitational potential energy measures this store linked to altitude; added to the kinetic energy, it gives the mechanical energy. Without friction, this sum stays constant throughout the motion, and a simple horizontal line on a graph shows it. As soon as there is friction, the mechanical energy decreases: it turns into heat, it does not vanish.
+aliases:
+  fr: ["énergie potentielle de pesanteur", "énergie mécanique", "conservation de l'énergie mécanique", "énergie de position", "dissipation"]
+  en: ["gravitational potential energy", "mechanical energy", "conservation of mechanical energy", "energy of position", "dissipation"]
+description:
+  fr: |
+    L'**énergie potentielle de pesanteur** d'un système de masse $m$ situé à l'altitude $z$ dans un champ de pesanteur uniforme vaut $E_{pp} = m\,g\,z$, en joules ; elle est définie à une constante près, fixée par le choix de l'altitude de référence où l'on pose $E_{pp} = 0$. L'**énergie mécanique** est la somme de l'énergie de vitesse et de l'énergie de position : $E_m = E_c + E_{pp} = \dfrac{1}{2}\,m\,v^2 + m\,g\,z$. Le travail du poids entre deux points ne dépend que des altitudes de départ et d'arrivée, $W_{AB}(\vec P) = m\,g\,(z_A - z_B) = -\Delta E_{pp}$ : le poids est une force **conservative**. Le théorème de l'énergie cinétique donne alors, pour un système soumis à son seul poids, $\Delta E_c = -\Delta E_{pp}$, c'est-à-dire $\Delta E_m = 0$ : l'énergie mécanique **se conserve**.
+
+    Cette conservation transforme des problèmes de mouvement en une simple égalité entre deux instants. Une bille de $1\ \mathrm{kg}$ lâchée sans vitesse d'une hauteur $h = 10\ \mathrm{m}$ a au départ $E_m = m\,g\,h = 98\ \mathrm{J}$, toute en énergie potentielle ; au sol, la même valeur est toute en énergie cinétique, donc $\dfrac{1}{2}\,m\,v^2 = 98\ \mathrm{J}$ et $v = \sqrt{2\,g\,h} = 14\ \mathrm{m/s}$. À mi-hauteur, l'énergie se partage exactement en deux moitiés de $49\ \mathrm{J}$. Sur un graphique en fonction de l'altitude, $E_{pp}$ est une droite croissante, $E_c$ la droite décroissante symétrique et $E_m$ une horizontale : c'est la signature visuelle de la conservation.
+
+    En présence de **frottements**, l'énergie mécanique n'est plus constante : sa variation est égale au travail des forces non conservatives, négatif, et l'énergie perdue est transférée à l'air et aux surfaces sous forme thermique. Une balle de $0{,}20\ \mathrm{kg}$ lâchée de $8{,}0\ \mathrm{m}$ devrait arriver à $12{,}5\ \mathrm{m/s}$ ; si elle arrive à $10\ \mathrm{m/s}$, l'énergie mécanique est passée de $15{,}7\ \mathrm{J}$ à $10{,}0\ \mathrm{J}$ et les frottements ont dissipé $5{,}7\ \mathrm{J}$. Pièges classiques : oublier de préciser l'altitude de référence, ce qui rend $E_{pp}$ ambiguë ; croire que l'énergie « disparaît » avec les frottements alors qu'elle change seulement de forme ; utiliser la conservation dans un cas où une force non conservative travaille. En Terminale, le même raisonnement se généralise à d'autres énergies potentielles, élastique ou électrique.
+  en: |
+    The **gravitational potential energy** of a system of mass $m$ at the altitude $z$ in a uniform gravity field is $E_{pp} = m\,g\,z$, in joules; it is defined up to a constant, fixed by the choice of the reference altitude where $E_{pp} = 0$ is set. The **mechanical energy** is the sum of the energy of speed and the energy of position: $E_m = E_c + E_{pp} = \dfrac{1}{2}\,m\,v^2 + m\,g\,z$. The work of the weight between two points depends only on the starting and arrival altitudes, $W_{AB}(\vec P) = m\,g\,(z_A - z_B) = -\Delta E_{pp}$: the weight is a **conservative** force. The work–energy theorem then gives, for a system subject to its weight only, $\Delta E_c = -\Delta E_{pp}$, that is $\Delta E_m = 0$: the mechanical energy **is conserved**.
+
+    This conservation turns motion problems into a simple equality between two instants. A ball of $1\ \mathrm{kg}$ released from rest at a height $h = 10\ \mathrm{m}$ has at the start $E_m = m\,g\,h = 98\ \mathrm{J}$, entirely as potential energy; at the ground, the same value is entirely kinetic, so $\dfrac{1}{2}\,m\,v^2 = 98\ \mathrm{J}$ and $v = \sqrt{2\,g\,h} = 14\ \mathrm{m/s}$. Halfway down, the energy splits into exactly two halves of $49\ \mathrm{J}$. On a graph against altitude, $E_{pp}$ is an increasing straight line, $E_c$ the symmetric decreasing one and $E_m$ a horizontal line: this is the visual signature of conservation.
+
+    In the presence of **friction**, the mechanical energy is no longer constant: its change equals the work of the non-conservative forces, which is negative, and the energy lost is transferred to the air and to the surfaces as heat. A ball of $0.20\ \mathrm{kg}$ released from $8.0\ \mathrm{m}$ should arrive at $12.5\ \mathrm{m/s}$; if it arrives at $10\ \mathrm{m/s}$, the mechanical energy has gone from $15.7\ \mathrm{J}$ to $10.0\ \mathrm{J}$ and friction has dissipated $5.7\ \mathrm{J}$. Classic traps: forgetting to state the reference altitude, which makes $E_{pp}$ ambiguous; believing that energy "disappears" with friction when it only changes form; using conservation in a case where a non-conservative force does work. In Grade 12, the same reasoning is generalised to other potential energies, elastic or electrical.
+law:
+  statement:
+    fr: "L'énergie mécanique d'un système est $E_m = E_c + E_{pp} = \\dfrac{1}{2}\\,m\\,v^2 + m\\,g\\,z$ ; si le système n'est soumis qu'à des forces conservatives, en particulier à son seul poids, alors $E_m$ se conserve au cours du mouvement, et sinon sa variation est égale au travail des forces non conservatives : $\\Delta E_m = W(\\vec F_{\\text{non conservatives}})$."
+    en: "The mechanical energy of a system is $E_m = E_c + E_{pp} = \\dfrac{1}{2}\\,m\\,v^2 + m\\,g\\,z$; if the system is subject only to conservative forces, in particular to its weight only, then $E_m$ is conserved during the motion, and otherwise its change equals the work of the non-conservative forces: $\\Delta E_m = W(\\vec F_{\\text{non conservative}})$."
+  validity:
+    fr: "Champ de pesanteur uniforme, masse constante, référentiel galiléen ; l'énergie potentielle de pesanteur $E_{pp} = m\\,g\\,z$ n'est définie qu'une fois choisie l'altitude de référence, et la conservation suppose l'absence de frottements et de toute autre force non conservative."
+    en: "Uniform gravity field, constant mass, Galilean frame of reference; the gravitational potential energy $E_{pp} = m\\,g\\,z$ is defined only once the reference altitude has been chosen, and conservation assumes no friction and no other non-conservative force."
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "calculer l'énergie potentielle de pesanteur $E_{pp} = m\\,g\\,z$ après avoir choisi une altitude de référence"
+        - "calculer l'énergie mécanique $E_m = E_c + E_{pp}$ et suivre son évolution au cours d'un mouvement"
+        - "identifier les situations où l'énergie mécanique se conserve et en déduire une vitesse ou une hauteur"
+        - "interpréter une diminution de l'énergie mécanique comme un transfert thermique dû aux frottements et l'évaluer"
+      en:
+        - "compute the gravitational potential energy $E_{pp} = m\\,g\\,z$ after choosing a reference altitude"
+        - "compute the mechanical energy $E_m = E_c + E_{pp}$ and follow its evolution during a motion"
+        - "identify the situations where the mechanical energy is conserved and deduce from it a speed or a height"
+        - "interpret a decrease of the mechanical energy as a thermal transfer due to friction and evaluate it"

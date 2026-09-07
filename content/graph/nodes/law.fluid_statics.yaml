@@ -1,0 +1,53 @@
+id: law.fluid_statics
+type: law
+world: world.physics
+region: region.physics.thermodynamics
+importance: 2
+tags: [lycee]
+title: { fr: "Fluide au repos : pression, loi de Mariotte, statique des fluides", en: "Fluid at rest: pressure, Boyle–Mariotte law, fluid statics" }
+shortPurpose:
+  fr: "Décrire un fluide au repos par sa pression, relier pression et volume d'un gaz à température constante, et calculer la pression à une profondeur donnée."
+  en: "Describe a fluid at rest by its pressure, relate the pressure and the volume of a gas at constant temperature, and compute the pressure at a given depth."
+overview:
+  fr: >-
+    Un gaz est fait de molécules en mouvement désordonné qui frappent les parois : c'est la pression, une force par unité de surface. À température constante, comprimer un gaz fait monter sa pression, le produit de la pression par le volume restant constant : c'est la loi de Mariotte. Dans un liquide au repos, la pression augmente avec la profondeur, d'environ un bar tous les dix mètres d'eau, ce que tout plongeur ressent dans ses oreilles.
+  en: >-
+    A gas is made of molecules in disordered motion that hit the walls: this is pressure, a force per unit area. At constant temperature, compressing a gas raises its pressure, the product of the pressure by the volume staying constant: this is the Boyle–Mariotte law. In a liquid at rest, the pressure increases with depth, by about one bar every ten metres of water, which every diver feels in the ears.
+aliases:
+  fr: ["pression", "loi de Boyle-Mariotte", "loi fondamentale de la statique des fluides", "modèle particulaire du gaz"]
+  en: ["pressure", "Boyle's law", "fundamental law of fluid statics", "particle model of a gas"]
+description:
+  fr: |
+    À l'échelle microscopique, un **gaz** est un ensemble de molécules très espacées, en mouvement désordonné et incessant, qui rebondissent sur les parois ; à l'échelle macroscopique, ces chocs se traduisent par une **force pressante** $\vec F$, perpendiculaire à la surface $S$ qu'elle pousse. La **pression** est la force pressante par unité de surface, $P = \dfrac{F}{S}$, en pascals ($1\ \mathrm{Pa} = 1\ \mathrm{N/m^2}$) ; on utilise aussi le bar, $1\ \mathrm{bar} = 10^{5}\ \mathrm{Pa}$, et l'hectopascal des bulletins météo, la pression atmosphérique normale valant $1{,}013 \times 10^{5}\ \mathrm{Pa}$. **Loi de Mariotte** : pour une quantité de gaz donnée maintenue à température constante, le produit de la pression par le volume est constant, $P\,V = \text{constante}$ ; comprimer le gaz à la moitié de son volume double sa pression.
+
+    **Loi fondamentale de la statique des fluides.** Dans un fluide **incompressible** au repos, de masse volumique $\rho$, la pression augmente avec la profondeur : entre deux points $A$ et $B$ d'altitudes $z_A$ et $z_B$ (axe vertical ascendant), $P_B - P_A = \rho\,g\,(z_A - z_B)$. Dans l'eau ($\rho = 1{,}0 \times 10^{3}\ \mathrm{kg/m^3}$), descendre de $10\ \mathrm{m}$ ajoute $1{,}0 \times 10^{3} \times 9{,}8 \times 10 \approx 0{,}98 \times 10^{5}\ \mathrm{Pa}$, presque un bar : à $20\ \mathrm{m}$ de profondeur, un plongeur subit environ $3\ \mathrm{bar}$, la pression atmosphérique plus deux bars d'eau. La loi de Mariotte explique alors pourquoi il doit remonter en expirant : une bulle d'air de $1{,}0\ \mathrm{L}$ à $30\ \mathrm{m}$ ($4\ \mathrm{bar}$) occupe $4{,}0\ \mathrm{L}$ en surface.
+
+    Ces lois s'appliquent à un fluide **au repos** : dans un liquide, la pression ne dépend que de la profondeur, pas de la forme du récipient, et elle s'exerce dans toutes les directions ; dans un gaz, la masse volumique est si faible que la pression est pratiquement la même dans toute une pièce. La loi de Mariotte suppose la température constante et un gaz peu dense ; en Terminale, la loi des gaz parfaits $PV = nRT$ la généralise. Pièges : confondre force pressante (en newtons, un vecteur) et pression (en pascals, un nombre) ; oublier la pression atmosphérique à la surface ; mélanger les bars et les pascals, ou les litres et les mètres cubes, dans une même formule.
+  en: |
+    At the microscopic scale, a **gas** is a set of widely spaced molecules, in disordered and ceaseless motion, bouncing on the walls; at the macroscopic scale, these impacts result in a **pressing force** $\vec F$, perpendicular to the surface $S$ it pushes. The **pressure** is the pressing force per unit area, $P = \dfrac{F}{S}$, in pascals ($1\ \mathrm{Pa} = 1\ \mathrm{N/m^2}$); the bar is also used, $1\ \mathrm{bar} = 10^{5}\ \mathrm{Pa}$, and the hectopascal of weather reports, the normal atmospheric pressure being $1.013 \times 10^{5}\ \mathrm{Pa}$. **Boyle–Mariotte law**: for a given quantity of gas kept at constant temperature, the product of the pressure by the volume is constant, $P\,V = \text{constant}$; compressing the gas to half its volume doubles its pressure.
+
+    **Fundamental law of fluid statics.** In an **incompressible** fluid at rest, of density $\rho$, the pressure increases with depth: between two points $A$ and $B$ of altitudes $z_A$ and $z_B$ (vertical axis upwards), $P_B - P_A = \rho\,g\,(z_A - z_B)$. In water ($\rho = 1.0 \times 10^{3}\ \mathrm{kg/m^3}$), going down $10\ \mathrm{m}$ adds $1.0 \times 10^{3} \times 9.8 \times 10 \approx 0.98 \times 10^{5}\ \mathrm{Pa}$, almost one bar: at $20\ \mathrm{m}$ of depth, a diver is under about $3\ \mathrm{bar}$, the atmospheric pressure plus two bars of water. The Boyle–Mariotte law then explains why the diver must exhale while going up: an air bubble of $1.0\ \mathrm{L}$ at $30\ \mathrm{m}$ ($4\ \mathrm{bar}$) occupies $4.0\ \mathrm{L}$ at the surface.
+
+    These laws apply to a fluid **at rest**: in a liquid, the pressure depends only on the depth, not on the shape of the container, and it acts in all directions; in a gas, the density is so small that the pressure is practically the same throughout a room. The Boyle–Mariotte law assumes a constant temperature and a dilute gas; in Grade 12, the ideal gas law $PV = nRT$ generalises it. Traps: confusing the pressing force (in newtons, a vector) with the pressure (in pascals, a number); forgetting the atmospheric pressure at the surface; mixing bars and pascals, or litres and cubic metres, in the same formula.
+law:
+  statement:
+    fr: "Dans un fluide incompressible au repos, la différence de pression entre deux points ne dépend que de leur différence d'altitude : $P_B - P_A = \\rho\\,g\\,(z_A - z_B)$ ; pour une quantité de gaz donnée à température constante, le produit $P\\,V$ est constant (loi de Mariotte)."
+    en: "In an incompressible fluid at rest, the pressure difference between two points depends only on their altitude difference: $P_B - P_A = \\rho\\,g\\,(z_A - z_B)$; for a given quantity of gas at constant temperature, the product $P\\,V$ is constant (Boyle–Mariotte law)."
+  validity:
+    fr: "Fluide au repos dans le référentiel terrestre ; loi fondamentale : fluide incompressible et homogène (liquide) ; loi de Mariotte : gaz peu dense, quantité de matière et température constantes."
+    en: "Fluid at rest in the terrestrial frame; fundamental law: incompressible and homogeneous fluid (liquid); Boyle–Mariotte law: dilute gas, constant amount of substance and temperature."
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "décrire un gaz à l'échelle microscopique (modèle particulaire) et relier l'agitation des molécules à la pression, force pressante par unité de surface $P = F/S$"
+        - "utiliser la loi de Mariotte $P\\,V = \\text{constante}$ pour un gaz à température constante"
+        - "appliquer la loi fondamentale de la statique des fluides $P_B - P_A = \\rho\\,g\\,(z_A - z_B)$ dans un liquide incompressible"
+        - "exploiter ces lois dans une situation concrète (plongée, seringue, altimètre) avec les unités du Système international"
+      en:
+        - "describe a gas at the microscopic scale (particle model) and relate the agitation of the molecules to the pressure, pressing force per unit area $P = F/S$"
+        - "use the Boyle–Mariotte law $P\\,V = \\text{constant}$ for a gas at constant temperature"
+        - "apply the fundamental law of fluid statics $P_B - P_A = \\rho\\,g\\,(z_A - z_B)$ in an incompressible liquid"
+        - "use these laws in a concrete situation (diving, syringe, altimeter) with SI units"

@@ -1,0 +1,53 @@
+# Suites arithmétiques et géométriques — la somme des vingt et un premiers termes d'une suite arithmétique (réponse numérique)
+id: exercise.sequences.arithmetic_sum
+type: numeric
+nodeId: tool.arithmetic_geometric_sequences
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    La suite $(u_n)$ est arithmétique de premier terme $u_0 = 2$ et de raison $r = 5$.
+
+    Calculez la somme $S = u_0 + u_1 + \dots + u_{20}$ des vingt et un premiers termes.
+  en: |-
+    The sequence $(u_n)$ is arithmetic with first term $u_0 = 2$ and common difference $r = 5$.
+
+    Compute the sum $S = u_0 + u_1 + \dots + u_{20}$ of the first twenty-one terms.
+numeric:
+  value: 1092
+  tolerance: { kind: absolute, value: 0.5 }
+  inputLabel: { fr: "S", en: "S" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Calculez d'abord le dernier terme avec $u_n = u_0 + nr$, puis comptez soigneusement les termes : de $u_0$ à $u_{20}$, il y en a $21$ et non $20$.
+      en: |-
+        First compute the last term with $u_n = u_0 + nr$, then count the terms carefully: from $u_0$ to $u_{20}$ there are $21$ of them, not $20$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La somme de termes consécutifs d'une suite arithmétique vaut le nombre de termes multiplié par la moyenne du premier et du dernier : $S = 21 \times \dfrac{u_0 + u_{20}}{2}$.
+      en: |-
+        The sum of consecutive terms of an arithmetic sequence is the number of terms multiplied by the average of the first and the last: $S = 21 \times \dfrac{u_0 + u_{20}}{2}$.
+solution:
+  fr: |-
+    Le terme général est $u_n = u_0 + nr = 2 + 5n$, donc $u_{20} = 2 + 100 = 102$. La somme compte $21$ termes, de $u_0$ à $u_{20}$ :
+    $$S = 21 \times \frac{u_0 + u_{20}}{2} = 21 \times \frac{2 + 102}{2} = 21 \times 52 = 1092.$$
+
+    **Interprétation.** La formule vient de l'astuce de l'addition à l'envers : en écrivant la somme dans un sens puis dans l'autre et en additionnant terme à terme, on obtient $21$ paires valant chacune $u_0 + u_{20} = 104$, soit $2S = 21 \times 104$. La même idée donne $1 + 2 + \dots + n = \dfrac{n(n+1)}{2}$. On peut vérifier l'ordre de grandeur : $21$ termes dont la moyenne est $52$ donnent bien un peu plus de mille.
+  en: |-
+    The general term is $u_n = u_0 + nr = 2 + 5n$, so $u_{20} = 2 + 100 = 102$. The sum has $21$ terms, from $u_0$ to $u_{20}$:
+    $$S = 21 \times \frac{u_0 + u_{20}}{2} = 21 \times \frac{2 + 102}{2} = 21 \times 52 = 1092.$$
+
+    **Interpretation.** The formula comes from the trick of adding backwards: writing the sum one way then the other and adding term by term gives $21$ pairs each worth $u_0 + u_{20} = 104$, that is $2S = 21 \times 104$. The same idea gives $1 + 2 + \dots + n = \dfrac{n(n+1)}{2}$. The order of magnitude checks out: $21$ terms averaging $52$ do give a little over a thousand.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 3

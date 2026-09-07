@@ -1,0 +1,80 @@
+# Logique en Première — la négation d'une propriété universelle « pour tout entier n, n² + n + 41 est premier » (choix unique)
+id: exercise.logic.quantifiers
+type: choice
+nodeId: concept.logic_sets
+depth: 2
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Un élève affirme : « pour tout entier naturel $n$, le nombre $n^2 + n + 41$ est premier ».
+
+    Quelle est la **négation** de cette affirmation ?
+  en: |-
+    A student claims: "for every natural integer $n$, the number $n^2 + n + 41$ is prime".
+
+    What is the **negation** of this claim?
+choice:
+  multiple: false
+  requireReasoning: false
+  choices:
+    - id: all_not
+      text: { fr: "Pour tout entier naturel $n$, $n^2 + n + 41$ n'est pas premier.", en: "For every natural integer $n$, $n^2 + n + 41$ is not prime." }
+      feedback:
+        fr: |-
+          Non : nier « pour tout » ne donne pas « pour tout … non ». Il suffit d'un seul entier $n$ qui fait défaut pour que l'affirmation soit fausse.
+        en: |-
+          No: negating "for all" does not give "for all … not". A single failing integer $n$ is enough for the claim to be false.
+    - id: exists_not
+      text: { fr: "Il existe un entier naturel $n$ tel que $n^2 + n + 41$ n'est pas premier.", en: "There exists a natural integer $n$ such that $n^2 + n + 41$ is not prime." }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : la négation de « pour tout $n$, $P(n)$ » est « il existe $n$ tel que non $P(n)$ ». Et cette négation est vraie : pour $n = 40$, $40^2 + 40 + 41 = 1681 = 41^2$ n'est pas premier.
+        en: |-
+          Correct: the negation of "for all $n$, $P(n)$" is "there exists $n$ such that not $P(n)$". And this negation is true: for $n = 40$, $40^2 + 40 + 41 = 1681 = 41^2$ is not prime.
+    - id: exists
+      text: { fr: "Il existe un entier naturel $n$ tel que $n^2 + n + 41$ est premier.", en: "There exists a natural integer $n$ such that $n^2 + n + 41$ is prime." }
+      feedback:
+        fr: |-
+          Non : cette affirmation est vraie en même temps que celle de l'élève (par exemple $n = 0$ donne $41$), elle ne peut donc pas en être la négation. Nier « pour tout » demande « il existe … non ».
+        en: |-
+          No: this statement is true at the same time as the student's (for instance $n = 0$ gives $41$), so it cannot be its negation. Negating "for all" requires "there exists … not".
+    - id: none
+      text: { fr: "Il n'existe aucun entier naturel $n$ tel que $n^2 + n + 41$ soit premier.", en: "There is no natural integer $n$ such that $n^2 + n + 41$ is prime." }
+      feedback:
+        fr: |-
+          Non : c'est une affirmation bien plus forte que la négation, et elle est fausse ($n = 0$ donne $41$, premier). La négation ne demande qu'un seul contre-exemple.
+        en: |-
+          No: this is a much stronger statement than the negation, and it is false ($n = 0$ gives $41$, prime). The negation only requires a single counter-example.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Nier « pour tout $n$, $P(n)$ », c'est affirmer qu'au moins un $n$ ne vérifie pas $P(n)$ : le quantificateur change.
+      en: |-
+        Negating "for all $n$, $P(n)$" is asserting that at least one $n$ does not satisfy $P(n)$: the quantifier changes.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La négation de « pour tout $x$, $P(x)$ » est « il existe $x$ tel que non $P(x)$ ».
+      en: |-
+        The negation of "for all $x$, $P(x)$" is "there exists $x$ such that not $P(x)$".
+solution:
+  fr: |-
+    La négation d'une propriété universelle « pour tout $n$, $P(n)$ » est la propriété d'existence « il existe $n$ tel que non $P(n)$ » : ici, « il existe un entier naturel $n$ tel que $n^2 + n + 41$ n'est pas premier ». Les quantificateurs s'échangent et la propriété est niée.
+
+    **Et l'affirmation de l'élève ?** Elle est fausse, et un seul contre-exemple suffit à le prouver : pour $n = 40$, $40^2 + 40 + 41 = 1681 = 41^2$, qui n'est pas premier (on peut aussi prendre $n = 41$, qui donne $41 \times 43$). Pourtant $n^2 + n + 41$ est premier pour tous les entiers de $0$ à $39$ : quarante exemples ne démontrent pas une propriété universelle, un contre-exemple la réfute.
+  en: |-
+    The negation of a universal property "for all $n$, $P(n)$" is the existence property "there exists $n$ such that not $P(n)$": here, "there exists a natural integer $n$ such that $n^2 + n + 41$ is not prime". The quantifiers are swapped and the property is negated.
+
+    **And the student's claim?** It is false, and a single counter-example is enough to prove it: for $n = 40$, $40^2 + 40 + 41 = 1681 = 41^2$, which is not prime (one may also take $n = 41$, which gives $41 \times 43$). Yet $n^2 + n + 41$ is prime for every integer from $0$ to $39$: forty examples do not prove a universal property, one counter-example refutes it.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

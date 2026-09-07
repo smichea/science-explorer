@@ -67,3 +67,17 @@ depths:
         - "write and balance the equation of a reaction, respecting the conservation of the elements and of the charge"
         - "determine the limiting reactant from the initial amounts of substance and the equation, and deduce the final state"
         - "recognise an exothermic or endothermic transformation and a spectator species"
+  - depth: 2
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "définir l'avancement $x$ d'une réaction et établir le tableau d'avancement d'une transformation à partir de l'équation de réaction et des quantités de matière initiales"
+        - "déterminer l'avancement maximal $x_{\\max} = \\min(n_i / \\nu_i)$ et le réactif limitant d'une transformation supposée totale"
+        - "reconnaître un mélange stœchiométrique par la condition $n_1 / \\nu_1 = n_2 / \\nu_2$ sur les quantités initiales"
+        - "déterminer la composition du système dans l'état final, y compris lorsqu'un produit est initialement présent, et comparer l'avancement final à l'avancement maximal"
+      en:
+        - "define the extent $x$ of a reaction and set up the extent table of a transformation from the reaction equation and the initial amounts of substance"
+        - "determine the maximum extent $x_{\\max} = \\min(n_i / \\nu_i)$ and the limiting reactant of a transformation assumed complete"
+        - "recognise a stoichiometric mixture by the condition $n_1 / \\nu_1 = n_2 / \\nu_2$ on the initial amounts"
+        - "determine the composition of the system in the final state, including when a product is initially present, and compare the final extent with the maximum extent"

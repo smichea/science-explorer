@@ -1,0 +1,127 @@
+# Leçon narrée — oxydoréduction : couples Cu²⁺/Cu et Zn²⁺/Zn (demi-équations à 2 électrons), puis Fe³⁺/Fe²⁺ contre le zinc
+# (1 électron contre 2 : les multiplicateurs), avec l'outil réaction et ses demi-équations.
+id: lesson.model.redox
+nodeId: model.redox
+depth: 1
+tools:
+  - id: copper
+    kind: reaction
+    title: { fr: "Zinc et ions cuivre II", en: "Zinc and copper II ions" }
+    parameters:
+      - { id: a, label: { fr: "ions Cu²⁺ initiaux (mol)", en: "initial Cu²⁺ ions (mol)" }, min: 0, max: 0.1, step: 0.005, value: 0.02 }
+      - { id: b, label: { fr: "zinc initial (mol)", en: "initial zinc (mol)" }, min: 0, max: 0.1, step: 0.005, value: 0.05 }
+    reactants:
+      - { id: zinc, formula: "Zn", coefficient: 1, initial: "b", label: { fr: "zinc", en: "zinc" } }
+      - { id: copper_ion, formula: "Cu²⁺", coefficient: 1, initial: "a", label: { fr: "ions cuivre II", en: "copper II ions" } }
+    products:
+      - { id: zinc_ion, formula: "Zn²⁺", coefficient: 1 }
+      - { id: copper_metal, formula: "Cu", coefficient: 1 }
+    unit: mol
+    halfEquations:
+      - { id: oxidation, left: "Zn", right: "Zn²⁺", electrons: 2, role: oxidation }
+      - { id: reduction, left: "Cu²⁺", right: "Cu", electrons: 2, role: reduction }
+  - id: iron
+    kind: reaction
+    title: { fr: "Zinc et ions fer III", en: "Zinc and iron III ions" }
+    parameters:
+      - { id: a, label: { fr: "ions Fe³⁺ initiaux (mol)", en: "initial Fe³⁺ ions (mol)" }, min: 0, max: 0.1, step: 0.005, value: 0.06 }
+      - { id: b, label: { fr: "zinc initial (mol)", en: "initial zinc (mol)" }, min: 0, max: 0.1, step: 0.005, value: 0.02 }
+    reactants:
+      - { id: zinc, formula: "Zn", coefficient: 1, initial: "b", label: { fr: "zinc", en: "zinc" } }
+      - { id: iron3, formula: "Fe³⁺", coefficient: 2, initial: "a", label: { fr: "ions fer III", en: "iron III ions" } }
+    products:
+      - { id: zinc_ion, formula: "Zn²⁺", coefficient: 1 }
+      - { id: iron2, formula: "Fe²⁺", coefficient: 2 }
+    unit: mol
+    halfEquations:
+      - { id: oxidation, left: "Zn", right: "Zn²⁺", electrons: 2, role: oxidation }
+      - { id: reduction, left: "Fe³⁺", right: "Fe²⁺", electrons: 1, role: reduction }
+steps:
+  - id: couples
+    title: { fr: "Oxydant, réducteur, couple", en: "Oxidant, reductant, couple" }
+    tool: copper
+    text:
+      fr: >-
+        Un oxydant est une espèce capable de capter des électrons, un réducteur une espèce capable d'en céder.
+        L'ion cuivre II et le métal cuivre forment un couple oxydant-réducteur : la demi-équation s'écrit Cu 2 plus, plus 2 électrons, égale cuivre.
+        De même, le zinc métal et l'ion zinc II forment un couple, Zn 2 plus sur zinc métal.
+        Capter des électrons est une réduction, en céder est une oxydation.
+      en: >-
+        An oxidant is a species able to gain electrons, a reductant a species able to give them away.
+        The copper II ion and copper metal form an oxidant–reductant couple: the half-equation reads Cu 2 plus, plus 2 electrons, equals copper.
+        Likewise, zinc metal and the zinc II ion form a couple, Zn 2 plus over zinc metal.
+        Gaining electrons is a reduction, giving them away is an oxidation.
+    actions:
+      - { at: 0, set: { a: 0.02, b: 0.05 } }
+  - id: transfer
+    title: { fr: "Un transfert d'électrons", en: "A transfer of electrons" }
+    tool: copper
+    text:
+      fr: >-
+        Plongeons une lame de zinc dans une solution bleue de sulfate de cuivre : la lame se couvre de cuivre rouge et le bleu s'estompe.
+        Chaque atome de zinc cède deux électrons à un ion cuivre : le zinc est oxydé, l'ion cuivre est réduit, c'est une réaction d'oxydoréduction.
+        Les électrons ne restent pas en solution et n'apparaissent pas dans l'équation : zinc plus Cu 2 plus donne Zn 2 plus, plus cuivre.
+        Avec 0,05 mole de zinc et 0,02 mole d'ions cuivre, l'ion cuivre est limitant, et le tableau d'avancement s'applique comme pour toute réaction.
+      en: >-
+        Let us dip a zinc plate into a blue copper sulfate solution: the plate gets coated with red copper and the blue fades.
+        Each zinc atom gives two electrons to a copper ion: zinc is oxidised, the copper ion is reduced, this is a redox reaction.
+        The electrons do not stay in solution and do not appear in the equation: zinc plus Cu 2 plus gives Zn 2 plus, plus copper.
+        With 0.05 mole of zinc and 0.02 mole of copper ions, the copper ion is limiting, and the extent table applies as for any reaction.
+    actions:
+      - { at: 3, set: { a: 0.02, b: 0.05 } }
+  - id: multipliers
+    title: { fr: "Compenser les électrons", en: "Balancing the electrons" }
+    tool: iron
+    text:
+      fr: >-
+        Remplaçons les ions cuivre par des ions fer III, qui ne captent qu'un seul électron chacun : Fe 3 plus, plus un électron, égale Fe 2 plus.
+        Le zinc en cède deux : pour que les électrons cédés soient tous captés, on multiplie la demi-équation du fer par deux, comme l'indique l'outil.
+        L'équation devient : zinc plus 2 Fe 3 plus donne Zn 2 plus, plus 2 Fe 2 plus.
+        Le nombre d'électrons échangés, deux, n'apparaît nulle part dans l'équation finale, mais il en fixe les nombres stœchiométriques.
+      en: >-
+        Let us replace the copper ions with iron III ions, which each gain only one electron: Fe 3 plus, plus one electron, equals Fe 2 plus.
+        Zinc gives two: so that all the electrons given are gained, the iron half-equation is multiplied by two, as the tool shows.
+        The equation becomes: zinc plus 2 Fe 3 plus gives Zn 2 plus, plus 2 Fe 2 plus.
+        The number of electrons exchanged, two, appears nowhere in the final equation, but it sets its stoichiometric coefficients.
+    actions:
+      - { at: 0, set: { a: 0.06, b: 0.02 } }
+  - id: recognise
+    title: { fr: "Reconnaître une oxydoréduction et ajuster en milieu acide", en: "Recognising a redox reaction and balancing in acidic medium" }
+    tool: iron
+    text:
+      fr: >-
+        Pour reconnaître une réaction d'oxydoréduction, cherchez les deux couples : l'espèce qui capte les électrons est l'oxydant, celle qui les cède est le réducteur.
+        Certaines demi-équations demandent de l'eau et des ions hydrogène : pour le couple permanganate sur manganèse II, on écrit MnO4 moins, plus 8 H plus, plus 5 électrons, égale Mn 2 plus, plus 4 molécules d'eau.
+        On conserve d'abord le manganèse, puis l'oxygène avec l'eau, l'hydrogène avec les ions H plus, et enfin la charge avec les électrons.
+        Les combustions, les piles et la corrosion sont des oxydoréductions : le dioxygène est un oxydant, les métaux et les combustibles sont des réducteurs.
+      en: >-
+        To recognise a redox reaction, look for the two couples: the species that gains the electrons is the oxidant, the one that gives them away is the reductant.
+        Some half-equations need water and hydrogen ions: for the permanganate over manganese II couple, one writes MnO4 minus, plus 8 H plus, plus 5 electrons, equals Mn 2 plus, plus 4 water molecules.
+        Manganese is conserved first, then oxygen with water, hydrogen with H plus ions, and finally the charge with the electrons.
+        Combustions, batteries and corrosion are redox reactions: oxygen is an oxidant, metals and fuels are reductants.
+    actions:
+      - { at: 0, set: { a: 0.04, b: 0.02 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous d'échanger des électrons", en: "Your turn to exchange electrons" }
+    tool: copper
+    text:
+      fr: >-
+        À vous. Faites varier les quantités de zinc et d'ions cuivre, déplacez l'avancement et repérez le réactif limitant.
+        Passez ensuite à l'outil zinc et ions fer III : lisez les multiplicateurs des demi-équations et vérifiez que deux ions fer III sont consommés par atome de zinc.
+      en: >-
+        Your turn. Vary the amounts of zinc and copper ions, move the extent and spot the limiting reactant.
+        Then switch to the zinc and iron III ions tool: read the multipliers of the half-equations and check that two iron III ions are consumed per zinc atom.
+    actions:
+      - { at: 0, set: { a: 0.02, b: 0.05 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : reconnaître l'oxydant d'une réaction, puis combiner deux demi-équations pour prévoir une quantité de dihydrogène.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: recognise the oxidant of a reaction, then combine two half-equations to predict an amount of dihydrogen.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.redox.identify_oxidant, exercise.redox.electron_balance]

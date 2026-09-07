@@ -1,0 +1,57 @@
+id: law.coulomb
+type: law
+world: world.physics
+region: region.physics.fields_electromagnetism
+importance: 3
+tags: [lycee]
+title: { fr: "Loi de Coulomb : charge électrique, force électrostatique", en: "Coulomb's law: electric charge, electrostatic force" }
+shortPurpose:
+  fr: "Calculer la force électrostatique entre deux charges et comprendre la charge électrique, quantifiée par la charge élémentaire."
+  en: "Compute the electrostatic force between two charges and understand electric charge, quantised by the elementary charge."
+overview:
+  fr: >-
+    Une règle frottée attire de petits papiers : les corps portent des charges électriques, positives ou négatives, toujours multiples d'une charge élémentaire. Deux charges de même signe se repoussent, deux charges de signes contraires s'attirent, avec une force proportionnelle au produit des charges et inversement proportionnelle au carré de leur distance. C'est la loi de Coulomb, sœur jumelle de la loi de gravitation de Newton, mais immensément plus intense à l'échelle des atomes.
+  en: >-
+    A rubbed ruler attracts small pieces of paper: bodies carry electric charges, positive or negative, always multiples of an elementary charge. Two charges of the same sign repel each other, two charges of opposite signs attract each other, with a force proportional to the product of the charges and inversely proportional to the square of their distance. This is Coulomb's law, the twin sister of Newton's law of gravitation, but immensely stronger at the scale of atoms.
+aliases:
+  fr: ["force électrostatique", "interaction électrostatique", "charge élémentaire", "constante de Coulomb"]
+  en: ["electrostatic force", "electrostatic interaction", "elementary charge", "Coulomb constant"]
+description:
+  fr: |
+    La **charge électrique** $q$ d'un corps se mesure en coulombs ($\mathrm{C}$) ; elle est positive ou négative, et un corps neutre en porte autant de chaque signe. Elle est **quantifiée** : toute charge est un multiple entier de la **charge élémentaire** $e = 1{,}60 \times 10^{-19}\ \mathrm{C}$, charge du proton, l'électron portant $-e$. Frotter une règle en plastique lui arrache ou lui apporte des électrons : elle s'électrise, et la charge totale se conserve, elle ne fait que passer d'un corps à l'autre. **Loi de Coulomb.** Deux charges ponctuelles $q_A$ et $q_B$, distantes de $d$, exercent l'une sur l'autre des forces de même valeur, portées par la droite qui les joint :
+    $$F_{A/B} = F_{B/A} = k\,\frac{|q_A\,q_B|}{d^2}, \qquad k = 9{,}0 \times 10^{9}\ \mathrm{N \cdot m^2 \cdot C^{-2}},$$
+    **répulsives** si les charges ont le même signe, **attractives** si elles sont de signes contraires, avec $\vec F_{B/A} = -\vec F_{A/B}$ conformément au principe des actions réciproques.
+
+    La loi répond à la question que Coulomb a tranchée en 1785 : comment la force entre deux corps chargés dépend-elle de leur distance ? Comme la gravitation, en $1/d^2$ : doubler la distance divise la force par quatre. Dans l'atome d'hydrogène, le proton et l'électron, distants de $d = 5{,}3 \times 10^{-11}\ \mathrm{m}$, s'attirent avec $F = 9{,}0 \times 10^{9} \times \dfrac{(1{,}60 \times 10^{-19})^2}{(5{,}3 \times 10^{-11})^2} \approx 8{,}2 \times 10^{-8}\ \mathrm{N}$ : minuscule à notre échelle, mais colossale pour un électron, et c'est elle qui tient l'atome. Entre deux boules portant $1\ \mathrm{\mu C}$ chacune, à $30\ \mathrm{cm}$, la force vaut $0{,}10\ \mathrm{N}$, le poids d'une dizaine de grammes : les charges usuelles de l'électrostatique vont du nanocoulomb au microcoulomb.
+
+    L'**analogie avec la gravitation** est complète dans la forme : produit des charges au lieu du produit des masses, $k$ au lieu de $G$, même décroissance en $1/d^2$ ; elle s'arrête au signe, la gravitation étant toujours attractive, et à l'intensité, la force électrique entre le proton et l'électron étant $10^{39}$ fois plus grande que leur attraction gravitationnelle. Pièges classiques : oublier de convertir la distance en mètres et les charges en coulombs ; utiliser la distance entre les surfaces au lieu de celle entre les centres ; croire que la force s'affaiblit avec le temps. Au chapitre suivant, la force par unité de charge définit le champ électrique, qui décrit l'action d'une charge en tout point de l'espace.
+  en: |
+    The **electric charge** $q$ of a body is measured in coulombs ($\mathrm{C}$); it is positive or negative, and a neutral body carries as much of each sign. It is **quantised**: every charge is an integer multiple of the **elementary charge** $e = 1.60 \times 10^{-19}\ \mathrm{C}$, the charge of the proton, the electron carrying $-e$. Rubbing a plastic ruler pulls electrons off it or brings some to it: it becomes electrified, and the total charge is conserved, it only moves from one body to another. **Coulomb's law.** Two point charges $q_A$ and $q_B$, a distance $d$ apart, exert on each other forces of the same value, carried by the line joining them:
+    $$F_{A/B} = F_{B/A} = k\,\frac{|q_A\,q_B|}{d^2}, \qquad k = 9.0 \times 10^{9}\ \mathrm{N \cdot m^2 \cdot C^{-2}},$$
+    **repulsive** if the charges have the same sign, **attractive** if they have opposite signs, with $\vec F_{B/A} = -\vec F_{A/B}$ in accordance with the principle of reciprocal actions.
+
+    The law answers the question Coulomb settled in 1785: how does the force between two charged bodies depend on their distance? Like gravitation, as $1/d^2$: doubling the distance divides the force by four. In the hydrogen atom, the proton and the electron, a distance $d = 5.3 \times 10^{-11}\ \mathrm{m}$ apart, attract each other with $F = 9.0 \times 10^{9} \times \dfrac{(1.60 \times 10^{-19})^2}{(5.3 \times 10^{-11})^2} \approx 8.2 \times 10^{-8}\ \mathrm{N}$: tiny at our scale, but colossal for an electron, and it is this force that holds the atom together. Between two balls carrying $1\ \mathrm{\mu C}$ each, $30\ \mathrm{cm}$ apart, the force is $0.10\ \mathrm{N}$, the weight of about ten grams: the usual charges of electrostatics range from the nanocoulomb to the microcoulomb.
+
+    The **analogy with gravitation** is complete in form: product of the charges instead of product of the masses, $k$ instead of $G$, the same decrease as $1/d^2$; it stops at the sign, gravitation being always attractive, and at the strength, the electric force between the proton and the electron being $10^{39}$ times larger than their gravitational attraction. Classic traps: forgetting to convert the distance into metres and the charges into coulombs; using the distance between the surfaces instead of that between the centres; believing that the force weakens with time. In the next chapter, the force per unit charge defines the electric field, which describes the action of a charge at every point of space.
+law:
+  statement:
+    fr: "Deux charges ponctuelles $q_A$ et $q_B$ distantes de $d$ exercent l'une sur l'autre des forces de même valeur $F = k\\,\\dfrac{|q_A\\,q_B|}{d^2}$, avec $k = 9{,}0 \\times 10^{9}\\ \\mathrm{N \\cdot m^2 \\cdot C^{-2}}$, portées par la droite qui les joint, répulsives si les charges sont de même signe et attractives sinon."
+    en: "Two point charges $q_A$ and $q_B$ a distance $d$ apart exert on each other forces of the same value $F = k\\,\\dfrac{|q_A\\,q_B|}{d^2}$, with $k = 9.0 \\times 10^{9}\\ \\mathrm{N \\cdot m^2 \\cdot C^{-2}}$, carried by the line joining them, repulsive if the charges have the same sign and attractive otherwise."
+  validity:
+    fr: "Charges ponctuelles, ou à répartition sphérique ($d$ étant alors la distance entre les centres), immobiles, dans le vide ou dans l'air ; pour des charges en mouvement rapide s'ajoutent des effets magnétiques, hors programme de Première."
+    en: "Point charges, or charges with a spherical distribution ($d$ being then the distance between the centres), at rest, in a vacuum or in air; for fast-moving charges magnetic effects are added, beyond the Grade 11 programme."
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "décrire la charge électrique : deux signes, conservation, quantification par la charge élémentaire $e$"
+        - "énoncer la loi de Coulomb et représenter les forces électrostatiques entre deux charges (direction, sens, valeur)"
+        - "calculer la valeur d'une force électrostatique avec $F = k\\,\\dfrac{|q_A\\,q_B|}{d^2}$ dans les unités du Système international"
+        - "comparer la loi de Coulomb et la loi de gravitation universelle : même forme, signe et ordre de grandeur différents"
+      en:
+        - "describe electric charge: two signs, conservation, quantisation by the elementary charge $e$"
+        - "state Coulomb's law and draw the electrostatic forces between two charges (direction, sense, value)"
+        - "compute the value of an electrostatic force with $F = k\\,\\dfrac{|q_A\\,q_B|}{d^2}$ in SI units"
+        - "compare Coulomb's law with the law of universal gravitation: same form, different sign and order of magnitude"

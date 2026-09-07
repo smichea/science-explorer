@@ -1,0 +1,57 @@
+# Leçon oxydoréduction — combiner deux demi-équations à nombres d'électrons différents et prévoir une quantité de dihydrogène (réponse numérique)
+id: exercise.redox.electron_balance
+type: numeric
+nodeId: model.redox
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On plonge $0{,}10\ \mathrm{mol}$ d'aluminium dans une solution d'acide chlorhydrique en large excès. Les couples mis en jeu sont $\mathrm{Al^{3+}/Al}$ et $\mathrm{H^+/H_2}$.
+
+    Écrivez les deux demi-équations, combinez-les en compensant les électrons échangés, puis donnez la quantité de matière de dihydrogène formée, en $\mathrm{mol}$.
+  en: |-
+    $0.10\ \mathrm{mol}$ of aluminium is dipped into a hydrochloric acid solution in large excess. The couples involved are $\mathrm{Al^{3+}/Al}$ and $\mathrm{H^+/H_2}$.
+
+    Write the two half-equations, combine them balancing the electrons exchanged, then give the amount of dihydrogen formed, in $\mathrm{mol}$.
+numeric:
+  value: 0.15
+  unit: "mol"
+  tolerance: { kind: absolute, value: 0.005 }
+  inputLabel: { fr: "n(H₂)", en: "n(H₂)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Un atome d'aluminium cède trois électrons, alors que deux ions $\mathrm{H^+}$ n'en captent que deux : les nombres d'électrons ne se compensent pas encore.
+      en: |-
+        One aluminium atom gives three electrons away, whereas two $\mathrm{H^+}$ ions gain only two: the numbers of electrons do not cancel out yet.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Multipliez la première demi-équation par $2$ et la seconde par $3$, de façon que six électrons soient cédés et six captés.
+      en: |-
+        Multiply the first half-equation by $2$ and the second by $3$, so that six electrons are given and six gained.
+solution:
+  fr: |-
+    Les deux demi-équations s'écrivent
+    $$\mathrm{Al} = \mathrm{Al^{3+}} + 3\,\mathrm{e^-} \qquad\text{et}\qquad 2\,\mathrm{H^+} + 2\,\mathrm{e^-} = \mathrm{H_2}.$$
+
+    Trois et deux électrons ne se compensent pas : on multiplie la première par $2$ et la seconde par $3$, ce qui fait six électrons de chaque côté, puis on additionne en les supprimant :
+    $$2\,\mathrm{Al} + 6\,\mathrm{H^+} \to 2\,\mathrm{Al^{3+}} + 3\,\mathrm{H_2}.$$
+
+    L'acide étant en large excès, l'aluminium est le réactif limitant et la transformation le consomme entièrement : $x_{\max} = \dfrac{0{,}10}{2} = 0{,}050\ \mathrm{mol}$, et
+    $$n(\mathrm{H_2}) = 3\,x_{\max} = 3 \times 0{,}050 = 0{,}15\ \mathrm{mol},$$
+    soit trois moles de dihydrogène pour deux moles d'aluminium. Le nombre d'électrons échangés, six, n'apparaît pas dans l'équation finale, mais c'est lui qui en fixe les nombres stœchiométriques.
+  en: |-
+    The two half-equations read
+    $$\mathrm{Al} = \mathrm{Al^{3+}} + 3\,\mathrm{e^-} \qquad\text{and}\qquad 2\,\mathrm{H^+} + 2\,\mathrm{e^-} = \mathrm{H_2}.$$
+
+    Three and two electrons do not cancel out: the first is multiplied by $2$ and the second by $3$, which makes six electrons on each side, then they are added and the electrons removed:
+    $$2\,\mathrm{Al} + 6\,\mathrm{H^+} \to 2\,\mathrm{Al^{3+}} + 3\,\mathrm{H_2}.$$
+
+    Since the acid is in large excess, aluminium is the limiting reactant and the transformation consumes it entirely: $x_{\max} = \dfrac{0.10}{2} = 0.050\ \mathrm{mol}$, and
+    $$n(\mathrm{H_2}) = 3\,x_{\max} = 3 \times 0.050 = 0.15\ \mathrm{mol},$$
+    that is three moles of dihydrogen for two moles of aluminium. The number of electrons exchanged, six, does not appear in the final equation, but it is what sets its stoichiometric coefficients.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 3, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 3, transfer: 2, autonomy: 3 }

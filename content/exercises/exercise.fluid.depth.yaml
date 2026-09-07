@@ -1,0 +1,47 @@
+# Statique des fluides — pression à une profondeur donnée dans un lac (réponse numérique)
+id: exercise.fluid.depth
+type: numeric
+nodeId: law.fluid_statics
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un plongeur descend à $20\ \mathrm{m}$ sous la surface d'un lac d'eau douce, de masse volumique $\rho = 1{,}0 \times 10^{3}\ \mathrm{kg/m^3}$. La pression atmosphérique à la surface vaut $P_0 = 1{,}013 \times 10^{5}\ \mathrm{Pa}$ et l'on prendra $g = 9{,}81\ \mathrm{N/kg}$.
+
+    Calculez la pression subie par le plongeur à cette profondeur, en pascals, avec trois chiffres significatifs.
+  en: |-
+    A diver goes down to $20\ \mathrm{m}$ below the surface of a freshwater lake, of density $\rho = 1.0 \times 10^{3}\ \mathrm{kg/m^3}$. The atmospheric pressure at the surface is $P_0 = 1.013 \times 10^{5}\ \mathrm{Pa}$ and take $g = 9.81\ \mathrm{N/kg}$.
+
+    Compute the pressure the diver is under at this depth, in pascals, with three significant figures.
+numeric:
+  value: 297500
+  unit: "Pa"
+  tolerance: { kind: relative, value: 0.02 }
+  inputLabel: { fr: "P", en: "P" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La loi fondamentale de la statique des fluides donne l'écart de pression entre deux points : $P_B - P_A = \rho\,g\,(z_A - z_B)$, où $z_A - z_B$ est la dénivelée, ici $20\ \mathrm{m}$.
+      en: |-
+        The fundamental law of fluid statics gives the pressure difference between two points: $P_B - P_A = \rho\,g\,(z_A - z_B)$, where $z_A - z_B$ is the drop in altitude, here $20\ \mathrm{m}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        N'oubliez pas d'ajouter la pression atmosphérique qui s'exerce déjà à la surface : $P = P_0 + \rho\,g\,h$.
+      en: |-
+        Do not forget to add the atmospheric pressure that already acts at the surface: $P = P_0 + \rho\,g\,h$.
+solution:
+  fr: |-
+    La colonne d'eau de $20\ \mathrm{m}$ ajoute à la pression atmosphérique
+    $$\rho\,g\,h = 1{,}0 \times 10^{3} \times 9{,}81 \times 20 = 1{,}962 \times 10^{5}\ \mathrm{Pa},$$
+    d'où $P = P_0 + \rho\,g\,h = 1{,}013 \times 10^{5} + 1{,}962 \times 10^{5} = 2{,}975 \times 10^{5}\ \mathrm{Pa}$, soit environ $3{,}0\ \mathrm{bar}$.
+    Chaque tranche de dix mètres d'eau ajoute donc à peu près un bar : c'est la règle que retiennent les plongeurs, et c'est exactement ce que ressentent leurs oreilles. La pression ne dépend que de la profondeur, pas de la forme du lac ni de la quantité d'eau au-dessus.
+  en: |-
+    The $20\ \mathrm{m}$ column of water adds to the atmospheric pressure
+    $$\rho\,g\,h = 1.0 \times 10^{3} \times 9.81 \times 20 = 1.962 \times 10^{5}\ \mathrm{Pa},$$
+    hence $P = P_0 + \rho\,g\,h = 1.013 \times 10^{5} + 1.962 \times 10^{5} = 2.975 \times 10^{5}\ \mathrm{Pa}$, that is about $3.0\ \mathrm{bar}$.
+    Every ten metres of water therefore adds roughly one bar: this is the rule divers remember, and it is exactly what their ears feel. The pressure depends only on the depth, neither on the shape of the lake nor on the amount of water above.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

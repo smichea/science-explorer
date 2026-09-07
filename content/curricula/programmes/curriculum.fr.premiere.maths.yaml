@@ -1,0 +1,76 @@
+id: curriculum.fr.premiere.maths
+country: FR
+stage: premiere
+subject: mathematics
+title:
+  fr: "Mathématiques — Première générale, enseignement de spécialité"
+  en: "Mathematics — Grade 11 (Première), specialisation"
+version: "2026-reference"
+validFrom: "2019-09-01"
+validTo: null
+sourceReferences:
+  - title: "Programme de mathématiques de première générale (spécialité), arrêté du 17-1-2019, BO spécial n°1 du 22 janvier 2019"
+    note: "to verify"
+items:
+  - id: suites
+    title: { fr: "Suites numériques : modèles discrets", en: "Numerical sequences: discrete models" }
+    reference: "Algèbre — Suites numériques, modèles discrets"
+    alignedNodes:
+      - { node: concept.sequence, depth: 1 }
+      - { node: tool.arithmetic_geometric_sequences, depth: 1 }
+  - id: second_degre
+    title: { fr: "Équations, fonctions polynômes du second degré", en: "Equations and quadratic polynomial functions" }
+    reference: "Algèbre — Équations, fonctions polynômes du second degré"
+    alignedNodes:
+      - { node: tool.quadratic, depth: 1 }
+  - id: derivation
+    title: { fr: "Dérivation", en: "Differentiation" }
+    reference: "Analyse — Dérivation"
+    alignedNodes:
+      - { node: concept.rate_of_change, depth: 1 }
+      - { node: tool.derivative, depth: 1 }
+  - id: variations
+    title: { fr: "Variations et courbes représentatives des fonctions", en: "Variations and graphs of functions" }
+    reference: "Analyse — Variations et courbes représentatives des fonctions"
+    alignedNodes:
+      - { node: concept.variations_extremums, depth: 2 }
+  - id: exponentielle
+    title: { fr: "Fonction exponentielle", en: "Exponential function" }
+    reference: "Analyse — Fonction exponentielle"
+    alignedNodes:
+      - { node: tool.exponential, depth: 1 }
+  - id: trigonometrie
+    title: { fr: "Fonctions trigonométriques", en: "Trigonometric functions" }
+    reference: "Analyse — Fonctions trigonométriques"
+    alignedNodes:
+      - { node: tool.trigonometric_functions, depth: 1 }
+  - id: produit_scalaire
+    title: { fr: "Calcul vectoriel et produit scalaire", en: "Vector calculus and the dot product" }
+    reference: "Géométrie — Calcul vectoriel et produit scalaire"
+    alignedNodes:
+      - { node: tool.dot_product, depth: 1 }
+  - id: geometrie_reperee
+    title: { fr: "Géométrie repérée", en: "Coordinate geometry" }
+    reference: "Géométrie — Géométrie repérée"
+    alignedNodes:
+      - { node: tool.analytic_geometry, depth: 1 }
+  - id: probabilites_conditionnelles
+    title: { fr: "Probabilités conditionnelles et indépendance", en: "Conditional probability and independence" }
+    reference: "Probabilités et statistiques — Probabilités conditionnelles et indépendance"
+    alignedNodes:
+      - { node: concept.conditional_probability, depth: 1 }
+  - id: variables_aleatoires
+    title: { fr: "Variables aléatoires réelles", en: "Real random variables" }
+    reference: "Probabilités et statistiques — Variables aléatoires réelles"
+    alignedNodes:
+      - { node: concept.random_variable, depth: 1 }
+  - id: algorithmique
+    title: { fr: "Algorithmique et programmation", en: "Algorithmics and programming" }
+    reference: "Algorithmique et programmation"
+    alignedNodes:
+      - { node: tool.algorithmics, depth: 2 }
+  - id: logique
+    title: { fr: "Vocabulaire ensembliste et logique, raisonnements", en: "Set vocabulary, logic and reasoning" }
+    reference: "Vocabulaire ensembliste et logique — Différents types de raisonnement"
+    alignedNodes:
+      - { node: concept.logic_sets, depth: 2 }

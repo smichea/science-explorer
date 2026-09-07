@@ -25,6 +25,14 @@ test.describe('onboarding and horizon', () => {
     await expectNoHorizontalScroll(page);
   });
 
+  test('creates a 16-year-old and highlights Première → Terminale → MPSI', async ({ page }) => {
+    await createExplorer(page, { name: 'Nour', age: 16, locale: 'fr' });
+    const confirmation = page.getByTestId('horizon-confirmation');
+    await expect(confirmation).toContainText('Première');
+    await expect(confirmation).toContainText('Terminale');
+    await expect(confirmation).toContainText('MPSI');
+  });
+
   test('rejects an empty name or an impossible age', async ({ page }) => {
     await page.goto('welcome');
     await page.fill('#age', '3');

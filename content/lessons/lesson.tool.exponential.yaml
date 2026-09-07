@@ -71,9 +71,9 @@ steps:
     title: { fr: "Exercices", en: "Exercises" }
     text:
       fr: >-
-        Trois exercices : une valeur, une dérivée, puis une équation à résoudre.
+        Trois exercices : une valeur, une dérivée, puis un produit d'exponentielles.
         Saisissez vos réponses ; un indice est disponible si vous bloquez.
       en: >-
-        Three exercises: a value, a derivative, then an equation to solve.
+        Three exercises: a value, a derivative, then a product of exponentials.
         Type your answers; a hint is available if you get stuck.
-    exercises: [exercise.exponential.value, exercise.exponential.derivative, exercise.exponential.solve]
+    exercises: [exercise.exponential.value, exercise.exponential.derivative, exercise.exponential.product]

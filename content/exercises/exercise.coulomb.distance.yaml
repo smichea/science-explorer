@@ -1,0 +1,45 @@
+# Loi de Coulomb — distance à laquelle la force électrostatique prend une valeur donnée (réponse numérique)
+id: exercise.coulomb.distance
+type: numeric
+nodeId: law.coulomb
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    On reprend les deux sphères chargées, $q_A = +2{,}0\ \mathrm{\mu C}$ et $q_B = -3{,}0\ \mathrm{\mu C}$, et on les éloigne l'une de l'autre jusqu'à ce que la force électrostatique ne vaille plus que $F = 0{,}60\ \mathrm{N}$. On prendra $k = 9{,}0 \times 10^{9}\ \mathrm{N \cdot m^2 \cdot C^{-2}}$.
+
+    À quelle distance $d$ se trouvent alors les deux sphères ? Répondez en mètres, avec deux chiffres significatifs.
+  en: |-
+    Take again the two charged spheres, $q_A = +2.0\ \mathrm{\mu C}$ and $q_B = -3.0\ \mathrm{\mu C}$, and move them apart until the electrostatic force is only $F = 0.60\ \mathrm{N}$. Take $k = 9.0 \times 10^{9}\ \mathrm{N \cdot m^2 \cdot C^{-2}}$.
+
+    At what distance $d$ are the two spheres then? Answer in metres, with two significant figures.
+numeric:
+  value: 0.3
+  unit: "m"
+  tolerance: { kind: relative, value: 0.03 }
+  inputLabel: { fr: "d", en: "d" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Partez de $F = k\,\dfrac{|q_A\,q_B|}{d^2}$ et isolez $d^2$ avant de prendre la racine carrée.
+      en: |-
+        Start from $F = k\,\dfrac{|q_A\,q_B|}{d^2}$ and isolate $d^2$ before taking the square root.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $d^2 = \dfrac{k\,|q_A\,q_B|}{F}$, avec $k\,|q_A\,q_B| = 5{,}4 \times 10^{-2}\ \mathrm{N \cdot m^2}$.
+      en: |-
+        $d^2 = \dfrac{k\,|q_A\,q_B|}{F}$, with $k\,|q_A\,q_B| = 5.4 \times 10^{-2}\ \mathrm{N \cdot m^2}$.
+solution:
+  fr: |-
+    En isolant la distance dans la loi de Coulomb,
+    $$d^2 = \frac{k\,|q_A\,q_B|}{F} = \frac{5{,}4 \times 10^{-2}}{0{,}60} = 9{,}0 \times 10^{-2}\ \mathrm{m^2}, \qquad d = 0{,}30\ \mathrm{m}.$$
+    On vérifie la cohérence avec l'exercice précédent : la distance a été multipliée par deux, de $0{,}15$ à $0{,}30\ \mathrm{m}$, et la force divisée par quatre, de $2{,}4$ à $0{,}60\ \mathrm{N}$. C'est la signature de la dépendance en $1/d^2$, exactement comme pour la gravitation.
+  en: |-
+    Isolating the distance in Coulomb's law,
+    $$d^2 = \frac{k\,|q_A\,q_B|}{F} = \frac{5.4 \times 10^{-2}}{0.60} = 9.0 \times 10^{-2}\ \mathrm{m^2}, \qquad d = 0.30\ \mathrm{m}.$$
+    Consistency with the previous exercise is easy to check: the distance has been multiplied by two, from $0.15$ to $0.30\ \mathrm{m}$, and the force divided by four, from $2.4$ to $0.60\ \mathrm{N}$. This is the signature of the dependence on $1/d^2$, exactly as for gravitation.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 2, transfer: 2, autonomy: 2 }

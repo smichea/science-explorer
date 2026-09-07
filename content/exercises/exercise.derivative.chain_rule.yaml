@@ -1,0 +1,57 @@
+# Dérivée en Terminale — dériver la composée ln(x² + 1) (réponse symbolique)
+id: exercise.derivative.chain_rule
+type: symbolic
+nodeId: tool.derivative
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Soit $f$ la fonction définie sur $\mathbb{R}$ par $f(x) = \ln(x^2 + 1)$.
+
+    Donnez l'expression de $f'(x)$ à l'aide de la formule de dérivation d'une fonction composée, $(v \circ u)' = (v' \circ u) \times u'$.
+
+    Écrivez votre réponse comme une expression en $x$, par exemple `2*x/(x^2+3)`.
+  en: |-
+    Let $f$ be the function defined on $\mathbb{R}$ by $f(x) = \ln(x^2 + 1)$.
+
+    Give the expression of $f'(x)$ using the differentiation formula for a composite function, $(v \circ u)' = (v' \circ u) \times u'$.
+
+    Write your answer as an expression in $x$, for example `2*x/(x^2+3)`.
+symbolic:
+  variable: x
+  accepted: ["2*x/(x^2+1)", "2x/(x^2+1)", "(2*x)/(x^2+1)"]
+  display: "f'(x) ="
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Ici $u(x) = x^2 + 1$ et $v = \ln$, donc $f = v \circ u$. La dérivée de $\ln$ est $y \mapsto \dfrac1y$ et celle de $u$ est $u'(x) = 2x$.
+      en: |-
+        Here $u(x) = x^2 + 1$ and $v = \ln$, so $f = v \circ u$. The derivative of $\ln$ is $y \mapsto \dfrac1y$ and that of $u$ is $u'(x) = 2x$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $(\ln u)' = \dfrac{u'}{u}$ : remplacez $u$ et $u'$ par leurs expressions.
+      en: |-
+        $(\ln u)' = \dfrac{u'}{u}$: replace $u$ and $u'$ by their expressions.
+solution:
+  fr: |-
+    On reconnaît $f = v \circ u$ avec $u(x) = x^2 + 1$, dérivable sur $\mathbb{R}$ et à valeurs dans $[1\,;\,+\infty[$, et $v = \ln$, dérivable sur $]0\,;\,+\infty[$ avec $v'(y) = \dfrac1y$. D'après la formule $(v \circ u)' = (v' \circ u) \times u'$ :
+    $$f'(x) = \frac{1}{x^2 + 1} \times 2x = \frac{2x}{x^2 + 1}.$$
+
+    **Interprétation.** $f'(x)$ est du signe de $x$ : $f$ est décroissante sur $]-\infty\,;\,0]$ et croissante sur $[0\,;\,+\infty[$, avec le minimum $f(0) = \ln 1 = 0$. Une composée se dérive toujours « de l'extérieur vers l'intérieur » : la dérivée de la fonction extérieure prise en $u(x)$, multipliée par la dérivée de la fonction intérieure.
+  en: |-
+    We recognise $f = v \circ u$ with $u(x) = x^2 + 1$, differentiable on $\mathbb{R}$ with values in $[1\,;\,+\infty[$, and $v = \ln$, differentiable on $]0\,;\,+\infty[$ with $v'(y) = \dfrac1y$. By the formula $(v \circ u)' = (v' \circ u) \times u'$:
+    $$f'(x) = \frac{1}{x^2 + 1} \times 2x = \frac{2x}{x^2 + 1}.$$
+
+    **Interpretation.** $f'(x)$ has the sign of $x$: $f$ is decreasing on $]-\infty\,;\,0]$ and increasing on $[0\,;\,+\infty[$, with the minimum $f(0) = \ln 1 = 0$. A composite is always differentiated "from the outside inwards": the derivative of the outer function taken at $u(x)$, multiplied by the derivative of the inner function.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 3

@@ -1,0 +1,45 @@
+# Conservation de l'énergie mécanique — vitesse en bas d'un toboggan sans frottement (réponse numérique)
+id: exercise.mechanical.speed
+type: numeric
+nodeId: concept.mechanical_energy
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un enfant part sans vitesse initiale du haut d'un toboggan dont le sommet est à la hauteur $h = 5{,}0\ \mathrm{m}$ au-dessus du sol. On néglige tous les frottements et l'on prend $g = 9{,}81\ \mathrm{N/kg}$. L'altitude de référence est celle du sol.
+
+    Calculez la vitesse de l'enfant en bas du toboggan, en mètres par seconde, avec deux chiffres significatifs.
+  en: |-
+    A child starts from rest at the top of a slide whose top is at the height $h = 5.0\ \mathrm{m}$ above the ground. All friction is neglected and $g = 9.81\ \mathrm{N/kg}$ is used. The reference altitude is that of the ground.
+
+    Compute the speed of the child at the bottom of the slide, in metres per second, with two significant figures.
+numeric:
+  value: 9.9
+  unit: "m/s"
+  tolerance: { kind: absolute, value: 0.15 }
+  inputLabel: { fr: "v", en: "v" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Sans frottement, l'énergie mécanique $E_m = E_c + E_{pp}$ se conserve : écrivez son égalité entre le sommet et le bas du toboggan.
+      en: |-
+        Without friction, the mechanical energy $E_m = E_c + E_{pp}$ is conserved: write its equality between the top and the bottom of the slide.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        En haut, $E_c = 0$ et $E_{pp} = m\,g\,h$ ; en bas, $E_{pp} = 0$ et $E_c = \dfrac{1}{2}\,m\,v^2$. La masse se simplifie.
+      en: |-
+        At the top, $E_c = 0$ and $E_{pp} = m\,g\,h$; at the bottom, $E_{pp} = 0$ and $E_c = \dfrac{1}{2}\,m\,v^2$. The mass cancels.
+solution:
+  fr: |-
+    L'énergie mécanique se conserve puisque seul le poids travaille :
+    $$\underbrace{0 + m\,g\,h}_{\text{en haut}} = \underbrace{\tfrac{1}{2}\,m\,v^2 + 0}_{\text{en bas}} \quad \Longrightarrow \quad v = \sqrt{2\,g\,h} = \sqrt{2 \times 9{,}81 \times 5{,}0} = 9{,}9\ \mathrm{m/s}.$$
+    La masse a disparu du résultat : un enfant léger et un enfant lourd arrivent en bas à la même vitesse, environ $36\ \mathrm{km/h}$. La forme du toboggan n'intervient pas non plus, seule compte la dénivelée, parce que le travail du poids ne dépend que des altitudes de départ et d'arrivée. Avec des frottements, la vitesse réelle serait plus faible.
+  en: |-
+    The mechanical energy is conserved since only the weight does work:
+    $$\underbrace{0 + m\,g\,h}_{\text{at the top}} = \underbrace{\tfrac{1}{2}\,m\,v^2 + 0}_{\text{at the bottom}} \quad \Longrightarrow \quad v = \sqrt{2\,g\,h} = \sqrt{2 \times 9.81 \times 5.0} = 9.9\ \mathrm{m/s}.$$
+    The mass has disappeared from the result: a light child and a heavy child arrive at the bottom at the same speed, about $36\ \mathrm{km/h}$. The shape of the slide plays no part either, only the drop in height matters, because the work of the weight depends only on the starting and arrival altitudes. With friction, the actual speed would be smaller.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 3, transfer: 1, autonomy: 2 }

@@ -1,0 +1,49 @@
+# Photon — longueur d'onde de la lumière émise à partir de l'énergie du photon (réponse numérique)
+id: exercise.photon.wavelength
+type: numeric
+nodeId: model.photon
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    Un atome d'hydrogène se désexcite du niveau $n = 4$ vers le niveau $n = 2$ en émettant un photon d'énergie $\Delta E = 2{,}55\ \mathrm{eV}$. On donne $h = 6{,}63 \times 10^{-34}\ \mathrm{J \cdot s}$, $c = 3{,}00 \times 10^{8}\ \mathrm{m/s}$ et $1\ \mathrm{eV} = 1{,}60 \times 10^{-19}\ \mathrm{J}$.
+
+    Calculez la longueur d'onde de la radiation émise, en nanomètres, avec trois chiffres significatifs.
+  en: |-
+    A hydrogen atom de-excites from the level $n = 4$ to the level $n = 2$ by emitting a photon of energy $\Delta E = 2.55\ \mathrm{eV}$. You are given $h = 6.63 \times 10^{-34}\ \mathrm{J \cdot s}$, $c = 3.00 \times 10^{8}\ \mathrm{m/s}$ and $1\ \mathrm{eV} = 1.60 \times 10^{-19}\ \mathrm{J}$.
+
+    Compute the wavelength of the emitted radiation, in nanometres, with three significant figures.
+numeric:
+  value: 487
+  unit: "nm"
+  tolerance: { kind: relative, value: 0.02 }
+  inputLabel: { fr: "λ", en: "λ" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        L'énergie d'un photon s'écrit $E = h\,\nu = \dfrac{h\,c}{\lambda}$ : isolez $\lambda$ pour obtenir $\lambda = \dfrac{h\,c}{E}$.
+      en: |-
+        The energy of a photon reads $E = h\,\nu = \dfrac{h\,c}{\lambda}$: isolate $\lambda$ to obtain $\lambda = \dfrac{h\,c}{E}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La formule exige des joules : convertissez d'abord, $2{,}55\ \mathrm{eV} = 2{,}55 \times 1{,}60 \times 10^{-19}\ \mathrm{J}$.
+      en: |-
+        The formula requires joules: convert first, $2.55\ \mathrm{eV} = 2.55 \times 1.60 \times 10^{-19}\ \mathrm{J}$.
+solution:
+  fr: |-
+    On convertit d'abord l'énergie du photon en joules :
+    $$\Delta E = 2{,}55 \times 1{,}60 \times 10^{-19} = 4{,}08 \times 10^{-19}\ \mathrm{J}.$$
+    Puis, en isolant la longueur d'onde dans $\Delta E = \dfrac{h\,c}{\lambda}$,
+    $$\lambda = \frac{h\,c}{\Delta E} = \frac{6{,}63 \times 10^{-34} \times 3{,}00 \times 10^{8}}{4{,}08 \times 10^{-19}} = 4{,}87 \times 10^{-7}\ \mathrm{m} = 487\ \mathrm{nm}.$$
+    Cette longueur d'onde tombe dans le bleu-vert du domaine visible : c'est la deuxième raie de la série de Balmer de l'hydrogène, tabulée à $486\ \mathrm{nm}$ — l'écart d'un nanomètre vient des trois chiffres significatifs des constantes fournies. On vérifie la cohérence avec l'exercice précédent : la transition $4 \rightarrow 2$ libère plus d'énergie que la transition $3 \rightarrow 2$, et donne donc une longueur d'onde **plus courte**, $487\ \mathrm{nm}$ au lieu de $656\ \mathrm{nm}$.
+  en: |-
+    The energy of the photon is first converted into joules:
+    $$\Delta E = 2.55 \times 1.60 \times 10^{-19} = 4.08 \times 10^{-19}\ \mathrm{J}.$$
+    Then, isolating the wavelength in $\Delta E = \dfrac{h\,c}{\lambda}$,
+    $$\lambda = \frac{h\,c}{\Delta E} = \frac{6.63 \times 10^{-34} \times 3.00 \times 10^{8}}{4.08 \times 10^{-19}} = 4.87 \times 10^{-7}\ \mathrm{m} = 487\ \mathrm{nm}.$$
+    This wavelength falls in the blue-green of the visible range: it is the second line of the Balmer series of hydrogen, tabulated at $486\ \mathrm{nm}$ — the one nanometre difference comes from the three significant figures of the constants provided. Consistency with the previous exercise is easy to check: the $4 \rightarrow 2$ transition releases more energy than the $3 \rightarrow 2$ one, and therefore gives a **shorter** wavelength, $487\ \mathrm{nm}$ instead of $656\ \mathrm{nm}$.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 3, calculationLength: 3, modellingOpenness: 1, linkedConcepts: 3, transfer: 2, autonomy: 3 }

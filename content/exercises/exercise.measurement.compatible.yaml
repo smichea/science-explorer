@@ -1,0 +1,42 @@
+# Leçon mesure (Première) — écart normalisé entre une mesure de la vitesse du son et la valeur de référence (réponse numérique)
+id: exercise.measurement.compatible
+type: numeric
+nodeId: method.measurement
+depth: 2
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Un groupe mesure la vitesse du son dans l'air avec deux microphones et obtient $v = 353 \pm 3\ \mathrm{m/s}$ (incertitude-type). Dans les conditions de l'expérience, la valeur de référence est $v_{\text{ref}} = 343\ \mathrm{m/s}$.
+
+    Calculez l'écart normalisé $\dfrac{|v - v_{\text{ref}}|}{u(v)}$ (nombre sans unité, une décimale) et concluez sur la compatibilité de la mesure avec la référence.
+  en: |-
+    A group measures the speed of sound in air with two microphones and obtains $v = 353 \pm 3\ \mathrm{m/s}$ (standard uncertainty). In the conditions of the experiment, the reference value is $v_{\text{ref}} = 343\ \mathrm{m/s}$.
+
+    Compute the normalised gap $\dfrac{|v - v_{\text{ref}}|}{u(v)}$ (a number without unit, one decimal) and conclude on the compatibility of the measurement with the reference.
+numeric:
+  value: 3.3
+  tolerance: { kind: absolute, value: 0.1 }
+  inputLabel: { fr: "écart normalisé", en: "normalised gap" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        L'écart normalisé compare la distance entre la mesure et la référence à l'incertitude-type : $\dfrac{|v - v_{\text{ref}}|}{u(v)}$. La mesure est compatible quand ce quotient est inférieur ou égal à $2$.
+      en: |-
+        The normalised gap compares the distance between the measurement and the reference with the standard uncertainty: $\dfrac{|v - v_{\text{ref}}|}{u(v)}$. The measurement is compatible when this quotient is at most $2$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $|353 - 343| = 10\ \mathrm{m/s}$, à diviser par $u(v) = 3\ \mathrm{m/s}$.
+      en: |-
+        $|353 - 343| = 10\ \mathrm{m/s}$, to be divided by $u(v) = 3\ \mathrm{m/s}$.
+solution:
+  fr: |-
+    $$\frac{|v - v_{\text{ref}}|}{u(v)} = \frac{|353 - 343|}{3} = \frac{10}{3} \approx 3{,}3.$$
+    Ce quotient est supérieur à $2$ : la mesure **n'est pas compatible** avec la valeur de référence. L'écart de $10\ \mathrm{m/s}$ ne peut pas s'expliquer par la seule variabilité aléatoire, résumée par l'incertitude-type de $3\ \mathrm{m/s}$ ; il faut chercher une **erreur systématique** : distance entre les microphones mal mesurée, retard de déclenchement de l'acquisition, température de la salle différente de celle de la référence. Une mesure incompatible n'est pas un échec : c'est l'indication qu'il y a quelque chose à comprendre dans le protocole.
+  en: |-
+    $$\frac{|v - v_{\text{ref}}|}{u(v)} = \frac{|353 - 343|}{3} = \frac{10}{3} \approx 3.3.$$
+    This quotient is larger than $2$: the measurement **is not compatible** with the reference value. The gap of $10\ \mathrm{m/s}$ cannot be explained by random variability alone, summarised by the standard uncertainty of $3\ \mathrm{m/s}$; a **systematic error** must be looked for: distance between the microphones badly measured, triggering delay of the acquisition, room temperature different from that of the reference. An incompatible measurement is not a failure: it is the sign that there is something to understand in the protocol.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 2, linkedConcepts: 1, transfer: 1, autonomy: 2 }

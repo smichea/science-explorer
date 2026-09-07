@@ -1,0 +1,46 @@
+id: concept.sequence
+type: mathematical_concept
+world: world.mathematics
+region: region.math.sequences_series
+importance: 3
+tags: [lycee]
+title: { fr: "Suites numériques : modes de génération, sens de variation", en: "Numerical sequences: modes of generation, direction of variation" }
+shortPurpose:
+  fr: "Décrire une grandeur qui évolue étape par étape par la liste de ses valeurs successives, et savoir la calculer, la représenter et dire si elle monte ou descend."
+  en: "Describe a quantity that evolves step by step through the list of its successive values, and know how to compute it, represent it and tell whether it rises or falls."
+overview:
+  fr: >-
+    Une suite est une liste infinie de nombres rangés dans l'ordre : le premier, le deuxième, le troisième, et ainsi de suite. On la donne de deux façons, soit par une formule qui calcule directement le terme de rang n, soit par une règle qui fait passer d'un terme au suivant. Une population qui grandit chaque année, un capital placé, un médicament éliminé chaque heure : partout où le temps avance par pas, c'est une suite qui décrit l'évolution.
+  en: >-
+    A sequence is an infinite list of numbers arranged in order: the first, the second, the third, and so on. It is given in two ways, either by a formula that directly computes the term of rank n, or by a rule that moves from one term to the next. A population growing each year, an invested capital, a drug eliminated every hour: wherever time advances step by step, a sequence describes the evolution.
+aliases:
+  fr: ["suite numérique", "terme d'une suite", "suite définie explicitement", "suite définie par récurrence", "sens de variation d'une suite", "suite monotone"]
+  en: ["numerical sequence", "term of a sequence", "explicitly defined sequence", "recursively defined sequence", "direction of variation of a sequence", "monotonic sequence"]
+description:
+  fr: |
+    Une **suite numérique** $u$ est une fonction définie sur $\mathbb{N}$, ou sur les entiers à partir d'un certain rang : à chaque entier $n$ elle associe un réel noté $u_n$ (et non $u(n)$), le **terme de rang** $n$. On la note $(u_n)_{n \in \mathbb{N}}$, et $u_0$ est son premier terme quand elle commence à zéro. La différence avec une fonction ordinaire tient à la variable : elle ne prend que des valeurs entières, si bien que la représentation graphique est un **nuage de points isolés** $(n\,;\,u_n)$ et non une courbe continue.
+
+    Une suite se génère de deux façons. Elle est définie de façon **explicite** quand une formule donne directement $u_n$ en fonction de $n$ : avec $u_n = n^2 - 3n + 2$, on obtient $u_5 = 25 - 15 + 2 = 12$ sans avoir calculé les termes précédents. Elle est définie par **récurrence** quand on donne le premier terme et une relation $u_{n+1} = f(u_n)$ qui fait passer d'un terme au suivant : avec $u_0 = 2$ et $u_{n+1} = 0{,}5\,u_n + 3$, on calcule $u_1 = 4$, puis $u_2 = 5$, puis $u_3 = 5{,}5$, chaque terme exigeant tous ceux qui le précèdent. C'est exactement ce que fait une boucle en programmation, et c'est pourquoi une suite définie par récurrence se calcule si naturellement avec un algorithme.
+
+    Le **sens de variation** s'étudie en comparant deux termes consécutifs : la suite est **croissante** si $u_{n+1} \geq u_n$ pour tout $n$, **décroissante** si $u_{n+1} \leq u_n$, **monotone** si elle est de l'un des deux types. En pratique on calcule la différence $u_{n+1} - u_n$ et on cherche son signe ; pour une suite à termes strictement positifs, on peut aussi comparer le quotient $\dfrac{u_{n+1}}{u_n}$ à $1$. Deux pièges classiques : croire qu'une suite est monotone parce que ses premiers termes le sont — $u_n = n^2 - 3n + 2$ décroît puis croît —, et confondre le rang $n$ avec le terme $u_n$, l'étiquette avec la valeur.
+  en: |
+    A **numerical sequence** $u$ is a function defined on $\mathbb{N}$, or on the integers from a certain rank onwards: to each integer $n$ it associates a real number written $u_n$ (and not $u(n)$), the **term of rank** $n$. It is written $(u_n)_{n \in \mathbb{N}}$, and $u_0$ is its first term when it starts at zero. The difference from an ordinary function lies in the variable: it only takes integer values, so that the graphical representation is a **cloud of isolated points** $(n\,;\,u_n)$ and not a continuous curve.
+
+    A sequence is generated in two ways. It is defined **explicitly** when a formula gives $u_n$ directly in terms of $n$: with $u_n = n^2 - 3n + 2$, one gets $u_5 = 25 - 15 + 2 = 12$ without having computed the preceding terms. It is defined by **recurrence** when one gives the first term and a relation $u_{n+1} = f(u_n)$ that moves from one term to the next: with $u_0 = 2$ and $u_{n+1} = 0.5\,u_n + 3$, one computes $u_1 = 4$, then $u_2 = 5$, then $u_3 = 5.5$, each term requiring all those before it. This is exactly what a loop does in programming, and this is why a recursively defined sequence is so naturally computed with an algorithm.
+
+    The **direction of variation** is studied by comparing two consecutive terms: the sequence is **increasing** if $u_{n+1} \geq u_n$ for every $n$, **decreasing** if $u_{n+1} \leq u_n$, **monotonic** if it is of one of the two kinds. In practice one computes the difference $u_{n+1} - u_n$ and looks for its sign; for a sequence with strictly positive terms, one may also compare the quotient $\dfrac{u_{n+1}}{u_n}$ with $1$. Two classic traps: believing a sequence is monotonic because its first terms are — $u_n = n^2 - 3n + 2$ decreases then increases —, and confusing the rank $n$ with the term $u_n$, the label with the value.
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "modéliser une situation par une suite et distinguer le rang n du terme u(n)"
+        - "calculer les termes d'une suite définie explicitement par u(n) = f(n) ou par récurrence par u(n+1) = f(u(n))"
+        - "étudier le sens de variation d'une suite avec le signe de u(n+1) − u(n), ou le quotient pour une suite positive"
+        - "représenter une suite par le nuage de points (n ; u(n)) et lire son comportement sur le graphique"
+      en:
+        - "model a situation by a sequence and distinguish the rank n from the term u(n)"
+        - "compute the terms of a sequence defined explicitly by u(n) = f(n) or recursively by u(n+1) = f(u(n))"
+        - "study the direction of variation of a sequence with the sign of u(n+1) − u(n), or the quotient for a positive sequence"
+        - "represent a sequence by the cloud of points (n ; u(n)) and read its behaviour on the graph"

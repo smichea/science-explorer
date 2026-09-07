@@ -16,14 +16,14 @@ items:
     title: { fr: Décrire un mouvement, en: Describing motion }
     reference: "Mouvement et interactions — Décrire un mouvement"
     alignedNodes:
-      - { node: model.kinematics_point, depth: 2 }
+      - { node: model.kinematics_point, depth: 3 }
   - id: champ_uniforme
     title: { fr: Mouvement dans un champ uniforme, en: Motion in a uniform field }
     reference: "Mouvement et interactions — Relier les actions appliquées à un système à son mouvement : mouvement dans un champ uniforme"
     alignedNodes:
       - { node: phenomenon.motion.free_fall, depth: 1 }
       - { node: phenomenon.motion.uniformly_accelerated, depth: 1 }
-      - { node: law.newton_second, depth: 1 }
+      - { node: law.newton_second, depth: 2 }
   - id: circuit_rc
     title: { fr: "Dynamique d'un système électrique (circuit RC)", en: "Dynamics of an electrical system (RC circuit)" }
     reference: "Ondes et signaux — Étudier la dynamique d'un système électrique"
@@ -46,5 +46,5 @@ items:
     title: { fr: Mesure et incertitudes, en: Measurement and uncertainties }
     reference: "Mesure et incertitudes (partie transversale du programme)"
     alignedNodes:
-      - { node: method.measurement, depth: 2 }
+      - { node: method.measurement, depth: 3 }
       - { node: concept.dimension_unit, depth: 2 }

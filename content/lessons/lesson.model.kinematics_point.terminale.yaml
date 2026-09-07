@@ -1,7 +1,7 @@
 # Leçon — la cinématique du point : position, vitesse et accélération le long d'une trajectoire.
-id: lesson.model.kinematics_point
+id: lesson.model.kinematics_point.terminale
 nodeId: model.kinematics_point
-depth: 1
+depth: 3
 tools:
   - id: vectors
     kind: vectors

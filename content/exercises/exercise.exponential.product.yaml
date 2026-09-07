@@ -1,0 +1,51 @@
+# Exponentielle en Première — propriétés algébriques : e^(2a − b) sachant e^a = 5 et e^b = 2 (réponse numérique)
+id: exercise.exponential.product
+type: numeric
+nodeId: tool.exponential
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On sait que $e^{a} = 5$ et $e^{b} = 2$.
+
+    Calculez $e^{2a - b}$ en utilisant les propriétés algébriques de l'exponentielle.
+  en: |-
+    We know that $e^{a} = 5$ and $e^{b} = 2$.
+
+    Compute $e^{2a - b}$ using the algebraic properties of the exponential.
+numeric:
+  value: 12.5
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "e^(2a − b)", en: "e^(2a − b)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        $e^{2a - b} = \dfrac{e^{2a}}{e^{b}}$ et $e^{2a} = \left(e^{a}\right)^2$.
+      en: |-
+        $e^{2a - b} = \dfrac{e^{2a}}{e^{b}}$ and $e^{2a} = \left(e^{a}\right)^2$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\left(e^{a}\right)^2 = 25$ ; il reste à diviser par $e^{b} = 2$.
+      en: |-
+        $\left(e^{a}\right)^2 = 25$; it remains to divide by $e^{b} = 2$.
+solution:
+  fr: |-
+    Avec les règles $e^{x - y} = \dfrac{e^x}{e^y}$ et $e^{nx} = \left(e^x\right)^n$ :
+    $$e^{2a - b} = \frac{e^{2a}}{e^{b}} = \frac{\left(e^{a}\right)^2}{e^{b}} = \frac{25}{2} = 12{,}5.$$
+    On n'a pas eu besoin de connaître $a$ ni $b$ : les propriétés algébriques de l'exponentielle sont celles des puissances, et elles suffisent. Trouver $a$ lui-même demanderait le logarithme népérien, vu en Terminale.
+  en: |-
+    With the rules $e^{x - y} = \dfrac{e^x}{e^y}$ and $e^{nx} = \left(e^x\right)^n$:
+    $$e^{2a - b} = \frac{e^{2a}}{e^{b}} = \frac{\left(e^{a}\right)^2}{e^{b}} = \frac{25}{2} = 12.5.$$
+    There was no need to know $a$ or $b$: the algebraic properties of the exponential are those of powers, and they are enough. Finding $a$ itself would require the natural logarithm, seen in Grade 12.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 1
+  transfer: 1
+  autonomy: 2

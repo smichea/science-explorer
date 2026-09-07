@@ -1,0 +1,17 @@
+# Leçon — couleurs : synthèse additive de la source, synthèse soustractive à travers un filtre jaune, et couleur d'un objet rouge selon l'éclairage (outil optique en mode couleur).
+id: lesson.phenomenon.colour
+nodeId: phenomenon.colour
+depth: 1
+tools:
+  - id: colours
+    kind: optics
+    title: { fr: "Source, filtre jaune et objet rouge", en: "Source, yellow filter and red object" }
+    mode: colour
+    parameters:
+      - { id: r, label: { fr: "composante rouge de la source", en: "red component of the source" }, min: 0, max: 1, step: 0.1, value: 1 }
+      - { id: g, label: { fr: "composante verte de la source", en: "green component of the source" }, min: 0, max: 1, step: 0.1, value: 1 }
+      - { id: b, label: { fr: "composante bleue de la source", en: "blue component of the source" }, min: 0, max: 1, step: 0.1, value: 1 }
+    colour:
+      source: ["r", "g", "b"]
+      filter: { passes: [r, g] }
+      object: { reflects: [r] }

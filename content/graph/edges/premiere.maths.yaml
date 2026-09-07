@@ -1,0 +1,66 @@
+# Première — mathématiques : arêtes intra-disciplinaires des huit nouvelles destinations (prérequis vers les nœuds de
+# Première, applications des outils du sac à dos vers la physique et vers les mathématiques). Direction : requires_* du
+# prérequis vers le dépendant ; applies_to de l'outil vers l'application. Un prérequis qui ne vaut qu'à la profondeur 2
+# du dépendant porte depthRange: [2, 2] (le vol au-dessus de l'atlas l'ignore alors à la profondeur 1).
+edges:
+  # --- requires_essentially -------------------------------------------------
+  - { from: concept.function, to: concept.sequence, type: requires_essentially, weight: 1,
+      note: { fr: "Une suite est une fonction dont la variable ne prend que des valeurs entières.", en: "A sequence is a function whose variable only takes integer values." } }
+  - { from: concept.sequence, to: tool.arithmetic_geometric_sequences, type: requires_essentially, weight: 1,
+      note: { fr: "Les suites arithmétiques et géométriques sont les deux modes de génération les plus simples.", en: "Arithmetic and geometric sequences are the two simplest modes of generation." } }
+  - { from: tool.algebraic_identities, to: tool.quadratic, type: requires_essentially, weight: 1,
+      note: { fr: "La forme canonique s'obtient en complétant le carré, une identité remarquable.", en: "The canonical form is obtained by completing the square, a remarkable identity." } }
+  - { from: tool.linear_equations, to: tool.quadratic, type: requires_essentially, weight: 1,
+      note: { fr: "La forme factorisée se résout avec la règle du produit nul, sur deux équations du premier degré.", en: "The factored form is solved with the zero-product rule, on two linear equations." } }
+  - { from: concept.function, to: tool.trigonometric_functions, type: requires_essentially, weight: 1,
+      note: { fr: "Cosinus et sinus sont des fonctions de la variable réelle, définies sur R.", en: "Cosine and sine are functions of the real variable, defined on R." } }
+  - { from: tool.vector, to: tool.dot_product, type: requires_essentially, weight: 1,
+      note: { fr: "Le produit scalaire est une opération entre deux vecteurs, écrite avec leurs coordonnées.", en: "The dot product is an operation between two vectors, written with their coordinates." } }
+  - { from: tool.dot_product, to: tool.analytic_geometry, type: requires_essentially, weight: 1,
+      note: { fr: "L'équation d'une droite de vecteur normal n traduit le produit scalaire nul AM · n = 0.", en: "The equation of a line with normal vector n expresses the vanishing dot product AM · n = 0." } }
+  - { from: tool.line_equations, to: tool.analytic_geometry, type: requires_essentially, weight: 1,
+      note: { fr: "L'équation réduite y = m x + p précède l'équation cartésienne a x + b y + c = 0.", en: "The reduced equation y = m x + p comes before the cartesian equation a x + b y + c = 0." } }
+  - { from: concept.probability, to: concept.conditional_probability, type: requires_essentially, weight: 1,
+      note: { fr: "Conditionner suppose de savoir calculer P(A), P(A ∩ B) et de connaître l'équiprobabilité.", en: "Conditioning presupposes computing P(A), P(A ∩ B) and knowing equiprobability." } }
+  - { from: concept.probability, to: concept.random_variable, type: requires_essentially, weight: 1,
+      note: { fr: "Une variable aléatoire est définie sur l'univers d'une expérience aléatoire.", en: "A random variable is defined on the sample space of a random experiment." } }
+  - { from: tool.derivative, to: concept.variations_extremums, type: requires_essentially, weight: 1, depthRange: [2, 2],
+      note: { fr: "En Première, les variations se déduisent du signe de la dérivée.", en: "In Grade 11, variations are deduced from the sign of the derivative." } }
+  # --- requires_recommended -------------------------------------------------
+  - { from: concept.proportions_evolutions, to: tool.arithmetic_geometric_sequences, type: requires_recommended, weight: 0.8,
+      note: { fr: "Une évolution répétée au taux t est la suite géométrique de raison 1 + t.", en: "A change repeated at rate t is the geometric sequence of ratio 1 + t." } }
+  - { from: tool.powers_roots, to: tool.arithmetic_geometric_sequences, type: requires_recommended, weight: 0.7,
+      note: { fr: "Le terme général d'une suite géométrique est une puissance, u(0) q^n.", en: "The general term of a geometric sequence is a power, u(0) q^n." } }
+  - { from: tool.sign_table, to: tool.quadratic, type: requires_recommended, weight: 0.8,
+      note: { fr: "Le signe d'un trinôme se lit dans un tableau de signes, comme celui d'un produit de facteurs.", en: "The sign of a trinomial is read in a sign table, like that of a product of factors." } }
+  - { from: tool.quadratic, to: tool.derivative, type: requires_recommended, weight: 0.6,
+      note: { fr: "Le taux de variation d'une fonction du second degré se simplifie avec une identité et un discriminant.", en: "The rate of change of a quadratic function simplifies with an identity and a discriminant." } }
+  - { from: concept.coordinates, to: tool.trigonometric_functions, type: requires_recommended, weight: 0.7,
+      note: { fr: "Cosinus et sinus sont les coordonnées d'un point du cercle dans un repère orthonormé.", en: "Cosine and sine are the coordinates of a point of the circle in an orthonormal frame." } }
+  - { from: tool.trigonometric_functions, to: tool.dot_product, type: requires_recommended, weight: 0.8,
+      note: { fr: "La première définition du produit scalaire fait intervenir le cosinus de l'angle.", en: "The first definition of the dot product involves the cosine of the angle." } }
+  - { from: concept.coordinates, to: tool.analytic_geometry, type: requires_recommended, weight: 0.8,
+      note: { fr: "Tout se joue dans un repère orthonormé, où la distance entre deux points est connue.", en: "Everything happens in an orthonormal frame, where the distance between two points is known." } }
+  - { from: tool.quadratic, to: tool.analytic_geometry, type: requires_recommended, weight: 0.7,
+      note: { fr: "L'intersection d'une droite et d'un cercle se ramène à une équation du second degré.", en: "The intersection of a line and a circle reduces to a quadratic equation." } }
+  - { from: concept.proportions_evolutions, to: concept.conditional_probability, type: requires_recommended, weight: 0.6,
+      note: { fr: "Les données d'un arbre pondéré se lisent le plus souvent comme des pourcentages d'une sous-population.", en: "The data of a weighted tree are most often read as percentages of a sub-population." } }
+  - { from: concept.conditional_probability, to: concept.random_variable, type: requires_recommended, weight: 0.7,
+      note: { fr: "La loi d'une variable aléatoire se lit souvent sur un arbre pondéré.", en: "The distribution of a random variable is often read off a weighted tree." } }
+  - { from: tool.descriptive_statistics, to: concept.random_variable, type: requires_recommended, weight: 0.7,
+      note: { fr: "L'espérance et l'écart-type sont les analogues théoriques de la moyenne et de l'écart-type d'une série.", en: "Expectation and standard deviation are the theoretical analogues of the mean and standard deviation of a series." } }
+  # --- applications of the backpack tools (coverageEligible) -----------------
+  - { from: tool.quadratic, to: phenomenon.motion.uniformly_accelerated, type: applies_to, coverageEligible: true, weight: 0.8,
+      note: { fr: "La position d'un mobile uniformément accéléré est un trinôme du temps : le discriminant donne l'instant où il atteint une position, et la forme canonique le sommet de la trajectoire.", en: "The position of a uniformly accelerated body is a trinomial in time: the discriminant gives the instant at which it reaches a position, and the canonical form the top of the trajectory." } }
+  - { from: tool.analytic_geometry, to: phenomenon.motion.free_fall, type: applies_to, coverageEligible: true, weight: 0.6,
+      note: { fr: "La trajectoire d'un projectile s'écrit dans un repère : en éliminant le temps entre les deux équations horaires, on obtient l'équation d'une parabole.", en: "The trajectory of a projectile is written in a coordinate frame: eliminating time between the two equations of motion gives the equation of a parabola." } }
+  - { from: tool.dot_product, to: concept.kinetic_energy_work, type: applies_to, coverageEligible: true, weight: 1,
+      note: { fr: "Le travail d'une force constante est le produit scalaire de la force par le déplacement : il est nul quand la force est perpendiculaire au mouvement.", en: "The work of a constant force is the dot product of the force by the displacement: it vanishes when the force is perpendicular to the motion." } }
+  - { from: tool.trigonometric_functions, to: phenomenon.mechanical_wave, type: applies_to, coverageEligible: true, weight: 1,
+      note: { fr: "Une onde sinusoïdale s'écrit avec un cosinus dont l'argument dépend du temps et de la position : la périodicité du cercle devient période temporelle et longueur d'onde.", en: "A sinusoidal wave is written with a cosine whose argument depends on time and position: the periodicity of the circle becomes a temporal period and a wavelength." } }
+  - { from: tool.trigonometric_functions, to: phenomenon.sound, type: applies_to, coverageEligible: true, weight: 0.7,
+      note: { fr: "Un son pur est une variation sinusoïdale de la pression : sa fréquence est l'inverse de la période de la fonction cosinus qui le modélise.", en: "A pure sound is a sinusoidal variation of pressure: its frequency is the reciprocal of the period of the cosine function modelling it." } }
+  - { from: tool.arithmetic_geometric_sequences, to: phenomenon.nuclear.radioactive_decay, type: applies_to, coverageEligible: true, weight: 0.8,
+      note: { fr: "Le nombre de noyaux restants après n demi-vies est une suite géométrique de raison un demi.", en: "The number of nuclei remaining after n half-lives is a geometric sequence of ratio one half." } }
+  - { from: tool.arithmetic_geometric_sequences, to: concept.proportions_evolutions, type: applies_to, coverageEligible: true, weight: 0.6,
+      note: { fr: "Répéter n fois une évolution de taux t revient à multiplier par le coefficient (1 + t) puissance n, terme d'une suite géométrique.", en: "Repeating a change of rate t n times amounts to multiplying by the coefficient (1 + t) to the power n, a term of a geometric sequence." } }

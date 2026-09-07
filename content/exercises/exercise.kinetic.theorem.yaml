@@ -1,0 +1,45 @@
+# Théorème de l'énergie cinétique — force de freinage d'une voiture à partir de sa distance d'arrêt (réponse numérique)
+id: exercise.kinetic.theorem
+type: numeric
+nodeId: concept.kinetic_energy_work
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    Une voiture de masse $m = 1200\ \mathrm{kg}$ roule en ligne droite à la vitesse $v_A = 25\ \mathrm{m/s}$ lorsque le conducteur freine. Elle s'arrête après une distance $AB = 60\ \mathrm{m}$. On suppose que la force de freinage $\vec F$ est constante et opposée au déplacement, et que le poids et la réaction de la route ne travaillent pas.
+
+    Calculez la valeur de la force de freinage, en newtons.
+  en: |-
+    A car of mass $m = 1200\ \mathrm{kg}$ travels in a straight line at the speed $v_A = 25\ \mathrm{m/s}$ when the driver brakes. It stops after a distance $AB = 60\ \mathrm{m}$. Assume the braking force $\vec F$ is constant and opposite to the displacement, and that the weight and the reaction of the road do no work.
+
+    Compute the value of the braking force, in newtons.
+numeric:
+  value: 6250
+  unit: "N"
+  tolerance: { kind: relative, value: 0.02 }
+  inputLabel: { fr: "F", en: "F" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Appliquez le théorème de l'énergie cinétique entre $A$ et $B$ : $\Delta E_c = \sum W_{AB}(\vec F)$, avec une vitesse finale nulle.
+      en: |-
+        Apply the work–energy theorem between $A$ and $B$: $\Delta E_c = \sum W_{AB}(\vec F)$, with a zero final speed.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La force étant opposée au déplacement, son travail vaut $-F \times AB$, et la variation d'énergie cinétique vaut $0 - \dfrac{1}{2}\,m\,v_A^2$.
+      en: |-
+        Since the force is opposite to the displacement, its work is $-F \times AB$, and the change of kinetic energy is $0 - \dfrac{1}{2}\,m\,v_A^2$.
+solution:
+  fr: |-
+    L'énergie cinétique initiale vaut $E_c(A) = \dfrac{1}{2} \times 1200 \times 25^2 = 3{,}75 \times 10^{5}\ \mathrm{J}$, et l'énergie cinétique finale est nulle. Seule la force de freinage travaille, avec $W_{AB}(\vec F) = -F \times AB$. Le théorème de l'énergie cinétique donne
+    $$0 - 3{,}75 \times 10^{5} = -F \times 60 \quad \Longrightarrow \quad F = \frac{3{,}75 \times 10^{5}}{60} = 6{,}25 \times 10^{3}\ \mathrm{N}.$$
+    Le théorème permet donc d'obtenir une force sans jamais calculer la trajectoire ni la durée du freinage. Remarque essentielle pour la sécurité routière : l'énergie cinétique varie comme le **carré** de la vitesse, si bien qu'à force de freinage égale, rouler à $50\ \mathrm{m/s}$ au lieu de $25\ \mathrm{m/s}$ multiplierait la distance d'arrêt par quatre.
+  en: |-
+    The initial kinetic energy is $E_c(A) = \dfrac{1}{2} \times 1200 \times 25^2 = 3.75 \times 10^{5}\ \mathrm{J}$, and the final kinetic energy is zero. Only the braking force does work, with $W_{AB}(\vec F) = -F \times AB$. The work–energy theorem gives
+    $$0 - 3.75 \times 10^{5} = -F \times 60 \quad \Longrightarrow \quad F = \frac{3.75 \times 10^{5}}{60} = 6.25 \times 10^{3}\ \mathrm{N}.$$
+    The theorem therefore yields a force without ever computing the trajectory or the duration of the braking. A remark that matters for road safety: the kinetic energy varies as the **square** of the speed, so that at equal braking force, driving at $50\ \mathrm{m/s}$ instead of $25\ \mathrm{m/s}$ would multiply the stopping distance by four.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 3, transfer: 3, autonomy: 3 }

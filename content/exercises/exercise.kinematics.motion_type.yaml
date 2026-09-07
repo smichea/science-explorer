@@ -1,0 +1,72 @@
+# Leçon cinématique (Première) — reconnaître un mouvement circulaire uniforme à partir de v et Δv (choix unique)
+id: exercise.kinematics.motion_type
+type: choice
+nodeId: model.kinematics_point
+depth: 2
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Sur une chronophotographie, les positions successives d'un mobile, relevées à intervalles de temps égaux, sont régulièrement espacées le long d'un cercle.
+
+    Que peut-on dire du vecteur vitesse $\vec v$ et du vecteur variation de vitesse $\Delta\vec v$ ?
+  en: |-
+    On a stroboscopic photograph, the successive positions of a moving body, recorded at equal time intervals, are regularly spaced along a circle.
+
+    What can be said about the velocity vector $\vec v$ and the velocity-variation vector $\Delta\vec v$?
+choice:
+  multiple: false
+  choices:
+    - id: uniform_no_change
+      text: { fr: "La norme de $\\vec v$ est constante et $\\Delta\\vec v$ est nul : la vitesse ne varie pas", en: "The magnitude of $\\vec v$ is constant and $\\Delta\\vec v$ is zero: the velocity does not change" }
+      feedback:
+        fr: |-
+          La norme est bien constante, mais un vecteur a aussi une direction : elle tourne le long du cercle, donc $\vec v$ change et $\Delta\vec v$ n'est pas nul. Seul un mouvement rectiligne uniforme a $\Delta\vec v = \vec 0$.
+        en: |-
+          The magnitude is indeed constant, but a vector also has a direction: it turns along the circle, so $\vec v$ changes and $\Delta\vec v$ is not zero. Only a uniform rectilinear motion has $\Delta\vec v = \vec 0$.
+    - id: circular_uniform
+      text: { fr: "La norme de $\\vec v$ est constante mais sa direction tourne : $\\Delta\\vec v$ n'est pas nul et pointe vers le centre du cercle", en: "The magnitude of $\\vec v$ is constant but its direction turns: $\\Delta\\vec v$ is not zero and points towards the centre of the circle" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : c'est un mouvement circulaire uniforme. Les vecteurs vitesse, tangents au cercle, ont tous la même norme, et leur différence $\Delta\vec v$ est dirigée vers le centre : d'après la deuxième loi de Newton, la somme des forces l'est aussi.
+        en: |-
+          Correct: this is a uniform circular motion. The velocity vectors, tangent to the circle, all have the same magnitude, and their difference $\Delta\vec v$ points towards the centre: by Newton's second law, so does the sum of the forces.
+    - id: accelerated
+      text: { fr: "La norme de $\\vec v$ augmente : le mouvement est accéléré et $\\Delta\\vec v$ a le sens du mouvement", en: "The magnitude of $\\vec v$ increases: the motion is accelerated and $\\Delta\\vec v$ has the sense of the motion" }
+      feedback:
+        fr: |-
+          Des positions régulièrement espacées à intervalles de temps égaux signifient que la distance parcourue par intervalle est constante : la norme de la vitesse ne change pas.
+        en: |-
+          Regularly spaced positions at equal time intervals mean that the distance covered per interval is constant: the magnitude of the velocity does not change.
+    - id: swapped
+      text: { fr: "$\\vec v$ est dirigé vers le centre du cercle et $\\Delta\\vec v$ est tangent au cercle", en: "$\\vec v$ points towards the centre of the circle and $\\Delta\\vec v$ is tangent to the circle" }
+      feedback:
+        fr: |-
+          C'est l'inverse : la vitesse est toujours tangente à la trajectoire, dans le sens du mouvement ; c'est la variation de vitesse qui pointe vers le centre.
+        en: |-
+          It is the other way round: the velocity is always tangent to the trajectory, in the sense of the motion; it is the velocity variation that points towards the centre.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Des positions régulièrement espacées disent ce que fait la norme de la vitesse ; le cercle dit ce que fait sa direction. Un vecteur change dès que l'une des deux change.
+      en: |-
+        Regularly spaced positions tell what the magnitude of the velocity does; the circle tells what its direction does. A vector changes as soon as either of the two changes.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Translatez $\vec v_1$ au point $M_2$ et tracez $\Delta\vec v$ de la pointe de $\vec v_1$ à la pointe de $\vec v_2$ : vers où pointe-t-il ?
+      en: |-
+        Translate $\vec v_1$ to the point $M_2$ and draw $\Delta\vec v$ from the tip of $\vec v_1$ to the tip of $\vec v_2$: where does it point?
+solution:
+  fr: |-
+    Les positions sont régulièrement espacées à intervalles de temps égaux : la distance parcourue par intervalle est constante, donc la **norme** de $\vec v$ est constante. Mais la trajectoire est un cercle : la **direction** de $\vec v$, toujours tangente à la trajectoire, tourne d'une position à la suivante. Le vecteur vitesse change donc, et $\Delta\vec v = \vec v_2 - \vec v_1$ n'est pas nul.
+
+    En translatant $\vec v_1$ en $M_2$, on constate que $\Delta\vec v$ est dirigé vers le centre du cercle. C'est la signature du **mouvement circulaire uniforme** : d'après la relation $\sum \vec F \approx m\,\dfrac{\Delta\vec v}{\Delta t}$, la somme des forces est elle aussi dirigée vers le centre, comme l'attraction du Soleil sur une planète en orbite circulaire.
+  en: |-
+    The positions are regularly spaced at equal time intervals: the distance covered per interval is constant, so the **magnitude** of $\vec v$ is constant. But the trajectory is a circle: the **direction** of $\vec v$, always tangent to the trajectory, turns from one position to the next. The velocity vector therefore changes, and $\Delta\vec v = \vec v_2 - \vec v_1$ is not zero.
+
+    Translating $\vec v_1$ to $M_2$, one sees that $\Delta\vec v$ points towards the centre of the circle. This is the signature of **uniform circular motion**: by the relation $\sum \vec F \approx m\,\dfrac{\Delta\vec v}{\Delta t}$, the sum of the forces also points towards the centre, like the attraction of the Sun on a planet in a circular orbit.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

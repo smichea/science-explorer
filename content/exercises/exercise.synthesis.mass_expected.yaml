@@ -1,0 +1,67 @@
+# Leçon synthèse organique — masse d'ester que l'on peut espérer isoler connaissant le rendement (réponse numérique)
+id: exercise.synthesis.mass_expected
+type: numeric
+nodeId: method.organic_synthesis
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    On prépare de l'éthanoate de butyle, un arôme de banane, par estérification :
+    $$\mathrm{CH_3COOH} + \mathrm{C_4H_9OH} \to \mathrm{CH_3COOC_4H_9} + \mathrm{H_2O}.$$
+
+    On introduit $0{,}25\ \mathrm{mol}$ d'acide éthanoïque et $0{,}40\ \mathrm{mol}$ de butan-1-ol. Le rendement usuel de cette synthèse est de $60\ \%$.
+
+    Donnée : $M(\mathrm{CH_3COOC_4H_9}) = 116\ \mathrm{g/mol}$.
+
+    Quelle masse d'ester peut-on espérer isoler, en $\mathrm{g}$ ?
+  en: |-
+    Butyl ethanoate, a banana flavour, is prepared by esterification:
+    $$\mathrm{CH_3COOH} + \mathrm{C_4H_9OH} \to \mathrm{CH_3COOC_4H_9} + \mathrm{H_2O}.$$
+
+    $0.25\ \mathrm{mol}$ of ethanoic acid and $0.40\ \mathrm{mol}$ of butan-1-ol are introduced. The usual yield of this synthesis is $60\ \%$.
+
+    Datum: $M(\mathrm{CH_3COOC_4H_9}) = 116\ \mathrm{g/mol}$.
+
+    What mass of ester can one hope to isolate, in $\mathrm{g}$?
+numeric:
+  value: 17.4
+  unit: "g"
+  tolerance: { kind: absolute, value: 0.5 }
+  inputLabel: { fr: "m(ester)", en: "m(ester)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Déterminez d'abord la quantité maximale d'ester, celle qu'une transformation totale donnerait, à partir du réactif limitant.
+      en: |-
+        First determine the maximum amount of ester, the one a complete transformation would give, from the limiting reactant.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Le rendement est le rapport $\eta = \dfrac{n_{\text{obtenu}}}{n_{\max}}$ : la quantité espérée vaut donc $\eta \times n_{\max}$, qu'il reste à convertir en masse.
+      en: |-
+        The yield is the ratio $\eta = \dfrac{n_{\text{obtained}}}{n_{\max}}$: the expected amount is therefore $\eta \times n_{\max}$, which remains to be converted into a mass.
+solution:
+  fr: |-
+    Les nombres stœchiométriques valent tous $1$ : l'acide borne l'avancement à $0{,}25\ \mathrm{mol}$, le butan-1-ol à $0{,}40\ \mathrm{mol}$. L'**acide éthanoïque** est le réactif limitant, $x_{\max} = 0{,}25\ \mathrm{mol}$, et une transformation totale donnerait
+    $$n_{\max} = 0{,}25\ \mathrm{mol} \quad\text{d'ester, soit}\quad m_{\max} = n_{\max} \times M = 0{,}25 \times 116 = 29\ \mathrm{g}.$$
+
+    Le rendement n'étant que de $60\ \%$, on n'isole que cette fraction de la masse maximale :
+    $$m = \eta \times m_{\max} = 0{,}60 \times 29 = 17{,}4\ \mathrm{g}.$$
+
+    On peut aussi calculer d'abord la quantité espérée, $0{,}60 \times 0{,}25 = 0{,}15\ \mathrm{mol}$, puis la convertir : $0{,}15 \times 116 = 17{,}4\ \mathrm{g}$. Les deux chemins sont équivalents parce que la masse est proportionnelle à la quantité de matière pour une même espèce.
+
+    En pratique on pèserait un peu plus si le produit était mal séché, ce qui donnerait un rendement apparent supérieur à celui-ci : un rendement voisin de $100\ \%$, ou au-delà, signale presque toujours un produit impur.
+  en: |-
+    All the stoichiometric coefficients are $1$: the acid bounds the extent at $0.25\ \mathrm{mol}$, butan-1-ol at $0.40\ \mathrm{mol}$. **Ethanoic acid** is the limiting reactant, $x_{\max} = 0.25\ \mathrm{mol}$, and a complete transformation would give
+    $$n_{\max} = 0.25\ \mathrm{mol} \quad\text{of ester, that is}\quad m_{\max} = n_{\max} \times M = 0.25 \times 116 = 29\ \mathrm{g}.$$
+
+    Since the yield is only $60\ \%$, only that fraction of the maximum mass is isolated:
+    $$m = \eta \times m_{\max} = 0.60 \times 29 = 17.4\ \mathrm{g}.$$
+
+    One may also compute the expected amount first, $0.60 \times 0.25 = 0.15\ \mathrm{mol}$, then convert it: $0.15 \times 116 = 17.4\ \mathrm{g}$. The two paths are equivalent because the mass is proportional to the amount of substance for a given species.
+
+    In practice one would weigh a little more if the product were badly dried, which would give an apparent yield higher than this one: a yield close to $100\ \%$, or beyond, almost always signals an impure product.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 3, transfer: 3, autonomy: 3 }

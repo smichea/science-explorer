@@ -1,0 +1,51 @@
+# Dérivée en Terminale — l'abscisse du point d'inflexion de x³ − 6x² + 9x + 1 (réponse numérique)
+id: exercise.derivative.inflection
+type: numeric
+nodeId: tool.derivative
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Soit $f$ la fonction définie sur $\mathbb{R}$ par $f(x) = x^3 - 6x^2 + 9x + 1$.
+
+    Calculez la dérivée seconde $f''(x)$, étudiez son signe, puis donnez l'abscisse du **point d'inflexion** de la courbe de $f$.
+  en: |-
+    Let $f$ be the function defined on $\mathbb{R}$ by $f(x) = x^3 - 6x^2 + 9x + 1$.
+
+    Compute the second derivative $f''(x)$, study its sign, then give the abscissa of the **inflection point** of the curve of $f$.
+numeric:
+  value: 2
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "abscisse du point d'inflexion", en: "abscissa of the inflection point" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Dérivez deux fois : $f'(x) = 3x^2 - 12x + 9$, puis $f''(x) = (f')'(x)$.
+      en: |-
+        Differentiate twice: $f'(x) = 3x^2 - 12x + 9$, then $f''(x) = (f')'(x)$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $f''(x) = 6x - 12$ s'annule en changeant de signe pour une seule valeur de $x$ : c'est là que la courbe traverse sa tangente.
+      en: |-
+        $f''(x) = 6x - 12$ vanishes and changes sign for a single value of $x$: that is where the curve crosses its tangent.
+solution:
+  fr: |-
+    $f'(x) = 3x^2 - 12x + 9$ et $f''(x) = 6x - 12 = 6(x - 2)$. La dérivée seconde est négative pour $x < 2$ (la courbe est concave) et positive pour $x > 2$ (la courbe est convexe) : elle s'annule en changeant de signe en $x = 2$, qui est l'abscisse du point d'inflexion. Ce point a pour coordonnées $(2\,;\,f(2)) = (2\,;\,3)$ et la tangente y a pour pente $f'(2) = 12 - 24 + 9 = -3$.
+
+    **Interprétation.** Au point d'inflexion, la courbe passe d'un côté à l'autre de sa tangente : c'est aussi là que la pente $f'$ atteint son minimum, puisque $f'' = (f')'$ y change de signe.
+  en: |-
+    $f'(x) = 3x^2 - 12x + 9$ and $f''(x) = 6x - 12 = 6(x - 2)$. The second derivative is negative for $x < 2$ (the curve is concave) and positive for $x > 2$ (the curve is convex): it vanishes and changes sign at $x = 2$, which is the abscissa of the inflection point. This point has coordinates $(2\,;\,f(2)) = (2\,;\,3)$ and the tangent there has slope $f'(2) = 12 - 24 + 9 = -3$.
+
+    **Interpretation.** At the inflection point, the curve moves from one side of its tangent to the other: it is also where the slope $f'$ reaches its minimum, since $f'' = (f')'$ changes sign there.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 3

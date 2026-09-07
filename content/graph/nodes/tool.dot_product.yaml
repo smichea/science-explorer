@@ -1,0 +1,55 @@
+id: tool.dot_product
+type: mathematical_tool
+world: world.mathematics
+region: region.math.geometry
+importance: 3
+backpack: true
+tags: [lycee]
+title: { fr: "Produit scalaire : définitions, propriétés, orthogonalité", en: "Dot product: definitions, properties, orthogonality" }
+shortPurpose:
+  fr: "Multiplier deux vecteurs pour obtenir un nombre qui mesure à quel point ils pointent dans la même direction, et en tirer angles, longueurs et orthogonalité."
+  en: "Multiply two vectors to obtain a number measuring how much they point in the same direction, and derive from it angles, lengths and orthogonality."
+overview:
+  fr: >-
+    Le produit scalaire prend deux vecteurs et rend un nombre, pas un vecteur : ce nombre mesure à quel point ils pointent dans la même direction. Il vaut zéro exactement quand ils sont perpendiculaires, ce qui donne le test d'orthogonalité le plus simple qui soit. En physique, c'est lui qui définit le travail d'une force, cette part de la force qui sert vraiment à déplacer un objet.
+  en: >-
+    The dot product takes two vectors and returns a number, not a vector: that number measures how much they point in the same direction. It is zero exactly when they are perpendicular, which gives the simplest orthogonality test there is. In physics, it is what defines the work of a force, that part of the force which really serves to move an object.
+aliases:
+  fr: ["produit scalaire", "orthogonalité de deux vecteurs", "projeté orthogonal", "théorème d'Al-Kashi", "norme d'un vecteur"]
+  en: ["dot product", "orthogonality of two vectors", "orthogonal projection", "law of cosines", "norm of a vector"]
+description:
+  fr: |
+    Le **produit scalaire** de deux vecteurs $\vec u$ et $\vec v$ est le nombre réel $\vec u \cdot \vec v = \|\vec u\| \times \|\vec v\| \times \cos\theta$, où $\theta$ est l'angle qu'ils forment. Le résultat n'est pas un vecteur mais un **scalaire**, d'où son nom. Avec $\|\vec u\| = 4$, $\|\vec v\| = 3$ et $\theta = \dfrac{\pi}{3}$, on obtient $\vec u \cdot \vec v = 4 \times 3 \times \dfrac12 = 6$. Le signe suffit à lire la géométrie : positif quand l'angle est aigu, nul quand il est droit, négatif quand il est obtus.
+
+    Dans un repère **orthonormé**, le calcul se réduit aux coordonnées : si $\vec u(x\,;\,y)$ et $\vec v(x'\,;\,y')$, alors $\vec u \cdot \vec v = xx' + yy'$. C'est la formule que l'on utilise en pratique : pour $\vec u(3\,;\,-2)$ et $\vec v(4\,;\,5)$, $\vec u \cdot \vec v = 12 - 10 = 2$. Une troisième expression passe par le **projeté orthogonal** : si $H$ est le projeté de $C$ sur la droite $(AB)$, alors $\overrightarrow{AB} \cdot \overrightarrow{AC} = \overrightarrow{AB} \cdot \overrightarrow{AH}$, produit des mesures algébriques. Enfin $\vec u \cdot \vec u = \|\vec u\|^2$, ce que l'on note $\vec u^{\,2}$ : le produit scalaire mesure aussi les longueurs.
+
+    Le produit scalaire est **symétrique**, **bilinéaire** et se développe comme un produit ordinaire, d'où $\|\vec u + \vec v\|^2 = \|\vec u\|^2 + 2\,\vec u \cdot \vec v + \|\vec v\|^2$. Deux vecteurs non nuls sont **orthogonaux** si et seulement si leur produit scalaire est nul, soit $xx' + yy' = 0$ : c'est le test à retenir. On en déduit le **théorème d'Al-Kashi**, qui généralise Pythagore à un triangle quelconque : $BC^2 = AB^2 + AC^2 - 2 \times AB \times AC \times \cos\widehat{A}$ ; dans un triangle où $AB = 4$, $AC = 3$ et $\widehat{A} = \dfrac{\pi}{3}$, on trouve $BC^2 = 16 + 9 - 12 = 13$. Deux pièges : écrire un produit scalaire comme un vecteur, et appliquer la formule des coordonnées dans un repère qui n'est pas orthonormé, où elle est fausse.
+  en: |
+    The **dot product** of two vectors $\vec u$ and $\vec v$ is the real number $\vec u \cdot \vec v = \|\vec u\| \times \|\vec v\| \times \cos\theta$, where $\theta$ is the angle between them. The result is not a vector but a **scalar**, hence its name. With $\|\vec u\| = 4$, $\|\vec v\| = 3$ and $\theta = \dfrac{\pi}{3}$, one gets $\vec u \cdot \vec v = 4 \times 3 \times \dfrac12 = 6$. The sign alone reads the geometry: positive when the angle is acute, zero when it is right, negative when it is obtuse.
+
+    In an **orthonormal** frame, the computation reduces to the coordinates: if $\vec u(x\,;\,y)$ and $\vec v(x'\,;\,y')$, then $\vec u \cdot \vec v = xx' + yy'$. This is the formula used in practice: for $\vec u(3\,;\,-2)$ and $\vec v(4\,;\,5)$, $\vec u \cdot \vec v = 12 - 10 = 2$. A third expression goes through the **orthogonal projection**: if $H$ is the projection of $C$ onto the line $(AB)$, then $\overrightarrow{AB} \cdot \overrightarrow{AC} = \overrightarrow{AB} \cdot \overrightarrow{AH}$, a product of signed measures. Finally $\vec u \cdot \vec u = \|\vec u\|^2$, written $\vec u^{\,2}$: the dot product also measures lengths.
+
+    The dot product is **symmetric**, **bilinear** and expands like an ordinary product, hence $\|\vec u + \vec v\|^2 = \|\vec u\|^2 + 2\,\vec u \cdot \vec v + \|\vec v\|^2$. Two non-zero vectors are **orthogonal** if and only if their dot product is zero, that is $xx' + yy' = 0$: this is the test to remember. From it follows the **law of cosines**, which generalises Pythagoras to any triangle: $BC^2 = AB^2 + AC^2 - 2 \times AB \times AC \times \cos\widehat{A}$; in a triangle where $AB = 4$, $AC = 3$ and $\widehat{A} = \dfrac{\pi}{3}$, one finds $BC^2 = 16 + 9 - 12 = 13$. Two traps: writing a dot product as a vector, and applying the coordinate formula in a frame that is not orthonormal, where it is false.
+tool:
+  problemSolved:
+    fr: "Obtenir des longueurs, des angles et des perpendicularités par le calcul plutôt que par la figure : tester une orthogonalité, mesurer l'angle de deux directions, et isoler la part d'une force qui agit le long d'un déplacement."
+    en: "Obtain lengths, angles and perpendicularities by computation rather than by drawing: test an orthogonality, measure the angle between two directions, and isolate the part of a force that acts along a displacement."
+  construction:
+    fr: "On pose $\\vec u \\cdot \\vec v = \\|\\vec u\\|\\,\\|\\vec v\\|\\cos\\theta$, puis on développe $\\|\\vec u + \\vec v\\|^2$ pour montrer que cette quantité vaut $xx' + yy'$ dans un repère orthonormé et qu'elle est bilinéaire ; l'orthogonalité devient alors l'annulation d'un nombre."
+    en: "One sets $\\vec u \\cdot \\vec v = \\|\\vec u\\|\\,\\|\\vec v\\|\\cos\\theta$, then expands $\\|\\vec u + \\vec v\\|^2$ to show that this quantity equals $xx' + yy'$ in an orthonormal frame and that it is bilinear; orthogonality then becomes the vanishing of a number."
+  icon: angle
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "calculer un produit scalaire par la formule avec l'angle, par les coordonnées et par le projeté orthogonal"
+        - "tester l'orthogonalité de deux vecteurs et déterminer un vecteur orthogonal à un vecteur donné"
+        - "calculer un angle ou une longueur avec le produit scalaire et le théorème d'Al-Kashi"
+        - "développer une expression vectorielle comme ‖u + v‖² et l'utiliser dans une démonstration de géométrie"
+      en:
+        - "compute a dot product with the angle formula, with the coordinates and with the orthogonal projection"
+        - "test the orthogonality of two vectors and determine a vector orthogonal to a given one"
+        - "compute an angle or a length with the dot product and the law of cosines"
+        - "expand a vector expression such as ‖u + v‖² and use it in a geometry proof"

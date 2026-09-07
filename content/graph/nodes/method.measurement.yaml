@@ -44,6 +44,20 @@ depths:
         - "write a result with its unit and a consistent number of significant figures"
         - "compare a result with a reference value, taking the uncertainty into account"
   - depth: 2
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "évaluer l'incertitude-type de type A d'une série de $n$ mesures indépendantes, $u = s/\\sqrt{n}$ avec $s$ l'écart-type expérimental, et de type B d'une lecture unique ($\\delta/\\sqrt{12}$ pour une résolution $\\delta$, ou la tolérance du constructeur)"
+        - "écrire un résultat sous la forme $x = \\bar x \\pm u$ avec un nombre de chiffres significatifs cohérent"
+        - "comparer une valeur mesurée à une valeur de référence par l'écart normalisé $|\\bar x - x_{\\text{ref}}| / u \\le 2$"
+        - "identifier les sources de variabilité d'une mesure (instrument, protocole, opérateur) et discuter leur influence sur l'incertitude"
+      en:
+        - "evaluate the type A standard uncertainty of a series of $n$ independent measurements, $u = s/\\sqrt{n}$ with $s$ the sample standard deviation, and the type B uncertainty of a single reading ($\\delta/\\sqrt{12}$ for a resolution $\\delta$, or the maker's tolerance)"
+        - "write a result in the form $x = \\bar x \\pm u$ with a consistent number of significant figures"
+        - "compare a measured value with a reference value through the normalised gap $|\\bar x - x_{\\text{ref}}| / u \\le 2$"
+        - "identify the sources of variability of a measurement (instrument, protocol, operator) and discuss their influence on the uncertainty"
+  - depth: 3
     stage: terminale
     role: core
     outcomes:
@@ -66,7 +80,7 @@ depths:
         **Standard uncertainty.** For $n$ measurements $x_1, \dots, x_n$ with mean $\bar x$ and standard deviation $\sigma$, the standard uncertainty on the mean is $u(\bar x) = \dfrac{\sigma}{\sqrt{n}}$ (type A evaluation). For a single reading on an instrument of resolution $\delta$, one takes $u = \dfrac{\delta}{\sqrt{12}}$ or the manufacturer's specification (type B). The result is written $x = \bar x \pm u(x)$, with one or two significant figures for $u$ and the same decimal position for $\bar x$.
 
         **Comparison.** To confront a measurement $x \pm u$ with a reference value $x_{\text{ref}}$ (or a model prediction), compute $z = \dfrac{|x - x_{\text{ref}}|}{u}$; the values are considered compatible if $z \le 2$. On the inclined plane, measuring $a$ then comparing it with $g\sin\theta$ or with $\tfrac57 g\sin\theta$ decides which model (sliding or rolling) is compatible with the experiment.
-  - depth: 3
+  - depth: 4
     stage: mpsi
     role: core
     outcomes:

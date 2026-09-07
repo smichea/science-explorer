@@ -1,0 +1,122 @@
+# Leçon narrée — dosages : par étalonnage (droite A = k C, outil ajustement, cible = concentration lue à partir de l'absorbance
+# de la solution inconnue) puis par titrage direct du diiode par le thiosulfate (outil réaction : le tableau d'avancement à l'équivalence).
+id: lesson.method.titration
+nodeId: method.titration
+depth: 1
+tools:
+  - id: calibration
+    kind: fit
+    title: { fr: "Étalonnage : loi de Beer-Lambert", en: "Calibration: Beer–Lambert law" }
+    view: { x: [0, 60], y: [0, 0.7] }
+    labels: { x: "C (mmol/L)", y: "A" }
+    parameters:
+      - { id: k, label: { fr: "pente k (L/mmol)", en: "slope k (L/mmol)" }, min: 0.002, max: 0.02, step: 0.0005, value: 0.01 }
+      - { id: u, label: { fr: "absorbance de la solution inconnue", en: "absorbance of the unknown solution" }, min: 0, max: 0.6, step: 0.01, value: 0.35 }
+    points: [[10, 0.10], [20, 0.21], [30, 0.29], [40, 0.41], [50, 0.50]]
+    models:
+      - { id: line, expr: "k*x", label: { fr: "A = k C (loi de Beer-Lambert)", en: "A = k C (Beer–Lambert law)" } }
+    target: "u/k"
+  - id: titration
+    kind: reaction
+    title: { fr: "Titrage du diiode par le thiosulfate", en: "Titration of diiodine by thiosulfate" }
+    parameters:
+      - { id: v, label: { fr: "volume de thiosulfate versé (mL)", en: "volume of thiosulfate poured (mL)" }, min: 0, max: 20, step: 0.1, value: 4 }
+      - { id: d, label: { fr: "diiode dans la prise d'essai (mmol)", en: "diiodine in the sample (mmol)" }, min: 0.1, max: 1, step: 0.05, value: 0.5 }
+    reactants:
+      - { id: iodine, formula: "I₂", coefficient: 1, initial: "d", label: { fr: "diiode", en: "diiodine" } }
+      - { id: thiosulfate, formula: "S₂O₃²⁻", coefficient: 2, initial: "0.1*v", label: { fr: "ions thiosulfate", en: "thiosulfate ions" } }
+    products:
+      - { id: iodide, formula: "I⁻", coefficient: 2 }
+      - { id: tetrathionate, formula: "S₄O₆²⁻", coefficient: 1 }
+    unit: mmol
+steps:
+  - id: calibration
+    title: { fr: "Doser par étalonnage : la loi de Beer-Lambert", en: "Assaying by calibration: the Beer–Lambert law" }
+    tool: calibration
+    text:
+      fr: >-
+        Doser une espèce, c'est déterminer sa concentration dans une solution.
+        Première méthode, l'étalonnage : on mesure l'absorbance de solutions étalons de concentrations connues, et les points s'alignent sur une droite passant par l'origine, c'est la loi de Beer-Lambert, où l'absorbance A est proportionnelle à la concentration C en millimoles par litre.
+        On ajuste la pente k sur les points, ici environ 0,010 litre par millimole.
+        La solution inconnue a une absorbance de 0,35 : la droite donne sa concentration, 35 millimoles par litre, marquée par le trait vertical.
+      en: >-
+        Assaying a species means determining its concentration in a solution.
+        First method, calibration: the absorbance of standard solutions of known concentrations is measured, and the points line up on a straight line through the origin, this is the Beer–Lambert law, where the absorbance A is proportional to the concentration C in millimoles per litre.
+        The slope k is adjusted on the points, here about 0.010 litre per millimole.
+        The unknown solution has an absorbance of 0.35: the line gives its concentration, 35 millimoles per litre, marked by the vertical line.
+    actions:
+      - { at: 1, set: { k: 0.006, u: 0.35 } }
+      - { at: 2, set: { k: 0.01 } }
+      - { at: 3, set: { u: 0.35 } }
+  - id: before
+    title: { fr: "Le titrage direct : une réaction support", en: "Direct titration: a titration reaction" }
+    tool: titration
+    text:
+      fr: >-
+        Seconde méthode, le titrage : on fait réagir l'espèce à doser avec une solution titrante de concentration connue, versée à la burette.
+        Ici, 10 millilitres d'une solution brune de diiode sont titrés par du thiosulfate de sodium à 0,100 mole par litre : une molécule de diiode réagit avec deux ions thiosulfate.
+        Tant que l'on est avant l'équivalence, le thiosulfate versé est le réactif limitant : il est consommé aussitôt, il reste du diiode, et la solution reste colorée.
+        Avec 4 millilitres versés, il reste 0,3 millimole de diiode sur les 0,5 de départ.
+      en: >-
+        Second method, titration: the species to be assayed is made to react with a titrant solution of known concentration, poured from a burette.
+        Here, 10 millilitres of a brown diiodine solution are titrated by sodium thiosulfate at 0.100 mole per litre: one diiodine molecule reacts with two thiosulfate ions.
+        As long as we are before the equivalence point, the thiosulfate poured is the limiting reactant: it is consumed at once, diiodine is left, and the solution stays coloured.
+        With 4 millilitres poured, 0.3 millimole of diiodine is left out of the initial 0.5.
+    actions:
+      - { at: 0, set: { v: 4, d: 0.5 } }
+  - id: equivalence
+    title: { fr: "L'équivalence", en: "The equivalence point" }
+    tool: titration
+    text:
+      fr: >-
+        À l'équivalence, les réactifs ont été introduits dans les proportions de l'équation : le diiode et le thiosulfate sont épuisés ensemble, le mélange est stœchiométrique.
+        La couleur brune disparaît : c'est le repérage colorimétrique, et le volume versé à cet instant est le volume équivalent, ici 10,0 millilitres.
+        Le tableau d'avancement donne la relation : la quantité de diiode égale la moitié de la quantité de thiosulfate versée à l'équivalence.
+        Soit 0,100 fois 10,0 millilitres divisé par 2, c'est-à-dire 0,500 millimole de diiode dans les 10 millilitres, donc une concentration de 0,0500 mole par litre.
+      en: >-
+        At the equivalence point, the reactants have been introduced in the proportions of the equation: diiodine and thiosulfate run out together, the mixture is stoichiometric.
+        The brown colour disappears: this is the colorimetric detection, and the volume poured at that moment is the equivalence volume, here 10.0 millilitres.
+        The extent table gives the relation: the amount of diiodine equals half the amount of thiosulfate poured at the equivalence point.
+        That is 0.100 times 10.0 millilitres divided by 2, that is 0.500 millimole of diiodine in the 10 millilitres, hence a concentration of 0.0500 mole per litre.
+    actions:
+      - { at: 0, set: { v: 10, d: 0.5 } }
+  - id: after
+    title: { fr: "Après l'équivalence, et le choix de la méthode", en: "After the equivalence point, and the choice of method" }
+    tool: titration
+    text:
+      fr: >-
+        Après l'équivalence, le réactif limitant a changé : le diiode est épuisé, le thiosulfate versé en plus ne réagit plus et s'accumule.
+        Le changement de couleur signale donc le changement de réactif limitant.
+        Retenez les deux méthodes : l'étalonnage compare une mesure à des solutions de référence sans consommer l'échantillon ; le titrage consomme l'échantillon dans une réaction totale, rapide et unique, et ne demande qu'une burette.
+        Dans les deux cas, on écrit les volumes en litres avant de calculer une quantité de matière.
+      en: >-
+        After the equivalence point, the limiting reactant has changed: diiodine is used up, the extra thiosulfate poured no longer reacts and accumulates.
+        The colour change therefore signals the change of limiting reactant.
+        Remember the two methods: calibration compares a measurement with reference solutions without consuming the sample; titration consumes the sample in a complete, fast and unique reaction, and only needs a burette.
+        In both cases, volumes are written in litres before computing an amount of substance.
+    actions:
+      - { at: 0, set: { v: 14, d: 0.5 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de doser", en: "Your turn to assay" }
+    tool: calibration
+    text:
+      fr: >-
+        À vous. Sur l'étalonnage, déplacez la pente k jusqu'à ce que la droite passe au mieux par les points, puis changez l'absorbance de la solution inconnue et lisez sa concentration.
+        Passez ensuite à l'outil titrage : faites varier le volume versé et la quantité de diiode, et repérez le volume équivalent, celui où le mélange devient stœchiométrique.
+      en: >-
+        Your turn. On the calibration, move the slope k until the line fits the points best, then change the absorbance of the unknown solution and read its concentration.
+        Then switch to the titration tool: vary the volume poured and the amount of diiodine, and locate the equivalence volume, the one where the mixture becomes stoichiometric.
+    actions:
+      - { at: 0, set: { k: 0.01, u: 0.35 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : une concentration lue sur une droite d'étalonnage, puis un titrage par le permanganate.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: a concentration read on a calibration line, then a titration by permanganate.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.titration.beer_lambert, exercise.titration.equivalence]

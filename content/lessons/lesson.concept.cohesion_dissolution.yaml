@@ -1,0 +1,115 @@
+# Leçon narrée — cohésion et dissolution : le solide ionique et le solide moléculaire, la dissolution du chlorure de sodium
+# (outil réaction : dissociation, solvatation, dispersion et concentrations des ions), la molécule d'eau polaire et l'extraction.
+id: lesson.concept.cohesion_dissolution
+nodeId: concept.cohesion_dissolution
+depth: 1
+tools:
+  - id: dissolution
+    kind: reaction
+    title: { fr: "Dissolution du chlorure de sodium", en: "Dissolution of sodium chloride" }
+    parameters:
+      - { id: a, label: { fr: "chlorure de sodium dissous (mol)", en: "sodium chloride dissolved (mol)" }, min: 0, max: 0.5, step: 0.01, value: 0.1 }
+    reactants:
+      - { id: salt, formula: "NaCl(s)", coefficient: 1, initial: "a", label: { fr: "chlorure de sodium solide", en: "solid sodium chloride" } }
+    products:
+      - { id: sodium, formula: "Na⁺(aq)", coefficient: 1, label: { fr: "ions sodium", en: "sodium ions" } }
+      - { id: chloride, formula: "Cl⁻(aq)", coefficient: 1, label: { fr: "ions chlorure", en: "chloride ions" } }
+    unit: mol
+  - id: water
+    kind: molecule
+    title: { fr: "L'eau, solvant polaire", en: "Water, a polar solvent" }
+    name: { fr: "eau", en: "water" }
+    geometry: bent
+    polarity: true
+    atoms:
+      - { id: o, element: O, x: 3, y: 3.2, lonePairs: 2 }
+      - { id: h1, element: H, x: 1.8, y: 2.2 }
+      - { id: h2, element: H, x: 4.2, y: 2.2 }
+    bonds:
+      - { id: b1, from: o, to: h1, order: 1 }
+      - { id: b2, from: o, to: h2, order: 1 }
+steps:
+  - id: cohesion
+    title: { fr: "Ce qui tient un solide ensemble", en: "What holds a solid together" }
+    tool: water
+    text:
+      fr: >-
+        Un solide ionique, comme le chlorure de sodium, est un empilement ordonné et électriquement neutre de cations et d'anions, tenu par l'attraction électrostatique entre charges opposées.
+        Un solide moléculaire, comme la glace, le sucre ou le diiode, est un assemblage de molécules retenues par des interactions bien plus faibles.
+        Ces interactions sont celles de Van der Waals, présentes entre toutes les molécules et d'autant plus fortes qu'elles sont grosses ou polaires, et la liaison hydrogène, entre un hydrogène lié à un oxygène ou à un azote et un doublet non liant voisin.
+        Les températures de fusion le disent : huit cent un degrés pour le chlorure de sodium, zéro degré pour la glace, moins cent quatre-vingt-deux degrés pour le méthane.
+      en: >-
+        An ionic solid, such as sodium chloride, is an ordered and electrically neutral stack of cations and anions, held by the electrostatic attraction between opposite charges.
+        A molecular solid, such as ice, sugar or diiodine, is an assembly of molecules held by much weaker interactions.
+        These interactions are the Van der Waals ones, present between all molecules and stronger when they are large or polar, and the hydrogen bond, between a hydrogen bonded to an oxygen or a nitrogen and a neighbouring lone pair.
+        The melting temperatures say it: eight hundred and one degrees for sodium chloride, zero degrees for ice, minus one hundred and eighty-two degrees for methane.
+  - id: dissolution
+    title: { fr: "Dissoudre : dissociation, solvatation, dispersion", en: "Dissolving: dissociation, solvation, dispersion" }
+    tool: dissolution
+    text:
+      fr: >-
+        Plongeons un cristal de sel dans l'eau, un solvant polaire dont chaque molécule porte un oxygène delta moins et deux hydrogènes delta plus.
+        La dissociation vient d'abord : les molécules d'eau, attirées par les ions, les arrachent un à un au cristal.
+        Puis la solvatation, ou hydratation : chaque ion s'entoure de molécules d'eau orientées, l'oxygène tourné vers les cations et les hydrogènes vers les anions.
+        Vient enfin la dispersion, et l'on modélise le tout par une équation de dissolution qui conserve les éléments et la charge : le chlorure de sodium solide donne un ion sodium et un ion chlorure en solution.
+      en: >-
+        Let us dip a salt crystal into water, a polar solvent whose every molecule carries a δ− oxygen and two δ+ hydrogens.
+        Dissociation comes first: the water molecules, attracted by the ions, pull them off the crystal one by one.
+        Then solvation, or hydration: each ion surrounds itself with oriented water molecules, the oxygen turned towards the cations and the hydrogens towards the anions.
+        Dispersion comes last, and the whole is modelled by a dissolution equation that conserves the elements and the charge: solid sodium chloride gives one sodium ion and one chloride ion in solution.
+    actions:
+      - { at: 3, set: { a: 0.1 } }
+  - id: ions
+    title: { fr: "La concentration de chaque ion", en: "The concentration of each ion" }
+    tool: dissolution
+    text:
+      fr: >-
+        Les nombres stœchiométriques de l'équation donnent les quantités d'ions formées, donc leurs concentrations.
+        Ici, 0,10 mole de chlorure de sodium dissoute dans un litre de solution donne 0,10 mole d'ions sodium et 0,10 mole d'ions chlorure, soit 0,10 mole par litre pour chacun.
+        Avec le chlorure de calcium, dont la formule porte deux chlorures pour un calcium, la concentration en ions chlorure vaut le double de celle du solide dissous.
+        La solution reste électriquement neutre, et un solide moléculaire polaire comme le sucre se dissout lui aussi dans l'eau, mais sans donner d'ions.
+      en: >-
+        The stoichiometric coefficients of the equation give the amounts of ions formed, hence their concentrations.
+        Here, 0.10 mole of sodium chloride dissolved in one litre of solution gives 0.10 mole of sodium ions and 0.10 mole of chloride ions, that is 0.10 mole per litre for each.
+        With calcium chloride, whose formula carries two chlorides for one calcium, the concentration in chloride ions is twice that of the dissolved solid.
+        The solution stays electrically neutral, and a polar molecular solid such as sugar also dissolves in water, but without giving ions.
+    actions:
+      - { at: 1, set: { a: 0.1 } }
+  - id: extraction
+    title: { fr: "Le semblable dissout le semblable, et l'extraction", en: "Like dissolves like, and extraction" }
+    tool: water
+    text:
+      fr: >-
+        Le semblable dissout le semblable : une espèce polaire, ou capable de liaisons hydrogène, se dissout dans l'eau, une espèce apolaire dans un solvant apolaire comme le cyclohexane.
+        C'est la règle qui guide une extraction par solvant : on choisit un solvant non miscible à l'eau dans lequel l'espèce est plus soluble, on agite dans une ampoule à décanter, et les deux phases se séparent selon leurs masses volumiques.
+        Le diiode, peu soluble dans l'eau, passe ainsi dans le cyclohexane, moins dense, qui forme la phase supérieure et se colore en violet.
+        Les espèces amphiphiles, savons et tensioactifs, portent une tête hydrophile et une longue queue hydrophobe : elles entourent les graisses et les entraînent dans l'eau.
+      en: >-
+        Like dissolves like: a polar species, or one able to form hydrogen bonds, dissolves in water, a non-polar species in a non-polar solvent such as cyclohexane.
+        This is the rule that guides a solvent extraction: one chooses a solvent not miscible with water in which the species is more soluble, shakes the mixture in a separating funnel, and the two phases separate according to their densities.
+        Diiodine, poorly soluble in water, thus passes into cyclohexane, less dense, which forms the upper phase and turns purple.
+        Amphiphilic species, soaps and surfactants, carry a hydrophilic head and a long hydrophobic tail: they surround the greases and carry them into the water.
+  - id: play
+    kind: play
+    title: { fr: "À vous de dissoudre", en: "Your turn to dissolve" }
+    tool: dissolution
+    text:
+      fr: >-
+        À vous. Faites varier la quantité de chlorure de sodium dissoute et lisez les quantités d'ions formées, qui suivent les nombres stœchiométriques de l'équation.
+        Passez ensuite à la molécule d'eau : cliquez sur l'oxygène pour lire ses doublets non liants et son électronégativité, et retrouvez pourquoi l'eau est un si bon solvant des composés ioniques.
+      en: >-
+        Your turn. Vary the amount of sodium chloride dissolved and read the amounts of ions formed, which follow the stoichiometric coefficients of the equation.
+        Then switch to the water molecule: click the oxygen to read its lone pairs and its electronegativity, and find again why water is such a good solvent of ionic compounds.
+    actions:
+      - { at: 0, set: { a: 0.1 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : la concentration d'un ion dans une solution, puis une extraction par un solvant.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the concentration of an ion in a solution, then an extraction by a solvent.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.cohesion.ion_concentration, exercise.cohesion.extraction]

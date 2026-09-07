@@ -1,0 +1,76 @@
+# Leçon narrée — la mesure en Première : incertitude-type de type A et de type B sur huit mesures de g, écriture du résultat, comparaison à une valeur de référence (outil données).
+id: lesson.method.measurement.premiere
+nodeId: method.measurement
+depth: 2
+tools:
+  - id: series
+    kind: data
+    title: { fr: "Huit mesures de g", en: "Eight measurements of g" }
+    values: [9.62, 9.85, 9.74, 9.91, 9.68, 9.79, 9.88, 9.73]
+    label: { fr: "g mesuré", en: "measured g" }
+    unit: "m/s²"
+    bins: 6
+    uncertainty: true
+steps:
+  - id: series
+    title: { fr: "Une série de mesures", en: "A series of measurements" }
+    text:
+      fr: >-
+        Huit élèves ont mesuré l'intensité de la pesanteur g avec un pendule : les valeurs vont de 9,62 à 9,91 mètres par seconde carrée.
+        La mesure est variable : lecture du chronomètre, longueur du fil, amplitude des oscillations, réflexes de chacun.
+        L'histogramme montre la dispersion ; la moyenne, 9,78, est la valeur retenue, et l'écart-type expérimental s, environ 0,10, mesure la dispersion des valeurs autour d'elle.
+      en: >-
+        Eight students measured the gravitational field strength g with a pendulum: the values range from 9.62 to 9.91 metres per second squared.
+        The measurement is variable: reading of the stopwatch, length of the string, amplitude of the oscillations, reflexes of each student.
+        The histogram shows the spread; the mean, 9.78, is the retained value, and the sample standard deviation s, about 0.10, measures the spread of the values around it.
+    actions: []
+  - id: uncertainty
+    title: { fr: "L'incertitude-type", en: "The standard uncertainty" }
+    text:
+      fr: >-
+        L'incertitude-type sur la moyenne, dite de type A, vaut s divisé par racine de n : 0,10 divisé par racine de 8, soit environ 0,036 mètre par seconde carrée.
+        Quadrupler le nombre de mesures ne divise cette incertitude que par deux.
+        Pour une lecture unique, on évalue plutôt une incertitude de type B à partir de l'instrument : la résolution divisée par racine de 12, ou la tolérance donnée par le constructeur.
+        Le résultat s'écrit g égale 9,78 plus ou moins 0,04 mètre par seconde carrée : l'incertitude avec un seul chiffre significatif, la moyenne arrondie à la même décimale.
+      en: >-
+        The standard uncertainty on the mean, called type A, is s divided by the square root of n: 0.10 divided by the square root of 8, about 0.036 metre per second squared.
+        Quadrupling the number of measurements only halves this uncertainty.
+        For a single reading, a type B uncertainty is evaluated from the instrument instead: the resolution divided by the square root of 12, or the tolerance given by the maker.
+        The result is written g equals 9.78 plus or minus 0.04 metre per second squared: the uncertainty with a single significant figure, the mean rounded to the same decimal place.
+    actions: []
+  - id: compare
+    title: { fr: "Comparer à une valeur de référence", en: "Comparing with a reference value" }
+    text:
+      fr: >-
+        La valeur de référence est 9,81 mètre par seconde carrée.
+        L'écart entre la moyenne et la référence, 0,035, divisé par l'incertitude-type, 0,036, donne un écart normalisé proche de 1.
+        Quand ce quotient est inférieur ou égal à 2, la mesure est compatible avec la référence ; au-delà, il faut chercher une erreur systématique dans le protocole ou l'instrument.
+        Une mesure compatible ne prouve pas la référence ; une mesure incompatible est une information, pas un échec.
+      en: >-
+        The reference value is 9.81 metre per second squared.
+        The gap between the mean and the reference, 0.035, divided by the standard uncertainty, 0.036, gives a normalised gap close to 1.
+        When this quotient is at most 2, the measurement is compatible with the reference; beyond, a systematic error must be looked for in the protocol or the instrument.
+        A compatible measurement does not prove the reference; an incompatible one is information, not a failure.
+    actions: []
+  - id: play
+    kind: play
+    title: { fr: "À vous de mesurer", en: "Your turn to measure" }
+    text:
+      fr: >-
+        À vous.
+        Modifiez une valeur de la série, ajoutez-en ou retirez-en, et regardez comment bougent la moyenne, l'écart-type et l'incertitude-type.
+      en: >-
+        Your turn.
+        Change a value of the series, add or remove some, and watch how the mean, the standard deviation and the standard uncertainty move.
+    actions: []
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : une incertitude-type de type A, puis un écart normalisé.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: a type A standard uncertainty, then a normalised gap.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.measurement.uncertainty, exercise.measurement.compatible]

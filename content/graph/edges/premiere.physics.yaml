@@ -1,0 +1,60 @@
+# Première physics (BO spécial n°1 du 22 janvier 2019, enseignement de spécialité) :
+# prerequisites of the nine destinations of the year and the modelling links they carry.
+# Direction: requires_* from the prerequisite TO the dependent node; models / explains from the
+# model or the law TO the phenomenon. Prerequisite edges are written by the owner of the `to` node.
+# The Première legs are flown after the Seconde legs and before the Terminale legs, in the order
+# analysis → geometry and probability → mechanics and energy → matter.
+edges:
+  # --- requires_essentially -------------------------------------------------
+  - { from: concept.force, to: law.coulomb, type: requires_essentially, weight: 1,
+      note: { fr: "L'interaction électrostatique est modélisée par une force, avec ses quatre caractéristiques.", en: "The electrostatic interaction is modelled by a force, with its four characteristics." } }
+  - { from: law.coulomb, to: concept.field, type: requires_essentially, weight: 1,
+      note: { fr: "Le champ électrique est la force de Coulomb rapportée à la charge test qui la subit.", en: "The electric field is the Coulomb force divided by the test charge that experiences it." } }
+  - { from: law.universal_gravitation, to: concept.field, type: requires_essentially, weight: 1,
+      note: { fr: "Le champ de gravitation est la force d'attraction rapportée à la masse test : même construction que le champ électrique.", en: "The gravitational field is the attractive force divided by the test mass: the same construction as the electric field." } }
+  - { from: concept.force, to: law.fluid_statics, type: requires_essentially, weight: 1,
+      note: { fr: "La pression est une force pressante par unité de surface : il faut d'abord savoir modéliser une action par une force.", en: "Pressure is a pressing force per unit area: one must first know how to model an action by a force." } }
+  - { from: concept.force, to: concept.kinetic_energy_work, type: requires_essentially, weight: 1,
+      note: { fr: "Le travail se calcule force par force, à partir du bilan des actions exercées sur le système.", en: "The work is computed force by force, from the inventory of the actions exerted on the system." } }
+  - { from: model.kinematics_point, to: concept.kinetic_energy_work, type: requires_essentially, weight: 1,
+      note: { fr: "L'énergie cinétique et le déplacement se définissent pour un point matériel dans un référentiel donné.", en: "The kinetic energy and the displacement are defined for a point mass in a given frame of reference." } }
+  - { from: concept.kinetic_energy_work, to: concept.mechanical_energy, type: requires_essentially, weight: 1,
+      note: { fr: "L'énergie mécanique ajoute l'énergie potentielle à l'énergie cinétique, et sa conservation se démontre par le théorème de l'énergie cinétique.", en: "The mechanical energy adds the potential energy to the kinetic energy, and its conservation is proved by the work–energy theorem." } }
+  - { from: law.ohm, to: concept.electrical_power, type: requires_essentially, weight: 1,
+      note: { fr: "La puissance dissipée par effet Joule s'écrit $R\\,I^2$ grâce à la loi d'Ohm.", en: "The power dissipated by the Joule effect is written $R\\,I^2$ thanks to Ohm's law." } }
+  - { from: phenomenon.sound, to: phenomenon.mechanical_wave, type: requires_essentially, weight: 1,
+      note: { fr: "Le son est la première onde mécanique rencontrée : période, fréquence et vitesse de propagation y sont déjà en place.", en: "Sound is the first mechanical wave met: period, frequency and propagation speed are already in place there." } }
+  - { from: phenomenon.colour, to: model.photon, type: requires_essentially, weight: 1,
+      note: { fr: "Les spectres de raies posent la question à laquelle le photon répond : pourquoi certaines longueurs d'onde seulement ?", en: "Line spectra raise the question the photon answers: why only certain wavelengths?" } }
+  # --- requires_recommended -------------------------------------------------
+  - { from: law.universal_gravitation, to: law.coulomb, type: requires_recommended, weight: 0.9,
+      note: { fr: "Les deux lois ont la même forme en $1/d^2$ : l'analogie porte tout le chapitre.", en: "The two laws have the same $1/d^2$ form: the analogy carries the whole chapter." } }
+  - { from: tool.vector, to: law.coulomb, type: requires_recommended, weight: 0.8,
+      note: { fr: "Représenter les forces électrostatiques demande direction, sens et norme d'un vecteur.", en: "Drawing the electrostatic forces requires the direction, sense and magnitude of a vector." } }
+  - { from: concept.dimension_unit, to: law.fluid_statics, type: requires_recommended, weight: 0.7,
+      note: { fr: "Pascals, bars, litres et mètres cubes : les conversions portent tout le raisonnement.", en: "Pascals, bars, litres and cubic metres: the conversions carry the whole reasoning." } }
+  - { from: tool.dot_product, to: concept.kinetic_energy_work, type: requires_recommended, weight: 0.9,
+      note: { fr: "Le travail d'une force constante est le produit scalaire $\\vec F \\cdot \\vec{AB}$.", en: "The work of a constant force is the dot product $\\vec F \\cdot \\vec{AB}$." } }
+  - { from: law.newton_second, to: concept.kinetic_energy_work, type: requires_recommended, weight: 0.8,
+      note: { fr: "Le théorème de l'énergie cinétique est l'autre façon de relier les forces au mouvement, sans passer par la trajectoire.", en: "The work–energy theorem is the other way of relating the forces to the motion, without going through the trajectory." } }
+  - { from: tool.trigonometric_functions, to: phenomenon.mechanical_wave, type: requires_recommended, weight: 0.7,
+      note: { fr: "Le signal d'une onde périodique est une sinusoïde du temps et de la position.", en: "The signal of a periodic wave is a sine function of time and of position." } }
+  - { from: law.snell_descartes, to: phenomenon.colour, type: requires_recommended, weight: 0.7,
+      note: { fr: "La dispersion par un prisme, expliquée par la réfraction, est la première façon d'étaler un spectre.", en: "Dispersion through a prism, explained by refraction, is the first way of spreading out a spectrum." } }
+  - { from: phenomenon.mechanical_wave, to: model.photon, type: requires_recommended, weight: 0.8,
+      note: { fr: "Longueur d'onde, fréquence et célérité sont d'abord installées sur une corde avant de servir à la lumière.", en: "Wavelength, frequency and speed are first set up on a rope before being used for light." } }
+  - { from: tool.powers_roots, to: model.photon, type: requires_recommended, weight: 0.7,
+      note: { fr: "Les énergies de photons se manipulent en notation scientifique, entre $10^{-19}$ et $10^{-34}$.", en: "Photon energies are handled in scientific notation, between $10^{-19}$ and $10^{-34}$." } }
+  - { from: concept.rate_of_change, to: model.kinematics_point, type: requires_recommended, weight: 0.7, depthRange: [2, 2],
+      note: { fr: "La vitesse moyenne entre deux positions est un taux de variation ; la vitesse instantanée en est la limite.", en: "The average speed between two positions is a rate of change; the instantaneous speed is its limit." } }
+  - { from: concept.mechanical_energy, to: phenomenon.motion.free_fall, type: requires_recommended, weight: 0.7,
+      note: { fr: "La chute libre se relit comme un échange entre énergie potentielle et énergie cinétique, à énergie mécanique constante.", en: "Free fall is reread as an exchange between potential and kinetic energy, at constant mechanical energy." } }
+  # --- models / explains (model or law → phenomenon) --------------------------
+  - { from: model.kinematics_point, to: phenomenon.mechanical_wave, type: models, weight: 0.6,
+      note: { fr: "Chaque point du milieu est un point matériel qui oscille sur place ; l'onde est le décalage temporel de leurs mouvements.", en: "Each point of the medium is a point mass oscillating where it is; the wave is the time shift between their motions." } }
+  - { from: model.photon, to: phenomenon.colour, type: models, weight: 1,
+      note: { fr: "Les raies d'émission et d'absorption d'un spectre sont les transitions entre niveaux d'énergie quantifiés.", en: "The emission and absorption lines of a spectrum are the transitions between quantised energy levels." } }
+  - { from: law.coulomb, to: concept.field, type: explains, weight: 1,
+      note: { fr: "La carte du champ électrique n'est que la loi de Coulomb divisée par la charge test, tracée en tout point.", en: "The map of the electric field is nothing but Coulomb's law divided by the test charge, drawn at every point." } }
+  - { from: concept.mechanical_energy, to: phenomenon.motion.with_drag, type: explains, weight: 0.8,
+      note: { fr: "La décroissance de l'énergie mécanique mesure exactement l'énergie emportée par le travail résistant du frottement.", en: "The decrease of the mechanical energy measures exactly the energy carried away by the resistive work of the drag." } }

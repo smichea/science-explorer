@@ -80,6 +80,83 @@ routes:
       - phenomenon.state_changes
       - model.chemical_reaction
       - phenomenon.nuclear_transformation
+  - id: route.premiere.analysis
+    kind: recommended
+    stage: premiere
+    title:
+      fr: "Première : suites, second degré, dérivée, exponentielle, trigonométrie"
+      en: "Grade 11: sequences, quadratics, derivative, exponential, trigonometry"
+    summary:
+      fr: "Le parcours conseillé de Première en analyse : les suites et leurs deux modèles, le second degré, le taux de variation et la dérivée, les variations, l'exponentielle et le cercle trigonométrique."
+      en: "The recommended Grade 11 path in analysis: sequences and their two models, quadratics, the rate of change and the derivative, variations, the exponential and the unit circle."
+    nodes:
+      - concept.sequence
+      - tool.arithmetic_geometric_sequences
+      - tool.quadratic
+      - concept.rate_of_change
+      - tool.derivative
+      - concept.variations_extremums
+      - tool.exponential
+      - tool.trigonometric_functions
+  - id: route.premiere.geometry_probability
+    kind: thematic
+    stage: premiere
+    title:
+      fr: "Première : produit scalaire, géométrie repérée, probabilités conditionnelles"
+      en: "Grade 11: dot product, coordinate geometry, conditional probability"
+    summary:
+      fr: "Le produit scalaire et ses usages, les droites et les cercles par leurs équations, puis les probabilités conditionnelles, les variables aléatoires, les listes en programmation et les raisonnements."
+      en: "The dot product and its uses, lines and circles through their equations, then conditional probability, random variables, lists in programming and reasoning."
+    nodes:
+      - tool.dot_product
+      - tool.analytic_geometry
+      - concept.conditional_probability
+      - concept.random_variable
+      - tool.algorithmics
+      - concept.logic_sets
+  - id: route.premiere.mechanics_energy
+    kind: thematic
+    stage: premiere
+    title:
+      fr: "Première : mesure, mouvement, champs, énergie, ondes et lumière"
+      en: "Grade 11: measurement, motion, fields, energy, waves and light"
+    summary:
+      fr: "Mesurer avec une incertitude, décrire un mouvement par ses vecteurs vitesse, lire les forces dans la variation de vitesse, les interactions et les champs, un fluide au repos, les énergies mécanique et électrique, les ondes, les couleurs, la lentille et le photon."
+      en: "Measuring with an uncertainty, describing a motion by its velocity vectors, reading the forces in the change of velocity, interactions and fields, a fluid at rest, mechanical and electrical energies, waves, colours, the lens and the photon."
+    nodes:
+      - method.measurement
+      - model.kinematics_point
+      - law.newton_second
+      - law.coulomb
+      - concept.field
+      - law.fluid_statics
+      - concept.kinetic_energy_work
+      - concept.mechanical_energy
+      - concept.electrical_power
+      - phenomenon.mechanical_wave
+      - phenomenon.colour
+      - model.thin_lens
+      - model.photon
+  - id: route.premiere.matter
+    kind: thematic
+    stage: premiere
+    title:
+      fr: "Première : transformations de la matière, entités chimiques, synthèses"
+      en: "Grade 11: transformations of matter, chemical entities, syntheses"
+    summary:
+      fr: "Suivre une transformation par son avancement, doser une espèce, échanger des électrons, dessiner les molécules et leurs groupes, comprendre la cohésion et la dissolution, lire un spectre infrarouge, synthétiser et brûler."
+      en: "Following a transformation through its extent, titrating a species, exchanging electrons, drawing molecules and their groups, understanding cohesion and dissolution, reading an infrared spectrum, synthesising and burning."
+    nodes:
+      - model.chemical_reaction
+      - concept.concentration
+      - method.titration
+      - model.redox
+      - model.lewis_structure
+      - concept.cohesion_dissolution
+      - model.organic_molecules
+      - method.ir_spectroscopy
+      - method.organic_synthesis
+      - phenomenon.combustion
   - id: route.first_journey
     kind: recommended
     title:
@@ -184,12 +261,36 @@ tours:
             Du mouvement à la matière : de quoi elle est faite, comment on la décrit et comment elle se transforme, par des changements d'état, des réactions chimiques et des transformations nucléaires.
           en: >-
             From motion to matter: what it is made of, how it is described and how it transforms, through changes of state, chemical reactions and nuclear transformations.
+      - route: route.premiere.analysis
+        transition:
+          fr: >-
+            La Seconde est derrière nous. La Première commence par l'analyse : les suites, le second degré, puis le taux de variation et la dérivée, les variations, l'exponentielle et le cercle trigonométrique.
+          en: >-
+            Grade 10 is behind us. Grade 11 starts with analysis: sequences, quadratics, then the rate of change and the derivative, variations, the exponential and the unit circle.
+      - route: route.premiere.geometry_probability
+        transition:
+          fr: >-
+            Les fonctions de Première sont en place. Passons au produit scalaire et à la géométrie repérée, puis aux probabilités conditionnelles et aux variables aléatoires, avec les listes en programmation et les raisonnements.
+          en: >-
+            The Grade 11 functions are in place. On to the dot product and coordinate geometry, then conditional probability and random variables, with lists in programming and reasoning.
+      - route: route.premiere.mechanics_energy
+        transition:
+          fr: >-
+            Les outils mathématiques de Première sont posés. En physique : mesurer avec une incertitude, décrire un mouvement par ses vecteurs vitesse, lire les forces dans la variation de vitesse, puis les champs, l'énergie, les ondes et la lumière.
+          en: >-
+            The Grade 11 mathematical tools are laid down. In physics: measuring with an uncertainty, describing a motion by its velocity vectors, reading the forces in the change of velocity, then fields, energy, waves and light.
+      - route: route.premiere.matter
+        transition:
+          fr: >-
+            Du mouvement et de l'énergie à la matière : suivre une transformation par son avancement, doser, échanger des électrons, dessiner les molécules et les synthétiser, jusqu'aux combustions.
+          en: >-
+            From motion and energy to matter: following a transformation through its extent, titrating, exchanging electrons, drawing molecules and synthesising them, down to combustions.
       - route: route.first_journey
         transition:
           fr: >-
-            Les fondations sont solides. Voici le premier voyage de Terminale : de la fonction à la dérivée, l'outil central de tout ce qui suit.
+            La Première est derrière nous. Voici le premier voyage de Terminale : la fonction et sa courbe, revues avec les limites, puis la dérivée approfondie, l'outil central de tout ce qui suit.
           en: >-
-            The foundations are solid. Here is the first journey of Grade 12: from the function to the derivative, the central tool of everything that follows.
+            Grade 11 is behind us. Here is the first journey of Grade 12: the function and its graph, revisited with limits, then the derivative deepened, the central tool of everything that follows.
       - route: route.motion
         transition:
           fr: >-

@@ -28,6 +28,18 @@ describe('horizon inference (data-driven)', () => {
     expect(h.targets.map((t) => t.id)).toEqual(['ens', 'polytechnique']);
   });
 
+  it('maps a 16-year-old to Première → Terminale → MPSI, the Seconde as a foundation', () => {
+    const h = inferHorizon(16, config);
+    expect(h.currentStage).toBe('premiere');
+    expect(h.pathId).toBe('fr-premiere-terminale-mpsi');
+    expect(h.targets.map((t) => t.id)).toEqual(['ens', 'polytechnique']);
+    expect(bandOf('seconde', h, config)).toBe('foundation');
+    expect(bandOf('premiere', h, config)).toBe('current');
+    expect(bandOf('terminale', h, config)).toBe('next');
+    expect(bandOf('mpsi', h, config)).toBe('final');
+    expect(bandOf('mp', h, config)).toBe('beyond');
+  });
+
   it('handles the other rule boundaries', () => {
     expect(inferHorizon(18, config).stages).toEqual(['mpsi', 'mp']);
     expect(inferHorizon(19, config).currentStage).toBe('mp');

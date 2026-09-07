@@ -21,8 +21,10 @@
   import ArithmeticTool from './tools/ArithmeticTool.svelte';
   import DataTool from './tools/DataTool.svelte';
   import DimensionsTool from './tools/DimensionsTool.svelte';
+  import EnergyLevelsTool from './tools/EnergyLevelsTool.svelte';
   import FieldTool from './tools/FieldTool.svelte';
   import FitTool from './tools/FitTool.svelte';
+  import MoleculeTool from './tools/MoleculeTool.svelte';
   import OpticsTool from './tools/OpticsTool.svelte';
   import PeriodicTableTool from './tools/PeriodicTableTool.svelte';
   import RandomTool from './tools/RandomTool.svelte';
@@ -30,6 +32,8 @@
   import SequenceTool from './tools/SequenceTool.svelte';
   import SlopeFieldTool from './tools/SlopeFieldTool.svelte';
   import TimelineTool from './tools/TimelineTool.svelte';
+  import UnitCircleTool from './tools/UnitCircleTool.svelte';
+  import VectorFieldTool from './tools/VectorFieldTool.svelte';
   import VectorsTool from './tools/VectorsTool.svelte';
   import WaveTool from './tools/WaveTool.svelte';
 
@@ -380,6 +384,14 @@
               <PeriodicTableTool {tool} interactive={lesson.interactive} />
             {:else if tool.kind === 'reaction'}
               <ReactionTool {tool} tstate={toolState} interactive={lesson.interactive} />
+            {:else if tool.kind === 'unit_circle'}
+              <UnitCircleTool {tool} tstate={toolState} interactive={lesson.interactive} />
+            {:else if tool.kind === 'vector_field'}
+              <VectorFieldTool {tool} tstate={toolState} interactive={lesson.interactive} />
+            {:else if tool.kind === 'energy_levels'}
+              <EnergyLevelsTool {tool} tstate={toolState} interactive={lesson.interactive} />
+            {:else if tool.kind === 'molecule'}
+              <MoleculeTool {tool} tstate={toolState} interactive={lesson.interactive} />
             {/if}
             {#if lesson.interactive && (parameters.length || plotterTool)}
               <div class="stack-sm" data-testid="tool-controls">

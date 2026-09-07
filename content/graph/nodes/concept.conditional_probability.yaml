@@ -1,0 +1,46 @@
+id: concept.conditional_probability
+type: mathematical_concept
+world: world.mathematics
+region: region.math.probability_statistics
+importance: 3
+tags: [lycee]
+title: { fr: "Probabilités conditionnelles, arbres pondérés, indépendance", en: "Conditional probability, weighted trees, independence" }
+shortPurpose:
+  fr: "Mettre à jour une probabilité quand une information tombe, organiser le calcul dans un arbre pondéré et décider si deux événements s'influencent."
+  en: "Update a probability when a piece of information arrives, organise the computation in a weighted tree and decide whether two events influence each other."
+overview:
+  fr: >-
+    Une information change une probabilité : savoir qu'un test est positif ne dit pas la même chose que ne rien savoir. La probabilité conditionnelle mesure cette mise à jour, et l'arbre pondéré la range en deux étages où chaque chemin se lit en multipliant. C'est ce calcul qui explique le résultat le plus contre-intuitif du dépistage : un test très fiable appliqué à une maladie rare donne surtout des faux positifs.
+  en: >-
+    A piece of information changes a probability: knowing that a test is positive does not say the same thing as knowing nothing. Conditional probability measures that update, and the weighted tree arranges it in two levels where each path is read by multiplying. It is this computation that explains the most counter-intuitive result of screening: a very reliable test applied to a rare disease yields mostly false positives.
+aliases:
+  fr: ["probabilité conditionnelle", "arbre pondéré", "formule des probabilités totales", "partition de l'univers", "événements indépendants"]
+  en: ["conditional probability", "weighted tree", "law of total probability", "partition of the sample space", "independent events"]
+description:
+  fr: |
+    Soit $A$ un événement de probabilité non nulle. La **probabilité conditionnelle** de $B$ sachant $A$ est $P_A(B) = \dfrac{P(A \cap B)}{P(A)}$ : on restreint l'univers à $A$ et on y mesure la part occupée par $B$. Elle se lit dans l'autre sens comme une **règle du produit**, $P(A \cap B) = P(A) \times P_A(B)$, qui est la forme utile pour calculer. Un dépistage en donne l'exemple type : si $2\,\%$ d'une population porte une maladie $M$, et si le test $T$ est positif pour $99\,\%$ des malades et pour $5\,\%$ des non-malades, alors $P(M) = 0{,}02$, $P_M(T) = 0{,}99$ et $P_{\overline{M}}(T) = 0{,}05$.
+
+    L'**arbre pondéré** organise ce calcul. Chaque branche du premier niveau porte $P(A)$, chaque branche du second niveau porte une probabilité conditionnelle, la somme des branches issues d'un même nœud vaut $1$, et la probabilité d'un chemin est le **produit** des probabilités rencontrées. Comme $A$ et $\overline{A}$ forment une **partition** de l'univers, la **formule des probabilités totales** additionne les chemins qui mènent au même événement : $P(B) = P(A \cap B) + P(\overline{A} \cap B) = P(A)P_A(B) + P(\overline{A})P_{\overline{A}}(B)$. Sur le dépistage : $P(T) = 0{,}02 \times 0{,}99 + 0{,}98 \times 0{,}05 = 0{,}0198 + 0{,}049 = 0{,}0688$.
+
+    On peut alors **remonter l'arbre** : $P_T(M) = \dfrac{P(M \cap T)}{P(T)} = \dfrac{0{,}0198}{0{,}0688} \approx 0{,}288$. Autrement dit, moins d'un tiers des personnes testées positives sont malades, alors que le test se trompe rarement : c'est la rareté de la maladie qui domine. Deux événements sont **indépendants** lorsque $P(A \cap B) = P(A) \times P(B)$, ce qui équivaut à $P_A(B) = P(B)$ : savoir que $A$ s'est produit n'apprend rien sur $B$. Avec un dé équilibré, « obtenir un nombre pair » et « obtenir un multiple de $3$ » sont indépendants, puisque $P(A \cap B) = \dfrac16 = \dfrac12 \times \dfrac13$. Deux pièges : confondre $P_A(B)$ et $P_B(A)$, qui n'ont aucune raison d'être égales, et confondre indépendance et incompatibilité, alors que deux événements incompatibles de probabilités non nulles ne sont jamais indépendants.
+  en: |
+    Let $A$ be an event with non-zero probability. The **conditional probability** of $B$ given $A$ is $P_A(B) = \dfrac{P(A \cap B)}{P(A)}$: the sample space is restricted to $A$ and one measures the share taken by $B$ inside it. Read the other way round it is a **product rule**, $P(A \cap B) = P(A) \times P_A(B)$, which is the useful form for computing. A screening test gives the typical example: if $2\,\%$ of a population carries a disease $M$, and if the test $T$ is positive for $99\,\%$ of the ill and for $5\,\%$ of the healthy, then $P(M) = 0.02$, $P_M(T) = 0.99$ and $P_{\overline{M}}(T) = 0.05$.
+
+    The **weighted tree** organises this computation. Each branch of the first level carries $P(A)$, each branch of the second level carries a conditional probability, the branches issued from one node sum to $1$, and the probability of a path is the **product** of the probabilities met along it. Since $A$ and $\overline{A}$ form a **partition** of the sample space, the **law of total probability** adds the paths leading to the same event: $P(B) = P(A \cap B) + P(\overline{A} \cap B) = P(A)P_A(B) + P(\overline{A})P_{\overline{A}}(B)$. On the screening test: $P(T) = 0.02 \times 0.99 + 0.98 \times 0.05 = 0.0198 + 0.049 = 0.0688$.
+
+    One may then **climb back up the tree**: $P_T(M) = \dfrac{P(M \cap T)}{P(T)} = \dfrac{0.0198}{0.0688} \approx 0.288$. In other words, fewer than a third of the people testing positive are ill, although the test is rarely wrong: it is the rarity of the disease that dominates. Two events are **independent** when $P(A \cap B) = P(A) \times P(B)$, which is equivalent to $P_A(B) = P(B)$: knowing that $A$ occurred teaches nothing about $B$. With a fair die, "getting an even number" and "getting a multiple of $3$" are independent, since $P(A \cap B) = \dfrac16 = \dfrac12 \times \dfrac13$. Two traps: confusing $P_A(B)$ with $P_B(A)$, which have no reason to be equal, and confusing independence with incompatibility, whereas two incompatible events of non-zero probabilities are never independent.
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "calculer une probabilité conditionnelle P_A(B) et utiliser la règle du produit P(A ∩ B) = P(A) × P_A(B)"
+        - "construire un arbre pondéré, le compléter et lire une probabilité sur un chemin"
+        - "appliquer la formule des probabilités totales sur une partition, puis remonter l'arbre pour calculer P_B(A)"
+        - "tester l'indépendance de deux événements avec P(A ∩ B) = P(A) × P(B) et la distinguer de l'incompatibilité"
+      en:
+        - "compute a conditional probability P_A(B) and use the product rule P(A ∩ B) = P(A) × P_A(B)"
+        - "build a weighted tree, complete it and read a probability along a path"
+        - "apply the law of total probability on a partition, then climb back up the tree to compute P_B(A)"
+        - "test the independence of two events with P(A ∩ B) = P(A) × P(B) and distinguish it from incompatibility"

@@ -1,0 +1,61 @@
+# Leçon transformation chimique (Première) — état final avec un produit initialement présent (réponse numérique)
+id: exercise.reaction.final_state
+type: numeric
+nodeId: model.chemical_reaction
+depth: 2
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Dans un réacteur on introduit $1{,}5\ \mathrm{mol}$ de diazote, $3{,}0\ \mathrm{mol}$ de dihydrogène et, dès le départ, $0{,}40\ \mathrm{mol}$ d'ammoniac. La transformation, supposée totale, est modélisée par
+    $$\mathrm{N_2} + 3\,\mathrm{H_2} \to 2\,\mathrm{NH_3}.$$
+
+    Donnez la quantité de matière d'ammoniac présente dans l'état final, en $\mathrm{mol}$.
+  en: |-
+    Into a reactor are introduced $1.5\ \mathrm{mol}$ of dinitrogen, $3.0\ \mathrm{mol}$ of dihydrogen and, from the start, $0.40\ \mathrm{mol}$ of ammonia. The transformation, assumed complete, is modelled by
+    $$\mathrm{N_2} + 3\,\mathrm{H_2} \to 2\,\mathrm{NH_3}.$$
+
+    Give the amount of ammonia present in the final state, in $\mathrm{mol}$.
+numeric:
+  value: 2.4
+  unit: "mol"
+  tolerance: { kind: absolute, value: 0.05 }
+  inputLabel: { fr: "n(NH₃) final", en: "final n(NH₃)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Un produit déjà présent au départ ne change ni l'avancement maximal ni le réactif limitant : ceux-ci ne dépendent que des réactifs.
+      en: |-
+        A product already present at the start changes neither the maximum extent nor the limiting reactant: they depend only on the reactants.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La ligne de l'ammoniac s'écrit $0{,}40 + 2x$. Calculez d'abord $x_{\max} = \min\left(\dfrac{1{,}5}{1},\ \dfrac{3{,}0}{3}\right)$.
+      en: |-
+        The ammonia row reads $0.40 + 2x$. First compute $x_{\max} = \min\left(\dfrac{1.5}{1},\ \dfrac{3.0}{3}\right)$.
+solution:
+  fr: |-
+    | état | $\mathrm{N_2}$ | $\mathrm{H_2}$ | $\mathrm{NH_3}$ |
+    | --- | --- | --- | --- |
+    | initial | $1{,}5$ | $3{,}0$ | $0{,}40$ |
+    | avancement $x$ | $1{,}5 - x$ | $3{,}0 - 3x$ | $0{,}40 + 2x$ |
+
+    Le diazote borne l'avancement à $\dfrac{1{,}5}{1} = 1{,}5\ \mathrm{mol}$, le dihydrogène à $\dfrac{3{,}0}{3} = 1{,}0\ \mathrm{mol}$ : donc $x_{\max} = 1{,}0\ \mathrm{mol}$ et le **dihydrogène** est le réactif limitant.
+
+    Dans l'état final, en remplaçant $x$ par $x_{\max}$ :
+    $$n(\mathrm{NH_3}) = 0{,}40 + 2 \times 1{,}0 = 2{,}4\ \mathrm{mol},$$
+    il reste $1{,}5 - 1{,}0 = 0{,}5\ \mathrm{mol}$ de diazote en excès et plus de dihydrogène. L'ammoniac initial s'ajoute simplement à celui qui s'est formé : c'est le piège de l'exercice, il ne faut ni l'oublier ni le compter dans l'avancement.
+  en: |-
+    | state | $\mathrm{N_2}$ | $\mathrm{H_2}$ | $\mathrm{NH_3}$ |
+    | --- | --- | --- | --- |
+    | initial | $1.5$ | $3.0$ | $0.40$ |
+    | extent $x$ | $1.5 - x$ | $3.0 - 3x$ | $0.40 + 2x$ |
+
+    Dinitrogen bounds the extent at $\dfrac{1.5}{1} = 1.5\ \mathrm{mol}$, dihydrogen at $\dfrac{3.0}{3} = 1.0\ \mathrm{mol}$: hence $x_{\max} = 1.0\ \mathrm{mol}$ and **dihydrogen** is the limiting reactant.
+
+    In the final state, replacing $x$ with $x_{\max}$:
+    $$n(\mathrm{NH_3}) = 0.40 + 2 \times 1.0 = 2.4\ \mathrm{mol},$$
+    with $1.5 - 1.0 = 0.5\ \mathrm{mol}$ of dinitrogen left in excess and no dihydrogen. The initial ammonia simply adds to the ammonia formed: that is the trap of the exercise, it must neither be forgotten nor counted in the extent.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 3, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 2, transfer: 2, autonomy: 2 }

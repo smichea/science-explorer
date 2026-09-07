@@ -1,0 +1,53 @@
+# Trigonométrie — le cosinus de 2π/3 par la symétrie cos(π − x) = −cos x (réponse numérique)
+id: exercise.trigonometry.cosine_value
+type: numeric
+nodeId: tool.trigonometric_functions
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Sur le cercle trigonométrique, placez le point associé au réel $\dfrac{2\pi}{3}$.
+
+    Donnez la valeur exacte de $\cos\dfrac{2\pi}{3}$, sous forme décimale.
+  en: |-
+    On the unit circle, place the point associated with the real number $\dfrac{2\pi}{3}$.
+
+    Give the exact value of $\cos\dfrac{2\pi}{3}$, in decimal form.
+numeric:
+  value: -0.5
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "cos(2π/3)", en: "cos(2π/3)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Remarquez que $\dfrac{2\pi}{3} = \pi - \dfrac{\pi}{3}$ : le point cherché est le symétrique de celui de $\dfrac{\pi}{3}$ par rapport à l'axe des ordonnées.
+      en: |-
+        Notice that $\dfrac{2\pi}{3} = \pi - \dfrac{\pi}{3}$: the point sought is the mirror image of that of $\dfrac{\pi}{3}$ across the axis of ordinates.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La symétrie par rapport à l'axe des ordonnées change le signe de l'abscisse : $\cos(\pi - x) = -\cos x$, et $\cos\dfrac{\pi}{3} = \dfrac12$.
+      en: |-
+        The symmetry across the axis of ordinates changes the sign of the abscissa: $\cos(\pi - x) = -\cos x$, and $\cos\dfrac{\pi}{3} = \dfrac12$.
+solution:
+  fr: |-
+    Le réel $\dfrac{2\pi}{3}$ s'écrit $\pi - \dfrac{\pi}{3}$, donc son point du cercle est le symétrique, par rapport à l'axe des ordonnées, de celui de $\dfrac{\pi}{3}$. Cette symétrie conserve l'ordonnée et change le signe de l'abscisse :
+    $$\cos\frac{2\pi}{3} = -\cos\frac{\pi}{3} = -\frac12 = -0{,}5, \qquad \sin\frac{2\pi}{3} = \sin\frac{\pi}{3} = \frac{\sqrt3}{2}.$$
+
+    **Interprétation.** Le signe négatif était prévisible sans aucun calcul : $\dfrac{2\pi}{3}$ vaut $120°$, le point est donc dans le deuxième quadrant, où l'abscisse est négative et l'ordonnée positive. On vérifie enfin la relation fondamentale : $\left(-\dfrac12\right)^2 + \left(\dfrac{\sqrt3}{2}\right)^2 = \dfrac14 + \dfrac34 = 1$.
+  en: |-
+    The real number $\dfrac{2\pi}{3}$ is written $\pi - \dfrac{\pi}{3}$, so its point on the circle is the mirror image, across the axis of ordinates, of that of $\dfrac{\pi}{3}$. This symmetry preserves the ordinate and changes the sign of the abscissa:
+    $$\cos\frac{2\pi}{3} = -\cos\frac{\pi}{3} = -\frac12 = -0.5, \qquad \sin\frac{2\pi}{3} = \sin\frac{\pi}{3} = \frac{\sqrt3}{2}.$$
+
+    **Interpretation.** The negative sign was predictable without any computation: $\dfrac{2\pi}{3}$ is $120°$, so the point lies in the second quadrant, where the abscissa is negative and the ordinate positive. Finally the fundamental relation checks out: $\left(-\dfrac12\right)^2 + \left(\dfrac{\sqrt3}{2}\right)^2 = \dfrac14 + \dfrac34 = 1$.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

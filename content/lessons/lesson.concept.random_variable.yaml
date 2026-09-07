@@ -1,0 +1,30 @@
+# Leçon — variables aléatoires : un jeu équitable au dé (gagner 2 € sur un 5 ou un 6, perdre 1 € sinon), sa loi et son
+# espérance nulle, puis le même gain simulé sur des échantillons de cinquante parties dont les moyennes entourent zéro.
+id: lesson.concept.random_variable
+nodeId: concept.random_variable
+depth: 1
+tools:
+  - id: game
+    kind: random
+    title: { fr: "Un jeu équitable : la loi du gain X", en: "A fair game: the distribution of the gain X" }
+    experiment: die
+    sides: 6
+    event: { label: { fr: "le joueur gagne", en: "the player wins" }, outcomes: ["5", "6"] }
+    mode: frequencies
+    seed: 9
+    variable:
+      label: { fr: "gain X en euros", en: "gain X in euros" }
+      unit: "€"
+      values: { "1": -1, "2": -1, "3": -1, "4": -1, "5": 2, "6": 2 }
+  - id: samples
+    kind: random
+    title: { fr: "Cinquante parties : la moyenne des gains", en: "Fifty rounds: the mean of the gains" }
+    experiment: die
+    sides: 6
+    mode: sampling
+    sample: 50
+    seed: 4
+    variable:
+      label: { fr: "gain X en euros", en: "gain X in euros" }
+      unit: "€"
+      values: { "1": -1, "2": -1, "3": -1, "4": -1, "5": 2, "6": 2 }

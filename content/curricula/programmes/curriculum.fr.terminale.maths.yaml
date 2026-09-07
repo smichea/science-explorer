@@ -16,13 +16,12 @@ items:
     title: { fr: Compléments sur la dérivation, en: Further differentiation }
     reference: "Analyse — Compléments sur la dérivation"
     alignedNodes:
-      - { node: tool.derivative, depth: 1 }
-      - { node: concept.rate_of_change, depth: 1 }
+      - { node: tool.derivative, depth: 2 }
   - id: exponentielle
     title: { fr: Fonction exponentielle, en: Exponential function }
     reference: "Analyse — Fonction logarithme (réciproque de l'exponentielle) ; Limites des fonctions (croissances comparées) ; acquis de première : fonction exponentielle"
     alignedNodes:
-      - { node: tool.exponential, depth: 1 }
+      - { node: tool.exponential, depth: 2 }
   - id: primitives_equations_differentielles
     title: { fr: "Primitives, équations différentielles", en: "Antiderivatives, differential equations" }
     reference: "Analyse — Primitives, équations différentielles"

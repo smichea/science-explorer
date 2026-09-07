@@ -1,0 +1,57 @@
+# Leçon dosages — concentration déduite du volume équivalent d'un titrage par le permanganate (réponse numérique)
+id: exercise.titration.equivalence
+type: numeric
+nodeId: method.titration
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    On titre $V_A = 20{,}0\ \mathrm{mL}$ d'une solution d'ions fer II par une solution de permanganate de potassium de concentration $C_B = 2{,}00 \times 10^{-2}\ \mathrm{mol/L}$. La réaction support du titrage est
+    $$\mathrm{MnO_4^-} + 5\,\mathrm{Fe^{2+}} + 8\,\mathrm{H^+} \to \mathrm{Mn^{2+}} + 5\,\mathrm{Fe^{3+}} + 4\,\mathrm{H_2O}.$$
+
+    La teinte violette persiste pour un volume versé $V_E = 12{,}0\ \mathrm{mL}$. Donnez la concentration $C_A$ en ions fer II de la solution titrée, en $\mathrm{mol/L}$.
+  en: |-
+    $V_A = 20.0\ \mathrm{mL}$ of a solution of iron II ions is titrated by a potassium permanganate solution of concentration $C_B = 2.00 \times 10^{-2}\ \mathrm{mol/L}$. The titration reaction is
+    $$\mathrm{MnO_4^-} + 5\,\mathrm{Fe^{2+}} + 8\,\mathrm{H^+} \to \mathrm{Mn^{2+}} + 5\,\mathrm{Fe^{3+}} + 4\,\mathrm{H_2O}.$$
+
+    The purple tint persists for a poured volume $V_E = 12.0\ \mathrm{mL}$. Give the concentration $C_A$ in iron II ions of the titrated solution, in $\mathrm{mol/L}$.
+numeric:
+  value: 0.06
+  unit: "mol/L"
+  tolerance: { kind: absolute, value: 0.002 }
+  inputLabel: { fr: "C_A", en: "C_A" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        À l'équivalence, les deux réactifs ont été introduits dans les proportions de l'équation et sont tous deux entièrement consommés.
+      en: |-
+        At the equivalence point, both reactants have been introduced in the proportions of the equation and are both entirely consumed.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Le tableau d'avancement donne $\dfrac{n(\mathrm{Fe^{2+}})}{5} = \dfrac{n(\mathrm{MnO_4^-})}{1}$, c'est-à-dire $\dfrac{C_A V_A}{5} = C_B V_E$.
+      en: |-
+        The extent table gives $\dfrac{n(\mathrm{Fe^{2+}})}{5} = \dfrac{n(\mathrm{MnO_4^-})}{1}$, that is $\dfrac{C_A V_A}{5} = C_B V_E$.
+solution:
+  fr: |-
+    Avant l'équivalence, le permanganate versé est le réactif limitant : il est consommé aussitôt et sa couleur violette disparaît. À l'équivalence, les réactifs sont introduits dans les proportions stœchiométriques et disparaissent ensemble ; au-delà, le permanganate s'accumule et la teinte violette persiste, ce qui repère $V_E$.
+
+    Le tableau d'avancement donne la relation à l'équivalence :
+    $$\frac{n(\mathrm{Fe^{2+}})}{5} = \frac{n(\mathrm{MnO_4^-})}{1} \quad\Longrightarrow\quad \frac{C_A V_A}{5} = C_B V_E,$$
+    d'où
+    $$C_A = \frac{5\,C_B V_E}{V_A} = \frac{5 \times 2{,}00 \times 10^{-2} \times 12{,}0}{20{,}0} = 6{,}00 \times 10^{-2}\ \mathrm{mol/L}.$$
+
+    Les volumes sont restés en millilitres parce qu'ils apparaissent en quotient. Le piège classique est d'oublier le nombre stœchiométrique $5$ : on trouverait alors $1{,}20 \times 10^{-2}\ \mathrm{mol/L}$, cinq fois trop peu.
+  en: |-
+    Before the equivalence point, the permanganate poured is the limiting reactant: it is consumed at once and its purple colour disappears. At the equivalence point, the reactants are introduced in stoichiometric proportions and vanish together; beyond it, permanganate accumulates and the purple tint persists, which locates $V_E$.
+
+    The extent table gives the relation at the equivalence point:
+    $$\frac{n(\mathrm{Fe^{2+}})}{5} = \frac{n(\mathrm{MnO_4^-})}{1} \quad\Longrightarrow\quad \frac{C_A V_A}{5} = C_B V_E,$$
+    hence
+    $$C_A = \frac{5\,C_B V_E}{V_A} = \frac{5 \times 2.00 \times 10^{-2} \times 12.0}{20.0} = 6.00 \times 10^{-2}\ \mathrm{mol/L}.$$
+
+    The volumes stayed in millilitres because they appear as a quotient. The classic trap is to forget the stoichiometric coefficient $5$: one would then find $1.20 \times 10^{-2}\ \mathrm{mol/L}$, five times too little.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 3, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 3, transfer: 2, autonomy: 3 }

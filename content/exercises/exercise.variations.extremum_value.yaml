@@ -1,0 +1,58 @@
+# Variations en Première — optimisation : le volume maximal d'une boîte taillée dans une feuille carrée (réponse numérique)
+id: exercise.variations.extremum_value
+type: numeric
+nodeId: concept.variations_extremums
+depth: 2
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Dans une feuille de carton carrée de côté $30\ \mathrm{cm}$, on découpe aux quatre coins des carrés de côté $x$ (en cm, avec $0 < x < 15$), puis on replie les bords pour former une boîte sans couvercle. Son volume, en $\mathrm{cm^3}$, est
+    $$V(x) = x\,(30 - 2x)^2.$$
+
+    Étudiez les variations de $V$ sur $]0\,;\,15[$ et donnez la **valeur maximale** du volume, en $\mathrm{cm^3}$.
+  en: |-
+    From a square cardboard sheet of side $30\ \mathrm{cm}$, squares of side $x$ (in cm, with $0 < x < 15$) are cut out at the four corners, then the edges are folded up to form an open box. Its volume, in $\mathrm{cm^3}$, is
+    $$V(x) = x\,(30 - 2x)^2.$$
+
+    Study the variations of $V$ on $]0\,;\,15[$ and give the **maximum value** of the volume, in $\mathrm{cm^3}$.
+numeric:
+  value: 2000
+  unit: "cm³"
+  tolerance: { kind: absolute, value: 1 }
+  inputLabel: { fr: "volume maximal", en: "maximum volume" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Développez d'abord : $V(x) = 4x^3 - 120x^2 + 900x$, puis dérivez.
+      en: |-
+        Expand first: $V(x) = 4x^3 - 120x^2 + 900x$, then differentiate.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $V'(x) = 12x^2 - 240x + 900 = 12(x^2 - 20x + 75) = 12(x - 5)(x - 15)$ : étudiez son signe sur $]0\,;\,15[$.
+      en: |-
+        $V'(x) = 12x^2 - 240x + 900 = 12(x^2 - 20x + 75) = 12(x - 5)(x - 15)$: study its sign on $]0\,;\,15[$.
+solution:
+  fr: |-
+    $V(x) = x(30 - 2x)^2 = 4x^3 - 120x^2 + 900x$, donc $V'(x) = 12x^2 - 240x + 900 = 12(x - 5)(x - 15)$. Sur $]0\,;\,15[$, le facteur $x - 15$ est négatif ; $V'(x)$ est donc positive pour $x < 5$ et négative pour $x > 5$ : $V$ est croissante sur $]0\,;\,5]$ et décroissante sur $[5\,;\,15[$.
+
+    Le volume est maximal pour $x = 5\ \mathrm{cm}$ et vaut
+    $$V(5) = 5 \times (30 - 10)^2 = 5 \times 400 = 2000\ \mathrm{cm^3}.$$
+    **Interprétation.** Un problème d'optimisation se ramène toujours au même geste : exprimer la grandeur comme une fonction d'une variable sur un intervalle, dériver, étudier le signe de la dérivée et lire l'extremum dans le tableau de variations. Ici la boîte optimale a une base de $20\ \mathrm{cm}$ de côté et $5\ \mathrm{cm}$ de hauteur.
+  en: |-
+    $V(x) = x(30 - 2x)^2 = 4x^3 - 120x^2 + 900x$, so $V'(x) = 12x^2 - 240x + 900 = 12(x - 5)(x - 15)$. On $]0\,;\,15[$, the factor $x - 15$ is negative; $V'(x)$ is therefore positive for $x < 5$ and negative for $x > 5$: $V$ is increasing on $]0\,;\,5]$ and decreasing on $[5\,;\,15[$.
+
+    The volume is maximal for $x = 5\ \mathrm{cm}$ and equals
+    $$V(5) = 5 \times (30 - 10)^2 = 5 \times 400 = 2000\ \mathrm{cm^3}.$$
+    **Interpretation.** An optimisation problem always comes down to the same move: express the quantity as a function of one variable on an interval, differentiate, study the sign of the derivative and read the extremum in the variation table. Here the optimal box has a base of side $20\ \mathrm{cm}$ and a height of $5\ \mathrm{cm}$.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 3
+  modellingOpenness: 2
+  linkedConcepts: 3
+  transfer: 2
+  autonomy: 3

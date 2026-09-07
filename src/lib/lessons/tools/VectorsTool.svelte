@@ -170,6 +170,19 @@
     if (!u || !v) return null;
     return { u, v, value: u.x * v.y - u.y * v.x };
   });
+  /** Dot product of the two named vectors (as drawn): zero exactly when they are orthogonal. */
+  const dot = $derived.by(() => {
+    if (!tool.dot) return null;
+    const u = placed.find((p) => p.id === tool.dot?.[0]);
+    const v = placed.find((p) => p.id === tool.dot?.[1]);
+    if (!u || !v) return null;
+    const value = u.x * v.x + u.y * v.y;
+    const nu = Math.hypot(u.x, u.y);
+    const nv = Math.hypot(v.x, v.y);
+    // The angle from the normalised product, clamped against rounding beyond [−1, 1].
+    const cos = nu > 0 && nv > 0 ? Math.max(-1, Math.min(1, value / (nu * nv))) : NaN;
+    return { u, v, value, nu, nv, angle: (Math.acos(cos) * 180) / Math.PI };
+  });
 
   /** Arrow head polygon at the tip of a segment (screen coordinates). */
   function arrowHead(tail: [number, number], head: [number, number]): string {
@@ -421,6 +434,18 @@
         → {Math.abs(determinant.value) < 1e-9
           ? t('lesson.vectors.colinear')
           : t('lesson.vectors.notColinear')}
+      </li>
+    {/if}
+    {#if dot}
+      <li data-testid="vectors-dot">
+        {t('lesson.vectors.dot')}
+        {dot.u.label} · {dot.v.label} = {fmt(dot.value, locale.current)} · |{dot.u.label}| = {fmt(
+          dot.nu,
+          locale.current
+        )} · |{dot.v.label}| = {fmt(dot.nv, locale.current)} · {t('lesson.vectors.angle')}
+        {fmt(dot.angle, locale.current, 1)}° → {Math.abs(dot.value) < 1e-9
+          ? t('lesson.vectors.orthogonal')
+          : t('lesson.vectors.notOrthogonal')}
       </li>
     {/if}
   </ul>

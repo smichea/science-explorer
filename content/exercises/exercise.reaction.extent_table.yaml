@@ -1,0 +1,61 @@
+# Leçon transformation chimique (Première) — avancement maximal et réactif limitant lus dans le tableau d'avancement (réponse numérique)
+id: exercise.reaction.extent_table
+type: numeric
+nodeId: model.chemical_reaction
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On fait réagir $0{,}30\ \mathrm{mol}$ d'aluminium avec $0{,}60\ \mathrm{mol}$ de dichlore ; la transformation est totale et modélisée par la réaction d'équation
+    $$2\,\mathrm{Al} + 3\,\mathrm{Cl_2} \to 2\,\mathrm{AlCl_3}.$$
+
+    Dressez le tableau d'avancement, puis donnez l'avancement maximal $x_{\max}$, en $\mathrm{mol}$.
+  en: |-
+    $0.30\ \mathrm{mol}$ of aluminium is made to react with $0.60\ \mathrm{mol}$ of dichlorine; the transformation is complete and modelled by the reaction of equation
+    $$2\,\mathrm{Al} + 3\,\mathrm{Cl_2} \to 2\,\mathrm{AlCl_3}.$$
+
+    Set up the extent table, then give the maximum extent $x_{\max}$, in $\mathrm{mol}$.
+numeric:
+  value: 0.15
+  unit: "mol"
+  tolerance: { kind: absolute, value: 0.005 }
+  inputLabel: { fr: "x_max", en: "x_max" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Pour un avancement $x$, il reste $0{,}30 - 2x$ d'aluminium et $0{,}60 - 3x$ de dichlore. Chacune de ces deux quantités doit rester positive ou nulle.
+      en: |-
+        For an extent $x$, $0.30 - 2x$ of aluminium and $0.60 - 3x$ of dichlorine are left. Each of these two amounts must stay positive or zero.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        L'avancement maximal est le plus petit des quotients $\dfrac{n_i}{\nu_i}$ : comparez $\dfrac{0{,}30}{2}$ et $\dfrac{0{,}60}{3}$.
+      en: |-
+        The maximum extent is the smallest of the quotients $\dfrac{n_i}{\nu_i}$: compare $\dfrac{0.30}{2}$ and $\dfrac{0.60}{3}$.
+solution:
+  fr: |-
+    | état | $\mathrm{Al}$ | $\mathrm{Cl_2}$ | $\mathrm{AlCl_3}$ |
+    | --- | --- | --- | --- |
+    | initial | $0{,}30$ | $0{,}60$ | $0$ |
+    | avancement $x$ | $0{,}30 - 2x$ | $0{,}60 - 3x$ | $2x$ |
+
+    Chaque réactif impose une borne à l'avancement : l'aluminium s'annule pour $x = \dfrac{0{,}30}{2} = 0{,}15\ \mathrm{mol}$, le dichlore pour $x = \dfrac{0{,}60}{3} = 0{,}20\ \mathrm{mol}$. L'avancement maximal est la plus petite de ces bornes :
+    $$x_{\max} = \min\left(\frac{0{,}30}{2},\ \frac{0{,}60}{3}\right) = 0{,}15\ \mathrm{mol},$$
+    et l'**aluminium** est le réactif limitant.
+
+    Dans l'état final il reste $0{,}60 - 3 \times 0{,}15 = 0{,}15\ \mathrm{mol}$ de dichlore en excès, plus d'aluminium du tout, et il s'est formé $2 x_{\max} = 0{,}30\ \mathrm{mol}$ de chlorure d'aluminium. Pour un mélange stœchiométrique, il aurait fallu $0{,}45\ \mathrm{mol}$ de dichlore.
+  en: |-
+    | state | $\mathrm{Al}$ | $\mathrm{Cl_2}$ | $\mathrm{AlCl_3}$ |
+    | --- | --- | --- | --- |
+    | initial | $0.30$ | $0.60$ | $0$ |
+    | extent $x$ | $0.30 - 2x$ | $0.60 - 3x$ | $2x$ |
+
+    Each reactant sets a bound on the extent: aluminium reaches zero for $x = \dfrac{0.30}{2} = 0.15\ \mathrm{mol}$, dichlorine for $x = \dfrac{0.60}{3} = 0.20\ \mathrm{mol}$. The maximum extent is the smallest of these bounds:
+    $$x_{\max} = \min\left(\frac{0.30}{2},\ \frac{0.60}{3}\right) = 0.15\ \mathrm{mol},$$
+    and **aluminium** is the limiting reactant.
+
+    In the final state $0.60 - 3 \times 0.15 = 0.15\ \mathrm{mol}$ of dichlorine is left in excess, no aluminium at all, and $2 x_{\max} = 0.30\ \mathrm{mol}$ of aluminium chloride has formed. For a stoichiometric mixture, $0.45\ \mathrm{mol}$ of dichlorine would have been needed.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

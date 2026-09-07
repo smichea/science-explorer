@@ -1,0 +1,45 @@
+# Champ électrique — valeur du champ créé par une charge ponctuelle à une distance donnée (réponse numérique)
+id: exercise.field.value
+type: numeric
+nodeId: concept.field
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une charge ponctuelle $Q = +4{,}0\ \mathrm{nC}$ est placée dans l'air. On considère un point $M$ situé à $d = 20\ \mathrm{cm}$ de cette charge. On prendra $k = 9{,}0 \times 10^{9}\ \mathrm{N \cdot m^2 \cdot C^{-2}}$.
+
+    Calculez la valeur du champ électrique créé par $Q$ au point $M$, en volts par mètre, avec deux chiffres significatifs.
+  en: |-
+    A point charge $Q = +4.0\ \mathrm{nC}$ is placed in air. Consider a point $M$ located $d = 20\ \mathrm{cm}$ from this charge. Take $k = 9.0 \times 10^{9}\ \mathrm{N \cdot m^2 \cdot C^{-2}}$.
+
+    Compute the value of the electric field created by $Q$ at the point $M$, in volts per metre, with two significant figures.
+numeric:
+  value: 900
+  unit: "V/m"
+  tolerance: { kind: relative, value: 0.03 }
+  inputLabel: { fr: "E", en: "E" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le champ créé par une charge ponctuelle à la distance $d$ a pour valeur $E = k\,\dfrac{|Q|}{d^2}$ : c'est la loi de Coulomb divisée par la charge test.
+      en: |-
+        The field created by a point charge at the distance $d$ has the value $E = k\,\dfrac{|Q|}{d^2}$: it is Coulomb's law divided by the test charge.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Convertissez avant de calculer : $4{,}0\ \mathrm{nC} = 4{,}0 \times 10^{-9}\ \mathrm{C}$ et $20\ \mathrm{cm} = 0{,}20\ \mathrm{m}$.
+      en: |-
+        Convert before computing: $4.0\ \mathrm{nC} = 4.0 \times 10^{-9}\ \mathrm{C}$ and $20\ \mathrm{cm} = 0.20\ \mathrm{m}$.
+solution:
+  fr: |-
+    Avec $Q = 4{,}0 \times 10^{-9}\ \mathrm{C}$ et $d = 0{,}20\ \mathrm{m}$,
+    $$E = k\,\frac{|Q|}{d^2} = 9{,}0 \times 10^{9} \times \frac{4{,}0 \times 10^{-9}}{0{,}20^2} = \frac{36}{4{,}0 \times 10^{-2}} = 9{,}0 \times 10^{2}\ \mathrm{V/m}.$$
+    La charge étant positive, le vecteur $\vec E$ est radial et dirigé de $Q$ vers $M$, c'est-à-dire vers l'extérieur. Ce champ existe en $M$ même si aucune charge n'y est placée : il suffit d'y déposer une charge $q$ pour qu'elle subisse la force $\vec F = q\,\vec E$.
+  en: |-
+    With $Q = 4.0 \times 10^{-9}\ \mathrm{C}$ and $d = 0.20\ \mathrm{m}$,
+    $$E = k\,\frac{|Q|}{d^2} = 9.0 \times 10^{9} \times \frac{4.0 \times 10^{-9}}{0.20^2} = \frac{36}{4.0 \times 10^{-2}} = 9.0 \times 10^{2}\ \mathrm{V/m}.$$
+    Since the charge is positive, the vector $\vec E$ is radial and points from $Q$ towards $M$, that is, outwards. This field exists at $M$ even if no charge is placed there: it is enough to put a charge $q$ there for it to experience the force $\vec F = q\,\vec E$.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

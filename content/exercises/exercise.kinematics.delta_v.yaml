@@ -1,0 +1,45 @@
+# Leçon cinématique (Première) — norme de Δv sur un relevé de positions d'un palet qui ralentit (réponse numérique)
+id: exercise.kinematics.delta_v
+type: numeric
+nodeId: model.kinematics_point
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un palet glisse en ligne droite sur une table. On relève ses positions toutes les $\Delta t = 0{,}20\ \mathrm{s}$ : $M_1M_2 = 0{,}60\ \mathrm{m}$, puis $M_2M_3 = 0{,}48\ \mathrm{m}$. On approche la vitesse en $M_1$ par $\vec v_1 = \dfrac{\overrightarrow{M_1M_2}}{\Delta t}$ et la vitesse en $M_2$ par $\vec v_2 = \dfrac{\overrightarrow{M_2M_3}}{\Delta t}$.
+
+    Calculez la norme du vecteur variation de vitesse $\Delta\vec v = \vec v_2 - \vec v_1$, en mètres par seconde.
+  en: |-
+    A puck slides in a straight line on a table. Its positions are recorded every $\Delta t = 0.20\ \mathrm{s}$: $M_1M_2 = 0.60\ \mathrm{m}$, then $M_2M_3 = 0.48\ \mathrm{m}$. The velocity at $M_1$ is approximated by $\vec v_1 = \dfrac{\overrightarrow{M_1M_2}}{\Delta t}$ and the velocity at $M_2$ by $\vec v_2 = \dfrac{\overrightarrow{M_2M_3}}{\Delta t}$.
+
+    Compute the magnitude of the velocity-variation vector $\Delta\vec v = \vec v_2 - \vec v_1$, in metres per second.
+numeric:
+  value: 0.6
+  unit: "m/s"
+  tolerance: { kind: absolute, value: 0.02 }
+  inputLabel: { fr: "‖Δv‖", en: "‖Δv‖" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Calculez d'abord les valeurs $v_1 = M_1M_2/\Delta t$ et $v_2 = M_2M_3/\Delta t$. Les deux vecteurs ont la même direction et le même sens : celui du mouvement.
+      en: |-
+        First compute the values $v_1 = M_1M_2/\Delta t$ and $v_2 = M_2M_3/\Delta t$. Both vectors have the same direction and the same sense: that of the motion.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $v_1 = 0{,}60/0{,}20 = 3{,}0\ \mathrm{m/s}$ et $v_2 = 0{,}48/0{,}20 = 2{,}4\ \mathrm{m/s}$ ; sur un axe orienté dans le sens du mouvement, $\Delta v = v_2 - v_1$.
+      en: |-
+        $v_1 = 0.60/0.20 = 3.0\ \mathrm{m/s}$ and $v_2 = 0.48/0.20 = 2.4\ \mathrm{m/s}$; on an axis oriented in the sense of the motion, $\Delta v = v_2 - v_1$.
+solution:
+  fr: |-
+    Sur un axe $(Ox)$ orienté dans le sens du mouvement, $v_1 = \dfrac{0{,}60}{0{,}20} = 3{,}0\ \mathrm{m/s}$ et $v_2 = \dfrac{0{,}48}{0{,}20} = 2{,}4\ \mathrm{m/s}$, donc
+    $$\Delta v = v_2 - v_1 = 2{,}4 - 3{,}0 = -0{,}60\ \mathrm{m/s}, \qquad \|\Delta\vec v\| = 0{,}60\ \mathrm{m/s}.$$
+    Le signe négatif indique que $\Delta\vec v$ est **opposé au sens du mouvement** : le palet ralentit, le mouvement est rectiligne ralenti. D'après la deuxième loi de Newton, la somme des forces (ici le frottement de la table) a la direction et le sens de $\Delta\vec v$, opposés au mouvement.
+  en: |-
+    On an axis $(Ox)$ oriented in the sense of the motion, $v_1 = \dfrac{0.60}{0.20} = 3.0\ \mathrm{m/s}$ and $v_2 = \dfrac{0.48}{0.20} = 2.4\ \mathrm{m/s}$, so
+    $$\Delta v = v_2 - v_1 = 2.4 - 3.0 = -0.60\ \mathrm{m/s}, \qquad \|\Delta\vec v\| = 0.60\ \mathrm{m/s}.$$
+    The negative sign shows that $\Delta\vec v$ is **opposite to the sense of the motion**: the puck slows down, the motion is rectilinear and decelerated. According to Newton's second law, the sum of the forces (here the friction of the table) has the direction and the sense of $\Delta\vec v$, opposite to the motion.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

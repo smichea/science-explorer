@@ -1,0 +1,53 @@
+# Leçon combustions — ajuster l'équation de combustion du propane et en déduire le dioxygène nécessaire (réponse numérique)
+id: exercise.combustion.equation_oxygen
+type: numeric
+nodeId: phenomenon.combustion
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On brûle complètement $2{,}0\ \mathrm{mol}$ de propane $\mathrm{C_3H_8}$ dans du dioxygène. La combustion complète d'un alcane ne produit que du dioxyde de carbone et de l'eau.
+
+    Écrivez et ajustez l'équation de la réaction, puis donnez la quantité de matière de dioxygène strictement nécessaire, en $\mathrm{mol}$.
+  en: |-
+    $2.0\ \mathrm{mol}$ of propane $\mathrm{C_3H_8}$ is burnt completely in oxygen. The complete combustion of an alkane produces only carbon dioxide and water.
+
+    Write and balance the reaction equation, then give the amount of oxygen strictly needed, in $\mathrm{mol}$.
+numeric:
+  value: 10
+  unit: "mol"
+  tolerance: { kind: absolute, value: 0.2 }
+  inputLabel: { fr: "n(O₂)", en: "n(O₂)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Ajustez dans l'ordre : d'abord le carbone, puis l'hydrogène, et seulement à la fin le dioxygène, qui n'apparaît que dans un seul réactif.
+      en: |-
+        Balance in order: carbon first, then hydrogen, and only at the end oxygen, which appears in only one reactant.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Une molécule de propane donne $3\,\mathrm{CO_2}$ et $4\,\mathrm{H_2O}$ : comptez les atomes d'oxygène du membre de droite, puis divisez par deux.
+      en: |-
+        One propane molecule gives $3\,\mathrm{CO_2}$ and $4\,\mathrm{H_2O}$: count the oxygen atoms on the right-hand side, then divide by two.
+solution:
+  fr: |-
+    On ajuste dans l'ordre habituel. Les trois carbones du propane donnent $3\,\mathrm{CO_2}$ ; ses huit hydrogènes donnent $4\,\mathrm{H_2O}$. Le membre de droite compte alors $3 \times 2 + 4 \times 1 = 10$ atomes d'oxygène, qu'il faut apporter avec $5$ molécules de dioxygène :
+    $$\mathrm{C_3H_8} + 5\,\mathrm{O_2} \to 3\,\mathrm{CO_2} + 4\,\mathrm{H_2O}.$$
+
+    L'équation dit que $5$ moles de dioxygène sont consommées par mole de propane. Pour $2{,}0\ \mathrm{mol}$ de propane :
+    $$n(\mathrm{O_2}) = 5 \times 2{,}0 = 10\ \mathrm{mol}.$$
+
+    C'est la quantité d'un mélange stœchiométrique : avec moins, le dioxygène serait limitant, du propane resterait et la combustion, incomplète, produirait aussi du monoxyde de carbone, gaz toxique, et de la suie. C'est exactement le risque d'un brûleur mal réglé ou d'un chauffe-eau dans une pièce mal ventilée.
+  en: |-
+    We balance in the usual order. The three carbons of propane give $3\,\mathrm{CO_2}$; its eight hydrogens give $4\,\mathrm{H_2O}$. The right-hand side then counts $3 \times 2 + 4 \times 1 = 10$ oxygen atoms, which must be supplied by $5$ oxygen molecules:
+    $$\mathrm{C_3H_8} + 5\,\mathrm{O_2} \to 3\,\mathrm{CO_2} + 4\,\mathrm{H_2O}.$$
+
+    The equation says that $5$ moles of oxygen are consumed per mole of propane. For $2.0\ \mathrm{mol}$ of propane:
+    $$n(\mathrm{O_2}) = 5 \times 2.0 = 10\ \mathrm{mol}.$$
+
+    This is the amount of a stoichiometric mixture: with less, oxygen would be limiting, propane would be left and the combustion, incomplete, would also produce carbon monoxide, a toxic gas, and soot. This is exactly the risk of a badly adjusted burner or of a water heater in a poorly ventilated room.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

@@ -1,0 +1,59 @@
+# Géométrie repérée — équation réduite de la droite passant par A(1 ; 2) et de vecteur normal n(3 ; −1) (réponse symbolique)
+id: exercise.analytic_geometry.normal_line
+type: symbolic
+nodeId: tool.analytic_geometry
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Dans un repère orthonormé, la droite $d$ passe par le point $A(1\,;\,2)$ et admet $\vec n\,(3\,;\,-1)$ pour vecteur normal.
+
+    Donnez son **équation réduite**, c'est-à-dire l'expression de $y$ en fonction de $x$.
+
+    Écrivez votre réponse comme une expression en $x$, par exemple `2*x+5`.
+  en: |-
+    In an orthonormal frame, the line $d$ passes through the point $A(1\,;\,2)$ and has $\vec n\,(3\,;\,-1)$ as a normal vector.
+
+    Give its **reduced equation**, that is the expression of $y$ in terms of $x$.
+
+    Write your answer as an expression in $x$, for example `2*x+5`.
+symbolic:
+  variable: x
+  accepted: ["3*x-1", "3x-1", "-1+3*x"]
+  display: "y ="
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Un point $M(x\,;\,y)$ appartient à $d$ si et seulement si $\overrightarrow{AM} \cdot \vec n = 0$, avec $\overrightarrow{AM}\,(x - 1\,;\,y - 2)$.
+      en: |-
+        A point $M(x\,;\,y)$ belongs to $d$ if and only if $\overrightarrow{AM} \cdot \vec n = 0$, with $\overrightarrow{AM}\,(x - 1\,;\,y - 2)$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La condition s'écrit $3(x - 1) - 1 \times (y - 2) = 0$. Développez, puis isolez $y$.
+      en: |-
+        The condition reads $3(x - 1) - 1 \times (y - 2) = 0$. Expand, then isolate $y$.
+solution:
+  fr: |-
+    Un point $M(x\,;\,y)$ appartient à $d$ si et seulement si le vecteur $\overrightarrow{AM}\,(x - 1\,;\,y - 2)$ est orthogonal au vecteur normal, c'est-à-dire si leur produit scalaire est nul :
+    $$3(x - 1) + (-1)(y - 2) = 0 \iff 3x - 3 - y + 2 = 0 \iff 3x - y - 1 = 0.$$
+    En isolant $y$, on obtient l'équation réduite $y = 3x - 1$.
+
+    **Interprétation.** Le coefficient directeur $3$ n'est pas un hasard : un vecteur normal $\vec n\,(a\,;\,b)$ correspond au vecteur directeur $\vec u\,(-b\,;\,a)$, ici $(1\,;\,3)$, dont le quotient des coordonnées donne la pente. Vérification par le point : $3 \times 1 - 1 = 2$, la droite passe bien par $A$. Notons enfin que l'équation cartésienne n'est pas unique — $6x - 2y - 2 = 0$ décrit la même droite —, alors que l'équation réduite, elle, l'est.
+  en: |-
+    A point $M(x\,;\,y)$ belongs to $d$ if and only if the vector $\overrightarrow{AM}\,(x - 1\,;\,y - 2)$ is orthogonal to the normal vector, that is if their dot product is zero:
+    $$3(x - 1) + (-1)(y - 2) = 0 \iff 3x - 3 - y + 2 = 0 \iff 3x - y - 1 = 0.$$
+    Isolating $y$ gives the reduced equation $y = 3x - 1$.
+
+    **Interpretation.** The slope $3$ is no accident: a normal vector $\vec n\,(a\,;\,b)$ corresponds to the direction vector $\vec u\,(-b\,;\,a)$, here $(1\,;\,3)$, whose ratio of coordinates gives the slope. Check with the point: $3 \times 1 - 1 = 2$, so the line does pass through $A$. Note finally that the cartesian equation is not unique — $6x - 2y - 2 = 0$ describes the same line — whereas the reduced equation is.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 3
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 3
+  transfer: 1
+  autonomy: 3

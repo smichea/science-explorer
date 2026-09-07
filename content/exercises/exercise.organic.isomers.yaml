@@ -1,0 +1,60 @@
+# Leçon molécules organiques — dénombrer les alcools isomères de formule brute C4H10O (réponse numérique)
+id: exercise.organic.isomers
+type: numeric
+nodeId: model.organic_molecules
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    On cherche toutes les molécules de formule brute $\mathrm{C_4H_{10}O}$ qui appartiennent à la famille des **alcools**, c'est-à-dire qui portent un groupe hydroxyle $\mathrm{{-}OH}$ sur un carbone saturé.
+
+    Écrivez leurs formules semi-développées, puis donnez leur nombre.
+  en: |-
+    We look for all the molecules of molecular formula $\mathrm{C_4H_{10}O}$ that belong to the family of **alcohols**, that is, that carry a hydroxyl group $\mathrm{{-}OH}$ on a saturated carbon.
+
+    Write their condensed structural formulas, then give how many there are.
+numeric:
+  value: 4
+  tolerance: { kind: absolute, value: 0.1 }
+  inputLabel: { fr: "nombre d'alcools", en: "number of alcohols" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Commencez par les squelettes carbonés possibles à quatre carbones : la chaîne linéaire, et la chaîne ramifiée à trois carbones portant un méthyle.
+      en: |-
+        Start with the possible four-carbon skeletons: the linear chain, and the branched three-carbon chain carrying a methyl group.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Sur chaque squelette, placez le groupe $\mathrm{{-}OH}$ à toutes les positions distinctes. Attention à ne pas compter deux fois la même molécule lue par l'autre bout de la chaîne.
+      en: |-
+        On each skeleton, place the $\mathrm{{-}OH}$ group at every distinct position. Take care not to count the same molecule twice when read from the other end of the chain.
+solution:
+  fr: |-
+    Deux squelettes carbonés sont possibles avec quatre carbones : la chaîne **linéaire** $\mathrm{C{-}C{-}C{-}C}$ et la chaîne **ramifiée** $\mathrm{C{-}C(C){-}C}$, un propane portant un méthyle sur le carbone central.
+
+    Sur la chaîne linéaire, le groupe hydroxyle peut occuper la position $1$ ou la position $2$ (les positions $3$ et $4$ redonnent les mêmes molécules lues par l'autre bout) :
+    - butan-1-ol, $\mathrm{CH_3{-}CH_2{-}CH_2{-}CH_2{-}OH}$ ;
+    - butan-2-ol, $\mathrm{CH_3{-}CH(OH){-}CH_2{-}CH_3}$.
+
+    Sur la chaîne ramifiée, il peut être porté par un carbone du bout ou par le carbone central :
+    - 2-méthylpropan-1-ol, $\mathrm{(CH_3)_2CH{-}CH_2{-}OH}$ ;
+    - 2-méthylpropan-2-ol, $\mathrm{(CH_3)_3C{-}OH}$.
+
+    Il y a donc **4** alcools de formule brute $\mathrm{C_4H_{10}O}$. La formule brute ne suffit pas à identifier une molécule : ces quatre alcools sont des **isomères de constitution**, et la même formule brute admet en outre trois éthers, comme le méthoxypropane, qui ne sont pas des alcools puisque leur oxygène est inséré dans la chaîne.
+  en: |-
+    Two carbon skeletons are possible with four carbons: the **linear** chain $\mathrm{C{-}C{-}C{-}C}$ and the **branched** chain $\mathrm{C{-}C(C){-}C}$, a propane carrying a methyl group on the central carbon.
+
+    On the linear chain, the hydroxyl group may occupy position $1$ or position $2$ (positions $3$ and $4$ give back the same molecules read from the other end):
+    - butan-1-ol, $\mathrm{CH_3{-}CH_2{-}CH_2{-}CH_2{-}OH}$;
+    - butan-2-ol, $\mathrm{CH_3{-}CH(OH){-}CH_2{-}CH_3}$.
+
+    On the branched chain, it may be carried by an end carbon or by the central carbon:
+    - 2-methylpropan-1-ol, $\mathrm{(CH_3)_2CH{-}CH_2{-}OH}$;
+    - 2-methylpropan-2-ol, $\mathrm{(CH_3)_3C{-}OH}$.
+
+    There are therefore **4** alcohols of molecular formula $\mathrm{C_4H_{10}O}$. The molecular formula is not enough to identify a molecule: these four alcohols are **constitutional isomers**, and the same molecular formula also admits three ethers, such as methoxypropane, which are not alcohols since their oxygen is inserted into the chain.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 3, calculationLength: 2, modellingOpenness: 3, linkedConcepts: 2, transfer: 3, autonomy: 3 }

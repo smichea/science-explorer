@@ -1,7 +1,13 @@
 <script lang="ts">
   import type { LessonTool } from '$lib/content-schema';
   import { evaluateScalar, type ToolState } from '$lib/domain/lesson';
-  import { amountAt, extentMax } from '$lib/domain/lessonTools';
+  import {
+    amountAt,
+    bondEnergyBalance,
+    electronMultipliers,
+    extentMax,
+    reactionYield,
+  } from '$lib/domain/lessonTools';
   import { L, locale, t } from '$lib/state/locale.svelte';
   import { fmt } from '../axes';
 
@@ -55,6 +61,48 @@
     )
   );
   const stoichiometric = $derived(result.limiting.length === reactants.length);
+  /** Yield of a synthesis: the amount of the first product obtained over the amount x_max allows. */
+  const synthesis = $derived.by(() => {
+    if (tool.obtained === undefined || products.length === 0) return null;
+    const obtained = Math.max(0, evaluateScalar(tool.obtained, tstate.params));
+    const maximum = amountAt(products[0], result.xmax, 'product');
+    return { product: products[0], obtained, maximum, yield: reactionYield(obtained, maximum) };
+  });
+  /** Molar reaction energy from the bond energies (positive: endothermic). */
+  const energy = $derived(tool.bonds.length ? bondEnergyBalance(tool.bonds) : null);
+  const electronsText = (n: number) => `${n > 1 ? n + ' ' : ''}e⁻`;
+  /** A side of a half-equation multiplied by k: `Ag⁺ + 2 H⁺` × 2 → `2 Ag⁺ + 4 H⁺`. */
+  function scaleSide(side: string, k: number): string {
+    if (k <= 1) return side;
+    return side
+      .split(' + ')
+      .map((term) => {
+        const m = /^(\d+)\s+(.+)$/.exec(term.trim());
+        return m ? `${Number(m[1]) * k} ${m[2]}` : `${k} ${term.trim()}`;
+      })
+      .join(' + ');
+  }
+  /** The two half-equations with their electron multipliers, and the overall equation. */
+  const redox = $derived.by(() => {
+    if (tool.halfEquations.length !== 2) return null;
+    const [h1, h2] = tool.halfEquations;
+    const [k1, k2] = electronMultipliers(h1.electrons, h2.electrons);
+    const halves = [
+      { ...h1, k: k1 },
+      { ...h2, k: k2 },
+    ].map((h) => ({
+      ...h,
+      text:
+        h.role === 'oxidation'
+          ? `${h.left} = ${h.right} + ${electronsText(h.electrons)}`
+          : `${h.left} + ${electronsText(h.electrons)} = ${h.right}`,
+    }));
+    return {
+      halves,
+      electrons: k1 * h1.electrons,
+      overall: `${scaleSide(h1.left, k1)} + ${scaleSide(h2.left, k2)} → ${scaleSide(h1.right, k1)} + ${scaleSide(h2.right, k2)}`,
+    };
+  });
 </script>
 
 <div class="tool stack-sm" data-testid="reaction-tool" data-extent={f(extent)}>
@@ -109,6 +157,70 @@
         .map((i) => (reactants[i]?.label ? L(reactants[i].label!) : reactants[i]?.formula))
         .join(', ')}{/if}
   </p>
+  {#if synthesis}
+    <p class="small" style="margin: 0" data-testid="reaction-yield">
+      {t('lesson.reaction.obtained')}
+      {synthesis.product.formula} = {f(synthesis.obtained)} / {f(synthesis.maximum)}
+      {tool.unit} · {t('lesson.reaction.yield')} η = {fmt(synthesis.yield * 100, locale.current, 1)} %
+    </p>
+  {/if}
+  {#if energy !== null}
+    <div class="scroll-x">
+      <table class="extent" data-testid="reaction-bonds">
+        <thead>
+          <tr>
+            <th>{t('lesson.reaction.bonds')}</th>
+            <th>kJ/mol</th>
+            <th>{t('lesson.reaction.broken')}</th>
+            <th>{t('lesson.reaction.formed')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each tool.bonds as b (b.id)}
+            <tr>
+              <td>{b.label}</td>
+              <td>{fmt(b.energy, locale.current, 0)}</td>
+              <td>{b.broken}</td>
+              <td>{b.formed}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </div>
+    <p class="small" style="margin: 0" data-testid="reaction-energy">
+      {t('lesson.reaction.energy')} E<sub>r</sub> = {energy > 0 ? '+' : ''}{fmt(
+        energy,
+        locale.current,
+        0
+      )} kJ/mol
+      {#if energy < 0}· {t('lesson.reaction.exothermic')}{:else if energy > 0}· {t(
+          'lesson.reaction.endothermic'
+        )}{/if}
+    </p>
+  {/if}
+  {#if redox}
+    <div class="small halves" data-testid="reaction-half-equations">
+      <p style="margin: 0"><strong>{t('lesson.reaction.halfEquations')}</strong></p>
+      <ul>
+        {#each redox.halves as h (h.id)}
+          <li>
+            <span class="muted"
+              >{t(
+                h.role === 'oxidation' ? 'lesson.reaction.oxidation' : 'lesson.reaction.reduction'
+              )}</span
+            >
+            :
+            {#if h.k > 1}<strong>×{h.k}</strong>{/if}
+            {h.text}
+          </li>
+        {/each}
+      </ul>
+      <p style="margin: 0">
+        {t('lesson.reaction.electrons')} : {redox.electrons} · {t('lesson.reaction.overall')} :
+        <strong>{redox.overall}</strong>
+      </p>
+    </div>
+  {/if}
   {#if interactive}
     <label class="field">
       <span class="label">{t('lesson.reaction.extent')} = {f(extent)} {tool.unit}</span>
@@ -167,5 +279,9 @@
     text-align: center;
     color: #a7b0c8;
     line-height: 1.1;
+  }
+  .halves ul {
+    margin: 0.25rem 0;
+    padding-left: 1.2rem;
   }
 </style>

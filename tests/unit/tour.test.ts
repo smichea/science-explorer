@@ -60,16 +60,15 @@ describe('bird’s-eye flight', () => {
     expect(countTourStops(steps)).toBe(ids.length);
     // The first leg is the recommended route, in its authored order, without its mission.
     const firstLeg = steps.find((s) => s.kind === 'leg');
+    // The rate of change is a Première notion: a foundation for Paul, left out of his flight.
     expect(firstLeg?.kind === 'leg' && firstLeg.nodeIds).toEqual([
       'concept.function',
       'concept.graph',
-      'concept.rate_of_change',
       'tool.derivative',
     ]);
     expect(firstLeg?.kind === 'leg' && firstLeg.stops.map((s) => s.title.fr)).toEqual([
       'Fonction',
       'Courbe représentative',
-      'Taux de variation',
       'Dérivée',
     ]);
     // A route leg frames its stops together instead of the centre of a region.
@@ -206,6 +205,40 @@ describe('bird’s-eye flight', () => {
     expect(ids).toContain('concept.number_sets');
     expect(ids).not.toContain('tool.derivative');
     expect(ids.length).toBeLessThan(allLessons.length);
+  });
+
+  it('starts a Première learner at the Première legs, the Seconde behind them', () => {
+    const sixteen = inferHorizon(16, config);
+    const steps = buildTour(tour, { ...ctx, horizon: sixteen });
+    const ids = stops(steps).map((s) => s.node.id);
+    // Everything but the Seconde-only foundations and the MP-only gradient, each once.
+    const own = allLessons.filter(
+      (n) =>
+        bandOf(stageFor(n, sixteen, config), sixteen, config) !== 'foundation' &&
+        !(n.depths.length && n.depths.every((d) => d.stage === 'mp'))
+    );
+    expect(new Set(ids).size).toBe(ids.length);
+    expect(ids.length).toBe(own.length);
+    expect(ids).not.toContain('concept.number_sets');
+    expect(ids).toContain('tool.quadratic');
+    expect(ids).toContain('tool.derivative');
+    expect(ids).toContain('concept.function');
+    const firstLeg = steps.find((s) => s.kind === 'leg');
+    expect(firstLeg?.kind === 'leg' && firstLeg.title.fr).toContain('Première');
+    const derivative = steps.find((s) => s.kind === 'stop' && s.node.id === 'tool.derivative');
+    expect(derivative?.kind === 'stop' && derivative.depth).toBe(1);
+    const kinematics = steps.find(
+      (s) => s.kind === 'stop' && s.node.id === 'model.kinematics_point'
+    );
+    expect(kinematics?.kind === 'stop' && kinematics.depth).toBe(2);
+    expect(prerequisiteInversions(steps, graph)).toEqual([]);
+    const withFoundations = buildTour(
+      tour,
+      { ...ctx, horizon: sixteen },
+      { includeFoundations: true }
+    );
+    expect(stops(withFoundations).length).toBe(allLessons.length - 1);
+    expect(prerequisiteInversions(withFoundations, graph)).toEqual([]);
   });
 
   it('flies the foundations only when asked, the routes of the earlier years first', () => {

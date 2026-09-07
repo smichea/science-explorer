@@ -1,0 +1,46 @@
+id: phenomenon.colour
+type: phenomenon
+world: world.physics
+region: region.physics.optics
+importance: 2
+tags: [lycee]
+title: { fr: "Couleurs et images : synthèses, couleur des objets, spectres", en: "Colours and images: syntheses, colour of objects, spectra" }
+shortPurpose:
+  fr: "Expliquer la couleur d'une lumière et celle d'un objet éclairé par la composition spectrale de la lumière reçue, diffusée ou absorbée."
+  en: "Explain the colour of a light and that of a lit object by the spectral composition of the light received, diffused or absorbed."
+overview:
+  fr: >-
+    Un écran de téléphone ne contient que trois couleurs de pixels, rouge, vert et bleu, et pourtant il affiche du blanc, du jaune et toutes les nuances : c'est la synthèse additive. Un filtre, lui, ne fabrique aucune couleur, il en retire : c'est la synthèse soustractive, celle des peintures et des encres. La couleur d'un objet n'existe pas toute seule, elle dépend de la lumière qui l'éclaire : un pull rouge éclairé en vert paraît noir. Et le spectre d'une lumière révèle exactement les longueurs d'onde qu'elle contient.
+  en: >-
+    A phone screen only contains three colours of pixels, red, green and blue, and yet it displays white, yellow and every shade: this is additive synthesis. A filter, on the other hand, makes no colour, it removes some: this is subtractive synthesis, that of paints and inks. The colour of an object does not exist on its own, it depends on the light that illuminates it: a red jumper lit in green looks black. And the spectrum of a light reveals exactly the wavelengths it contains.
+aliases:
+  fr: ["synthèse additive", "synthèse soustractive", "couleur des objets", "spectre d'émission", "spectre d'absorption"]
+  en: ["additive synthesis", "subtractive synthesis", "colour of objects", "emission spectrum", "absorption spectrum"]
+description:
+  fr: |
+    La lumière visible est l'ensemble des radiations de longueur d'onde comprises entre environ $400\ \mathrm{nm}$, le violet, et $800\ \mathrm{nm}$, le rouge ; à chaque radiation correspond une fréquence $\nu = \dfrac{c}{\lambda}$, avec $c = 3{,}00 \times 10^{8}\ \mathrm{m/s}$ dans le vide. Une lumière **polychromatique**, comme celle du Soleil, superpose de nombreuses radiations ; son **spectre** en donne la composition. La **synthèse additive** superpose des lumières : les trois couleurs primaires rouge, vert et bleu donnent deux à deux les couleurs secondaires jaune, cyan et magenta, et toutes les trois ensemble donnent du blanc. La **synthèse soustractive** retranche des radiations : un filtre jaune laisse passer le rouge et le vert et absorbe le bleu, et superposer un filtre jaune et un filtre cyan ne laisse que le vert.
+
+    La couleur perçue d'un **objet** n'est pas une propriété absolue : c'est celle de la lumière qu'il **diffuse** vers l'œil, c'est-à-dire ce qui reste de la lumière incidente une fois absorbées les radiations qu'il retient. Un objet rouge est un objet qui diffuse le rouge et absorbe le vert et le bleu. Éclairé en lumière blanche, il paraît rouge ; éclairé par une lumière verte, il n'a plus rien à diffuser et paraît **noir**. Une feuille blanche diffuse toutes les radiations, un objet noir les absorbe toutes. C'est pourquoi la couleur d'un vêtement change sous l'éclairage d'un magasin et sous le soleil : la lumière incidente n'a pas la même composition spectrale.
+
+    Deux types de spectres se lisent en physique : un **spectre d'émission**, continu pour un corps chaud comme le filament d'une lampe, formé de raies colorées pour un gaz excité ; et un **spectre d'absorption**, où des raies noires marquent les radiations retenues par un gaz traversé, comme dans la lumière du Soleil. Pièges classiques : croire qu'un filtre « colore » la lumière alors qu'il n'en retire que des radiations ; confondre les primaires de la synthèse additive, rouge, vert, bleu, avec celles de la synthèse soustractive, cyan, magenta, jaune ; oublier qu'aucune couleur ne peut apparaître si la lumière incidente ne la contient pas. Les raies des spectres s'expliquent par les niveaux d'énergie de l'atome et par le photon, la destination suivante.
+  en: |
+    Visible light is the set of radiations of wavelength between about $400\ \mathrm{nm}$, violet, and $800\ \mathrm{nm}$, red; to each radiation corresponds a frequency $\nu = \dfrac{c}{\lambda}$, with $c = 3.00 \times 10^{8}\ \mathrm{m/s}$ in a vacuum. A **polychromatic** light, such as sunlight, superposes many radiations; its **spectrum** gives its composition. **Additive synthesis** superposes lights: the three primary colours red, green and blue give in pairs the secondary colours yellow, cyan and magenta, and all three together give white. **Subtractive synthesis** removes radiations: a yellow filter lets red and green through and absorbs blue, and superposing a yellow filter and a cyan filter leaves only green.
+
+    The perceived colour of an **object** is not an absolute property: it is that of the light it **diffuses** towards the eye, that is, what is left of the incident light once the radiations it retains have been absorbed. A red object is an object that diffuses red and absorbs green and blue. Lit by white light, it looks red; lit by a green light, it has nothing left to diffuse and looks **black**. A white sheet diffuses every radiation, a black object absorbs them all. This is why the colour of a garment changes under the lighting of a shop and under the sun: the incident light does not have the same spectral composition.
+
+    Two kinds of spectra are read in physics: an **emission spectrum**, continuous for a hot body such as the filament of a lamp, made of coloured lines for an excited gas; and an **absorption spectrum**, where black lines mark the radiations retained by a gas the light has crossed, as in the light of the Sun. Classic traps: believing that a filter "colours" the light when it only removes radiations from it; confusing the primaries of additive synthesis, red, green, blue, with those of subtractive synthesis, cyan, magenta, yellow; forgetting that no colour can appear if the incident light does not contain it. The lines of the spectra are explained by the energy levels of the atom and by the photon, the next destination.
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "relier la couleur d'une lumière à sa composition spectrale et à la longueur d'onde de ses radiations, avec $\\nu = c / \\lambda$"
+        - "prévoir le résultat d'une synthèse additive de lumières et d'une synthèse soustractive par filtres"
+        - "expliquer la couleur d'un objet par les radiations qu'il diffuse et celles qu'il absorbe, en fonction de l'éclairage"
+        - "distinguer un spectre continu, un spectre de raies d'émission et un spectre de raies d'absorption"
+      en:
+        - "relate the colour of a light to its spectral composition and to the wavelength of its radiations, with $\\nu = c / \\lambda$"
+        - "predict the result of an additive synthesis of lights and of a subtractive synthesis through filters"
+        - "explain the colour of an object by the radiations it diffuses and those it absorbs, depending on the lighting"
+        - "distinguish a continuous spectrum, an emission line spectrum and an absorption line spectrum"

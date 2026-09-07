@@ -1,0 +1,55 @@
+id: tool.quadratic
+type: mathematical_tool
+world: world.mathematics
+region: region.math.numbers_algebra
+importance: 3
+backpack: true
+tags: [lycee]
+title: { fr: "Second degré : forme canonique, discriminant, racines, signe", en: "Quadratics: canonical form, discriminant, roots, sign" }
+shortPurpose:
+  fr: "Résoudre toute équation et toute inéquation du second degré, et lire d'un coup l'extremum, les racines et le signe d'un trinôme."
+  en: "Solve any quadratic equation and inequality, and read at a glance the extremum, the roots and the sign of a trinomial."
+overview:
+  fr: >-
+    Le trinôme du second degré est la première fonction dont on sait tout dire sans tracer sa courbe. Un seul nombre, le discriminant, décide s'il a deux racines, une seule ou aucune, et la forme canonique livre le sommet de la parabole donc l'extremum. C'est l'outil qui répond aux questions d'optimisation, qui donne le temps de vol d'un projectile et qui résout les inéquations où le signe change deux fois.
+  en: >-
+    The quadratic trinomial is the first function about which everything can be said without drawing its curve. A single number, the discriminant, decides whether it has two roots, one or none, and the canonical form yields the vertex of the parabola, hence the extremum. It is the tool that answers optimisation questions, gives the flight time of a projectile and solves the inequalities where the sign changes twice.
+aliases:
+  fr: ["trinôme du second degré", "forme canonique", "discriminant", "racines d'un trinôme", "parabole", "signe du trinôme"]
+  en: ["quadratic trinomial", "canonical form", "discriminant", "roots of a trinomial", "parabola", "sign of the trinomial"]
+description:
+  fr: |
+    Une **fonction polynôme du second degré** s'écrit $f(x) = ax^2 + bx + c$ avec $a \neq 0$. En mettant $a$ en facteur et en complétant le carré, on obtient sa **forme canonique** $f(x) = a\,(x - \alpha)^2 + \beta$, où $\alpha = -\dfrac{b}{2a}$ et $\beta = f(\alpha)$. Cette écriture dit tout de la courbe, une **parabole** de sommet $S(\alpha\,;\,\beta)$ et d'axe de symétrie la droite $x = \alpha$ : tournée vers le haut si $a > 0$, avec le **minimum** $\beta$ atteint en $\alpha$ ; tournée vers le bas si $a < 0$, avec le **maximum** $\beta$. Ainsi $f(x) = x^2 - 6x + 11 = (x - 3)^2 + 2$ a pour minimum $2$, atteint en $3$.
+
+    Le **discriminant** $\Delta = b^2 - 4ac$ décide du nombre de **racines**, c'est-à-dire des solutions de $f(x) = 0$. Si $\Delta > 0$, il y en a deux, $x_1 = \dfrac{-b - \sqrt{\Delta}}{2a}$ et $x_2 = \dfrac{-b + \sqrt{\Delta}}{2a}$, et $f(x) = a(x - x_1)(x - x_2)$ ; si $\Delta = 0$, une seule, $x_0 = -\dfrac{b}{2a}$, et $f(x) = a(x - x_0)^2$ ; si $\Delta < 0$, aucune racine réelle et aucune factorisation. Pour $2x^2 - 5x - 3$, $\Delta = 25 + 24 = 49$, donc $x_1 = \dfrac{5 - 7}{4} = -0{,}5$ et $x_2 = \dfrac{5 + 7}{4} = 3$.
+
+    Le **signe** du trinôme suit une règle unique : $f(x)$ est du signe de $a$ partout, sauf **entre les racines** quand elles existent, où il est du signe contraire. Une inéquation du second degré se résout donc en calculant $\Delta$, puis les racines, puis en dressant le tableau de signes : $2x^2 - 5x - 3 < 0$ a pour ensemble de solutions $]-0{,}5\,;\,3[$. Deux pièges : croire que $\Delta < 0$ signifie « pas de solution » à un problème alors que cela signifie seulement que le trinôme ne s'annule jamais et garde donc un signe constant, et oublier le facteur $a$ dans la forme factorisée, qui n'est pas $(x - x_1)(x - x_2)$ mais $a(x - x_1)(x - x_2)$.
+  en: |
+    A **quadratic polynomial function** is written $f(x) = ax^2 + bx + c$ with $a \neq 0$. Factoring out $a$ and completing the square gives its **canonical form** $f(x) = a\,(x - \alpha)^2 + \beta$, where $\alpha = -\dfrac{b}{2a}$ and $\beta = f(\alpha)$. This writing tells everything about the curve, a **parabola** with vertex $S(\alpha\,;\,\beta)$ and axis of symmetry the line $x = \alpha$: turned upwards if $a > 0$, with the **minimum** $\beta$ reached at $\alpha$; turned downwards if $a < 0$, with the **maximum** $\beta$. Thus $f(x) = x^2 - 6x + 11 = (x - 3)^2 + 2$ has minimum $2$, reached at $3$.
+
+    The **discriminant** $\Delta = b^2 - 4ac$ decides the number of **roots**, that is, of solutions of $f(x) = 0$. If $\Delta > 0$, there are two, $x_1 = \dfrac{-b - \sqrt{\Delta}}{2a}$ and $x_2 = \dfrac{-b + \sqrt{\Delta}}{2a}$, and $f(x) = a(x - x_1)(x - x_2)$; if $\Delta = 0$, only one, $x_0 = -\dfrac{b}{2a}$, and $f(x) = a(x - x_0)^2$; if $\Delta < 0$, no real root and no factorisation. For $2x^2 - 5x - 3$, $\Delta = 25 + 24 = 49$, so $x_1 = \dfrac{5 - 7}{4} = -0.5$ and $x_2 = \dfrac{5 + 7}{4} = 3$.
+
+    The **sign** of the trinomial follows a single rule: $f(x)$ has the sign of $a$ everywhere, except **between the roots** when they exist, where it has the opposite sign. A quadratic inequality is therefore solved by computing $\Delta$, then the roots, then drawing up the sign table: $2x^2 - 5x - 3 < 0$ has solution set $]-0.5\,;\,3[$. Two traps: believing that $\Delta < 0$ means "no solution" to a problem when it only means that the trinomial never vanishes and therefore keeps a constant sign, and forgetting the factor $a$ in the factored form, which is not $(x - x_1)(x - x_2)$ but $a(x - x_1)(x - x_2)$.
+tool:
+  problemSolved:
+    fr: "Résoudre exactement toute équation ou inéquation du second degré, et déterminer l'extremum d'une grandeur qui dépend d'une variable par un carré : une aire à maximiser, une hauteur de projectile, un coût à minimiser."
+    en: "Solve exactly any quadratic equation or inequality, and determine the extremum of a quantity depending on a variable through a square: an area to maximise, the height of a projectile, a cost to minimise."
+  construction:
+    fr: "On complète le carré : $ax^2 + bx + c = a\\left[(x + \\frac{b}{2a})^2 - \\frac{b^2 - 4ac}{4a^2}\\right]$, ce qui fait apparaître le sommet et le discriminant $\\Delta = b^2 - 4ac$ ; les racines sont alors les solutions de $(x + \\frac{b}{2a})^2 = \\frac{\\Delta}{4a^2}$, qui n'existent que si $\\Delta \\geq 0$."
+    en: "One completes the square: $ax^2 + bx + c = a\\left[(x + \\frac{b}{2a})^2 - \\frac{b^2 - 4ac}{4a^2}\\right]$, which reveals the vertex and the discriminant $\\Delta = b^2 - 4ac$; the roots are then the solutions of $(x + \\frac{b}{2a})^2 = \\frac{\\Delta}{4a^2}$, which exist only if $\\Delta \\geq 0$."
+  icon: parabola
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "mettre un trinôme sous forme canonique et en déduire le sommet de la parabole et l'extremum"
+        - "calculer le discriminant, déterminer les racines et écrire la forme factorisée quand elle existe"
+        - "dresser le tableau de signes d'un trinôme et résoudre une inéquation du second degré"
+        - "modéliser un problème d'optimisation ou de trajectoire par un trinôme et l'exploiter"
+      en:
+        - "put a trinomial in canonical form and deduce the vertex of the parabola and the extremum"
+        - "compute the discriminant, determine the roots and write the factored form when it exists"
+        - "draw up the sign table of a trinomial and solve a quadratic inequality"
+        - "model an optimisation or trajectory problem by a trinomial and exploit it"

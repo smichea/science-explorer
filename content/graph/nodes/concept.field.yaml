@@ -1,0 +1,65 @@
+id: concept.field
+type: model
+world: world.physics
+region: region.physics.fields_electromagnetism
+importance: 3
+tags: [lycee]
+title: { fr: "Champ électrique, champ de gravitation, champ uniforme", en: "Electric field, gravitational field, uniform field" }
+shortPurpose:
+  fr: "Décrire l'action à distance d'une charge ou d'une masse par un vecteur défini en tout point de l'espace, le champ, et reconnaître un champ uniforme."
+  en: "Describe the action at a distance of a charge or a mass by a vector defined at every point of space, the field, and recognise a uniform field."
+overview:
+  fr: >-
+    Plutôt que de calculer la force entre deux corps, on décrit ce qu'une charge ou une masse fait à tout l'espace autour d'elle : en chaque point, un vecteur, le champ. Le champ électrique est la force par unité de charge, le champ de gravitation la force par unité de masse, et une carte de champ montre d'un coup d'œil où l'action est forte ou faible. Entre les plaques d'un condensateur, comme dans une salle de classe pour la pesanteur, le champ est uniforme : le même vecteur partout.
+  en: >-
+    Rather than computing the force between two bodies, we describe what a charge or a mass does to the whole space around it: at each point, a vector, the field. The electric field is the force per unit charge, the gravitational field the force per unit mass, and a field map shows at a glance where the action is strong or weak. Between the plates of a capacitor, as in a classroom for gravity, the field is uniform: the same vector everywhere.
+aliases:
+  fr: ["champ électrique", "champ de gravitation", "champ de pesanteur", "champ uniforme", "ligne de champ"]
+  en: ["electric field", "gravitational field", "gravity field", "uniform field", "field line"]
+description:
+  fr: |
+    Un **champ vectoriel** associe à chaque point de l'espace un vecteur. Le **champ électrique** $\vec E$ en un point est défini par la force qu'y subirait une charge test $q$ : $\vec E = \dfrac{\vec F}{q}$, en newtons par coulomb ou en volts par mètre ($\mathrm{V/m}$) ; réciproquement, une charge $q$ placée dans un champ subit $\vec F = q\,\vec E$, de même sens que $\vec E$ si $q > 0$, de sens opposé si $q < 0$. Le champ créé par une charge ponctuelle $Q$ à la distance $d$ est radial, de valeur $E = k\,\dfrac{|Q|}{d^2}$, dirigé vers l'extérieur si $Q > 0$ et vers $Q$ si $Q < 0$. De même, le **champ de gravitation** créé par une masse $M$ est $\vec{\mathcal G} = \dfrac{\vec F}{m}$, en newtons par kilogramme, toujours dirigé vers $M$, de valeur $\mathcal G = G\,\dfrac{M}{d^2}$ ; à la surface de la Terre, c'est le champ de pesanteur $\vec g$, de valeur $9{,}8\ \mathrm{N/kg}$.
+
+    Le champ résout le problème de l'**action à distance** : la charge $Q$ modifie l'espace autour d'elle, et le vecteur $\vec E$ existe en chaque point même si aucune charge test n'est là pour le révéler. Une **carte de champ** dessine les vecteurs ou les lignes de champ, tangentes à $\vec E$ en tout point : elles divergent d'une charge positive et convergent vers une charge négative, et leur resserrement indique un champ intense. Une charge $Q = 1{,}0\ \mathrm{nC}$ crée à $10\ \mathrm{cm}$ un champ $E = 9{,}0 \times 10^{9} \times \dfrac{1{,}0 \times 10^{-9}}{0{,}10^2} = 9{,}0 \times 10^{2}\ \mathrm{V/m}$ ; un électron placé là subit une force $F = e\,E = 1{,}4 \times 10^{-16}\ \mathrm{N}$, dirigée vers $Q$.
+
+    Entre les armatures d'un **condensateur plan** soumis à la tension $U$ et séparées de la distance $d$, le champ est **uniforme** : même direction (perpendiculaire aux plaques), même sens (de l'armature positive vers l'armature négative) et même valeur $E = \dfrac{U}{d}$ en tout point ; avec $U = 200\ \mathrm{V}$ et $d = 10\ \mathrm{cm}$, $E = 2{,}0 \times 10^{3}\ \mathrm{V/m}$. Le champ de pesanteur est lui aussi uniforme à l'échelle d'une salle ou d'un terrain de sport : $\vec g$ vertical, vers le bas, de valeur $9{,}8\ \mathrm{N/kg}$ partout, ce qui rend la chute libre si simple. Pièges : $\vec E$ n'est pas une force, il faut le multiplier par une charge ; la force sur une charge négative est opposée au champ ; le champ du condensateur n'est uniforme que loin des bords. En Terminale, on étudie le mouvement d'une particule chargée dans ce champ uniforme, exactement comme une chute libre.
+  en: |
+    A **vector field** assigns a vector to each point of space. The **electric field** $\vec E$ at a point is defined by the force a test charge $q$ would experience there: $\vec E = \dfrac{\vec F}{q}$, in newtons per coulomb or in volts per metre ($\mathrm{V/m}$); conversely, a charge $q$ placed in a field experiences $\vec F = q\,\vec E$, with the same sense as $\vec E$ if $q > 0$, the opposite sense if $q < 0$. The field created by a point charge $Q$ at the distance $d$ is radial, of value $E = k\,\dfrac{|Q|}{d^2}$, pointing outwards if $Q > 0$ and towards $Q$ if $Q < 0$. Likewise, the **gravitational field** created by a mass $M$ is $\vec{\mathcal G} = \dfrac{\vec F}{m}$, in newtons per kilogram, always pointing towards $M$, of value $\mathcal G = G\,\dfrac{M}{d^2}$; at the surface of the Earth, it is the gravity field $\vec g$, of value $9.8\ \mathrm{N/kg}$.
+
+    The field solves the problem of **action at a distance**: the charge $Q$ modifies the space around it, and the vector $\vec E$ exists at each point even if no test charge is there to reveal it. A **field map** draws the vectors or the field lines, tangent to $\vec E$ at every point: they diverge from a positive charge and converge towards a negative charge, and their crowding indicates an intense field. A charge $Q = 1.0\ \mathrm{nC}$ creates at $10\ \mathrm{cm}$ a field $E = 9.0 \times 10^{9} \times \dfrac{1.0 \times 10^{-9}}{0.10^2} = 9.0 \times 10^{2}\ \mathrm{V/m}$; an electron placed there experiences a force $F = e\,E = 1.4 \times 10^{-16}\ \mathrm{N}$, directed towards $Q$.
+
+    Between the plates of a **plane capacitor** under the voltage $U$ and separated by the distance $d$, the field is **uniform**: same direction (perpendicular to the plates), same sense (from the positive plate to the negative plate) and same value $E = \dfrac{U}{d}$ at every point; with $U = 200\ \mathrm{V}$ and $d = 10\ \mathrm{cm}$, $E = 2.0 \times 10^{3}\ \mathrm{V/m}$. The gravity field is also uniform at the scale of a room or a sports field: $\vec g$ vertical, downwards, of value $9.8\ \mathrm{N/kg}$ everywhere, which makes free fall so simple. Traps: $\vec E$ is not a force, it must be multiplied by a charge; the force on a negative charge is opposite to the field; the field of the capacitor is uniform only far from the edges. In Grade 12, the motion of a charged particle in this uniform field is studied, exactly like a free fall.
+model:
+  assumptions:
+    fr:
+      - "Le champ en un point est la force par unité de charge (ou de masse) qu'y subirait une charge test (ou une masse test) assez petite pour ne pas perturber les sources."
+      - "Les sources sont ponctuelles ou à répartition sphérique : le champ d'une charge ou d'une masse ponctuelle est radial et décroît en $1/d^2$."
+      - "Entre les armatures d'un condensateur plan, loin des bords, le champ est uniforme, de valeur $E = U/d$ ; à l'échelle d'une expérience de laboratoire, le champ de pesanteur $\\vec g$ est uniforme."
+    en:
+      - "The field at a point is the force per unit charge (or mass) that a test charge (or test mass) small enough not to disturb the sources would experience there."
+      - "The sources are point-like or spherically distributed: the field of a point charge or a point mass is radial and decreases as $1/d^2$."
+      - "Between the plates of a plane capacitor, far from the edges, the field is uniform, of value $E = U/d$; at the scale of a laboratory experiment, the gravity field $\\vec g$ is uniform."
+  limits:
+    fr:
+      - "Près des bords des armatures, le champ n'est plus uniforme ; à l'intérieur de la matière, les charges du milieu modifient le champ."
+      - "Le champ de pesanteur n'est uniforme qu'à petite échelle : à l'échelle de la Terre, il est radial et décroît avec l'altitude."
+      - "Le modèle électrostatique suppose des charges immobiles : des charges en mouvement créent aussi un champ magnétique, hors programme de Première."
+    en:
+      - "Near the edges of the plates, the field is no longer uniform; inside matter, the charges of the medium modify the field."
+      - "The gravity field is uniform only at small scale: at the scale of the Earth, it is radial and decreases with altitude."
+      - "The electrostatic model assumes charges at rest: moving charges also create a magnetic field, beyond the Grade 11 programme."
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "définir le champ électrique $\\vec E = \\vec F / q$ et le champ de gravitation $\\vec{\\mathcal G} = \\vec F / m$, et donner leurs unités"
+        - "caractériser le champ créé par une charge ponctuelle ou par une masse ponctuelle (direction, sens, valeur en $1/d^2$) et lire une carte de champ"
+        - "calculer la force subie par une charge dans un champ électrique, $\\vec F = q\\,\\vec E$, et par une masse dans un champ de gravitation"
+        - "reconnaître un champ uniforme (condensateur plan, $E = U/d$ ; champ de pesanteur local) et le représenter"
+      en:
+        - "define the electric field $\\vec E = \\vec F / q$ and the gravitational field $\\vec{\\mathcal G} = \\vec F / m$, and give their units"
+        - "characterise the field created by a point charge or a point mass (direction, sense, value as $1/d^2$) and read a field map"
+        - "compute the force experienced by a charge in an electric field, $\\vec F = q\\,\\vec E$, and by a mass in a gravitational field"
+        - "recognise a uniform field (plane capacitor, $E = U/d$; local gravity field) and draw it"

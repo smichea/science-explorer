@@ -1,0 +1,134 @@
+# Leçon narrée — spectroscopie infrarouge : le spectre de transmittance de l'éthanol tracé sur le traceur, les bandes O–H, C–H et C–O
+# marquées par des intervalles, le groupe hydroxyle sur la molécule, puis la comparaison avec le spectre d'une cétone.
+id: lesson.method.ir_spectroscopy
+nodeId: method.ir_spectroscopy
+depth: 1
+tools:
+  - id: spectrum
+    kind: plotter
+    title: { fr: "Spectre infrarouge : transmittance et nombre d'onde", en: "Infrared spectrum: transmittance and wavenumber" }
+    variable: x
+    view: { x: [500, 4000], y: [0, 105] }
+    input: false
+    parameters:
+      - { id: p, label: { fr: "centre de la bande O–H (cm⁻¹)", en: "centre of the O–H band (cm⁻¹)" }, min: 2500, max: 3600, step: 10, value: 3350 }
+      - { id: w, label: { fr: "largeur de la bande O–H (cm⁻¹)", en: "width of the O–H band (cm⁻¹)" }, min: 60, max: 400, step: 10, value: 160 }
+    initial:
+      - { view: { labels: { x: "σ (cm⁻¹)", y: "T (%)" } } }
+  - id: ethanol
+    kind: molecule
+    title: { fr: "L'éthanol et son groupe hydroxyle", en: "Ethanol and its hydroxyl group" }
+    name: { fr: "éthanol", en: "ethanol" }
+    atoms:
+      - { id: c1, element: C, x: 1, y: 2.2 }
+      - { id: c2, element: C, x: 2.4, y: 3 }
+      - { id: o, element: O, x: 3.8, y: 2.2, lonePairs: 2 }
+      - { id: ho, element: H, x: 4.9, y: 2.9 }
+      - { id: h1, element: H, x: 0, y: 2.9 }
+      - { id: h2, element: H, x: 0.3, y: 1.4 }
+      - { id: h3, element: H, x: 1.5, y: 1.1 }
+      - { id: h4, element: H, x: 1.9, y: 4.2 }
+      - { id: h5, element: H, x: 3.1, y: 4.1 }
+    bonds:
+      - { id: cc, from: c1, to: c2, order: 1 }
+      - { id: co, from: c2, to: o, order: 1 }
+      - { id: oh, from: o, to: ho, order: 1 }
+      - { id: c1h1, from: c1, to: h1, order: 1 }
+      - { id: c1h2, from: c1, to: h2, order: 1 }
+      - { id: c1h3, from: c1, to: h3, order: 1 }
+      - { id: c2h4, from: c2, to: h4, order: 1 }
+      - { id: c2h5, from: c2, to: h5, order: 1 }
+    groups:
+      - id: hydroxyl
+        atoms: [o, ho]
+        label: { fr: "groupe hydroxyle –OH", en: "hydroxyl group –OH" }
+        family: { fr: "alcool", en: "alcohol" }
+steps:
+  - id: spectrum
+    title: { fr: "Lire un spectre infrarouge", en: "Reading an infrared spectrum" }
+    tool: spectrum
+    text:
+      fr: >-
+        Un spectromètre infrarouge éclaire l'échantillon et mesure, pour chaque radiation, la fraction de lumière transmise : la transmittance, en pourcentage.
+        On la porte en fonction du nombre d'onde sigma, l'inverse de la longueur d'onde, exprimé en centimètres puissance moins un, de quatre mille à cinq cents.
+        Sur les spectres publiés, l'axe est tracé à l'envers, les grands nombres d'onde à gauche ; ici il croît vers la droite, ce qui ne change ni les positions ni la lecture.
+        Voici le spectre de l'éthanol : chaque creux est une bande d'absorption, la trace d'une liaison qui vibre à cette fréquence.
+      en: >-
+        An infrared spectrometer illuminates the sample and measures, for each radiation, the fraction of light transmitted: the transmittance, in percent.
+        It is plotted against the wavenumber sigma, the reciprocal of the wavelength, expressed in centimetres to the power minus one, from four thousand down to five hundred.
+        On published spectra the axis is drawn the other way round, the large wavenumbers on the left; here it increases towards the right, which changes neither the positions nor the reading.
+        Here is the spectrum of ethanol: each dip is an absorption band, the trace of a bond vibrating at that frequency.
+    actions:
+      - { at: 3, set: { p: 3350, w: 160 }, plot: { id: alcohol, expr: "100-70*exp(-((x-p)/w)^2)-45*exp(-((x-2950)/60)^2)-35*exp(-((x-1050)/50)^2)", label: { fr: "éthanol", en: "ethanol" } } }
+  - id: bands
+    title: { fr: "Attribuer les bandes aux liaisons", en: "Assigning the bands to the bonds" }
+    tool: spectrum
+    text:
+      fr: >-
+        Reste à attribuer chaque bande à une liaison, à l'aide d'une table de valeurs de référence fournie avec l'exercice.
+        Entre 3200 et 3400, une bande large et forte signe la liaison O-H d'un alcool, élargie par les liaisons hydrogène.
+        Entre 2800 et 3000, des bandes fines signent les liaisons C-H, présentes dans presque toutes les molécules organiques.
+        Entre 1000 et 1300, une bande signe la liaison C-O, et les trois ensemble forment la signature d'un alcool.
+      en: >-
+        It remains to assign each band to a bond, using a table of reference values supplied with the exercise.
+        Between 3200 and 3400, a broad, strong band signs the O-H bond of an alcohol, broadened by hydrogen bonds.
+        Between 2800 and 3000, sharp bands sign the C-H bonds, present in almost every organic molecule.
+        Between 1000 and 1300, a band signs the C-O bond, and the three together form the signature of an alcohol.
+    actions:
+      - { at: 1, interval: { id: oh, from: 3200, to: 3400, label: { fr: "O–H", en: "O–H" } } }
+      - { at: 2, interval: { id: ch, from: 2800, to: 3000, label: { fr: "C–H", en: "C–H" } } }
+      - { at: 3, interval: { id: co, from: 1000, to: 1300, label: { fr: "C–O", en: "C–O" } } }
+  - id: groups
+    title: { fr: "Croiser avec la formule brute", en: "Crossing with the molecular formula" }
+    tool: ethanol
+    text:
+      fr: >-
+        Croisons maintenant les bandes avec la formule brute, ici deux carbones, six hydrogènes et un seul oxygène.
+        La bande O-H et la bande C-O désignent ce même oxygène, engagé dans un groupe hydroxyle : la molécule est bien un alcool, l'éthanol.
+        Si le spectre n'avait montré aucune bande au-dessus de 3000, mais une bande forte et fine vers 1715, il aurait fallu conclure à un carbonyle, donc à une cétone ou à un aldéhyde.
+        Et une bande très large, de 2500 à 3200, accompagnée de cette bande forte, signerait un acide carboxylique.
+      en: >-
+        Let us now cross the bands with the molecular formula, here two carbons, six hydrogens and a single oxygen.
+        The O-H band and the C-O band point to that same oxygen, engaged in a hydroxyl group: the molecule is indeed an alcohol, ethanol.
+        Had the spectrum shown no band above 3000, but a strong sharp band near 1715, one would have had to conclude a carbonyl, hence a ketone or an aldehyde.
+        And a very broad band, from 2500 to 3200, together with that strong band, would sign a carboxylic acid.
+  - id: compare
+    title: { fr: "Comparer deux spectres, contrôler une synthèse", en: "Comparing two spectra, checking a synthesis" }
+    tool: spectrum
+    text:
+      fr: >-
+        Comparons : voici, en pointillés, le spectre de la propanone, une cétone.
+        Aucune bande au-dessus de 3000, mais une bande forte et fine à 1715, celle du carbonyle.
+        C'est ainsi que l'on contrôle une synthèse : après une estérification, la bande O-H de l'alcool doit avoir disparu et celle du carbonyle de l'ester être apparue.
+        Deux pièges pour finir : une bande pointe vers le bas, puisque l'on trace la transmittance, et la région sous 1500, dite empreinte digitale, est riche mais difficile à interpréter.
+      en: >-
+        Let us compare: here, dashed, is the spectrum of propanone, a ketone.
+        No band above 3000, but a strong sharp band at 1715, that of the carbonyl.
+        This is how a synthesis is checked: after an esterification, the O-H band of the alcohol must have disappeared and that of the carbonyl of the ester must have appeared.
+        Two traps to end with: a band points downwards, since the transmittance is plotted, and the region below 1500, called the fingerprint region, is rich but hard to interpret.
+    actions:
+      - { at: 0, plot: { id: ketone, expr: "100-55*exp(-((x-1715)/45)^2)-35*exp(-((x-2960)/60)^2)", dashed: true, label: { fr: "propanone", en: "propanone" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de déplacer la bande", en: "Your turn to move the band" }
+    tool: spectrum
+    text:
+      fr: >-
+        À vous. Déplacez le centre et la largeur de la bande O-H : en la portant vers 2900 et en l'élargissant beaucoup, vous passez du spectre d'un alcool à celui d'un acide carboxylique.
+        Survolez la courbe pour lire un nombre d'onde, puis passez à la molécule d'éthanol pour retrouver le groupe hydroxyle responsable de la bande large.
+      en: >-
+        Your turn. Move the centre and the width of the O-H band: by carrying it towards 2900 and broadening it a lot, you go from the spectrum of an alcohol to that of a carboxylic acid.
+        Hover over the curve to read a wavenumber, then switch to the ethanol molecule to find again the hydroxyl group responsible for the broad band.
+    actions:
+      - { at: 0, set: { p: 3350, w: 160 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : une longueur d'onde déduite d'un nombre d'onde, puis l'identification d'un composé à partir de ses bandes.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: a wavelength deduced from a wavenumber, then the identification of a compound from its bands.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.ir.wavenumber_wavelength, exercise.ir.identify_ketone]

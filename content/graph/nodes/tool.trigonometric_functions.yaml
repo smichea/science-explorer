@@ -1,0 +1,55 @@
+id: tool.trigonometric_functions
+type: mathematical_tool
+world: world.mathematics
+region: region.math.functions_analysis
+importance: 3
+backpack: true
+tags: [lycee]
+title: { fr: "Cercle trigonométrique, radian, cosinus et sinus", en: "Unit circle, radian, cosine and sine" }
+shortPurpose:
+  fr: "Mesurer un angle par la longueur d'un arc et décrire tout phénomène qui se répète par le cosinus et le sinus d'un point qui tourne."
+  en: "Measure an angle by the length of an arc and describe any repeating phenomenon through the cosine and the sine of a turning point."
+overview:
+  fr: >-
+    Enrouler la droite des nombres autour d'un cercle de rayon un : voilà toute la trigonométrie de Première. Chaque réel vient se poser sur un point du cercle, dont l'abscisse est le cosinus et l'ordonnée le sinus. Comme le point revient au même endroit après un tour, ces deux fonctions se répètent, et c'est pourquoi elles décrivent une corde qui vibre, une tension alternative ou la hauteur du Soleil au fil des saisons.
+  en: >-
+    Winding the number line around a circle of radius one: that is the whole of Grade 11 trigonometry. Every real number lands on a point of the circle, whose abscissa is the cosine and whose ordinate is the sine. Since the point returns to the same place after one turn, these two functions repeat, and this is why they describe a vibrating string, an alternating voltage or the height of the Sun through the seasons.
+aliases:
+  fr: ["cercle trigonométrique", "radian", "enroulement de la droite numérique", "cosinus", "sinus", "angles remarquables"]
+  en: ["unit circle", "radian", "winding of the number line", "cosine", "sine", "remarkable angles"]
+description:
+  fr: |
+    Le **cercle trigonométrique** est le cercle de centre $O$ et de rayon $1$, orienté dans le sens inverse des aiguilles d'une montre. On y **enroule la droite numérique** : à tout réel $x$ correspond un unique point $M$ du cercle, obtenu en parcourant un arc de longueur $|x|$ depuis le point $I(1\,;\,0)$. La mesure d'un angle en **radians** est justement la longueur de cet arc, ce qui donne la conversion $180° = \pi$ rad, donc $1$ rad $\approx 57{,}3°$ ; un angle de $135°$ mesure $\dfrac{3\pi}{4} \approx 2{,}36$ rad. Comme le tour complet vaut $2\pi$, les réels $x$ et $x + 2k\pi$ pour $k$ entier repèrent le même point : le repérage est unique modulo $2\pi$.
+
+    Le **cosinus** et le **sinus** de $x$ sont les coordonnées de ce point $M$ : $\cos x$ en abscisse, $\sin x$ en ordonnée. Il en découle immédiatement l'encadrement $-1 \leq \cos x \leq 1$ et $-1 \leq \sin x \leq 1$, ainsi que la relation fondamentale $\cos^2 x + \sin^2 x = 1$, qui n'est que le théorème de Pythagore dans le triangle rectangle de sommets $O$, $M$ et son projeté. Les valeurs des **angles remarquables** se lisent sur le cercle : $\cos\dfrac{\pi}{3} = \dfrac12$, $\sin\dfrac{\pi}{3} = \dfrac{\sqrt3}{2}$, $\cos\dfrac{\pi}{4} = \sin\dfrac{\pi}{4} = \dfrac{\sqrt2}{2}$, $\cos\dfrac{\pi}{6} = \dfrac{\sqrt3}{2}$.
+
+    Les **symétries** du cercle donnent les formules sans rien apprendre par cœur. Le point de $-x$ est le symétrique de celui de $x$ par rapport à l'axe des abscisses, d'où $\cos(-x) = \cos x$ et $\sin(-x) = -\sin x$ : le cosinus est pair, le sinus impair. Le point de $\pi - x$ est le symétrique par rapport à l'axe des ordonnées, d'où $\cos(\pi - x) = -\cos x$ et $\sin(\pi - x) = \sin x$ ; ainsi $\cos\dfrac{2\pi}{3} = -\cos\dfrac{\pi}{3} = -\dfrac12$. Reportées dans un repère, les fonctions $x \mapsto \cos x$ et $x \mapsto \sin x$ dessinent deux courbes ondulées de période $2\pi$, la seconde étant la première décalée de $\dfrac{\pi}{2}$. Le piège le plus fréquent est de calculer avec la calculatrice en degrés quand l'énoncé est en radians, ou l'inverse.
+  en: |
+    The **unit circle** is the circle with centre $O$ and radius $1$, oriented anticlockwise. The **number line is wound** around it: to every real $x$ corresponds a unique point $M$ of the circle, obtained by travelling an arc of length $|x|$ from the point $I(1\,;\,0)$. The measure of an angle in **radians** is precisely the length of that arc, which gives the conversion $180° = \pi$ rad, so $1$ rad $\approx 57.3°$; an angle of $135°$ measures $\dfrac{3\pi}{4} \approx 2.36$ rad. Since a full turn is $2\pi$, the reals $x$ and $x + 2k\pi$ for integer $k$ locate the same point: the location is unique modulo $2\pi$.
+
+    The **cosine** and the **sine** of $x$ are the coordinates of that point $M$: $\cos x$ as abscissa, $\sin x$ as ordinate. It follows immediately that $-1 \leq \cos x \leq 1$ and $-1 \leq \sin x \leq 1$, as well as the fundamental relation $\cos^2 x + \sin^2 x = 1$, which is only Pythagoras' theorem in the right triangle with vertices $O$, $M$ and its projection. The values of the **remarkable angles** are read on the circle: $\cos\dfrac{\pi}{3} = \dfrac12$, $\sin\dfrac{\pi}{3} = \dfrac{\sqrt3}{2}$, $\cos\dfrac{\pi}{4} = \sin\dfrac{\pi}{4} = \dfrac{\sqrt2}{2}$, $\cos\dfrac{\pi}{6} = \dfrac{\sqrt3}{2}$.
+
+    The **symmetries** of the circle give the formulas without learning anything by heart. The point of $-x$ is the mirror image of that of $x$ across the axis of abscissae, hence $\cos(-x) = \cos x$ and $\sin(-x) = -\sin x$: the cosine is even, the sine odd. The point of $\pi - x$ is the mirror image across the axis of ordinates, hence $\cos(\pi - x) = -\cos x$ and $\sin(\pi - x) = \sin x$; thus $\cos\dfrac{2\pi}{3} = -\cos\dfrac{\pi}{3} = -\dfrac12$. Plotted in a coordinate system, the functions $x \mapsto \cos x$ and $x \mapsto \sin x$ draw two wavy curves of period $2\pi$, the second being the first shifted by $\dfrac{\pi}{2}$. The most frequent trap is computing with the calculator in degrees when the statement is in radians, or the other way round.
+tool:
+  problemSolved:
+    fr: "Décrire un phénomène qui se répète — une rotation, une vibration, une onde, une tension alternative — par deux fonctions bornées et périodiques, et calculer les longueurs et les angles d'une figure sans mesurer."
+    en: "Describe a repeating phenomenon — a rotation, a vibration, a wave, an alternating voltage — by two bounded and periodic functions, and compute the lengths and angles of a figure without measuring."
+  construction:
+    fr: "On enroule la droite numérique sur le cercle de rayon $1$ : le réel $x$ est envoyé sur le point d'arc $x$ à partir de $I$, et l'on pose $\\cos x$ et $\\sin x$ égaux aux coordonnées de ce point ; la périodicité, la parité et la relation $\\cos^2 x + \\sin^2 x = 1$ se lisent alors directement sur la figure."
+    en: "The number line is wound onto the circle of radius $1$: the real $x$ is sent to the point at arc length $x$ from $I$, and $\\cos x$ and $\\sin x$ are defined as the coordinates of that point; periodicity, parity and the relation $\\cos^2 x + \\sin^2 x = 1$ are then read directly off the figure."
+  icon: circle
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "convertir une mesure d'angle entre degrés et radians et placer un réel sur le cercle trigonométrique"
+        - "donner le cosinus et le sinus des angles remarquables et utiliser cos² x + sin² x = 1"
+        - "utiliser les symétries du cercle pour cos(−x), sin(−x), cos(π − x) et sin(π − x)"
+        - "reconnaître et tracer les courbes des fonctions cosinus et sinus, périodiques de période 2π"
+      en:
+        - "convert an angle measure between degrees and radians and place a real number on the unit circle"
+        - "give the cosine and the sine of the remarkable angles and use cos² x + sin² x = 1"
+        - "use the symmetries of the circle for cos(−x), sin(−x), cos(π − x) and sin(π − x)"
+        - "recognise and draw the curves of the cosine and sine functions, periodic with period 2π"

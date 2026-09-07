@@ -44,7 +44,7 @@ Age selects a default learning horizon, not an absolute permission boundary. Pau
 
 ## Status
 
-The [initial implementation target](#initial-implementation-target) below is implemented as a complete vertical slice: bilingual local onboarding, the three worlds with every region visible from the first session, the derivative tool at three depths, eight linked phenomena, the historical mission *Galileo in Padua: the inclined plane*, two reusable simulation engines, five exercise types with evidence collection, the virtual backpack (application coverage and mastery), learner and guide views, offline use as an installable progressive web app, and local persistence with export/import.
+The [initial implementation target](#initial-implementation-target) below is implemented as a complete vertical slice: bilingual local onboarding, the three worlds with every region visible from the first session, the derivative tool at four depths (Grade 11 to the second preparatory year), eight linked phenomena, the historical mission *Galileo in Padua: the inclined plane*, two reusable simulation engines, five exercise types with evidence collection, the virtual backpack (application coverage and mastery), learner and guide views, offline use as an installable progressive web app, and local persistence with export/import.
 
 ## Getting started
 

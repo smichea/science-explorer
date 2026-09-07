@@ -1,0 +1,53 @@
+# Leçon spectroscopie infrarouge — longueur d'onde associée au nombre d'onde d'une bande O–H (réponse numérique)
+id: exercise.ir.wavenumber_wavelength
+type: numeric
+nodeId: method.ir_spectroscopy
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Sur le spectre infrarouge d'un alcool, la bande large de la liaison $\mathrm{O{-}H}$ a son minimum au nombre d'onde $\sigma = 3350\ \mathrm{cm^{-1}}$.
+
+    Sachant que $\sigma = \dfrac{1}{\lambda}$, donnez la longueur d'onde $\lambda$ de la radiation absorbée, en micromètres, avec trois chiffres significatifs.
+  en: |-
+    On the infrared spectrum of an alcohol, the broad band of the $\mathrm{O{-}H}$ bond has its minimum at the wavenumber $\sigma = 3350\ \mathrm{cm^{-1}}$.
+
+    Knowing that $\sigma = \dfrac{1}{\lambda}$, give the wavelength $\lambda$ of the radiation absorbed, in micrometres, with three significant figures.
+numeric:
+  value: 2.99
+  unit: "µm"
+  tolerance: { kind: absolute, value: 0.05 }
+  inputLabel: { fr: "λ", en: "λ" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le nombre d'onde s'exprime en $\mathrm{cm^{-1}}$ : son inverse est donc une longueur en centimètres.
+      en: |-
+        The wavenumber is expressed in $\mathrm{cm^{-1}}$: its reciprocal is therefore a length in centimetres.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\lambda = \dfrac{1}{3350}\ \mathrm{cm}$, puis convertissez : $1\ \mathrm{cm} = 10^{4}\ \mathrm{\mu m}$.
+      en: |-
+        $\lambda = \dfrac{1}{3350}\ \mathrm{cm}$, then convert: $1\ \mathrm{cm} = 10^{4}\ \mathrm{\mu m}$.
+solution:
+  fr: |-
+    Le nombre d'onde est l'inverse de la longueur d'onde, exprimé ici en centimètres à la puissance moins un :
+    $$\lambda = \frac{1}{\sigma} = \frac{1}{3350} = 2{,}985 \times 10^{-4}\ \mathrm{cm}.$$
+
+    Comme $1\ \mathrm{cm} = 10^{4}\ \mathrm{\mu m}$,
+    $$\lambda = 2{,}985 \times 10^{-4} \times 10^{4} = 2{,}99\ \mathrm{\mu m}.$$
+
+    Cette radiation appartient bien à l'infrarouge, dont les longueurs d'onde s'étendent d'environ $0{,}8\ \mathrm{\mu m}$ à quelques centaines de micromètres ; la fenêtre habituelle d'un spectre infrarouge, de $4000$ à $500\ \mathrm{cm^{-1}}$, correspond à $2{,}5$ à $20\ \mathrm{\mu m}$. Retenez que le nombre d'onde est **proportionnel à la fréquence** de la vibration de la liaison : plus la liaison est forte et plus les atomes sont légers, plus la bande se situe à grand nombre d'onde.
+  en: |-
+    The wavenumber is the reciprocal of the wavelength, expressed here in centimetres to the power minus one:
+    $$\lambda = \frac{1}{\sigma} = \frac{1}{3350} = 2.985 \times 10^{-4}\ \mathrm{cm}.$$
+
+    Since $1\ \mathrm{cm} = 10^{4}\ \mathrm{\mu m}$,
+    $$\lambda = 2.985 \times 10^{-4} \times 10^{4} = 2.99\ \mathrm{\mu m}.$$
+
+    This radiation indeed belongs to the infrared, whose wavelengths run from about $0.8\ \mathrm{\mu m}$ to a few hundred micrometres; the usual window of an infrared spectrum, from $4000$ to $500\ \mathrm{cm^{-1}}$, corresponds to $2.5$ to $20\ \mathrm{\mu m}$. Remember that the wavenumber is **proportional to the frequency** of the vibration of the bond: the stronger the bond and the lighter the atoms, the higher the wavenumber of the band.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 2, transfer: 2, autonomy: 2 }

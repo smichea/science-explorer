@@ -1,0 +1,57 @@
+# Leçon cohésion et dissolution — extraction du diiode par le cyclohexane et concentration en masse dans la phase organique (réponse numérique)
+id: exercise.cohesion.extraction
+type: numeric
+nodeId: concept.cohesion_dissolution
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    Une solution aqueuse de volume $100\ \mathrm{mL}$ contient $0{,}20\ \mathrm{g}$ de diiode. On l'agite dans une ampoule à décanter avec $50\ \mathrm{mL}$ de cyclohexane, solvant apolaire non miscible à l'eau, puis on laisse décanter. Après séparation, la phase aqueuse ne contient plus que $0{,}020\ \mathrm{g}$ de diiode.
+
+    Donnez la concentration en masse du diiode dans la phase organique, en $\mathrm{g/L}$.
+  en: |-
+    An aqueous solution of volume $100\ \mathrm{mL}$ contains $0.20\ \mathrm{g}$ of diiodine. It is shaken in a separating funnel with $50\ \mathrm{mL}$ of cyclohexane, a non-polar solvent not miscible with water, then left to settle. After separation, the aqueous phase contains only $0.020\ \mathrm{g}$ of diiodine.
+
+    Give the mass concentration of diiodine in the organic phase, in $\mathrm{g/L}$.
+numeric:
+  value: 3.6
+  unit: "g/L"
+  tolerance: { kind: absolute, value: 0.1 }
+  inputLabel: { fr: "C_m (phase organique)", en: "C_m (organic phase)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le diiode n'a pas disparu : la masse qui a quitté la phase aqueuse se retrouve dans le cyclohexane.
+      en: |-
+        The diiodine has not disappeared: the mass that has left the aqueous phase is found in the cyclohexane.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Calculez la masse extraite, puis divisez-la par le volume de cyclohexane, exprimé en litres, et non par le volume total.
+      en: |-
+        Compute the mass extracted, then divide it by the volume of cyclohexane, expressed in litres, and not by the total volume.
+solution:
+  fr: |-
+    Le diiode est une espèce apolaire : il est peu soluble dans l'eau, très polaire, et bien plus soluble dans le cyclohexane, apolaire. Le semblable dissout le semblable, et l'agitation lui fait franchir l'interface.
+
+    La masse de diiode se conserve, donc la masse passée dans la phase organique vaut
+    $$m_{\text{extraite}} = 0{,}20 - 0{,}020 = 0{,}18\ \mathrm{g}.$$
+
+    Cette masse se trouve dans les $50\ \mathrm{mL} = 0{,}050\ \mathrm{L}$ de cyclohexane :
+    $$C_m = \frac{m_{\text{extraite}}}{V_{\text{organique}}} = \frac{0{,}18}{0{,}050} = 3{,}6\ \mathrm{g/L}.$$
+
+    L'extraction a fait passer $90\ \%$ du diiode dans le solvant organique. Le cyclohexane étant moins dense que l'eau, il forme la phase supérieure de l'ampoule à décanter, et elle se colore en violet : c'est ainsi qu'on repère la phase à recueillir.
+  en: |-
+    Diiodine is a non-polar species: it is poorly soluble in water, which is very polar, and much more soluble in cyclohexane, which is non-polar. Like dissolves like, and shaking makes it cross the interface.
+
+    The mass of diiodine is conserved, so the mass that has passed into the organic phase is
+    $$m_{\text{extracted}} = 0.20 - 0.020 = 0.18\ \mathrm{g}.$$
+
+    This mass sits in the $50\ \mathrm{mL} = 0.050\ \mathrm{L}$ of cyclohexane:
+    $$C_m = \frac{m_{\text{extracted}}}{V_{\text{organic}}} = \frac{0.18}{0.050} = 3.6\ \mathrm{g/L}.$$
+
+    The extraction has carried $90\ \%$ of the diiodine into the organic solvent. Since cyclohexane is less dense than water, it forms the upper phase of the separating funnel, and it turns purple: that is how the phase to be collected is spotted.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 2, transfer: 3, autonomy: 3 }

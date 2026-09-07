@@ -1,0 +1,55 @@
+# Second degré — forme canonique de x² − 6x + 11 et valeur du minimum (réponse numérique)
+id: exercise.quadratic.canonical_vertex
+type: numeric
+nodeId: tool.quadratic
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Soit $f$ la fonction définie sur $\mathbb{R}$ par $f(x) = x^2 - 6x + 11$.
+
+    Mettez $f$ sous forme canonique $a(x - \alpha)^2 + \beta$, puis donnez la **valeur du minimum** de $f$ sur $\mathbb{R}$.
+  en: |-
+    Let $f$ be the function defined on $\mathbb{R}$ by $f(x) = x^2 - 6x + 11$.
+
+    Put $f$ in canonical form $a(x - \alpha)^2 + \beta$, then give the **value of the minimum** of $f$ on $\mathbb{R}$.
+numeric:
+  value: 2
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "minimum de f", en: "minimum of f" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        L'abscisse du sommet est $\alpha = -\dfrac{b}{2a}$. Ici $a = 1$ et $b = -6$.
+      en: |-
+        The abscissa of the vertex is $\alpha = -\dfrac{b}{2a}$. Here $a = 1$ and $b = -6$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $x^2 - 6x$ est le début du développement de $(x - 3)^2 = x^2 - 6x + 9$. Il ne reste qu'à corriger la constante.
+      en: |-
+        $x^2 - 6x$ is the beginning of the expansion of $(x - 3)^2 = x^2 - 6x + 9$. It only remains to correct the constant.
+solution:
+  fr: |-
+    On complète le carré. Comme $(x - 3)^2 = x^2 - 6x + 9$, on a $x^2 - 6x = (x - 3)^2 - 9$, donc
+    $$f(x) = (x - 3)^2 - 9 + 11 = (x - 3)^2 + 2.$$
+    Le coefficient $a = 1$ est positif et un carré est toujours positif ou nul, donc $f(x) \geq 2$ pour tout $x$, avec égalité si et seulement si $x = 3$. Le **minimum de $f$ vaut $2$**, atteint en $x = 3$.
+
+    **Interprétation.** La forme canonique livre d'un coup le sommet de la parabole, $S(3\,;\,2)$, l'axe de symétrie $x = 3$ et le tableau de variations : $f$ décroît sur $]-\infty\,;\,3]$ puis croît sur $[3\,;\,+\infty[$. Elle montre aussi que $f$ ne s'annule jamais, puisque son minimum est strictement positif — ce que confirme le discriminant, $\Delta = 36 - 44 = -8 < 0$.
+  en: |-
+    Complete the square. Since $(x - 3)^2 = x^2 - 6x + 9$, we have $x^2 - 6x = (x - 3)^2 - 9$, hence
+    $$f(x) = (x - 3)^2 - 9 + 11 = (x - 3)^2 + 2.$$
+    The coefficient $a = 1$ is positive and a square is always positive or zero, so $f(x) \geq 2$ for every $x$, with equality if and only if $x = 3$. The **minimum of $f$ is $2$**, reached at $x = 3$.
+
+    **Interpretation.** The canonical form yields at once the vertex of the parabola, $S(3\,;\,2)$, the axis of symmetry $x = 3$ and the variation table: $f$ decreases on $]-\infty\,;\,3]$ then increases on $[3\,;\,+\infty[$. It also shows that $f$ never vanishes, since its minimum is strictly positive — which the discriminant confirms, $\Delta = 36 - 44 = -8 < 0$.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 3

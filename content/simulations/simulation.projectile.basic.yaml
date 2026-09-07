@@ -1,0 +1,75 @@
+# Projectile : une balle lancée depuis le sol avec une vitesse initiale et un angle de tir, frottement fluide optionnel.
+id: simulation.projectile.basic
+engine: motion_2d
+title: { fr: "Lancer d'un projectile", en: "Projectile launch" }
+description:
+  fr: |-
+    Une balle de 0,5 kg est lancée depuis le sol avec une vitesse initiale réglable (12 m/s par défaut) et un angle de tir réglable (45° par défaut) dans le champ de pesanteur terrestre. Sans frottement, la seule force est le poids : le vecteur variation de vitesse est vertical, dirigé vers le bas, de norme $g\,\Delta t$ sur chaque intervalle, quelle que soit la masse ; la composante horizontale de la vitesse est constante et la trajectoire est une parabole. Avec les valeurs par défaut, la balle monte à $3{,}67\ \mathrm{m}$, retombe après $1{,}73\ \mathrm{s}$ à $14{,}7\ \mathrm{m}$ du point de lancement, et son énergie mécanique reste égale à $36\ \mathrm{J}$. Un frottement fluide linéaire optionnel, $\vec F = -k\,\vec v$, raccourcit la portée et fait décroître l'énergie mécanique.
+  en: |-
+    A 0.5 kg ball is launched from the ground with an adjustable initial speed (12 m/s by default) and an adjustable launch angle (45° by default) in the Earth's gravitational field. Without drag, the only force is the weight: the velocity-variation vector is vertical, pointing downwards, of magnitude $g\,\Delta t$ over each interval, whatever the mass; the horizontal component of the velocity is constant and the trajectory is a parabola. With the default values, the ball rises to $3.67\ \mathrm{m}$, lands after $1.73\ \mathrm{s}$ at $14.7\ \mathrm{m}$ from the launch point, and its mechanical energy stays equal to $36\ \mathrm{J}$. An optional linear drag force, $\vec F = -k\,\vec v$, shortens the range and makes the mechanical energy decrease.
+seedPolicy: deterministic
+seed: 1811
+config:
+  scene: projectile
+  g: 9.81
+  mass: 0.5
+  initialHeight: 0
+  initialSpeed: 12
+  launchAngle: 45
+  linearDrag: 0
+  dt: 0.001
+controls:
+  - { variable: initialSpeed, label: { fr: "Vitesse initiale", en: "Initial speed" }, min: 4, max: 20, step: 1, unit: "m/s", default: 12 }
+  - { variable: launchAngle, label: { fr: "Angle de tir", en: "Launch angle" }, min: 10, max: 80, step: 5, unit: "°", default: 45 }
+  - { variable: linearDrag, label: { fr: "Coefficient de frottement fluide k", en: "Linear drag coefficient k" }, min: 0, max: 1, step: 0.05, unit: "kg/s", default: 0 }
+observables: [position, velocity, acceleration, energy]
+views: [world, position_time_graph, velocity_time_graph, energy_graph, table]
+modelNode: model.kinematics_point
+assumptions:
+  fr:
+    - "Point matériel de masse 0,5 kg, lancé depuis le sol avec la vitesse $v_0$ et l'angle de tir $\\alpha$ par rapport à l'horizontale."
+    - "Champ de pesanteur uniforme, $g = 9.81\\ \\mathrm{m/s^2}$, dirigé vers le bas."
+    - |-
+      Si $k = 0$ : aucune force autre que le poids, donc $x(t) = v_0\cos\alpha\, t$ et $y(t) = -\tfrac12 g t^2 + v_0 \sin\alpha\, t$ ; la trajectoire est une parabole de portée $v_0^2 \sin(2\alpha)/g$.
+    - |-
+      Si $k > 0$ : frottement fluide proportionnel à la vitesse, $\vec F = -k\,\vec v$, qui freine les deux composantes du mouvement.
+    - "Sol rigide : la simulation s'arrête au retour au sol."
+  en:
+    - "Point mass of 0.5 kg, launched from the ground with the speed $v_0$ and the launch angle $\\alpha$ above the horizontal."
+    - "Uniform gravitational field, $g = 9.81\\ \\mathrm{m/s^2}$, directed downwards."
+    - |-
+      If $k = 0$: no force other than the weight, so $x(t) = v_0\cos\alpha\, t$ and $y(t) = -\tfrac12 g t^2 + v_0 \sin\alpha\, t$; the trajectory is a parabola of range $v_0^2 \sin(2\alpha)/g$.
+    - |-
+      If $k > 0$: linear drag proportional to the velocity, $\vec F = -k\,\vec v$, which slows both components of the motion.
+    - "Rigid ground: the simulation stops when the ball returns to the ground."
+validity:
+  fr: |-
+    Vitesses de 4 m/s à 20 m/s et portées de quelques mètres à une quarantaine de mètres : pour une balle dense, la résistance réelle de l'air (quadratique en vitesse) modifie la portée de quelques pour cent au plus, et le modèle sans frottement est une bonne approximation. Le frottement linéaire est un modèle pédagogique, réaliste pour de petits objets lents (gouttes, grains), pas pour un ballon à grande vitesse.
+  en: |-
+    Speeds from 4 m/s to 20 m/s and ranges from a few metres to about forty metres: for a dense ball, the actual air resistance (quadratic in speed) changes the range by a few per cent at most, and the frictionless model is a good approximation. The linear drag is a pedagogical model, realistic for small slow objects (droplets, grains), not for a ball at high speed.
+numericalMethod:
+  fr: |-
+    Runge-Kutta d'ordre 4, pas fixe de 1 ms, avec interpolation de l'instant exact du retour au sol. Sans frottement, la portée et la durée de vol coïncident avec $v_0^2 \sin(2\alpha)/g$ et $2 v_0 \sin\alpha / g$ à mieux que $10^{-6}$ en valeur relative.
+  en: |-
+    Fourth-order Runge-Kutta, fixed 1 ms step, with interpolation of the exact instant of landing. Without drag, the range and the flight time match $v_0^2 \sin(2\alpha)/g$ and $2 v_0 \sin\alpha / g$ to better than $10^{-6}$ in relative value.
+ignoredEffects:
+  fr:
+    - "Résistance de l'air quadratique en vitesse (le régime réel pour une balle)."
+    - "Rotation de la balle et effet Magnus."
+    - "Poussée d'Archimède de l'air, variation de $g$ avec l'altitude, rotation de la Terre."
+    - "Rebond ou déformation à l'arrivée au sol."
+  en:
+    - "Air resistance quadratic in speed (the actual regime for a ball)."
+    - "Spin of the ball and Magnus effect."
+    - "Buoyancy of the air, variation of $g$ with altitude, rotation of the Earth."
+    - "Bounce or deformation on reaching the ground."
+learningUse:
+  fr: |-
+    Première : lire sur le graphique vitesse-temps que la composante horizontale est constante et que la composante verticale décroît de $9{,}81\ \mathrm{m/s}$ chaque seconde ; en déduire que $\Delta\vec v$ est vertical, dirigé vers le bas, comme le poids, et que la masse n'intervient pas. Sur le graphique des énergies, vérifier que l'énergie cinétique et l'énergie potentielle s'échangent à énergie mécanique constante, puis activer le frottement pour la voir décroître. Terminale : retrouver les équations horaires et l'équation de la parabole.
+  en: |-
+    Grade 11: read on the velocity–time graph that the horizontal component is constant and that the vertical component decreases by $9.81\ \mathrm{m/s}$ every second; deduce that $\Delta\vec v$ is vertical, pointing downwards, like the weight, and that the mass plays no part. On the energy graph, check that the kinetic and potential energies are exchanged at constant mechanical energy, then switch on the drag to see it decrease. Grade 12: recover the equations of motion and the equation of the parabola.
+a11y:
+  fr: |-
+    Représentation alternative : tableau des positions, vitesses et énergies tous les 0.1 s, et description textuelle des tendances (« la vitesse horizontale reste égale à 8,5 m/s ; la vitesse verticale diminue de 9,81 m/s par seconde et s'annule au sommet »). Curseurs manipulables au clavier ; le sommet, la portée et la durée du vol sont annoncés en toutes lettres.
+  en: |-
+    Alternative representation: a table of positions, velocities and energies every 0.1 s, and a textual description of the trends ("the horizontal velocity stays equal to 8.5 m/s; the vertical velocity decreases by 9.81 m/s every second and vanishes at the top"). Keyboard-operable sliders; the top, the range and the flight time are announced in words.

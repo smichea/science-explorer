@@ -1,0 +1,56 @@
+# Leçon schéma de Lewis — nombre de doublets non liants du peroxyde d'hydrogène (réponse numérique)
+id: exercise.lewis.lone_pairs
+type: numeric
+nodeId: model.lewis_structure
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Le peroxyde d'hydrogène, l'eau oxygénée, a pour formule brute $\mathrm{H_2O_2}$ ; son squelette est $\mathrm{H{-}O{-}O{-}H}$.
+
+    Données : l'hydrogène ($Z = 1$) possède $1$ électron de valence, l'oxygène ($Z = 8$) en possède $6$.
+
+    Établissez le schéma de Lewis de cette molécule, puis donnez le nombre de doublets **non liants** qu'elle contient.
+  en: |-
+    Hydrogen peroxide has the molecular formula $\mathrm{H_2O_2}$; its skeleton is $\mathrm{H{-}O{-}O{-}H}$.
+
+    Data: hydrogen ($Z = 1$) has $1$ valence electron, oxygen ($Z = 8$) has $6$.
+
+    Establish the Lewis structure of this molecule, then give the number of **lone** pairs it contains.
+numeric:
+  value: 4
+  tolerance: { kind: absolute, value: 0.1 }
+  inputLabel: { fr: "doublets non liants", en: "lone pairs" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Comptez d'abord tous les électrons de valence de la molécule, puis divisez par deux pour obtenir le nombre total de doublets à placer.
+      en: |-
+        First count all the valence electrons of the molecule, then divide by two to get the total number of pairs to place.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Le squelette $\mathrm{H{-}O{-}O{-}H}$ compte trois liaisons, donc trois doublets liants. Les doublets restants sont non liants.
+      en: |-
+        The skeleton $\mathrm{H{-}O{-}O{-}H}$ has three bonds, hence three bonding pairs. The remaining pairs are lone pairs.
+solution:
+  fr: |-
+    On compte les électrons de valence : $2 \times 1$ pour les deux hydrogènes et $2 \times 6$ pour les deux oxygènes, soit $2 + 12 = 14$ électrons, donc $\dfrac{14}{2} = 7$ doublets à placer.
+
+    Le squelette $\mathrm{H{-}O{-}O{-}H}$ demande trois liaisons simples, c'est-à-dire trois **doublets liants**. Il reste
+    $$7 - 3 = 4$$
+    **doublets non liants**, répartis à raison de deux par atome d'oxygène.
+
+    Vérifions les règles du duet et de l'octet : chaque hydrogène est entouré d'un doublet liant, soit $2$ électrons, son duet ; chaque oxygène est entouré de deux doublets liants et de deux doublets non liants, soit $4 \times 2 = 8$ électrons, son octet. Le compte est bon. La molécule est d'ailleurs polaire, ce qui explique qu'elle soit miscible à l'eau en toutes proportions.
+  en: |-
+    Let us count the valence electrons: $2 \times 1$ for the two hydrogens and $2 \times 6$ for the two oxygens, that is $2 + 12 = 14$ electrons, hence $\dfrac{14}{2} = 7$ pairs to place.
+
+    The skeleton $\mathrm{H{-}O{-}O{-}H}$ requires three single bonds, that is three **bonding pairs**. There remain
+    $$7 - 3 = 4$$
+    **lone pairs**, two on each oxygen atom.
+
+    Let us check the duet and octet rules: each hydrogen is surrounded by one bonding pair, that is $2$ electrons, its duet; each oxygen is surrounded by two bonding pairs and two lone pairs, that is $4 \times 2 = 8$ electrons, its octet. The count is right. The molecule is moreover polar, which explains why it is miscible with water in all proportions.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

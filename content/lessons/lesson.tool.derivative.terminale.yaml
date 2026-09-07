@@ -1,0 +1,92 @@
+# Leçon rédigée — la dérivée en Terminale (profondeur 2) : fonction composée, dérivée seconde et convexité, point d'inflexion, avec le traceur (paramètre a).
+id: lesson.tool.derivative.terminale
+nodeId: tool.derivative
+depth: 2
+tools:
+  - id: plotter
+    kind: plotter
+    variable: x
+    view: { x: [-3, 3], y: [-2, 5] }
+    parameters:
+      - { id: a, label: { fr: "abscisse a", en: "abscissa a" }, min: -2.5, max: 2.5, step: 0.05, value: 1 }
+    input: true
+steps:
+  - id: composite
+    title: { fr: "Dériver une fonction composée", en: "Differentiating a composite function" }
+    text:
+      fr: >-
+        Une fonction composée s'obtient en enchaînant deux fonctions.
+        Prenons f de x égale racine de x carré plus 1 : on calcule d'abord u égale x carré plus 1, puis la racine du résultat.
+        Sa dérivée s'obtient en dérivant la racine au point u, puis en multipliant par u prime, c'est-à-dire deux x : f prime de x égale x sur racine de x carré plus 1.
+        En a égal 1, la pente de la tangente vaut donc 1 sur racine de 2, environ 0,71.
+      en: >-
+        A composite function is obtained by chaining two functions.
+        Take f of x equals the square root of x squared plus 1: first compute u equals x squared plus 1, then the square root of the result.
+        Its derivative is obtained by differentiating the square root at the point u, then multiplying by u prime, that is two x: f prime of x equals x over the square root of x squared plus 1.
+        At a equal to 1, the slope of the tangent is therefore 1 over the square root of 2, about 0.71.
+    actions:
+      - { at: 1, plot: { id: f, expr: "sqrt(x^2+1)", label: { fr: "f(x) = √(x² + 1)", en: "f(x) = √(x² + 1)" } } }
+      - { at: 2, plot: { id: fp, expr: "x/sqrt(x^2+1)", dashed: true, label: { fr: "f'(x) = x / √(x² + 1)", en: "f'(x) = x / √(x² + 1)" } } }
+      - { at: 3, tangent: { id: t1, on: f, x: 1, label: { fr: "tangente en 1", en: "tangent at 1" } } }
+      - { at: 3, point: { id: p1, on: fp, x: 1, guides: true, label: { fr: "f'(1) ≈ 0,71", en: "f'(1) ≈ 0.71" } } }
+  - id: convexity
+    title: { fr: "Dérivée seconde et convexité", en: "Second derivative and convexity" }
+    text:
+      fr: >-
+        Dérivons encore : la dérivée de f prime est la dérivée seconde, notée f seconde.
+        Pour la fonction carré, f seconde vaut 2, toujours positive : la courbe est au-dessus de chacune de ses tangentes, on dit qu'elle est convexe.
+        Pour la fonction racine carrée, f seconde est négative : la courbe est en dessous de ses tangentes, elle est concave.
+        Convexe quand f seconde est positive, concave quand elle est négative : c'est le critère à retenir.
+      en: >-
+        Let us differentiate again: the derivative of f prime is the second derivative, written f double prime.
+        For the square function, f double prime is 2, always positive: the curve lies above each of its tangents, we say it is convex.
+        For the square root function, f double prime is negative: the curve lies below its tangents, it is concave.
+        Convex when f double prime is positive, concave when it is negative: this is the criterion to remember.
+    actions:
+      - { at: 0, clear: true, view: { x: [-2, 4], y: [-1, 5] } }
+      - { at: 1, plot: { id: g, expr: "x^2", label: { fr: "g(x) = x² (convexe)", en: "g(x) = x² (convex)" } } }
+      - { at: 1, tangent: { id: tg, on: g, x: 1, label: { fr: "tangente sous la courbe", en: "tangent below the curve" } } }
+      - { at: 2, plot: { id: h, expr: "sqrt(x)", domain: [0, 4], label: { fr: "h(x) = √x (concave)", en: "h(x) = √x (concave)" } } }
+      - { at: 2, tangent: { id: th, on: h, x: 1, label: { fr: "tangente au-dessus de la courbe", en: "tangent above the curve" } } }
+  - id: inflection
+    title: { fr: "Le point d'inflexion", en: "The inflection point" }
+    text:
+      fr: >-
+        Quand la dérivée seconde change de signe, la courbe traverse sa tangente : c'est un point d'inflexion.
+        Pour f de x égale x cube moins 3 x, la dérivée seconde vaut 6 x : négative à gauche de zéro, positive à droite.
+        À l'origine, la tangente traverse la courbe : concave avant, convexe après.
+      en: >-
+        When the second derivative changes sign, the curve crosses its tangent: this is an inflection point.
+        For f of x equals x cubed minus 3 x, the second derivative is 6 x: negative to the left of zero, positive to the right.
+        At the origin, the tangent crosses the curve: concave before, convex after.
+    actions:
+      - { at: 0, clear: true, view: { x: [-3, 3], y: [-5, 5] } }
+      - { at: 1, plot: { id: c, expr: "x^3-3*x", label: { fr: "f(x) = x³ − 3x", en: "f(x) = x³ − 3x" } } }
+      - { at: 1, plot: { id: cpp, expr: "6*x", dashed: true, label: { fr: "f''(x) = 6x", en: "f''(x) = 6x" } } }
+      - { at: 2, tangent: { id: t0, on: c, x: 0, label: { fr: "tangente en 0", en: "tangent at 0" } } }
+      - { at: 2, point: { id: p0, on: c, x: 0, label: { fr: "point d'inflexion", en: "inflection point" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de suivre la convexité", en: "Your turn to follow convexity" }
+    text:
+      fr: >-
+        À vous. Déplacez a le long de la courbe de x cube moins 3 x : à gauche de zéro la tangente est au-dessus de la courbe, à droite elle passe en dessous.
+        Tapez ensuite une composée de votre choix, par exemple exp(-x^2), et cherchez ses points d'inflexion.
+      en: >-
+        Your turn. Move a along the curve of x cubed minus 3 x: to the left of zero the tangent lies above the curve, to the right it passes below.
+        Then type a composite of your own, for instance exp(-x^2), and look for its inflection points.
+    actions:
+      - { at: 0, clear: true, view: { x: [-3, 3], y: [-5, 5] }, plot: { id: c, expr: "x^3-3*x", label: { fr: "f(x) = x³ − 3x", en: "f(x) = x³ − 3x" } } }
+      - { at: 0, tangent: { id: ta, on: c, x: "a", label: { fr: "tangente en a", en: "tangent at a" } } }
+      - { at: 0, point: { id: pa, on: c, x: "a", guides: true, label: { fr: "f(a)", en: "f(a)" } } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : la dérivée d'une composée, puis un point d'inflexion.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the derivative of a composite, then an inflection point.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.derivative.chain_rule, exercise.derivative.inflection]

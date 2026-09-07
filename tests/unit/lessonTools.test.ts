@@ -179,3 +179,189 @@ describe('reaction extent', () => {
     expect(stoichiometric.limiting).toEqual([0, 1]);
   });
 });
+
+describe('Première numerics', () => {
+  it('names the remarkable angles and gives their exact cosine, sine and tangent', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    expect(m.principalAngle(3 * Math.PI)).toBeCloseTo(Math.PI, 9);
+    expect(m.principalAngle(-Math.PI / 2)).toBeCloseTo(-Math.PI / 2, 9);
+    expect(m.angleLabel(2)).toBe('π/6');
+    expect(m.angleLabel(-9)).toBe('−3π/4');
+    expect(m.angleLabel(12)).toBe('π');
+    expect(m.angleLabel(0)).toBe('0');
+    expect(m.exactTrig(Math.PI / 6)).toEqual({ cos: '√3/2', sin: '1/2', tan: '√3/3' });
+    expect(m.exactTrig(-Math.PI / 4)).toEqual({ cos: '√2/2', sin: '−√2/2', tan: '−1' });
+    expect(m.exactTrig((5 * Math.PI) / 6)).toEqual({ cos: '−√3/2', sin: '1/2', tan: '−√3/3' });
+    expect(m.exactTrig(Math.PI / 12)).toBeNull();
+    expect(m.exactTrig(1)).toBeNull();
+  });
+
+  it('superposes inverse-square fields: away from a positive charge, towards a mass', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    const k = m.FIELD_CONSTANTS.electric;
+    const single = m.fieldAt('electric', k, [{ x: 0, y: 0, value: 1e-9 }], [0, 0], 2, 0);
+    expect(single?.[0]).toBeCloseTo((k * 1e-9) / 4, 6);
+    expect(single?.[1]).toBeCloseTo(0, 9);
+    // Two equal charges: the field vanishes halfway between them.
+    const middle = m.fieldAt(
+      'electric',
+      k,
+      [
+        { x: -1, y: 0, value: 1e-9 },
+        { x: 1, y: 0, value: 1e-9 },
+      ],
+      [0, 0],
+      0,
+      0
+    );
+    expect(Math.hypot(middle![0], middle![1])).toBeLessThan(1e-6);
+    const g = m.fieldAt(
+      'gravitational',
+      m.FIELD_CONSTANTS.gravitational,
+      [{ x: 0, y: 0, value: 5.97e24 }],
+      [0, 0],
+      6.37e6,
+      0
+    );
+    expect(g![0]).toBeCloseTo(-9.82, 1);
+    expect(m.fieldAt('electric', k, [{ x: 0, y: 0, value: 1 }], [0, 0], 0, 0)).toBeNull();
+    expect(m.fieldAt('uniform', 1, [], [0, -3], 5, 5)).toEqual([0, -3]);
+    expect(m.forceIn([2, 0], -1.5)).toEqual([-3, -0]);
+  });
+
+  it('converts a transition between levels into a photon', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    const balmer = m.photonBetween(-1.51, -3.4);
+    expect(balmer.emission).toBe(true);
+    expect(balmer.energyEv).toBeCloseTo(1.89, 2);
+    expect(balmer.wavelengthNm).toBeCloseTo(656, 0);
+    expect(balmer.domain).toBe('visible');
+    const lyman = m.photonBetween(-13.6, -3.4);
+    expect(lyman.emission).toBe(false);
+    expect(lyman.domain).toBe('uv');
+    expect(m.spectralDomain(1000)).toBe('ir');
+  });
+
+  it('reads a Lewis structure: formula, valence electrons, octets, polarity', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    const water = [
+      { id: 'o', element: 'O', lonePairs: 2, x: 0, y: 0 },
+      { id: 'h1', element: 'H', lonePairs: 0, x: -1, y: -0.8 },
+      { id: 'h2', element: 'H', lonePairs: 0, x: 1, y: -0.8 },
+    ];
+    const bonds = [
+      { from: 'o', to: 'h1', order: 1 },
+      { from: 'o', to: 'h2', order: 1 },
+    ];
+    expect(m.moleculeFormula(water)).toBe('H₂O');
+    expect(m.moleculeFormula([{ element: 'C' }, { element: 'O' }, { element: 'O' }])).toBe('CO₂');
+    expect(
+      m.moleculeFormula([{ element: 'N' }, { element: 'H' }, { element: 'H' }, { element: 'H' }])
+    ).toBe('NH₃');
+    expect(m.moleculeFormula([{ element: 'Cl' }, { element: 'H' }])).toBe('HCl');
+    expect(m.moleculeFormula([{ element: 'Cl' }, { element: 'Na' }])).toBe('NaCl');
+    expect(
+      m.moleculeFormula([
+        { element: 'C' },
+        { element: 'H' },
+        { element: 'H' },
+        { element: 'H' },
+        { element: 'H' },
+      ])
+    ).toBe('CH₄');
+    expect(m.valenceElectronCount(water)).toBe(8);
+    expect(m.octetCheck(water[0], bonds)).toMatchObject({
+      bonding: 2,
+      lone: 2,
+      electrons: 8,
+      needed: 8,
+      complete: true,
+    });
+    expect(m.octetCheck(water[1], bonds)).toMatchObject({
+      electrons: 2,
+      needed: 2,
+      complete: true,
+    });
+    expect(m.bondPolarity('O', 'H')).toMatchObject({ polar: true, negative: 'from' });
+    expect(m.bondPolarity('C', 'H').polar).toBe(false);
+    expect(m.moleculePolar(water, bonds)).toBe(true);
+    const co2 = [
+      { id: 'c', element: 'C', lonePairs: 0, x: 0, y: 0 },
+      { id: 'o1', element: 'O', lonePairs: 2, x: -1, y: 0 },
+      { id: 'o2', element: 'O', lonePairs: 2, x: 1, y: 0 },
+    ];
+    expect(
+      m.moleculePolar(co2, [
+        { from: 'c', to: 'o1', order: 2 },
+        { from: 'c', to: 'o2', order: 2 },
+      ])
+    ).toBe(false);
+    expect(m.moleculePolar(co2, [], true)).toBe(true);
+  });
+
+  it('reads a weighted tree: intersections, total and conditional probabilities, independence', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    const tree = {
+      first: [
+        { id: 'a', p: 0.3 },
+        { id: 'na', p: 0.7 },
+      ],
+      second: [{ id: 'b' }, { id: 'nb' }],
+      given: { a: [0.8, 0.2], na: [0.5, 0.5] },
+    };
+    const leaves = m.treeLeaves(tree);
+    expect(leaves.find((l) => l.first === 'a' && l.second === 'b')?.p).toBeCloseTo(0.24, 9);
+    expect(m.totalProbability(tree, 'b')).toBeCloseTo(0.59, 9);
+    expect(m.conditionalProbability(tree, 'a', 'b')).toBeCloseTo(0.24 / 0.59, 9);
+    expect(m.isIndependent(tree, 'a', 'b')).toBe(false);
+    const independent = { ...tree, given: { a: [0.5, 0.5], na: [0.5, 0.5] } };
+    expect(m.isIndependent(independent, 'a', 'b')).toBe(true);
+    const random = seeded(3);
+    const draw = m.drawTree(tree, random);
+    expect(['a', 'na']).toContain(draw.first);
+    expect(['b', 'nb']).toContain(draw.second);
+  });
+
+  it('computes the law, expectation, variance and standard deviation of a random variable', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    const die = outcomesOf({ experiment: 'die', sides: 6, urn: [] });
+    const law = m.distributionOf(die, { '1': -1, '2': -1, '3': -1, '4': -1, '5': -1, '6': 5 });
+    expect(law.map((e) => e.x)).toEqual([-1, 5]);
+    expect(law[0].p).toBeCloseTo(5 / 6, 9);
+    expect(law[1].p).toBeCloseTo(1 / 6, 9);
+    expect(m.expectation(law)).toBeCloseTo(0, 9);
+    expect(m.variance(law)).toBeCloseTo(5, 9);
+    expect(m.stdDeviation(law)).toBeCloseTo(Math.sqrt(5), 9);
+  });
+
+  it('names lights and applies filters', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    expect(m.colourName([1, 1, 1])).toBe('white');
+    expect(m.colourName([1, 1, 0])).toBe('yellow');
+    expect(m.colourName([0, 1, 1])).toBe('cyan');
+    expect(m.colourName([0, 0, 0])).toBe('black');
+    expect(m.transmitLight([1, 1, 1], ['r', 'b'])).toEqual([1, 0, 1]);
+    expect(m.colourName(m.transmitLight([1, 1, 1], ['g']))).toBe('green');
+    expect(m.rgbHex([1, 0, 0.5])).toBe('#ff0080');
+  });
+
+  it('computes yields, bond-energy balances, electron multipliers and uncertainties', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    expect(m.reactionYield(0.6, 0.8)).toBeCloseTo(0.75, 9);
+    expect(Number.isNaN(m.reactionYield(1, 0))).toBe(true);
+    // CH4 + 2 O2 → CO2 + 2 H2O: 4 C–H and 2 O=O broken, 2 C=O and 4 O–H formed.
+    const balance = m.bondEnergyBalance([
+      { energy: 413, broken: 4, formed: 0 },
+      { energy: 498, broken: 2, formed: 0 },
+      { energy: 799, broken: 0, formed: 2 },
+      { energy: 463, broken: 0, formed: 4 },
+    ]);
+    expect(balance).toBe(4 * 413 + 2 * 498 - 2 * 799 - 4 * 463);
+    expect(balance).toBeLessThan(0);
+    expect(m.electronMultipliers(1, 2)).toEqual([2, 1]);
+    expect(m.electronMultipliers(2, 3)).toEqual([3, 2]);
+    expect(m.sampleStd([2, 4, 4, 4, 5, 5, 7, 9])).toBeCloseTo(2.138, 3);
+    expect(m.standardUncertainty([2, 4, 4, 4, 5, 5, 7, 9])).toBeCloseTo(2.138 / Math.sqrt(8), 3);
+    expect(Number.isNaN(m.sampleStd([1]))).toBe(true);
+  });
+});

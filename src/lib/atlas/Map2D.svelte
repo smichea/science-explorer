@@ -9,6 +9,8 @@
     type RouteStyle,
   } from './styles';
   import { t } from '$lib/state/locale.svelte';
+  import { placeLabels, shortLabel, type LabelCandidate } from './labels';
+  import { LABEL_BUDGET, zoomLevelFor2d } from './zoom';
 
   interface Props {
     graph: GraphIndex;
@@ -52,6 +54,9 @@
   let dragging: { x: number; y: number; tx: number; tz: number } | null = null;
   let pinch: { distance: number; scale: number } | null = null;
   let moved = false;
+  /** The destination under the pointer or the keyboard focus: its name is always written. */
+  let hoveredId = $state<string | null>(null);
+  let mapWidth = $state(0);
 
   const viewBox = $derived(`${minX + tx} ${minZ + tz} ${width / scale} ${height / scale}`);
 
@@ -60,16 +65,15 @@
     return p ? [p[0], p[2]] : null;
   }
 
-  function zoomAt(factor: number, cx?: number, cy?: number) {
+  function zoomAt(factor: number, cx = 0.5, cy = 0.5) {
+    // Without a pointer the zoom keeps the centre of the view, not the corner of the map.
     const next = Math.max(0.6, Math.min(8, scale * factor));
-    if (cx !== undefined && cy !== undefined) {
-      const w0 = width / scale;
-      const w1 = width / next;
-      const h0 = height / scale;
-      const h1 = height / next;
-      tx += (w0 - w1) * cx;
-      tz += (h0 - h1) * cy;
-    }
+    const w0 = width / scale;
+    const w1 = width / next;
+    const h0 = height / scale;
+    const h1 = height / next;
+    tx += (w0 - w1) * cx;
+    tz += (h0 - h1) * cy;
     scale = next;
   }
 
@@ -174,11 +178,112 @@
     }
   }
 
-  const showNodeLabels = $derived(scale >= 1.8);
-  const showSilhouetteLabels = $derived(scale >= 1.5);
+  const level = $derived(zoomLevelFor2d(scale));
+  /** A narrow map (a phone, or a stage squeezed by the panel) carries fewer and smaller names. */
+  const compact = $derived(mapWidth > 0 && mapWidth < 600);
+  // The budget of the 3D atlas, widened: a flat map carries more names than floating pills.
+  const budget = $derived(Math.ceil(LABEL_BUDGET[level] * 1.6 * (compact ? 0.55 : 1)));
+  /** One screen pixel, in map units: a name then reads the same size on a phone and on a desk. */
+  const unit = $derived(width / scale / Math.max(320, mapWidth || 960));
+  const fontSize = $derived({
+    world: (compact ? 17 : 26) * unit,
+    hub: (compact ? 11 : 15) * unit,
+    region: (compact ? 11 : 15) * unit,
+    node: (compact ? 10 : 12) * unit,
+  });
+
+  const view = $derived({
+    x: minX + tx,
+    y: minZ + tz,
+    width: width / scale,
+    height: height / scale,
+  });
+
+  /**
+   * The names written on the map: worlds first (always), then the regions and the destinations
+   * that still find a free place, richest first. A name dropped here stays in the accessible
+   * name of its link, in the list view and under the pointer.
+   */
+  const labels = $derived.by(() => {
+    const candidates: LabelCandidate[] = [];
+    for (const world of graph.graph.worlds) {
+      const c = layout.worlds[world.id];
+      if (c)
+        candidates.push({
+          id: world.id,
+          kind: 'world',
+          x: c[0],
+          y: c[2] - 22,
+          text: labelText(world.id, 'world'),
+          priority: 1,
+          fontSize: fontSize.world,
+          anchor: 'middle',
+          pinned: true,
+        });
+    }
+    candidates.push({
+      id: 'hub',
+      kind: 'hub',
+      x: 0,
+      y: -12,
+      text: labelText('hub', 'hub'),
+      priority: 1,
+      fontSize: fontSize.hub,
+      anchor: 'middle',
+    });
+    for (const region of graph.graph.regions) {
+      const c = layout.regions[region.id];
+      const detailed = region.nodeIds.length > 0;
+      // The empty regions are named once the view leaves the whole universe.
+      if (!c || (!detailed && level === 'universe')) continue;
+      candidates.push({
+        id: region.id,
+        kind: 'region',
+        x: c[0],
+        y: c[2] - (detailed ? 3.4 : 2.7),
+        text: shortLabel(labelText(region.id, 'region'), compact ? 20 : 30),
+        // The regions holding the most destinations are named first, whatever their world.
+        priority: detailed ? region.nodeIds.length : 0.3,
+        fontSize: fontSize.region,
+        anchor: 'middle',
+      });
+    }
+    for (const node of graph.graph.nodes) {
+      const p = pos(node.id);
+      const style = styles.get(node.id);
+      if (!p || !style) continue;
+      const pointed = node.id === hoveredId;
+      // Outside the selection of the filter a destination is named only when pointed at.
+      if (style.muted && !pointed && !style.selected) continue;
+      const r = 0.9 + node.importance * 0.25;
+      const name = shortLabel(labelText(node.id, 'node'));
+      candidates.push({
+        id: node.id,
+        kind: 'node',
+        x: p[0] + r + 0.6,
+        y: p[1] + 0.5,
+        text: style.glyph ? `${style.glyph} ${name}` : name,
+        priority: style.labelPriority,
+        fontSize: fontSize.node,
+        anchor: 'start',
+        pinned: style.selected || pointed,
+      });
+    }
+    // The geography is named first, then what is left of the budget names destinations: a map
+    // that shows only its regions would say nothing of what it holds.
+    const geography = placeLabels(
+      candidates.filter((c) => c.kind !== 'node'),
+      { budget: Math.ceil(budget * 0.6), view }
+    );
+    const destinations = placeLabels(
+      candidates.filter((c) => c.kind === 'node'),
+      { budget: Math.max(1, budget - geography.length), view, occupied: geography }
+    );
+    return new Map([...geography, ...destinations].map((c) => [c.id, c.text]));
+  });
 </script>
 
-<div class="map2d" data-testid="atlas-2d">
+<div class="map2d" data-testid="atlas-2d" bind:clientWidth={mapWidth}>
   <div class="map2d__tools">
     <button class="btn btn--sm btn--icon" type="button" onclick={() => zoomAt(1.3)} aria-label="+"
       >+</button
@@ -240,6 +345,7 @@
               y={c[2] - 22}
               text-anchor="middle"
               class="label label--world"
+              style={`font-size: ${fontSize.world}px`}
               fill={world.color}>{labelText(world.id, 'world')}</text
             >
           </a>
@@ -247,9 +353,16 @@
       {/if}
     {/each}
     <circle cx="0" cy="0" r="10.5" fill="none" stroke="#f7f1e3" stroke-width="0.25" opacity="0.5" />
-    <text x="0" y="-12" text-anchor="middle" class="label label--hub" fill="#f7f1e3"
-      >{labelText('hub', 'hub')}</text
-    >
+    {#if labels.has('hub')}
+      <text
+        x="0"
+        y="-12"
+        text-anchor="middle"
+        class="label label--hub"
+        style={`font-size: ${fontSize.hub}px`}
+        fill="#f7f1e3">{labels.get('hub')}</text
+      >
+    {/if}
     <!-- routes -->
     {#each routes as route (route.id)}
       {@const a = pos(route.from)}
@@ -290,14 +403,15 @@
             stroke-width="0.25"
             stroke-dasharray={detailed ? undefined : '0.6 0.5'}
           />
-          {#if detailed || showSilhouetteLabels}
+          {#if labels.has(region.id)}
             <text
               x={c[0]}
               y={c[2] - (detailed ? 3.4 : 2.7)}
               text-anchor="middle"
               class="label label--region"
               class:label--silhouette={!detailed}
-              fill={colorOfRegion(region, graph)}>{labelText(region.id, 'region')}</text
+              style={`font-size: ${fontSize.region}px`}
+              fill={colorOfRegion(region, graph)}>{labels.get(region.id)}</text
             >
           {/if}
         </a>
@@ -320,6 +434,10 @@
           aria-current={node.id === selectedId ? 'true' : undefined}
           data-node-id={node.id}
           data-state={style.kind}
+          onpointerenter={() => (hoveredId = node.id)}
+          onpointerleave={() => hoveredId === node.id && (hoveredId = null)}
+          onfocusin={() => (hoveredId = node.id)}
+          onfocusout={() => hoveredId === node.id && (hoveredId = null)}
           data-muted={style.muted ? 'true' : undefined}
           class:node--muted={style.muted}
           style={`opacity: ${style.muted ? 0.6 : 0.35 + 0.65 * style.emphasis}`}
@@ -360,15 +478,15 @@
               stroke-width={style.muted ? 0.22 : 0.15}
             />
           {/if}
-          {#if style.muted || showNodeLabels || style.selected || style.highlighted || node.importance >= 3}
-            <!-- A muted destination keeps its name for hover and focus only (see .node--muted). -->
+          {#if labels.has(node.id)}
+            <!-- The name is the head of the title: the whole one is in the link and in the card. -->
             <text
               x={p[0] + r + 0.6}
               y={p[1] + 0.5}
               class="label label--node"
               class:label--selected={style.selected}
-              fill="#eef1f8"
-              >{style.glyph ? `${style.glyph} ` : ''}{labelText(node.id, 'node')}</text
+              style={`font-size: ${fontSize.node}px`}
+              fill="#eef1f8">{labels.get(node.id)}</text
             >
           {/if}
         </a>
@@ -405,7 +523,7 @@
     pointer-events: none;
     paint-order: stroke;
     stroke: #070b17;
-    stroke-width: 0.35;
+    stroke-width: 0.14em;
     stroke-linejoin: round;
   }
   .label--world {
@@ -432,13 +550,6 @@
   }
   .label--selected {
     font-weight: 700;
-  }
-  .node--muted .label {
-    display: none;
-  }
-  .node--muted:hover .label,
-  .node--muted:focus-visible .label {
-    display: initial;
   }
   .node--muted:hover,
   .node--muted:focus-visible {
