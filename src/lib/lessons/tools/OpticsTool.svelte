@@ -1,7 +1,15 @@
 <script lang="ts">
   import type { LessonTool } from '$lib/content-schema';
   import { evaluateScalar, type ToolState } from '$lib/domain/lesson';
-  import { criticalAngle, lensImage, refractionAngle } from '$lib/domain/lessonTools';
+  import {
+    colourName,
+    criticalAngle,
+    lensImage,
+    refractionAngle,
+    rgbHex,
+    transmitLight,
+    type Rgb,
+  } from '$lib/domain/lessonTools';
   import { locale, t } from '$lib/state/locale.svelte';
   import { fmt } from '../axes';
 
@@ -74,6 +82,39 @@
   const imageDrawn = $derived(!image.atInfinity && Math.abs(image.position) < 6 * focal);
   const imageX = $derived(imageDrawn ? image.position : Math.sign(image.position || 1) * 6 * focal);
   const imageH = $derived(imageDrawn ? image.height : 0);
+
+  // --- colour ---------------------------------------------------------------
+  const clamp01 = (v: number) => (Number.isFinite(v) ? Math.max(0, Math.min(1, v)) : 0);
+  /** The source light: its three additive components, evaluated and clamped to [0, 1]. */
+  const source = $derived.by((): Rgb => {
+    const [r, g, b] = tool.colour?.source ?? [1, 1, 1];
+    return [
+      clamp01(evaluateScalar(r, tstate.params)),
+      clamp01(evaluateScalar(g, tstate.params)),
+      clamp01(evaluateScalar(b, tstate.params)),
+    ];
+  });
+  /** The light left after the filter, then the light the object sends back (subtractive syntheses). */
+  const afterFilter = $derived(
+    tool.colour?.filter ? transmitLight(source, tool.colour.filter.passes) : null
+  );
+  const objectColour = $derived(
+    tool.colour?.object ? transmitLight(afterFilter ?? source, tool.colour.object.reflects) : null
+  );
+  const nameOf = (rgb: Rgb) => t(`lesson.optics.colour.${colourName(rgb)}` as const);
+  const swatches = $derived([
+    { key: 'source', label: t('lesson.optics.source'), rgb: source },
+    ...(afterFilter ? [{ key: 'filter', label: t('lesson.optics.filter'), rgb: afterFilter }] : []),
+    ...(objectColour
+      ? [{ key: 'object', label: t('lesson.optics.object'), rgb: objectColour }]
+      : []),
+  ]);
+  /** Three overlapping discs, screened onto a dark background: the additive synthesis. */
+  const discs = $derived([
+    { key: 'R', cx: 120, cy: 145, fill: '#ff0000', opacity: source[0], lx: 62, ly: 66 },
+    { key: 'G', cx: 210, cy: 145, fill: '#00ff00', opacity: source[1], lx: 268, ly: 66 },
+    { key: 'B', cx: 165, cy: 220, fill: '#0000ff', opacity: source[2], lx: 165, ly: 322 },
+  ]);
 </script>
 
 <div class="tool stack-sm" data-testid="optics-tool" data-mode={tool.mode}>
@@ -132,6 +173,46 @@
       {refracted === null ? t('lesson.optics.totalReflection') : `${f(refracted)}°`} ·
       {t('lesson.optics.critical')}
       {critical === null ? t('lesson.optics.none') : `${f(critical)}°`}
+    </p>
+  {:else if tool.mode === 'colour'}
+    <svg viewBox="0 0 {W} {H}" class="tool__svg" role="img" aria-label={t('lesson.tool.optics')}>
+      <rect x="0" y="0" width={W} height={H} fill="#05070f" />
+      {#each discs as d (d.key)}
+        <circle
+          cx={d.cx}
+          cy={d.cy}
+          r="82"
+          fill={d.fill}
+          fill-opacity={d.opacity}
+          style="mix-blend-mode: screen"
+        />
+      {/each}
+      {#each discs as d (d.key)}
+        <text x={d.lx} y={d.ly} class="note" text-anchor="middle">{d.key} = {f(d.opacity, 2)}</text>
+      {/each}
+      <text x="165" y={H - 12} class="tick" text-anchor="middle">{t('lesson.optics.additive')}</text
+      >
+      {#each swatches as s, i (s.key)}
+        {@const y = 40 + i * 92}
+        <text x="330" {y} class="tick">{s.label}</text>
+        <rect
+          x="330"
+          y={y + 8}
+          width="110"
+          height="44"
+          rx="8"
+          fill={rgbHex(s.rgb)}
+          stroke="rgba(255,255,255,0.25)"
+        />
+        <text x="452" y={y + 34} class="note">{nameOf(s.rgb)}</text>
+        <text x="452" y={y + 50} class="tick">{rgbHex(s.rgb)}</text>
+      {/each}
+      {#if swatches.length > 1}
+        <text x="330" y={H - 12} class="tick">{t('lesson.optics.subtractive')}</text>
+      {/if}
+    </svg>
+    <p class="small" style="margin: 0" data-testid="optics-reading">
+      {swatches.map((s) => `${s.label} : ${nameOf(s.rgb)}`).join(' · ')}
     </p>
   {:else}
     <svg viewBox="0 0 {W} {H}" class="tool__svg" role="img" aria-label={t('lesson.tool.optics')}>
@@ -278,5 +359,10 @@
     stroke: #070b17;
     stroke-width: 3px;
     stroke-linejoin: round;
+  }
+  .tick {
+    font-size: 11px;
+    fill: #a7b0c8;
+    font-family: var(--font-body);
   }
 </style>

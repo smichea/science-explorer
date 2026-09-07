@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { LessonTool } from '$lib/content-schema';
-  import { describeData, histogram } from '$lib/domain/lessonTools';
+  import { describeData, histogram, sampleStd, standardUncertainty } from '$lib/domain/lessonTools';
   import { L, locale, t } from '$lib/state/locale.svelte';
   import { fmt, scales } from '../axes';
 
@@ -50,6 +50,16 @@
   const unit = $derived(tool.unit ? ` ${tool.unit}` : '');
   /** Box plot geometry, under the histogram. */
   const boxY = $derived(sc.H - sc.pad.b + 4);
+  /** Sample standard deviation and standard uncertainty of the mean (physics conventions). */
+  const uncertainty = $derived(
+    tool.uncertainty
+      ? {
+          s: sampleStd(parsed.values, parsed.counts),
+          u: standardUncertainty(parsed.values, parsed.counts),
+        }
+      : null
+  );
+  const f3 = (v: number) => fmt(v, locale.current, 3);
 </script>
 
 <div class="tool stack-sm" data-testid="data-tool" data-count={summary?.n ?? 0}>
@@ -157,6 +167,15 @@
         <dd>{f(summary.std)}{unit}</dd>
       </div>
     </dl>
+    {#if uncertainty}
+      <p class="small" style="margin: 0" data-testid="data-uncertainty">
+        {t('lesson.data.sampleStd')} s = {f3(uncertainty.s)}{unit} ·
+        {t('lesson.data.uncertainty')} u = {f3(uncertainty.u)}{unit} ·
+        {t('lesson.data.result')} : x̄ = {tool.unit
+          ? `(${f(summary.mean)} ± ${f(uncertainty.u)})${unit}`
+          : `${f(summary.mean)} ± ${f(uncertainty.u)}`}
+      </p>
+    {/if}
   {/if}
   {#if interactive}
     <label class="field">

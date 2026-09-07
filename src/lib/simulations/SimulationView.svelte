@@ -4,6 +4,7 @@
   import * as fo from '$lib/domain/simulation/firstOrder';
   import * as m2 from '$lib/domain/simulation/motion2d';
   import { formatNumber } from '$lib/domain/i18n/format';
+  import { PALETTE } from '$lib/lessons/axes';
   import { L, LL, locale, t } from '$lib/state/locale.svelte';
   import { prefs } from '$lib/state/prefs.svelte';
   import Markdown from '$lib/components/Markdown.svelte';
@@ -130,6 +131,17 @@
     }
     return [{ name: t('sim.rate'), color: '#ffb347', points: pts }];
   });
+  /** Kinetic, potential and total energies of the motion (the total stays flat without drag). */
+  const seriesEnergy = $derived.by(() => {
+    if (!isMotion) return [];
+    const of = (key: 'kinetic' | 'potential' | 'total') =>
+      samples.map((o) => [o.t, o[key]] as [number, number]);
+    return [
+      { name: t('sim.kinetic'), color: PALETTE[1], points: of('kinetic') },
+      { name: t('sim.potential'), color: PALETTE[2], points: of('potential') },
+      { name: t('sim.total'), color: PALETTE[6], points: of('total'), dashed: true },
+    ];
+  });
   const tangent = $derived(
     !isMotion && showTangent ? { t0: time, ...fo.tangentAt(foConfig, time) } : null
   );
@@ -186,12 +198,26 @@
   onMount(() => () => cancelAnimationFrame(frame));
 
   const tableRows = $derived.by(() => {
-    const rows: Array<{ t: number; a: number; b: number }> = [];
+    const rows: Array<{
+      t: number;
+      a: number;
+      b: number;
+      kinetic?: number;
+      potential?: number;
+      total?: number;
+    }> = [];
     if (isMotion) {
       for (let k = 0; k <= Math.min(12, Math.ceil(duration)); k++) {
         const o = samples.find((s) => s.t >= k) ?? samples[samples.length - 1];
         if (!o) break;
-        rows.push({ t: k, a: motionConfig.scene === 'inclined_plane' ? o.s : o.y, b: o.v });
+        rows.push({
+          t: k,
+          a: motionConfig.scene === 'inclined_plane' ? o.s : o.y,
+          b: o.v,
+          kinetic: o.kinetic,
+          potential: o.potential,
+          total: o.total,
+        });
         if (o.finished) break;
       }
     } else {
@@ -384,6 +410,17 @@
         yLabel={isMotion ? 'm/s' : `${unitA}/${unitT}`}
         title={isMotion ? t('sim.velocity') : t('sim.rate')}
       />
+      {#if isMotion}
+        <div data-testid="sim-energy-graph">
+          <TimeGraph
+            series={seriesEnergy}
+            currentT={time}
+            xLabel="t (s)"
+            yLabel="E (J)"
+            title={t('sim.energy')}
+          />
+        </div>
+      {/if}
     </div>
 
     <details class="sim__table">
@@ -399,7 +436,9 @@
                       ? t('sim.distance')
                       : t('sim.height')
                     : t('sim.quantity')} ({unitA})</th
-                ><th>{isMotion ? t('sim.velocity') : t('sim.rate')}</th></tr
+                ><th>{isMotion ? t('sim.velocity') : t('sim.rate')}</th>{#if isMotion}<th
+                    >{t('sim.kinetic')} (J)</th
+                  ><th>{t('sim.potential')} (J)</th><th>{t('sim.total')} (J)</th>{/if}</tr
               ></thead
             >
             <tbody>
@@ -407,7 +446,11 @@
                 <tr
                   ><td>{formatNumber(r.t, locale.current, { digits: 2 })}</td><td
                     >{formatNumber(r.a, locale.current, { digits: 3 })}</td
-                  ><td>{formatNumber(r.b, locale.current, { digits: 3 })}</td></tr
+                  ><td>{formatNumber(r.b, locale.current, { digits: 3 })}</td>{#if isMotion}<td
+                      >{formatNumber(r.kinetic ?? 0, locale.current, { digits: 3 })}</td
+                    ><td>{formatNumber(r.potential ?? 0, locale.current, { digits: 3 })}</td><td
+                      >{formatNumber(r.total ?? 0, locale.current, { digits: 3 })}</td
+                    >{/if}</tr
                 >
               {/each}
             </tbody>
