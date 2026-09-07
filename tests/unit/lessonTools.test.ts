@@ -256,6 +256,11 @@ describe('Première numerics', () => {
     expect(m.moleculeFormula(water)).toBe('H₂O');
     expect(m.moleculeFormula([{ element: 'C' }, { element: 'O' }, { element: 'O' }])).toBe('CO₂');
     expect(
+      m.moleculeFormula([{ element: 'N' }, { element: 'H' }, { element: 'H' }, { element: 'H' }])
+    ).toBe('NH₃');
+    expect(m.moleculeFormula([{ element: 'Cl' }, { element: 'H' }])).toBe('HCl');
+    expect(m.moleculeFormula([{ element: 'Cl' }, { element: 'Na' }])).toBe('NaCl');
+    expect(
       m.moleculeFormula([
         { element: 'C' },
         { element: 'H' },

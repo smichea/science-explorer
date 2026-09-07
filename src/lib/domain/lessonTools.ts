@@ -818,14 +818,23 @@ export interface MoleculeBond {
   order: number;
 }
 
-/** Molecular formula in the Hill order: C, then H, then the others alphabetically (alphabetical without carbon). */
+/**
+ * Molecular formula as written at the lycée: with carbon, the Hill order (C, then H, then the
+ * others alphabetically); without carbon, the less electronegative element first (H₂O, HCl, NaCl),
+ * nitrogen kept before hydrogen (NH₃).
+ */
 export function moleculeFormula(atoms: Array<{ element: string }>): string {
   const counts = new Map<string, number>();
   for (const a of atoms) counts.set(a.element, (counts.get(a.element) ?? 0) + 1);
   const hasCarbon = counts.has('C');
-  const rank = (s: string) => (hasCarbon ? (s === 'C' ? '0' : s === 'H' ? '1' : `2${s}`) : s);
+  const hillRank = (s: string) => (s === 'C' ? '0' : s === 'H' ? '1' : `2${s}`);
+  const electro = (s: string) => (s === 'N' ? 2.1 : (ELECTRONEGATIVITY[s] ?? 0));
   return [...counts.keys()]
-    .sort((a, b) => rank(a).localeCompare(rank(b)))
+    .sort((a, b) =>
+      hasCarbon
+        ? hillRank(a).localeCompare(hillRank(b))
+        : electro(a) - electro(b) || a.localeCompare(b)
+    )
     .map((s) => {
       const n = counts.get(s) ?? 1;
       return n === 1 ? s : `${s}${subscript(n)}`;
