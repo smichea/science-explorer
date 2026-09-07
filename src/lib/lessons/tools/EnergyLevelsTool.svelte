@@ -51,6 +51,9 @@
     /** Where the texts sit: pushed apart when two levels are close (the lines stay put). */
     labelY: number;
     label: string;
+    /** Clickable band: at most 9 px around the line, bounded halfway to the neighbouring levels. */
+    hitY: number;
+    hitH: number;
   }
   /** Rank of every authored level by increasing energy: E₁ is the lowest whatever the order of the file. */
   const rank = $derived(
@@ -81,8 +84,19 @@
       y: sy(l.energy),
       labelY: sy(l.energy),
       label: l.label ? L(l.label) : `E${subscript(rank.get(l.id) ?? 1)}`,
+      hitY: sy(l.energy) - 9,
+      hitH: 18,
     }));
-    if (ionised) entries.push({ id: '', energy: 0, y: sy(0), labelY: sy(0), label: '' });
+    for (const entry of entries) {
+      const above = Math.max(...entries.filter((o) => o.y < entry.y).map((o) => o.y), -Infinity);
+      const below = Math.min(...entries.filter((o) => o.y > entry.y).map((o) => o.y), Infinity);
+      const top = Math.max(entry.y - 9, (entry.y + above) / 2);
+      const bottom = Math.min(entry.y + 9, (entry.y + below) / 2);
+      entry.hitY = top;
+      entry.hitH = Math.max(2, bottom - top);
+    }
+    if (ionised)
+      entries.push({ id: '', energy: 0, y: sy(0), labelY: sy(0), label: '', hitY: 0, hitH: 0 });
     const GAP = 14;
     for (let i = 1; i < entries.length; i++)
       entries[i].labelY = Math.min(entries[i].labelY, entries[i - 1].labelY - GAP);
@@ -238,9 +252,9 @@
         {/if}
         <rect
           x={X0}
-          y={l.y - 9}
+          y={l.hitY}
           width={X1 - X0}
-          height="18"
+          height={l.hitH}
           class="level__hit"
           role="button"
           tabindex={interactive ? 0 : -1}

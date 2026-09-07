@@ -523,6 +523,8 @@
     padding: 0.25rem 0.6rem;
     border: 1px solid var(--border);
     text-align: center;
+  }
+  .law th[scope='row'] {
     white-space: nowrap;
   }
   .law th[scope='row'] {
