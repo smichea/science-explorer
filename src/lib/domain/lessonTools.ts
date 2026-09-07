@@ -546,3 +546,567 @@ export function amountAt(
     ? species.initial - species.coefficient * x
     : species.initial + species.coefficient * x;
 }
+
+// ---------------------------------------------------------------------------
+// Trigonometry (unit circle)
+// ---------------------------------------------------------------------------
+
+/** The measure of an angle in ]−π, π]. */
+export function principalAngle(t: number): number {
+  const twoPi = 2 * Math.PI;
+  let a = t % twoPi;
+  if (a <= -Math.PI) a += twoPi;
+  if (a > Math.PI) a -= twoPi;
+  return a;
+}
+
+/** Index k of an angle t ≈ k·π/12 (the grid of the remarkable angles), or null. */
+export function twelfthOf(t: number): number | null {
+  const k = (12 * t) / Math.PI;
+  const rounded = Math.round(k);
+  return Math.abs(k - rounded) < 1e-6 ? rounded : null;
+}
+
+function gcd(a: number, b: number): number {
+  let x = Math.abs(a);
+  let y = Math.abs(b);
+  while (y) [x, y] = [y, x % y];
+  return x;
+}
+
+/** `π/6`, `−3π/4`, `0`, `π` for k twelfths of π. */
+export function angleLabel(k: number): string {
+  if (k === 0) return '0';
+  const sign = k < 0 ? '−' : '';
+  const n = Math.abs(k);
+  const d = gcd(n, 12);
+  const num = n / d;
+  const den = 12 / d;
+  const numText = num === 1 ? '' : String(num);
+  return den === 1 ? `${sign}${numText}π` : `${sign}${numText}π/${den}`;
+}
+
+export interface ExactTrig {
+  cos: string;
+  sin: string;
+  tan: string;
+}
+
+const EXACT_COS: Record<number, string> = {
+  0: '1',
+  2: '√3/2',
+  3: '√2/2',
+  4: '1/2',
+  6: '0',
+  8: '−1/2',
+  9: '−√2/2',
+  10: '−√3/2',
+  12: '−1',
+};
+const EXACT_SIN: Record<number, string> = {
+  0: '0',
+  2: '1/2',
+  3: '√2/2',
+  4: '√3/2',
+  6: '1',
+  8: '√3/2',
+  9: '√2/2',
+  10: '1/2',
+  12: '0',
+};
+const EXACT_TAN: Record<number, string> = {
+  0: '0',
+  2: '√3/3',
+  3: '1',
+  4: '√3',
+  6: '∞',
+  8: '−√3',
+  9: '−1',
+  10: '−√3/3',
+  12: '0',
+};
+
+function negate(s: string): string {
+  if (s === '0' || s === '∞') return s;
+  return s.startsWith('−') ? s.slice(1) : `−${s}`;
+}
+
+/** Exact cosine, sine and tangent of a remarkable angle (multiples of π/6 and π/4), or null. */
+export function exactTrig(t: number): ExactTrig | null {
+  const k = twelfthOf(t);
+  if (k === null) return null;
+  let m = ((k % 24) + 24) % 24;
+  // cos(2π − x) = cos x, sin(2π − x) = −sin x: reduce to the upper half-circle.
+  const lower = m > 12;
+  if (lower) m = 24 - m;
+  if (EXACT_COS[m] === undefined) return null;
+  return {
+    cos: EXACT_COS[m],
+    sin: lower ? negate(EXACT_SIN[m]) : EXACT_SIN[m],
+    tan: lower ? negate(EXACT_TAN[m]) : EXACT_TAN[m],
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Vector fields (electric, gravitational, uniform)
+// ---------------------------------------------------------------------------
+
+export type FieldMode = 'electric' | 'gravitational' | 'uniform';
+
+/** k of Coulomb's law (N·m²/C²), G of the law of gravitation (N·m²/kg²). */
+export const FIELD_CONSTANTS: Record<FieldMode, number> = {
+  electric: 8.99e9,
+  gravitational: 6.674e-11,
+  uniform: 1,
+};
+
+export interface PlacedSource {
+  x: number;
+  y: number;
+  /** Charge (C) or mass (kg). */
+  value: number;
+}
+
+/**
+ * The field at (x, y) by superposition of inverse-square sources: away from a positive charge
+ * (electric), towards a mass (gravitational), constant in the uniform mode. Null at a source.
+ */
+export function fieldAt(
+  mode: FieldMode,
+  constant: number,
+  sources: PlacedSource[],
+  uniform: [number, number],
+  x: number,
+  y: number
+): [number, number] | null {
+  if (mode === 'uniform') return [uniform[0], uniform[1]];
+  const sign = mode === 'electric' ? 1 : -1;
+  let fx = 0;
+  let fy = 0;
+  for (const s of sources) {
+    const dx = x - s.x;
+    const dy = y - s.y;
+    const r2 = dx * dx + dy * dy;
+    if (r2 < 1e-12) return null;
+    const magnitude = (sign * constant * s.value) / r2;
+    const r = Math.sqrt(r2);
+    fx += (magnitude * dx) / r;
+    fy += (magnitude * dy) / r;
+  }
+  return [fx, fy];
+}
+
+/** Force on a test charge or mass placed in the field. */
+export function forceIn(field: [number, number], test: number): [number, number] {
+  return [field[0] * test, field[1] * test];
+}
+
+// ---------------------------------------------------------------------------
+// Photons and energy levels
+// ---------------------------------------------------------------------------
+
+export const PLANCK = 6.626e-34;
+export const LIGHT_SPEED = 2.998e8;
+export const ELECTRON_VOLT = 1.602e-19;
+
+export type SpectralDomain = 'uv' | 'visible' | 'ir';
+
+export function spectralDomain(nm: number): SpectralDomain {
+  return nm < 400 ? 'uv' : nm > 800 ? 'ir' : 'visible';
+}
+
+export interface PhotonQuantities {
+  energyEv: number;
+  energyJ: number;
+  frequency: number;
+  wavelengthNm: number;
+  domain: SpectralDomain;
+  /** The atom falls to the lower level (the photon is emitted) rather than climbs (absorbed). */
+  emission: boolean;
+}
+
+/** The photon exchanged between two levels: E = h·ν = h·c/λ. */
+export function photonBetween(fromEv: number, toEv: number): PhotonQuantities {
+  const energyEv = Math.abs(toEv - fromEv);
+  const energyJ = energyEv * ELECTRON_VOLT;
+  const frequency = energyJ / PLANCK;
+  const wavelengthNm = energyJ > 0 ? ((PLANCK * LIGHT_SPEED) / energyJ) * 1e9 : Infinity;
+  return {
+    energyEv,
+    energyJ,
+    frequency,
+    wavelengthNm,
+    domain: spectralDomain(wavelengthNm),
+    emission: toEv < fromEv,
+  };
+}
+
+/** An approximate colour of a visible wavelength; grey outside the visible range. */
+export function wavelengthColour(nm: number): string {
+  if (nm < 400 || nm > 800) return '#8a8a8a';
+  if (nm < 440) return '#7f00ff';
+  if (nm < 490) return '#2e5bff';
+  if (nm < 510) return '#00c8d8';
+  if (nm < 580) return '#2ecc40';
+  if (nm < 600) return '#ffdc00';
+  if (nm < 645) return '#ff851b';
+  return '#ff2a2a';
+}
+
+// ---------------------------------------------------------------------------
+// Molecules (Lewis structures, groups, polarity)
+// ---------------------------------------------------------------------------
+
+/** Pauling electronegativities, Z ≤ 36 (noble gases absent). */
+export const ELECTRONEGATIVITY: Record<string, number> = {
+  H: 2.2,
+  Li: 0.98,
+  Be: 1.57,
+  B: 2.04,
+  C: 2.55,
+  N: 3.04,
+  O: 3.44,
+  F: 3.98,
+  Na: 0.93,
+  Mg: 1.31,
+  Al: 1.61,
+  Si: 1.9,
+  P: 2.19,
+  S: 2.58,
+  Cl: 3.16,
+  K: 0.82,
+  Ca: 1.0,
+  Sc: 1.36,
+  Ti: 1.54,
+  V: 1.63,
+  Cr: 1.66,
+  Mn: 1.55,
+  Fe: 1.83,
+  Co: 1.88,
+  Ni: 1.91,
+  Cu: 1.9,
+  Zn: 1.65,
+  Ga: 1.81,
+  Ge: 2.01,
+  As: 2.18,
+  Se: 2.55,
+  Br: 2.96,
+};
+
+export function elementBySymbol(symbol: string): Element | undefined {
+  return ELEMENTS.find((e) => e.symbol === symbol);
+}
+
+const SUBSCRIPT = '₀₁₂₃₄₅₆₇₈₉';
+export function subscript(n: number): string {
+  return String(n)
+    .split('')
+    .map((d) => SUBSCRIPT[Number(d)] ?? d)
+    .join('');
+}
+
+export interface MoleculeAtom {
+  id: string;
+  element: string;
+  lonePairs: number;
+  charge?: number;
+}
+
+export interface MoleculeBond {
+  from: string;
+  to: string;
+  order: number;
+}
+
+/** Molecular formula in the Hill order: C, then H, then the others alphabetically (alphabetical without carbon). */
+export function moleculeFormula(atoms: Array<{ element: string }>): string {
+  const counts = new Map<string, number>();
+  for (const a of atoms) counts.set(a.element, (counts.get(a.element) ?? 0) + 1);
+  const hasCarbon = counts.has('C');
+  const rank = (s: string) => (hasCarbon ? (s === 'C' ? '0' : s === 'H' ? '1' : `2${s}`) : s);
+  return [...counts.keys()]
+    .sort((a, b) => rank(a).localeCompare(rank(b)))
+    .map((s) => {
+      const n = counts.get(s) ?? 1;
+      return n === 1 ? s : `${s}${subscript(n)}`;
+    })
+    .join('');
+}
+
+/** Valence electrons a Lewis structure must place: those of the atoms, minus the charge of the ion. */
+export function valenceElectronCount(atoms: MoleculeAtom[]): number {
+  return atoms.reduce((s, a) => {
+    const el = elementBySymbol(a.element);
+    return s + (el ? valenceElectrons(el.z) : 0) - (a.charge ?? 0);
+  }, 0);
+}
+
+export interface OctetCheck {
+  /** Bonding pairs around the atom (a double bond counts two). */
+  bonding: number;
+  lone: number;
+  electrons: number;
+  /** 2 for hydrogen and helium (the duet), 8 otherwise. */
+  needed: number;
+  complete: boolean;
+}
+
+/** Electrons around an atom of a Lewis structure: two per bond order plus two per lone pair. */
+export function octetCheck(atom: MoleculeAtom, bonds: MoleculeBond[]): OctetCheck {
+  const bonding = bonds
+    .filter((b) => b.from === atom.id || b.to === atom.id)
+    .reduce((s, b) => s + b.order, 0);
+  const electrons = 2 * bonding + 2 * atom.lonePairs;
+  const needed = atom.element === 'H' || atom.element === 'He' ? 2 : 8;
+  return { bonding, lone: atom.lonePairs, electrons, needed, complete: electrons === needed };
+}
+
+export interface BondPolarity {
+  difference: number;
+  /** Polar when the electronegativities differ by 0.4 or more. */
+  polar: boolean;
+  /** Which end carries δ−. */
+  negative: 'from' | 'to' | null;
+}
+
+export function bondPolarity(from: string, to: string): BondPolarity {
+  const a = ELECTRONEGATIVITY[from] ?? 0;
+  const b = ELECTRONEGATIVITY[to] ?? 0;
+  const difference = Math.abs(a - b);
+  const polar = difference >= 0.4;
+  return { difference, polar, negative: !polar ? null : a > b ? 'from' : 'to' };
+}
+
+/** Sum of the bond dipoles of the flat drawing, from δ+ to δ−, weighted by the electronegativity differences. */
+export function moleculeDipole(
+  atoms: Array<MoleculeAtom & { x: number; y: number }>,
+  bonds: MoleculeBond[]
+): [number, number] {
+  const byId = new Map(atoms.map((a) => [a.id, a]));
+  let dx = 0;
+  let dy = 0;
+  for (const b of bonds) {
+    const from = byId.get(b.from);
+    const to = byId.get(b.to);
+    if (!from || !to) continue;
+    const polarity = bondPolarity(from.element, to.element);
+    if (!polarity.polar) continue;
+    const head = polarity.negative === 'from' ? from : to;
+    const tail = head === from ? to : from;
+    const vx = head.x - tail.x;
+    const vy = head.y - tail.y;
+    const n = Math.hypot(vx, vy) || 1;
+    dx += (polarity.difference * vx) / n;
+    dy += (polarity.difference * vy) / n;
+  }
+  return [dx, dy];
+}
+
+/** Polar when the bond dipoles do not cancel (the authored verdict wins when given). */
+export function moleculePolar(
+  atoms: Array<MoleculeAtom & { x: number; y: number }>,
+  bonds: MoleculeBond[],
+  override?: boolean
+): boolean {
+  if (override !== undefined) return override;
+  const [dx, dy] = moleculeDipole(atoms, bonds);
+  return Math.hypot(dx, dy) > 0.05;
+}
+
+// ---------------------------------------------------------------------------
+// Probability trees and random variables
+// ---------------------------------------------------------------------------
+
+export interface ProbabilityTreeSpec {
+  first: Array<{ id: string; p: number }>;
+  second: Array<{ id: string }>;
+  given: Record<string, number[]>;
+}
+
+export interface TreeLeaf {
+  first: string;
+  second: string;
+  /** P(A ∩ B) = P(A) × P_A(B). */
+  p: number;
+}
+
+export const leafId = (first: string, second: string): string => `${first}_${second}`;
+
+export function treeLeaves(tree: ProbabilityTreeSpec): TreeLeaf[] {
+  return tree.first.flatMap((a) =>
+    tree.second.map((b, j) => ({
+      first: a.id,
+      second: b.id,
+      p: a.p * (tree.given[a.id]?.[j] ?? 0),
+    }))
+  );
+}
+
+/** P_A(B) as authored on the tree. */
+export function givenProbability(
+  tree: ProbabilityTreeSpec,
+  firstId: string,
+  secondId: string
+): number {
+  const j = tree.second.findIndex((s) => s.id === secondId);
+  return j < 0 ? 0 : (tree.given[firstId]?.[j] ?? 0);
+}
+
+/** P(B) = Σ P(A_i) × P_{A_i}(B) over the first level. */
+export function totalProbability(tree: ProbabilityTreeSpec, secondId: string): number {
+  return treeLeaves(tree)
+    .filter((l) => l.second === secondId)
+    .reduce((s, l) => s + l.p, 0);
+}
+
+/** P_B(A) = P(A ∩ B) / P(B): reading the tree backwards. */
+export function conditionalProbability(
+  tree: ProbabilityTreeSpec,
+  firstId: string,
+  secondId: string
+): number {
+  const pb = totalProbability(tree, secondId);
+  if (pb === 0) return NaN;
+  const leaf = treeLeaves(tree).find((l) => l.first === firstId && l.second === secondId);
+  return (leaf?.p ?? 0) / pb;
+}
+
+/** A and B are independent when P_A(B) = P(B). */
+export function isIndependent(
+  tree: ProbabilityTreeSpec,
+  firstId: string,
+  secondId: string,
+  eps = 1e-9
+): boolean {
+  return (
+    Math.abs(givenProbability(tree, firstId, secondId) - totalProbability(tree, secondId)) < eps
+  );
+}
+
+/** One two-stage draw along the tree. */
+export function drawTree(
+  tree: ProbabilityTreeSpec,
+  random: () => number
+): { first: string; second: string } {
+  const first = drawOne(
+    tree.first.map((f) => ({ id: f.id, p: f.p })),
+    random
+  );
+  const row = tree.given[first] ?? [];
+  const second = drawOne(
+    tree.second.map((s, j) => ({ id: s.id, p: row[j] ?? 0 })),
+    random
+  );
+  return { first, second };
+}
+
+export interface LawEntry {
+  x: number;
+  p: number;
+}
+
+/** The law of a random variable: the outcomes grouped by value, probabilities added. */
+export function distributionOf(outcomes: Outcome[], values: Record<string, number>): LawEntry[] {
+  const byValue = new Map<number, number>();
+  for (const o of outcomes) {
+    const x = values[o.id];
+    if (x === undefined) continue;
+    byValue.set(x, (byValue.get(x) ?? 0) + o.p);
+  }
+  return [...byValue.entries()].map(([x, p]) => ({ x, p })).sort((a, b) => a.x - b.x);
+}
+
+export function expectation(law: LawEntry[]): number {
+  return law.reduce((s, e) => s + e.x * e.p, 0);
+}
+
+export function variance(law: LawEntry[]): number {
+  const mean = expectation(law);
+  return law.reduce((s, e) => s + e.p * (e.x - mean) ** 2, 0);
+}
+
+export function stdDeviation(law: LawEntry[]): number {
+  return Math.sqrt(variance(law));
+}
+
+// ---------------------------------------------------------------------------
+// Colours (additive and subtractive syntheses)
+// ---------------------------------------------------------------------------
+
+export type Channel = 'r' | 'g' | 'b';
+export type Rgb = [number, number, number];
+export type ColourName =
+  'white' | 'red' | 'green' | 'blue' | 'yellow' | 'cyan' | 'magenta' | 'black';
+
+/** The name of a light from the channels it carries (a channel counts above one half). */
+export function colourName(rgb: Rgb): ColourName {
+  const [r, g, b] = rgb.map((c) => c > 0.5);
+  if (r && g && b) return 'white';
+  if (r && g) return 'yellow';
+  if (r && b) return 'magenta';
+  if (g && b) return 'cyan';
+  if (r) return 'red';
+  if (g) return 'green';
+  if (b) return 'blue';
+  return 'black';
+}
+
+/** The light left after a filter that passes only some channels (an object reflecting them: the same). */
+export function transmitLight(rgb: Rgb, passes: Channel[]): Rgb {
+  return [
+    passes.includes('r') ? rgb[0] : 0,
+    passes.includes('g') ? rgb[1] : 0,
+    passes.includes('b') ? rgb[2] : 0,
+  ];
+}
+
+export function rgbHex(rgb: Rgb): string {
+  return `#${rgb
+    .map((c) =>
+      Math.round(Math.min(1, Math.max(0, c)) * 255)
+        .toString(16)
+        .padStart(2, '0')
+    )
+    .join('')}`;
+}
+
+// ---------------------------------------------------------------------------
+// Reactions: yield, bond energies, half-equations
+// ---------------------------------------------------------------------------
+
+/** Yield of a synthesis: the amount obtained over the amount the extent table allows. */
+export function reactionYield(obtained: number, maximum: number): number {
+  return maximum > 0 ? obtained / maximum : NaN;
+}
+
+/** Molar reaction energy from bond energies: broken bonds cost, formed bonds release (positive: endothermic). */
+export function bondEnergyBalance(
+  bonds: Array<{ energy: number; broken: number; formed: number }>
+): number {
+  return bonds.reduce((s, b) => s + b.energy * (b.broken - b.formed), 0);
+}
+
+/** Multipliers of two half-equations so that the electrons exchanged balance. */
+export function electronMultipliers(e1: number, e2: number): [number, number] {
+  const l = (e1 * e2) / gcd(e1, e2);
+  return [l / e1, l / e2];
+}
+
+// ---------------------------------------------------------------------------
+// Uncertainties (physics conventions: sample standard deviation)
+// ---------------------------------------------------------------------------
+
+/** Sample standard deviation (n − 1 in the denominator), the estimator of the physics programme. */
+export function sampleStd(values: number[], counts?: number[]): number {
+  const sorted = expandSeries(values, counts);
+  const n = sorted.length;
+  if (n < 2) return NaN;
+  const mean = sorted.reduce((s, v) => s + v, 0) / n;
+  return Math.sqrt(sorted.reduce((s, v) => s + (v - mean) ** 2, 0) / (n - 1));
+}
+
+/** Standard uncertainty of the mean of n measurements, u = s/√n. */
+export function standardUncertainty(values: number[], counts?: number[]): number {
+  const n = expandSeries(values, counts).length;
+  return n < 2 ? NaN : sampleStd(values, counts) / Math.sqrt(n);
+}

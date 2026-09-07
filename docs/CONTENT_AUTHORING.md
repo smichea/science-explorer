@@ -110,7 +110,8 @@ edges:
     type: applies_to
     coverageEligible: true          # counts in the tool's application coverage
     weight: 1
-    depthRange: [1, 3]
+    depthRange: [1, 4]              # on an application: the depths of the tool it describes (nothing reads it);
+                                    # on a prerequisite: the depths of the dependent node from which the edge holds
   - from: phenomenon.motion.uniformly_accelerated
     to: person.galileo_galilei
     type: historically_developed_by
@@ -221,7 +222,12 @@ current layer, kept by the stage filters, flown over by the bird's-eye flight on
 learner asks for the foundations. A route may declare its `stage` (`stage: seconde`): the flight
 skips it for a learner already past that year, and the recommendations do not push it. The
 curriculum of a stage aligns the depth taught that year (`{ node: concept.function, depth: 1 }`
-in Seconde, `depth: 2` in Terminale).
+in Seconde, `depth: 2` in Terminale). The compiler refuses an alignment with a depth the node does
+not have. The routes of a year are listed before the routes of the following years (the next-lesson
+link follows the file order), and the flight is checked with every node at depth 1: never write a
+prerequisite edge from a node of a later year to a node of an earlier one (write it the other way
+round as `requires_recommended` when the link matters); a prerequisite that only holds from a
+later depth of the dependant carries `depthRange: [2, 2]`.
 
 ### `content/missions/<id>.yaml`
 
@@ -462,6 +468,7 @@ tools:                              # one or several; a step shows one of them (
   - id: plotter
     kind: plotter                   # plotter | simulation | vectors | slope_field | fit | field | dimensions | timeline
                                     # | arithmetic | data | random | sequence | wave | optics | periodic_table | reaction
+                                    # | unit_circle | vector_field | energy_levels | molecule
     variable: x
     view: { x: [-3, 3], y: [-2, 10] }
     parameters:                     # sliders of the free play, usable in expressions (a, a+h)
@@ -500,20 +507,24 @@ letters and **never `e`** (the constant of the exponential shadows it; the compi
 | --- | --- | --- | --- |
 | `plotter` | curves of one variable | drawn by the actions | typed expression, marker, tangent, sliders |
 | `simulation` | an existing simulation (`simulationId`) | — | the simulation's own controls |
-| `vectors` | arrows with components, sums, parametric paths, named points and segments | `vectors` (`x`, `y` may use parameters; `from` chains), `paths` (`x`, `y` of `s`), `sums`, `points`, `segments` (length and midpoint read out), `determinant: [u, v]` | drag the heads and the points (`drag: true`), sliders |
+| `vectors` | arrows with components, sums, parametric paths, named points and segments | `vectors` (`x`, `y` may use parameters; `from` chains), `paths` (`x`, `y` of `s`), `sums`, `points`, `segments` (length and midpoint read out), `determinant: [u, v]`, `dot: [u, v]` (dot product, norms, angle, orthogonality read out) | drag the heads and the points (`drag: true`), sliders |
 | `slope_field` | the direction field of `y' = equation(x, y)` and solutions | `solutions` (`x0`, `y0`) | click to add an initial condition, sliders |
 | `fit` | measured points (`points` or a seeded `generator`) and candidate `models` | `models` | choose a model, tune sliders, `measure: true` adds points, `target` asks a prediction |
 | `field` | a scalar field `expr(x, y)` as a heat map with iso-lines and the gradient at a marker | — | drag the marker, sliders |
 | `dimensions` | a table of `quantities` with dimension exponents and SI units | `quantities` | rebuild a derived quantity (`base: false`) from the base ones |
 | `timeline` | events (`year`, or `start`–`end`) on lanes, a year cursor | `events` | drag the cursor |
 | `arithmetic` | a sieve of the integers up to `max` (multiples of `highlight`, primes), the divisors and factorisation of `number` | — | choose the integer and the multiples |
-| `data` | a statistical series (`values`, optional `counts`, `unit`, `bins`): histogram, box plot, mean, median, quartiles, range, standard deviation | — | edit the series |
-| `random` | a die (`sides`), a coin or an `urn`; frequencies of the outcomes against the probabilities (`mode: frequencies`) or the frequency of an `event` on samples of size `sample` with the interval p ± 1/√n (`mode: sampling`); seeded | — | draw, sample, start again |
+| `data` | a statistical series (`values`, optional `counts`, `unit`, `bins`): histogram, box plot, mean, median, quartiles, range, standard deviation; `uncertainty: true` adds the sample standard deviation, u = s/√n and the result x̄ ± u | — | edit the series |
+| `random` | a die (`sides`), a coin or an `urn`; frequencies of the outcomes against the probabilities (`mode: frequencies`), the frequency of an `event` on samples of size `sample` with the interval p ± 1/√n (`mode: sampling`), or a weighted two-level `tree` (`first` outcomes with `p`, `second` outcomes, `given` rows of conditional probabilities; `mode: tree`: intersections, total and conditional probabilities, independence); a `variable` (`values` per outcome, or per leaf `first_second`) adds the law, the expectation, the variance and the standard deviation, and sampling then draws sample means; seeded | — | draw, sample, start again |
 | `sequence` | the terms of a sequence given by an `expr` of `n` (`mode: explicit`) or of `u` and `n` from `first` (`mode: recurrence`, optional `cobweb`) | — | type a formula, number of terms, read u(n) and the sum, sliders |
 | `wave` | a progressive sinusoidal wave on a string (`period`, `wavelength` or `speed`, `amplitude`, `length`) and the signal at a point M | — | play / pause, time, move M |
-| `optics` | `mode: refraction` (indices `n1`, `n2`, incidence `angle`, total reflection, critical angle) or `mode: lens` (thin converging lens: `focal`, `object { distance, height }`, image and magnification) | — | sliders of the parameters used by the scalars |
+| `optics` | `mode: refraction` (indices `n1`, `n2`, incidence `angle`, total reflection, critical angle), `mode: lens` (thin converging lens: `focal`, `object { distance, height }`, image and magnification) or `mode: colour` (`colour { source: [r, g, b], filter { passes }, object { reflects } }`: additive and subtractive syntheses, the light after the filter, the colour of the object) | — | sliders of the parameters used by the scalars |
 | `periodic_table` | the elements up to `max` with families, configuration, valence electrons and stable ion (`mode: table`), or a nucleus A, Z with α / β decays (`mode: nucleus`) | — | click an element, move A and Z, decay |
-| `reaction` | the extent table of `reactants` and `products` (`coefficient`, `initial`), the limiting reactant and the final state | `reactants`, `products` | move the extent, sliders of the initial amounts |
+| `reaction` | the extent table of `reactants` and `products` (`coefficient`, `initial`), the limiting reactant and the final state; `obtained` adds the yield, `bonds` (`label`, `energy`, `broken`, `formed`) the molar reaction energy, two `halfEquations` (`left`, `right`, `electrons`, `role`) their electron multipliers and the overall equation | `reactants`, `products` | move the extent, sliders of the initial amounts |
+| `unit_circle` | the unit circle with the point of an `angle` (radians; `degrees: true` reads degrees first), its cosine, sine and tangent, the remarkable angles (`marks`) and, with `curves: true`, the sine and cosine curves | — | drag the point (snaps to the multiples of π/12), arrow keys, sliders |
+| `vector_field` | the arrows of a field on a grid: `mode: electric` (charges), `gravitational` (masses) or `uniform` (`uniform { x, y }`); `sources` (`x`, `y`, `value`, `drag`), the physical `constant` by default, the field and the force on a `test` charge or mass at a `marker` | `sources` | drag the marker and the sources, sliders |
+| `energy_levels` | horizontal `levels` (`energy` in eV) with a `selected` pair: the photon emitted or absorbed (energy, frequency, wavelength, domain) and a spectrum strip; authored `transitions` | `levels`, `transitions` | click two levels |
+| `molecule` | `atoms` (`element`, `x`, `y`, `lonePairs`, `charge`), `bonds` (`order`), characteristic `groups`, the formula, the valence electrons, the octets, the `geometry`; `polarity: true` shows δ+ / δ− and the polarity verdict (`polar` overrides the flat drawing) | `bonds`, `groups` | click an atom, show or hide the lone pairs and the groups |
 
 - Without `steps`, the slides are cut from the node `description` (one paragraph each), followed
   by a free play when there is a tool and by the exercises of the node. Every node therefore has a

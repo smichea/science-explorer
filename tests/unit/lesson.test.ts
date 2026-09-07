@@ -185,3 +185,62 @@ describe('lessons', () => {
     expect(ids).not.toContain('exercise.debrief.reflection');
   });
 });
+
+describe('Première tools', () => {
+  it('accepts the new tool kinds and shows their items from the slides', () => {
+    const plan: LessonPlan = {
+      id: 'preview',
+      node: node('tool.vector'),
+      depth: 1,
+      authored: true,
+      tools: [
+        {
+          id: 'levels',
+          kind: 'energy_levels',
+          levels: [
+            { id: 'n1', energy: -13.6, hidden: false },
+            { id: 'n2', energy: -3.4, hidden: false },
+          ],
+          selected: ['n2', 'n1'],
+          transitions: [{ id: 'lyman', from: 'n2', to: 'n1', hidden: true }],
+        },
+        {
+          id: 'tree',
+          kind: 'random',
+          experiment: 'die',
+          sides: 6,
+          urn: [],
+          mode: 'tree',
+          sample: 50,
+          seed: 1,
+          tree: {
+            first: [
+              { id: 'a', label: { fr: 'A', en: 'A' }, p: 0.3 },
+              { id: 'na', label: { fr: 'non A', en: 'not A' }, p: 0.7 },
+            ],
+            second: [
+              { id: 'b', label: { fr: 'B', en: 'B' } },
+              { id: 'nb', label: { fr: 'non B', en: 'not B' } },
+            ],
+            given: { a: [0.8, 0.2], na: [0.5, 0.5] },
+          },
+        },
+      ],
+      steps: [
+        {
+          id: 'one',
+          kind: 'slide',
+          text: { fr: 'Un. Deux.', en: 'One. Two.' },
+          actions: [{ at: 1, show: ['lyman'], hide: [], clear: false }],
+          exercises: [],
+        },
+      ],
+    };
+    const levels = plan.tools[0] as Extract<LessonTool, { kind: 'energy_levels' }>;
+    const before = toolStateAt(plan, 'levels', 0, 0)!;
+    expect(itemVisible(levels.transitions[0], before)).toBe(false);
+    const after = toolStateAt(plan, 'levels', 0, 1)!;
+    expect(itemVisible(levels.transitions[0], after)).toBe(true);
+    expect(toolStateAt(plan, 'tree', 0, 0)?.params).toEqual({});
+  });
+});

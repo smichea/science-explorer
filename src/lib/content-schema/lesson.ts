@@ -222,6 +222,121 @@ export const UrnItemSchema = z.object({
 });
 export type UrnItem = z.infer<typeof UrnItemSchema>;
 
+/** A source of a vector field: a charge (C) or a mass (kg) placed at (x, y), expressions of the parameters. */
+export const FieldSourceSchema = z.object({
+  id: ItemId,
+  x: Scalar,
+  y: Scalar,
+  value: Scalar,
+  label: LocalisedText.optional(),
+  color: z.string().optional(),
+  /** The learner may drag it during the free play. */
+  drag: z.boolean().default(false),
+  hidden: Hidden,
+});
+export type FieldSource = z.infer<typeof FieldSourceSchema>;
+
+/** An energy level of an atom (eV; negative for a bound state). */
+export const EnergyLevelSchema = z.object({
+  id: ItemId,
+  energy: z.number(),
+  label: LocalisedText.optional(),
+  hidden: Hidden,
+});
+export type EnergyLevel = z.infer<typeof EnergyLevelSchema>;
+
+/** A transition between two levels, drawn as an arrow (emission downwards, absorption upwards). */
+export const TransitionItemSchema = z.object({
+  id: ItemId,
+  from: ItemId,
+  to: ItemId,
+  label: LocalisedText.optional(),
+  hidden: Hidden,
+});
+export type TransitionItem = z.infer<typeof TransitionItemSchema>;
+
+/** An atom of a molecule drawing: element symbol, position (drawing units), lone pairs. */
+export const AtomItemSchema = z.object({
+  id: ItemId,
+  element: z.string().regex(/^[A-Z][a-z]?$/),
+  x: z.number(),
+  y: z.number(),
+  lonePairs: z.number().int().min(0).max(4).default(0),
+  /** Formal charge of an ion (+1, −1). */
+  charge: z.number().int().optional(),
+});
+export type AtomItem = z.infer<typeof AtomItemSchema>;
+
+/** A covalent bond between two atoms (single, double or triple). */
+export const BondItemSchema = z.object({
+  id: ItemId,
+  from: ItemId,
+  to: ItemId,
+  order: z.union([z.literal(1), z.literal(2), z.literal(3)]).default(1),
+  hidden: Hidden,
+});
+export type BondItem = z.infer<typeof BondItemSchema>;
+
+/** A characteristic group of an organic molecule: the atoms it gathers, its name and family. */
+export const GroupItemSchema = z.object({
+  id: ItemId,
+  atoms: z.array(ItemId).min(1),
+  label: LocalisedText,
+  family: LocalisedText.optional(),
+  color: z.string().optional(),
+  hidden: Hidden,
+});
+export type GroupItem = z.infer<typeof GroupItemSchema>;
+
+/** A bond energy (kJ/mol) with the numbers of such bonds broken and formed by the reaction. */
+export const BondEnergySchema = z.object({
+  id: ItemId,
+  label: z.string().min(1),
+  energy: z.number().positive(),
+  broken: z.number().int().min(0).default(0),
+  formed: z.number().int().min(0).default(0),
+});
+export type BondEnergy = z.infer<typeof BondEnergySchema>;
+
+/** A half-equation of a redox couple: `left` and `right` are formulas, `electrons` the number exchanged. */
+export const HalfEquationSchema = z.object({
+  id: ItemId,
+  left: z.string().min(1),
+  right: z.string().min(1),
+  electrons: z.number().int().min(1),
+  role: z.enum(['oxidation', 'reduction']),
+});
+export type HalfEquation = z.infer<typeof HalfEquationSchema>;
+
+/** A weighted two-level tree: P(A) on the first level, the rows of P_A(B) on the second. */
+export const ProbabilityTreeSchema = z.object({
+  first: z
+    .array(z.object({ id: ItemId, label: LocalisedText, p: z.number().min(0).max(1) }))
+    .min(2),
+  second: z.array(z.object({ id: ItemId, label: LocalisedText })).min(2),
+  /** For each first-level id, the conditional probabilities of the second-level outcomes, in order. */
+  given: z.record(ItemId, z.array(z.number().min(0).max(1)).min(2)),
+});
+export type ProbabilityTree = z.infer<typeof ProbabilityTreeSchema>;
+
+/** A real random variable on the outcomes of the experiment (or on the leaves `first_second` of a tree). */
+export const RandomVariableSchema = z.object({
+  label: LocalisedText,
+  values: z.record(z.string().min(1), z.number()),
+  unit: z.string().optional(),
+});
+export type RandomVariable = z.infer<typeof RandomVariableSchema>;
+
+const Channels = z.array(z.enum(['r', 'g', 'b']));
+/** Colour mode of the optics tool: the source light, an optional filter and an optional object. */
+export const ColourSetupSchema = z.object({
+  /** Additive components of the source light, 0 to 1 (expressions of the parameters). */
+  source: z.tuple([Scalar, Scalar, Scalar]).default([1, 1, 1]),
+  filter: z.object({ passes: Channels }).optional(),
+  object: z.object({ reflects: Channels }).optional(),
+});
+export type ColourSetup = z.infer<typeof ColourSetupSchema>;
+
 const ToolBase = { id: ItemId, title: LocalisedText.optional() };
 
 export const LessonToolSchema = z.discriminatedUnion('kind', [
@@ -251,6 +366,8 @@ export const LessonToolSchema = z.discriminatedUnion('kind', [
     segments: z.array(SegmentItemSchema).default([]),
     /** Two vectors whose determinant (the colinearity test) is read out. */
     determinant: z.tuple([ItemId, ItemId]).optional(),
+    /** Two vectors whose dot product, norms, angle and orthogonality are read out. */
+    dot: z.tuple([ItemId, ItemId]).optional(),
     /** Sums drawn as a parallelogram / chain: the resultant of the listed vectors. */
     sums: z
       .array(
@@ -348,6 +465,8 @@ export const LessonToolSchema = z.discriminatedUnion('kind', [
     unit: z.string().optional(),
     /** Number of classes of the histogram. */
     bins: z.number().int().min(2).max(24).default(8),
+    /** Read out the standard uncertainty of the mean, u = s/√n (sample standard deviation), and the result x̄ ± u. */
+    uncertainty: z.boolean().default(false),
   }),
   z.object({
     ...ToolBase,
@@ -360,11 +479,15 @@ export const LessonToolSchema = z.discriminatedUnion('kind', [
     event: z
       .object({ label: LocalisedText, outcomes: z.array(z.string().min(1)).min(1) })
       .optional(),
-    /** `frequencies`: frequencies of every outcome; `sampling`: frequency of the event on samples of size n. */
-    mode: z.enum(['frequencies', 'sampling']).default('frequencies'),
+    /** `frequencies`: frequencies of every outcome; `sampling`: frequency of the event (or the mean of the variable) on samples of size n; `tree`: a weighted two-level tree. */
+    mode: z.enum(['frequencies', 'sampling', 'tree']).default('frequencies'),
     /** Sample size of the sampling mode. */
     sample: z.number().int().min(1).max(10000).default(50),
     seed: z.number().int().default(1),
+    /** The tree of the `tree` mode (the event's outcomes are then second-level ids). */
+    tree: ProbabilityTreeSchema.optional(),
+    /** A random variable on the outcomes: its law, expectation, variance and standard deviation are read out. */
+    variable: RandomVariableSchema.optional(),
   }),
   z.object({
     ...ToolBase,
@@ -405,7 +528,7 @@ export const LessonToolSchema = z.discriminatedUnion('kind', [
     ...ToolBase,
     kind: z.literal('optics'),
     parameters: Parameters,
-    mode: z.enum(['refraction', 'lens']).default('refraction'),
+    mode: z.enum(['refraction', 'lens', 'colour']).default('refraction'),
     /** Refraction: indices and incidence (degrees), expressions of the parameters. */
     n1: Scalar.default(1),
     n2: Scalar.default(1.5),
@@ -415,6 +538,8 @@ export const LessonToolSchema = z.discriminatedUnion('kind', [
     object: z
       .object({ distance: Scalar.default(12), height: Scalar.default(3) })
       .default({ distance: 12, height: 3 }),
+    /** Colour: the source light, a filter, an object (additive and subtractive syntheses). */
+    colour: ColourSetupSchema.optional(),
   }),
   z.object({
     ...ToolBase,
@@ -438,6 +563,66 @@ export const LessonToolSchema = z.discriminatedUnion('kind', [
     unit: z.string().default('mol'),
     /** Extent shown at first (an expression of the parameters); the maximum by default. */
     extent: Scalar.optional(),
+    /** Amount of the first product actually obtained: the yield is read out. */
+    obtained: Scalar.optional(),
+    /** Bond energies broken and formed: the molar energy of the reaction is read out. */
+    bonds: z.array(BondEnergySchema).default([]),
+    /** Two half-equations (one oxidation, one reduction) combined with electron multipliers. */
+    halfEquations: z.array(HalfEquationSchema).max(2).default([]),
+  }),
+  z.object({
+    ...ToolBase,
+    kind: z.literal('unit_circle'),
+    parameters: Parameters,
+    /** Angle shown at first, in radians (an expression of the parameters: `a`, `pi/3`). */
+    angle: Scalar.default(0),
+    /** Main readout in degrees rather than radians. */
+    degrees: z.boolean().default(false),
+    /** Show the remarkable angles (multiples of π/6 and π/4) on the circle. */
+    marks: z.boolean().default(true),
+    /** Draw the sine and cosine curves next to the circle, with the current angle marked. */
+    curves: z.boolean().default(false),
+  }),
+  z.object({
+    ...ToolBase,
+    kind: z.literal('vector_field'),
+    view: View,
+    parameters: Parameters,
+    mode: z.enum(['electric', 'gravitational', 'uniform']).default('electric'),
+    sources: z.array(FieldSourceSchema).default([]),
+    /** k (electric) or G (gravitational); the physical constant by default, 1 in the uniform mode. */
+    constant: Scalar.optional(),
+    /** The field of the uniform mode (V/m or N/kg), expressions of the parameters. */
+    uniform: z.object({ x: Scalar.default(0), y: Scalar.default(-1) }).default({ x: 0, y: -1 }),
+    /** Arrows per side of the grid. */
+    grid: z.number().int().min(4).max(24).default(10),
+    marker: z.object({ x: z.number(), y: z.number() }).default({ x: 1, y: 1 }),
+    /** Test charge (C) or test mass (kg) whose force is read at the marker. */
+    test: Scalar.default(1),
+    labels: z
+      .object({ x: z.string().default('x (m)'), y: z.string().default('y (m)') })
+      .default({ x: 'x (m)', y: 'y (m)' }),
+  }),
+  z.object({
+    ...ToolBase,
+    kind: z.literal('energy_levels'),
+    levels: z.array(EnergyLevelSchema).min(2),
+    /** Pair of levels selected at first: the arrow, ΔE, the frequency, the wavelength and the domain are read out. */
+    selected: z.tuple([ItemId, ItemId]).optional(),
+    transitions: z.array(TransitionItemSchema).default([]),
+  }),
+  z.object({
+    ...ToolBase,
+    kind: z.literal('molecule'),
+    atoms: z.array(AtomItemSchema).min(1),
+    bonds: z.array(BondItemSchema).default([]),
+    groups: z.array(GroupItemSchema).default([]),
+    name: LocalisedText.optional(),
+    geometry: z.enum(['linear', 'bent', 'trigonal_planar', 'pyramidal', 'tetrahedral']).optional(),
+    /** Show δ+ / δ− on the polar bonds and the polarity verdict. */
+    polarity: z.boolean().default(false),
+    /** Authored verdict when the flat drawing cannot decide (a symmetry in space). */
+    polar: z.boolean().optional(),
   }),
 ]);
 export type LessonTool = z.infer<typeof LessonToolSchema>;

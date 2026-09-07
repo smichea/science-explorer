@@ -240,7 +240,7 @@ function viewOf(tool: LessonTool): PlotterView {
   const labels =
     tool.kind === 'plotter'
       ? { x: tool.variable, y: 'y' }
-      : tool.kind === 'slope_field' || tool.kind === 'fit'
+      : tool.kind === 'slope_field' || tool.kind === 'fit' || tool.kind === 'vector_field'
         ? { x: tool.labels.x, y: tool.labels.y }
         : { x: 'x', y: 'y' };
   if ('view' in tool) return { x: [...tool.view.x], y: [...tool.view.y], labels };
