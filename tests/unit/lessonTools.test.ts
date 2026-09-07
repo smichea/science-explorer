@@ -365,3 +365,165 @@ describe('Première numerics', () => {
     expect(Number.isNaN(m.sampleStd([1]))).toBe(true);
   });
 });
+
+describe('the integral read as an area', () => {
+  it('sums rectangles that close in on the exact value', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    const square = (x: number) => x * x;
+    expect(m.riemannSum(square, 0, 1, 4, 'left')).toBeCloseTo((0 + 1 + 4 + 9) / 64, 12);
+    expect(m.riemannSum(square, 0, 1, 4, 'right')).toBeCloseTo((1 + 4 + 9 + 16) / 64, 12);
+    // The left sum underestimates a growing function, the right one overestimates it, and the
+    // middle one is already close: a hundred rectangles land within a thousandth of a third.
+    expect(m.riemannSum(square, 0, 1, 100, 'middle')).toBeCloseTo(1 / 3, 4);
+    expect(m.integralOf(square, 0, 1)).toBeCloseTo(1 / 3, 6);
+    expect(m.integralOf(Math.sin, 0, Math.PI)).toBeCloseTo(2, 5);
+    // A point the function does not define is dropped instead of poisoning the whole sum.
+    expect(m.riemannSum((x) => 1 / x, 0, 1, 4, 'left')).toBeCloseTo(
+      0.25 * (1 / 0.25 + 1 / 0.5 + 1 / 0.75),
+      9
+    );
+  });
+});
+
+describe('the binomial law', () => {
+  it('gives the coefficients, a law that sums to one, and E = np', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    expect(m.binomialCoefficient(5, 2)).toBe(10);
+    expect(m.binomialCoefficient(10, 0)).toBe(1);
+    expect(m.binomialCoefficient(52, 5)).toBe(2598960);
+    const law = m.binomialLaw(10, 0.3);
+    expect(law).toHaveLength(11);
+    expect(law.reduce((s, o) => s + o.p, 0)).toBeCloseTo(1, 12);
+    expect(law[3].p).toBeCloseTo(120 * 0.3 ** 3 * 0.7 ** 7, 12);
+    const values = Object.fromEntries(law.map((o) => [o.id, Number(o.id)]));
+    const distribution = m.distributionOf(law, values);
+    expect(m.expectation(distribution)).toBeCloseTo(3, 10);
+    expect(m.variance(distribution)).toBeCloseTo(10 * 0.3 * 0.7, 10);
+    expect(m.stdDeviation(distribution)).toBeCloseTo(Math.sqrt(2.1), 10);
+  });
+
+  it('reads the law through the outcomes of the tool', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    const outcomes = m.outcomesOf({
+      experiment: 'binomial',
+      sides: 6,
+      urn: [],
+      trials: 4,
+      success: 0.5,
+    });
+    expect(outcomes.map((o) => o.id)).toEqual(['0', '1', '2', '3', '4']);
+    expect(outcomes.map((o) => o.p)).toEqual([1 / 16, 4 / 16, 6 / 16, 4 / 16, 1 / 16]);
+  });
+});
+
+describe('geometry in space', () => {
+  it('multiplies vectors, builds planes and measures distances', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    const i: [number, number, number] = [1, 0, 0];
+    const j: [number, number, number] = [0, 1, 0];
+    expect(m.dot3(i, j)).toBe(0);
+    expect(m.cross(i, j)).toEqual([0, 0, 1]);
+    expect(m.norm3([2, 3, 6])).toBe(7);
+    expect(m.angleBetween(i, j)).toBeCloseTo(90, 9);
+    expect(m.angleBetween([1, 1, 0], i)).toBeCloseTo(45, 9);
+    const plane = m.planeThrough([0, 0, 2], [0, 0, 1]);
+    expect(plane).toEqual({ a: 0, b: 0, c: 1, d: -2 });
+    expect(m.distancePointPlane([5, 7, 5], plane!)).toBeCloseTo(3, 12);
+    // Three points of the plane z = 2 give the same plane, up to the length of the normal.
+    const same = m.planeOfPoints([1, 0, 2], [0, 1, 2], [0, 0, 2])!;
+    expect(m.distancePointPlane([5, 7, 5], same)).toBeCloseTo(3, 12);
+    expect(m.planeOfPoints([0, 0, 0], [1, 1, 1], [2, 2, 2])).toBeNull();
+  });
+
+  it('clips a line to the box it is drawn in', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    const segment = m.lineClipBox([0, 0, 0], [1, 0, 0], 5)!;
+    expect(segment[0]).toEqual([-5, 0, 0]);
+    expect(segment[1]).toEqual([5, 0, 0]);
+    // A line parallel to an axis but outside the box never enters it.
+    expect(m.lineClipBox([9, 0, 0], [0, 1, 0], 5)).toBeNull();
+    const diagonal = m.lineClipBox([0, 0, 0], [1, 1, 1], 3)!;
+    expect(diagonal[1]).toEqual([3, 3, 3]);
+  });
+});
+
+describe('the Doppler effect and the telescope', () => {
+  it('raises the pitch of a source that closes in, lowers it when it flees', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    expect(m.dopplerFrequency(440, 340, 0, 0)).toBeCloseTo(440, 9);
+    expect(m.dopplerFrequency(440, 340, 34)).toBeCloseTo(440 * (340 / 306), 9);
+    expect(m.dopplerFrequency(440, 340, 34)).toBeGreaterThan(440);
+    expect(m.dopplerFrequency(440, 340, -34)).toBeLessThan(440);
+    expect(m.dopplerFrequency(440, 340, 0, 34)).toBeCloseTo(440 * (374 / 340), 9);
+  });
+
+  it('magnifies the angle by the ratio of the two focal lengths', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    const scope = m.telescope(60, 3, 0.5);
+    expect(scope.magnification).toBeCloseTo(20, 12);
+    expect(scope.length).toBe(63);
+    expect(scope.apparentAngle).toBeCloseTo(10, 12);
+    expect(scope.imageHeight).toBeCloseTo(60 * Math.tan((0.5 * Math.PI) / 180), 12);
+  });
+});
+
+describe('chemical equilibrium', () => {
+  it('settles where the quotient of reaction reaches the constant', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    const reactants = [{ coefficient: 1, initial: 1 }];
+    const products = [{ coefficient: 1, initial: 0 }];
+    // A → B with K = 4: three quarters of A have reacted at equilibrium.
+    const final = m.equilibriumExtent(reactants, products, 4);
+    expect(final).toBeCloseTo(0.8, 6);
+    expect(m.reactionQuotient(reactants, products, final)).toBeCloseTo(4, 4);
+    expect(m.extentRatio(final, 1)).toBeCloseTo(0.8, 6);
+    // A large constant leaves almost nothing behind: the transformation is all but total.
+    expect(m.extentRatio(m.equilibriumExtent(reactants, products, 1e6), 1)).toBeGreaterThan(0.99);
+    expect(m.reactionQuotient(reactants, products, 0)).toBe(0);
+  });
+});
+
+describe('acids and bases', () => {
+  it('reads a predominance diagram both ways', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    expect(m.pHFromRatio(4.8, 1)).toBeCloseTo(4.8, 12);
+    expect(m.pHFromRatio(4.8, 10)).toBeCloseTo(5.8, 12);
+    expect(m.ratioFromPH(4.8, 5.8)).toBeCloseTo(10, 9);
+    expect(m.predominance(4.8, 3)).toBe('acid');
+    expect(m.predominance(4.8, 6)).toBe('base');
+    expect(m.predominance(4.8, 4.8)).toBe('equal');
+  });
+
+  it('titrates a strong acid: pH 7 at the equivalence, and a jump around it', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    const setup = { c: 0.1, v: 20, titrant: 0.1, role: 'acid' as const };
+    const ve = m.equivalenceVolume(0.1, 20, 0.1);
+    expect(ve).toBeCloseTo(20, 12);
+    expect(m.titrationPH(setup, 0)).toBeCloseTo(1, 2);
+    expect(m.titrationPH(setup, ve)).toBeCloseTo(7, 2);
+    expect(m.titrationPH(setup, 2 * ve)).toBeCloseTo(12.52, 1);
+    // The jump: two units of pH crossed within a millilitre on either side of the equivalence.
+    expect(m.titrationPH(setup, ve + 0.5) - m.titrationPH(setup, ve - 0.5)).toBeGreaterThan(2);
+  });
+
+  it('titrates a weak acid: pH = pKa at the half-equivalence, above 7 at the equivalence', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    const setup = { c: 0.1, v: 20, titrant: 0.1, role: 'acid' as const, pka: 4.8 };
+    const ve = m.equivalenceVolume(0.1, 20, 0.1);
+    expect(m.titrationPH(setup, ve / 2)).toBeCloseTo(4.8, 2);
+    expect(m.titrationPH(setup, ve)).toBeGreaterThan(8);
+    expect(m.titrationPH(setup, 0)).toBeCloseTo((4.8 - Math.log10(0.1)) / 2, 1);
+  });
+
+  it('titrates a base with a strong acid, the mirror of the same balance', async () => {
+    const m = await import('../../src/lib/domain/lessonTools');
+    const strong = { c: 0.1, v: 20, titrant: 0.1, role: 'base' as const };
+    const ve = m.equivalenceVolume(0.1, 20, 0.1);
+    expect(m.titrationPH(strong, 0)).toBeCloseTo(13, 2);
+    expect(m.titrationPH(strong, ve)).toBeCloseTo(7, 2);
+    expect(m.titrationPH(strong, 2 * ve)).toBeCloseTo(1.48, 1);
+    const weak = { ...strong, pka: 9.2 };
+    expect(m.titrationPH(weak, ve / 2)).toBeCloseTo(9.2, 2);
+    expect(m.titrationPH(weak, ve)).toBeLessThan(7);
+  });
+});

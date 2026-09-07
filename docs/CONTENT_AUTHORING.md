@@ -383,7 +383,7 @@ expression at sample points: `6t+2`, `2 + 6*t`, `2(3t+1)` are all equivalent. Su
 
 ```yaml
 id: simulation.galileo.inclined_plane
-engine: motion_2d                # motion_2d | first_order
+engine: motion_2d                # motion_2d | first_order | central_force
 title: { fr: "…", en: "…" }
 description: { fr: "…", en: "…" }
 seedPolicy: deterministic
@@ -402,7 +402,8 @@ controls:
   - { variable: angle, label: { fr: "Angle du plan", en: "Plane angle" }, min: 3, max: 30, step: 1, unit: "°", default: 10 }
   - { variable: clockNoise, label: { fr: "Bruit de l'horloge à eau", en: "Water-clock noise" }, min: 0, max: 0.05, step: 0.01, default: 0 }
 observables: [position, velocity, acceleration, energy]
-views: [world, position_time_graph, velocity_time_graph, table]
+views: [world, position_time_graph, velocity_time_graph, table]   # metadata: what the simulation is for,
+                                                                  # not a switch — the view is chosen by the engine
 modelNode: model.kinematics_point
 assumptions: { fr: ["…"], en: ["…"] }
 validity: { fr: "…", en: "…" }
@@ -413,7 +414,17 @@ a11y: { fr: "…", en: "…" }
 ```
 
 `first_order` config: `{ scene: rc_charging | first_order_kinetics | radioactive_decay | newton_cooling, target, initial, tau, unit, timeUnit, duration, dt }`
-models `dq/dt = (target − q) / tau`.
+models `dq/dt = (target − q) / tau`. A body that exchanges heat writes its balance instead of its
+solution: `capacity` (C, J/K), `exchange` (hS, W/K) and `power` (P, W) give `tau = C/hS` and an
+asymptote `target + P/hS`, and add two observables — the energy received `Q = C Δθ` and the power
+crossing the boundary — with their own graph.
+
+`central_force` config: `{ scene: orbit, mu, mass, r0, v0, centralRadius, duration, dt }` models an
+orbit around a fixed centre, `a⃗ = −μ r⃗ / r³`. The body starts at `r0` with the speed `v0`
+perpendicular to the radius: circular at `√(μ/r0)`, elliptical below it, escaping beyond
+`√(2μ/r0)`. Besides the energies it observes the distance to the centre and the **areal speed**
+½(x v_y − y v_x) — a flat line on its graph is Kepler's second law — and the view prints the
+semi-major axis, the eccentricity, the period and T²/a³.
 
 ### `content/glossary/<name>.yaml`, `content/routes/<name>.yaml`
 
@@ -490,7 +501,11 @@ steps:
       - { at: 1, plot: { id: f, expr: "x^2", label: { fr: "f(x) = x²", en: "f(x) = x²" } } }
       - { at: 1, point: { id: p, on: f, x: 2, guides: true, label: { fr: "f(2) = 4", en: "f(2) = 4" } } }
       # plotter only: secant { id, on, from, to }  tangent { id, on, x }  interval { id, on?, from, to }  line { id, a, b, c }  clear
-      # (an interval without `on` is a band on the axis; `line` draws a·x + b·y + c = 0, vertical lines included)
+      #               area { id, on, from, to, riemann?, side? }
+      # (an interval without `on` is a band on the axis; `line` draws a·x + b·y + c = 0, vertical lines included;
+      #  `area` fills between the curve and the axis and reads out the integral, with `riemann` rectangles
+      #  taken on the `left`, the `right` or the `middle` of each step — a primitive is authored in closed
+      #  form with a parameter as its upper bound, `to: "a"`)
       # every tool: show [ids]  hide [ids]  set { h: 0.5 }  view { x, y, labels: { x: "t (s)", y: "h (m)" } }
   - id: play
     kind: play
@@ -517,16 +532,18 @@ letters and **never `e`** (the constant of the exponential shadows it; the compi
 | `timeline` | events (`year`, or `start`–`end`) on lanes, a year cursor | `events` | drag the cursor |
 | `arithmetic` | a sieve of the integers up to `max` (multiples of `highlight`, primes), the divisors and factorisation of `number` | — | choose the integer and the multiples |
 | `data` | a statistical series (`values`, optional `counts`, `unit`, `bins`): histogram, box plot, mean, median, quartiles, range, standard deviation; `uncertainty: true` adds the sample standard deviation, u = s/√n and the result x̄ ± u | — | edit the series |
-| `random` | a die (`sides`), a coin or an `urn`; frequencies of the outcomes against the probabilities (`mode: frequencies`), the frequency of an `event` on samples of size `sample` with the interval p ± 1/√n (`mode: sampling`), or a weighted two-level `tree` (`first` outcomes with `p`, `second` outcomes, `given` rows of conditional probabilities; `mode: tree`: intersections, total and conditional probabilities, independence); a `variable` (`values` per outcome, or per leaf `first_second`) adds the law, the expectation, the variance and the standard deviation, and sampling then draws sample means; seeded | — | draw, sample, start again |
+| `random` | a die (`sides`), a coin, an `urn` or a `binomial` law (`trials` repetitions of a trial of probability `success`, whose outcomes are the numbers of successes; `identity: true` values each outcome by its own name, so the law, E = np and V = np(1−p) are read without listing them); frequencies of the outcomes against the probabilities (`mode: frequencies`), the frequency of an `event` on samples of size `sample` with the interval p ± 1/√n (`mode: sampling`), or a weighted two-level `tree` (`first` outcomes with `p`, `second` outcomes, `given` rows of conditional probabilities; `mode: tree`: intersections, total and conditional probabilities, independence); a `variable` (`values` per outcome, or per leaf `first_second`) adds the law, the expectation, the variance and the standard deviation, and sampling then draws sample means; seeded | — | draw, sample, start again |
 | `sequence` | the terms of a sequence given by an `expr` of `n` (`mode: explicit`) or of `u` and `n` from `first` (`mode: recurrence`, optional `cobweb`) | — | type a formula, number of terms, read u(n) and the sum, sliders |
-| `wave` | a progressive sinusoidal wave on a string (`period`, `wavelength` or `speed`, `amplitude`, `length`) and the signal at a point M | — | play / pause, time, move M |
-| `optics` | `mode: refraction` (indices `n1`, `n2`, incidence `angle`, total reflection, critical angle), `mode: lens` (thin converging lens: `focal`, `object { distance, height }`, image and magnification) or `mode: colour` (`colour { source: [r, g, b], filter { passes }, object { reflects } }`: additive and subtractive syntheses, the light after the filter, the colour of the object) | — | sliders of the parameters used by the scalars |
+| `wave` | `mode: string`: a progressive sinusoidal wave on a string (`period`, `wavelength` or `speed`, `amplitude`, `length`) and the signal at a point M; `mode: doppler`: the wavefronts of a source moving at `sourceSpeed` towards an observer moving at `observerSpeed` (both counted positive when they close the distance), with the frequency heard | — | play / pause, time, move M |
+| `optics` | `mode: telescope` (afocal: `focal` of the objective, `eyepiece`, object at infinity of angular diameter `angle`; magnification, length and apparent angle), `mode: refraction` (indices `n1`, `n2`, incidence `angle`, total reflection, critical angle), `mode: lens` (thin converging lens: `focal`, `object { distance, height }`, image and magnification) or `mode: colour` (`colour { source: [r, g, b], filter { passes }, object { reflects } }`: additive and subtractive syntheses, the light after the filter, the colour of the object) | — | sliders of the parameters used by the scalars |
 | `periodic_table` | the elements up to `max` with families, configuration, valence electrons and stable ion (`mode: table`), or a nucleus A, Z with α / β decays (`mode: nucleus`) | — | click an element, move A and Z, decay |
-| `reaction` | the extent table of `reactants` and `products` (`coefficient`, `initial`), the limiting reactant and the final state; `obtained` adds the yield, `bonds` (`label`, `energy`, `broken`, `formed`) the molar reaction energy, two `halfEquations` (`left`, `right`, `electrons`, `role`) their electron multipliers and the overall equation | `reactants`, `products` | move the extent, sliders of the initial amounts |
+| `reaction` | the extent table of `reactants` and `products` (`coefficient`, `initial`), the limiting reactant and the final state; `equilibrium { k, volume }` adds the reaction quotient, the final extent found where Q_r reaches K, and the rate of the transformation; `obtained` adds the yield, `bonds` (`label`, `energy`, `broken`, `formed`) the molar reaction energy, two `halfEquations` (`left`, `right`, `electrons`, `role`) their electron multipliers and the overall equation | `reactants`, `products` | move the extent, sliders of the initial amounts |
 | `unit_circle` | the unit circle with the point of an `angle` (radians; `degrees: true` reads degrees first), its cosine, sine and tangent, the remarkable angles (`marks`) and, with `curves: true`, the sine and cosine curves | — | drag the point (snaps to the multiples of π/12), arrow keys, sliders |
 | `vector_field` | the arrows of a field on a grid: `mode: electric` (charges), `gravitational` (masses) or `uniform` (`uniform { x, y }`); `sources` (`x`, `y`, `value`, `drag`), the physical `constant` by default, the field and the force on a `test` charge or mass at a `marker` | `sources` | drag the marker and the sources, sliders |
 | `energy_levels` | horizontal `levels` (`energy` in eV) with a `selected` pair: the photon emitted or absorbed (energy, frequency, wavelength, domain) and a spectrum strip; authored `transitions` | `levels`, `transitions` | click two levels |
 | `molecule` | `atoms` (`element`, `x`, `y`, `lonePairs`, `charge`), `bonds` (`order`), characteristic `groups`, the formula, the valence electrons, the octets, the `geometry`; `polarity: true` shows δ+ / δ− and the polarity verdict (`polar` overrides the flat drawing) | `bonds`, `groups` | click an atom, show or hide the lone pairs and the groups |
+| `space` | `points`, `vectors` (`x`, `y`, `z`; `from` places the tail at a point), `lines` (`through` a point, `direction` a vector) and `planes` (`through` + `normal`, or `of` three points) drawn in an isometric projection inside a box of half-width `extent`; the cartesian equation of each plane, the norms, the `dot` product with its angle, the `distance` from a point to a plane | `points`, `vectors`, `lines`, `planes` | turn the figure (drag, or the azimuth and elevation sliders) — a click gives two coordinates and a point of space needs three, so nothing is dragged into place |
+| `acid_base` | `mode: predominance`: the domains of each `couples` entry (`acid`, `base`, `pka`) on a pH axis, with the ratio [base]/[acid] at the pH read; `mode: titration`: the curve pH = f(V) of a `titration` (`c`, `v`, `titrant` in mol/L and mL, `role: acid` or `base`, `couple` when the titrated species is weak, an `indicator` band), the equivalence, the half-equivalence and dpH/dV. The curve is solved from the charge balance, so the equivalence is a point like any other | `couples` | move the pH, or the volume poured |
 
 - Without `steps`, the slides are cut from the node `description` (one paragraph each), followed
   by a free play when there is a tool and by the exercises of the node. Every node therefore has a

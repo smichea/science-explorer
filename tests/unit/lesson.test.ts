@@ -123,6 +123,33 @@ describe('lessons', () => {
     expect(state.order).toEqual([]);
   });
 
+  it('keeps an area alive with its curve, and drops it when the curve goes', () => {
+    const tool: LessonTool = {
+      id: 'plotter',
+      kind: 'plotter',
+      variable: 'x',
+      view: { x: [0, 3], y: [0, 9] },
+      parameters: [],
+      input: true,
+      initial: [],
+    };
+    let state = initialPlotterState(tool);
+    expect(state.areas).toEqual([]);
+    state = applyPlotterAction(state, {
+      at: 0,
+      show: [],
+      hide: [],
+      clear: false,
+      plot: { id: 'f', expr: 'x*x', dashed: false },
+      area: { id: 'under', on: 'f', from: 0, to: 2, riemann: 8, side: 'left' },
+    });
+    expect(state.areas.map((a) => a.id)).toEqual(['under']);
+    expect(state.order).toEqual(['f', 'under']);
+    // Hiding the curve takes its area with it: an area without a curve draws nothing.
+    state = applyPlotterAction(state, { at: 0, show: [], hide: ['f'], clear: false });
+    expect(state.areas).toEqual([]);
+  });
+
   it('shows and hides the items of any tool from the slides', () => {
     const plan: LessonPlan = {
       id: 'preview',
@@ -210,6 +237,9 @@ describe('Première tools', () => {
           experiment: 'die',
           sides: 6,
           urn: [],
+          trials: 10,
+          success: 0.5,
+          identity: false,
           mode: 'tree',
           sample: 50,
           seed: 1,

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { Id, LocalisedList, LocalisedText } from './common';
 
-export const EngineIdSchema = z.enum(['motion_2d', 'first_order']);
+export const EngineIdSchema = z.enum(['motion_2d', 'first_order', 'central_force']);
 export type EngineId = z.infer<typeof EngineIdSchema>;
 
 export const ControlSchema = z.object({
@@ -49,6 +49,33 @@ export const FirstOrderConfigSchema = z.object({
   timeUnit: z.string().default('s'),
   duration: z.number().positive().default(6),
   dt: z.number().positive().default(0.001),
+  /**
+   * Energy balance of a body exchanging heat: capacity C (J/K), exchange coefficient hS (W/K) and
+   * power supplied P (W). With C and hS the time constant becomes C/hS; with P and hS the
+   * asymptote becomes `target` + P/hS. The heat received and the flux are then read out.
+   */
+  capacity: z.number().positive().optional(),
+  exchange: z.number().positive().optional(),
+  power: z.number().min(0).default(0),
+});
+
+/**
+ * Configuration of the `central_force` engine: an orbit around a fixed centre, with the
+ * acceleration −μ r⃗ / r³. Distances in metres, speeds in m/s, times in seconds.
+ */
+export const CentralForceConfigSchema = z.object({
+  scene: z.enum(['orbit']),
+  /** Standard gravitational parameter μ = GM of the centre (m³/s²). Earth by default. */
+  mu: z.number().positive().default(3.986e14),
+  /** Mass of the orbiting body (kg): it sets the energies, never the trajectory. */
+  mass: z.number().positive().default(1),
+  /** Initial distance to the centre (m) and speed perpendicular to the radius (m/s). */
+  r0: z.number().positive().default(7e6),
+  v0: z.number().positive().default(7546),
+  /** Radius of the central body drawn (m); zero draws a point. */
+  centralRadius: z.number().min(0).default(6.371e6),
+  duration: z.number().positive().default(20000),
+  dt: z.number().positive().default(1),
 });
 
 export const SimulationSchema = z.object({
@@ -58,7 +85,7 @@ export const SimulationSchema = z.object({
   description: LocalisedText,
   seedPolicy: z.enum(['deterministic', 'random']).default('deterministic'),
   seed: z.number().int().default(1),
-  config: z.union([Motion2dConfigSchema, FirstOrderConfigSchema]),
+  config: z.union([Motion2dConfigSchema, FirstOrderConfigSchema, CentralForceConfigSchema]),
   controls: z.array(ControlSchema).default([]),
   observables: z.array(z.string()).min(1),
   views: z.array(z.string()).min(1),
@@ -73,3 +100,4 @@ export const SimulationSchema = z.object({
 export type SimulationDefinition = z.infer<typeof SimulationSchema>;
 export type Motion2dConfig = z.infer<typeof Motion2dConfigSchema>;
 export type FirstOrderConfig = z.infer<typeof FirstOrderConfigSchema>;
+export type CentralForceConfig = z.infer<typeof CentralForceConfigSchema>;

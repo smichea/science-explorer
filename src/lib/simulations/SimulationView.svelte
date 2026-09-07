@@ -1,6 +1,12 @@
 <script lang="ts">
   import { onMount, untrack } from 'svelte';
-  import type { FirstOrderConfig, Motion2dConfig, SimulationDefinition } from '$lib/content-schema';
+  import type {
+    CentralForceConfig,
+    FirstOrderConfig,
+    Motion2dConfig,
+    SimulationDefinition,
+  } from '$lib/content-schema';
+  import * as cf from '$lib/domain/simulation/centralForce';
   import * as fo from '$lib/domain/simulation/firstOrder';
   import * as m2 from '$lib/domain/simulation/motion2d';
   import { formatNumber } from '$lib/domain/i18n/format';
@@ -9,6 +15,7 @@
   import { prefs } from '$lib/state/prefs.svelte';
   import Markdown from '$lib/components/Markdown.svelte';
   import Motion2DWorld from './Motion2DWorld.svelte';
+  import OrbitWorld from './OrbitWorld.svelte';
   import TimeGraph from './TimeGraph.svelte';
 
   interface Measurement {
@@ -25,11 +32,16 @@
   }
   let { simulation, measurements = [], onmeasure, onparameter, compact = false }: Props = $props();
 
+  type AnyConfig = Motion2dConfig | FirstOrderConfig | CentralForceConfig;
+  /** What a trajectory of the plane produces, whichever engine drew it. */
+  type PathObservables = m2.Motion2dObservables & { r?: number; arealSpeed?: number };
+
   const isMotion = $derived(simulation.engine === 'motion_2d');
-  let config = $state<Motion2dConfig | FirstOrderConfig>(
-    untrack(
-      () => structuredClone($state.snapshot(simulation.config)) as Motion2dConfig | FirstOrderConfig
-    )
+  const isOrbit = $derived(simulation.engine === 'central_force');
+  /** Both trajectory engines share their observables, their world view and their energies. */
+  const isPath = $derived(isMotion || isOrbit);
+  let config = $state<AnyConfig>(
+    untrack(() => structuredClone($state.snapshot(simulation.config)) as AnyConfig)
   );
   let time = $state(0);
   let playing = $state(false);
@@ -40,28 +52,52 @@
 
   const motionConfig = $derived(config as Motion2dConfig);
   const foConfig = $derived(config as FirstOrderConfig);
-  const duration = $derived(isMotion ? Math.min(60, m2.duration(motionConfig)) : foConfig.duration);
+  const orbitConfig = $derived(config as CentralForceConfig);
+  const duration = $derived(
+    isMotion
+      ? Math.min(60, m2.duration(motionConfig))
+      : isOrbit
+        ? cf.duration(orbitConfig)
+        : foConfig.duration
+  );
+  /** An orbit is written in metres and joules; kilometres and megajoules stay readable. */
+  const lengthScale = $derived(isOrbit ? 1e-3 : 1);
+  const energyScale = $derived(isOrbit ? 1e-6 : 1);
 
-  /** Precomputed trajectory (deterministic, fixed dt) — 120 samples per second. */
-  const samples = $derived.by(() => {
-    if (!isMotion) return [] as m2.Motion2dObservables[];
-    const out: m2.Motion2dObservables[] = [];
-    let state = m2.initialState(motionConfig);
-    const sampleEvery = 1 / 120;
+  /** Walks one engine from its initial state, keeping one observation every `every` seconds. */
+  function collect<C extends { dt: number }, S extends { t: number; finished: boolean }, O>(
+    cfg: C,
+    engine: {
+      initialState: (c: C) => S;
+      step: (c: C, s: S, dt: number) => S;
+      observe: (c: C, s: S) => O;
+    },
+    limit: number,
+    every: number
+  ): O[] {
+    const out: O[] = [];
+    let state = engine.initialState(cfg);
     let nextSample = 0;
-    out.push(m2.observe(motionConfig, state));
-    while (!state.finished && state.t < duration + 1e-9) {
-      state = m2.step(motionConfig, state, motionConfig.dt);
-      if (state.t >= nextSample + sampleEvery || state.finished) {
-        out.push(m2.observe(motionConfig, state));
+    out.push(engine.observe(cfg, state));
+    while (!state.finished && state.t < limit + 1e-9) {
+      state = engine.step(cfg, state, cfg.dt);
+      if (state.t >= nextSample + every || state.finished) {
+        out.push(engine.observe(cfg, state));
         nextSample = state.t;
       }
     }
     return out;
+  }
+
+  /** Precomputed trajectory (deterministic, fixed dt): 120 points a second, 720 on an orbit. */
+  const samples = $derived.by((): PathObservables[] => {
+    if (isOrbit) return collect(orbitConfig, cf, duration, duration / 720);
+    if (isMotion) return collect(motionConfig, m2, duration, 1 / 120);
+    return [];
   });
 
-  const motionNow = $derived.by((): m2.Motion2dObservables => {
-    if (!isMotion)
+  const motionNow = $derived.by((): PathObservables => {
+    if (!isPath)
       return {
         t: 0,
         x: 0,
@@ -74,14 +110,19 @@
         total: 0,
         finished: false,
       };
-    if (samples.length === 0) return m2.observe(motionConfig, m2.initialState(motionConfig));
+    if (samples.length === 0)
+      return isOrbit
+        ? cf.observe(orbitConfig, cf.initialState(orbitConfig))
+        : m2.observe(motionConfig, m2.initialState(motionConfig));
     const idx = Math.min(
       samples.length - 1,
       Math.floor((time / Math.max(1e-9, samples[samples.length - 1].t)) * (samples.length - 1))
     );
     return samples[Math.max(0, idx)];
   });
-  const foNow = $derived(isMotion ? null : fo.observe(foConfig, fo.stateAt(foConfig, time)));
+  const foNow = $derived(isPath ? null : fo.observe(foConfig, fo.stateAt(foConfig, time)));
+  /** The elements the orbit is read by: its ellipse, its period, and Kepler's third ratio. */
+  const elements = $derived(isOrbit ? cf.orbitElements(orbitConfig) : null);
 
   const clockMarks = $derived.by(() => {
     if (!isMotion || motionConfig.scene !== 'inclined_plane')
@@ -96,6 +137,14 @@
   });
 
   const seriesPosition = $derived.by(() => {
+    if (isOrbit)
+      return [
+        {
+          name: t('sim.radius'),
+          color: '#7f9cff',
+          points: samples.map((o) => [o.t, (o.r ?? 0) * lengthScale] as [number, number]),
+        },
+      ];
     if (isMotion) {
       const key = motionConfig.scene === 'inclined_plane' ? 's' : 'y';
       return [
@@ -115,7 +164,7 @@
     return [{ name: t('sim.quantity'), color: '#5ee6a8', points: pts }];
   });
   const seriesVelocity = $derived.by(() => {
-    if (isMotion)
+    if (isPath)
       return [
         {
           name: t('sim.velocity'),
@@ -133,17 +182,50 @@
   });
   /** Kinetic, potential and total energies of the motion (the total stays flat without drag). */
   const seriesEnergy = $derived.by(() => {
-    if (!isMotion) return [];
+    if (!isPath) return [];
     const of = (key: 'kinetic' | 'potential' | 'total') =>
-      samples.map((o) => [o.t, o[key]] as [number, number]);
+      samples.map((o) => [o.t, o[key] * energyScale] as [number, number]);
     return [
       { name: t('sim.kinetic'), color: PALETTE[1], points: of('kinetic') },
       { name: t('sim.potential'), color: PALETTE[2], points: of('potential') },
       { name: t('sim.total'), color: PALETTE[6], points: of('total'), dashed: true },
     ];
   });
+  /**
+   * The areal speed: a flat line is Kepler's second law itself — the radius sweeps out equal
+   * areas in equal times, however fast the body runs.
+   */
+  const seriesAreal = $derived(
+    isOrbit
+      ? [
+          {
+            name: t('sim.arealSpeed'),
+            color: PALETTE[3],
+            points: samples.map(
+              (o) => [o.t, (o.arealSpeed ?? 0) * lengthScale * lengthScale] as [number, number]
+            ),
+          },
+        ]
+      : []
+  );
+  /** A body that exchanges heat: the energy it has received and the power crossing its boundary. */
+  const seriesHeat = $derived.by(() => {
+    if (isPath || foConfig.capacity === undefined) return [];
+    const pts = (key: 'energy' | 'flux') => {
+      const out: Array<[number, number]> = [];
+      for (let i = 0; i <= 160; i++) {
+        const tt = (i / 160) * foConfig.duration;
+        out.push([tt, fo.observe(foConfig, fo.stateAt(foConfig, tt))[key]]);
+      }
+      return out;
+    };
+    return [
+      { name: t('sim.heat'), color: PALETTE[1], points: pts('energy') },
+      { name: t('sim.flux'), color: PALETTE[3], points: pts('flux'), dashed: true },
+    ];
+  });
   const tangent = $derived(
-    !isMotion && showTangent ? { t0: time, ...fo.tangentAt(foConfig, time) } : null
+    !isPath && showTangent ? { t0: time, ...fo.tangentAt(foConfig, time) } : null
   );
 
   function loop(now: number) {
@@ -170,7 +252,7 @@
   }
   function stepForward() {
     pause();
-    time = Math.min(duration, time + (isMotion ? 0.25 : foConfig.duration / 24));
+    time = Math.min(duration, time + (isPath ? duration / 24 : foConfig.duration / 24));
   }
   function setControl(variable: string, value: number) {
     reset();
@@ -178,11 +260,13 @@
     onparameter?.(variable, value);
   }
   function recordNow() {
-    const value = isMotion
-      ? motionConfig.scene === 'inclined_plane'
-        ? motionNow.s
-        : motionNow.y
-      : foNow!.q;
+    const value = isOrbit
+      ? (motionNow.r ?? 0) * lengthScale
+      : isMotion
+        ? motionConfig.scene === 'inclined_plane'
+          ? motionNow.s
+          : motionNow.y
+        : foNow!.q;
     onmeasure?.({ t: Number(time.toFixed(3)), value: Number(value.toFixed(4)) });
   }
   function recordMark(mark: { t: number; s: number; label: string }) {
@@ -206,17 +290,23 @@
       potential?: number;
       total?: number;
     }> = [];
-    if (isMotion) {
-      for (let k = 0; k <= Math.min(12, Math.ceil(duration)); k++) {
-        const o = samples.find((s) => s.t >= k) ?? samples[samples.length - 1];
+    if (isPath) {
+      const rowCount = Math.min(12, Math.max(4, Math.ceil(duration)));
+      for (let k = 0; k <= rowCount; k++) {
+        const mark = isOrbit ? (k / rowCount) * duration : k;
+        const o = samples.find((s) => s.t >= mark) ?? samples[samples.length - 1];
         if (!o) break;
         rows.push({
-          t: k,
-          a: motionConfig.scene === 'inclined_plane' ? o.s : o.y,
+          t: mark,
+          a: isOrbit
+            ? (o.r ?? 0) * lengthScale
+            : motionConfig.scene === 'inclined_plane'
+              ? o.s
+              : o.y,
           b: o.v,
-          kinetic: o.kinetic,
-          potential: o.potential,
-          total: o.total,
+          kinetic: o.kinetic * energyScale,
+          potential: o.potential * energyScale,
+          total: o.total * energyScale,
         });
         if (o.finished) break;
       }
@@ -229,8 +319,19 @@
     }
     return rows;
   });
-  const unitA = $derived(isMotion ? 'm' : foConfig.unit);
-  const unitT = $derived(isMotion ? 's' : foConfig.timeUnit);
+  const unitA = $derived(isOrbit ? 'km' : isMotion ? 'm' : foConfig.unit);
+  const unitT = $derived(isPath ? 's' : foConfig.timeUnit);
+  const unitE = $derived(isOrbit ? 'MJ' : 'J');
+  /** What the position column of the table and the first graph carry, in every engine. */
+  const nameA = $derived(
+    isOrbit
+      ? t('sim.radius')
+      : isMotion
+        ? motionConfig.scene === 'inclined_plane'
+          ? t('sim.distance')
+          : t('sim.height')
+        : t('sim.quantity')
+  );
 </script>
 
 <div
@@ -250,6 +351,13 @@
     <div class="sim__scene">
       {#if isMotion}
         <Motion2DWorld config={motionConfig} observables={motionNow} marks={clockMarks} />
+      {:else if isOrbit}
+        <OrbitWorld
+          config={orbitConfig}
+          observables={motionNow}
+          path={samples.map((o) => [o.x, o.y] as [number, number])}
+          currentT={time}
+        />
       {:else}
         <TimeGraph
           series={seriesPosition}
@@ -304,6 +412,28 @@
       {#if isMotion && motionNow.finished}<p class="muted small">
           {motionConfig.scene === 'inclined_plane' ? t('sim.endOfPlane') : t('sim.landed')}
         </p>{/if}
+      {#if elements}
+        <p class="small" style="margin: 0" data-testid="orbit-elements">
+          {t('sim.semiMajorAxis')}
+          <strong class="mono"
+            >{formatNumber(elements.semiMajorAxis * lengthScale, locale.current, { digits: 0 })} km</strong
+          >
+          · {t('sim.eccentricity')}
+          <strong class="mono"
+            >{formatNumber(elements.eccentricity, locale.current, { digits: 3 })}</strong
+          >
+          {#if elements.bound}
+            · {t('sim.period')}
+            <strong class="mono"
+              >{formatNumber(elements.period, locale.current, { digits: 0 })} s</strong
+            >
+            · T²/a³ =
+            <strong class="mono">{elements.keplerRatio.toExponential(3)}</strong> s²/m³
+          {:else}
+            · {t('sim.escapes')}
+          {/if}
+        </p>
+      {/if}
     </div>
 
     <div class="sim__side">
@@ -361,10 +491,7 @@
               <div class="table-scroll">
                 <table class="data small">
                   <thead
-                    ><tr
-                      ><th>{t('sim.time')} ({unitT})</th><th
-                        >{isMotion ? t('sim.distance') : t('sim.quantity')} ({unitA})</th
-                      ><th></th></tr
+                    ><tr><th>{t('sim.time')} ({unitT})</th><th>{nameA} ({unitA})</th><th></th></tr
                     ></thead
                   >
                   <tbody>
@@ -389,14 +516,14 @@
 
   {#if !compact}
     <div class="sim__graphs">
-      {#if isMotion}
+      {#if isPath}
         <TimeGraph
           series={seriesPosition}
           currentT={time}
           xLabel="t (s)"
           yLabel={unitA}
           marks={clockMarks.map((m) => ({ t: m.t, label: m.label }))}
-          title={motionConfig.scene === 'inclined_plane' ? t('sim.distance') : t('sim.height')}
+          title={nameA}
         />
       {:else}
         <label class="small cluster"
@@ -407,17 +534,39 @@
         series={seriesVelocity}
         currentT={time}
         xLabel="t ({unitT})"
-        yLabel={isMotion ? 'm/s' : `${unitA}/${unitT}`}
-        title={isMotion ? t('sim.velocity') : t('sim.rate')}
+        yLabel={isPath ? 'm/s' : `${unitA}/${unitT}`}
+        title={isPath ? t('sim.velocity') : t('sim.rate')}
       />
-      {#if isMotion}
+      {#if isPath}
         <div data-testid="sim-energy-graph">
           <TimeGraph
             series={seriesEnergy}
             currentT={time}
             xLabel="t (s)"
-            yLabel="E (J)"
+            yLabel="E ({unitE})"
             title={t('sim.energy')}
+          />
+        </div>
+      {/if}
+      {#if seriesAreal.length}
+        <div data-testid="sim-areal-graph">
+          <TimeGraph
+            series={seriesAreal}
+            currentT={time}
+            xLabel="t (s)"
+            yLabel="km²/s"
+            title={t('sim.arealSpeed')}
+          />
+        </div>
+      {/if}
+      {#if seriesHeat.length}
+        <div data-testid="sim-heat-graph">
+          <TimeGraph
+            series={seriesHeat}
+            currentT={time}
+            xLabel="t ({unitT})"
+            yLabel="J · W"
+            title={t('sim.heat')}
           />
         </div>
       {/if}
@@ -430,15 +579,11 @@
           <table class="data small">
             <thead
               ><tr
-                ><th>t ({unitT})</th><th
-                  >{isMotion
-                    ? motionConfig.scene === 'inclined_plane'
-                      ? t('sim.distance')
-                      : t('sim.height')
-                    : t('sim.quantity')} ({unitA})</th
-                ><th>{isMotion ? t('sim.velocity') : t('sim.rate')}</th>{#if isMotion}<th
-                    >{t('sim.kinetic')} (J)</th
-                  ><th>{t('sim.potential')} (J)</th><th>{t('sim.total')} (J)</th>{/if}</tr
+                ><th>t ({unitT})</th><th>{nameA} ({unitA})</th><th
+                  >{isPath ? t('sim.velocity') : t('sim.rate')}</th
+                >{#if isPath}<th>{t('sim.kinetic')} ({unitE})</th><th
+                    >{t('sim.potential')} ({unitE})</th
+                  ><th>{t('sim.total')} ({unitE})</th>{/if}</tr
               ></thead
             >
             <tbody>
@@ -446,7 +591,7 @@
                 <tr
                   ><td>{formatNumber(r.t, locale.current, { digits: 2 })}</td><td
                     >{formatNumber(r.a, locale.current, { digits: 3 })}</td
-                  ><td>{formatNumber(r.b, locale.current, { digits: 3 })}</td>{#if isMotion}<td
+                  ><td>{formatNumber(r.b, locale.current, { digits: 3 })}</td>{#if isPath}<td
                       >{formatNumber(r.kinetic ?? 0, locale.current, { digits: 3 })}</td
                     ><td>{formatNumber(r.potential ?? 0, locale.current, { digits: 3 })}</td><td
                       >{formatNumber(r.total ?? 0, locale.current, { digits: 3 })}</td

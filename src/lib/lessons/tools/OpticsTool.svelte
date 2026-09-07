@@ -7,6 +7,7 @@
     lensImage,
     refractionAngle,
     rgbHex,
+    telescope,
     transmitLight,
     type Rgb,
   } from '$lib/domain/lessonTools';
@@ -63,6 +64,24 @@
   const image = $derived(lensImage(focal, distance, height));
   const lensX = W * 0.5;
   const axisY = H * 0.55;
+
+  // --- telescope ------------------------------------------------------------
+  /**
+   * An afocal telescope: the objective makes the image of the object at infinity in its focal
+   * plane, and the eyepiece — whose focal plane is the same one — sends it back to infinity for
+   * the eye. What is gained is the angle: α′ = f₁/f₂ × α.
+   */
+  const eyepieceFocal = $derived(Math.max(0.2, evaluateScalar(tool.eyepiece ?? 2, tstate.params)));
+  const scope = $derived(telescope(focal, eyepieceFocal, incidence));
+  const scopeScale = $derived((W - 150) / Math.max(1e-6, focal + eyepieceFocal));
+  const objectiveX = 70;
+  const focalPlaneX = $derived(objectiveX + focal * scopeScale);
+  const eyepieceX = $derived(objectiveX + (focal + eyepieceFocal) * scopeScale);
+  /** Height of the intermediate image: below the axis, since the objective turns the sky over. */
+  const scopeImageY = $derived(axisY + focal * Math.tan(incidence * RAD) * scopeScale);
+  const scopeSlopeOut = $derived((axisY - scopeImageY) / Math.max(1, eyepieceX - focalPlaneX));
+  const scopeSlopeIn = $derived((scopeImageY - axisY) / Math.max(1, focalPlaneX - objectiveX));
+  const RAY_HEIGHT = 26;
   /** Centimetres → pixels, so that the object, both foci and the image fit. */
   const k = $derived.by(() => {
     const left = Math.max(distance, focal) + focal * 0.3;
@@ -173,6 +192,69 @@
       {refracted === null ? t('lesson.optics.totalReflection') : `${f(refracted)}°`} ·
       {t('lesson.optics.critical')}
       {critical === null ? t('lesson.optics.none') : `${f(critical)}°`}
+    </p>
+  {:else if tool.mode === 'telescope'}
+    <svg
+      viewBox="0 0 {W} {H}"
+      class="tool__svg"
+      role="img"
+      aria-label={t('lesson.tool.optics')}
+      data-testid="telescope-scene"
+    >
+      <line x1="0" y1={axisY} x2={W} y2={axisY} stroke="#3a4468" stroke-dasharray="4 4" />
+      {#each [-1, 1] as side (side)}
+        {@const yLens = axisY + side * RAY_HEIGHT}
+        {@const yEye = axisY + side * RAY_HEIGHT * 0.6}
+        <path
+          d="M0 {yLens -
+            scopeSlopeIn *
+              objectiveX} L{objectiveX} {yLens} L{focalPlaneX} {scopeImageY} L{eyepieceX} {yEye} L{W} {yEye +
+            scopeSlopeOut * (W - eyepieceX)}"
+          fill="none"
+          stroke="#ffd166"
+          stroke-width="1.6"
+          opacity="0.9"
+        />
+      {/each}
+      <line
+        x1={objectiveX}
+        y1={axisY - RAY_HEIGHT - 14}
+        x2={objectiveX}
+        y2={axisY + RAY_HEIGHT + 14}
+        stroke="#7f9cff"
+        stroke-width="3"
+      />
+      <line
+        x1={eyepieceX}
+        y1={axisY - RAY_HEIGHT * 0.6 - 10}
+        x2={eyepieceX}
+        y2={axisY + RAY_HEIGHT * 0.6 + 10}
+        stroke="#5ee6a8"
+        stroke-width="3"
+      />
+      <line
+        x1={focalPlaneX}
+        y1={axisY}
+        x2={focalPlaneX}
+        y2={scopeImageY}
+        stroke="#ff8fab"
+        stroke-width="2.5"
+      />
+      <text x={objectiveX} y={axisY + RAY_HEIGHT + 30} class="tick" text-anchor="middle"
+        >{t('lesson.optics.objective')}</text
+      >
+      <text x={eyepieceX} y={axisY + RAY_HEIGHT + 30} class="tick" text-anchor="middle"
+        >{t('lesson.optics.eyepiece')}</text
+      >
+      <text x={focalPlaneX + 6} y={scopeImageY + 4} class="note">A′B′</text>
+    </svg>
+    <p class="small" style="margin: 0" data-testid="optics-reading">
+      f₁′ = {f(focal)} cm · f₂′ = {f(eyepieceFocal)} cm · {t('lesson.optics.angular')} G = {f(
+        scope.magnification,
+        2
+      )} ·
+      {t('lesson.optics.telescopeLength')} = {f(scope.length)} cm · A′B′ = {f(scope.imageHeight, 2)} cm
+      · α = {f(incidence, 2)}° · {t('lesson.optics.apparent')} α′ = {f(scope.apparentAngle, 2)}°
     </p>
   {:else if tool.mode === 'colour'}
     <svg viewBox="0 0 {W} {H}" class="tool__svg" role="img" aria-label={t('lesson.tool.optics')}>

@@ -3,9 +3,12 @@
   import { evaluateScalar, type ToolState } from '$lib/domain/lesson';
   import {
     amountAt,
+    equilibriumExtent,
+    extentRatio,
     bondEnergyBalance,
     electronMultipliers,
     extentMax,
+    reactionQuotient,
     reactionYield,
   } from '$lib/domain/lessonTools';
   import { L, locale, t } from '$lib/state/locale.svelte';
@@ -67,6 +70,24 @@
     const obtained = Math.max(0, evaluateScalar(tool.obtained, tstate.params));
     const maximum = amountAt(products[0], result.xmax, 'product');
     return { product: products[0], obtained, maximum, yield: reactionYield(obtained, maximum) };
+  });
+  /**
+   * An equilibrium: the quotient of reaction climbs from zero as the transformation proceeds, and
+   * the state settles where it reaches the constant K. The rate of the transformation, final
+   * extent over maximum extent, says how far from total it stopped.
+   */
+  const equilibrium = $derived.by(() => {
+    if (!tool.equilibrium) return null;
+    const k = evaluateScalar(tool.equilibrium.k, tstate.params);
+    const volume = Math.max(1e-9, evaluateScalar(tool.equilibrium.volume, tstate.params));
+    const final = equilibriumExtent(reactants, products, k, volume);
+    return {
+      k,
+      volume,
+      final,
+      quotient: reactionQuotient(reactants, products, extent, volume),
+      rate: extentRatio(final, result.xmax),
+    };
   });
   /** Molar reaction energy from the bond energies (positive: endothermic). */
   const energy = $derived(tool.bonds.length ? bondEnergyBalance(tool.bonds) : null);
@@ -157,6 +178,19 @@
         .map((i) => (reactants[i]?.label ? L(reactants[i].label!) : reactants[i]?.formula))
         .join(', ')}{/if}
   </p>
+  {#if equilibrium}
+    <p class="small" style="margin: 0" data-testid="reaction-equilibrium">
+      {t('lesson.reaction.constant')} K = {equilibrium.k < 1e-3 || equilibrium.k >= 1e4
+        ? equilibrium.k.toExponential(2)
+        : f(equilibrium.k)} · {t('lesson.reaction.quotient')} Q<sub>r</sub> = {equilibrium.quotient <
+      1e4
+        ? f(equilibrium.quotient)
+        : '∞'} ·
+      {t('lesson.reaction.finalExtent')} x<sub>f</sub> = {f(equilibrium.final)}
+      {tool.unit} · {t('lesson.reaction.rate')} τ = {fmt(equilibrium.rate * 100, locale.current, 1)} %
+      {#if equilibrium.rate > 0.99}· {t('lesson.reaction.almostTotal')}{/if}
+    </p>
+  {/if}
   {#if synthesis}
     <p class="small" style="margin: 0" data-testid="reaction-yield">
       {t('lesson.reaction.obtained')}

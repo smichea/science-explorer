@@ -80,6 +80,22 @@ export const PlotterActionSchema = z.object({
       label: LocalisedText.optional(),
     })
     .optional(),
+  /**
+   * The area between a curve and the axis, from `from` to `to`: its value is read out, and with
+   * `riemann` the subdivision into rectangles taken on that `side` of each step is drawn too.
+   */
+  area: z
+    .object({
+      id: ItemId,
+      on: ItemId,
+      from: Scalar,
+      to: Scalar,
+      label: LocalisedText.optional(),
+      color: z.string().optional(),
+      riemann: z.number().int().min(1).max(200).optional(),
+      side: z.enum(['left', 'right', 'middle']).default('left'),
+    })
+    .optional(),
   /** A straight line a·x + b·y + c = 0 (vertical lines included), drawn across the view. */
   line: z
     .object({
@@ -337,6 +353,84 @@ export const ColourSetupSchema = z.object({
 });
 export type ColourSetup = z.infer<typeof ColourSetupSchema>;
 
+/** A point of the space tool: three coordinates, expressions of the parameters. */
+export const SpacePointSchema = z.object({
+  id: ItemId,
+  x: Scalar,
+  y: Scalar,
+  z: Scalar,
+  label: LocalisedText.optional(),
+  color: z.string().optional(),
+  hidden: Hidden,
+});
+export type SpacePoint = z.infer<typeof SpacePointSchema>;
+
+/** A vector of the space tool, drawn from the origin or from a point. */
+export const SpaceVectorSchema = z.object({
+  id: ItemId,
+  x: Scalar,
+  y: Scalar,
+  z: Scalar,
+  /** Tail placed at this point rather than at the origin. */
+  from: ItemId.optional(),
+  label: LocalisedText.optional(),
+  color: z.string().optional(),
+  hidden: Hidden,
+});
+export type SpaceVector = z.infer<typeof SpaceVectorSchema>;
+
+/** A line through a point, directed by a vector, drawn across the box. */
+export const SpaceLineSchema = z.object({
+  id: ItemId,
+  through: ItemId,
+  direction: ItemId,
+  label: LocalisedText.optional(),
+  color: z.string().optional(),
+  hidden: Hidden,
+});
+export type SpaceLine = z.infer<typeof SpaceLineSchema>;
+
+/** A plane, given by a point and a normal vector or by three points; its equation is read out. */
+export const SpacePlaneSchema = z.object({
+  id: ItemId,
+  through: ItemId.optional(),
+  normal: ItemId.optional(),
+  of: z.array(ItemId).length(3).optional(),
+  label: LocalisedText.optional(),
+  color: z.string().optional(),
+  hidden: Hidden,
+});
+export type SpacePlane = z.infer<typeof SpacePlaneSchema>;
+
+/** An acid-base couple: the two species of the couple and its pKa. */
+export const CoupleSchema = z.object({
+  id: ItemId,
+  acid: LocalisedText,
+  base: LocalisedText,
+  pka: Scalar,
+  color: z.string().optional(),
+  hidden: Hidden,
+});
+export type Couple = z.infer<typeof CoupleSchema>;
+
+/** The titration of the acid-base tool: what is titrated, what is poured, and how much. */
+export const TitrationSchema = z.object({
+  /** Titrated solution: concentration (mol/L) and volume (mL). */
+  c: Scalar,
+  v: Scalar,
+  /** The couple of the titrated species when it is weak; without it, a strong acid or base. */
+  couple: ItemId.optional(),
+  /** An acid is titrated (a strong base is poured), or a base (a strong acid is poured). */
+  role: z.enum(['acid', 'base']).default('acid'),
+  /** Concentration of the titrant (mol/L). */
+  titrant: Scalar,
+  /** Volume poured (mL) shown at first; the learner moves it during the free play. */
+  volume: Scalar.optional(),
+  /** A colour indicator and its turning range. */
+  indicator: z.object({ label: LocalisedText, from: z.number(), to: z.number() }).optional(),
+});
+export type Titration = z.infer<typeof TitrationSchema>;
+
 const ToolBase = { id: ItemId, title: LocalisedText.optional() };
 
 export const LessonToolSchema = z.discriminatedUnion('kind', [
@@ -471,10 +565,15 @@ export const LessonToolSchema = z.discriminatedUnion('kind', [
   z.object({
     ...ToolBase,
     kind: z.literal('random'),
-    experiment: z.enum(['die', 'coin', 'urn']).default('die'),
+    experiment: z.enum(['die', 'coin', 'urn', 'binomial']).default('die'),
     /** Faces of the die. */
     sides: z.number().int().min(2).max(20).default(6),
     urn: z.array(UrnItemSchema).default([]),
+    /** Binomial law: number of repeated trials, and the probability of a success in one of them. */
+    trials: z.number().int().min(1).max(60).default(10),
+    success: z.number().min(0).max(1).default(0.5),
+    /** Value every outcome by its own name (the number of successes): the law is then read out. */
+    identity: z.boolean().default(false),
     /** The event followed: its outcomes (faces as strings, `heads`/`tails`, urn item ids). */
     event: z
       .object({ label: LocalisedText, outcomes: z.array(z.string().min(1)).min(1) })
@@ -511,6 +610,11 @@ export const LessonToolSchema = z.discriminatedUnion('kind', [
     ...ToolBase,
     kind: z.literal('wave'),
     parameters: Parameters,
+    /** `string`: a wave along a string and its two graphs; `doppler`: circles emitted by a moving source. */
+    mode: z.enum(['string', 'doppler']).default('string'),
+    /** Doppler: speeds of the source and of the observer along the line joining them (m/s). */
+    sourceSpeed: Scalar.optional(),
+    observerSpeed: Scalar.optional(),
     /** Period (s), wavelength (m) or speed (m/s): expressions of the parameters. */
     period: Scalar.default(1),
     wavelength: Scalar.optional(),
@@ -528,7 +632,7 @@ export const LessonToolSchema = z.discriminatedUnion('kind', [
     ...ToolBase,
     kind: z.literal('optics'),
     parameters: Parameters,
-    mode: z.enum(['refraction', 'lens', 'colour']).default('refraction'),
+    mode: z.enum(['refraction', 'lens', 'colour', 'telescope']).default('refraction'),
     /** Refraction: indices and incidence (degrees), expressions of the parameters. */
     n1: Scalar.default(1),
     n2: Scalar.default(1.5),
@@ -538,6 +642,9 @@ export const LessonToolSchema = z.discriminatedUnion('kind', [
     object: z
       .object({ distance: Scalar.default(12), height: Scalar.default(3) })
       .default({ distance: 12, height: 3 }),
+    /** Telescope: focal length of the eyepiece (cm); `focal` is then the objective's, `angle` the
+     * angular diameter of the object at infinity (degrees). The magnification is read out. */
+    eyepiece: Scalar.optional(),
     /** Colour: the source light, a filter, an object (additive and subtractive syntheses). */
     colour: ColourSetupSchema.optional(),
   }),
@@ -569,6 +676,8 @@ export const LessonToolSchema = z.discriminatedUnion('kind', [
     bonds: z.array(BondEnergySchema).default([]),
     /** Two half-equations (one oxidation, one reduction) combined with electron multipliers. */
     halfEquations: z.array(HalfEquationSchema).max(2).default([]),
+    /** Equilibrium constant: the reaction quotient, the final extent and the yield are read out. */
+    equilibrium: z.object({ k: Scalar, volume: Scalar.default(1) }).optional(),
   }),
   z.object({
     ...ToolBase,
@@ -623,6 +732,32 @@ export const LessonToolSchema = z.discriminatedUnion('kind', [
     polarity: z.boolean().default(false),
     /** Authored verdict when the flat drawing cannot decide (a symmetry in space). */
     polar: z.boolean().optional(),
+  }),
+  z.object({
+    ...ToolBase,
+    kind: z.literal('space'),
+    parameters: Parameters,
+    /** Half-width of the box shown, in units. */
+    extent: z.number().positive().default(5),
+    points: z.array(SpacePointSchema).default([]),
+    vectors: z.array(SpaceVectorSchema).default([]),
+    lines: z.array(SpaceLineSchema).default([]),
+    planes: z.array(SpacePlaneSchema).default([]),
+    /** Two vectors whose dot product, norms, angle and orthogonality are read out. */
+    dot: z.tuple([ItemId, ItemId]).optional(),
+    /** A point and a plane whose distance is read out. */
+    distance: z.tuple([ItemId, ItemId]).optional(),
+  }),
+  z.object({
+    ...ToolBase,
+    kind: z.literal('acid_base'),
+    parameters: Parameters,
+    /** `predominance`: the domains on a pH axis; `titration`: the curve pH = f(V). */
+    mode: z.enum(['predominance', 'titration']).default('predominance'),
+    couples: z.array(CoupleSchema).min(1),
+    /** Predominance: the pH read at first; the learner moves it during the free play. */
+    ph: Scalar.default(7),
+    titration: TitrationSchema.optional(),
   }),
 ]);
 export type LessonTool = z.infer<typeof LessonToolSchema>;

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { curveFunction, evaluateScalar, slopeAt, type PlotterState } from '$lib/domain/lesson';
+  import { integralOf, riemannAbscissa, riemannSum } from '$lib/domain/lessonTools';
   import { L, locale, t } from '$lib/state/locale.svelte';
   import { prefs } from '$lib/state/prefs.svelte';
 
@@ -194,6 +195,69 @@
           path: c?.fn ? pathOf(c.fn, [lo, hi]) : '',
           onAxis: !c,
           label: iv.label ? L(iv.label) : undefined,
+        },
+      ];
+    })
+  );
+  /**
+   * Areas under a curve, with the value of the integral and, when asked, the rectangles of a
+   * Riemann sum. The filled shape is built run by run: `pathOf` lifts the pen on an asymptote,
+   * so a single polygon closed down to the axis would jump across the gap.
+   */
+  const areas = $derived(
+    plot.areas.flatMap((ar) => {
+      const c = curves.find((x) => x.id === ar.on);
+      const from = evaluateScalar(ar.from, plot.params);
+      const to = evaluateScalar(ar.to, plot.params);
+      if (!c?.fn || !Number.isFinite(from) || !Number.isFinite(to) || from === to) return [];
+      const lo = Math.min(from, to);
+      const hi = Math.max(from, to);
+      const fn = c.fn;
+      const zero = sy(Math.max(yMin, Math.min(yMax, 0)));
+      let d = '';
+      let run: Array<[number, number]> = [];
+      const flush = () => {
+        if (run.length > 1) {
+          d += `M${sx(run[0][0]).toFixed(2)} ${zero.toFixed(2)} `;
+          for (const [x, y] of run) d += `L${sx(x).toFixed(2)} ${sy(y).toFixed(2)} `;
+          d += `L${sx(run[run.length - 1][0]).toFixed(2)} ${zero.toFixed(2)} Z `;
+        }
+        run = [];
+      };
+      for (let i = 0; i <= SAMPLES; i++) {
+        const x = lo + ((hi - lo) * i) / SAMPLES;
+        const y = fn(x);
+        if (!Number.isFinite(y) || Math.abs(y) > 1e6) flush();
+        else run.push([x, y]);
+      }
+      flush();
+      const rectangles: Array<{ x: number; y: number; w: number; h: number }> = [];
+      if (ar.riemann) {
+        const width = (hi - lo) / ar.riemann;
+        for (let k = 0; k < ar.riemann; k++) {
+          const at = riemannAbscissa(lo, width, k, ar.side);
+          const y = fn(at);
+          if (!Number.isFinite(y)) continue;
+          rectangles.push({
+            x: sx(lo + k * width),
+            y: sy(Math.max(y, 0)),
+            w: Math.abs(sx(lo + width) - sx(lo)),
+            h: Math.abs(sy(y) - zero),
+          });
+        }
+      }
+      return [
+        {
+          id: ar.id,
+          color: ar.color ?? c.color,
+          path: d,
+          rectangles,
+          a: lo,
+          b: hi,
+          value: integralOf(fn, lo, hi),
+          approximation: ar.riemann ? riemannSum(fn, lo, hi, ar.riemann, ar.side) : null,
+          rectangleCount: ar.riemann ?? 0,
+          label: ar.label ? L(ar.label) : undefined,
         },
       ];
     })
@@ -397,6 +461,21 @@
             fill={iv.color}>{iv.label}</text
           >{/if}
       {/each}
+      {#each areas as ar (ar.id)}
+        <path d={ar.path} fill={ar.color} opacity="0.22" />
+        {#each ar.rectangles as r, i (i)}
+          <rect
+            x={r.x}
+            y={r.y}
+            width={r.w}
+            height={r.h}
+            fill="none"
+            stroke={ar.color}
+            stroke-width="1"
+            opacity="0.75"
+          />
+        {/each}
+      {/each}
       {#each curves as c (c.id)}
         {#if c.fn}
           <path
@@ -593,6 +672,15 @@
   {#if customError}<p class="small" role="alert" style="margin: 0; color: var(--danger, #ff8fab)">
       {t('lesson.expressionError')}
     </p>{/if}
+  {#each areas as ar (ar.id)}
+    <p class="small muted" style="margin: 0" data-testid="plotter-area" aria-live="polite">
+      {ar.label ?? t('lesson.plotter.area')} [{fmt(ar.a)} ; {fmt(ar.b)}] =
+      <strong class="mono">{fmt(ar.value)}</strong>{#if ar.approximation !== null}
+        · {t('lesson.plotter.riemann')}
+        {t('lesson.plotter.rectangles', { n: ar.rectangleCount })} =
+        <strong class="mono">{fmt(ar.approximation)}</strong>{/if}
+    </p>
+  {/each}
   {#if markerReading}
     <p class="small muted" style="margin: 0" data-testid="plotter-reading" aria-live="polite">
       {mainCurve?.label ?? ''} : {plot.view.labels.x} = {fmt(markerReading.x)}, {plot.view.labels.y} =

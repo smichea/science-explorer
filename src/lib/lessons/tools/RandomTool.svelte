@@ -47,12 +47,20 @@
     if (tree) return ev.outcomes.reduce((s, id) => s + totalProbability(tree, id), 0);
     return eventProbability(outcomes, eventSet);
   });
-  /** The law of the random variable, on the outcomes of the experiment or on the leaves of the tree. */
-  const law = $derived(
-    tool.variable ? distributionOf(tree ? leaves : outcomes, tool.variable.values) : null
-  );
+  /**
+   * The law of the random variable, on the outcomes of the experiment or on the leaves of the
+   * tree. `identity` values every outcome by its own name — the number of successes of a
+   * binomial law — so that the expectation and the variance are read without listing n + 1
+   * values by hand.
+   */
+  const values = $derived.by((): Record<string, number> | null => {
+    if (tool.variable) return tool.variable.values;
+    if (!tool.identity) return null;
+    return Object.fromEntries(outcomes.map((o) => [o.id, Number(o.id)]));
+  });
+  const law = $derived(values ? distributionOf(tree ? leaves : outcomes, values) : null);
   const unit = $derived(tool.variable?.unit ? ` ${tool.variable.unit}` : '');
-  const valueOf = (id: string) => tool.variable?.values[id] ?? 0;
+  const valueOf = (id: string) => values?.[id] ?? 0;
   let random: () => number = () => 0;
   let tally = $state<Record<string, number>>({});
   let draws = $state(0);
@@ -88,7 +96,7 @@
     draws += count;
   }
   function sample(count: number) {
-    if (tool.variable) {
+    if (law) {
       const means: number[] = [];
       for (let s = 0; s < count; s++) {
         let sum = 0;
@@ -111,6 +119,8 @@
       const ball = tool.urn.find((b) => b.id === id);
       return ball ? L(ball.label) : id;
     }
+    // A binomial law has n + 1 bars: past a dozen, only every other tick stays readable.
+    if (tool.experiment === 'binomial' && outcomes.length > 14 && Number(id) % 5 !== 0) return '';
     return id;
   }
   function colorOf(id: string, i: number): string {
@@ -140,8 +150,8 @@
   });
   /** Observed frequency of a value of the variable, from the tally of the draws. */
   function valueFrequency(x: number): number {
-    const values = tool.variable?.values ?? {};
-    const ids = (tree ? leaves : outcomes).filter((o) => values[o.id] === x).map((o) => o.id);
+    const map = values ?? {};
+    const ids = (tree ? leaves : outcomes).filter((o) => map[o.id] === x).map((o) => o.id);
     return draws ? ids.reduce((s, id) => s + (tally[id] ?? 0), 0) / draws : 0;
   }
   /** Sampling: the band p ± 1/√n around the frequency of the event (not for the means of a variable). */
@@ -403,10 +413,14 @@
         · {t('lesson.random.frequency')} {f(eventFrequency)}{/if}
     </p>
   {/if}
-  {#if tool.variable && law}
+  {#if law}
     <div class="scroll-x">
       <table class="law" data-testid="random-law">
-        <caption>{t('lesson.random.law')} · {L(tool.variable.label)}</caption>
+        <caption
+          >{t('lesson.random.law')} · {tool.variable
+            ? L(tool.variable.label)
+            : t('lesson.random.successes')}</caption
+        >
         <tbody>
           <tr>
             <th scope="row">x<sub>i</sub></th>

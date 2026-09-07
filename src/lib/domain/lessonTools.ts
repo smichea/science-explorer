@@ -154,10 +154,13 @@ export interface Outcome {
 }
 
 export function outcomesOf(tool: {
-  experiment: 'die' | 'coin' | 'urn';
+  experiment: 'die' | 'coin' | 'urn' | 'binomial';
   sides: number;
   urn: Array<{ id: string; count: number }>;
+  trials?: number;
+  success?: number;
 }): Outcome[] {
+  if (tool.experiment === 'binomial') return binomialLaw(tool.trials ?? 10, tool.success ?? 0.5);
   if (tool.experiment === 'coin')
     return [
       { id: 'heads', p: 0.5 },
@@ -567,7 +570,7 @@ export function twelfthOf(t: number): number | null {
   return Math.abs(k - rounded) < 1e-6 ? rounded : null;
 }
 
-function gcd(a: number, b: number): number {
+export function gcd(a: number, b: number): number {
   let x = Math.abs(a);
   let y = Math.abs(b);
   while (y) [x, y] = [y, x % y];
@@ -1118,4 +1121,315 @@ export function sampleStd(values: number[], counts?: number[]): number {
 export function standardUncertainty(values: number[], counts?: number[]): number {
   const n = expandSeries(values, counts).length;
   return n < 2 ? NaN : sampleStd(values, counts) / Math.sqrt(n);
+}
+
+// ---------------------------------------------------------------------------
+// The binomial law (a repeated trial, counted by its number of successes)
+// ---------------------------------------------------------------------------
+
+/** C(n, k), computed multiplicatively so that no factorial overflows on the way. */
+export function binomialCoefficient(n: number, k: number): number {
+  if (k < 0 || k > n) return 0;
+  const j = Math.min(k, n - k);
+  let out = 1;
+  for (let i = 1; i <= j; i++) out = (out * (n - j + i)) / i;
+  return Math.round(out);
+}
+
+/**
+ * The law of B(n, p) as the outcomes of an experiment: the outcome `k` is the number of
+ * successes, of probability C(n, k) p^k (1 − p)^(n − k). Drawing that categorical law is both
+ * exact and n times faster than repeating the trial.
+ */
+export function binomialLaw(trials: number, success: number): Outcome[] {
+  const q = 1 - success;
+  return Array.from({ length: trials + 1 }, (_, k) => ({
+    id: String(k),
+    p: binomialCoefficient(trials, k) * success ** k * q ** (trials - k),
+  }));
+}
+
+// ---------------------------------------------------------------------------
+// Integration (the area under a curve, read as a Riemann sum)
+// ---------------------------------------------------------------------------
+
+export type RiemannSide = 'left' | 'right' | 'middle';
+
+/** Abscissa of the point where the k-th rectangle of the subdivision reads the function. */
+export function riemannAbscissa(a: number, step: number, k: number, side: RiemannSide): number {
+  return a + step * (k + (side === 'left' ? 0 : side === 'right' ? 1 : 0.5));
+}
+
+/**
+ * The Riemann sum of `fn` over [a, b] with `n` rectangles taken on that side of each step:
+ * the area under the curve when the function is positive, its integral in general. Terms the
+ * function does not define are dropped rather than poisoning the whole sum.
+ */
+export function riemannSum(
+  fn: (x: number) => number,
+  a: number,
+  b: number,
+  n: number,
+  side: RiemannSide = 'left'
+): number {
+  if (!(n >= 1) || !Number.isFinite(a) || !Number.isFinite(b)) return NaN;
+  const step = (b - a) / n;
+  let sum = 0;
+  for (let k = 0; k < n; k++) {
+    const y = fn(riemannAbscissa(a, step, k, side));
+    if (Number.isFinite(y)) sum += y * step;
+  }
+  return sum;
+}
+
+/** The integral itself, to compare with a coarse subdivision: a fine middle-point sum. */
+export function integralOf(fn: (x: number) => number, a: number, b: number): number {
+  return riemannSum(fn, a, b, 2000, 'middle');
+}
+
+// ---------------------------------------------------------------------------
+// Geometry in space (vectors, lines and planes of three coordinates)
+// ---------------------------------------------------------------------------
+
+export type Vec3 = [number, number, number];
+
+export const dot3 = (u: Vec3, v: Vec3): number => u[0] * v[0] + u[1] * v[1] + u[2] * v[2];
+export const norm3 = (u: Vec3): number => Math.sqrt(dot3(u, u));
+export const cross = (u: Vec3, v: Vec3): Vec3 => [
+  u[1] * v[2] - u[2] * v[1],
+  u[2] * v[0] - u[0] * v[2],
+  u[0] * v[1] - u[1] * v[0],
+];
+
+/** Angle between two vectors, in degrees; NaN when one of them is the null vector. */
+export function angleBetween(u: Vec3, v: Vec3): number {
+  const nu = norm3(u);
+  const nv = norm3(v);
+  if (nu === 0 || nv === 0) return NaN;
+  // Clamped against the rounding that pushes the quotient just beyond [−1, 1].
+  const cos = Math.max(-1, Math.min(1, dot3(u, v) / (nu * nv)));
+  return (Math.acos(cos) * 180) / Math.PI;
+}
+
+/** A plane a x + b y + c z + d = 0. */
+export interface Plane {
+  a: number;
+  b: number;
+  c: number;
+  d: number;
+}
+
+/** The plane through a point, normal to a vector. */
+export function planeThrough(point: Vec3, normal: Vec3): Plane | null {
+  if (norm3(normal) === 0) return null;
+  return { a: normal[0], b: normal[1], c: normal[2], d: -dot3(normal, point) };
+}
+
+/** The plane through three points, null when they are aligned. */
+export function planeOfPoints(p: Vec3, q: Vec3, r: Vec3): Plane | null {
+  const u: Vec3 = [q[0] - p[0], q[1] - p[1], q[2] - p[2]];
+  const v: Vec3 = [r[0] - p[0], r[1] - p[1], r[2] - p[2]];
+  return planeThrough(p, cross(u, v));
+}
+
+/** Distance from a point to a plane: |a x + b y + c z + d| / ‖n⃗‖. */
+export function distancePointPlane(point: Vec3, plane: Plane): number {
+  const n: Vec3 = [plane.a, plane.b, plane.c];
+  const length = norm3(n);
+  return length === 0 ? NaN : Math.abs(dot3(n, point) + plane.d) / length;
+}
+
+/**
+ * The segment of the line through `point` directed by `direction` that stays inside the cube of
+ * half-width `extent` (the slab method): null when the line misses the box entirely.
+ */
+export function lineClipBox(point: Vec3, direction: Vec3, extent: number): [Vec3, Vec3] | null {
+  let lo = -Infinity;
+  let hi = Infinity;
+  for (let i = 0; i < 3; i++) {
+    if (Math.abs(direction[i]) < 1e-12) {
+      if (Math.abs(point[i]) > extent) return null;
+      continue;
+    }
+    const t1 = (-extent - point[i]) / direction[i];
+    const t2 = (extent - point[i]) / direction[i];
+    lo = Math.max(lo, Math.min(t1, t2));
+    hi = Math.min(hi, Math.max(t1, t2));
+  }
+  if (!(hi > lo) || !Number.isFinite(lo) || !Number.isFinite(hi)) return null;
+  const at = (t: number): Vec3 => [
+    point[0] + t * direction[0],
+    point[1] + t * direction[1],
+    point[2] + t * direction[2],
+  ];
+  return [at(lo), at(hi)];
+}
+
+// ---------------------------------------------------------------------------
+// The Doppler effect and the telescope
+// ---------------------------------------------------------------------------
+
+/**
+ * The frequency heard when the source and the observer move along the line joining them, both
+ * speeds counted positive when they close the distance: f′ = f (v + v_o) / (v − v_s).
+ */
+export function dopplerFrequency(
+  emitted: number,
+  waveSpeed: number,
+  sourceSpeed: number,
+  observerSpeed = 0
+): number {
+  const denominator = waveSpeed - sourceSpeed;
+  return denominator === 0 ? Infinity : (emitted * (waveSpeed + observerSpeed)) / denominator;
+}
+
+export interface TelescopeReading {
+  /** Angular magnification f₁ / f₂. */
+  magnification: number;
+  /** Size of the intermediate image in the focal plane of the objective (cm). */
+  imageHeight: number;
+  /** Distance between the two lenses of the afocal setting, f₁ + f₂ (cm). */
+  length: number;
+  /** Angle under which the eye sees the object through the telescope (degrees). */
+  apparentAngle: number;
+}
+
+/** An afocal telescope: an objective of focal f₁, an eyepiece of focal f₂, an object at infinity. */
+export function telescope(objective: number, eyepiece: number, angle: number): TelescopeReading {
+  const magnification = eyepiece === 0 ? Infinity : objective / eyepiece;
+  const imageHeight = objective * Math.tan((angle * Math.PI) / 180);
+  return {
+    magnification,
+    imageHeight,
+    length: objective + eyepiece,
+    apparentAngle: angle * magnification,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Chemical equilibrium (the reaction quotient and the final extent)
+// ---------------------------------------------------------------------------
+
+export interface EquilibriumSpecies {
+  coefficient: number;
+  initial: number;
+}
+
+/**
+ * The reaction quotient at the extent x, concentrations in mol/L: the product of the products'
+ * concentrations raised to their coefficients, over the same for the reactants. A species whose
+ * amount has fallen to zero sends it to zero or to infinity, as it should.
+ */
+export function reactionQuotient(
+  reactants: EquilibriumSpecies[],
+  products: EquilibriumSpecies[],
+  x: number,
+  volume = 1
+): number {
+  const term = (species: EquilibriumSpecies[], role: 'reactant' | 'product') =>
+    species.reduce((acc, s) => acc * (amountAt(s, x, role) / volume) ** s.coefficient, 1);
+  const bottom = term(reactants, 'reactant');
+  return bottom === 0 ? Infinity : term(products, 'product') / bottom;
+}
+
+/**
+ * The extent at which the quotient reaches the constant K, found by bisection between zero and
+ * the maximum extent: the quotient grows from zero to infinity along the way, so the state is
+ * unique. Returns the maximum extent when the reaction is total for all practical purposes.
+ */
+export function equilibriumExtent(
+  reactants: EquilibriumSpecies[],
+  products: EquilibriumSpecies[],
+  k: number,
+  volume = 1
+): number {
+  const { xmax } = extentMax(reactants);
+  if (!(xmax > 0) || !(k > 0)) return 0;
+  let lo = 0;
+  let hi = xmax;
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    if (reactionQuotient(reactants, products, mid, volume) < k) lo = mid;
+    else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+/** Final extent over maximum extent: the rate of the transformation, between zero and one. */
+export function extentRatio(final: number, maximum: number): number {
+  return maximum > 0 ? final / maximum : NaN;
+}
+
+// ---------------------------------------------------------------------------
+// Acids and bases (predominance, and the pH of a titration)
+// ---------------------------------------------------------------------------
+
+/** The ionic product of water at twenty-five degrees. */
+export const WATER_PRODUCT = 1e-14;
+
+/** pH = pKa + log([base] / [acid]): the Henderson relation, read on a predominance diagram. */
+export function pHFromRatio(pka: number, baseOverAcid: number): number {
+  return baseOverAcid > 0 ? pka + Math.log10(baseOverAcid) : NaN;
+}
+
+/** [base] / [acid] = 10^(pH − pKa): the same relation, read the other way. */
+export function ratioFromPH(pka: number, ph: number): number {
+  return 10 ** (ph - pka);
+}
+
+/** Which species of the couple predominates at that pH (`equal` at the pKa itself). */
+export function predominance(pka: number, ph: number): 'acid' | 'base' | 'equal' {
+  if (Math.abs(ph - pka) < 1e-9) return 'equal';
+  return ph < pka ? 'acid' : 'base';
+}
+
+/** Volume of titrant at equivalence (mL), from the concentrations and the titrated volume. */
+export function equivalenceVolume(c: number, v: number, titrant: number): number {
+  return titrant > 0 ? (c * v) / titrant : NaN;
+}
+
+export interface TitrationSetup {
+  /** Concentration of the titrated solution (mol/L) and its volume (mL). */
+  c: number;
+  v: number;
+  /** Concentration of the titrant (mol/L). */
+  titrant: number;
+  /** An acid is titrated (a strong base is poured), or a base (a strong acid is poured). */
+  role: 'acid' | 'base';
+  /** pKa of the couple when the titrated species is weak; strong without it. */
+  pka?: number;
+}
+
+/**
+ * The pH after `volume` millilitres of titrant, solved from the charge balance rather than
+ * written piece by piece: the balance is monotonic in [H⁺], so a bisection on the pH finds the
+ * only state that satisfies it — including at the equivalence, where the usual formulas divide
+ * by zero.
+ */
+export function titrationPH(setup: TitrationSetup, volume: number): number {
+  const total = setup.v + volume;
+  if (!(total > 0)) return NaN;
+  const titrated = (setup.c * setup.v) / total;
+  const poured = (setup.titrant * volume) / total;
+  const ka = setup.pka === undefined ? null : 10 ** -setup.pka;
+  const balance = (h: number): number => {
+    const water = WATER_PRODUCT / h;
+    if (setup.role === 'acid') {
+      // Cations: the strong base poured, and the protons. Anions: hydroxide and the base A⁻.
+      const anion = ka === null ? titrated : (titrated * ka) / (ka + h);
+      return poured + h - water - anion;
+    }
+    // Cations: the protonated base BH⁺ (all of it when the base is strong), and the protons.
+    const cation = ka === null ? titrated : (titrated * h) / (ka + h);
+    return cation + h - water - poured;
+  };
+  let lo = 0;
+  let hi = 14;
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    // The balance grows with [H⁺], so it falls as the pH rises.
+    if (balance(10 ** -mid) > 0) lo = mid;
+    else hi = mid;
+  }
+  return (lo + hi) / 2;
 }
