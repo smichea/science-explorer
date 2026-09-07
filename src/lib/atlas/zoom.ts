@@ -48,6 +48,17 @@ function fitDistance(radius: number, verticalFovDeg: number, aspect: number): nu
   return Math.min(MAX_CAMERA_DISTANCE, fit);
 }
 
+/**
+ * Semantic zoom of the 2D map: the scale of the view decides what is named, as the camera
+ * distance does in the 3D atlas, so both views follow the same budget.
+ */
+export function zoomLevelFor2d(scale: number): ZoomLevel {
+  if (scale < 1.2) return 'universe';
+  if (scale < 2) return 'world';
+  if (scale < 3.5) return 'region';
+  return 'concept';
+}
+
 /** Label budget per zoom level (labels beyond the budget are hidden, lowest priority first). */
 export const LABEL_BUDGET: Record<ZoomLevel, number> = {
   universe: 11,

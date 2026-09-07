@@ -52,6 +52,8 @@ importance: 3                # 1 minor, 2 normal, 3 major
 backpack: true               # only for mathematical tools collected in the backpack
 tags: [vertical-slice]
 title: { fr: Dérivée, en: Derivative }
+                             # the map writes the head of the title (before `:`, `—`, `(` or a
+                             # comma), so put the name of the notion first and its details after
 shortPurpose:
   fr: Décrire une variation instantanée.
   en: Describe an instantaneous rate of change.
