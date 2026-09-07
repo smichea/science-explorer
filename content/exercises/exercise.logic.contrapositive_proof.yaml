@@ -1,0 +1,80 @@
+# Logique en Première — ce qu'il faut démontrer pour prouver « si n² est pair alors n est pair » par contraposition (choix unique)
+id: exercise.logic.contrapositive_proof
+type: choice
+nodeId: concept.logic_sets
+depth: 2
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    On veut démontrer, pour tout entier naturel $n$ : « si $n^2$ est pair, alors $n$ est pair ».
+
+    Pour le faire **par contraposition**, quelle affirmation doit-on démontrer ?
+  en: |-
+    We want to prove, for every natural integer $n$: "if $n^2$ is even, then $n$ is even".
+
+    To do it **by contraposition**, which statement must be proved?
+choice:
+  multiple: false
+  requireReasoning: false
+  choices:
+    - id: converse
+      text: { fr: "Si $n$ est pair, alors $n^2$ est pair.", en: "If $n$ is even, then $n^2$ is even." }
+      feedback:
+        fr: |-
+          C'est la **réciproque** de l'implication, pas sa contraposée. Elle est vraie, mais la démontrer ne prouve rien sur l'implication de départ.
+        en: |-
+          This is the **converse** of the implication, not its contrapositive. It is true, but proving it proves nothing about the original implication.
+    - id: contrapositive
+      text: { fr: "Si $n$ est impair, alors $n^2$ est impair.", en: "If $n$ is odd, then $n^2$ is odd." }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : la contraposée de « $P \Rightarrow Q$ » est « non $Q \Rightarrow$ non $P$ ». Ici non $Q$ est « $n$ est impair » et non $P$ est « $n^2$ est impair ». Avec $n = 2k + 1$, $n^2 = 2(2k^2 + 2k) + 1$ est impair, ce qui démontre l'implication de départ.
+        en: |-
+          Correct: the contrapositive of "$P \Rightarrow Q$" is "not $Q \Rightarrow$ not $P$". Here not $Q$ is "$n$ is odd" and not $P$ is "$n^2$ is odd". With $n = 2k + 1$, $n^2 = 2(2k^2 + 2k) + 1$ is odd, which proves the original implication.
+    - id: converse_contrapositive
+      text: { fr: "Si $n^2$ est impair, alors $n$ est impair.", en: "If $n^2$ is odd, then $n$ is odd." }
+      feedback:
+        fr: |-
+          C'est la contraposée de la **réciproque**, donc une affirmation équivalente à la réciproque, pas à l'implication de départ. Les hypothèses et conclusions ont été échangées puis niées.
+        en: |-
+          This is the contrapositive of the **converse**, hence a statement equivalent to the converse, not to the original implication. Hypothesis and conclusion were swapped and then negated.
+    - id: example
+      text: { fr: "Il existe un entier pair dont le carré est pair, par exemple $4$ et $16$.", en: "There exists an even integer whose square is even, for instance $4$ and $16$." }
+      feedback:
+        fr: |-
+          Un exemple ne démontre jamais une propriété universelle : il faudrait un raisonnement valable pour tout $n$. Et ce n'est pas la contraposée.
+        en: |-
+          An example never proves a universal property: a reasoning valid for every $n$ would be needed. And it is not the contrapositive.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La contraposée de « si $P$ alors $Q$ » est « si non $Q$ alors non $P$ » : on nie les deux propriétés et l'on renverse le sens de l'implication.
+      en: |-
+        The contrapositive of "if $P$ then $Q$" is "if not $Q$ then not $P$": negate both properties and reverse the direction of the implication.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Ici $P$ est « $n^2$ est pair » et $Q$ est « $n$ est pair » ; la négation de « pair » est « impair ».
+      en: |-
+        Here $P$ is "$n^2$ is even" and $Q$ is "$n$ is even"; the negation of "even" is "odd".
+solution:
+  fr: |-
+    L'implication est $P \Rightarrow Q$ avec $P$ : « $n^2$ est pair » et $Q$ : « $n$ est pair ». Sa contraposée est non $Q \Rightarrow$ non $P$ : « si $n$ est impair, alors $n^2$ est impair ». Une implication et sa contraposée sont toujours équivalentes : démontrer l'une, c'est démontrer l'autre.
+
+    **Démonstration de la contraposée.** Si $n$ est impair, il existe un entier $k$ tel que $n = 2k + 1$ ; alors $n^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$, qui est impair. L'implication de départ est donc démontrée, sans avoir jamais eu à extraire une racine carrée. Les deux distracteurs « réciproque » et « contraposée de la réciproque » sont des affirmations vraies ici, mais qui ne prouvent pas ce que l'on veut ; l'exemple, lui, ne prouve jamais une propriété universelle.
+  en: |-
+    The implication is $P \Rightarrow Q$ with $P$: "$n^2$ is even" and $Q$: "$n$ is even". Its contrapositive is not $Q \Rightarrow$ not $P$: "if $n$ is odd, then $n^2$ is odd". An implication and its contrapositive are always equivalent: proving one is proving the other.
+
+    **Proof of the contrapositive.** If $n$ is odd, there exists an integer $k$ such that $n = 2k + 1$; then $n^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$, which is odd. The original implication is therefore proved, without ever extracting a square root. The two distractors "converse" and "contrapositive of the converse" are true statements here, but they do not prove what we want; the example never proves a universal property.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

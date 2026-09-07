@@ -1,0 +1,45 @@
+# Champ électrique — force subie par une charge placée dans un champ uniforme (réponse numérique)
+id: exercise.field.force
+type: numeric
+nodeId: concept.field
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Entre les armatures d'un condensateur plan règne un champ électrique uniforme de valeur $E = 2{,}0 \times 10^{3}\ \mathrm{V/m}$, dirigé de l'armature positive vers l'armature négative. On place au milieu des armatures une petite bille portant la charge $q = -5{,}0\ \mathrm{\mu C}$.
+
+    Calculez la valeur de la force électrostatique subie par la bille, en newtons, avec deux chiffres significatifs.
+  en: |-
+    Between the plates of a plane capacitor there is a uniform electric field of value $E = 2.0 \times 10^{3}\ \mathrm{V/m}$, pointing from the positive plate to the negative plate. A small ball carrying the charge $q = -5.0\ \mathrm{\mu C}$ is placed halfway between the plates.
+
+    Compute the value of the electrostatic force experienced by the ball, in newtons, with two significant figures.
+numeric:
+  value: 0.01
+  unit: "N"
+  tolerance: { kind: relative, value: 0.03 }
+  inputLabel: { fr: "F", en: "F" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La relation entre le champ et la force est $\vec F = q\,\vec E$ ; pour la **valeur** de la force, on utilise la valeur absolue de la charge, $F = |q|\,E$.
+      en: |-
+        The relation between the field and the force is $\vec F = q\,\vec E$; for the **value** of the force, the absolute value of the charge is used, $F = |q|\,E$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $5{,}0\ \mathrm{\mu C} = 5{,}0 \times 10^{-6}\ \mathrm{C}$ : multipliez simplement par $2{,}0 \times 10^{3}$.
+      en: |-
+        $5.0\ \mathrm{\mu C} = 5.0 \times 10^{-6}\ \mathrm{C}$: simply multiply by $2.0 \times 10^{3}$.
+solution:
+  fr: |-
+    La force subie par une charge dans un champ électrique est $\vec F = q\,\vec E$, donc en valeur
+    $$F = |q|\,E = 5{,}0 \times 10^{-6} \times 2{,}0 \times 10^{3} = 1{,}0 \times 10^{-2}\ \mathrm{N}.$$
+    La charge étant **négative**, le vecteur $\vec F$ est de sens **opposé** à $\vec E$ : la bille est poussée vers l'armature positive. Le champ, lui, ne dépend pas de la bille ; il est fixé par la tension et par l'écartement des armatures, $E = U/d$.
+  en: |-
+    The force experienced by a charge in an electric field is $\vec F = q\,\vec E$, so in value
+    $$F = |q|\,E = 5.0 \times 10^{-6} \times 2.0 \times 10^{3} = 1.0 \times 10^{-2}\ \mathrm{N}.$$
+    Since the charge is **negative**, the vector $\vec F$ has the **opposite** sense to $\vec E$: the ball is pushed towards the positive plate. The field itself does not depend on the ball; it is fixed by the voltage and by the spacing of the plates, $E = U/d$.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 2, linkedConcepts: 2, transfer: 2, autonomy: 2 }

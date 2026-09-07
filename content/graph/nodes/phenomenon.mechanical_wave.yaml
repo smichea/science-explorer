@@ -1,0 +1,46 @@
+id: phenomenon.mechanical_wave
+type: phenomenon
+world: world.physics
+region: region.physics.waves
+importance: 2
+tags: [lycee]
+title: { fr: "Ondes mécaniques progressives et périodiques", en: "Progressive and periodic mechanical waves" }
+shortPurpose:
+  fr: "Décrire la propagation d'une perturbation dans un milieu matériel par sa célérité, son retard, sa période et sa longueur d'onde."
+  en: "Describe the propagation of a perturbation through a material medium by its speed, its delay, its period and its wavelength."
+overview:
+  fr: >-
+    Secouez l'extrémité d'une corde tendue : une bosse court le long de la corde, mais chaque brin de corde ne fait que monter et redescendre sur place. C'est une onde : ce qui se propage, c'est la perturbation et l'énergie, jamais la matière. Si l'on secoue régulièrement, la corde se couvre d'un motif qui se répète dans le temps, avec une période, et dans l'espace, avec une longueur d'onde. Les deux sont liées par la célérité de l'onde, propre au milieu.
+  en: >-
+    Shake the end of a taut rope: a bump runs along the rope, but each strand of the rope only moves up and down where it is. This is a wave: what travels is the perturbation and the energy, never the matter. If the shaking is regular, the rope is covered by a pattern that repeats in time, with a period, and in space, with a wavelength. The two are linked by the speed of the wave, a property of the medium.
+aliases:
+  fr: ["onde mécanique progressive", "célérité", "retard de propagation", "longueur d'onde", "onde périodique"]
+  en: ["progressive mechanical wave", "wave speed", "propagation delay", "wavelength", "periodic wave"]
+description:
+  fr: |
+    Une **onde mécanique progressive** est la propagation, dans un milieu matériel, d'une perturbation qui transporte de l'énergie **sans transport de matière** : chaque point du milieu reproduit le mouvement de la source, en retard sur elle, puis revient à sa position d'équilibre. L'onde est **transversale** quand la perturbation est perpendiculaire à la direction de propagation, comme sur une corde ou à la surface de l'eau, et **longitudinale** quand elle lui est parallèle, comme pour le son dans l'air. La **célérité** $v$ est la vitesse de propagation de la perturbation, propriété du milieu et non de la source ; un point $M$ situé à la distance $d$ de la source reproduit son mouvement avec le **retard** $\tau = \dfrac{d}{v}$.
+
+    Quand la source répète indéfiniment le même mouvement, l'onde devient **périodique** et présente une double périodicité. Dans le temps, chaque point oscille avec la **période** $T$, en secondes, et la **fréquence** $f = \dfrac{1}{T}$, en hertz. Dans l'espace, le motif se répète tous les $\lambda$, la **longueur d'onde**, distance parcourue par l'onde pendant une période : $\lambda = v\,T = \dfrac{v}{f}$. Sur une corde où l'onde avance à $v = 12\ \mathrm{m/s}$ avec une période $T = 0{,}20\ \mathrm{s}$, la longueur d'onde vaut $\lambda = 12 \times 0{,}20 = 2{,}4\ \mathrm{m}$. Le retard sert à localiser une source : une onde sismique de compression, à $6{,}0\ \mathrm{km/s}$, met $40\ \mathrm{s}$ pour parcourir les $240\ \mathrm{km}$ qui séparent l'épicentre d'une station.
+
+    La célérité dépend du milieu : environ $340\ \mathrm{m/s}$ pour le son dans l'air, $1500\ \mathrm{m/s}$ dans l'eau, plusieurs kilomètres par seconde dans l'acier ; changer de milieu change $\lambda$ mais jamais $f$, imposée par la source. Pièges classiques : confondre la célérité de l'onde avec la vitesse d'oscillation d'un point du milieu, très différente ; croire que la matière avance avec l'onde, alors qu'un bouchon sur l'eau monte et descend sur place ; confondre période, en secondes, et longueur d'onde, en mètres. Ces ondes mécaniques ouvrent la voie aux ondes lumineuses, qui obéissent aux mêmes relations $\lambda = c/f$ mais se propagent aussi dans le vide.
+  en: |
+    A **progressive mechanical wave** is the propagation, through a material medium, of a perturbation that carries energy **without transport of matter**: each point of the medium reproduces the motion of the source, delayed with respect to it, then returns to its equilibrium position. The wave is **transverse** when the perturbation is perpendicular to the direction of propagation, as on a rope or at the surface of water, and **longitudinal** when it is parallel to it, as for sound in air. The **speed** $v$ is the propagation speed of the perturbation, a property of the medium and not of the source; a point $M$ at the distance $d$ from the source reproduces its motion with the **delay** $\tau = \dfrac{d}{v}$.
+
+    When the source endlessly repeats the same motion, the wave becomes **periodic** and shows a double periodicity. In time, each point oscillates with the **period** $T$, in seconds, and the **frequency** $f = \dfrac{1}{T}$, in hertz. In space, the pattern repeats every $\lambda$, the **wavelength**, the distance travelled by the wave during one period: $\lambda = v\,T = \dfrac{v}{f}$. On a rope where the wave advances at $v = 12\ \mathrm{m/s}$ with a period $T = 0.20\ \mathrm{s}$, the wavelength is $\lambda = 12 \times 0.20 = 2.4\ \mathrm{m}$. The delay serves to locate a source: a seismic compression wave, at $6.0\ \mathrm{km/s}$, takes $40\ \mathrm{s}$ to cover the $240\ \mathrm{km}$ between the epicentre and a station.
+
+    The speed depends on the medium: about $340\ \mathrm{m/s}$ for sound in air, $1500\ \mathrm{m/s}$ in water, several kilometres per second in steel; changing medium changes $\lambda$ but never $f$, which is imposed by the source. Classic traps: confusing the speed of the wave with the oscillation speed of a point of the medium, which is very different; believing that matter moves along with the wave, when a cork on water goes up and down where it is; confusing the period, in seconds, with the wavelength, in metres. These mechanical waves open the way to light waves, which obey the same relation $\lambda = c/f$ but also travel through a vacuum.
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "décrire une onde mécanique progressive comme la propagation d'une perturbation transportant de l'énergie sans transport de matière"
+        - "distinguer une onde transversale d'une onde longitudinale et définir la célérité d'une onde dans un milieu"
+        - "déterminer un retard $\\tau = d/v$, une distance ou une célérité à partir de deux enregistrements"
+        - "relier période, fréquence, célérité et longueur d'onde d'une onde périodique par $\\lambda = v\\,T = v/f$"
+      en:
+        - "describe a progressive mechanical wave as the propagation of a perturbation carrying energy without transport of matter"
+        - "distinguish a transverse wave from a longitudinal wave and define the speed of a wave in a medium"
+        - "determine a delay $\\tau = d/v$, a distance or a speed from two recordings"
+        - "relate period, frequency, speed and wavelength of a periodic wave by $\\lambda = v\\,T = v/f$"

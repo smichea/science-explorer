@@ -8,6 +8,7 @@ const ROUTES = [
   'backpack',
   'journal',
   'lesson/concept.function',
+  'lesson/tool.quadratic',
   'timeline',
   'settings',
   'guide/progress',

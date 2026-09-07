@@ -57,3 +57,42 @@ depths:
         - "program a bounded loop (for) and an unbounded loop (while), and predict the value of the variables at the exit"
         - "define and call a function in Python, with parameters and a returned value"
         - "simulate a random experiment with random() and compute the frequency of an event on a sample"
+  - depth: 2
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "créer une liste, accéder à un élément par son indice, la parcourir avec une boucle et l'allonger avec append"
+        - "écrire des boucles imbriquées et des fonctions à plusieurs paramètres, et prévoir leur résultat"
+        - "calculer les termes d'une suite définie par récurrence avec une boucle et les stocker dans une liste"
+        - "simuler une variable aléatoire et calculer la moyenne d'un échantillon pour l'approcher de son espérance"
+      en:
+        - "create a list, access an element by its index, traverse it with a loop and extend it with append"
+        - "write nested loops and functions with several parameters, and predict their result"
+        - "compute the terms of a recursively defined sequence with a loop and store them in a list"
+        - "simulate a random variable and compute the mean of a sample to approach its expectation"
+    lesson:
+      fr: |
+        **Listes.** Une **liste** range plusieurs valeurs sous un seul nom : `L = [3, 7, 15, 31]`. On accède à un élément par son **indice**, qui commence à $0$ : `L[0]` vaut $3$ et `L[3]` vaut $31$ ; `len(L)` donne la longueur, ici $4$. On parcourt une liste avec `for x in L:` ou avec `for i in range(len(L)):`, et `L.append(63)` ajoute une valeur à la fin. Ainsi, le programme
+        ```python
+        u = 1
+        L = [u]
+        for i in range(4):
+            u = 2 * u + 1
+            L.append(u)
+        ```
+        construit la liste `[1, 3, 7, 15, 31]` des cinq premiers termes de la suite $u_{n+1} = 2u_n + 1$, $u_0 = 1$ ; `L[n]` est alors $u_n$. Une somme se calcule en accumulant dans une variable initialisée à $0$, et les **boucles imbriquées** parcourent un tableau ligne par ligne : `for i in range(3):` suivi de `for j in range(4):` exécute le bloc intérieur $12$ fois.
+
+        **Fonctions et simulation.** Une fonction peut prendre plusieurs paramètres et renvoyer une liste : `def termes(a, n):` calcule les $n$ premiers termes d'une suite de premier terme `a`. Pour simuler une **variable aléatoire**, `randint(1, 6)` renvoie un entier au hasard entre $1$ et $6$, et une fonction `gain()` associe une valeur à chaque issue ; la moyenne d'un échantillon de $1000$ parties, somme des gains divisée par $1000$, fluctue autour de l'espérance $E(X)$. La boucle qui répète l'expérience et accumule les résultats est le même geste que celle qui calcule les termes d'une suite : l'algorithme rend expérimentaux les objets mathématiques de Première.
+      en: |
+        **Lists.** A **list** stores several values under a single name: `L = [3, 7, 15, 31]`. An element is accessed by its **index**, which starts at $0$: `L[0]` is $3$ and `L[3]` is $31$; `len(L)` gives the length, here $4$. A list is traversed with `for x in L:` or with `for i in range(len(L)):`, and `L.append(63)` adds a value at the end. Thus, the program
+        ```python
+        u = 1
+        L = [u]
+        for i in range(4):
+            u = 2 * u + 1
+            L.append(u)
+        ```
+        builds the list `[1, 3, 7, 15, 31]` of the first five terms of the sequence $u_{n+1} = 2u_n + 1$, $u_0 = 1$; `L[n]` is then $u_n$. A sum is computed by accumulating in a variable initialised at $0$, and **nested loops** run through a table row by row: `for i in range(3):` followed by `for j in range(4):` executes the inner block $12$ times.
+
+        **Functions and simulation.** A function may take several parameters and return a list: `def termes(a, n):` computes the first $n$ terms of a sequence with first term `a`. To simulate a **random variable**, `randint(1, 6)` returns an integer at random between $1$ and $6$, and a function `gain()` attaches a value to each outcome; the mean of a sample of $1000$ games, the sum of the gains divided by $1000$, fluctuates around the expectation $E(X)$. The loop that repeats the experiment and accumulates the results is the same move as the one computing the terms of a sequence: the algorithm makes the mathematical objects of Grade 11 experimental.

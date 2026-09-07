@@ -1,0 +1,59 @@
+# Second degré — discriminant et racines de 2x² − 5x − 3, on demande la plus grande racine (réponse numérique)
+id: exercise.quadratic.discriminant_roots
+type: numeric
+nodeId: tool.quadratic
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Soit $f$ la fonction définie sur $\mathbb{R}$ par $f(x) = 2x^2 - 5x - 3$.
+
+    Calculez le discriminant $\Delta$, puis donnez la **plus grande** des deux racines de $f$.
+  en: |-
+    Let $f$ be the function defined on $\mathbb{R}$ by $f(x) = 2x^2 - 5x - 3$.
+
+    Compute the discriminant $\Delta$, then give the **larger** of the two roots of $f$.
+numeric:
+  value: 3
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "plus grande racine", en: "larger root" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Ici $a = 2$, $b = -5$ et $c = -3$. Le discriminant est $\Delta = b^2 - 4ac$ : attention aux deux signes moins, dont le produit est positif.
+      en: |-
+        Here $a = 2$, $b = -5$ and $c = -3$. The discriminant is $\Delta = b^2 - 4ac$: mind the two minus signs, whose product is positive.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\Delta = 25 + 24 = 49$, dont la racine carrée est $7$. Les racines sont $\dfrac{-b \pm \sqrt{\Delta}}{2a}$, et la plus grande utilise le signe $+$.
+      en: |-
+        $\Delta = 25 + 24 = 49$, whose square root is $7$. The roots are $\dfrac{-b \pm \sqrt{\Delta}}{2a}$, and the larger one uses the $+$ sign.
+solution:
+  fr: |-
+    Avec $a = 2$, $b = -5$ et $c = -3$ :
+    $$\Delta = b^2 - 4ac = (-5)^2 - 4 \times 2 \times (-3) = 25 + 24 = 49 > 0,$$
+    donc $f$ admet deux racines distinctes. Comme $\sqrt{49} = 7$ :
+    $$x_1 = \frac{5 - 7}{4} = -0{,}5 \qquad \text{et} \qquad x_2 = \frac{5 + 7}{4} = 3.$$
+    La plus grande racine est donc $3$.
+
+    **Interprétation.** On peut vérifier : $f(3) = 18 - 15 - 3 = 0$. La forme factorisée est $f(x) = 2(x + 0{,}5)(x - 3)$, où le facteur $a = 2$ ne doit pas être oublié. Comme $a > 0$, le trinôme est négatif entre les racines : l'inéquation $f(x) < 0$ a pour ensemble de solutions $]-0{,}5\,;\,3[$.
+  en: |-
+    With $a = 2$, $b = -5$ and $c = -3$:
+    $$\Delta = b^2 - 4ac = (-5)^2 - 4 \times 2 \times (-3) = 25 + 24 = 49 > 0,$$
+    so $f$ has two distinct roots. Since $\sqrt{49} = 7$:
+    $$x_1 = \frac{5 - 7}{4} = -0.5 \qquad \text{and} \qquad x_2 = \frac{5 + 7}{4} = 3.$$
+    The larger root is therefore $3$.
+
+    **Interpretation.** One can check: $f(3) = 18 - 15 - 3 = 0$. The factored form is $f(x) = 2(x + 0.5)(x - 3)$, where the factor $a = 2$ must not be forgotten. Since $a > 0$, the trinomial is negative between the roots: the inequality $f(x) < 0$ has solution set $]-0.5\,;\,3[$.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

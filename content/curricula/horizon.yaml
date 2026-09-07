@@ -24,6 +24,9 @@ paths:
   - id: fr-premiere-terminale-mpsi
     title: { fr: Première → Terminale → MPSI, en: Grade 11 → Grade 12 → MPSI }
     stages: [premiere, terminale, mpsi]
+    targets:
+      - { id: ens, title: { fr: Concours des ENS, en: ENS entrance examinations } }
+      - { id: polytechnique, title: { fr: Concours de l'École polytechnique, en: École polytechnique entrance examinations } }
   - id: fr-terminale-mpsi-mp
     title: { fr: Terminale → MPSI → MP, en: Grade 12 → MPSI → MP }
     stages: [terminale, mpsi, mp]

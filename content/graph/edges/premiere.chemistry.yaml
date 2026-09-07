@@ -1,0 +1,49 @@
+# Programme de Première — chimie de la spécialité physique-chimie (BO spécial n°1 du 22 janvier 2019,
+# « Constitution et transformations de la matière »).
+# requires_* : du prérequis vers le nœud qui en dépend ; models / explains : du modèle vers le phénomène ou la notion expliquée.
+edges:
+  # --- requires_essentially -------------------------------------------------
+  - { from: concept.amount_of_substance, to: concept.concentration, type: requires_essentially, weight: 1, depthRange: [2, 2],
+      note: { fr: "La concentration en quantité de matière C = n/V n'a de sens qu'une fois la mole et la masse molaire connues.", en: "The concentration in amount of substance C = n/V only makes sense once the mole and the molar mass are known." } }
+  - { from: model.chemical_reaction, to: method.titration, type: requires_essentially, weight: 1,
+      note: { fr: "La relation à l'équivalence se lit dans le tableau d'avancement de la réaction support du titrage.", en: "The relation at the equivalence point is read in the extent table of the titration reaction." } }
+  - { from: concept.concentration, to: method.titration, type: requires_essentially, weight: 1,
+      note: { fr: "Doser, c'est déterminer une concentration : celle de la solution titrante est connue, celle de la solution titrée est cherchée.", en: "Assaying means determining a concentration: that of the titrant is known, that of the titrated solution is sought." } }
+  - { from: model.chemical_reaction, to: model.redox, type: requires_essentially, weight: 1,
+      note: { fr: "Une réaction d'oxydoréduction est d'abord une réaction chimique, avec son équation ajustée et son tableau d'avancement.", en: "A redox reaction is first of all a chemical reaction, with its balanced equation and its extent table." } }
+  - { from: model.atom, to: model.redox, type: requires_essentially, weight: 1,
+      note: { fr: "Un transfert d'électrons suppose de savoir ce qu'est un électron, un ion et la charge d'une entité.", en: "A transfer of electrons presupposes knowing what an electron, an ion and the charge of a species are." } }
+  - { from: model.atom, to: model.lewis_structure, type: requires_essentially, weight: 1,
+      note: { fr: "Les doublets se comptent à partir des électrons de valence, lus dans la configuration électronique.", en: "The pairs are counted from the valence electrons, read in the electron configuration." } }
+  - { from: model.periodic_table, to: model.lewis_structure, type: requires_essentially, weight: 1,
+      note: { fr: "La colonne d'un élément donne ses électrons de valence, et sa position l'électronégativité relative de ses liaisons.", en: "The column of an element gives its valence electrons, and its position the relative electronegativity of its bonds." } }
+  - { from: model.lewis_structure, to: concept.cohesion_dissolution, type: requires_essentially, weight: 1,
+      note: { fr: "La cohésion et la solvatation s'expliquent par la polarité des molécules, elle-même lue sur le schéma de Lewis.", en: "Cohesion and solvation are explained by the polarity of the molecules, itself read on the Lewis structure." } }
+  - { from: model.lewis_structure, to: model.organic_molecules, type: requires_essentially, weight: 1,
+      note: { fr: "Un squelette carboné est une suite d'atomes de carbone tétravalents : la valence vient du schéma de Lewis.", en: "A carbon skeleton is a chain of tetravalent carbon atoms: the valence comes from the Lewis structure." } }
+  - { from: model.organic_molecules, to: method.ir_spectroscopy, type: requires_essentially, weight: 1,
+      note: { fr: "Le spectre infrarouge sert à identifier des groupes caractéristiques : encore faut-il les connaître.", en: "The infrared spectrum serves to identify characteristic groups: they must be known first." } }
+  - { from: model.chemical_reaction, to: method.organic_synthesis, type: requires_essentially, weight: 1,
+      note: { fr: "Le rendement se compare à la quantité maximale de produit lue dans le tableau d'avancement.", en: "The yield is compared with the maximum amount of product read in the extent table." } }
+  - { from: model.organic_molecules, to: method.organic_synthesis, type: requires_essentially, weight: 1,
+      note: { fr: "On synthétise une molécule organique nommée, dont on vérifie le groupe caractéristique à l'analyse.", en: "One synthesises a named organic molecule, whose characteristic group is checked at the analysis step." } }
+  - { from: model.chemical_reaction, to: phenomenon.combustion, type: requires_essentially, weight: 1,
+      note: { fr: "Une combustion s'écrit d'abord comme une équation ajustée, carbone, hydrogène, puis dioxygène.", en: "A combustion is first written as a balanced equation: carbon, hydrogen, then oxygen." } }
+  # --- requires_recommended -------------------------------------------------
+  - { from: method.measurement, to: method.titration, type: requires_recommended, weight: 0.7,
+      note: { fr: "Le repérage de l'équivalence et la lecture de la burette portent l'incertitude du dosage.", en: "Locating the equivalence point and reading the burette carry the uncertainty of the assay." } }
+  - { from: concept.concentration, to: concept.cohesion_dissolution, type: requires_recommended, weight: 0.8,
+      note: { fr: "La dissolution d'un solide ionique se solde par la concentration de chacun de ses ions en solution.", en: "The dissolution of an ionic solid ends in the concentration of each of its ions in solution." } }
+  - { from: phenomenon.state_changes, to: concept.cohesion_dissolution, type: requires_recommended, weight: 0.7,
+      note: { fr: "Les températures de fusion comparent la force des interactions qui assurent la cohésion des solides.", en: "Melting temperatures compare the strength of the interactions that ensure the cohesion of solids." } }
+  - { from: model.lewis_structure, to: phenomenon.combustion, type: requires_recommended, weight: 0.7,
+      note: { fr: "Compter les liaisons rompues et formées demande le schéma de Lewis des réactifs et des produits.", en: "Counting the bonds broken and formed requires the Lewis structure of the reactants and the products." } }
+  - { from: model.organic_molecules, to: phenomenon.combustion, type: requires_recommended, weight: 0.7,
+      note: { fr: "Les combustibles usuels sont des alcanes et des alcools, décrits par leur squelette carboné.", en: "The usual fuels are alkanes and alcohols, described by their carbon skeleton." } }
+  # --- models / explains ----------------------------------------------------
+  - { from: model.chemical_reaction, to: phenomenon.combustion, type: models, weight: 1,
+      note: { fr: "La combustion est modélisée par une réaction chimique totale, avec son équation et son réactif limitant.", en: "A combustion is modelled by a complete chemical reaction, with its equation and its limiting reactant." } }
+  - { from: model.redox, to: phenomenon.combustion, type: models, weight: 0.8,
+      note: { fr: "Une combustion est une réaction d'oxydoréduction : le dioxygène est l'oxydant, le combustible le réducteur.", en: "A combustion is a redox reaction: oxygen is the oxidant, the fuel the reductant." } }
+  - { from: model.lewis_structure, to: concept.cohesion_dissolution, type: explains, weight: 0.8,
+      note: { fr: "La géométrie et la polarité des entités expliquent la cohésion des solides, la solvatation des ions et le choix d'un solvant.", en: "The geometry and the polarity of the species explain the cohesion of solids, the solvation of ions and the choice of a solvent." } }

@@ -1,0 +1,66 @@
+# Leçon spectroscopie infrarouge — identifier un composé à partir de ses bandes d'absorption et de sa formule brute (réponse numérique)
+id: exercise.ir.identify_ketone
+type: numeric
+nodeId: method.ir_spectroscopy
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Un composé $A$ de formule brute $\mathrm{C_4H_8O}$ donne un spectre infrarouge qui présente une bande forte et fine à $1715\ \mathrm{cm^{-1}}$, des bandes fines juste en dessous de $3000\ \mathrm{cm^{-1}}$, et **aucune** bande entre $2500$ et $3600\ \mathrm{cm^{-1}}$.
+
+    | liaison | nombre d'onde ($\mathrm{cm^{-1}}$) | allure |
+    | --- | --- | --- |
+    | $\mathrm{O{-}H}$ (alcool) | $3200$–$3400$ | large, forte |
+    | $\mathrm{O{-}H}$ (acide) | $2500$–$3200$ | très large |
+    | $\mathrm{C{-}H}$ | $2800$–$3000$ | fines |
+    | $\mathrm{C{=}O}$ | $1700$–$1750$ | fine, forte |
+
+    Le squelette carboné de $A$ est linéaire et son groupe caractéristique n'est pas en bout de chaîne. Nommez $A$ sous la forme « butan-$p$-one » et donnez le numéro $p$.
+  en: |-
+    A compound $A$ of molecular formula $\mathrm{C_4H_8O}$ gives an infrared spectrum showing a strong sharp band at $1715\ \mathrm{cm^{-1}}$, sharp bands just below $3000\ \mathrm{cm^{-1}}$, and **no** band between $2500$ and $3600\ \mathrm{cm^{-1}}$.
+
+    | bond | wavenumber ($\mathrm{cm^{-1}}$) | shape |
+    | --- | --- | --- |
+    | $\mathrm{O{-}H}$ (alcohol) | $3200$–$3400$ | broad, strong |
+    | $\mathrm{O{-}H}$ (acid) | $2500$–$3200$ | very broad |
+    | $\mathrm{C{-}H}$ | $2800$–$3000$ | sharp |
+    | $\mathrm{C{=}O}$ | $1700$–$1750$ | sharp, strong |
+
+    The carbon skeleton of $A$ is linear and its characteristic group is not at the end of the chain. Name $A$ in the form "butan-$p$-one" and give the number $p$.
+numeric:
+  value: 2
+  tolerance: { kind: absolute, value: 0.1 }
+  inputLabel: { fr: "p", en: "p" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        L'absence de toute bande entre $2500$ et $3600\ \mathrm{cm^{-1}}$ élimine deux familles d'un coup : lesquelles ?
+      en: |-
+        The absence of any band between $2500$ and $3600\ \mathrm{cm^{-1}}$ rules out two families at once: which ones?
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Un groupe carbonyle à l'intérieur de la chaîne fait une cétone, en bout de chaîne un aldéhyde. Sur une chaîne linéaire à quatre carbones, où le carbonyle peut-il se trouver sans être en bout de chaîne ?
+      en: |-
+        A carbonyl group inside the chain makes a ketone, at the end of the chain an aldehyde. On a linear four-carbon chain, where can the carbonyl sit without being at the end?
+solution:
+  fr: |-
+    La bande forte et fine à $1715\ \mathrm{cm^{-1}}$ tombe dans la fenêtre $1700$–$1750$ : elle signe une liaison $\mathrm{C{=}O}$, donc un **groupe carbonyle**. L'absence de bande entre $2500$ et $3600\ \mathrm{cm^{-1}}$ élimine à la fois l'alcool, qui montrerait une bande large vers $3300$, et l'acide carboxylique, qui montrerait une bande très large de $2500$ à $3200$. Les bandes fines sous $3000$ sont simplement celles des liaisons $\mathrm{C{-}H}$ du squelette.
+
+    Le composé porte donc un carbonyle et un seul oxygène : c'est une cétone ou un aldéhyde. L'énoncé précise que le groupe n'est pas en bout de chaîne : c'est une **cétone**.
+
+    Sur une chaîne linéaire à quatre carbones, les positions $1$ et $4$ sont les extrémités, et les positions $2$ et $3$ donnent la même molécule lue par l'autre bout. On retient le plus petit numéro, $p = 2$ : le composé $A$ est la **butan-2-one**, $\mathrm{CH_3{-}CO{-}CH_2{-}CH_3}$, dont on vérifie la formule brute $\mathrm{C_4H_8O}$.
+
+    Le spectre infrarouge ne renseigne pas sur le squelette carboné : c'est pourquoi l'énoncé devait le préciser. Il faut toujours croiser les bandes avec la formule brute et d'autres données.
+  en: |-
+    The strong sharp band at $1715\ \mathrm{cm^{-1}}$ falls in the $1700$–$1750$ window: it signs a $\mathrm{C{=}O}$ bond, hence a **carbonyl group**. The absence of a band between $2500$ and $3600\ \mathrm{cm^{-1}}$ rules out both the alcohol, which would show a broad band near $3300$, and the carboxylic acid, which would show a very broad band from $2500$ to $3200$. The sharp bands below $3000$ are simply those of the $\mathrm{C{-}H}$ bonds of the skeleton.
+
+    The compound therefore carries a carbonyl and a single oxygen: it is a ketone or an aldehyde. The statement specifies that the group is not at the end of the chain: it is a **ketone**.
+
+    On a linear four-carbon chain, positions $1$ and $4$ are the ends, and positions $2$ and $3$ give the same molecule read from the other end. The smallest number is kept, $p = 2$: compound $A$ is **butan-2-one**, $\mathrm{CH_3{-}CO{-}CH_2{-}CH_3}$, whose molecular formula $\mathrm{C_4H_8O}$ is checked.
+
+    The infrared spectrum gives no information on the carbon skeleton: that is why the statement had to specify it. The bands must always be crossed with the molecular formula and other data.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 3, calculationLength: 1, modellingOpenness: 3, linkedConcepts: 3, transfer: 3, autonomy: 3 }

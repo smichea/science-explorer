@@ -1,0 +1,126 @@
+# Leçon narrée — combustions : l'équation ajustée de la combustion du méthane (outil réaction, avec les énergies de liaison
+# qui donnent l'énergie molaire de réaction) puis l'énergie libérée en fonction de la quantité de combustible brûlée (traceur).
+id: lesson.phenomenon.combustion
+nodeId: phenomenon.combustion
+depth: 1
+tools:
+  - id: methane
+    kind: reaction
+    title: { fr: "Combustion complète du méthane", en: "Complete combustion of methane" }
+    parameters:
+      - { id: a, label: { fr: "méthane initial (mol)", en: "initial methane (mol)" }, min: 0, max: 5, step: 0.1, value: 1 }
+      - { id: b, label: { fr: "dioxygène initial (mol)", en: "initial dioxygen (mol)" }, min: 0, max: 12, step: 0.1, value: 2.5 }
+    reactants:
+      - { id: methane, formula: "CH₄", coefficient: 1, initial: "a", label: { fr: "méthane", en: "methane" } }
+      - { id: oxygen, formula: "O₂", coefficient: 2, initial: "b", label: { fr: "dioxygène", en: "dioxygen" } }
+    products:
+      - { id: dioxide, formula: "CO₂", coefficient: 1, label: { fr: "dioxyde de carbone", en: "carbon dioxide" } }
+      - { id: water, formula: "H₂O", coefficient: 2, label: { fr: "eau", en: "water" } }
+    unit: mol
+    bonds:
+      - { id: ch, label: "C–H", energy: 413, broken: 4, formed: 0 }
+      - { id: oo, label: "O=O", energy: 498, broken: 2, formed: 0 }
+      - { id: co, label: "C=O", energy: 799, broken: 0, formed: 2 }
+      - { id: oh, label: "O–H", energy: 463, broken: 0, formed: 4 }
+  - id: energy
+    kind: plotter
+    title: { fr: "Énergie libérée et quantité brûlée", en: "Energy released and amount burnt" }
+    variable: x
+    view: { x: [0, 5], y: [0, 6000] }
+    input: false
+    parameters:
+      - { id: q, label: { fr: "énergie libérée par mole (kJ/mol)", en: "energy released per mole (kJ/mol)" }, min: 200, max: 2500, step: 10, value: 802 }
+    initial:
+      - { view: { labels: { x: "n (mol de combustible)", y: "E libérée (kJ)" } } }
+steps:
+  - id: equation
+    title: { fr: "Combustible, comburant, équation", en: "Fuel, oxidiser, equation" }
+    tool: methane
+    text:
+      fr: >-
+        Brûler, c'est faire réagir un combustible avec un comburant, presque toujours le dioxygène de l'air.
+        Il faut une étincelle ou une flamme pour démarrer, puis la réaction s'entretient : combustible, comburant et énergie d'activation forment le triangle du feu, et supprimer l'un des trois éteint la combustion.
+        La combustion complète du méthane ne produit que du dioxyde de carbone et de l'eau, et l'on ajuste l'équation dans l'ordre, le carbone, puis l'hydrogène, puis le dioxygène : une mole de méthane pour deux moles de dioxygène.
+        Si le dioxygène manque, il devient le réactif limitant, du méthane reste, et la combustion, incomplète, produit en plus du monoxyde de carbone, gaz toxique, et de la suie.
+      en: >-
+        Burning means making a fuel react with an oxidiser, almost always the oxygen of the air.
+        A spark or a flame is needed to start, then the reaction sustains itself: fuel, oxidiser and activation energy form the fire triangle, and removing one of the three extinguishes the combustion.
+        The complete combustion of methane produces only carbon dioxide and water, and the equation is balanced in order, carbon, then hydrogen, then oxygen: one mole of methane for two moles of oxygen.
+        If oxygen is lacking, it becomes the limiting reactant, methane is left, and the combustion, incomplete, also produces carbon monoxide, a toxic gas, and soot.
+    actions:
+      - { at: 2, set: { a: 1, b: 2 } }
+      - { at: 3, set: { b: 1 } }
+  - id: bonds
+    title: { fr: "D'où vient l'énergie : les énergies de liaison", en: "Where the energy comes from: bond energies" }
+    tool: methane
+    text:
+      fr: >-
+        D'où vient l'énergie libérée par une combustion ?
+        Rompre une liaison coûte de l'énergie, en former en libère : l'énergie molaire de réaction est la somme des énergies des liaisons rompues, moins celle des liaisons formées.
+        Ici on rompt quatre liaisons carbone-hydrogène à 413 kilojoules par mole et deux doubles liaisons du dioxygène à 498, soit 2648 kilojoules ; on forme deux doubles liaisons carbone-oxygène à 799 et quatre liaisons oxygène-hydrogène à 463, soit 3450.
+        Le bilan vaut moins 802 kilojoules par mole : la réaction est exothermique parce que les liaisons formées sont, au total, plus fortes que celles qui ont été rompues.
+      en: >-
+        Where does the energy released by a combustion come from?
+        Breaking a bond costs energy, forming one releases some: the molar reaction energy is the sum of the energies of the bonds broken, minus that of the bonds formed.
+        Here four carbon–hydrogen bonds at 413 kilojoules per mole and two oxygen double bonds at 498 are broken, that is 2648 kilojoules; two carbon–oxygen double bonds at 799 and four oxygen–hydrogen bonds at 463 are formed, that is 3450.
+        The balance is minus 802 kilojoules per mole: the reaction is exothermic because the bonds formed are, overall, stronger than those that were broken.
+    actions:
+      - { at: 1, set: { a: 1, b: 2 } }
+  - id: released
+    title: { fr: "L'énergie libérée par une quantité de combustible", en: "The energy released by an amount of fuel" }
+    tool: energy
+    text:
+      fr: >-
+        L'énergie libérée par une quantité de combustible est proportionnelle à cette quantité, le coefficient étant la valeur absolue de l'énergie molaire de réaction.
+        La droite le montre : pour le méthane, deux moles brûlées libèrent environ 1600 kilojoules.
+        Un kilogramme de méthane, c'est 62,5 moles, donc 50 mégajoules, de quoi porter 150 litres d'eau de zéro à quatre-vingts degrés.
+        Le propane libère davantage par mole, 2220 kilojoules : la pente change, la proportionnalité reste.
+      en: >-
+        The energy released by an amount of fuel is proportional to that amount, the coefficient being the absolute value of the molar reaction energy.
+        The straight line shows it: for methane, two moles burnt release about 1600 kilojoules.
+        One kilogram of methane is 62.5 moles, hence 50 megajoules, enough to take 150 litres of water from zero to eighty degrees.
+        Propane releases more per mole, 2220 kilojoules: the slope changes, the proportionality remains.
+    actions:
+      - { at: 1, set: { q: 802 }, plot: { id: fuel, expr: "q*x", label: { fr: "E = n × |Er|", en: "E = n × |Er|" } } }
+      - { at: 1, point: { id: two, on: fuel, x: 2, guides: true, label: { fr: "n = 2 mol", en: "n = 2 mol" } } }
+      - { at: 3, set: { q: 2220 } }
+  - id: stakes
+    title: { fr: "Usages, risques et enjeux", en: "Uses, risks and stakes" }
+    tool: energy
+    text:
+      fr: >-
+        Les combustions fournissent l'essentiel de l'énergie utilisée par l'humanité : chauffage, cuisson, moteurs thermiques, centrales, fusées.
+        On mesure l'énergie qu'elles libèrent par calorimétrie, en chauffant une masse d'eau avec la flamme et en exploitant la relation entre l'énergie reçue, la masse d'eau et l'élévation de température.
+        Leurs risques sont l'incendie, l'explosion des mélanges de gaz et d'air, et l'intoxication au monoxyde de carbone d'une combustion incomplète, gaz invisible et inodore.
+        Leur enjeu majeur est le dioxyde de carbone rejeté : à énergie égale, le méthane en émet moins que le charbon, et la combustion du dihydrogène, qui ne donne que de l'eau, n'en émet pas du tout.
+      en: >-
+        Combustions provide most of the energy used by humanity: heating, cooking, heat engines, power stations, rockets.
+        The energy they release is measured by calorimetry, by heating a mass of water with the flame and using the relation between the energy received, the mass of water and the rise in temperature.
+        Their risks are fire, the explosion of gas–air mixtures, and poisoning by the carbon monoxide of an incomplete combustion, an invisible and odourless gas.
+        Their major stake is the carbon dioxide released: for the same energy, methane emits less than coal, and the combustion of dihydrogen, which gives only water, emits none at all.
+    actions:
+      - { at: 3, set: { q: 802 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de brûler", en: "Your turn to burn" }
+    tool: methane
+    text:
+      fr: >-
+        À vous. Faites varier les quantités initiales de méthane et de dioxygène, repérez le réactif limitant et lisez l'énergie molaire de réaction calculée à partir des énergies de liaison.
+        Passez ensuite au traceur : déplacez l'énergie libérée par mole et lisez l'énergie totale pour une quantité de combustible donnée.
+      en: >-
+        Your turn. Vary the initial amounts of methane and of oxygen, spot the limiting reactant and read the molar reaction energy computed from the bond energies.
+        Then switch to the plotter: move the energy released per mole and read the total energy for a given amount of fuel.
+    actions:
+      - { at: 0, set: { a: 1, b: 2 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : le dioxygène nécessaire à une combustion, puis une énergie molaire de réaction estimée par les énergies de liaison.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the oxygen needed by a combustion, then a molar reaction energy estimated from bond energies.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.combustion.equation_oxygen, exercise.combustion.bond_energy]

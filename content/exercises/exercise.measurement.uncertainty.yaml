@@ -1,0 +1,43 @@
+# Leçon mesure (Première) — incertitude-type de type A sur la moyenne de cinq mesures d'une période (réponse numérique)
+id: exercise.measurement.uncertainty
+type: numeric
+nodeId: method.measurement
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Pour mesurer la période $T$ d'un pendule, cinq élèves obtiennent : $2{,}02$ ; $1{,}98$ ; $2{,}05$ ; $2{,}00$ et $1{,}95\ \mathrm{s}$. La moyenne vaut $\bar T = 2{,}000\ \mathrm{s}$ et l'écart-type expérimental de la série $s = 0{,}038\ \mathrm{s}$.
+
+    Calculez l'incertitude-type $u(T)$ de type A sur la moyenne, en secondes, avec deux chiffres significatifs.
+  en: |-
+    To measure the period $T$ of a pendulum, five students obtain: $2.02$, $1.98$, $2.05$, $2.00$ and $1.95\ \mathrm{s}$. The mean is $\bar T = 2.000\ \mathrm{s}$ and the sample standard deviation of the series $s = 0.038\ \mathrm{s}$.
+
+    Compute the type A standard uncertainty $u(T)$ on the mean, in seconds, with two significant figures.
+numeric:
+  value: 0.017
+  unit: "s"
+  tolerance: { kind: absolute, value: 0.002 }
+  inputLabel: { fr: "u(T)", en: "u(T)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        L'incertitude-type de type A sur la moyenne de $n$ mesures indépendantes est $u = \dfrac{s}{\sqrt{n}}$, où $s$ est l'écart-type expérimental de la série.
+      en: |-
+        The type A standard uncertainty on the mean of $n$ independent measurements is $u = \dfrac{s}{\sqrt{n}}$, where $s$ is the sample standard deviation of the series.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $n = 5$ et $\sqrt{5} \approx 2{,}24$ : divisez $0{,}038$ par $2{,}24$.
+      en: |-
+        $n = 5$ and $\sqrt{5} \approx 2.24$: divide $0.038$ by $2.24$.
+solution:
+  fr: |-
+    $$u(T) = \frac{s}{\sqrt{n}} = \frac{0{,}038}{\sqrt{5}} \approx 0{,}017\ \mathrm{s}.$$
+    Le résultat s'écrit $T = 2{,}000 \pm 0{,}017\ \mathrm{s}$ : l'incertitude avec deux chiffres significatifs, la moyenne arrondie à la même décimale. L'écart-type $s$ décrit la dispersion d'une mesure isolée ; la moyenne de cinq mesures est plus précise, d'un facteur $\sqrt 5$. Pour diviser encore l'incertitude par deux, il faudrait vingt mesures.
+  en: |-
+    $$u(T) = \frac{s}{\sqrt{n}} = \frac{0.038}{\sqrt{5}} \approx 0.017\ \mathrm{s}.$$
+    The result is written $T = 2.000 \pm 0.017\ \mathrm{s}$: the uncertainty with two significant figures, the mean rounded to the same decimal place. The standard deviation $s$ describes the spread of a single measurement; the mean of five measurements is more precise, by a factor $\sqrt 5$. To halve the uncertainty again, twenty measurements would be needed.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

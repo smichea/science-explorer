@@ -1,0 +1,43 @@
+# Leçon lentille (Première) — position de l'image par la relation de conjugaison (réponse numérique)
+id: exercise.lens.conjugation
+type: numeric
+nodeId: model.thin_lens
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une lentille mince convergente a pour distance focale $f' = 8{,}0\ \mathrm{cm}$. Un objet $AB$ est placé à $20\ \mathrm{cm}$ devant la lentille, soit $\overline{OA} = -20\ \mathrm{cm}$.
+
+    À l'aide de la relation de conjugaison $\dfrac{1}{\overline{OA'}} - \dfrac{1}{\overline{OA}} = \dfrac{1}{f'}$, calculez la position $\overline{OA'}$ de l'image, en centimètres (une décimale).
+  en: |-
+    A thin converging lens has focal length $f' = 8.0\ \mathrm{cm}$. An object $AB$ is placed $20\ \mathrm{cm}$ in front of the lens, that is $\overline{OA} = -20\ \mathrm{cm}$.
+
+    Using the conjugation relation $\dfrac{1}{\overline{OA'}} - \dfrac{1}{\overline{OA}} = \dfrac{1}{f'}$, compute the position $\overline{OA'}$ of the image, in centimetres (one decimal).
+numeric:
+  value: 13.3
+  unit: "cm"
+  tolerance: { kind: absolute, value: 0.15 }
+  inputLabel: { fr: "OA'", en: "OA'" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Isolez $\dfrac{1}{\overline{OA'}} = \dfrac{1}{f'} + \dfrac{1}{\overline{OA}}$, en gardant le signe négatif de $\overline{OA}$.
+      en: |-
+        Isolate $\dfrac{1}{\overline{OA'}} = \dfrac{1}{f'} + \dfrac{1}{\overline{OA}}$, keeping the negative sign of $\overline{OA}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\dfrac{1}{\overline{OA'}} = \dfrac{1}{8{,}0} + \dfrac{1}{-20} = 0{,}125 - 0{,}050 = 0{,}075\ \mathrm{cm^{-1}}$, puis inversez.
+      en: |-
+        $\dfrac{1}{\overline{OA'}} = \dfrac{1}{8.0} + \dfrac{1}{-20} = 0.125 - 0.050 = 0.075\ \mathrm{cm^{-1}}$, then invert.
+solution:
+  fr: |-
+    $$\frac{1}{\overline{OA'}} = \frac{1}{f'} + \frac{1}{\overline{OA}} = \frac{1}{8{,}0} - \frac{1}{20} = 0{,}075\ \mathrm{cm^{-1}}, \qquad \overline{OA'} = \frac{1}{0{,}075} \approx 13{,}3\ \mathrm{cm}.$$
+    $\overline{OA'}$ est positif : l'image se forme **derrière** la lentille, à $13{,}3\ \mathrm{cm}$, entre $F'$ ($8{,}0\ \mathrm{cm}$) et $2F'$ ($16\ \mathrm{cm}$), comme toujours pour un objet placé au-delà de $2F$. Elle est réelle, et le grandissement $\gamma = \dfrac{\overline{OA'}}{\overline{OA}} = \dfrac{13{,}3}{-20} \approx -0{,}67$ indique une image renversée, plus petite que l'objet. Le signe de $\overline{OA}$ est le piège classique : l'oublier donne $\dfrac{1}{8} + \dfrac{1}{20}$, soit $5{,}7\ \mathrm{cm}$, une image qui serait entre la lentille et son foyer, ce qui est impossible pour un objet réel.
+  en: |-
+    $$\frac{1}{\overline{OA'}} = \frac{1}{f'} + \frac{1}{\overline{OA}} = \frac{1}{8.0} - \frac{1}{20} = 0.075\ \mathrm{cm^{-1}}, \qquad \overline{OA'} = \frac{1}{0.075} \approx 13.3\ \mathrm{cm}.$$
+    $\overline{OA'}$ is positive: the image forms **behind** the lens, at $13.3\ \mathrm{cm}$, between $F'$ ($8.0\ \mathrm{cm}$) and $2F'$ ($16\ \mathrm{cm}$), as always for an object placed beyond $2F$. It is real, and the magnification $\gamma = \dfrac{\overline{OA'}}{\overline{OA}} = \dfrac{13.3}{-20} \approx -0.67$ shows an inverted image, smaller than the object. The sign of $\overline{OA}$ is the classic trap: forgetting it gives $\dfrac{1}{8} + \dfrac{1}{20}$, that is $5.7\ \mathrm{cm}$, an image that would lie between the lens and its focus, which is impossible for a real object.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

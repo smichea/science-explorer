@@ -1,0 +1,65 @@
+id: model.organic_molecules
+type: model
+world: world.chemistry
+region: region.chemistry.atomic_molecular_structure
+importance: 3
+tags: [lycee]
+title: { fr: "Squelettes carbonés, groupes caractéristiques, familles fonctionnelles", en: "Carbon skeletons, characteristic groups, functional families" }
+shortPurpose:
+  fr: "Décrire une molécule organique par son squelette carboné et son groupe caractéristique, reconnaître sa famille fonctionnelle et la nommer."
+  en: "Describe an organic molecule by its carbon skeleton and its characteristic group, recognise its functional family and name it."
+overview:
+  fr: >-
+    Les molécules du vivant, des carburants et des médicaments sont bâties sur des chaînes d'atomes de carbone. Quelques atomes d'oxygène placés sur la chaîne, un groupe hydroxyle, carbonyle ou carboxyle, changent tout : ils font d'une molécule un alcool, un aldéhyde, une cétone ou un acide carboxylique, avec ses propriétés et sa réactivité. Savoir lire une formule et nommer une molécule, c'est le vocabulaire de base de la chimie organique.
+  en: >-
+    The molecules of living things, of fuels and of medicines are built on chains of carbon atoms. A few oxygen atoms placed on the chain, a hydroxyl, carbonyl or carboxyl group, change everything: they make a molecule an alcohol, an aldehyde, a ketone or a carboxylic acid, with its properties and its reactivity. Reading a formula and naming a molecule is the basic vocabulary of organic chemistry.
+aliases:
+  fr: ["chimie organique", "formule semi-développée", "groupe hydroxyle", "groupe carbonyle", "groupe carboxyle", "nomenclature"]
+  en: ["organic chemistry", "condensed structural formula", "hydroxyl group", "carbonyl group", "carboxyl group", "nomenclature"]
+description:
+  fr: |
+    Une **molécule organique** est bâtie sur un **squelette carboné**, un enchaînement d'atomes de carbone tétravalents, chacun formant quatre liaisons ; la chaîne est **linéaire** ou **ramifiée**, parfois cyclique, et **saturée** lorsque toutes les liaisons entre carbones sont simples. On la décrit par sa **formule brute**, qui compte les atomes ($\mathrm{C_2H_6O}$), par sa **formule semi-développée**, qui montre les liaisons entre atomes lourds sans détailler celles avec l'hydrogène ($\mathrm{CH_3{-}CH_2{-}OH}$), ou par sa formule développée, qui les montre toutes. Les **alcanes** $\mathrm{C_nH_{2n+2}}$ n'ont que des carbones et des hydrogènes ; leur nom dit le nombre de carbones de la chaîne principale, méthane, éthane, propane, butane, pentane, hexane, et les ramifications sont nommées par des groupes alkyles, méthyl ou éthyl, précédés de leur position sur la chaîne : le 2-méthylbutane est $\mathrm{CH_3{-}CH(CH_3){-}CH_2{-}CH_3}$.
+
+    Un **groupe caractéristique** est un atome ou un groupe d'atomes, autre que $\mathrm{C}$ et $\mathrm{H}$, qui confère à la molécule ses propriétés chimiques ; les molécules qui portent le même groupe forment une **famille fonctionnelle**. Le groupe **hydroxyle** $\mathrm{{-}OH}$, porté par un carbone saturé, définit les **alcools**, nommés avec le suffixe -ol et la position du groupe : éthanol $\mathrm{CH_3{-}CH_2{-}OH}$, propan-2-ol. Le groupe **carbonyle** $\mathrm{C{=}O}$ définit les **aldéhydes** quand il est en bout de chaîne, $\mathrm{{-}CHO}$, suffixe -al, comme l'éthanal $\mathrm{CH_3{-}CHO}$, et les **cétones** quand il est à l'intérieur de la chaîne, suffixe -one, comme la propanone $\mathrm{CH_3{-}CO{-}CH_3}$ ou la butan-2-one. Le groupe **carboxyle** $\mathrm{{-}COOH}$ définit les **acides carboxyliques**, nommés « acide ...-oïque » : l'acide éthanoïque est $\mathrm{CH_3{-}COOH}$. Pour nommer, on choisit la chaîne la plus longue qui contient le groupe et on la numérote de façon à donner au groupe le plus petit numéro possible.
+
+    Des molécules de même formule brute mais de formules semi-développées différentes sont des **isomères de constitution** : le butan-1-ol et le butan-2-ol, ou l'éthanol et le méthoxyméthane $\mathrm{CH_3{-}O{-}CH_3}$, tous deux $\mathrm{C_2H_6O}$ ; la formule brute ne suffit donc pas à identifier une molécule. Le groupe caractéristique gouverne la réactivité, l'oxydation des alcools en aldéhydes, cétones ou acides, l'estérification des acides, et une partie des propriétés physiques : le groupe hydroxyle permet des liaisons hydrogène, si bien que l'éthanol est miscible à l'eau alors que l'éthane ne l'est pas ; le squelette, lui, gouverne la taille et la forme de la molécule, donc les interactions de Van der Waals et les températures d'ébullition. Le spectre infrarouge, destination suivante, permet de reconnaître ces groupes. Pièges : le $\mathrm{{-}OH}$ d'un acide carboxylique n'est pas un groupe hydroxyle d'alcool, et un carbonyle en bout de chaîne fait un aldéhyde, pas une cétone.
+  en: |
+    An **organic molecule** is built on a **carbon skeleton**, a chain of tetravalent carbon atoms, each forming four bonds; the chain is **linear** or **branched**, sometimes cyclic, and **saturated** when all the bonds between carbons are single. It is described by its **molecular formula**, which counts the atoms ($\mathrm{C_2H_6O}$), by its **condensed structural formula**, which shows the bonds between heavy atoms without detailing those with hydrogen ($\mathrm{CH_3{-}CH_2{-}OH}$), or by its full structural formula, which shows them all. **Alkanes** $\mathrm{C_nH_{2n+2}}$ have only carbons and hydrogens; their name states the number of carbons of the main chain, methane, ethane, propane, butane, pentane, hexane, and the branches are named by alkyl groups, methyl or ethyl, preceded by their position on the chain: 2-methylbutane is $\mathrm{CH_3{-}CH(CH_3){-}CH_2{-}CH_3}$.
+
+    A **characteristic group** is an atom or a group of atoms, other than $\mathrm{C}$ and $\mathrm{H}$, that gives the molecule its chemical properties; the molecules carrying the same group form a **functional family**. The **hydroxyl** group $\mathrm{{-}OH}$, carried by a saturated carbon, defines the **alcohols**, named with the suffix -ol and the position of the group: ethanol $\mathrm{CH_3{-}CH_2{-}OH}$, propan-2-ol. The **carbonyl** group $\mathrm{C{=}O}$ defines the **aldehydes** when it is at the end of the chain, $\mathrm{{-}CHO}$, suffix -al, such as ethanal $\mathrm{CH_3{-}CHO}$, and the **ketones** when it is inside the chain, suffix -one, such as propanone $\mathrm{CH_3{-}CO{-}CH_3}$ or butan-2-one. The **carboxyl** group $\mathrm{{-}COOH}$ defines the **carboxylic acids**, named "...-oic acid": ethanoic acid is $\mathrm{CH_3{-}COOH}$. To name a molecule, one chooses the longest chain containing the group and numbers it so as to give the group the smallest possible number.
+
+    Molecules with the same molecular formula but different condensed formulas are **constitutional isomers**: butan-1-ol and butan-2-ol, or ethanol and methoxymethane $\mathrm{CH_3{-}O{-}CH_3}$, both $\mathrm{C_2H_6O}$; the molecular formula is therefore not enough to identify a molecule. The characteristic group governs the reactivity, the oxidation of alcohols into aldehydes, ketones or acids, the esterification of acids, and part of the physical properties: the hydroxyl group allows hydrogen bonds, so that ethanol is miscible with water whereas ethane is not; the skeleton governs the size and shape of the molecule, hence the Van der Waals interactions and the boiling temperatures. The infrared spectrum, the next destination, makes it possible to recognise these groups. Traps: the $\mathrm{{-}OH}$ of a carboxylic acid is not the hydroxyl group of an alcohol, and a carbonyl at the end of the chain makes an aldehyde, not a ketone.
+model:
+  assumptions:
+    fr:
+      - "Une molécule organique est décrite par son squelette carboné, une chaîne d'atomes de carbone tétravalents, et par ses groupes caractéristiques."
+      - "Les propriétés chimiques d'une molécule sont pour l'essentiel celles de son groupe caractéristique : les molécules de même groupe forment une famille fonctionnelle."
+      - "La formule semi-développée suffit à identifier une molécule et à la nommer selon les règles de nomenclature (chaîne principale, position du groupe)."
+    en:
+      - "An organic molecule is described by its carbon skeleton, a chain of tetravalent carbon atoms, and by its characteristic groups."
+      - "The chemical properties of a molecule are essentially those of its characteristic group: molecules with the same group form a functional family."
+      - "The condensed structural formula is enough to identify a molecule and to name it according to the nomenclature rules (main chain, position of the group)."
+  limits:
+    fr:
+      - "Une même formule brute correspond souvent à plusieurs isomères : la formule brute ne suffit pas à identifier une molécule."
+      - "La formule semi-développée ne montre ni la géométrie ni la disposition des atomes dans l'espace (stéréoisomérie, vue en Terminale)."
+      - "Le comportement d'une molécule dépend aussi de son squelette (longueur, ramification) et d'éventuels groupes multiples ; les règles de nomenclature vues ici se limitent aux molécules à un seul groupe caractéristique."
+    en:
+      - "The same molecular formula often corresponds to several isomers: the molecular formula is not enough to identify a molecule."
+      - "The condensed formula shows neither the geometry nor the arrangement of the atoms in space (stereoisomerism, seen in Grade 12)."
+      - "The behaviour of a molecule also depends on its skeleton (length, branching) and on possible multiple groups; the nomenclature rules seen here are limited to molecules with a single characteristic group."
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "décrire une molécule organique par sa formule brute, sa formule semi-développée et son squelette carboné (chaîne linéaire, ramifiée, saturée)"
+        - "identifier, à partir d'une formule semi-développée, les groupes hydroxyle, carbonyle et carboxyle et les familles fonctionnelles alcool, aldéhyde, cétone et acide carboxylique"
+        - "nommer une molécule simple possédant un seul groupe caractéristique et retrouver sa formule à partir de son nom (alcanes, alcools, aldéhydes, cétones, acides carboxyliques)"
+        - "reconnaître des isomères de constitution et relier le groupe caractéristique aux propriétés de la molécule"
+      en:
+        - "describe an organic molecule by its molecular formula, its condensed structural formula and its carbon skeleton (linear, branched, saturated chain)"
+        - "identify, from a condensed formula, the hydroxyl, carbonyl and carboxyl groups and the functional families alcohol, aldehyde, ketone and carboxylic acid"
+        - "name a simple molecule with a single characteristic group and recover its formula from its name (alkanes, alcohols, aldehydes, ketones, carboxylic acids)"
+        - "recognise constitutional isomers and relate the characteristic group to the properties of the molecule"

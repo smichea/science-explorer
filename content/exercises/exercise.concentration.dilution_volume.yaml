@@ -1,0 +1,47 @@
+# Leçon concentration (Première) — volume de solution mère à prélever pour préparer une solution fille par dilution (réponse numérique)
+id: exercise.concentration.dilution_volume
+type: numeric
+nodeId: concept.concentration
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On dispose d'une solution mère de sulfate de cuivre de concentration $C_1 = 0{,}10\ \mathrm{mol/L}$. On veut préparer $V_2 = 250\ \mathrm{mL}$ d'une solution fille de concentration $C_2 = 2{,}0 \times 10^{-2}\ \mathrm{mol/L}$.
+
+    Quel volume $V_1$ de solution mère faut-il prélever à la pipette jaugée, en $\mathrm{mL}$ ?
+  en: |-
+    A stock solution of copper sulfate has a concentration $C_1 = 0.10\ \mathrm{mol/L}$. One wants to prepare $V_2 = 250\ \mathrm{mL}$ of a diluted solution of concentration $C_2 = 2.0 \times 10^{-2}\ \mathrm{mol/L}$.
+
+    What volume $V_1$ of stock solution must be taken with a volumetric pipette, in $\mathrm{mL}$?
+numeric:
+  value: 50
+  unit: "mL"
+  tolerance: { kind: absolute, value: 1 }
+  inputLabel: { fr: "V_1", en: "V_1" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        En diluant, on ajoute de l'eau mais aucun soluté : la quantité de matière prélevée dans la solution mère se retrouve tout entière dans la solution fille.
+      en: |-
+        When diluting, water is added but no solute: the amount of substance taken from the stock solution is found entire in the diluted solution.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Écrivez $C_1 V_1 = C_2 V_2$ et isolez $V_1$. Les volumes peuvent rester en millilitres, puisqu'ils apparaissent des deux côtés.
+      en: |-
+        Write $C_1 V_1 = C_2 V_2$ and isolate $V_1$. The volumes may stay in millilitres, since they appear on both sides.
+solution:
+  fr: |-
+    La quantité de soluté se conserve : $n = C_1 V_1 = C_2 V_2$, d'où
+    $$V_1 = \frac{C_2\,V_2}{C_1} = \frac{2{,}0 \times 10^{-2} \times 250}{0{,}10} = 50\ \mathrm{mL}.$$
+
+    Le facteur de dilution vaut $F = \dfrac{C_1}{C_2} = \dfrac{V_2}{V_1} = 5$ : la solution a été diluée cinq fois. Au laboratoire, on prélève ces $50{,}0\ \mathrm{mL}$ à la pipette jaugée, on les verse dans une fiole jaugée de $250\ \mathrm{mL}$, on complète avec de l'eau distillée jusqu'au trait de jauge et on homogénéise.
+  en: |-
+    The amount of solute is conserved: $n = C_1 V_1 = C_2 V_2$, hence
+    $$V_1 = \frac{C_2\,V_2}{C_1} = \frac{2.0 \times 10^{-2} \times 250}{0.10} = 50\ \mathrm{mL}.$$
+
+    The dilution factor is $F = \dfrac{C_1}{C_2} = \dfrac{V_2}{V_1} = 5$: the solution has been diluted five times. In the laboratory, these $50.0\ \mathrm{mL}$ are taken with a volumetric pipette, poured into a $250\ \mathrm{mL}$ volumetric flask, which is filled up with distilled water to the mark and homogenised.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 1, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

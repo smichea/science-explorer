@@ -174,8 +174,8 @@ describe('lessons', () => {
   it('finds the next lesson along the routes, skipping missions', () => {
     const next = (id: string) => nextLessonOnRoute(id, pkg.routes, (x) => graph.getNode(x))?.id;
     expect(next('concept.function')).toBe('concept.graph');
-    // After the derivative comes the mission (skipped), then the first stop of the next route.
-    expect(next('tool.derivative')).toBe('question.how_to_predict_motion');
+    // The derivative first appears on the Première analysis route: its next stop is the variations.
+    expect(next('tool.derivative')).toBe('concept.variations_extremums');
     expect(next('phenomenon.motion.with_drag')).toBeUndefined();
   });
 

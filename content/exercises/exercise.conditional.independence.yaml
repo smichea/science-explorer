@@ -1,0 +1,84 @@
+# Probabilités conditionnelles — tester l'indépendance de « nombre pair » et « multiple de 3 » sur un dé (choix unique)
+id: exercise.conditional.independence
+type: choice
+nodeId: concept.conditional_probability
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    On lance un dé équilibré à six faces. On considère les événements $A$ « obtenir un nombre pair » et $B$ « obtenir un multiple de $3$ ».
+
+    Que peut-on dire de $A$ et $B$ ?
+  en: |-
+    A fair six-sided die is rolled. Consider the events $A$ "getting an even number" and $B$ "getting a multiple of $3$".
+
+    What can be said about $A$ and $B$?
+choice:
+  multiple: false
+  requireReasoning: false
+  choices:
+    - id: independent
+      text: { fr: "Ils sont indépendants, car $P(A \\cap B) = P(A) \\times P(B)$.", en: "They are independent, because $P(A \\cap B) = P(A) \\times P(B)$." }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : $A = \{2\,;\,4\,;\,6\}$ et $B = \{3\,;\,6\}$, donc $A \cap B = \{6\}$ et $P(A \cap B) = \dfrac16 = \dfrac12 \times \dfrac13$. Savoir que le résultat est pair ne change rien à la probabilité qu'il soit multiple de trois.
+        en: |-
+          Correct: $A = \{2\,;\,4\,;\,6\}$ and $B = \{3\,;\,6\}$, so $A \cap B = \{6\}$ and $P(A \cap B) = \dfrac16 = \dfrac12 \times \dfrac13$. Knowing that the result is even changes nothing about the probability that it is a multiple of three.
+    - id: incompatible
+      text: { fr: "Ils sont incompatibles, car un nombre pair n'est pas un multiple de $3$.", en: "They are incompatible, because an even number is not a multiple of $3$." }
+      feedback:
+        fr: |-
+          Non : le $6$ est à la fois pair et multiple de trois, donc $A \cap B = \{6\}$ n'est pas vide. Incompatible signifierait $P(A \cap B) = 0$.
+        en: |-
+          No: $6$ is both even and a multiple of three, so $A \cap B = \{6\}$ is not empty. Incompatible would mean $P(A \cap B) = 0$.
+    - id: dependent
+      text: { fr: "Ils sont dépendants, car ils ont l'issue $6$ en commun.", en: "They are dependent, because they share the outcome $6$." }
+      feedback:
+        fr: |-
+          Non : avoir une issue commune ne crée aucune dépendance. Ce qui compte est de comparer $P(A \cap B)$ au produit $P(A) \times P(B)$, et ici les deux valent $\dfrac16$.
+        en: |-
+          No: sharing an outcome creates no dependence. What matters is comparing $P(A \cap B)$ with the product $P(A) \times P(B)$, and here both equal $\dfrac16$.
+    - id: undecidable
+      text: { fr: "On ne peut pas conclure sans connaître $P_A(B)$.", en: "One cannot conclude without knowing $P_A(B)$." }
+      feedback:
+        fr: |-
+          Non : $P_A(B)$ se calcule à partir de l'énoncé, $P_A(B) = \dfrac{1/6}{1/2} = \dfrac13 = P(B)$, ce qui conclut aussi à l'indépendance.
+        en: |-
+          No: $P_A(B)$ is computed from the statement, $P_A(B) = \dfrac{1/6}{1/2} = \dfrac13 = P(B)$, which also concludes independence.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Écrivez les deux événements en extension, puis leur intersection, et comparez $P(A \cap B)$ au produit $P(A) \times P(B)$.
+      en: |-
+        Write both events as sets, then their intersection, and compare $P(A \cap B)$ with the product $P(A) \times P(B)$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $A = \{2\,;\,4\,;\,6\}$ donc $P(A) = \dfrac12$ ; $B = \{3\,;\,6\}$ donc $P(B) = \dfrac13$. Que vaut $A \cap B$ ?
+      en: |-
+        $A = \{2\,;\,4\,;\,6\}$ so $P(A) = \dfrac12$; $B = \{3\,;\,6\}$ so $P(B) = \dfrac13$. What is $A \cap B$?
+solution:
+  fr: |-
+    L'univers est $\Omega = \{1\,;\,2\,;\,3\,;\,4\,;\,5\,;\,6\}$ en situation d'équiprobabilité. On a $A = \{2\,;\,4\,;\,6\}$ donc $P(A) = \dfrac36 = \dfrac12$, et $B = \{3\,;\,6\}$ donc $P(B) = \dfrac26 = \dfrac13$. Leur intersection est $A \cap B = \{6\}$, donc $P(A \cap B) = \dfrac16$. Or
+    $$P(A) \times P(B) = \frac12 \times \frac13 = \frac16 = P(A \cap B),$$
+    donc $A$ et $B$ sont **indépendants**. On peut le dire autrement : $P_A(B) = \dfrac{1/6}{1/2} = \dfrac13 = P(B)$, savoir que le résultat est pair n'apprend rien sur le fait qu'il soit multiple de trois.
+
+    **Interprétation.** L'indépendance est une propriété **numérique**, pas une impression : elle se vérifie par un calcul et non par l'intuition. Elle n'a rien à voir avec l'incompatibilité, qui est au contraire une forme extrême de dépendance : si $A$ et $B$ sont incompatibles et de probabilités non nulles, savoir que $A$ s'est produit interdit $B$, donc $P_A(B) = 0 \neq P(B)$. Avec un dé à cinq faces, les mêmes événements ne seraient plus indépendants.
+  en: |-
+    The sample space is $\Omega = \{1\,;\,2\,;\,3\,;\,4\,;\,5\,;\,6\}$ under equiprobability. We have $A = \{2\,;\,4\,;\,6\}$ so $P(A) = \dfrac36 = \dfrac12$, and $B = \{3\,;\,6\}$ so $P(B) = \dfrac26 = \dfrac13$. Their intersection is $A \cap B = \{6\}$, so $P(A \cap B) = \dfrac16$. Now
+    $$P(A) \times P(B) = \frac12 \times \frac13 = \frac16 = P(A \cap B),$$
+    so $A$ and $B$ are **independent**. It can be put another way: $P_A(B) = \dfrac{1/6}{1/2} = \dfrac13 = P(B)$, knowing that the result is even teaches nothing about it being a multiple of three.
+
+    **Interpretation.** Independence is a **numerical** property, not an impression: it is verified by a computation and not by intuition. It has nothing to do with incompatibility, which is on the contrary an extreme form of dependence: if $A$ and $B$ are incompatible with non-zero probabilities, knowing that $A$ occurred forbids $B$, so $P_A(B) = 0 \neq P(B)$. With a five-sided die, the same events would no longer be independent.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 3
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 3
+  transfer: 1
+  autonomy: 2

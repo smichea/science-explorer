@@ -1,0 +1,76 @@
+# Exponentielle en Terminale — croissances comparées : le comportement de e^x / x^10 en +∞ (choix unique)
+id: exercise.exponential.growth
+type: choice
+nodeId: tool.exponential
+depth: 2
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Que peut-on dire du quotient $\dfrac{e^x}{x^{10}}$ lorsque $x$ tend vers $+\infty$ ?
+  en: |-
+    What can be said of the quotient $\dfrac{e^x}{x^{10}}$ as $x$ tends to $+\infty$?
+choice:
+  multiple: false
+  requireReasoning: false
+  choices:
+    - id: zero
+      text: { fr: "Il tend vers $0$, car $x^{10}$ croît très vite.", en: "It tends to $0$, because $x^{10}$ grows very fast." }
+      feedback:
+        fr: |-
+          Non : $x^{10}$ croît vite, mais $e^x$ finit par croître encore plus vite. Le théorème de croissances comparées dit que $\lim_{x \to +\infty} \dfrac{e^x}{x^n} = +\infty$ pour tout entier $n$.
+        en: |-
+          No: $x^{10}$ grows fast, but $e^x$ ends up growing even faster. The comparative growth theorem says that $\lim_{x \to +\infty} \dfrac{e^x}{x^n} = +\infty$ for every integer $n$.
+    - id: one
+      text: { fr: "Il tend vers $1$ : les deux fonctions finissent par croître à la même vitesse.", en: "It tends to $1$: the two functions end up growing at the same speed." }
+      feedback:
+        fr: |-
+          Non : les deux fonctions ne croissent jamais « à la même vitesse ». Le quotient ne se stabilise pas, il finit par dépasser toute valeur.
+        en: |-
+          No: the two functions never grow "at the same speed". The quotient does not settle, it ends up exceeding every value.
+    - id: infinity
+      text: { fr: "Il tend vers $+\\infty$ : l'exponentielle l'emporte sur toute puissance de $x$.", en: "It tends to $+\\infty$: the exponential beats every power of $x$." }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : c'est le théorème de croissances comparées. La puissance $x^{10}$ domine sur un long intervalle, mais $e^x$ la rattrape puis la dépasse définitivement.
+        en: |-
+          Correct: this is the comparative growth theorem. The power $x^{10}$ dominates over a long interval, but $e^x$ catches up and then overtakes it for good.
+    - id: none
+      text: { fr: "Il n'a pas de limite : il oscille.", en: "It has no limit: it oscillates." }
+      feedback:
+        fr: |-
+          Non : aucune des deux fonctions n'oscille, elles sont toutes deux croissantes pour $x > 0$, et le quotient est monotone à partir d'un certain rang. Il tend vers $+\infty$.
+        en: |-
+          No: neither function oscillates, both are increasing for $x > 0$, and the quotient is monotonic beyond some point. It tends to $+\infty$.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Sur la fenêtre de la leçon, $x^3$ dépassait $e^x$ un moment, puis l'exponentielle reprenait le dessus pour toujours. Il en va de même pour $x^{10}$, simplement plus tard.
+      en: |-
+        On the window of the lesson, $x^3$ exceeded $e^x$ for a while, then the exponential took over for good. The same happens with $x^{10}$, only later.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Le théorème de croissances comparées : pour tout entier $n$, $\lim_{x \to +\infty} \dfrac{e^x}{x^n} = +\infty$.
+      en: |-
+        The comparative growth theorem: for every integer $n$, $\lim_{x \to +\infty} \dfrac{e^x}{x^n} = +\infty$.
+solution:
+  fr: |-
+    D'après le théorème de croissances comparées, $\lim_{x \to +\infty} \dfrac{e^x}{x^n} = +\infty$ pour tout entier naturel $n$, donc en particulier pour $n = 10$. On peut le sentir avec des valeurs : pour $x = 100$, $e^{100} \approx 2{,}7 \times 10^{43}$ alors que $100^{10} = 10^{20}$, et le quotient vaut déjà environ $2{,}7 \times 10^{23}$.
+
+    Une preuve courte passe par le logarithme : $\ln\dfrac{e^x}{x^{10}} = x - 10\ln x$, et comme $\dfrac{\ln x}{x}$ tend vers $0$, cette expression tend vers $+\infty$, donc le quotient aussi. C'est ce qui fait de l'exponentielle le modèle des croissances « explosives », et c'est pourquoi on préfère souvent une échelle logarithmique pour la représenter.
+  en: |-
+    By the comparative growth theorem, $\lim_{x \to +\infty} \dfrac{e^x}{x^n} = +\infty$ for every natural integer $n$, hence in particular for $n = 10$. One can feel it with values: for $x = 100$, $e^{100} \approx 2.7 \times 10^{43}$ whereas $100^{10} = 10^{20}$, and the quotient is already about $2.7 \times 10^{23}$.
+
+    A short proof goes through the logarithm: $\ln\dfrac{e^x}{x^{10}} = x - 10\ln x$, and since $\dfrac{\ln x}{x}$ tends to $0$, this expression tends to $+\infty$, hence so does the quotient. This is what makes the exponential the model of "explosive" growth, and why a logarithmic scale is often preferred to represent it.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

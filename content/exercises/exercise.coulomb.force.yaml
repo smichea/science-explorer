@@ -1,0 +1,45 @@
+# Loi de Coulomb — valeur de la force électrostatique entre deux charges ponctuelles (réponse numérique)
+id: exercise.coulomb.force
+type: numeric
+nodeId: law.coulomb
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Deux petites sphères chargées sont maintenues immobiles dans l'air, à une distance $d = 15\ \mathrm{cm}$ l'une de l'autre. La première porte la charge $q_A = +2{,}0\ \mathrm{\mu C}$, la seconde la charge $q_B = -3{,}0\ \mathrm{\mu C}$. On prendra $k = 9{,}0 \times 10^{9}\ \mathrm{N \cdot m^2 \cdot C^{-2}}$.
+
+    Calculez la valeur de la force électrostatique exercée par $A$ sur $B$, en newtons, avec deux chiffres significatifs.
+  en: |-
+    Two small charged spheres are held at rest in air, at a distance $d = 15\ \mathrm{cm}$ from each other. The first carries the charge $q_A = +2.0\ \mathrm{\mu C}$, the second the charge $q_B = -3.0\ \mathrm{\mu C}$. Take $k = 9.0 \times 10^{9}\ \mathrm{N \cdot m^2 \cdot C^{-2}}$.
+
+    Compute the value of the electrostatic force exerted by $A$ on $B$, in newtons, with two significant figures.
+numeric:
+  value: 2.4
+  unit: "N"
+  tolerance: { kind: relative, value: 0.03 }
+  inputLabel: { fr: "F", en: "F" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La valeur de la force ne dépend que des valeurs absolues des charges : $F = k\,\dfrac{|q_A\,q_B|}{d^2}$. Le signe ne sert qu'à dire si la force est attractive ou répulsive.
+      en: |-
+        The value of the force depends only on the absolute values of the charges: $F = k\,\dfrac{|q_A\,q_B|}{d^2}$. The sign only says whether the force is attractive or repulsive.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Convertissez d'abord dans les unités du Système international : $15\ \mathrm{cm} = 0{,}15\ \mathrm{m}$ et $1\ \mathrm{\mu C} = 10^{-6}\ \mathrm{C}$.
+      en: |-
+        Convert first into SI units: $15\ \mathrm{cm} = 0.15\ \mathrm{m}$ and $1\ \mathrm{\mu C} = 10^{-6}\ \mathrm{C}$.
+solution:
+  fr: |-
+    En unités du Système international, $q_A = 2{,}0 \times 10^{-6}\ \mathrm{C}$, $q_B = -3{,}0 \times 10^{-6}\ \mathrm{C}$ et $d = 0{,}15\ \mathrm{m}$. La loi de Coulomb donne
+    $$F = k\,\frac{|q_A\,q_B|}{d^2} = 9{,}0 \times 10^{9} \times \frac{2{,}0 \times 10^{-6} \times 3{,}0 \times 10^{-6}}{0{,}15^2} = \frac{5{,}4 \times 10^{-2}}{2{,}25 \times 10^{-2}} = 2{,}4\ \mathrm{N}.$$
+    Les charges étant de signes contraires, la force est **attractive** : $\vec F_{A/B}$ est dirigée de $B$ vers $A$, et $\vec F_{B/A} = -\vec F_{A/B}$ a la même valeur. Deux newtons et demi, c'est le poids d'environ deux cent cinquante grammes : les forces électrostatiques usuelles ne sont pas négligeables.
+  en: |-
+    In SI units, $q_A = 2.0 \times 10^{-6}\ \mathrm{C}$, $q_B = -3.0 \times 10^{-6}\ \mathrm{C}$ and $d = 0.15\ \mathrm{m}$. Coulomb's law gives
+    $$F = k\,\frac{|q_A\,q_B|}{d^2} = 9.0 \times 10^{9} \times \frac{2.0 \times 10^{-6} \times 3.0 \times 10^{-6}}{0.15^2} = \frac{5.4 \times 10^{-2}}{2.25 \times 10^{-2}} = 2.4\ \mathrm{N}.$$
+    Since the charges have opposite signs, the force is **attractive**: $\vec F_{A/B}$ points from $B$ towards $A$, and $\vec F_{B/A} = -\vec F_{A/B}$ has the same value. Two and a half newtons is the weight of about two hundred and fifty grams: the usual electrostatic forces are not negligible.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

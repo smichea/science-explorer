@@ -1,0 +1,58 @@
+# Leçon molécules organiques — position du groupe caractéristique dans le nom d'un alcool (réponse numérique)
+id: exercise.organic.nomenclature_position
+type: numeric
+nodeId: model.organic_molecules
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une molécule a pour formule semi-développée
+    $$\mathrm{CH_3{-}CH(OH){-}CH_2{-}CH_2{-}CH_3}.$$
+
+    Identifiez son groupe caractéristique et sa famille fonctionnelle, puis nommez-la. Son nom est de la forme « pentan-$p$-ol » : donnez le numéro $p$ du carbone qui porte le groupe.
+  en: |-
+    A molecule has the condensed structural formula
+    $$\mathrm{CH_3{-}CH(OH){-}CH_2{-}CH_2{-}CH_3}.$$
+
+    Identify its characteristic group and its functional family, then name it. Its name has the form "pentan-$p$-ol": give the number $p$ of the carbon carrying the group.
+numeric:
+  value: 2
+  tolerance: { kind: absolute, value: 0.1 }
+  inputLabel: { fr: "p", en: "p" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La chaîne principale est la plus longue chaîne carbonée qui contient le groupe : comptez ses carbones pour retrouver le préfixe « pentan ».
+      en: |-
+        The main chain is the longest carbon chain containing the group: count its carbons to recover the prefix "pentan".
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        On numérote la chaîne à partir de l'extrémité qui donne au groupe le **plus petit** numéro possible : comparez les deux sens de lecture.
+      en: |-
+        The chain is numbered from the end that gives the group the **smallest** possible number: compare the two reading directions.
+solution:
+  fr: |-
+    Le groupe $\mathrm{{-}OH}$ est porté par un carbone saturé : c'est un groupe **hydroxyle**, et la molécule appartient à la famille des **alcools**, dont le nom se termine par le suffixe -ol.
+
+    La chaîne principale est la plus longue chaîne carbonée contenant le groupe : elle compte cinq carbones, d'où le préfixe « pentan ». On la numérote de façon à donner au groupe le plus petit numéro possible :
+    - en partant de la gauche, le groupe est sur le carbone $2$ ;
+    - en partant de la droite, il serait sur le carbone $4$.
+
+    On retient donc $p = 2$ et la molécule se nomme **pentan-2-ol**.
+
+    Le piège est de numéroter machinalement de gauche à droite ou de choisir une chaîne qui ne contient pas le groupe. À titre de comparaison, $\mathrm{CH_3{-}CH_2{-}CH(OH){-}CH_2{-}CH_3}$ se nomme pentan-3-ol : les deux sens de lecture y donnent le même numéro. Le groupe hydroxyle permet des liaisons hydrogène, si bien que les alcools courts sont miscibles à l'eau.
+  en: |-
+    The $\mathrm{{-}OH}$ group is carried by a saturated carbon: it is a **hydroxyl** group, and the molecule belongs to the family of **alcohols**, whose name ends with the suffix -ol.
+
+    The main chain is the longest carbon chain containing the group: it has five carbons, hence the prefix "pentan". It is numbered so as to give the group the smallest possible number:
+    - starting from the left, the group is on carbon $2$;
+    - starting from the right, it would be on carbon $4$.
+
+    We therefore keep $p = 2$ and the molecule is named **pentan-2-ol**.
+
+    The trap is to number mechanically from left to right, or to choose a chain that does not contain the group. For comparison, $\mathrm{CH_3{-}CH_2{-}CH(OH){-}CH_2{-}CH_3}$ is named pentan-3-ol: there the two reading directions give the same number. The hydroxyl group allows hydrogen bonds, so that short alcohols are miscible with water.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 2, autonomy: 2 }

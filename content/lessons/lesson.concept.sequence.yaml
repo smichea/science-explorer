@@ -1,0 +1,30 @@
+# Leçon — suites numériques : une suite explicite u(n) = n² − 3n + a (nuage de points, paramètre a) et une suite définie
+# par récurrence u(n+1) = 0,5 u(n) + 3 tracée en escalier (paramètre b = premier terme).
+id: lesson.concept.sequence
+nodeId: concept.sequence
+depth: 1
+tools:
+  - id: explicit
+    kind: sequence
+    title: { fr: "Une suite explicite : u(n) = n² − 3n + a", en: "An explicit sequence: u(n) = n² − 3n + a" }
+    view: { x: [0, 12], y: [-5, 100] }
+    parameters:
+      - { id: a, label: { fr: "constante a", en: "constant a" }, min: -5, max: 5, step: 1, value: 2 }
+    mode: explicit
+    expr: "n^2-3*n+a"
+    start: 0
+    count: 12
+    input: true
+  - id: staircase
+    kind: sequence
+    title: { fr: "Une suite par récurrence : u(n+1) = 0,5 u(n) + 3", en: "A recursive sequence: u(n+1) = 0.5 u(n) + 3" }
+    view: { x: [0, 8], y: [0, 8] }
+    parameters:
+      - { id: b, label: { fr: "premier terme u₀", en: "first term u₀" }, min: 0, max: 8, step: 0.5, value: 1 }
+    mode: recurrence
+    expr: "0.5*u+3"
+    first: "b"
+    start: 0
+    count: 12
+    cobweb: true
+    input: true

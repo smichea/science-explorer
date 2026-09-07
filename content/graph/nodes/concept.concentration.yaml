@@ -44,3 +44,17 @@ depths:
         - "compute a mass concentration from a mass of solute and a volume of solution"
         - "determine the concentration of a solution prepared by dissolution or by dilution from the procedure"
         - "estimate a mass concentration using a colour scale"
+  - depth: 2
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "définir la concentration en quantité de matière d'un soluté, $C = n/V$ en mol/L, et la relier à la concentration en masse par $C_m = C \\times M$"
+        - "déterminer la quantité de matière de soluté contenue dans un volume de solution, et préparer une solution par dissolution ou par dilution en exploitant la conservation de la quantité de matière ($C_1 V_1 = C_2 V_2$)"
+        - "estimer une concentration par un dosage par étalonnage à partir d'une échelle de teintes, et distinguer dosage par étalonnage et titrage"
+        - "déterminer la concentration en quantité de matière des ions en solution à partir de celle du solide ionique dissous"
+      en:
+        - "define the concentration in amount of substance of a solute, $C = n/V$ in mol/L, and link it to the mass concentration by $C_m = C \\times M$"
+        - "determine the amount of solute contained in a volume of solution, and prepare a solution by dissolution or by dilution using the conservation of the amount of substance ($C_1 V_1 = C_2 V_2$)"
+        - "estimate a concentration by an assay by calibration from a colour scale, and distinguish an assay by calibration from a titration"
+        - "determine the concentration in amount of substance of the ions in solution from that of the dissolved ionic solid"

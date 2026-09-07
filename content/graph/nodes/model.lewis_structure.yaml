@@ -1,0 +1,69 @@
+id: model.lewis_structure
+type: model
+world: world.chemistry
+region: region.chemistry.atomic_molecular_structure
+importance: 3
+tags: [lycee]
+title: { fr: "Schéma de Lewis, géométrie des molécules, polarité", en: "Lewis structure, molecular geometry, polarity" }
+shortPurpose:
+  fr: "Représenter les doublets d'électrons d'une entité pour justifier sa stabilité, prévoir sa géométrie par la répulsion des doublets et décider si elle est polaire."
+  en: "Represent the electron pairs of a chemical species to justify its stability, predict its geometry from the repulsion of the pairs and decide whether it is polar."
+overview:
+  fr: >-
+    Le schéma de Lewis dessine les électrons de valence d'une molécule ou d'un ion en doublets, liants entre les atomes et non liants sur un atome, chaque atome cherchant la stabilité d'un gaz noble. Ces doublets se repoussent et s'écartent le plus possible, ce qui donne à la molécule sa forme, coudée pour l'eau, pyramidale pour l'ammoniac, tétraédrique pour le méthane. Quand les atomes liés attirent inégalement les électrons, la liaison est polarisée, et la forme de la molécule décide si elle est polaire, ce qui explique pourquoi l'eau dissout le sel et pas l'huile.
+  en: >-
+    The Lewis structure draws the valence electrons of a molecule or an ion as pairs, bonding between the atoms and non-bonding on an atom, each atom seeking the stability of a noble gas. These pairs repel one another and move as far apart as possible, which gives the molecule its shape, bent for water, pyramidal for ammonia, tetrahedral for methane. When the bonded atoms attract the electrons unequally, the bond is polarised, and the shape of the molecule decides whether it is polar, which explains why water dissolves salt and not oil.
+aliases:
+  fr: ["schéma de Lewis", "doublets liants et non liants", "géométrie des entités", "électronégativité", "liaison polarisée", "molécule polaire"]
+  en: ["Lewis structure", "bonding and lone pairs", "geometry of chemical species", "electronegativity", "polarised bond", "polar molecule"]
+description:
+  fr: |
+    Le **schéma de Lewis** d'une entité, molécule ou ion, représente ses électrons de valence sous forme de **doublets** : les **doublets liants**, traits entre deux atomes, et les **doublets non liants**, traits portés par un atome. Pour l'établir ($Z \le 18$), on compte les électrons de valence de chaque atome, lus dans la colonne du tableau périodique, on ajoute un électron par charge négative de l'ion et on en retire un par charge positive, puis on divise par deux pour obtenir le nombre de doublets ; on place les liaisons de façon que chaque atome acquière la structure électronique du gaz noble le plus proche, **duet** pour l'hydrogène et **octet** pour les autres, et les doublets restants sont non liants. L'eau $\mathrm{H_2O}$ compte $1 + 1 + 6 = 8$ électrons, soit $4$ doublets : deux liaisons $\mathrm{O{-}H}$ et deux doublets non liants sur l'oxygène. L'ammoniac $\mathrm{NH_3}$ a trois liaisons et un doublet non liant sur l'azote, le méthane $\mathrm{CH_4}$ quatre liaisons, le dioxyde de carbone $\mathrm{CO_2}$ deux doubles liaisons $\mathrm{C{=}O}$ et deux doublets non liants sur chaque oxygène ; l'ion hydroxyde $\mathrm{HO^-}$ a $1 + 6 + 1 = 8$ électrons, une liaison et trois doublets non liants.
+
+    Les doublets qui entourent un atome, liants ou non, se repoussent (répulsion électrostatique) et s'écartent le plus possible : c'est ce qui fixe la **géométrie** de l'entité. Quatre doublets liants autour du carbone du méthane pointent vers les sommets d'un tétraèdre, avec des angles de $109{,}5^\circ$. Dans l'ammoniac, trois liaisons et un doublet non liant occupent aussi quatre directions, mais on ne voit que les trois liaisons : la molécule est **pyramidale**. Dans l'eau, deux liaisons et deux doublets non liants donnent une molécule **coudée**, d'angle $104{,}5^\circ$. Sans doublet non liant sur l'atome central, deux doubles liaisons donnent une molécule **linéaire** comme $\mathrm{CO_2}$, et trois directions une molécule **plane trigonale** comme le méthanal $\mathrm{H_2C{=}O}$, d'angles voisins de $120^\circ$. Un doublet non liant compte donc comme une direction, même s'il n'apparaît pas dans la forme visible.
+
+    L'**électronégativité** d'un atome mesure sa tendance à attirer les électrons d'une liaison qu'il forme ; elle augmente de gauche à droite sur une ligne et de bas en haut dans une colonne du tableau périodique, le fluor étant le plus électronégatif. Quand deux atomes liés ont des électronégativités différentes, la **liaison est polarisée** : les électrons du doublet sont déplacés vers l'atome le plus électronégatif, qui porte une charge partielle $\delta^-$, l'autre portant $\delta^+$ ; $\mathrm{O{-}H}$, $\mathrm{N{-}H}$, $\mathrm{C{-}O}$ et $\mathrm{C{=}O}$ sont polarisées, alors que $\mathrm{C{-}H}$ est considérée comme non polarisée, carbone et hydrogène ayant des électronégativités voisines. Une **molécule est polaire** quand les centres des charges partielles positives et négatives ne coïncident pas, ce qui dépend de la géométrie : l'eau, coudée, et l'ammoniac, pyramidal, sont polaires, tandis que $\mathrm{CO_2}$, linéaire, est apolaire, ses deux liaisons polarisées se compensant, et que le méthane est apolaire. La polarité explique le pouvoir solvant de l'eau et la cohésion des liquides et des solides moléculaires, objet de la destination suivante.
+  en: |
+    The **Lewis structure** of a chemical species, molecule or ion, represents its valence electrons as **pairs**: the **bonding pairs**, lines between two atoms, and the **lone pairs**, lines carried by an atom. To establish it ($Z \le 18$), one counts the valence electrons of each atom, read from its column of the periodic table, adds one electron per negative charge of the ion and removes one per positive charge, then divides by two to get the number of pairs; the bonds are placed so that each atom acquires the electronic structure of the nearest noble gas, a **duet** for hydrogen and an **octet** for the others, and the remaining pairs are lone pairs. Water $\mathrm{H_2O}$ counts $1 + 1 + 6 = 8$ electrons, that is $4$ pairs: two $\mathrm{O{-}H}$ bonds and two lone pairs on the oxygen. Ammonia $\mathrm{NH_3}$ has three bonds and one lone pair on the nitrogen, methane $\mathrm{CH_4}$ four bonds, carbon dioxide $\mathrm{CO_2}$ two $\mathrm{C{=}O}$ double bonds and two lone pairs on each oxygen; the hydroxide ion $\mathrm{HO^-}$ has $1 + 6 + 1 = 8$ electrons, one bond and three lone pairs.
+
+    The pairs surrounding an atom, bonding or not, repel one another (electrostatic repulsion) and move as far apart as possible: that is what sets the **geometry** of the species. Four bonding pairs around the carbon of methane point towards the vertices of a tetrahedron, with angles of $109.5^\circ$. In ammonia, three bonds and one lone pair also occupy four directions, but only the three bonds are seen: the molecule is **pyramidal**. In water, two bonds and two lone pairs give a **bent** molecule, with an angle of $104.5^\circ$. Without a lone pair on the central atom, two double bonds give a **linear** molecule such as $\mathrm{CO_2}$, and three directions a **trigonal planar** molecule such as methanal $\mathrm{H_2C{=}O}$, with angles close to $120^\circ$. A lone pair therefore counts as a direction, even though it does not appear in the visible shape.
+
+    The **electronegativity** of an atom measures its tendency to attract the electrons of a bond it forms; it increases from left to right along a row and from bottom to top in a column of the periodic table, fluorine being the most electronegative. When two bonded atoms have different electronegativities, the **bond is polarised**: the electrons of the pair are shifted towards the more electronegative atom, which carries a partial charge $\delta^-$, the other carrying $\delta^+$; $\mathrm{O{-}H}$, $\mathrm{N{-}H}$, $\mathrm{C{-}O}$ and $\mathrm{C{=}O}$ are polarised, whereas $\mathrm{C{-}H}$ is considered non-polarised, carbon and hydrogen having close electronegativities. A **molecule is polar** when the centres of the positive and negative partial charges do not coincide, which depends on the geometry: water, bent, and ammonia, pyramidal, are polar, whereas $\mathrm{CO_2}$, linear, is non-polar, its two polarised bonds cancelling each other, and methane is non-polar. Polarity explains the solvent power of water and the cohesion of molecular liquids and solids, the subject of the next destination.
+model:
+  assumptions:
+    fr:
+      - "Seuls les électrons de valence interviennent ; ils sont répartis en doublets liants (liaisons) et doublets non liants (Z ≤ 18)."
+      - "Chaque atome tend vers la configuration du gaz noble le plus proche : duet pour l'hydrogène, octet pour les autres."
+      - "Les doublets qui entourent un atome se repoussent et adoptent la disposition la plus éloignée possible, ce qui fixe la géométrie."
+      - "Une liaison est polarisée quand les électronégativités des deux atomes diffèrent ; la polarité d'une molécule résulte de sa géométrie et de la polarisation de ses liaisons."
+    en:
+      - "Only the valence electrons are involved; they are distributed into bonding pairs (bonds) and lone pairs (Z ≤ 18)."
+      - "Each atom tends towards the configuration of the nearest noble gas: a duet for hydrogen, an octet for the others."
+      - "The pairs surrounding an atom repel one another and adopt the most spread-out arrangement, which sets the geometry."
+      - "A bond is polarised when the electronegativities of the two atoms differ; the polarity of a molecule results from its geometry and from the polarisation of its bonds."
+  limits:
+    fr:
+      - "Certaines entités ne respectent pas l'octet : le bore de BF₃ n'a que six électrons, les radicaux comme NO ont un électron célibataire, le soufre ou le phosphore peuvent dépasser huit électrons."
+      - "Le schéma de Lewis est plan : les angles ne sont prévus que qualitativement, et leur valeur exacte (104,5° pour l'eau) relève de la mécanique quantique."
+      - "L'électronégativité est une échelle empirique (Pauling) et le seuil de polarisation d'une liaison est conventionnel : la liaison C–H est considérée comme non polarisée."
+      - "Le modèle ne décrit pas les liaisons délocalisées (benzène, ion nitrate) sans formules supplémentaires, ni la liaison métallique."
+    en:
+      - "Some species do not obey the octet: the boron of BF₃ has only six electrons, radicals such as NO have an unpaired electron, sulfur or phosphorus can exceed eight electrons."
+      - "The Lewis structure is flat: the angles are only predicted qualitatively, and their exact value (104.5° for water) belongs to quantum mechanics."
+      - "Electronegativity is an empirical scale (Pauling) and the threshold for a polarised bond is conventional: the C–H bond is considered non-polarised."
+      - "The model does not describe delocalised bonds (benzene, nitrate ion) without additional formulas, nor the metallic bond."
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "établir le schéma de Lewis d'une molécule ou d'un ion mono ou polyatomique (Z ≤ 18) et justifier sa stabilité par référence aux gaz nobles"
+        - "associer qualitativement la géométrie d'une entité (linéaire, coudée, plane trigonale, pyramidale, tétraédrique) à la répulsion électrostatique de ses doublets liants et non liants"
+        - "comparer l'électronégativité de deux atomes à partir de leur position dans le tableau périodique et déterminer le caractère polaire d'une liaison"
+        - "déterminer le caractère polaire ou apolaire d'une entité moléculaire à partir de sa géométrie et de la polarité de ses liaisons"
+      en:
+        - "establish the Lewis structure of a molecule or of a mono- or polyatomic ion (Z ≤ 18) and justify its stability by reference to the noble gases"
+        - "qualitatively associate the geometry of a species (linear, bent, trigonal planar, pyramidal, tetrahedral) with the electrostatic repulsion of its bonding and lone pairs"
+        - "compare the electronegativity of two atoms from their position in the periodic table and determine whether a bond is polar"
+        - "determine whether a molecular species is polar or non-polar from its geometry and the polarity of its bonds"

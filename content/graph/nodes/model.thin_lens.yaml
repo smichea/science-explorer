@@ -65,3 +65,17 @@ depths:
         - "construct graphically the real image of a flat object using the three particular rays"
         - "define and compute the magnification $\\gamma$ from the heights of the object and of the image"
         - "model the eye by the lens–screen system (reduced eye) and explain accommodation"
+  - depth: 2
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "utiliser la relation de conjugaison $\\dfrac{1}{\\overline{OA'}} - \\dfrac{1}{\\overline{OA}} = \\dfrac{1}{f'}$ pour calculer la position d'une image"
+        - "calculer le grandissement $\\gamma = \\dfrac{\\overline{A'B'}}{\\overline{AB}} = \\dfrac{\\overline{OA'}}{\\overline{OA}}$ et en déduire la taille et le sens de l'image"
+        - "distinguer image réelle et image virtuelle et exploiter une construction géométrique pour caractériser l'image"
+        - "modéliser l'œil (cristallin, rétine) et l'appareil photographique par une lentille et un écran, et expliquer l'accommodation et la mise au point"
+      en:
+        - "use the conjugation relation $\\dfrac{1}{\\overline{OA'}} - \\dfrac{1}{\\overline{OA}} = \\dfrac{1}{f'}$ to compute the position of an image"
+        - "compute the magnification $\\gamma = \\dfrac{\\overline{A'B'}}{\\overline{AB}} = \\dfrac{\\overline{OA'}}{\\overline{OA}}$ and deduce the size and the orientation of the image"
+        - "distinguish a real image from a virtual image and use a geometrical construction to characterise the image"
+        - "model the eye (crystalline lens, retina) and the camera by a lens and a screen, and explain accommodation and focusing"

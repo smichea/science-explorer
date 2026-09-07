@@ -1,0 +1,45 @@
+# Onde périodique — longueur d'onde d'une onde sur une corde à partir de la célérité et de la période (réponse numérique)
+id: exercise.wave.wavelength
+type: numeric
+nodeId: phenomenon.mechanical_wave
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    L'extrémité d'une corde tendue est agitée de façon régulière : une onde périodique progressive se propage le long de la corde à la célérité $v = 12\ \mathrm{m/s}$, avec une période $T = 0{,}20\ \mathrm{s}$.
+
+    Calculez la longueur d'onde de cette onde, en mètres, avec deux chiffres significatifs.
+  en: |-
+    The end of a taut rope is shaken regularly: a progressive periodic wave travels along the rope at the speed $v = 12\ \mathrm{m/s}$, with a period $T = 0.20\ \mathrm{s}$.
+
+    Compute the wavelength of this wave, in metres, with two significant figures.
+numeric:
+  value: 2.4
+  unit: "m"
+  tolerance: { kind: relative, value: 0.03 }
+  inputLabel: { fr: "λ", en: "λ" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La longueur d'onde est la distance parcourue par l'onde pendant une période : $\lambda = v\,T$.
+      en: |-
+        The wavelength is the distance travelled by the wave during one period: $\lambda = v\,T$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Les unités sont déjà cohérentes : des mètres par seconde multipliés par des secondes donnent des mètres.
+      en: |-
+        The units are already consistent: metres per second multiplied by seconds give metres.
+solution:
+  fr: |-
+    Pendant une période $T$, chaque point de la corde effectue une oscillation complète et l'onde avance d'une longueur d'onde :
+    $$\lambda = v\,T = 12 \times 0{,}20 = 2{,}4\ \mathrm{m}.$$
+    On peut vérifier avec la fréquence : $f = \dfrac{1}{T} = 5{,}0\ \mathrm{Hz}$ et $\lambda = \dfrac{v}{f} = \dfrac{12}{5{,}0} = 2{,}4\ \mathrm{m}$. La période est une durée, en secondes, la longueur d'onde une distance, en mètres : ce sont les deux visages de la double périodicité, l'une dans le temps, l'autre dans l'espace.
+  en: |-
+    During one period $T$, each point of the rope performs a complete oscillation and the wave advances by one wavelength:
+    $$\lambda = v\,T = 12 \times 0.20 = 2.4\ \mathrm{m}.$$
+    This can be checked with the frequency: $f = \dfrac{1}{T} = 5.0\ \mathrm{Hz}$ and $\lambda = \dfrac{v}{f} = \dfrac{12}{5.0} = 2.4\ \mathrm{m}$. The period is a duration, in seconds, the wavelength a distance, in metres: they are the two faces of the double periodicity, one in time, the other in space.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

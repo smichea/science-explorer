@@ -1,0 +1,69 @@
+# Algorithmique en Première — les termes d'une suite calculés par une boucle et rangés dans une liste (réponse numérique)
+id: exercise.algorithmics.loop_terms
+type: numeric
+nodeId: tool.algorithmics
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On exécute le programme Python suivant :
+
+    ```python
+    u = 3
+    L = [u]
+    for i in range(4):
+        u = 2 * u - 1
+        L.append(u)
+    print(L[4])
+    ```
+
+    Quelle valeur est affichée ?
+  en: |-
+    The following Python program is run:
+
+    ```python
+    u = 3
+    L = [u]
+    for i in range(4):
+        u = 2 * u - 1
+        L.append(u)
+    print(L[4])
+    ```
+
+    Which value is displayed?
+numeric:
+  value: 33
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "valeur affichée", en: "displayed value" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La liste commence par $u_0 = 3$, puis chaque tour de boucle calcule le terme suivant $u_{n+1} = 2u_n - 1$ et l'ajoute à la fin de la liste.
+      en: |-
+        The list starts with $u_0 = 3$, then each turn of the loop computes the next term $u_{n+1} = 2u_n - 1$ and appends it to the list.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Après les quatre tours, `L` contient cinq termes, `L[0]` à `L[4]` : $3$, $5$, $9$, $17$ et le suivant.
+      en: |-
+        After the four turns, `L` holds five terms, `L[0]` to `L[4]`: $3$, $5$, $9$, $17$ and the next one.
+solution:
+  fr: |-
+    Avant la boucle, `L = [3]`. Les quatre tours donnent successivement $u = 2 \times 3 - 1 = 5$, puis $9$, $17$ et $33$, chaque valeur étant ajoutée à la liste : `L = [3, 5, 9, 17, 33]`. Les indices commencent à $0$, donc `L[4]` est le cinquième élément, $33$ : c'est le terme $u_4$ de la suite définie par $u_0 = 3$ et $u_{n+1} = 2u_n - 1$.
+
+    **Interprétation.** La liste conserve tous les termes calculés, alors que la variable `u` seule ne garde que le dernier ; `L[n]` vaut exactement $u_n$. Une boucle `for i in range(n):` exécutée $n$ fois calcule $u_n$ à partir de $u_0$ : c'est la version exécutable d'une définition par récurrence.
+  en: |-
+    Before the loop, `L = [3]`. The four turns successively give $u = 2 \times 3 - 1 = 5$, then $9$, $17$ and $33$, each value being appended to the list: `L = [3, 5, 9, 17, 33]`. Indices start at $0$, so `L[4]` is the fifth element, $33$: it is the term $u_4$ of the sequence defined by $u_0 = 3$ and $u_{n+1} = 2u_n - 1$.
+
+    **Interpretation.** The list keeps every computed term, whereas the variable `u` alone only keeps the last one; `L[n]` is exactly $u_n$. A loop `for i in range(n):` executed $n$ times computes $u_n$ from $u_0$: it is the executable version of a definition by recurrence.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 2
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

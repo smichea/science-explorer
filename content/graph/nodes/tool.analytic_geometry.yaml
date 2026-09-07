@@ -1,0 +1,55 @@
+id: tool.analytic_geometry
+type: mathematical_tool
+world: world.mathematics
+region: region.math.geometry
+importance: 2
+backpack: true
+tags: [lycee]
+title: { fr: "Géométrie repérée : vecteur normal, droite, cercle", en: "Coordinate geometry: normal vector, line, circle" }
+shortPurpose:
+  fr: "Transformer une figure en équations pour décider par le calcul ce qu'un dessin ne prouve pas : appartenance, intersection, tangence, distance."
+  en: "Turn a figure into equations in order to decide by computation what a drawing does not prove: membership, intersection, tangency, distance."
+overview:
+  fr: >-
+    Une fois un repère choisi, une droite et un cercle deviennent des équations, et la géométrie devient du calcul. Savoir qu'un vecteur normal donne immédiatement l'équation d'une droite, et que l'équation d'un cercle est celle d'une distance constante, permet de décider par le calcul ce qu'un dessin ne prouve jamais. C'est cette traduction qui fait tourner tous les logiciels de géométrie, de dessin et de jeu vidéo.
+  en: >-
+    Once a frame is chosen, a line and a circle become equations, and geometry becomes computation. Knowing that a normal vector immediately gives the equation of a line, and that the equation of a circle is that of a constant distance, allows one to decide by computation what a drawing never proves. It is this translation that drives every geometry, drawing and video-game program.
+aliases:
+  fr: ["géométrie analytique", "vecteur normal à une droite", "équation cartésienne d'une droite", "équation d'un cercle", "vecteur directeur"]
+  en: ["analytic geometry", "normal vector to a line", "cartesian equation of a line", "equation of a circle", "direction vector"]
+description:
+  fr: |
+    Dans un repère **orthonormé**, un vecteur $\vec n(a\,;\,b)$ non nul est **normal** à une droite $d$ lorsqu'il est orthogonal à tout vecteur directeur de $d$. Un point $M(x\,;\,y)$ appartient alors à la droite passant par $A(x_A\,;\,y_A)$ et de vecteur normal $\vec n$ si et seulement si $\overrightarrow{AM} \cdot \vec n = 0$, ce qui s'écrit $a(x - x_A) + b(y - y_A) = 0$, puis $ax + by + c = 0$ : c'est l'**équation cartésienne** de la droite. Réciproquement, toute équation $ax + by + c = 0$ avec $(a\,;\,b) \neq (0\,;\,0)$ est celle d'une droite de vecteur normal $\vec n(a\,;\,b)$ et de vecteur directeur $\vec u(-b\,;\,a)$. Pour $A(1\,;\,2)$ et $\vec n(3\,;\,-1)$, on obtient $3(x - 1) - (y - 2) = 0$, soit $3x - y - 1 = 0$, ou encore $y = 3x - 1$.
+
+    Le **cercle** de centre $\Omega(x_0\,;\,y_0)$ et de rayon $R$ est l'ensemble des points à distance $R$ de $\Omega$ ; comme $\Omega M^2 = (x - x_0)^2 + (y - y_0)^2$, son équation est $(x - x_0)^2 + (y - y_0)^2 = R^2$. Développée, elle prend la forme $x^2 + y^2 + \alpha x + \beta y + \gamma = 0$, et l'on retrouve le centre et le rayon en complétant les deux carrés : $x^2 + y^2 - 2x + 4y - 4 = 0$ s'écrit $(x - 1)^2 + (y + 2)^2 = 9$, donc le centre est $(1\,;\,-2)$ et le rayon $3$. Une même équation développée peut n'avoir aucune solution, si le second membre obtenu est négatif : il n'y a alors pas de cercle.
+
+    Cette traduction rend le calcul décisif. L'intersection de deux droites est la solution d'un système ; celle d'une droite et d'un cercle se ramène à une équation du **second degré** dont le discriminant décide : deux points si $\Delta > 0$, un point de tangence si $\Delta = 0$, aucun si $\Delta < 0$. Le produit scalaire fournit aussi la **caractérisation du cercle de diamètre** $[AB]$ : $M$ y appartient si et seulement si $\overrightarrow{MA} \cdot \overrightarrow{MB} = 0$. Deux pièges : utiliser les formules du repère orthonormé dans un repère quelconque, et croire qu'une équation cartésienne est unique, alors que $3x - y - 1 = 0$ et $6x - 2y - 2 = 0$ décrivent la même droite.
+  en: |
+    In an **orthonormal** frame, a non-zero vector $\vec n(a\,;\,b)$ is **normal** to a line $d$ when it is orthogonal to every direction vector of $d$. A point $M(x\,;\,y)$ then belongs to the line through $A(x_A\,;\,y_A)$ with normal vector $\vec n$ if and only if $\overrightarrow{AM} \cdot \vec n = 0$, which is written $a(x - x_A) + b(y - y_A) = 0$, then $ax + by + c = 0$: this is the **cartesian equation** of the line. Conversely, every equation $ax + by + c = 0$ with $(a\,;\,b) \neq (0\,;\,0)$ is that of a line with normal vector $\vec n(a\,;\,b)$ and direction vector $\vec u(-b\,;\,a)$. For $A(1\,;\,2)$ and $\vec n(3\,;\,-1)$, one gets $3(x - 1) - (y - 2) = 0$, that is $3x - y - 1 = 0$, or again $y = 3x - 1$.
+
+    The **circle** with centre $\Omega(x_0\,;\,y_0)$ and radius $R$ is the set of points at distance $R$ from $\Omega$; since $\Omega M^2 = (x - x_0)^2 + (y - y_0)^2$, its equation is $(x - x_0)^2 + (y - y_0)^2 = R^2$. Expanded, it takes the form $x^2 + y^2 + \alpha x + \beta y + \gamma = 0$, and the centre and radius are recovered by completing both squares: $x^2 + y^2 - 2x + 4y - 4 = 0$ is written $(x - 1)^2 + (y + 2)^2 = 9$, so the centre is $(1\,;\,-2)$ and the radius $3$. One and the same expanded equation may have no solution, if the right-hand side obtained is negative: there is then no circle.
+
+    This translation makes computation decisive. The intersection of two lines is the solution of a system; that of a line and a circle reduces to a **quadratic** equation whose discriminant decides: two points if $\Delta > 0$, one point of tangency if $\Delta = 0$, none if $\Delta < 0$. The dot product also provides the **characterisation of the circle with diameter** $[AB]$: $M$ belongs to it if and only if $\overrightarrow{MA} \cdot \overrightarrow{MB} = 0$. Two traps: using the orthonormal-frame formulas in an arbitrary frame, and believing that a cartesian equation is unique, whereas $3x - y - 1 = 0$ and $6x - 2y - 2 = 0$ describe the same line.
+tool:
+  problemSolved:
+    fr: "Décider par le calcul, et non par le dessin, si un point appartient à une droite ou à un cercle, où deux objets se coupent, si une droite est tangente, et à quelle distance se trouve un point d'une droite."
+    en: "Decide by computation, not by drawing, whether a point belongs to a line or a circle, where two objects meet, whether a line is tangent, and how far a point is from a line."
+  construction:
+    fr: "On choisit un repère orthonormé, puis on traduit chaque propriété géométrique en une égalité de nombres : l'appartenance à une droite devient $\\overrightarrow{AM} \\cdot \\vec n = 0$, l'appartenance à un cercle devient $\\Omega M^2 = R^2$, et les intersections deviennent des systèmes ou des équations du second degré."
+    en: "One chooses an orthonormal frame, then translates each geometric property into an equality of numbers: membership of a line becomes $\\overrightarrow{AM} \\cdot \\vec n = 0$, membership of a circle becomes $\\Omega M^2 = R^2$, and intersections become systems or quadratic equations."
+  icon: compass
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "déterminer une équation cartésienne d'une droite à partir d'un point et d'un vecteur normal ou directeur"
+        - "lire un vecteur normal et un vecteur directeur sur une équation a x + b y + c = 0"
+        - "reconnaître l'équation d'un cercle, en donner le centre et le rayon en complétant les carrés"
+        - "déterminer l'intersection d'une droite et d'un cercle en se ramenant à une équation du second degré"
+      en:
+        - "determine a cartesian equation of a line from a point and a normal or direction vector"
+        - "read a normal vector and a direction vector off an equation a x + b y + c = 0"
+        - "recognise the equation of a circle, give its centre and radius by completing the squares"
+        - "determine the intersection of a line and a circle by reducing to a quadratic equation"

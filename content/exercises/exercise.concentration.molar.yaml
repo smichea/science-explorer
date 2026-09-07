@@ -1,0 +1,51 @@
+# Leçon concentration (Première) — concentration en quantité de matière déduite de la concentration en masse (réponse numérique)
+id: exercise.concentration.molar
+type: numeric
+nodeId: concept.concentration
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un sérum physiologique est une solution aqueuse de chlorure de sodium $\mathrm{NaCl}$ de concentration en masse $C_m = 9{,}0\ \mathrm{g/L}$.
+
+    Donnée : $M(\mathrm{NaCl}) = 58{,}5\ \mathrm{g/mol}$.
+
+    Donnez la concentration en quantité de matière $C$ de ce sérum, en $\mathrm{mol/L}$, avec deux chiffres significatifs.
+  en: |-
+    A physiological saline solution is an aqueous solution of sodium chloride $\mathrm{NaCl}$ of mass concentration $C_m = 9.0\ \mathrm{g/L}$.
+
+    Datum: $M(\mathrm{NaCl}) = 58.5\ \mathrm{g/mol}$.
+
+    Give the concentration in amount of substance $C$ of this saline solution, in $\mathrm{mol/L}$, with two significant figures.
+numeric:
+  value: 0.15
+  unit: "mol/L"
+  tolerance: { kind: absolute, value: 0.005 }
+  inputLabel: { fr: "C", en: "C" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Dans un litre de solution il y a $9{,}0\ \mathrm{g}$ de chlorure de sodium : quelle quantité de matière cela représente-t-il ?
+      en: |-
+        In one litre of solution there are $9.0\ \mathrm{g}$ of sodium chloride: what amount of substance is that?
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Les deux concentrations sont liées par $C_m = C \times M$, donc $C = \dfrac{C_m}{M}$.
+      en: |-
+        The two concentrations are linked by $C_m = C \times M$, hence $C = \dfrac{C_m}{M}$.
+solution:
+  fr: |-
+    La concentration en masse compte les grammes de soluté par litre, la concentration en quantité de matière compte les moles. On passe de l'une à l'autre par la masse molaire, puisque $n = \dfrac{m}{M}$ :
+    $$C = \frac{n}{V} = \frac{m}{M\,V} = \frac{C_m}{M} = \frac{9{,}0}{58{,}5} = 0{,}15\ \mathrm{mol/L}.$$
+
+    Un litre de sérum contient donc $0{,}15\ \mathrm{mol}$ de chlorure de sodium. Comme le solide est ionique et se dissout entièrement, la solution contient $0{,}15\ \mathrm{mol/L}$ d'ions $\mathrm{Na^+}$ et $0{,}15\ \mathrm{mol/L}$ d'ions $\mathrm{Cl^-}$.
+  en: |-
+    The mass concentration counts the grams of solute per litre, the concentration in amount of substance counts the moles. One goes from one to the other through the molar mass, since $n = \dfrac{m}{M}$:
+    $$C = \frac{n}{V} = \frac{m}{M\,V} = \frac{C_m}{M} = \frac{9.0}{58.5} = 0.15\ \mathrm{mol/L}.$$
+
+    One litre of saline solution therefore contains $0.15\ \mathrm{mol}$ of sodium chloride. Since the solid is ionic and dissolves entirely, the solution contains $0.15\ \mathrm{mol/L}$ of $\mathrm{Na^+}$ ions and $0.15\ \mathrm{mol/L}$ of $\mathrm{Cl^-}$ ions.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

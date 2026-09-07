@@ -95,7 +95,8 @@ learning:
   essentialPrerequisites: [concept.function]
   recommendedPrerequisites: [concept.graph, concept.rate_of_change]
   curriculumAlignments:
-    - { curriculum: curriculum.fr.terminale.maths, item: derivation, depth: 1 }
+    - { curriculum: curriculum.fr.premiere.maths, item: derivation, depth: 1 }
+    - { curriculum: curriculum.fr.terminale.maths, item: derivation, depth: 2 }
     - { curriculum: curriculum.fr.terminale.physique_chimie, item: decrire_mouvement, depth: 1 }
     - { curriculum: curriculum.fr.terminale.physique_chimie, item: circuit_rc, depth: 1 }
     - { curriculum: curriculum.fr.terminale.physique_chimie, item: cinetique_chimique, depth: 1 }

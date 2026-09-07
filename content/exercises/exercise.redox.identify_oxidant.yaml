@@ -1,0 +1,56 @@
+# Leçon oxydoréduction — identifier l'oxydant d'une réaction et lire le nombre d'électrons de sa demi-équation (réponse numérique)
+id: exercise.redox.identify_oxidant
+type: numeric
+nodeId: model.redox
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    En milieu acide, les ions permanganate réagissent avec les ions fer II selon
+    $$\mathrm{MnO_4^-} + 5\,\mathrm{Fe^{2+}} + 8\,\mathrm{H^+} \to \mathrm{Mn^{2+}} + 5\,\mathrm{Fe^{3+}} + 4\,\mathrm{H_2O}.$$
+
+    Les couples mis en jeu sont $\mathrm{MnO_4^-/Mn^{2+}}$ et $\mathrm{Fe^{3+}/Fe^{2+}}$.
+
+    Identifiez l'oxydant et le réducteur, écrivez la demi-équation de l'oxydant, puis donnez le nombre d'électrons que capte **un** ion oxydant.
+  en: |-
+    In acidic medium, permanganate ions react with iron II ions according to
+    $$\mathrm{MnO_4^-} + 5\,\mathrm{Fe^{2+}} + 8\,\mathrm{H^+} \to \mathrm{Mn^{2+}} + 5\,\mathrm{Fe^{3+}} + 4\,\mathrm{H_2O}.$$
+
+    The couples involved are $\mathrm{MnO_4^-/Mn^{2+}}$ and $\mathrm{Fe^{3+}/Fe^{2+}}$.
+
+    Identify the oxidant and the reductant, write the half-equation of the oxidant, then give the number of electrons **one** oxidant ion gains.
+numeric:
+  value: 5
+  tolerance: { kind: absolute, value: 0.1 }
+  inputLabel: { fr: "nombre d'électrons captés", en: "number of electrons gained" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        L'oxydant est l'espèce qui **capte** des électrons : cherchez celle dont la charge diminue au cours de la réaction. L'ion fer II devient $\mathrm{Fe^{3+}}$, sa charge augmente : il cède un électron, c'est le réducteur.
+      en: |-
+        The oxidant is the species that **gains** electrons: look for the one whose charge decreases during the reaction. The iron II ion becomes $\mathrm{Fe^{3+}}$, its charge increases: it gives an electron away, it is the reductant.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Ajustez la demi-équation $\mathrm{MnO_4^-} \to \mathrm{Mn^{2+}}$ : d'abord le manganèse, puis l'oxygène avec des molécules d'eau, l'hydrogène avec des ions $\mathrm{H^+}$, et enfin la charge avec des électrons.
+      en: |-
+        Balance the half-equation $\mathrm{MnO_4^-} \to \mathrm{Mn^{2+}}$: first manganese, then oxygen with water molecules, hydrogen with $\mathrm{H^+}$ ions, and finally the charge with electrons.
+solution:
+  fr: |-
+    L'ion fer II passe de la charge $+2$ à la charge $+3$ : il **cède** un électron, il est donc **oxydé** et joue le rôle de **réducteur**. L'ion permanganate, lui, devient $\mathrm{Mn^{2+}}$ : il **capte** des électrons, il est **réduit** et joue le rôle d'**oxydant**.
+
+    Ajustons sa demi-équation en milieu acide : on conserve d'abord le manganèse, puis les quatre oxygènes avec quatre molécules d'eau, les huit hydrogènes ainsi introduits avec huit ions $\mathrm{H^+}$, et enfin la charge, $-1 + 8 = +7$ à gauche contre $+2$ à droite, avec cinq électrons :
+    $$\mathrm{MnO_4^-} + 8\,\mathrm{H^+} + 5\,\mathrm{e^-} = \mathrm{Mn^{2+}} + 4\,\mathrm{H_2O}.$$
+
+    Un ion permanganate capte donc $5$ électrons. L'autre demi-équation, $\mathrm{Fe^{3+}} + \mathrm{e^-} = \mathrm{Fe^{2+}}$, n'en échange qu'un : il faut la multiplier par cinq pour que les électrons se compensent, ce qui explique le nombre stœchiométrique $5$ devant $\mathrm{Fe^{2+}}$ dans l'équation.
+  en: |-
+    The iron II ion goes from charge $+2$ to charge $+3$: it **gives away** one electron, it is therefore **oxidised** and plays the part of the **reductant**. The permanganate ion becomes $\mathrm{Mn^{2+}}$: it **gains** electrons, it is **reduced** and plays the part of the **oxidant**.
+
+    Let us balance its half-equation in acidic medium: manganese is conserved first, then the four oxygens with four water molecules, the eight hydrogens thus introduced with eight $\mathrm{H^+}$ ions, and finally the charge, $-1 + 8 = +7$ on the left against $+2$ on the right, with five electrons:
+    $$\mathrm{MnO_4^-} + 8\,\mathrm{H^+} + 5\,\mathrm{e^-} = \mathrm{Mn^{2+}} + 4\,\mathrm{H_2O}.$$
+
+    One permanganate ion therefore gains $5$ electrons. The other half-equation, $\mathrm{Fe^{3+}} + \mathrm{e^-} = \mathrm{Fe^{2+}}$, exchanges only one: it must be multiplied by five so that the electrons cancel out, which explains the stoichiometric coefficient $5$ in front of $\mathrm{Fe^{2+}}$ in the equation.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 3, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 2, transfer: 2, autonomy: 3 }

@@ -70,6 +70,20 @@ depths:
         - "draw the velocity vector (direction, sense, value) at a point of a trajectory"
         - "recognise a uniform, accelerated or decelerated rectilinear motion, and a circular motion"
   - depth: 2
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "représenter le vecteur vitesse $\\vec v$ en un point d'une trajectoire : direction tangente, sens du mouvement, norme $v \\approx M_iM_{i+1}/\\Delta t$"
+        - "construire le vecteur variation de vitesse $\\Delta\\vec v = \\vec v(t + \\Delta t) - \\vec v(t)$ entre deux positions voisines"
+        - "reconnaître, à partir de $\\vec v$ et de $\\Delta\\vec v$, un mouvement rectiligne uniforme, accéléré ou ralenti et un mouvement circulaire uniforme"
+        - "exploiter des positions relevées à intervalles de temps égaux (chronophotographie, vidéo) pour tracer $\\vec v$ et $\\Delta\\vec v$"
+      en:
+        - "draw the velocity vector $\\vec v$ at a point of a trajectory: tangent direction, sense of the motion, magnitude $v \\approx M_iM_{i+1}/\\Delta t$"
+        - "construct the velocity-variation vector $\\Delta\\vec v = \\vec v(t + \\Delta t) - \\vec v(t)$ between two neighbouring positions"
+        - "recognise, from $\\vec v$ and $\\Delta\\vec v$, a uniform, accelerated or decelerated rectilinear motion and a uniform circular motion"
+        - "use positions recorded at equal time intervals (stroboscopic photograph, video) to draw $\\vec v$ and $\\Delta\\vec v$"
+  - depth: 3
     stage: terminale
     role: core
     outcomes:
@@ -92,7 +106,7 @@ depths:
         **Vectors of motion.** In a frame of reference with coordinate system $(O ;\, \vec i, \vec j, \vec k)$, the position of the point $M$ at time $t$ is $\overrightarrow{OM}(t) = x(t)\,\vec i + y(t)\,\vec j + z(t)\,\vec k$. The velocity vector is the derivative of the position vector, $\vec v = \dfrac{\mathrm{d}\overrightarrow{OM}}{\mathrm{d}t}$, with coordinates $(\dot x, \dot y, \dot z)$; it is tangent to the trajectory and points in the direction of motion. The acceleration vector is $\vec a = \dfrac{\mathrm{d}\vec v}{\mathrm{d}t}$, with coordinates $(\ddot x, \ddot y, \ddot z)$. On an experimental record, $\vec v(t_i)$ is approximated by $\dfrac{\overrightarrow{M_{i-1}M_{i+1}}}{t_{i+1} - t_{i-1}}$: a rate of change.
 
         **Reference motions.** Uniform rectilinear: $\vec a = \vec 0$, $\vec v$ constant, $x(t) = v\,t + x_0$. Uniformly accelerated rectilinear: $\vec a$ constant and collinear with $\vec v$, $x(t) = \tfrac12\,a\,t^2 + v_0\,t + x_0$. Uniform circular: the magnitude of $\vec v$ is constant but its direction turns, so $\vec a \neq \vec 0$; the acceleration is centripetal, of magnitude $v^2/R$. In every case, knowing $\vec a(t)$, $\overrightarrow{OM}(0)$ and $\vec v(0)$ is enough to reconstruct the motion.
-  - depth: 3
+  - depth: 4
     stage: mpsi
     role: core
     outcomes:

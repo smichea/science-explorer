@@ -1,0 +1,94 @@
+# Première — mathématiques : termes préférés et alias des huit nouvelles destinations (deux à trois entrées par nœud).
+entries:
+  - id: glossary.sequence
+    nodeId: concept.sequence
+    fr: { preferred: suite numérique, aliases: [suite, terme d'une suite, rang d'un terme, indice] }
+    en: { preferred: numerical sequence, aliases: [sequence, term of a sequence, rank of a term, index] }
+  - id: glossary.recurrence
+    nodeId: concept.sequence
+    fr: { preferred: suite définie par récurrence, aliases: [relation de récurrence, suite définie explicitement, premier terme] }
+    en: { preferred: recursively defined sequence, aliases: [recurrence relation, explicitly defined sequence, first term] }
+  - id: glossary.sequence_variation
+    nodeId: concept.sequence
+    fr: { preferred: sens de variation d'une suite, aliases: [suite croissante, suite décroissante, suite monotone] }
+    en: { preferred: direction of variation of a sequence, aliases: [increasing sequence, decreasing sequence, monotonic sequence] }
+  - id: glossary.arithmetic_sequence
+    nodeId: tool.arithmetic_geometric_sequences
+    fr: { preferred: suite arithmétique, aliases: [raison d'une suite arithmétique, croissance linéaire] }
+    en: { preferred: arithmetic sequence, aliases: [common difference, linear growth] }
+  - id: glossary.geometric_sequence
+    nodeId: tool.arithmetic_geometric_sequences
+    fr: { preferred: suite géométrique, aliases: [raison d'une suite géométrique, coefficient multiplicateur, croissance exponentielle] }
+    en: { preferred: geometric sequence, aliases: [common ratio, multiplying coefficient, exponential growth] }
+  - id: glossary.sequence_sum
+    nodeId: tool.arithmetic_geometric_sequences
+    fr: { preferred: somme des termes d'une suite, aliases: [somme des premiers entiers, somme géométrique] }
+    en: { preferred: sum of the terms of a sequence, aliases: [sum of the first integers, geometric sum] }
+  - id: glossary.canonical_form
+    nodeId: tool.quadratic
+    fr: { preferred: forme canonique, aliases: [sommet de la parabole, extremum d'un trinôme, axe de symétrie] }
+    en: { preferred: canonical form, aliases: [vertex of the parabola, extremum of a trinomial, axis of symmetry] }
+  - id: glossary.discriminant
+    nodeId: tool.quadratic
+    fr: { preferred: discriminant, aliases: [delta, racines d'un trinôme, forme factorisée] }
+    en: { preferred: discriminant, aliases: [delta, roots of a trinomial, factored form] }
+  - id: glossary.trinomial_sign
+    nodeId: tool.quadratic
+    fr: { preferred: signe du trinôme, aliases: [inéquation du second degré, parabole, polynôme du second degré] }
+    en: { preferred: sign of the trinomial, aliases: [quadratic inequality, parabola, quadratic polynomial] }
+  - id: glossary.radian
+    nodeId: tool.trigonometric_functions
+    fr: { preferred: radian, aliases: [mesure d'un angle en radians, enroulement de la droite numérique, longueur d'arc] }
+    en: { preferred: radian, aliases: [angle measure in radians, winding of the number line, arc length] }
+  - id: glossary.unit_circle
+    nodeId: tool.trigonometric_functions
+    fr: { preferred: cercle trigonométrique, aliases: [cercle unité, angles remarquables, point image d'un réel] }
+    en: { preferred: unit circle, aliases: [trigonometric circle, remarkable angles, point associated with a real number] }
+  - id: glossary.cosine_sine
+    nodeId: tool.trigonometric_functions
+    fr: { preferred: cosinus et sinus, aliases: [fonction cosinus, fonction sinus, fonction périodique, période] }
+    en: { preferred: cosine and sine, aliases: [cosine function, sine function, periodic function, period] }
+  - id: glossary.dot_product
+    nodeId: tool.dot_product
+    fr: { preferred: produit scalaire, aliases: [produit scalaire de deux vecteurs, carré scalaire] }
+    en: { preferred: dot product, aliases: [scalar product, squared norm] }
+  - id: glossary.orthogonality
+    nodeId: tool.dot_product
+    fr: { preferred: orthogonalité, aliases: [vecteurs orthogonaux, perpendiculaire, projeté orthogonal] }
+    en: { preferred: orthogonality, aliases: [orthogonal vectors, perpendicular, orthogonal projection] }
+  - id: glossary.al_kashi
+    nodeId: tool.dot_product
+    fr: { preferred: théorème d'Al-Kashi, aliases: [loi des cosinus, généralisation de Pythagore] }
+    en: { preferred: law of cosines, aliases: [Al-Kashi's theorem, generalisation of Pythagoras] }
+  - id: glossary.normal_vector
+    nodeId: tool.analytic_geometry
+    fr: { preferred: vecteur normal, aliases: [vecteur directeur, équation cartésienne d'une droite, droite du plan] }
+    en: { preferred: normal vector, aliases: [direction vector, cartesian equation of a line, line of the plane] }
+  - id: glossary.circle_equation
+    nodeId: tool.analytic_geometry
+    fr: { preferred: équation d'un cercle, aliases: [centre et rayon, cercle de diamètre AB, géométrie repérée] }
+    en: { preferred: equation of a circle, aliases: [centre and radius, circle with diameter AB, coordinate geometry] }
+  - id: glossary.conditional_probability
+    nodeId: concept.conditional_probability
+    fr: { preferred: probabilité conditionnelle, aliases: [probabilité de B sachant A, règle du produit] }
+    en: { preferred: conditional probability, aliases: [probability of B given A, product rule] }
+  - id: glossary.weighted_tree
+    nodeId: concept.conditional_probability
+    fr: { preferred: arbre pondéré, aliases: [formule des probabilités totales, partition de l'univers, chemin d'un arbre] }
+    en: { preferred: weighted tree, aliases: [law of total probability, partition of the sample space, path of a tree] }
+  - id: glossary.independence
+    nodeId: concept.conditional_probability
+    fr: { preferred: événements indépendants, aliases: [indépendance, événements incompatibles] }
+    en: { preferred: independent events, aliases: [independence, incompatible events] }
+  - id: glossary.random_variable
+    nodeId: concept.random_variable
+    fr: { preferred: variable aléatoire, aliases: [loi de probabilité, variable aléatoire réelle] }
+    en: { preferred: random variable, aliases: [probability distribution, real random variable] }
+  - id: glossary.expectation
+    nodeId: concept.random_variable
+    fr: { preferred: espérance, aliases: [espérance mathématique, gain moyen, jeu équitable] }
+    en: { preferred: expectation, aliases: [expected value, average gain, fair game] }
+  - id: glossary.variance_std
+    nodeId: concept.random_variable
+    fr: { preferred: écart-type d'une variable aléatoire, aliases: [variance, dispersion, fluctuation d'échantillonnage] }
+    en: { preferred: standard deviation of a random variable, aliases: [variance, spread, sampling fluctuation] }

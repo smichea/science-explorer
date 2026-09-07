@@ -1,0 +1,76 @@
+# Leçon rédigée — logique en Première (profondeur 2) : contraposition, raisonnement par l'absurde, disjonction de cas et quantificateurs, avec le crible (parité et divisibilité : 49 = 7², carré d'un impair).
+id: lesson.concept.logic_sets.premiere
+nodeId: concept.logic_sets
+depth: 2
+tools:
+  - id: sieve
+    kind: arithmetic
+    title: { fr: "Parité et divisibilité : les nombres pairs et le carré 49", en: "Parity and divisibility: the even numbers and the square 49" }
+    max: 60
+    highlight: 2
+    number: 49
+steps:
+  - id: contrapositive
+    title: { fr: "Démontrer par contraposition", en: "Proving by contraposition" }
+    text:
+      fr: >-
+        Pour démontrer que si n carré est pair, alors n est pair, le chemin direct est malaisé : on ne sait rien dire de la racine carrée d'un nombre pair.
+        La contraposée dit la même chose à l'envers : si n est impair, alors n carré est impair.
+        Écrivons n égale 2 k plus 1 : n carré égale 4 k carré plus 4 k plus 1, un nombre impair, comme 49, carré de 7, dont les diviseurs sont tous impairs.
+        La contraposée est démontrée, donc l'implication aussi : une implication et sa contraposée sont toujours équivalentes.
+      en: >-
+        To prove that if n squared is even, then n is even, the direct path is awkward: nothing can be said about the square root of an even number.
+        The contrapositive says the same thing the other way round: if n is odd, then n squared is odd.
+        Let us write n equals 2 k plus 1: n squared equals 4 k squared plus 4 k plus 1, an odd number, like 49, the square of 7, whose divisors are all odd.
+        The contrapositive is proved, hence so is the implication: an implication and its contrapositive are always equivalent.
+    actions: []
+  - id: contradiction
+    title: { fr: "Raisonner par l'absurde et par disjonction de cas", en: "Reasoning by contradiction and by case disjunction" }
+    text:
+      fr: >-
+        Le raisonnement par l'absurde suppose le contraire de ce que l'on veut prouver, et cherche une contradiction.
+        Pour montrer que racine de 2 n'est pas un quotient d'entiers, supposons racine de 2 égale p sur q, avec p et q sans diviseur commun.
+        Alors p carré égale 2 q carré : p carré est pair, donc p est pair, par la contraposée que nous venons de voir.
+        En écrivant p égale 2 m, on trouve que q carré est pair aussi, donc q est pair : p et q ont le diviseur commun 2, contradiction.
+        La disjonction de cas, elle, traite séparément n pair et n impair : dans les deux cas, le produit de n par n plus 1 est pair.
+      en: >-
+        A proof by contradiction assumes the opposite of what we want to prove, and looks for a contradiction.
+        To show that the square root of 2 is not a quotient of integers, suppose the square root of 2 equals p over q, with p and q without a common divisor.
+        Then p squared equals 2 q squared: p squared is even, so p is even, by the contrapositive we have just seen.
+        Writing p equals 2 m, we find that q squared is even too, so q is even: p and q have the common divisor 2, a contradiction.
+        Case disjunction, for its part, treats n even and n odd separately: in both cases, the product of n by n plus 1 is even.
+    actions: []
+  - id: quantifiers
+    title: { fr: "Quantificateurs et négation", en: "Quantifiers and negation" }
+    text:
+      fr: >-
+        Une propriété universelle commence par pour tout, une propriété d'existence par il existe, et la négation échange les deux.
+        Le contraire de « pour tout réel x, x carré est supérieur ou égal à x » est « il existe un réel x tel que x carré est strictement inférieur à x », et le contre-exemple x égale un demi suffit à l'établir.
+        Pour démontrer une propriété d'existence, un exemple suffit ; pour une propriété universelle, il faut un raisonnement valable dans tous les cas, et un seul contre-exemple la réfute.
+      en: >-
+        A universal property starts with for all, an existence property with there exists, and negation swaps the two.
+        The opposite of "for every real x, x squared is greater than or equal to x" is "there exists a real x such that x squared is strictly less than x", and the counter-example x equals one half is enough to establish it.
+        To prove an existence property, one example is enough; for a universal property, a reasoning valid in every case is needed, and a single counter-example refutes it.
+    actions: []
+  - id: play
+    kind: play
+    title: { fr: "À vous de chercher des exemples", en: "Your turn to look for examples" }
+    text:
+      fr: >-
+        À vous. Dans le crible, choisissez un entier et lisez ses diviseurs : vérifiez que le carré d'un nombre impair n'a que des diviseurs impairs.
+        Cherchez ensuite deux nombres premiers à deux unités d'écart : un seul exemple suffit à prouver qu'il en existe.
+      en: >-
+        Your turn. In the sieve, choose an integer and read its divisors: check that the square of an odd number has only odd divisors.
+        Then look for two prime numbers two units apart: a single example is enough to prove that such pairs exist.
+    actions: []
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : ce qu'il faut démontrer pour une contraposition, puis la négation d'une propriété universelle.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: what must be proved for a contraposition, then the negation of a universal property.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.logic.contrapositive_proof, exercise.logic.quantifiers]

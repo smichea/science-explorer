@@ -1,0 +1,72 @@
+# Leçon deuxième loi de Newton (Première) — direction de la somme des forces à partir de celle de Δv (choix unique)
+id: exercise.newton.direction
+type: choice
+nodeId: law.newton_second
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Une balle est lancée en l'air obliquement. À un instant de sa montée, son vecteur vitesse est dirigé vers le haut et vers la droite. Entre cet instant et l'instant suivant, très proche, on construit le vecteur variation de vitesse $\Delta\vec v$ : il est vertical, dirigé vers le bas.
+
+    Quelles sont la direction et le sens de la somme des forces exercées sur la balle à cet instant ?
+  en: |-
+    A ball is thrown obliquely into the air. At an instant of its rise, its velocity vector points upwards and to the right. Between this instant and the next, very close one, the velocity-variation vector $\Delta\vec v$ is constructed: it is vertical, pointing downwards.
+
+    What are the direction and the sense of the sum of the forces exerted on the ball at this instant?
+choice:
+  multiple: false
+  choices:
+    - id: along_velocity
+      text: { fr: "Celles de la vitesse : vers le haut et vers la droite, tangente à la trajectoire", en: "Those of the velocity: upwards and to the right, tangent to the trajectory" }
+      feedback:
+        fr: |-
+          La somme des forces n'a pas la direction de la vitesse mais celle de sa **variation** : $\sum \vec F \approx m\,\dfrac{\Delta\vec v}{\Delta t}$. La balle monte à cause de la vitesse qu'elle a déjà, pas parce qu'une force la pousse vers le haut.
+        en: |-
+          The sum of the forces does not have the direction of the velocity but that of its **variation**: $\sum \vec F \approx m\,\dfrac{\Delta\vec v}{\Delta t}$. The ball rises because of the velocity it already has, not because a force pushes it upwards.
+    - id: down
+      text: { fr: "Verticale, vers le bas, comme Δv", en: "Vertical, downwards, like Δv" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact : la relation approchée $\sum \vec F \approx m\,\dfrac{\Delta\vec v}{\Delta t}$ impose à la somme des forces la direction et le sens de $\Delta\vec v$. C'est bien le poids, verticale, vers le bas, seule force sur la balle si l'on néglige l'air.
+        en: |-
+          Correct: the approximate relation $\sum \vec F \approx m\,\dfrac{\Delta\vec v}{\Delta t}$ gives the sum of the forces the direction and the sense of $\Delta\vec v$. It is indeed the weight, vertical, downwards, the only force on the ball if the air is neglected.
+    - id: up
+      text: { fr: "Verticale, vers le haut, puisque la balle monte", en: "Vertical, upwards, since the ball rises" }
+      feedback:
+        fr: |-
+          Que la balle monte ne dit rien sur la force : c'est la façon dont sa vitesse **change** qui compte, et $\Delta\vec v$ est dirigé vers le bas. Une force vers le haut donnerait un $\Delta\vec v$ vers le haut.
+        en: |-
+          That the ball rises says nothing about the force: what matters is how its velocity **changes**, and $\Delta\vec v$ points downwards. An upward force would give an upward $\Delta\vec v$.
+    - id: zero
+      text: { fr: "Nulle, puisque la balle continue d'avancer", en: "Zero, since the ball keeps moving" }
+      feedback:
+        fr: |-
+          Une somme des forces nulle donnerait $\Delta\vec v = \vec 0$ : la balle garderait exactement la même vitesse (principe d'inertie). Ici $\Delta\vec v$ n'est pas nul, donc la somme des forces ne l'est pas non plus.
+        en: |-
+          A zero sum of the forces would give $\Delta\vec v = \vec 0$: the ball would keep exactly the same velocity (principle of inertia). Here $\Delta\vec v$ is not zero, so the sum of the forces is not zero either.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Relisez la relation approchée de la deuxième loi de Newton : quel vecteur, de la vitesse ou de sa variation, a la même direction que la somme des forces ?
+      en: |-
+        Reread the approximate relation of Newton's second law: which vector, the velocity or its variation, has the same direction as the sum of the forces?
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\sum \vec F \approx m\,\dfrac{\Delta\vec v}{\Delta t}$, et $m$ et $\Delta t$ sont des nombres positifs.
+      en: |-
+        $\sum \vec F \approx m\,\dfrac{\Delta\vec v}{\Delta t}$, and $m$ and $\Delta t$ are positive numbers.
+solution:
+  fr: |-
+    La relation approchée $\sum \vec F \approx m\,\dfrac{\Delta\vec v}{\Delta t}$ dit que la somme des forces est le produit de $\Delta\vec v$ par le nombre positif $m/\Delta t$ : elle a donc **la direction et le sens de $\Delta\vec v$**, verticale et vers le bas. Ce n'est pas la direction de la vitesse : la balle monte en ralentissant, sa vitesse verticale diminue, et c'est précisément cette diminution que traduit $\Delta\vec v$ vers le bas.
+
+    Bilan des forces : si l'on néglige l'air, la balle n'est soumise qu'à son poids, vertical, vers le bas, ce qui est cohérent. Si les forces étaient nulles, la balle irait tout droit à vitesse constante (principe d'inertie).
+  en: |-
+    The approximate relation $\sum \vec F \approx m\,\dfrac{\Delta\vec v}{\Delta t}$ says that the sum of the forces is $\Delta\vec v$ multiplied by the positive number $m/\Delta t$: it therefore has **the direction and the sense of $\Delta\vec v$**, vertical and downwards. This is not the direction of the velocity: the ball rises while slowing down, its vertical velocity decreases, and it is precisely this decrease that the downward $\Delta\vec v$ expresses.
+
+    Inventory of the forces: if the air is neglected, the ball is subject to its weight only, vertical, downwards, which is consistent. If the forces were zero, the ball would go straight on at constant velocity (principle of inertia).
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

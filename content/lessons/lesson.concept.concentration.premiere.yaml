@@ -1,0 +1,95 @@
+# Leçon narrée — concentration en quantité de matière (profondeur 2, Première) : C = n/V et C_m = C × M avec l'outil dimensions,
+# la dilution C₁V₁ = C₂V₂ sur le traceur (hyperbole C₂ = C₁V₁/V₂), l'échelle de teintes et les ions d'un solide dissous.
+id: lesson.concept.concentration.premiere
+nodeId: concept.concentration
+depth: 2
+tools:
+  - id: dilution
+    kind: plotter
+    title: { fr: "Dilution : C₂ en fonction de V₂", en: "Dilution: C₂ against V₂" }
+    variable: x
+    view: { x: [0, 250], y: [0, 0.12] }
+    parameters:
+      - { id: c, label: { fr: "concentration mère C₁ (mol/L)", en: "stock concentration C₁ (mol/L)" }, min: 0.02, max: 0.2, step: 0.01, value: 0.1 }
+      - { id: p, label: { fr: "volume prélevé V₁ (mL)", en: "volume taken V₁ (mL)" }, min: 1, max: 50, step: 1, value: 10 }
+    input: false
+    initial:
+      - { view: { labels: { x: "V₂ (mL)", y: "C₂ (mol/L)" } } }
+  - id: dims
+    kind: dimensions
+    title: { fr: "Grandeurs d'une solution", en: "Quantities of a solution" }
+    quantities:
+      - { id: amount, symbol: "n", label: { fr: "quantité de matière de soluté", en: "amount of solute" }, unit: "mol", dims: {} }
+      - { id: volume, symbol: "V", label: { fr: "volume de solution", en: "volume of solution" }, unit: "L", dims: { L: 3 } }
+      - { id: molar_mass, symbol: "M", label: { fr: "masse molaire du soluté", en: "molar mass of the solute" }, unit: "g/mol", dims: { M: 1 } }
+      - { id: molar_conc, symbol: "C", label: { fr: "concentration en quantité de matière", en: "concentration in amount of substance" }, unit: "mol/L", dims: { L: -3 }, base: false }
+      - { id: mass_conc, symbol: "Cₘ", label: { fr: "concentration en masse", en: "mass concentration" }, unit: "g/L", dims: { M: 1, L: -3 }, base: false }
+steps:
+  - id: molar
+    title: { fr: "La concentration en quantité de matière", en: "The concentration in amount of substance" }
+    tool: dims
+    text:
+      fr: >-
+        En Seconde, la concentration en masse comptait des grammes de soluté par litre de solution.
+        La concentration en quantité de matière C compte des moles de soluté par litre de solution : C égale n sur V, en moles par litre.
+        Ainsi 0,20 mole de chlorure de sodium dissoute dans 500 millilitres de solution donne 0,40 mole par litre.
+        Les deux concentrations sont liées par la masse molaire : la concentration en masse égale C fois M, soit 0,40 fois 58,5, c'est-à-dire 23,4 grammes par litre.
+      en: >-
+        In Grade 10, the mass concentration counted grams of solute per litre of solution.
+        The concentration in amount of substance C counts moles of solute per litre of solution: C equals n over V, in moles per litre.
+        Thus 0.20 mole of sodium chloride dissolved in 500 millilitres of solution gives 0.40 mole per litre.
+        The two concentrations are linked by the molar mass: the mass concentration equals C times M, that is 0.40 times 58.5, that is 23.4 grams per litre.
+  - id: dilution
+    title: { fr: "Dissolution et dilution : la quantité de matière se conserve", en: "Dissolution and dilution: the amount of substance is conserved" }
+    tool: dilution
+    text:
+      fr: >-
+        Pour préparer une solution par dissolution, on pèse la masse m égale C fois V fois M de soluté, et l'on complète la fiole jaugée jusqu'au trait.
+        Pour la préparer par dilution, on prélève un volume V1 de solution mère de concentration C1 et l'on ajoute de l'eau jusqu'au volume V2 : la quantité de soluté se conserve, donc C1 V1 égale C2 V2.
+        La courbe montre la concentration fille en fonction du volume final : avec 10 millilitres d'une solution mère à 0,10 mole par litre, compléter à 100 millilitres donne 0,010 mole par litre, un facteur de dilution 10.
+        Compléter à 200 millilitres divise encore par deux : la concentration décroît comme l'inverse du volume.
+      en: >-
+        To prepare a solution by dissolution, the mass m equal to C times V times M of solute is weighed, and the volumetric flask is filled up to the mark.
+        To prepare it by dilution, a volume V1 of stock solution of concentration C1 is taken and water is added up to the volume V2: the amount of solute is conserved, so C1 V1 equals C2 V2.
+        The curve shows the diluted concentration against the final volume: with 10 millilitres of a stock solution at 0.10 mole per litre, filling up to 100 millilitres gives 0.010 mole per litre, a dilution factor of 10.
+        Filling up to 200 millilitres divides by two again: the concentration decreases like the inverse of the volume.
+    actions:
+      - { at: 1, set: { c: 0.1, p: 10 }, plot: { id: curve, expr: "c*p/x", domain: [5, 250], label: { fr: "C₂ = C₁ V₁ / V₂", en: "C₂ = C₁ V₁ / V₂" } } }
+      - { at: 2, point: { id: hundred, on: curve, x: 100, guides: true, label: { fr: "V₂ = 100 mL", en: "V₂ = 100 mL" } } }
+      - { at: 3, point: { id: twohundred, on: curve, x: 200, guides: true, label: { fr: "V₂ = 200 mL", en: "V₂ = 200 mL" } } }
+  - id: scale
+    title: { fr: "Échelle de teintes, dosage par étalonnage et ions", en: "Colour scale, assay by calibration and ions" }
+    tool: dilution
+    text:
+      fr: >-
+        Quand le soluté est coloré, une échelle de teintes, série de solutions de concentrations connues préparées par dilutions successives, permet d'estimer une concentration inconnue par comparaison : c'est un dosage par étalonnage, que le spectrophotomètre rendra précis à la destination suivante.
+        Une concentration s'exprime aussi pour chaque ion d'un solide ionique dissous : 0,10 mole de chlorure de calcium par litre donne 0,10 mole par litre d'ions calcium et 0,20 mole par litre d'ions chlorure, à cause du 2 de la formule CaCl2.
+        Déplaçons la concentration mère avec le curseur : la courbe se dilate, mais la règle C1 V1 égale C2 V2 reste la même.
+      en: >-
+        When the solute is coloured, a colour scale, a series of solutions of known concentrations prepared by successive dilutions, lets one estimate an unknown concentration by comparison: this is an assay by calibration, which the spectrophotometer will make precise at the next destination.
+        A concentration is also expressed for each ion of a dissolved ionic solid: 0.10 mole of calcium chloride per litre gives 0.10 mole per litre of calcium ions and 0.20 mole per litre of chloride ions, because of the 2 in the formula CaCl2.
+        Let us move the stock concentration with the slider: the curve stretches, but the rule C1 V1 equals C2 V2 stays the same.
+    actions:
+      - { at: 2, set: { c: 0.15 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de diluer", en: "Your turn to dilute" }
+    tool: dilution
+    text:
+      fr: >-
+        À vous. Faites varier la concentration mère et le volume prélevé, survolez la courbe pour lire la concentration fille, puis passez à l'outil des grandeurs : reconstruisez C à partir de n et V, et la concentration en masse à partir de n, V et M.
+      en: >-
+        Your turn. Vary the stock concentration and the volume taken, hover over the curve to read the diluted concentration, then switch to the quantities tool: rebuild C from n and V, and the mass concentration from n, V and M.
+    actions:
+      - { at: 0, set: { c: 0.1, p: 10 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : une concentration en quantité de matière, puis un volume à prélever pour une dilution.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: a concentration in amount of substance, then a volume to take for a dilution.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.concentration.molar, exercise.concentration.dilution_volume]

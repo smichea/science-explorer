@@ -1,0 +1,44 @@
+# Leçon lentille (Première) — grandissement d'une image réelle à partir de la position de l'objet et de la focale (réponse numérique)
+id: exercise.lens.magnification
+type: numeric
+nodeId: model.thin_lens
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un projecteur utilise une lentille convergente de distance focale $f' = 10\ \mathrm{cm}$. La diapositive, objet $AB$, est placée à $15\ \mathrm{cm}$ de la lentille, soit $\overline{OA} = -15\ \mathrm{cm}$.
+
+    Calculez le grandissement $\gamma = \dfrac{\overline{OA'}}{\overline{OA}}$ de l'image (nombre sans unité, signe compris).
+  en: |-
+    A projector uses a converging lens of focal length $f' = 10\ \mathrm{cm}$. The slide, object $AB$, is placed $15\ \mathrm{cm}$ from the lens, that is $\overline{OA} = -15\ \mathrm{cm}$.
+
+    Compute the magnification $\gamma = \dfrac{\overline{OA'}}{\overline{OA}}$ of the image (a number without unit, sign included).
+numeric:
+  value: -2
+  tolerance: { kind: absolute, value: 0.05 }
+  inputLabel: { fr: "γ", en: "γ" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Commencez par la position de l'image avec la relation de conjugaison : $\dfrac{1}{\overline{OA'}} = \dfrac{1}{f'} + \dfrac{1}{\overline{OA}}$.
+      en: |-
+        Start with the position of the image using the conjugation relation: $\dfrac{1}{\overline{OA'}} = \dfrac{1}{f'} + \dfrac{1}{\overline{OA}}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\dfrac{1}{\overline{OA'}} = \dfrac{1}{10} - \dfrac{1}{15} = \dfrac{1}{30}$, donc $\overline{OA'} = 30\ \mathrm{cm}$ ; divisez par $\overline{OA} = -15\ \mathrm{cm}$.
+      en: |-
+        $\dfrac{1}{\overline{OA'}} = \dfrac{1}{10} - \dfrac{1}{15} = \dfrac{1}{30}$, so $\overline{OA'} = 30\ \mathrm{cm}$; divide by $\overline{OA} = -15\ \mathrm{cm}$.
+solution:
+  fr: |-
+    Relation de conjugaison : $\dfrac{1}{\overline{OA'}} = \dfrac{1}{f'} + \dfrac{1}{\overline{OA}} = \dfrac{1}{10} - \dfrac{1}{15} = \dfrac{3 - 2}{30} = \dfrac{1}{30}$, donc $\overline{OA'} = 30\ \mathrm{cm}$ : l'écran doit être placé à $30\ \mathrm{cm}$ derrière la lentille.
+    $$\gamma = \frac{\overline{OA'}}{\overline{OA}} = \frac{30}{-15} = -2{,}0.$$
+    L'image est **renversée** ($\gamma < 0$) et **deux fois plus grande** que la diapositive ($|\gamma| = 2$) : c'est le réglage d'un projecteur, objet entre $F$ et $2F$, image réelle agrandie. On retrouve $\gamma = \dfrac{\overline{A'B'}}{\overline{AB}}$ : une diapositive de $24\ \mathrm{mm}$ donne une image de $48\ \mathrm{mm}$, à l'envers, ce qui explique pourquoi on la place tête en bas dans le projecteur.
+  en: |-
+    Conjugation relation: $\dfrac{1}{\overline{OA'}} = \dfrac{1}{f'} + \dfrac{1}{\overline{OA}} = \dfrac{1}{10} - \dfrac{1}{15} = \dfrac{3 - 2}{30} = \dfrac{1}{30}$, so $\overline{OA'} = 30\ \mathrm{cm}$: the screen must be placed $30\ \mathrm{cm}$ behind the lens.
+    $$\gamma = \frac{\overline{OA'}}{\overline{OA}} = \frac{30}{-15} = -2.0.$$
+    The image is **inverted** ($\gamma < 0$) and **twice as large** as the slide ($|\gamma| = 2$): this is the setting of a projector, object between $F$ and $2F$, enlarged real image. One recovers $\gamma = \dfrac{\overline{A'B'}}{\overline{AB}}$: a $24\ \mathrm{mm}$ slide gives a $48\ \mathrm{mm}$ image, upside down, which is why it is placed head down in the projector.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

@@ -1,0 +1,89 @@
+# Leçon rédigée — second degré : la parabole a x² + b x + c avec son sommet, les deux racines placées par les formules
+# du discriminant, la bande de signe entre les racines, puis un cas où delta est négatif (paramètres a, b, c).
+id: lesson.tool.quadratic
+nodeId: tool.quadratic
+depth: 1
+tools:
+  - id: plotter
+    kind: plotter
+    variable: x
+    view: { x: [-4, 5], y: [-8, 10] }
+    parameters:
+      - { id: a, label: { fr: "coefficient a", en: "coefficient a" }, min: -2, max: 3, step: 0.25, value: 1 }
+      - { id: b, label: { fr: "coefficient b", en: "coefficient b" }, min: -6, max: 6, step: 0.5, value: -1 }
+      - { id: c, label: { fr: "constante c", en: "constant c" }, min: -6, max: 6, step: 0.5, value: -2 }
+    input: true
+steps:
+  - id: canonical
+    title: { fr: "La parabole et sa forme canonique", en: "The parabola and its canonical form" }
+    text:
+      fr: >-
+        Voici un trinôme du second degré : f de x égale a x carré plus b x plus c, avec a non nul.
+        Sa courbe est une parabole, tournée vers le haut quand a est positif et vers le bas quand a est négatif.
+        La forme canonique, a fois x moins alpha au carré plus bêta, place le sommet en alpha égale moins b sur deux a : ici le sommet est en 0,5 et l'extremum vaut moins 2,25.
+      en: >-
+        Here is a quadratic trinomial: f of x equals a x squared plus b x plus c, with a non-zero.
+        Its curve is a parabola, turned upwards when a is positive and downwards when a is negative.
+        The canonical form, a times x minus alpha squared plus beta, places the vertex at alpha equals minus b over two a: here the vertex is at 0.5 and the extremum is minus 2.25.
+    actions:
+      - { at: 0, plot: { id: f, expr: "a*x^2+b*x+c", label: { fr: "f(x) = a x² + b x + c", en: "f(x) = a x² + b x + c" } } }
+      - { at: 2, point: { id: vertex, on: f, x: "-b/(2*a)", guides: true, label: { fr: "sommet", en: "vertex" } } }
+  - id: discriminant
+    title: { fr: "Le discriminant décide", en: "The discriminant decides" }
+    text:
+      fr: >-
+        Le discriminant delta égale b carré moins quatre a c décide du nombre de racines.
+        Ici delta vaut 1 plus 8, soit 9, qui est positif : la parabole coupe l'axe des abscisses en deux points.
+        Les racines valent moins b moins racine de delta, le tout sur deux a, et moins b plus racine de delta sur deux a, c'est-à-dire moins 1 et 2.
+        Si delta devient négatif, comme avec a égal 1, b égal 1 et c égal 3, la courbe ne touche plus l'axe et le trinôme ne s'annule jamais.
+      en: >-
+        The discriminant delta equals b squared minus four a c decides the number of roots.
+        Here delta is 1 plus 8, that is 9, which is positive: the parabola cuts the axis of abscissae at two points.
+        The roots are minus b minus the square root of delta, all over two a, and minus b plus the square root of delta over two a, that is minus 1 and 2.
+        If delta becomes negative, as with a equal to 1, b equal to 1 and c equal to 3, the curve no longer touches the axis and the trinomial never vanishes.
+    actions:
+      - { at: 2, point: { id: r1, on: f, x: "(-b-sqrt(b^2-4*a*c))/(2*a)", guides: true, label: { fr: "racine x₁", en: "root x₁" } } }
+      - { at: 2, point: { id: r2, on: f, x: "(-b+sqrt(b^2-4*a*c))/(2*a)", guides: true, label: { fr: "racine x₂", en: "root x₂" } } }
+      - { at: 3, set: { a: 1, b: 1, c: 3 } }
+  - id: sign
+    title: { fr: "Le signe du trinôme", en: "The sign of the trinomial" }
+    text:
+      fr: >-
+        Revenons au cas de deux racines.
+        Le trinôme est du signe de a partout, sauf entre les racines, où il est du signe contraire.
+        Ici a est positif, donc f est négative sur l'intervalle allant de moins 1 à 2, et positive à l'extérieur.
+        Résoudre une inéquation du second degré, c'est donc calculer delta, trouver les racines, puis lire ce tableau de signes.
+      en: >-
+        Let us return to the case of two roots.
+        The trinomial has the sign of a everywhere, except between the roots, where it has the opposite sign.
+        Here a is positive, so f is negative on the interval from minus 1 to 2, and positive outside it.
+        Solving a quadratic inequality therefore means computing delta, finding the roots, then reading this sign table.
+    actions:
+      - { at: 0, set: { a: 1, b: -1, c: -2 } }
+      - { at: 2, interval: { id: neg, from: "(-b-sqrt(b^2-4*a*c))/(2*a)", to: "(-b+sqrt(b^2-4*a*c))/(2*a)", label: { fr: "f(x) < 0", en: "f(x) < 0" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de bouger les trois coefficients", en: "Your turn to move the three coefficients" }
+    text:
+      fr: >-
+        À vous. Faites varier a, b et c, et regardez le sommet, les racines et la bande de signe suivre les formules.
+        Cherchez une position où les deux racines se confondent : le discriminant y est nul et la parabole est tangente à l'axe.
+      en: >-
+        Your turn. Vary a, b and c, and watch the vertex, the roots and the sign band follow the formulas.
+        Look for a position where the two roots merge: there the discriminant is zero and the parabola is tangent to the axis.
+    actions:
+      - { at: 0, clear: true, set: { a: 1, b: -1, c: -2 }, plot: { id: f, expr: "a*x^2+b*x+c", label: { fr: "f(x) = a x² + b x + c", en: "f(x) = a x² + b x + c" } } }
+      - { at: 0, point: { id: vertex, on: f, x: "-b/(2*a)", guides: true, label: { fr: "sommet", en: "vertex" } } }
+      - { at: 1, point: { id: r1, on: f, x: "(-b-sqrt(b^2-4*a*c))/(2*a)", label: { fr: "x₁", en: "x₁" } } }
+      - { at: 1, point: { id: r2, on: f, x: "(-b+sqrt(b^2-4*a*c))/(2*a)", label: { fr: "x₂", en: "x₂" } } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : les racines d'un trinôme par le discriminant, puis un minimum lu sur la forme canonique.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the roots of a trinomial through the discriminant, then a minimum read off the canonical form.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.quadratic.discriminant_roots, exercise.quadratic.canonical_vertex]

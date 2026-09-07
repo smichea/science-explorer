@@ -1,0 +1,65 @@
+id: model.photon
+type: model
+world: world.physics
+region: region.physics.quantum
+importance: 3
+tags: [lycee]
+title: { fr: "Lumière : onde et photon, niveaux d'énergie, spectres de raies", en: "Light: wave and photon, energy levels, line spectra" }
+shortPurpose:
+  fr: "Décrire la lumière à la fois comme une onde caractérisée par sa longueur d'onde et comme un flux de photons d'énergie quantifiée."
+  en: "Describe light both as a wave characterised by its wavelength and as a flow of photons of quantised energy."
+overview:
+  fr: >-
+    La lumière se comporte tantôt comme une onde, avec une longueur d'onde et une fréquence, tantôt comme une pluie de grains d'énergie, les photons. L'énergie d'un photon est proportionnelle à la fréquence de la lumière : le violet en transporte plus que le rouge, et l'ultraviolet assez pour abîmer la peau. Dans un atome, l'énergie ne peut prendre que certaines valeurs, comme les barreaux d'une échelle. Un atome qui descend d'un barreau à l'autre émet un photon d'énergie exactement égale à l'écart entre les deux, et c'est pourquoi les gaz émettent des raies et non un arc-en-ciel continu.
+  en: >-
+    Light behaves sometimes as a wave, with a wavelength and a frequency, sometimes as a rain of grains of energy, the photons. The energy of a photon is proportional to the frequency of the light: violet carries more of it than red, and ultraviolet enough to damage the skin. In an atom, energy can only take certain values, like the rungs of a ladder. An atom that goes down from one rung to another emits a photon of energy exactly equal to the gap between the two, and this is why gases emit lines and not a continuous rainbow.
+aliases:
+  fr: ["photon", "quantum d'énergie", "niveaux d'énergie", "spectre de raies", "constante de Planck"]
+  en: ["photon", "quantum of energy", "energy levels", "line spectrum", "Planck constant"]
+description:
+  fr: |
+    Le **modèle ondulatoire** décrit une lumière monochromatique par sa longueur d'onde $\lambda$ dans le vide et sa fréquence $\nu$, liées par $\lambda = \dfrac{c}{\nu}$ avec $c = 3{,}00 \times 10^{8}\ \mathrm{m/s}$ ; il rend compte de la réfraction, de la dispersion et des couleurs. Le **modèle particulaire** décrit la même lumière comme un flux de **photons**, grains d'énergie sans masse se déplaçant à la vitesse $c$, chacun portant l'énergie $E = h\,\nu = \dfrac{h\,c}{\lambda}$, où $h = 6{,}63 \times 10^{-34}\ \mathrm{J \cdot s}$ est la constante de Planck. Les deux modèles ne s'opposent pas : ils décrivent deux aspects du même objet, et l'on choisit celui qui convient à l'expérience. À l'échelle des atomes, on exprime ces énergies en électronvolts, avec $1\ \mathrm{eV} = 1{,}60 \times 10^{-19}\ \mathrm{J}$.
+
+    L'énergie d'un atome est **quantifiée** : elle ne peut prendre que certaines valeurs, les **niveaux d'énergie**, comptées négativement à partir de l'atome ionisé pris comme zéro. Pour l'atome d'hydrogène, les premiers niveaux valent $-13{,}6$, $-3{,}4$, $-1{,}51$, $-0{,}85$ et $-0{,}54\ \mathrm{eV}$. Un atome ne peut passer d'un niveau $E_p$ à un niveau $E_n$ plus bas qu'en **émettant** un photon d'énergie exactement $\Delta E = E_p - E_n = h\,\nu$, et il ne peut monter qu'en **absorbant** un photon de cette même énergie ; toute autre énergie le laisse indifférent. La transition du niveau $-1{,}51$ vers le niveau $-3{,}4\ \mathrm{eV}$ libère $1{,}89\ \mathrm{eV}$, soit $3{,}02 \times 10^{-19}\ \mathrm{J}$, ce qui donne $\lambda = \dfrac{h\,c}{\Delta E} = 656\ \mathrm{nm}$ : la raie rouge caractéristique de l'hydrogène.
+
+    Ces transitions expliquent les **spectres de raies** : un gaz excité n'émet que les longueurs d'onde correspondant à ses écarts de niveaux, et un gaz froid traversé par de la lumière blanche n'absorbe exactement que celles-là, d'où les raies noires du spectre solaire. Chaque élément possède ainsi sa signature, ce qui permet d'identifier la composition d'une étoile sans jamais s'en approcher. Pièges classiques : oublier de convertir les électronvolts en joules avant d'appliquer $E = h\,\nu$ ; prendre l'écart entre deux niveaux avec le mauvais signe, alors qu'un photon émis a toujours une énergie positive ; croire qu'un atome peut absorber un photon « un peu trop énergétique ». En Terminale, ce modèle se prolonge par la description quantique de l'interaction entre lumière et matière.
+  en: |
+    The **wave model** describes a monochromatic light by its wavelength $\lambda$ in a vacuum and its frequency $\nu$, linked by $\lambda = \dfrac{c}{\nu}$ with $c = 3.00 \times 10^{8}\ \mathrm{m/s}$; it accounts for refraction, dispersion and colours. The **particle model** describes the same light as a flow of **photons**, massless grains of energy travelling at the speed $c$, each carrying the energy $E = h\,\nu = \dfrac{h\,c}{\lambda}$, where $h = 6.63 \times 10^{-34}\ \mathrm{J \cdot s}$ is the Planck constant. The two models do not contradict each other: they describe two aspects of the same object, and one chooses the one that suits the experiment. At the scale of atoms, these energies are expressed in electronvolts, with $1\ \mathrm{eV} = 1.60 \times 10^{-19}\ \mathrm{J}$.
+
+    The energy of an atom is **quantised**: it can only take certain values, the **energy levels**, counted negatively from the ionised atom taken as zero. For the hydrogen atom, the first levels are $-13.6$, $-3.4$, $-1.51$, $-0.85$ and $-0.54\ \mathrm{eV}$. An atom can only go from a level $E_p$ to a lower level $E_n$ by **emitting** a photon of energy exactly $\Delta E = E_p - E_n = h\,\nu$, and it can only go up by **absorbing** a photon of that same energy; any other energy leaves it unaffected. The transition from the level $-1.51$ to the level $-3.4\ \mathrm{eV}$ releases $1.89\ \mathrm{eV}$, that is $3.02 \times 10^{-19}\ \mathrm{J}$, which gives $\lambda = \dfrac{h\,c}{\Delta E} = 656\ \mathrm{nm}$: the characteristic red line of hydrogen.
+
+    These transitions explain the **line spectra**: an excited gas emits only the wavelengths corresponding to its level gaps, and a cold gas crossed by white light absorbs exactly those and no others, hence the black lines of the solar spectrum. Each element thus has its signature, which makes it possible to identify the composition of a star without ever coming near it. Classic traps: forgetting to convert electronvolts into joules before applying $E = h\,\nu$; taking the gap between two levels with the wrong sign, when an emitted photon always has a positive energy; believing that an atom can absorb a photon that is "a little too energetic". In Grade 12, this model is extended by the quantum description of the interaction between light and matter.
+model:
+  assumptions:
+    fr:
+      - "Une lumière monochromatique est décrite indifféremment par une onde de longueur d'onde $\\lambda$ et de fréquence $\\nu = c/\\lambda$, ou par un flux de photons d'énergie $E = h\\,\\nu$."
+      - "L'énergie d'un atome est quantifiée : elle ne prend que les valeurs d'une liste de niveaux, l'état fondamental étant le plus bas."
+      - "Une transition entre deux niveaux s'accompagne de l'émission ou de l'absorption d'un unique photon dont l'énergie vaut exactement l'écart entre les niveaux."
+    en:
+      - "A monochromatic light is described equally well by a wave of wavelength $\\lambda$ and frequency $\\nu = c/\\lambda$, or by a flow of photons of energy $E = h\\,\\nu$."
+      - "The energy of an atom is quantised: it takes only the values of a list of levels, the ground state being the lowest."
+      - "A transition between two levels goes with the emission or the absorption of a single photon whose energy is exactly the gap between the levels."
+  limits:
+    fr:
+      - "Les niveaux tabulés sont ceux de l'atome d'hydrogène isolé ; dans une molécule, dans un solide ou dans un gaz dense, les niveaux se déplacent et les raies s'élargissent en bandes."
+      - "Le modèle donne l'énergie et la longueur d'onde d'une raie, mais pas son intensité ni la durée de vie d'un état excité."
+      - "Les aspects ondulatoire et particulaire ne se manifestent jamais dans la même expérience : le modèle de Première ne dit pas comment ils se concilient."
+    en:
+      - "The tabulated levels are those of the isolated hydrogen atom; in a molecule, in a solid or in a dense gas, the levels shift and the lines broaden into bands."
+      - "The model gives the energy and the wavelength of a line, but neither its intensity nor the lifetime of an excited state."
+      - "The wave and particle aspects never show up in the same experiment: the Grade 11 model does not say how they are reconciled."
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "relier longueur d'onde, fréquence et célérité d'une lumière monochromatique par $\\lambda = c / \\nu$"
+        - "calculer l'énergie d'un photon par $E = h\\,\\nu = h\\,c / \\lambda$ et la convertir entre joules et électronvolts"
+        - "exploiter un diagramme de niveaux d'énergie pour prévoir l'énergie et la longueur d'onde d'un photon émis ou absorbé"
+        - "interpréter un spectre de raies d'émission ou d'absorption comme la signature des transitions d'une entité chimique"
+      en:
+        - "relate wavelength, frequency and speed of a monochromatic light by $\\lambda = c / \\nu$"
+        - "compute the energy of a photon by $E = h\\,\\nu = h\\,c / \\lambda$ and convert it between joules and electronvolts"
+        - "use an energy level diagram to predict the energy and the wavelength of an emitted or absorbed photon"
+        - "interpret an emission or absorption line spectrum as the signature of the transitions of a chemical entity"

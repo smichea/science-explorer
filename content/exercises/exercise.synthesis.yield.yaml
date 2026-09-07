@@ -1,0 +1,69 @@
+# Leçon synthèse organique — rendement d'une estérification à partir de la masse d'ester isolée (réponse numérique)
+id: exercise.synthesis.yield
+type: numeric
+nodeId: method.organic_synthesis
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On réalise l'estérification de l'acide éthanoïque par l'éthanol, modélisée par
+    $$\mathrm{CH_3COOH} + \mathrm{C_2H_5OH} \to \mathrm{CH_3COOC_2H_5} + \mathrm{H_2O}.$$
+
+    On introduit $0{,}40\ \mathrm{mol}$ d'acide éthanoïque et $0{,}60\ \mathrm{mol}$ d'éthanol. Après chauffage à reflux, isolement et purification, on recueille $26{,}4\ \mathrm{g}$ d'éthanoate d'éthyle.
+
+    Donnée : $M(\mathrm{CH_3COOC_2H_5}) = 88\ \mathrm{g/mol}$.
+
+    Donnez le rendement de cette synthèse, en $\%$.
+  en: |-
+    The esterification of ethanoic acid by ethanol is carried out, modelled by
+    $$\mathrm{CH_3COOH} + \mathrm{C_2H_5OH} \to \mathrm{CH_3COOC_2H_5} + \mathrm{H_2O}.$$
+
+    $0.40\ \mathrm{mol}$ of ethanoic acid and $0.60\ \mathrm{mol}$ of ethanol are introduced. After heating under reflux, isolation and purification, $26.4\ \mathrm{g}$ of ethyl ethanoate is collected.
+
+    Datum: $M(\mathrm{CH_3COOC_2H_5}) = 88\ \mathrm{g/mol}$.
+
+    Give the yield of this synthesis, in $\%$.
+numeric:
+  value: 75
+  unit: "%"
+  tolerance: { kind: absolute, value: 2 }
+  inputLabel: { fr: "rendement η", en: "yield η" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le rendement compare ce que l'on a réellement isolé à ce que le tableau d'avancement permettait d'espérer : commencez par déterminer le réactif limitant.
+      en: |-
+        The yield compares what was actually isolated with what the extent table allowed one to hope for: start by determining the limiting reactant.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Convertissez la masse isolée en quantité de matière avec $n = \dfrac{m}{M}$, puis calculez $\eta = \dfrac{n_{\text{obtenu}}}{n_{\max}}$.
+      en: |-
+        Convert the isolated mass into an amount of substance with $n = \dfrac{m}{M}$, then compute $\eta = \dfrac{n_{\text{obtained}}}{n_{\max}}$.
+solution:
+  fr: |-
+    Tous les nombres stœchiométriques valent $1$ : l'acide borne l'avancement à $\dfrac{0{,}40}{1} = 0{,}40\ \mathrm{mol}$, l'éthanol à $\dfrac{0{,}60}{1} = 0{,}60\ \mathrm{mol}$. L'**acide éthanoïque** est donc le réactif limitant, $x_{\max} = 0{,}40\ \mathrm{mol}$, et la quantité maximale d'ester que la transformation pourrait former vaut
+    $$n_{\max} = 1 \times x_{\max} = 0{,}40\ \mathrm{mol}.$$
+
+    La masse réellement isolée correspond à
+    $$n_{\text{obtenu}} = \frac{m}{M} = \frac{26{,}4}{88} = 0{,}300\ \mathrm{mol}.$$
+
+    D'où le rendement
+    $$\eta = \frac{n_{\text{obtenu}}}{n_{\max}} = \frac{0{,}300}{0{,}40} = 0{,}75, \quad\text{soit}\quad 75\ \%.$$
+
+    Un quart de ce que l'on pouvait espérer manque : l'estérification n'est pas totale et s'arrête à un équilibre, et du produit se perd à chaque étape d'isolement et de purification. On améliore le rendement en mettant l'éthanol en excès plus large, en éliminant l'eau au fur et à mesure de sa formation, ou en choisissant un catalyseur acide. Attention à ne pas confondre le rendement, un rapport de quantités, et l'avancement, une quantité de matière.
+  en: |-
+    All the stoichiometric coefficients are $1$: the acid bounds the extent at $\dfrac{0.40}{1} = 0.40\ \mathrm{mol}$, ethanol at $\dfrac{0.60}{1} = 0.60\ \mathrm{mol}$. **Ethanoic acid** is therefore the limiting reactant, $x_{\max} = 0.40\ \mathrm{mol}$, and the maximum amount of ester the transformation could form is
+    $$n_{\max} = 1 \times x_{\max} = 0.40\ \mathrm{mol}.$$
+
+    The mass actually isolated corresponds to
+    $$n_{\text{obtained}} = \frac{m}{M} = \frac{26.4}{88} = 0.300\ \mathrm{mol}.$$
+
+    Hence the yield
+    $$\eta = \frac{n_{\text{obtained}}}{n_{\max}} = \frac{0.300}{0.40} = 0.75, \quad\text{that is}\quad 75\ \%.$$
+
+    A quarter of what could be hoped for is missing: esterification is not complete and stops at an equilibrium, and some product is lost at each isolation and purification step. The yield is improved by putting ethanol in a larger excess, by removing the water as it forms, or by choosing an acid catalyst. Take care not to confuse the yield, a ratio of amounts, with the extent, an amount of substance.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 3, transfer: 2, autonomy: 2 }

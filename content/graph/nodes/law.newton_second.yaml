@@ -10,38 +10,52 @@ shortPurpose:
   en: Relate the forces acting on a system to the change of its velocity.
 overview:
   fr: >-
-    La deuxième loi de Newton relie les forces exercées sur un système à la variation de sa vitesse. Avec elle, connaître les forces permet de prédire le mouvement. Écrite avec des vecteurs et des dérivées, elle transforme chaque problème de mécanique en une équation différentielle.
+    La deuxième loi de Newton relie les forces exercées sur un système à la variation de sa vitesse. En Première, on la découvre avec le vecteur variation de vitesse : la somme des forces a la direction et le sens de ce vecteur, et la masse mesure la résistance du système. En Terminale, elle s'écrit avec l'accélération et transforme chaque problème de mécanique en une équation différentielle.
   en: >-
-    Newton's second law relates the forces acting on a system to the change of its velocity. With it, knowing the forces makes the motion predictable. Written with vectors and derivatives, it turns every mechanics problem into a differential equation.
+    Newton's second law relates the forces acting on a system to the change of its velocity. In Grade 11, it is discovered through the velocity-variation vector: the sum of the forces has the direction and the sense of that vector, and the mass measures the resistance of the system. In Grade 12, it is written with the acceleration and turns every mechanics problem into a differential equation.
 aliases:
   fr: ["principe fondamental de la dynamique", "PFD", "relation fondamentale de la dynamique", "deuxième loi du mouvement"]
   en: ["fundamental principle of dynamics", "F = ma", "equation of motion", "second law of motion"]
 description:
   fr: |
-    Dans un référentiel galiléen, la somme des forces exercées sur un point matériel de masse $m$ est égale à la dérivée de sa quantité de mouvement $\vec p = m\,\vec v$ :
+    En Première, on compare la somme des forces exercées sur un système à la variation de son vecteur vitesse entre deux instants voisins, $\Delta\vec v = \vec v(t + \Delta t) - \vec v(t)$. Dans un référentiel galiléen, la **relation approchée** $\sum \vec F \approx m\,\dfrac{\Delta\vec v}{\Delta t}$ dit que la somme des forces et $\Delta\vec v$ ont même direction et même sens, et qu'à forces égales la vitesse d'un système de grande masse varie moins : la masse mesure l'inertie. Quand $\Delta t$ tend vers zéro, le quotient $\dfrac{\Delta\vec v}{\Delta t}$ devient la dérivée de la vitesse, l'**accélération** $\vec a$, et la loi prend la forme exacte énoncée en Terminale, avec la quantité de mouvement $\vec p = m\,\vec v$ :
     $$\sum \vec F = \frac{\mathrm{d}\vec p}{\mathrm{d}t}, \qquad \text{soit, à masse constante,} \qquad \sum \vec F = m\,\vec a.$$
-    La loi ne dit pas que la force produit la vitesse, mais qu'elle produit **l'accélération**, c'est-à-dire la *variation* de la vitesse : un objet sur lequel ne s'exerce aucune force résultante conserve sa vitesse (première loi). C'est pour cela que la dérivée est indispensable pour l'énoncer.
+    La loi ne dit pas que la force produit la vitesse, mais qu'elle produit la *variation* de la vitesse : un objet sur lequel ne s'exerce aucune force résultante conserve sa vitesse (première loi).
 
-    La deuxième loi est la charnière entre la dynamique et la cinématique : à gauche, un bilan des forces (poids, réaction du support, frottement, force électrique) ; à droite, une dérivée seconde de la position. Elle transforme donc chaque situation physique en **équation différentielle** : $m\,\ddot z = -mg$ pour la chute libre, $m\,\ddot x = mg\sin\theta$ sur un plan incliné sans frottement, $m\,\dot v = mg - k\,v$ avec frottement fluide. Résoudre cette équation, c'est prédire le mouvement.
+    La deuxième loi est la charnière entre la dynamique et la cinématique : à gauche, un bilan des forces (poids, réaction du support, frottement, force électrique) ; à droite, la variation de la vitesse. Une balle de $0{,}50\ \mathrm{kg}$ lancée horizontalement à $4{,}0\ \mathrm{m/s}$ a, $0{,}20\ \mathrm{s}$ plus tard, une vitesse de $4{,}0\ \mathrm{m/s}$ horizontale et $2{,}0\ \mathrm{m/s}$ vers le bas : $\Delta\vec v$ est vertical, dirigé vers le bas, de norme $2{,}0\ \mathrm{m/s}$, et $m\,\dfrac{\Delta\vec v}{\Delta t}$ vaut $0{,}50 \times 2{,}0 / 0{,}20 = 5{,}0\ \mathrm{N}$, la valeur du poids : la seule force est bien le poids, vertical, alors que la vitesse ne l'est pas. Écrite avec l'accélération, la loi transforme chaque situation en **équation différentielle** : $m\,\ddot z = -mg$ pour la chute libre, $m\,\ddot x = mg\sin\theta$ sur un plan incliné sans frottement, $m\,\dot v = mg - k\,v$ avec frottement fluide. Résoudre cette équation, c'est prédire le mouvement.
 
-    Sa validité est celle de la mécanique classique : vitesses petites devant $c$, systèmes macroscopiques, référentiel galiléen (sinon il faut ajouter des forces d'inertie). Galilée n'en disposait pas : il a établi la loi de la chute par la mesure et la géométrie, et c'est Newton qui, en 1687, en a fait la conséquence d'un principe général.
+    Sa validité est celle de la mécanique classique : vitesses petites devant $c$, systèmes macroscopiques, référentiel galiléen (sinon il faut ajouter des forces d'inertie). Deux pièges : confondre la direction de la vitesse et celle de la somme des forces (un projectile monte alors que son poids le tire vers le bas), et oublier que la relation de Première n'est qu'approchée, d'autant meilleure que $\Delta t$ est court. Galilée n'en disposait pas : il a établi la loi de la chute par la mesure et la géométrie, et c'est Newton qui, en 1687, en a fait la conséquence d'un principe général.
   en: |
-    In a Galilean frame of reference, the sum of the forces acting on a point mass $m$ equals the derivative of its momentum $\vec p = m\,\vec v$:
+    In Grade 11, the sum of the forces acting on a system is compared with the variation of its velocity vector between two close instants, $\Delta\vec v = \vec v(t + \Delta t) - \vec v(t)$. In a Galilean frame of reference, the **approximate relation** $\sum \vec F \approx m\,\dfrac{\Delta\vec v}{\Delta t}$ says that the sum of the forces and $\Delta\vec v$ have the same direction and the same sense, and that for equal forces the velocity of a system of large mass changes less: mass measures inertia. When $\Delta t$ tends to zero, the quotient $\dfrac{\Delta\vec v}{\Delta t}$ becomes the derivative of the velocity, the **acceleration** $\vec a$, and the law takes the exact form stated in Grade 12, with the momentum $\vec p = m\,\vec v$:
     $$\sum \vec F = \frac{\mathrm{d}\vec p}{\mathrm{d}t}, \qquad \text{that is, at constant mass,} \qquad \sum \vec F = m\,\vec a.$$
-    The law does not say that force produces velocity, but that it produces **acceleration**, that is, the *change* of velocity: an object on which no net force acts keeps its velocity (first law). This is why the derivative is indispensable to state it.
+    The law does not say that force produces velocity, but that it produces the *change* of velocity: an object on which no net force acts keeps its velocity (first law).
 
-    The second law is the hinge between dynamics and kinematics: on the left, an inventory of forces (weight, normal reaction, friction, electric force); on the right, a second derivative of the position. It therefore turns every physical situation into a **differential equation**: $m\,\ddot z = -mg$ for free fall, $m\,\ddot x = mg\sin\theta$ on a frictionless inclined plane, $m\,\dot v = mg - k\,v$ with fluid drag. Solving that equation is predicting the motion.
+    The second law is the hinge between dynamics and kinematics: on the left, an inventory of forces (weight, normal reaction, friction, electric force); on the right, the change of the velocity. A ball of $0.50\ \mathrm{kg}$ thrown horizontally at $4.0\ \mathrm{m/s}$ has, $0.20\ \mathrm{s}$ later, a velocity of $4.0\ \mathrm{m/s}$ horizontally and $2.0\ \mathrm{m/s}$ downwards: $\Delta\vec v$ is vertical, pointing downwards, of magnitude $2.0\ \mathrm{m/s}$, and $m\,\dfrac{\Delta\vec v}{\Delta t}$ is $0.50 \times 2.0 / 0.20 = 5.0\ \mathrm{N}$, the value of the weight: the only force is indeed the weight, vertical, whereas the velocity is not. Written with the acceleration, the law turns every situation into a **differential equation**: $m\,\ddot z = -mg$ for free fall, $m\,\ddot x = mg\sin\theta$ on a frictionless inclined plane, $m\,\dot v = mg - k\,v$ with fluid drag. Solving that equation is predicting the motion.
 
-    Its validity is that of classical mechanics: speeds small compared with $c$, macroscopic systems, Galilean frame (otherwise inertial forces must be added). Galileo did not have it: he established the law of fall through measurement and geometry, and it was Newton who, in 1687, made it the consequence of a general principle.
+    Its validity is that of classical mechanics: speeds small compared with $c$, macroscopic systems, Galilean frame (otherwise inertial forces must be added). Two traps: confusing the direction of the velocity with that of the sum of the forces (a projectile rises while its weight pulls it down), and forgetting that the Grade 11 relation is only approximate, all the better as $\Delta t$ is short. Galileo did not have it: he established the law of fall through measurement and geometry, and it was Newton who, in 1687, made it the consequence of a general principle.
 law:
   statement:
-    fr: "Dans un référentiel galiléen, la somme vectorielle des forces appliquées à un point matériel est égale à la dérivée par rapport au temps de sa quantité de mouvement : $\\sum \\vec F = \\dfrac{\\mathrm{d}\\vec p}{\\mathrm{d}t} = m\\,\\vec a$ à masse constante."
-    en: "In a Galilean frame of reference, the vector sum of the forces applied to a point mass equals the time derivative of its momentum: $\\sum \\vec F = \\dfrac{\\mathrm{d}\\vec p}{\\mathrm{d}t} = m\\,\\vec a$ at constant mass."
+    fr: "Dans un référentiel galiléen, la somme vectorielle des forces appliquées à un point matériel est égale à la dérivée par rapport au temps de sa quantité de mouvement : $\\sum \\vec F = \\dfrac{\\mathrm{d}\\vec p}{\\mathrm{d}t} = m\\,\\vec a$ à masse constante ; entre deux instants voisins, $\\sum \\vec F \\approx m\\,\\dfrac{\\Delta\\vec v}{\\Delta t}$."
+    en: "In a Galilean frame of reference, the vector sum of the forces applied to a point mass equals the time derivative of its momentum: $\\sum \\vec F = \\dfrac{\\mathrm{d}\\vec p}{\\mathrm{d}t} = m\\,\\vec a$ at constant mass; between two close instants, $\\sum \\vec F \\approx m\\,\\dfrac{\\Delta\\vec v}{\\Delta t}$."
   validity:
     fr: "Mécanique classique : référentiel galiléen (ou forces d'inertie ajoutées), vitesses très inférieures à celle de la lumière, objets macroscopiques ; pour un solide, s'applique au centre de masse."
     en: "Classical mechanics: Galilean frame (or inertial forces added), speeds much smaller than that of light, macroscopic objects; for a solid, applies to the centre of mass."
 depths:
   - depth: 1
+    stage: premiere
+    role: discovery
+    outcomes:
+      fr:
+        - "modéliser les actions exercées sur un système par des forces et construire leur somme vectorielle"
+        - "tracer le vecteur variation de vitesse $\\Delta\\vec v = \\vec v(t + \\Delta t) - \\vec v(t)$ entre deux instants voisins"
+        - "utiliser la relation approchée $\\sum \\vec F \\approx m\\,\\dfrac{\\Delta\\vec v}{\\Delta t}$ : même direction et même sens que $\\Delta\\vec v$, rôle de la masse"
+        - "appliquer cette relation à une chute libre et au mouvement d'un projectile dans le champ de pesanteur"
+      en:
+        - "model the actions exerted on a system by forces and construct their vector sum"
+        - "draw the velocity-variation vector $\\Delta\\vec v = \\vec v(t + \\Delta t) - \\vec v(t)$ between two close instants"
+        - "use the approximate relation $\\sum \\vec F \\approx m\\,\\dfrac{\\Delta\\vec v}{\\Delta t}$: same direction and same sense as $\\Delta\\vec v$, role of the mass"
+        - "apply this relation to a free fall and to the motion of a projectile in the gravitational field"
+  - depth: 2
     stage: terminale
     role: core
     outcomes:
@@ -64,7 +78,7 @@ depths:
         **Statement.** In a Galilean frame, for a system of constant mass $m$: $\sum \vec F = m\,\vec a$. The net force and the acceleration have the same direction and orientation; the velocity may point elsewhere (a projectile rises while its weight pulls it down). If $\sum \vec F = \vec 0$, then $\vec a = \vec 0$ and the motion is uniform and rectilinear or the system stays at rest: this is the principle of inertia.
 
         **Method.** 1. Choose the system and the frame of reference. 2. List the forces. 3. Write $m\,\vec a = \sum \vec F$ and project onto well-chosen axes. 4. Integrate twice using the initial conditions. In a uniform gravitational field, $\vec a = \vec g$ whatever the mass: $\ddot z = -g$, $\dot z = -g\,t + v_{0z}$, $z = -\tfrac12 g t^2 + v_{0z}\,t + z_0$. This is the modern proof of the law Galileo had measured.
-  - depth: 2
+  - depth: 3
     stage: mpsi
     role: core
     outcomes:

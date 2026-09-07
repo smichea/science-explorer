@@ -35,7 +35,7 @@ description:
     The rate of change says nothing about what happens *at a precise instant*: between two readings the body may speed up. Shrinking the interval ($h \to 0$) makes the secant tend to the tangent and the rate of change to the derivative: this passage from average to instantaneous is precisely the construction of the derivative.
 depths:
   - depth: 1
-    stage: terminale
+    stage: premiere
     role: core
     outcomes:
       fr:

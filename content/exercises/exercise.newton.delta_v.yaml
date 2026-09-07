@@ -1,0 +1,45 @@
+# Leçon deuxième loi de Newton (Première) — norme du vecteur variation de vitesse d'une balle lancée horizontalement (réponse numérique)
+id: exercise.newton.delta_v
+type: numeric
+nodeId: law.newton_second
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une balle de masse $m = 0{,}50\ \mathrm{kg}$ est lancée horizontalement. À l'instant $t$, sa vitesse est horizontale, de valeur $4{,}0\ \mathrm{m/s}$. À l'instant $t + \Delta t$, avec $\Delta t = 0{,}20\ \mathrm{s}$, sa vitesse a une composante horizontale de $4{,}0\ \mathrm{m/s}$ et une composante verticale de $2{,}0\ \mathrm{m/s}$ dirigée vers le bas.
+
+    Calculez la norme du vecteur variation de vitesse $\Delta\vec v = \vec v(t + \Delta t) - \vec v(t)$, en mètres par seconde.
+  en: |-
+    A ball of mass $m = 0.50\ \mathrm{kg}$ is thrown horizontally. At the instant $t$, its velocity is horizontal, of value $4.0\ \mathrm{m/s}$. At the instant $t + \Delta t$, with $\Delta t = 0.20\ \mathrm{s}$, its velocity has a horizontal component of $4.0\ \mathrm{m/s}$ and a vertical component of $2.0\ \mathrm{m/s}$ pointing downwards.
+
+    Compute the magnitude of the velocity-variation vector $\Delta\vec v = \vec v(t + \Delta t) - \vec v(t)$, in metres per second.
+numeric:
+  value: 2
+  unit: "m/s"
+  tolerance: { kind: absolute, value: 0.05 }
+  inputLabel: { fr: "‖Δv‖", en: "‖Δv‖" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Un vecteur se soustrait coordonnée par coordonnée : prenez un axe horizontal et un axe vertical dirigé vers le haut, et écrivez les coordonnées de $\vec v(t)$ et de $\vec v(t + \Delta t)$.
+      en: |-
+        A vector is subtracted coordinate by coordinate: take a horizontal axis and a vertical axis pointing upwards, and write the coordinates of $\vec v(t)$ and of $\vec v(t + \Delta t)$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\vec v(t) = (4{,}0 ; 0)$ et $\vec v(t + \Delta t) = (4{,}0 ; -2{,}0)$, donc $\Delta\vec v = (4{,}0 - 4{,}0 ; -2{,}0 - 0)$.
+      en: |-
+        $\vec v(t) = (4.0, 0)$ and $\vec v(t + \Delta t) = (4.0, -2.0)$, so $\Delta\vec v = (4.0 - 4.0, -2.0 - 0)$.
+solution:
+  fr: |-
+    Avec un axe vertical dirigé vers le haut, $\vec v(t) = (4{,}0 ; 0)$ et $\vec v(t + \Delta t) = (4{,}0 ; -2{,}0)$ en $\mathrm{m/s}$, donc
+    $$\Delta\vec v = \vec v(t + \Delta t) - \vec v(t) = (0 ; -2{,}0), \qquad \|\Delta\vec v\| = 2{,}0\ \mathrm{m/s}.$$
+    Le vecteur variation de vitesse est vertical, dirigé vers le bas, alors que la vitesse est presque horizontale. La relation approchée $\sum \vec F \approx m\,\dfrac{\Delta\vec v}{\Delta t}$ donne une somme des forces verticale, vers le bas, de valeur $0{,}50 \times 2{,}0 / 0{,}20 = 5{,}0\ \mathrm{N}$ : c'est le poids de la balle, $m g \approx 4{,}9\ \mathrm{N}$, la seule force en jeu quand on néglige l'air.
+  en: |-
+    With a vertical axis pointing upwards, $\vec v(t) = (4.0, 0)$ and $\vec v(t + \Delta t) = (4.0, -2.0)$ in $\mathrm{m/s}$, so
+    $$\Delta\vec v = \vec v(t + \Delta t) - \vec v(t) = (0, -2.0), \qquad \|\Delta\vec v\| = 2.0\ \mathrm{m/s}.$$
+    The velocity-variation vector is vertical, pointing downwards, whereas the velocity is almost horizontal. The approximate relation $\sum \vec F \approx m\,\dfrac{\Delta\vec v}{\Delta t}$ gives a sum of the forces that is vertical, downwards, of value $0.50 \times 2.0 / 0.20 = 5.0\ \mathrm{N}$: this is the weight of the ball, $m g \approx 4.9\ \mathrm{N}$, the only force at play when the air is neglected.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

@@ -11,9 +11,9 @@ shortPurpose:
   en: Describe an instantaneous rate of change and the slope of a curve at a point.
 overview:
   fr: >-
-    La dérivée est l'outil central de tout le voyage. Elle donne la vitesse de variation à un instant, et la pente d'une courbe en un point. Construite en Terminale, elle se précise en MPSI avec les limites, puis s'étend en MP à plusieurs variables. Vous la retrouverez dans huit phénomènes de physique et de chimie.
+    La dérivée est l'outil central de tout le voyage. Elle donne la vitesse de variation à un instant, et la pente d'une courbe en un point. Construite en Première, approfondie en Terminale avec les fonctions composées et la convexité, refondée en MPSI avec les limites, elle s'étend en MP à plusieurs variables. Vous la retrouverez dans huit phénomènes de physique et de chimie.
   en: >-
-    The derivative is the central tool of the whole journey. It gives the rate of change at an instant, and the slope of a curve at a point. Built in Grade 12, sharpened in MPSI with limits, extended in MP to several variables, it returns in eight phenomena of physics and chemistry.
+    The derivative is the central tool of the whole journey. It gives the rate of change at an instant, and the slope of a curve at a point. Built in Grade 11, deepened in Grade 12 with composite functions and convexity, refounded in MPSI with limits, it extends in MP to several variables. You will meet it again in eight phenomena of physics and chemistry.
 aliases:
   fr: ["nombre dérivé", "fonction dérivée", "taux de variation instantané", "dérivation"]
   en: ["differential coefficient", "derived function", "instantaneous rate of change", "differentiation"]
@@ -25,7 +25,7 @@ description:
 
     La dérivée est l'outil central de l'atlas parce qu'elle traduit toute loi d'évolution en équation : « la vitesse de disparition est proportionnelle à la quantité restante » devient $y' = -ky$ ; « la force impose l'accélération » devient $m\,x'' = F$. Une fois la dérivée maîtrisée, le même geste s'applique à la chute d'une bille, à la charge d'un condensateur, à la disparition d'un réactif ou à la désintégration d'un noyau : seule l'interprétation des lettres change.
 
-    Sa construction progresse avec les années. En Terminale, on apprend la définition par la limite, les formules de dérivation et la lecture cinématique. En MPSI, on précise la notion de dérivabilité, l'approximation locale $f(a+h) \approx f(a) + f'(a)\,h$ et les théorèmes qui relient le signe de la dérivée aux variations (Rolle, accroissements finis). En MP, la dérivée devient différentielle et gradient pour les fonctions de plusieurs variables, avec l'optimisation en ligne de mire.
+    Sa construction progresse avec les années. En Première, on apprend la définition par la limite du taux de variation, l'équation de la tangente, les formules de dérivation des fonctions usuelles et des opérations, le lien entre le signe de $f'$ et les variations, et la lecture cinématique. En Terminale, on dérive les fonctions composées $v \circ u$, on introduit la dérivée seconde, la convexité et les points d'inflexion, et l'on dérive le logarithme. En MPSI, on précise la notion de dérivabilité, l'approximation locale $f(a+h) \approx f(a) + f'(a)\,h$ et les théorèmes qui relient le signe de la dérivée aux variations (Rolle, accroissements finis). En MP, la dérivée devient différentielle et gradient pour les fonctions de plusieurs variables, avec l'optimisation en ligne de mire.
   en: |
     The **derivative** answers a question that measurements alone cannot settle: how fast is a quantity changing *at a given instant*? A clock and a ruler give an average velocity between two readings; the derivative is the limit of that average velocity as the interval closes in on the instant:
     $$f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}.$$
@@ -33,7 +33,7 @@ description:
 
     The derivative is the central tool of the atlas because it turns every law of evolution into an equation: "the rate of disappearance is proportional to the remaining quantity" becomes $y' = -ky$; "force dictates acceleration" becomes $m\,x'' = F$. Once the derivative is mastered, the same move applies to a rolling ball, a charging capacitor, a disappearing reactant or a decaying nucleus: only the meaning of the letters changes.
 
-    Its construction grows over the years. In Grade 12, one learns the definition by a limit, the differentiation rules and the kinematic reading. In MPSI, the notion of differentiability is made precise, together with the local approximation $f(a+h) \approx f(a) + f'(a)\,h$ and the theorems linking the sign of the derivative to variations (Rolle, mean value). In MP, the derivative becomes differential and gradient for functions of several variables, with optimisation in view.
+    Its construction grows over the years. In Grade 11, one learns the definition as the limit of the rate of change, the equation of the tangent, the differentiation rules for the usual functions and the operations, the link between the sign of $f'$ and the variations, and the kinematic reading. In Grade 12, one differentiates composite functions $v \circ u$, introduces the second derivative, convexity and inflection points, and differentiates the logarithm. In MPSI, the notion of differentiability is made precise, together with the local approximation $f(a+h) \approx f(a) + f'(a)\,h$ and the theorems linking the sign of the derivative to variations (Rolle, mean value). In MP, the derivative becomes differential and gradient for functions of several variables, with optimisation in view.
 tool:
   problemSolved:
     fr: "Connaître la vitesse instantanée de variation d'une grandeur, et donc la pente d'une courbe en un point, alors que l'on ne sait mesurer que des variations moyennes sur un intervalle."
@@ -44,19 +44,19 @@ tool:
   icon: slope
 depths:
   - depth: 1
-    stage: terminale
+    stage: premiere
     role: core
     outcomes:
       fr:
         - "interpréter un nombre dérivé comme un taux de variation instantané et comme la pente d'une tangente"
         - "relier position, vitesse et accélération par dérivation"
-        - "dériver les fonctions de référence, une somme, un produit, un quotient et une composée $v \\circ u$"
+        - "dériver les fonctions usuelles $x^n$, $1/x$, $\\sqrt{x}$ et $e^x$, une somme, un produit, un quotient et une fonction $x \\mapsto g(ax+b)$"
         - "déterminer l'équation d'une tangente et le sens de variation d'une fonction à partir du signe de sa dérivée"
         - "reconnaître une accélération constante dans une position quadratique en $t$"
       en:
         - "interpret a derivative as an instantaneous rate of change and as the slope of a tangent"
         - "connect position, velocity and acceleration by differentiation"
-        - "differentiate reference functions, a sum, a product, a quotient and a composite $v \\circ u$"
+        - "differentiate the usual functions $x^n$, $1/x$, $\\sqrt{x}$ and $e^x$, a sum, a product, a quotient and a function $x \\mapsto g(ax+b)$"
         - "find the equation of a tangent and the variations of a function from the sign of its derivative"
         - "recognise a constant acceleration in a position that is quadratic in $t$"
     lesson:
@@ -65,7 +65,7 @@ depths:
         $$f'(a) = \lim_{h\to 0}\frac{f(a+h)-f(a)}{h}.$$
         La droite passant par le point $A(a,\, f(a))$ et de coefficient directeur $f'(a)$ est la **tangente** à la courbe en $A$ ; son équation est $y = f'(a)(x - a) + f(a)$. Lorsque $f$ est dérivable en tout point, la fonction $x \mapsto f'(x)$ est la **fonction dérivée**, notée $f'$ (ou $\dfrac{\mathrm{d}f}{\mathrm{d}x}$ en physique).
 
-        **Formules.** $(x^n)' = n\,x^{n-1}$ pour $n$ entier, $(\sqrt{x})' = \dfrac{1}{2\sqrt{x}}$, $\left(\dfrac1x\right)' = -\dfrac{1}{x^2}$, $(e^x)' = e^x$, $(\ln x)' = \dfrac1x$, $(\sin x)' = \cos x$, $(\cos x)' = -\sin x$. Pour des fonctions dérivables $u$ et $v$ : $(u+v)' = u' + v'$, $(k\,u)' = k\,u'$, $(uv)' = u'v + uv'$, $\left(\dfrac{u}{v}\right)' = \dfrac{u'v - uv'}{v^2}$ et, pour la composée, $(v \circ u)' = (v' \circ u) \times u'$. En particulier $(e^{u})' = u'\,e^{u}$, $(u^n)' = n\,u'\,u^{n-1}$, $(\sqrt{u})' = \dfrac{u'}{2\sqrt{u}}$ et $(\ln u)' = \dfrac{u'}{u}$.
+        **Formules.** $(x^n)' = n\,x^{n-1}$ pour $n$ entier relatif (ainsi $(x^2)' = 2x$ et $(x^3)' = 3x^2$), $\left(\dfrac1x\right)' = -\dfrac{1}{x^2}$, $(\sqrt{x})' = \dfrac{1}{2\sqrt{x}}$ pour $x > 0$ et $(e^x)' = e^x$. Pour des fonctions dérivables $u$ et $v$ : $(u+v)' = u' + v'$, $(k\,u)' = k\,u'$, $(uv)' = u'v + uv'$, $\left(\dfrac1v\right)' = -\dfrac{v'}{v^2}$ et $\left(\dfrac{u}{v}\right)' = \dfrac{u'v - uv'}{v^2}$. Enfin, si $g$ est dérivable, la fonction $x \mapsto g(ax+b)$ est dérivable, de dérivée $x \mapsto a\,g'(ax+b)$ : ainsi $\left((3x+1)^2\right)' = 3 \times 2(3x+1) = 6(3x+1)$ et $\left(e^{-2x}\right)' = -2\,e^{-2x}$. La dérivée d'une fonction composée quelconque attend la Terminale.
 
         **Lecture cinématique.** Si $x(t)$ est l'abscisse d'un mobile à l'instant $t$, sa vitesse est $v(t) = x'(t)$ et son accélération $a(t) = v'(t) = x''(t)$. Pour $x(t) = \tfrac12\,a\,t^2 + v_0\,t + x_0$, on obtient $v(t) = a\,t + v_0$ puis $x''(t) = a$ : une position quadratique en $t$ signifie une accélération constante, c'est la loi de la chute que Galilée a lue sur son plan incliné. Enfin, le signe de $f'$ donne le sens de variation de $f$ : si $f' > 0$ sur un intervalle, $f$ y est strictement croissante ; si $f'$ s'annule en changeant de signe, $f$ admet un extremum.
       en: |
@@ -73,10 +73,37 @@ depths:
         $$f'(a) = \lim_{h\to 0}\frac{f(a+h)-f(a)}{h}.$$
         The line through the point $A(a,\, f(a))$ with slope $f'(a)$ is the **tangent** to the graph at $A$; its equation is $y = f'(a)(x - a) + f(a)$. When $f$ is differentiable at every point, the function $x \mapsto f'(x)$ is the **derived function**, written $f'$ (or $\dfrac{\mathrm{d}f}{\mathrm{d}x}$ in physics).
 
-        **Rules.** $(x^n)' = n\,x^{n-1}$ for integer $n$, $(\sqrt{x})' = \dfrac{1}{2\sqrt{x}}$, $\left(\dfrac1x\right)' = -\dfrac{1}{x^2}$, $(e^x)' = e^x$, $(\ln x)' = \dfrac1x$, $(\sin x)' = \cos x$, $(\cos x)' = -\sin x$. For differentiable functions $u$ and $v$: $(u+v)' = u' + v'$, $(k\,u)' = k\,u'$, $(uv)' = u'v + uv'$, $\left(\dfrac{u}{v}\right)' = \dfrac{u'v - uv'}{v^2}$ and, for the composite, $(v \circ u)' = (v' \circ u) \times u'$. In particular $(e^{u})' = u'\,e^{u}$, $(u^n)' = n\,u'\,u^{n-1}$, $(\sqrt{u})' = \dfrac{u'}{2\sqrt{u}}$ and $(\ln u)' = \dfrac{u'}{u}$.
+        **Rules.** $(x^n)' = n\,x^{n-1}$ for $n$ a relative integer (so $(x^2)' = 2x$ and $(x^3)' = 3x^2$), $\left(\dfrac1x\right)' = -\dfrac{1}{x^2}$, $(\sqrt{x})' = \dfrac{1}{2\sqrt{x}}$ for $x > 0$ and $(e^x)' = e^x$. For differentiable functions $u$ and $v$: $(u+v)' = u' + v'$, $(k\,u)' = k\,u'$, $(uv)' = u'v + uv'$, $\left(\dfrac1v\right)' = -\dfrac{v'}{v^2}$ and $\left(\dfrac{u}{v}\right)' = \dfrac{u'v - uv'}{v^2}$. Finally, if $g$ is differentiable, the function $x \mapsto g(ax+b)$ is differentiable, with derivative $x \mapsto a\,g'(ax+b)$: thus $\left((3x+1)^2\right)' = 3 \times 2(3x+1) = 6(3x+1)$ and $\left(e^{-2x}\right)' = -2\,e^{-2x}$. The derivative of an arbitrary composite function waits for Grade 12.
 
         **Kinematic reading.** If $x(t)$ is the position of a moving body at time $t$, its velocity is $v(t) = x'(t)$ and its acceleration $a(t) = v'(t) = x''(t)$. For $x(t) = \tfrac12\,a\,t^2 + v_0\,t + x_0$ we get $v(t) = a\,t + v_0$ and then $x''(t) = a$: a position quadratic in $t$ means a constant acceleration, which is the law of fall that Galileo read on his inclined plane. Finally, the sign of $f'$ gives the variations of $f$: if $f' > 0$ on an interval, $f$ is strictly increasing there; if $f'$ vanishes and changes sign, $f$ has an extremum.
   - depth: 2
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "dériver une fonction composée avec $(v \\circ u)' = (v' \\circ u) \\times u'$, en particulier $e^{u}$, $\\sqrt{u}$, $u^n$ et $\\ln u$"
+        - "calculer une dérivée seconde et l'interpréter comme une accélération ou comme une mesure de la courbure"
+        - "étudier la convexité d'une fonction sur un intervalle par le signe de $f''$ et situer la courbe par rapport à ses tangentes"
+        - "déterminer un point d'inflexion et dériver les fonctions logarithme népérien, sinus et cosinus"
+      en:
+        - "differentiate a composite function with $(v \\circ u)' = (v' \\circ u) \\times u'$, in particular $e^{u}$, $\\sqrt{u}$, $u^n$ and $\\ln u$"
+        - "compute a second derivative and interpret it as an acceleration or as a measure of curvature"
+        - "study the convexity of a function on an interval from the sign of $f''$ and locate the curve with respect to its tangents"
+        - "determine an inflection point and differentiate the natural logarithm, sine and cosine functions"
+    lesson:
+      fr: |
+        **Fonction composée.** Si $u$ est dérivable sur un intervalle $I$ et $v$ dérivable sur un intervalle contenant $u(I)$, la composée $v \circ u : x \mapsto v(u(x))$ est dérivable sur $I$ et $(v \circ u)' = (v' \circ u) \times u'$ : on dérive la fonction « extérieure » au point $u(x)$, puis on multiplie par la dérivée de la fonction « intérieure ». Cas usuels : $(e^{u})' = u'\,e^{u}$, $(\sqrt{u})' = \dfrac{u'}{2\sqrt{u}}$, $(u^n)' = n\,u'\,u^{n-1}$ et $(\ln u)' = \dfrac{u'}{u}$. Par exemple, pour $f(x) = \sqrt{x^2+1}$ : $u(x) = x^2 + 1$, $u'(x) = 2x$ et $f'(x) = \dfrac{2x}{2\sqrt{x^2+1}} = \dfrac{x}{\sqrt{x^2+1}}$. La formule $\left(g(ax+b)\right)' = a\,g'(ax+b)$ de Première en est le cas particulier $u(x) = ax + b$.
+
+        **Dérivée seconde et convexité.** Lorsque $f'$ est elle-même dérivable, sa dérivée est la **dérivée seconde** $f''$ ; en cinématique, $x''(t)$ est l'accélération. Une fonction dérivable $f$ est **convexe** sur un intervalle $I$ si sa courbe est au-dessus de chacune de ses tangentes sur $I$, **concave** si elle est en dessous ; pour une fonction deux fois dérivable, $f$ est convexe sur $I$ si et seulement si $f'' \geq 0$ sur $I$, ce qui revient à dire que $f'$ est croissante. Ainsi $x \mapsto x^2$ et $\exp$ sont convexes sur $\mathbb{R}$, tandis que $\ln$ et $x \mapsto \sqrt{x}$ sont concaves sur $]0\,;\,+\infty[$. La convexité se lit aussi sur les cordes : pour une fonction convexe, tout segment joignant deux points de la courbe est au-dessus de la courbe.
+
+        **Point d'inflexion et nouvelles dérivées.** Un **point d'inflexion** est un point où la courbe traverse sa tangente : $f''$ s'y annule en changeant de signe. Pour $f(x) = x^3 - 3x$, $f''(x) = 6x$ s'annule en $0$ en changeant de signe : la courbe est concave sur $]-\infty\,;\,0]$, convexe sur $[0\,;\,+\infty[$, et l'origine est un point d'inflexion. La Terminale ajoute enfin trois dérivées : $(\ln x)' = \dfrac1x$ sur $]0\,;\,+\infty[$, $(\sin x)' = \cos x$ et $(\cos x)' = -\sin x$, qui, combinées à la règle de la composée, permettent d'étudier $e^{-t/\tau}$, $\ln(1+x)$ ou $\cos(\omega t + \varphi)$.
+      en: |
+        **Composite function.** If $u$ is differentiable on an interval $I$ and $v$ differentiable on an interval containing $u(I)$, the composite $v \circ u : x \mapsto v(u(x))$ is differentiable on $I$ and $(v \circ u)' = (v' \circ u) \times u'$: differentiate the "outer" function at the point $u(x)$, then multiply by the derivative of the "inner" function. Usual cases: $(e^{u})' = u'\,e^{u}$, $(\sqrt{u})' = \dfrac{u'}{2\sqrt{u}}$, $(u^n)' = n\,u'\,u^{n-1}$ and $(\ln u)' = \dfrac{u'}{u}$. For instance, for $f(x) = \sqrt{x^2+1}$: $u(x) = x^2 + 1$, $u'(x) = 2x$ and $f'(x) = \dfrac{2x}{2\sqrt{x^2+1}} = \dfrac{x}{\sqrt{x^2+1}}$. The Grade 11 formula $\left(g(ax+b)\right)' = a\,g'(ax+b)$ is the particular case $u(x) = ax + b$.
+
+        **Second derivative and convexity.** When $f'$ is itself differentiable, its derivative is the **second derivative** $f''$; in kinematics, $x''(t)$ is the acceleration. A differentiable function $f$ is **convex** on an interval $I$ if its curve lies above each of its tangents on $I$, **concave** if it lies below; for a twice differentiable function, $f$ is convex on $I$ if and only if $f'' \geq 0$ on $I$, which amounts to saying that $f'$ is increasing. Thus $x \mapsto x^2$ and $\exp$ are convex on $\mathbb{R}$, whereas $\ln$ and $x \mapsto \sqrt{x}$ are concave on $]0\,;\,+\infty[$. Convexity can also be read on chords: for a convex function, every segment joining two points of the curve lies above the curve.
+
+        **Inflection point and new derivatives.** An **inflection point** is a point where the curve crosses its tangent: $f''$ vanishes there and changes sign. For $f(x) = x^3 - 3x$, $f''(x) = 6x$ vanishes at $0$ and changes sign: the curve is concave on $]-\infty\,;\,0]$, convex on $[0\,;\,+\infty[$, and the origin is an inflection point. Grade 12 finally adds three derivatives: $(\ln x)' = \dfrac1x$ on $]0\,;\,+\infty[$, $(\sin x)' = \cos x$ and $(\cos x)' = -\sin x$, which, combined with the composite rule, allow one to study $e^{-t/\tau}$, $\ln(1+x)$ or $\cos(\omega t + \varphi)$.
+  - depth: 3
     stage: mpsi
     role: core
     outcomes:
@@ -105,7 +132,7 @@ depths:
         **Local approximation.** The formula $f(a+h) \approx f(a) + f'(a)\,h$ is the heart of how physics uses the derivative: during a short duration $\mathrm{d}t$, a quantity changes by $\mathrm{d}y \approx y'(t)\,\mathrm{d}t$. This approximation justifies the balances "between $t$ and $t + \mathrm{d}t$" that lead to differential equations ($\mathrm{d}q = i\,\mathrm{d}t$ for a capacitor, $\mathrm{d}N = -\lambda N\,\mathrm{d}t$ for a radioactive sample).
 
         **Theorems.** If $f$ is differentiable on an open interval and has a local extremum at $c$, then $f'(c) = 0$ ($c$ is a critical point). **Rolle's theorem**: if $f$ is continuous on $[a,b]$, differentiable on $]a,b[$ and $f(a) = f(b)$, there exists $c \in\, ]a,b[$ such that $f'(c) = 0$. **Mean value theorem**: under the same regularity assumptions, there exists $c \in\, ]a,b[$ such that $f(b) - f(a) = f'(c)\,(b-a)$. From it follow the **mean value inequality**, $|f(b)-f(a)| \le M\,|b-a|$ if $|f'| \le M$, and the characterisation of monotone functions by the sign of the derivative. These results move from local information (the sign of $f'$) to global information (the variations of $f$), and underpin the uniqueness of solutions of linear differential equations.
-  - depth: 3
+  - depth: 4
     stage: mp
     role: extension_and_application
     outcomes:

@@ -1,0 +1,51 @@
+# Exponentielle en Terminale — la valeur en t = 2 de la solution de y' = 0,5 y vérifiant y(0) = 3 (réponse numérique)
+id: exercise.exponential.ode
+type: numeric
+nodeId: tool.exponential
+depth: 2
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Soit $y$ la fonction dérivable sur $\mathbb{R}$, solution de l'équation différentielle $y' = 0{,}5\,y$, qui vérifie $y(0) = 3$.
+
+    Calculez $y(2)$, arrondi au centième.
+  en: |-
+    Let $y$ be the function differentiable on $\mathbb{R}$, solution of the differential equation $y' = 0.5\,y$, which satisfies $y(0) = 3$.
+
+    Compute $y(2)$, rounded to the nearest hundredth.
+numeric:
+  value: 8.155
+  tolerance: { kind: absolute, value: 0.02 }
+  inputLabel: { fr: "y(2)", en: "y(2)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Les solutions de $y' = k\,y$ sont exactement les fonctions $t \mapsto C\,e^{kt}$ ; ici $k = 0{,}5$.
+      en: |-
+        The solutions of $y' = k\,y$ are exactly the functions $t \mapsto C\,e^{kt}$; here $k = 0.5$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La condition initiale $y(0) = 3$ donne $C = 3$ : $y(t) = 3\,e^{0{,}5t}$, puis $y(2) = 3\,e^{1}$.
+      en: |-
+        The initial condition $y(0) = 3$ gives $C = 3$: $y(t) = 3\,e^{0.5t}$, then $y(2) = 3\,e^{1}$.
+solution:
+  fr: |-
+    Les solutions de $y' = 0{,}5\,y$ sont les fonctions $t \mapsto C\,e^{0{,}5t}$ avec $C$ réel. La condition initiale impose $y(0) = C\,e^{0} = C = 3$, donc $y(t) = 3\,e^{0{,}5t}$ et
+    $$y(2) = 3\,e^{1} = 3e \approx 8{,}15.$$
+    **Interprétation.** La quantité est multipliée par $e \approx 2{,}72$ toutes les $2$ unités de temps, et elle double tous les $\dfrac{\ln 2}{0{,}5} \approx 1{,}39$ : c'est une croissance exponentielle, dont la vitesse est à chaque instant proportionnelle à la valeur.
+  en: |-
+    The solutions of $y' = 0.5\,y$ are the functions $t \mapsto C\,e^{0.5t}$ with $C$ real. The initial condition imposes $y(0) = C\,e^{0} = C = 3$, so $y(t) = 3\,e^{0.5t}$ and
+    $$y(2) = 3\,e^{1} = 3e \approx 8.15.$$
+    **Interpretation.** The quantity is multiplied by $e \approx 2.72$ every $2$ units of time, and it doubles every $\dfrac{\ln 2}{0.5} \approx 1.39$: this is an exponential growth, whose rate is at every instant proportional to the value.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 2
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 3

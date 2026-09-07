@@ -1,0 +1,120 @@
+# Leçon narrée — la cinématique en Première : vecteur vitesse et vecteur variation de vitesse sur un relevé de positions (mouvement rectiligne, puis circulaire uniforme).
+id: lesson.model.kinematics_point.premiere
+nodeId: model.kinematics_point
+depth: 2
+tools:
+  - id: line
+    kind: vectors
+    title: { fr: "Mouvement rectiligne", en: "Rectilinear motion" }
+    view: { x: [-1, 8], y: [-2, 2] }
+    parameters:
+      - { id: a, label: { fr: "variation de vitesse v2 − v1 (m/s)", en: "velocity change v2 − v1 (m/s)" }, min: -1.5, max: 1.5, step: 0.1, value: 0 }
+    points:
+      - { id: m1, x: 0, y: 0, label: { fr: "M1", en: "M1" }, color: "#ffd166" }
+      - { id: m2, x: 2, y: 0, label: { fr: "M2", en: "M2" }, color: "#ffd166" }
+      - { id: m3, x: "4+a", y: 0, label: { fr: "M3", en: "M3" }, color: "#ffd166" }
+    segments:
+      - { id: s12, from: m1, to: m2, label: { fr: "M1M2", en: "M1M2" }, dashed: true }
+      - { id: s23, from: m2, to: m3, label: { fr: "M2M3", en: "M2M3" }, dashed: true }
+    vectors:
+      - { id: v1, x: 2, y: 0, label: { fr: "v1", en: "v1" }, color: "#5ee6a8", hidden: true }
+      - { id: v2, x: "2+a", y: 0, from: v1, label: { fr: "v2", en: "v2" }, color: "#7f9cff", hidden: true }
+      - { id: v1c, x: 2, y: 0, from: v1, label: { fr: "v1 translaté", en: "v1 translated" }, color: "#9aa3b2", hidden: true }
+      - { id: dv, x: "a", y: 0, from: v1c, label: { fr: "Δv = v2 − v1", en: "Δv = v2 − v1" }, color: "#ff8fab", hidden: true }
+  - id: circle
+    kind: vectors
+    title: { fr: "Mouvement circulaire uniforme", en: "Uniform circular motion" }
+    view: { x: [-1.5, 7], y: [-5, 4] }
+    points:
+      - { id: m1, x: 0, y: 0, label: { fr: "M1", en: "M1" }, color: "#ffd166" }
+      - { id: m2, x: 2.598, y: 1.5, label: { fr: "M2", en: "M2" }, color: "#ffd166" }
+      - { id: m3, x: 5.196, y: 0, label: { fr: "M3", en: "M3" }, color: "#ffd166" }
+      - { id: c, x: 2.598, y: -1.5, label: { fr: "C", en: "C" }, color: "#ffffff" }
+    segments:
+      - { id: radius, from: m2, to: c, label: { fr: "rayon", en: "radius" }, dashed: true }
+    paths:
+      - { id: circle, x: "2.598+3*cos(s)", y: "-1.5+3*sin(s)", range: [0, 6.2832], label: { fr: "trajectoire", en: "trajectory" }, dashed: true }
+    vectors:
+      - { id: v1, x: 2.598, y: 1.5, label: { fr: "v1", en: "v1" }, color: "#5ee6a8" }
+      - { id: v2, x: 2.598, y: -1.5, from: v1, label: { fr: "v2", en: "v2" }, color: "#7f9cff", hidden: true }
+      - { id: v1c, x: 2.598, y: 1.5, from: v1, label: { fr: "v1 translaté", en: "v1 translated" }, color: "#9aa3b2", hidden: true }
+      - { id: dv, x: 0, y: -3, from: v1c, label: { fr: "Δv = v2 − v1", en: "Δv = v2 − v1" }, color: "#ff8fab", hidden: true }
+steps:
+  - id: velocity
+    title: { fr: "Le vecteur vitesse", en: "The velocity vector" }
+    tool: line
+    text:
+      fr: >-
+        Une voiture est photographiée toutes les secondes : ses positions M1, M2 et M3 sont relevées le long de la route.
+        Le vecteur vitesse au point M1 est le vecteur M1M2 divisé par la durée delta t : il a la direction de la trajectoire, le sens du mouvement, et sa norme est la distance parcourue divisée par la durée.
+        Ici, M1M2 mesure 2 mètres pour une seconde : la vitesse vaut 2 mètres par seconde.
+        On construit de même le vecteur vitesse v2 au point M2, avec le segment M2M3.
+      en: >-
+        A car is photographed every second: its positions M1, M2 and M3 are recorded along the road.
+        The velocity vector at the point M1 is the vector M1M2 divided by the duration delta t: it has the direction of the trajectory, the sense of the motion, and its magnitude is the distance covered divided by the duration.
+        Here, M1M2 measures 2 metres for one second: the velocity is 2 metres per second.
+        The velocity vector v2 at the point M2 is constructed in the same way, with the segment M2M3.
+    actions:
+      - { at: 1, show: [v1] }
+      - { at: 3, show: [v2] }
+  - id: delta_v
+    title: { fr: "Le vecteur variation de vitesse", en: "The velocity-variation vector" }
+    tool: line
+    text:
+      fr: >-
+        Pour comparer deux vitesses, on translate v1 au point M2, puis on trace delta v de la pointe de v1 à la pointe de v2 : c'est v2 moins v1.
+        Quand les positions sont régulièrement espacées, v2 est égal à v1 et delta v est nul : le mouvement est rectiligne uniforme.
+        Augmentons l'écart entre M2 et M3 : v2 est plus long que v1, delta v a le sens du mouvement, le mouvement est accéléré.
+        Diminuons-le : delta v est opposé au mouvement, le mouvement est ralenti.
+      en: >-
+        To compare two velocities, v1 is translated to the point M2, then delta v is drawn from the tip of v1 to the tip of v2: it is v2 minus v1.
+        When the positions are regularly spaced, v2 equals v1 and delta v is zero: the motion is uniform and rectilinear.
+        Let us increase the gap between M2 and M3: v2 is longer than v1, delta v has the sense of the motion, the motion is accelerated.
+        Let us decrease it: delta v is opposite to the motion, the motion is decelerated.
+    actions:
+      - { at: 0, show: [v1c, dv] }
+      - { at: 2, set: { a: 1 } }
+      - { at: 3, set: { a: -1 } }
+  - id: circular
+    title: { fr: "Le mouvement circulaire uniforme", en: "Uniform circular motion" }
+    tool: circle
+    text:
+      fr: >-
+        Sur un manège, un point tourne à vitesse constante : ses positions, relevées chaque seconde, sont régulièrement espacées sur un cercle de rayon 3 mètres.
+        Les vecteurs vitesse ont tous la même norme, 3 mètres par seconde, mais leur direction tourne : chacun suit la trajectoire.
+        Translatons v1 au point M2 et traçons delta v : il n'est pas nul, et il pointe vers le centre du cercle.
+        Un mouvement circulaire uniforme est donc un mouvement dont la vitesse varie, en direction sinon en norme : sa variation de vitesse est dirigée vers le centre.
+      en: >-
+        On a merry-go-round, a point turns at constant speed: its positions, recorded every second, are regularly spaced on a circle of radius 3 metres.
+        The velocity vectors all have the same magnitude, 3 metres per second, but their direction turns: each one follows the trajectory.
+        Let us translate v1 to the point M2 and draw delta v: it is not zero, and it points towards the centre of the circle.
+        A uniform circular motion is therefore a motion whose velocity changes, in direction if not in magnitude: its velocity variation is directed towards the centre.
+    actions:
+      - { at: 1, show: [v2] }
+      - { at: 2, show: [v1c, dv] }
+  - id: play
+    kind: play
+    title: { fr: "À vous de lire les vecteurs", en: "Your turn to read the vectors" }
+    tool: line
+    text:
+      fr: >-
+        À vous.
+        Déplacez le curseur pour rendre le mouvement uniforme, accéléré ou ralenti, et regardez delta v changer de sens ou disparaître.
+        Passez ensuite à l'outil du cercle : les normes de v1 et v2 sont égales, et delta v pointe vers le centre.
+      en: >-
+        Your turn.
+        Move the slider to make the motion uniform, accelerated or decelerated, and watch delta v change its sense or vanish.
+        Then switch to the circle tool: the magnitudes of v1 and v2 are equal, and delta v points towards the centre.
+    actions:
+      - { at: 0, show: [v1, v2, v1c, dv], set: { a: 0.6 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : la norme d'un vecteur variation de vitesse sur un relevé de positions, puis la nature d'un mouvement.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the magnitude of a velocity-variation vector on a record of positions, then the nature of a motion.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.kinematics.delta_v, exercise.kinematics.motion_type]

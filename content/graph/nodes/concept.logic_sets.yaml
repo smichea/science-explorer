@@ -44,3 +44,26 @@ depths:
         - "distinguish an implication, its converse, its contrapositive and an equivalence"
         - "use the quantifiers 'for all' and 'there exists' to state a property"
         - "refute a universal property with a counter-example and understand that an example does not prove it"
+  - depth: 2
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "démontrer une implication par contraposition : pour établir $P \\Rightarrow Q$, prouver que non $Q$ entraîne non $P$"
+        - "mener un raisonnement par l'absurde et un raisonnement par disjonction de cas"
+        - "écrire la négation d'une propriété formulée avec « pour tout » ou « il existe »"
+        - "démontrer qu'une propriété universelle est fausse par un contre-exemple, et qu'une propriété d'existence est vraie par un exemple"
+      en:
+        - "prove an implication by contraposition: to establish $P \\Rightarrow Q$, prove that not $Q$ implies not $P$"
+        - "carry out a proof by contradiction and a proof by case disjunction"
+        - "write the negation of a property stated with 'for all' or 'there exists'"
+        - "prove that a universal property is false with a counter-example, and that an existence property is true with an example"
+    lesson:
+      fr: |
+        **Contraposition, absurde, disjonction de cas.** L'implication $P \Rightarrow Q$ et sa **contraposée** « non $Q$ implique non $P$ » sont équivalentes : démontrer l'une, c'est démontrer l'autre. Pour prouver que « si $n^2$ est pair alors $n$ est pair », on montre la contraposée « si $n$ est impair alors $n^2$ est impair » : $n = 2k + 1$ donne $n^2 = 2(2k^2 + 2k) + 1$, impair. Le **raisonnement par l'absurde** suppose que la conclusion est fausse et aboutit à une contradiction : si $\sqrt2 = \dfrac{p}{q}$ avec $p$ et $q$ entiers sans diviseur commun, alors $p^2 = 2q^2$ est pair, donc $p$ est pair, $p = 2m$, puis $q^2 = 2m^2$ est pair et $q$ aussi, ce qui contredit l'hypothèse : $\sqrt2$ est irrationnel. La **disjonction de cas** traite séparément tous les cas possibles : $n$ pair ou $n$ impair, et dans les deux cas $n(n+1)$ est pair.
+
+        **Quantificateurs et négation.** La négation de « pour tout $x$, $P(x)$ » est « il existe $x$ tel que non $P(x)$ », et la négation de « il existe $x$ tel que $P(x)$ » est « pour tout $x$, non $P(x)$ » : nier échange les quantificateurs. Une propriété universelle se réfute par un seul **contre-exemple** (« pour tout réel $x$, $x^2 \geq x$ » est fausse : $x = \tfrac12$) et se démontre par un raisonnement valable pour tous les $x$ ; une propriété d'existence se démontre par un seul exemple et se réfute par un raisonnement général. L'ordre des quantificateurs compte : « pour tout $x$ il existe $y$ tel que $y > x$ » est vraie, « il existe $y$ tel que pour tout $x$, $y > x$ » est fausse.
+      en: |
+        **Contraposition, contradiction, case disjunction.** The implication $P \Rightarrow Q$ and its **contrapositive** "not $Q$ implies not $P$" are equivalent: proving one is proving the other. To prove that "if $n^2$ is even then $n$ is even", one shows the contrapositive "if $n$ is odd then $n^2$ is odd": $n = 2k + 1$ gives $n^2 = 2(2k^2 + 2k) + 1$, odd. A **proof by contradiction** assumes that the conclusion is false and reaches a contradiction: if $\sqrt2 = \dfrac{p}{q}$ with $p$ and $q$ integers without a common divisor, then $p^2 = 2q^2$ is even, so $p$ is even, $p = 2m$, then $q^2 = 2m^2$ is even and so is $q$, which contradicts the assumption: $\sqrt2$ is irrational. A **case disjunction** treats every possible case separately: $n$ even or $n$ odd, and in both cases $n(n+1)$ is even.
+
+        **Quantifiers and negation.** The negation of "for all $x$, $P(x)$" is "there exists $x$ such that not $P(x)$", and the negation of "there exists $x$ such that $P(x)$" is "for all $x$, not $P(x)$": negating swaps the quantifiers. A universal property is refuted by a single **counter-example** ("for every real $x$, $x^2 \geq x$" is false: $x = \tfrac12$) and is proved by a reasoning valid for all $x$; an existence property is proved by a single example and refuted by a general reasoning. The order of the quantifiers matters: "for all $x$ there exists $y$ such that $y > x$" is true, "there exists $y$ such that for all $x$, $y > x$" is false.

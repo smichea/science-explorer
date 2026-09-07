@@ -1,0 +1,53 @@
+# Leçon schéma de Lewis — géométrie déduite de la répulsion des doublets et angle de liaison du méthanal (réponse numérique)
+id: exercise.lewis.geometry_angle
+type: numeric
+nodeId: model.lewis_structure
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Le méthanal a pour formule semi-développée $\mathrm{H_2C{=}O}$ : l'atome de carbone est lié à deux atomes d'hydrogène par des liaisons simples et à l'atome d'oxygène par une double liaison, et il ne porte aucun doublet non liant.
+
+    Combien de directions de doublets entourent cet atome de carbone ? Déduisez-en la géométrie autour du carbone, puis donnez la valeur approchée de l'angle $\mathrm{H\widehat{C}H}$, en degrés.
+  en: |-
+    Methanal has the condensed formula $\mathrm{H_2C{=}O}$: the carbon atom is bonded to two hydrogen atoms by single bonds and to the oxygen atom by a double bond, and it carries no lone pair.
+
+    How many directions of pairs surround this carbon atom? Deduce the geometry around the carbon, then give the approximate value of the angle $\mathrm{H\widehat{C}H}$, in degrees.
+numeric:
+  value: 120
+  unit: "°"
+  tolerance: { kind: absolute, value: 5 }
+  inputLabel: { fr: "angle HĈH", en: "angle HĈH" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Une double liaison compte pour **une seule** direction : elle relie le carbone à un seul voisin. Comptez donc les voisins et les doublets non liants du carbone.
+      en: |-
+        A double bond counts as a **single** direction: it links the carbon to only one neighbour. So count the neighbours and the lone pairs of the carbon.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Trois directions qui se repoussent le plus possible se placent dans un plan, à $360^\circ / 3$ les unes des autres.
+      en: |-
+        Three directions repelling one another as much as possible lie in a plane, $360^\circ / 3$ apart from one another.
+solution:
+  fr: |-
+    Autour du carbone il y a trois directions de doublets : la liaison vers le premier hydrogène, celle vers le second, et la double liaison vers l'oxygène, qui ne compte que pour une direction puisqu'elle ne pointe que vers un voisin. Il n'y a aucun doublet non liant sur le carbone.
+
+    Ces trois directions se repoussent et s'écartent le plus possible : elles se placent dans un même plan, à
+    $$\frac{360^\circ}{3} = 120^\circ$$
+    les unes des autres. La molécule est donc **plane trigonale** autour du carbone, et l'angle $\mathrm{H\widehat{C}H}$ vaut environ $120^\circ$.
+
+    À titre de comparaison : quatre directions donnent un tétraèdre, avec des angles de $109{,}5^\circ$ (méthane, ammoniac, eau), et deux directions une molécule linéaire, à $180^\circ$ (dioxyde de carbone). Notons enfin que la liaison $\mathrm{C{=}O}$ est fortement polarisée, l'oxygène portant $\delta^-$, alors que les liaisons $\mathrm{C{-}H}$ sont considérées comme non polarisées : les polarisations ne se compensent pas et le méthanal est une molécule polaire.
+  en: |-
+    Around the carbon there are three directions of pairs: the bond to the first hydrogen, the one to the second, and the double bond to the oxygen, which counts as only one direction since it points to only one neighbour. There is no lone pair on the carbon.
+
+    These three directions repel one another and move as far apart as possible: they lie in the same plane,
+    $$\frac{360^\circ}{3} = 120^\circ$$
+    apart from one another. The molecule is therefore **trigonal planar** around the carbon, and the angle $\mathrm{H\widehat{C}H}$ is about $120^\circ$.
+
+    For comparison: four directions give a tetrahedron, with angles of $109.5^\circ$ (methane, ammonia, water), and two directions a linear molecule, at $180^\circ$ (carbon dioxide). Note lastly that the $\mathrm{C{=}O}$ bond is strongly polarised, the oxygen carrying $\delta^-$, whereas the $\mathrm{C{-}H}$ bonds are considered non-polarised: the polarisations do not cancel out and methanal is a polar molecule.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 3, calculationLength: 1, modellingOpenness: 2, linkedConcepts: 2, transfer: 2, autonomy: 3 }

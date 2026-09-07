@@ -1,0 +1,93 @@
+# Leçon rédigée — l'exponentielle en Terminale (profondeur 2) : croissances comparées, logarithme népérien, équation y' = 0,5 y, avec le traceur (paramètre c = valeur initiale).
+id: lesson.tool.exponential.terminale
+nodeId: tool.exponential
+depth: 2
+tools:
+  - id: plotter
+    kind: plotter
+    variable: x
+    view: { x: [-2, 6], y: [-5, 160] }
+    parameters:
+      - { id: c, label: { fr: "valeur initiale C", en: "initial value C" }, min: -3, max: 6, step: 0.5, value: 3 }
+    input: true
+steps:
+  - id: growth
+    title: { fr: "Croissances comparées", en: "Comparative growth" }
+    text:
+      fr: >-
+        Comparons l'exponentielle aux puissances de x.
+        Sur cette fenêtre, x cube semble d'abord l'emporter : entre 2 et 4,5 environ, sa courbe passe au-dessus.
+        Mais l'exponentielle finit toujours par dépasser n'importe quelle puissance : le quotient e puissance x sur x puissance n tend vers plus l'infini.
+        Vers moins l'infini, elle tend vers zéro, tandis que les puissances paires remontent.
+      en: >-
+        Let us compare the exponential with the powers of x.
+        On this window, x cubed seems to win at first: between 2 and about 4.5, its curve passes above.
+        But the exponential always ends up overtaking any power: the quotient e to the x over x to the n tends to plus infinity.
+        Towards minus infinity, it tends to zero, whereas the even powers rise again.
+    actions:
+      - { at: 0, plot: { id: ex, expr: "exp(x)", label: { fr: "e^x", en: "e^x" } } }
+      - { at: 1, plot: { id: sq, expr: "x^2", dashed: true, label: { fr: "x²", en: "x²" } } }
+      - { at: 1, plot: { id: cube, expr: "x^3", dashed: true, label: { fr: "x³", en: "x³" } } }
+      - { at: 2, point: { id: cross, on: ex, x: 4.54, guides: true, label: { fr: "e^x rattrape x³", en: "e^x catches up with x³" } } }
+      - { at: 3, interval: { id: left, on: ex, from: -2, to: -0.5, label: { fr: "vers 0", en: "towards 0" } } }
+  - id: logarithm
+    title: { fr: "Le logarithme, miroir de l'exponentielle", en: "The logarithm, mirror of the exponential" }
+    text:
+      fr: >-
+        Le logarithme népérien est la fonction réciproque de l'exponentielle : ln de y est le nombre x tel que e puissance x égale y.
+        Sa courbe est la symétrique de celle de l'exponentielle par rapport à la droite d'équation y égale x.
+        Ainsi ln de 1 vaut zéro, ln de e vaut 1, et l'équation e puissance x égale 5 a pour unique solution x égale ln de 5, environ 1,61.
+      en: >-
+        The natural logarithm is the inverse function of the exponential: ln of y is the number x such that e to the x equals y.
+        Its curve is the mirror image of that of the exponential across the line with equation y equals x.
+        Thus ln of 1 is zero, ln of e is 1, and the equation e to the x equals 5 has the unique solution x equals ln of 5, about 1.61.
+    actions:
+      - { at: 0, clear: true, view: { x: [-3, 6], y: [-3, 6] }, plot: { id: ex, expr: "exp(x)", label: { fr: "e^x", en: "e^x" } } }
+      - { at: 1, line: { id: diag, a: 1, b: -1, c: 0, dashed: true, label: { fr: "y = x", en: "y = x" } } }
+      - { at: 1, plot: { id: lnc, expr: "ln(x)", domain: [0.02, 6], label: { fr: "ln x", en: "ln x" } } }
+      - { at: 2, point: { id: p5, on: lnc, x: 5, guides: true, label: { fr: "ln 5 ≈ 1,61", en: "ln 5 ≈ 1.61" } } }
+      - { at: 2, point: { id: q5, on: ex, x: 1.609, guides: true, label: { fr: "e^x = 5", en: "e^x = 5" } } }
+  - id: ode
+    title: { fr: "Une équation différentielle", en: "A differential equation" }
+    text:
+      fr: >-
+        Une équation différentielle relie une fonction à sa dérivée.
+        Les solutions de y prime égale 0,5 y sont exactement les fonctions t donne C fois e puissance 0,5 t, une pour chaque valeur de la constante : ici la constante vaut 1, puis 3.
+        Avec y de zéro égal 3, la solution vaut 3 e puissance 0,5 t, et la quantité double toujours au bout de la même durée, ln 2 divisé par 0,5, environ 1,39.
+        Pour y prime égale a y plus b, on ajoute la solution constante moins b sur a : ici la courbe en pointillés, solution de y prime égale moins 0,5 y plus 3.
+      en: >-
+        A differential equation links a function to its derivative.
+        The solutions of y prime equals 0.5 y are exactly the functions t maps to C times e to the 0.5 t, one for each value of the constant: here the constant is 1, then 3.
+        With y of zero equal to 3, the solution is 3 e to the 0.5 t, and the quantity always doubles after the same duration, ln 2 divided by 0.5, about 1.39.
+        For y prime equals a y plus b, one adds the constant solution minus b over a: here the dashed curve, solution of y prime equals minus 0.5 y plus 3.
+    actions:
+      - { at: 0, clear: true, set: { c: 1 }, view: { x: [0, 6], y: [0, 40], labels: { x: "t", y: "y" } } }
+      - { at: 1, plot: { id: sol, expr: "c*exp(0.5*x)", label: { fr: "y = C e^(0,5 t)", en: "y = C e^(0.5 t)" } } }
+      - { at: 2, set: { c: 3 } }
+      - { at: 2, point: { id: y0, on: sol, x: 0, guides: true, label: { fr: "y(0) = 3", en: "y(0) = 3" } } }
+      - { at: 2, point: { id: dbl, on: sol, x: 1.386, guides: true, label: { fr: "doublement à t ≈ 1,39", en: "doubling at t ≈ 1.39" } } }
+      - { at: 3, plot: { id: aff, expr: "6-3*exp(-0.5*x)", dashed: true, label: { fr: "y' = −0,5 y + 3", en: "y' = −0.5 y + 3" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de choisir la valeur initiale", en: "Your turn to choose the initial value" }
+    text:
+      fr: >-
+        À vous. Faites varier la valeur initiale C : toutes les courbes y égale C e puissance 0,5 t ont la même forme et la même durée de doublement, et une valeur négative donne une courbe décroissante.
+        Tapez ensuite ln(x) ou exp(-x) et lisez leurs limites aux bords de la fenêtre.
+      en: >-
+        Your turn. Vary the initial value C: all the curves y equals C e to the 0.5 t have the same shape and the same doubling time, and a negative value gives a decreasing curve.
+        Then type ln(x) or exp(-x) and read their limits at the edges of the window.
+    actions:
+      - { at: 0, clear: true, set: { c: 3 }, view: { x: [-2, 6], y: [-10, 60], labels: { x: "t", y: "y" } }, plot: { id: sol, expr: "c*exp(0.5*x)", label: { fr: "y = C e^(0,5 t)", en: "y = C e^(0.5 t)" } } }
+      - { at: 0, point: { id: y0, on: sol, x: 0, guides: true, label: { fr: "y(0) = C", en: "y(0) = C" } } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Trois exercices : une équation résolue avec le logarithme, la valeur d'une solution d'équation différentielle, puis une croissance comparée.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Three exercises: an equation solved with the logarithm, the value of a solution of a differential equation, then a comparative growth.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.exponential.solve, exercise.exponential.ode, exercise.exponential.growth]

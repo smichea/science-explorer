@@ -2,7 +2,7 @@
 id: exercise.exponential.solve
 type: numeric
 nodeId: tool.exponential
-depth: 1
+depth: 2
 evidenceDimension: modelling_choice
 prompt:
   fr: |-

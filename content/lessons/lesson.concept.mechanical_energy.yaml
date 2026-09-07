@@ -1,0 +1,23 @@
+# Leçon — énergie potentielle, énergie mécanique et conservation : les trois énergies d'une chute en fonction de l'altitude (traceur), puis la chute avec frottement où l'énergie mécanique décroît (simulation).
+id: lesson.concept.mechanical_energy
+nodeId: concept.mechanical_energy
+depth: 1
+tools:
+  - id: energies
+    kind: plotter
+    title: { fr: "Les trois énergies d'une chute de 10 mètres", en: "The three energies of a 10 metre fall" }
+    variable: x
+    view: { x: [0, 11], y: [0, 210] }
+    input: false
+    parameters:
+      - { id: m, label: { fr: "masse m (kg)", en: "mass m (kg)" }, min: 0.5, max: 2, step: 0.1, value: 1 }
+    initial:
+      - { at: 0, view: { labels: { x: "altitude z (m)", y: "E (J)" } },
+          plot: { id: epp, expr: "m*9.81*x", label: { fr: "Epp = m g z", en: "Epp = m g z" }, domain: [0, 10] } }
+      - { at: 0, plot: { id: ec, expr: "m*9.81*(10-x)", label: { fr: "Ec = m g (h − z)", en: "Ec = m g (h − z)" }, color: "#ff8fab", domain: [0, 10] } }
+      - { at: 0, plot: { id: em, expr: "m*9.81*10", label: { fr: "Em = Ec + Epp", en: "Em = Ec + Epp" }, color: "#ffb347", domain: [0, 10] } }
+      - { at: 0, point: { id: half, on: em, x: 5, guides: true, label: { fr: "à mi-hauteur", en: "halfway down" } } }
+  - id: drag
+    kind: simulation
+    title: { fr: "Chute avec frottement : l'énergie mécanique décroît", en: "Fall with drag: the mechanical energy decreases" }
+    simulationId: simulation.motion.drag

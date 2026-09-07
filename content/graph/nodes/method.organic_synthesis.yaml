@@ -1,0 +1,46 @@
+id: method.organic_synthesis
+type: method
+world: world.chemistry
+region: region.chemistry.reactions_stoichiometry
+importance: 2
+tags: [lycee]
+title: { fr: "Synthèse organique : étapes, rendement", en: "Organic synthesis: steps, yield" }
+shortPurpose:
+  fr: "Lire un protocole de synthèse, en justifier les étapes de transformation, d'isolement, de purification et d'analyse, et calculer le rendement obtenu."
+  en: "Read a synthesis protocol, justify its steps of transformation, isolation, purification and analysis, and compute the yield obtained."
+overview:
+  fr: >-
+    Fabriquer une molécule au laboratoire, c'est suivre un protocole en quatre temps : faire réagir, souvent en chauffant à reflux ; isoler le produit du mélange ; le purifier ; puis l'analyser pour vérifier que c'est bien lui et qu'il est pur. Chaque geste se justifie par une donnée, une solubilité, une température d'ébullition, une masse volumique. Le rendement compare ce que l'on a réellement obtenu à ce que le tableau d'avancement promettait, et il est presque toujours inférieur à cent pour cent.
+  en: >-
+    Making a molecule in the laboratory means following a four-part protocol: making the reactants react, often by heating under reflux; isolating the product from the mixture; purifying it; then analysing it to check that it is indeed the right one and that it is pure. Each gesture is justified by a datum, a solubility, a boiling temperature, a density. The yield compares what was actually obtained with what the extent table promised, and it is almost always below one hundred percent.
+aliases:
+  fr: ["protocole de synthèse", "chauffage à reflux", "isolement et purification", "rendement d'une synthèse", "estérification"]
+  en: ["synthesis protocol", "heating under reflux", "isolation and purification", "yield of a synthesis", "esterification"]
+description:
+  fr: |
+    Une **synthèse organique** suit un protocole en quatre étapes. La **transformation des réactifs** : on les met en présence, souvent avec un catalyseur, et l'on chauffe pour accélérer la réaction ; le **chauffage à reflux** permet de chauffer sans perdre de matière, les vapeurs se condensant dans le réfrigérant et retombant dans le ballon. L'**isolement** du produit : on le sépare du mélange réactionnel, par **extraction liquide-liquide** dans une ampoule à décanter si c'est un liquide, par **filtration sous vide** sur Büchner si c'est un solide, parfois par distillation. La **purification** : lavage, **séchage** avec un desséchant comme le sulfate de magnésium anhydre, recristallisation. L'**analyse** : identification du produit et contrôle de sa pureté par chromatographie sur couche mince, mesure d'une température de fusion ou d'ébullition, spectre infrarouge. Chaque étape se justifie par des données physico-chimiques : solubilités, miscibilités, masses volumiques, températures de changement d'état.
+
+    Le **rendement** d'une synthèse compare ce que l'on obtient à ce que l'on pouvait espérer : $\eta = \dfrac{n_{\text{obtenu}}}{n_{\max}}$, où $n_{\max}$ est la quantité de produit que donnerait une transformation totale, lue dans le tableau d'avancement à partir du réactif limitant, $n_{\max} = \nu_P\,x_{\max}$. Comme les masses sont proportionnelles aux quantités de matière pour une même espèce, $\eta = \dfrac{m_{\text{obtenu}}}{m_{\max}}$. Exemple : l'estérification de l'acide éthanoïque par l'éthanol, $\mathrm{CH_3COOH} + \mathrm{C_2H_5OH} \to \mathrm{CH_3COOC_2H_5} + \mathrm{H_2O}$, avec $0{,}50\ \mathrm{mol}$ d'acide et $0{,}80\ \mathrm{mol}$ d'éthanol ; l'acide est limitant, $x_{\max} = 0{,}50\ \mathrm{mol}$ et $n_{\max} = 0{,}50\ \mathrm{mol}$ d'ester. Si l'on isole $29\ \mathrm{g}$ d'ester, de masse molaire $88\ \mathrm{g/mol}$, soit $0{,}33\ \mathrm{mol}$, le rendement vaut $\eta = \dfrac{0{,}33}{0{,}50} = 0{,}66$, soit $66\ \%$.
+
+    Un rendement inférieur à $100\ \%$ a plusieurs causes : la transformation n'est pas totale et s'arrête à un équilibre, comme l'estérification ; des réactions parasites consomment une partie des réactifs ; du produit se perd à chaque étape d'isolement et de purification. On l'améliore en mettant un réactif en excès, en éliminant un produit au fur et à mesure de sa formation, en choisissant le catalyseur et la température ; la chimie verte cherche aussi à limiter les solvants, l'énergie et les déchets. Un rendement supérieur à $100\ \%$ signale un produit impur, encore chargé de solvant ou d'eau. Le rendement ne se confond pas avec l'avancement : il compare une quantité réellement isolée à une quantité théorique. La sécurité fait partie du protocole, pictogrammes, hotte, lunettes, et le cahier de laboratoire consigne masses, volumes et observations.
+  en: |
+    An **organic synthesis** follows a four-step protocol. The **transformation of the reactants**: they are brought together, often with a catalyst, and heated to speed up the reaction; **heating under reflux** makes it possible to heat without losing matter, the vapours condensing in the condenser and falling back into the flask. The **isolation** of the product: it is separated from the reaction mixture, by **liquid–liquid extraction** in a separating funnel if it is a liquid, by **vacuum filtration** on a Büchner funnel if it is a solid, sometimes by distillation. The **purification**: washing, **drying** with a desiccant such as anhydrous magnesium sulfate, recrystallisation. The **analysis**: identification of the product and control of its purity by thin-layer chromatography, measurement of a melting or boiling temperature, infrared spectrum. Each step is justified by physico-chemical data: solubilities, miscibilities, densities, change-of-state temperatures.
+
+    The **yield** of a synthesis compares what is obtained with what could be hoped for: $\eta = \dfrac{n_{\text{obtained}}}{n_{\max}}$, where $n_{\max}$ is the amount of product a complete transformation would give, read in the extent table from the limiting reactant, $n_{\max} = \nu_P\,x_{\max}$. Since masses are proportional to amounts of substance for a given species, $\eta = \dfrac{m_{\text{obtained}}}{m_{\max}}$. Example: the esterification of ethanoic acid by ethanol, $\mathrm{CH_3COOH} + \mathrm{C_2H_5OH} \to \mathrm{CH_3COOC_2H_5} + \mathrm{H_2O}$, with $0.50\ \mathrm{mol}$ of acid and $0.80\ \mathrm{mol}$ of ethanol; the acid is limiting, $x_{\max} = 0.50\ \mathrm{mol}$ and $n_{\max} = 0.50\ \mathrm{mol}$ of ester. If $29\ \mathrm{g}$ of ester, of molar mass $88\ \mathrm{g/mol}$, that is $0.33\ \mathrm{mol}$, is isolated, the yield is $\eta = \dfrac{0.33}{0.50} = 0.66$, that is $66\ \%$.
+
+    A yield below $100\ \%$ has several causes: the transformation is not complete and stops at an equilibrium, as esterification does; side reactions consume part of the reactants; some product is lost at each isolation and purification step. It is improved by putting one reactant in excess, by removing a product as it forms, by choosing the catalyst and the temperature; green chemistry also seeks to limit solvents, energy and waste. A yield above $100\ \%$ signals an impure product, still loaded with solvent or water. The yield is not to be confused with the extent: it compares an amount actually isolated with a theoretical amount. Safety is part of the protocol, pictograms, fume hood, goggles, and the laboratory notebook records masses, volumes and observations.
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "identifier, dans un protocole de synthèse, les étapes de transformation des réactifs, d'isolement, de purification et d'analyse du produit"
+        - "justifier, à partir des données physico-chimiques, les techniques employées : chauffage à reflux, extraction liquide-liquide, filtration sous vide, séchage, chromatographie sur couche mince, température de fusion, spectre infrarouge"
+        - "déterminer le réactif limitant et la quantité maximale de produit attendue à partir du protocole et des données"
+        - "définir et calculer le rendement d'une synthèse η = n obtenu / n max et interpréter un rendement inférieur à 100 %"
+      en:
+        - "identify, in a synthesis protocol, the steps of transformation of the reactants, isolation, purification and analysis of the product"
+        - "justify, from physico-chemical data, the techniques used: heating under reflux, liquid–liquid extraction, vacuum filtration, drying, thin-layer chromatography, melting temperature, infrared spectrum"
+        - "determine the limiting reactant and the maximum amount of product expected from the protocol and the data"
+        - "define and compute the yield of a synthesis η = n obtained / n max and interpret a yield below 100 %"

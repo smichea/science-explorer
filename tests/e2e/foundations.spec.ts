@@ -26,13 +26,38 @@ test.describe('earlier years as foundations', () => {
     await expect(page).toHaveURL(/filter=seconde/);
   });
 
+  test('a 16-year-old explorer starts in Première: the Seconde behind, the derivative at depth 1', async ({
+    page,
+  }) => {
+    await createExplorer(page, { name: 'Nour', age: 16 });
+    const confirmation = page.getByTestId('horizon-confirmation');
+    await expect(confirmation).toContainText('Première');
+    await expect(confirmation).toContainText('MPSI');
+    await page.goto('universe');
+    const start = page.getByTestId('tour-start-panel');
+    const count = Number((await start.textContent())?.match(/(\d+) destinations/)?.[1] ?? 0);
+    expect(count).toBeGreaterThan(40);
+    await start.click();
+    const card = page.getByTestId('tour-card');
+    await page.getByTestId('tour-next').click();
+    await expect(card).toHaveAttribute('data-step-kind', 'leg');
+    await expect(card).toContainText('Première');
+    await page.getByTestId('tour-exit').click();
+    // The derivative is a Première notion: its lesson opens at depth 1, without a depth parameter.
+    await page.goto('concept/tool.derivative');
+    await expect(page.getByTestId('follow-lesson')).toHaveAttribute(
+      'href',
+      /lesson\/tool\.derivative$/
+    );
+  });
+
   test('a Terminale explorer sees the foundations below and flies them only on request', async ({
     page,
   }) => {
     await createExplorer(page);
     await page.goto('universe');
     const start = page.getByTestId('tour-start-panel');
-    await expect(start).toContainText(/31 destinations/);
+    await expect(start).toContainText(/30 destinations/);
     await start.click();
     const card = page.getByTestId('tour-card');
     await page.getByTestId('tour-include-foundations').check();
@@ -40,7 +65,7 @@ test.describe('earlier years as foundations', () => {
     await page.getByTestId('tour-next').click();
     await expect(card).toContainText('Seconde');
     await page.getByTestId('tour-exit').click();
-    await expect(start).not.toContainText(/31 destinations/);
+    await expect(start).not.toContainText(/30 destinations/);
     // A destination taught in Seconde and again in Terminale opens at its Terminale depth.
     await page.goto('concept/concept.function');
     await expect(page.getByTestId('follow-lesson')).toHaveAttribute('href', /depth=2/);

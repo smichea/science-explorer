@@ -1,0 +1,45 @@
+# Couleurs — longueur d'onde d'une radiation à partir de sa fréquence (réponse numérique)
+id: exercise.colour.wavelength
+type: numeric
+nodeId: phenomenon.colour
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une radiation monochromatique se propage dans le vide avec la fréquence $\nu = 6{,}0 \times 10^{14}\ \mathrm{Hz}$. La célérité de la lumière dans le vide vaut $c = 3{,}00 \times 10^{8}\ \mathrm{m/s}$.
+
+    Calculez la longueur d'onde de cette radiation dans le vide, en nanomètres (rappel : $1\ \mathrm{nm} = 10^{-9}\ \mathrm{m}$).
+  en: |-
+    A monochromatic radiation travels through a vacuum with the frequency $\nu = 6.0 \times 10^{14}\ \mathrm{Hz}$. The speed of light in a vacuum is $c = 3.00 \times 10^{8}\ \mathrm{m/s}$.
+
+    Compute the wavelength of this radiation in a vacuum, in nanometres (reminder: $1\ \mathrm{nm} = 10^{-9}\ \mathrm{m}$).
+numeric:
+  value: 500
+  unit: "nm"
+  tolerance: { kind: relative, value: 0.03 }
+  inputLabel: { fr: "λ", en: "λ" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Longueur d'onde, fréquence et célérité sont liées par $\lambda = \dfrac{c}{\nu}$.
+      en: |-
+        Wavelength, frequency and speed are linked by $\lambda = \dfrac{c}{\nu}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Le calcul donne d'abord un résultat en mètres ; convertissez ensuite en nanomètres en multipliant par $10^{9}$.
+      en: |-
+        The computation first gives a result in metres; then convert into nanometres by multiplying by $10^{9}$.
+solution:
+  fr: |-
+    La relation entre la longueur d'onde et la fréquence donne
+    $$\lambda = \frac{c}{\nu} = \frac{3{,}00 \times 10^{8}}{6{,}0 \times 10^{14}} = 5{,}0 \times 10^{-7}\ \mathrm{m} = 500\ \mathrm{nm}.$$
+    Cette longueur d'onde se situe au milieu du domaine visible, entre $400$ et $800\ \mathrm{nm}$ : la radiation est **verte**. Attention, seule la fréquence est une caractéristique de la radiation elle-même : en passant dans l'eau ou dans le verre, la célérité diminue et la longueur d'onde aussi, mais la fréquence, imposée par la source, ne change pas.
+  en: |-
+    The relation between the wavelength and the frequency gives
+    $$\lambda = \frac{c}{\nu} = \frac{3.00 \times 10^{8}}{6.0 \times 10^{14}} = 5.0 \times 10^{-7}\ \mathrm{m} = 500\ \mathrm{nm}.$$
+    This wavelength lies in the middle of the visible range, between $400$ and $800\ \mathrm{nm}$: the radiation is **green**. Beware, only the frequency is a characteristic of the radiation itself: on entering water or glass, the speed decreases and so does the wavelength, but the frequency, imposed by the source, does not change.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

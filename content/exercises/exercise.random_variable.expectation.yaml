@@ -1,0 +1,57 @@
+# Variables aléatoires — l'espérance du gain X = D − 2 pour un jeu de dé avec une mise de 2 euros (réponse numérique)
+id: exercise.random_variable.expectation
+type: numeric
+nodeId: concept.random_variable
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un jeu se déroule ainsi : on paie une mise de $2$ euros, on lance un dé équilibré à six faces et l'on reçoit en euros le nombre obtenu.
+
+    On note $X$ le gain algébrique du joueur, c'est-à-dire la somme reçue diminuée de la mise. Calculez l'espérance $E(X)$, en euros.
+  en: |-
+    A game runs as follows: one pays a stake of $2$ euros, rolls a fair six-sided die and receives in euros the number obtained.
+
+    Let $X$ be the player's net gain, that is the sum received minus the stake. Compute the expectation $E(X)$, in euros.
+numeric:
+  value: 1.5
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "E(X) en euros", en: "E(X) in euros" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Notez $D$ le nombre obtenu sur le dé. Alors $X = D - 2$, et $D$ prend chacune des valeurs de $1$ à $6$ avec la probabilité $\dfrac16$.
+      en: |-
+        Let $D$ be the number obtained on the die. Then $X = D - 2$, and $D$ takes each value from $1$ to $6$ with probability $\dfrac16$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        L'espérance est linéaire : $E(D - 2) = E(D) - 2$. Commencez par calculer $E(D)$, la moyenne des six faces.
+      en: |-
+        The expectation is linear: $E(D - 2) = E(D) - 2$. Start by computing $E(D)$, the average of the six faces.
+solution:
+  fr: |-
+    Le nombre $D$ obtenu prend chaque valeur de $1$ à $6$ avec la probabilité $\dfrac16$, donc
+    $$E(D) = \frac{1 + 2 + 3 + 4 + 5 + 6}{6} = \frac{21}{6} = 3{,}5.$$
+    Le gain algébrique est $X = D - 2$, et l'espérance vérifie $E(aX + b) = a\,E(X) + b$, donc
+    $$E(X) = E(D) - 2 = 3{,}5 - 2 = 1{,}5 \text{ euro}.$$
+
+    **Interprétation.** Le jeu est **favorable au joueur** : sur un très grand nombre de parties, il gagne en moyenne $1{,}50$ euro par partie, et aucun organisateur raisonnable ne le proposerait. L'espérance n'est pas un gain que l'on observera : $X$ ne vaut jamais $1{,}5$, mais seulement $-1$, $0$, $1$, $2$, $3$ ou $4$. Pour rendre le jeu équitable, il faudrait porter la mise à $3{,}50$ euros, ce qui annulerait l'espérance.
+  en: |-
+    The number $D$ obtained takes each value from $1$ to $6$ with probability $\dfrac16$, so
+    $$E(D) = \frac{1 + 2 + 3 + 4 + 5 + 6}{6} = \frac{21}{6} = 3.5.$$
+    The net gain is $X = D - 2$, and the expectation satisfies $E(aX + b) = a\,E(X) + b$, so
+    $$E(X) = E(D) - 2 = 3.5 - 2 = 1.5 \text{ euro}.$$
+
+    **Interpretation.** The game **favours the player**: over a very large number of rounds, they win on average $1.50$ euro per round, and no reasonable organiser would offer it. The expectation is not a gain one will observe: $X$ is never $1.5$, but only $-1$, $0$, $1$, $2$, $3$ or $4$. To make the game fair, the stake would have to be raised to $3.50$ euros, which would cancel the expectation.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 3
+  calculationLength: 2
+  modellingOpenness: 2
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

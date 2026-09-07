@@ -16,7 +16,7 @@ items:
     title: { fr: Dérivabilité, en: Differentiability }
     reference: "Limites, continuité, dérivabilité — Dérivabilité (nombre dérivé, extremum local et point critique, théorèmes de Rolle et des accroissements finis, fonctions de classe C^k)"
     alignedNodes:
-      - { node: tool.derivative, depth: 2 }
+      - { node: tool.derivative, depth: 3 }
   - id: equations_differentielles_lineaires
     title: { fr: Équations différentielles linéaires, en: Linear differential equations }
     reference: "Techniques fondamentales de calcul en analyse — Primitives et équations différentielles linéaires"
@@ -26,5 +26,5 @@ items:
     title: { fr: Fonctions usuelles, en: Standard functions }
     reference: "Techniques fondamentales de calcul en analyse — Fonctions usuelles"
     alignedNodes:
-      - { node: tool.exponential, depth: 2 }
+      - { node: tool.exponential, depth: 3 }
       - { node: concept.function, depth: 3 }

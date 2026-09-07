@@ -1,0 +1,106 @@
+# Leçon narrée — synthèse organique : le protocole en quatre étapes, l'estérification de l'acide éthanoïque par l'éthanol
+# (outil réaction : réactif limitant, quantité maximale d'ester) et le rendement lu à partir de la quantité réellement isolée.
+id: lesson.method.organic_synthesis
+nodeId: method.organic_synthesis
+depth: 1
+tools:
+  - id: esterification
+    kind: reaction
+    title: { fr: "Estérification : acide éthanoïque et éthanol", en: "Esterification: ethanoic acid and ethanol" }
+    parameters:
+      - { id: a, label: { fr: "acide éthanoïque introduit (mol)", en: "ethanoic acid introduced (mol)" }, min: 0, max: 1, step: 0.05, value: 0.4 }
+      - { id: b, label: { fr: "éthanol introduit (mol)", en: "ethanol introduced (mol)" }, min: 0, max: 1, step: 0.05, value: 0.6 }
+      - { id: m, label: { fr: "ester réellement isolé (mol)", en: "ester actually isolated (mol)" }, min: 0, max: 1, step: 0.01, value: 0.3 }
+    reactants:
+      - { id: acid, formula: "CH₃COOH", coefficient: 1, initial: "a", label: { fr: "acide éthanoïque", en: "ethanoic acid" } }
+      - { id: alcohol, formula: "C₂H₅OH", coefficient: 1, initial: "b", label: { fr: "éthanol", en: "ethanol" } }
+    products:
+      - { id: ester, formula: "CH₃COOC₂H₅", coefficient: 1, label: { fr: "éthanoate d'éthyle", en: "ethyl ethanoate" } }
+      - { id: water, formula: "H₂O", coefficient: 1, label: { fr: "eau", en: "water" } }
+    unit: mol
+    obtained: "m"
+steps:
+  - id: protocol
+    title: { fr: "Un protocole en quatre étapes", en: "A four-step protocol" }
+    text:
+      fr: >-
+        Fabriquer une molécule au laboratoire, c'est suivre un protocole en quatre temps.
+        D'abord la transformation des réactifs : on les mélange, souvent avec un catalyseur, et l'on chauffe à reflux, ce qui permet de chauffer sans perdre de matière, les vapeurs se condensant dans le réfrigérant et retombant dans le ballon.
+        Puis l'isolement du produit : extraction liquide-liquide dans une ampoule à décanter s'il est liquide, filtration sous vide sur büchner s'il est solide.
+        Enfin la purification, par lavage, séchage et recristallisation, et l'analyse, par chromatographie, température de fusion ou spectre infrarouge ; chaque geste se justifie par une donnée, une solubilité, une masse volumique, une température d'ébullition.
+      en: >-
+        Making a molecule in the laboratory means following a four-part protocol.
+        First the transformation of the reactants: they are mixed, often with a catalyst, and heated under reflux, which makes it possible to heat without losing matter, the vapours condensing in the condenser and falling back into the flask.
+        Then the isolation of the product: liquid–liquid extraction in a separating funnel if it is a liquid, vacuum filtration on a Büchner funnel if it is a solid.
+        Lastly the purification, by washing, drying and recrystallisation, and the analysis, by chromatography, melting temperature or infrared spectrum; each gesture is justified by a datum, a solubility, a density, a boiling temperature.
+    actions:
+      - { at: 0, set: { a: 0.4, b: 0.6, m: 0.3 } }
+  - id: maximum
+    title: { fr: "Ce que le tableau d'avancement promet", en: "What the extent table promises" }
+    text:
+      fr: >-
+        Prenons l'estérification de l'acide éthanoïque par l'éthanol, qui donne un ester et de l'eau.
+        On introduit 0,40 mole d'acide et 0,60 mole d'éthanol : les nombres stœchiométriques valant tous un, l'acide est le réactif limitant.
+        Le tableau d'avancement donne l'avancement maximal, 0,40 mole, et donc la quantité maximale d'ester que la transformation pourrait former, 0,40 mole également.
+        C'est cette quantité théorique, et elle seule, qui sert de référence au rendement.
+      en: >-
+        Let us take the esterification of ethanoic acid by ethanol, which gives an ester and water.
+        0.40 mole of acid and 0.60 mole of ethanol are introduced: since the stoichiometric coefficients are all one, the acid is the limiting reactant.
+        The extent table gives the maximum extent, 0.40 mole, hence the maximum amount of ester the transformation could form, 0.40 mole as well.
+        It is this theoretical amount, and it alone, that serves as the reference for the yield.
+    actions:
+      - { at: 1, set: { a: 0.4, b: 0.6 } }
+  - id: yield
+    title: { fr: "Le rendement", en: "The yield" }
+    text:
+      fr: >-
+        Après l'isolement et la purification, on pèse ce que l'on a vraiment récupéré : ici 26,4 grammes d'ester, de masse molaire 88 grammes par mole, soit 0,30 mole.
+        Le rendement est le quotient de la quantité obtenue par la quantité maximale, 0,30 divisé par 0,40, c'est-à-dire 0,75, soit 75 pour cent.
+        Comme les masses sont proportionnelles aux quantités de matière pour une même espèce, on peut aussi bien le calculer avec les masses.
+        L'outil affiche ce rapport : faites glisser la quantité isolée et regardez le rendement suivre.
+      en: >-
+        After the isolation and the purification, what has really been recovered is weighed: here 26.4 grams of ester, of molar mass 88 grams per mole, that is 0.30 mole.
+        The yield is the quotient of the amount obtained by the maximum amount, 0.30 divided by 0.40, that is 0.75, that is 75 percent.
+        Since masses are proportional to amounts of substance for a given species, it may just as well be computed with the masses.
+        The tool displays this ratio: drag the amount isolated and watch the yield follow.
+    actions:
+      - { at: 0, set: { m: 0.3 } }
+      - { at: 3, set: { m: 0.2 } }
+  - id: improve
+    title: { fr: "Pourquoi le rendement n'est pas de cent pour cent", en: "Why the yield is not one hundred percent" }
+    text:
+      fr: >-
+        Pourquoi le rendement n'atteint-il pas cent pour cent ?
+        Parce que l'estérification n'est pas totale et s'arrête à un équilibre, parce que des réactions parasites consomment une part des réactifs, et parce que l'on perd du produit à chaque transvasement.
+        On l'améliore en mettant un réactif en excès, en éliminant l'eau au fur et à mesure de sa formation, en choisissant le catalyseur et la température ; la chimie verte cherche en outre à limiter les solvants, l'énergie et les déchets.
+        Un rendement supérieur à cent pour cent, lui, ne signale pas un exploit mais un produit impur, encore chargé de solvant ou d'eau.
+      en: >-
+        Why does the yield not reach one hundred percent?
+        Because esterification is not complete and stops at an equilibrium, because side reactions consume part of the reactants, and because some product is lost at every transfer.
+        It is improved by putting one reactant in excess, by removing the water as it forms, by choosing the catalyst and the temperature; green chemistry also seeks to limit solvents, energy and waste.
+        A yield above one hundred percent, on the other hand, signals no feat but an impure product, still loaded with solvent or water.
+    actions:
+      - { at: 2, set: { b: 0.9 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de synthétiser", en: "Your turn to synthesise" }
+    text:
+      fr: >-
+        À vous. Faites varier les quantités d'acide et d'éthanol introduites, repérez le réactif limitant et la quantité maximale d'ester.
+        Déplacez ensuite la quantité réellement isolée et lisez le rendement : essayez d'atteindre 90 pour cent, puis demandez-vous ce qu'il faudrait changer au protocole pour y parvenir.
+      en: >-
+        Your turn. Vary the amounts of acid and of ethanol introduced, spot the limiting reactant and the maximum amount of ester.
+        Then drag the amount actually isolated and read the yield: try to reach 90 percent, then ask yourself what would have to change in the protocol to get there.
+    actions:
+      - { at: 0, set: { a: 0.4, b: 0.6, m: 0.3 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : un rendement à calculer, puis une masse de produit à espérer.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: a yield to compute, then a mass of product to hope for.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.synthesis.yield, exercise.synthesis.mass_expected]

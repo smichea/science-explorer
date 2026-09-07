@@ -1,0 +1,41 @@
+# Leçon — le fluide au repos : la pression qui croît avec la profondeur, la loi de Mariotte, et la construction du pascal à partir du newton et du mètre carré.
+id: lesson.law.fluid_statics
+nodeId: law.fluid_statics
+depth: 1
+tools:
+  - id: depth
+    kind: plotter
+    title: { fr: "La pression en fonction de la profondeur", en: "Pressure against depth" }
+    variable: x
+    view: { x: [0, 40], y: [0, 6] }
+    input: false
+    parameters:
+      - { id: d, label: { fr: "masse volumique du liquide (kg/m³)", en: "density of the liquid (kg/m³)" }, min: 700, max: 1400, step: 25, value: 1000 }
+    initial:
+      - { at: 0, view: { labels: { x: "profondeur h (m)", y: "P (bar)" } },
+          plot: { id: p, expr: "1.013+d*9.81*x/100000", label: { fr: "P = P₀ + ρ g h", en: "P = P₀ + ρ g h" } } }
+      - { at: 0, point: { id: diver, on: p, x: 20, guides: true, label: { fr: "≈ 3 bar à 20 m", en: "≈ 3 bar at 20 m" } } }
+  - id: mariotte
+    kind: plotter
+    title: { fr: "La loi de Mariotte", en: "The Boyle–Mariotte law" }
+    variable: x
+    view: { x: [0, 8], y: [0, 9] }
+    input: false
+    parameters:
+      - { id: c, label: { fr: "constante P·V (bar·L)", en: "constant P·V (bar·L)" }, min: 1, max: 8, step: 0.5, value: 6 }
+    initial:
+      - { at: 0, view: { labels: { x: "V (L)", y: "P (bar)" } },
+          plot: { id: pv, expr: "c/x", label: { fr: "P = constante / V", en: "P = constant / V" }, domain: [0.8, 8] } }
+      - { at: 0, point: { id: bottom, on: pv, x: 1.5, guides: true, label: { fr: "1,5 L à 4 bar (30 m)", en: "1.5 L at 4 bar (30 m)" } } }
+      - { at: 0, point: { id: top, on: pv, x: 6, guides: true, label: { fr: "6 L à 1 bar (surface)", en: "6 L at 1 bar (surface)" } } }
+  - id: pascal
+    kind: dimensions
+    title: { fr: "Construire le pascal", en: "Building the pascal" }
+    quantities:
+      - { id: length, symbol: "ℓ", label: { fr: "longueur", en: "length" }, unit: "m", dims: { L: 1 } }
+      - { id: mass, symbol: "m", label: { fr: "masse", en: "mass" }, unit: "kg", dims: { M: 1 } }
+      - { id: time, symbol: "t", label: { fr: "temps", en: "time" }, unit: "s", dims: { T: 1 } }
+      - { id: area, symbol: "S", label: { fr: "aire d'une surface", en: "area of a surface" }, unit: "m²", dims: { L: 2 }, base: false }
+      - { id: force, symbol: "F", label: { fr: "force pressante", en: "pressing force" }, unit: "N", dims: { M: 1, L: 1, T: -2 }, base: false }
+      - { id: pressure, symbol: "P", label: { fr: "pression", en: "pressure" }, unit: "Pa", dims: { M: 1, L: -1, T: -2 }, base: false }
+      - { id: density, symbol: "ρ", label: { fr: "masse volumique", en: "density" }, unit: "kg/m³", dims: { M: 1, L: -3 }, base: false }

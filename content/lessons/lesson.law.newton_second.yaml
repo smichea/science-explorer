@@ -1,0 +1,113 @@
+# Leçon narrée — la deuxième loi de Newton en Première : le vecteur variation de vitesse et la relation approchée ΣF ≈ m Δv/Δt (outil vecteurs), puis le projectile (simulation).
+id: lesson.law.newton_second
+nodeId: law.newton_second
+depth: 1
+tools:
+  - id: vectors
+    kind: vectors
+    title: { fr: "Variation de vitesse et somme des forces", en: "Velocity variation and sum of the forces" }
+    view: { x: [-1, 7], y: [-6.5, 2.5] }
+    parameters:
+      - { id: a, label: { fr: "v(t) : composante horizontale (m/s)", en: "v(t): horizontal component (m/s)" }, min: 0, max: 6, step: 0.5, value: 4 }
+      - { id: b, label: { fr: "v(t) : composante verticale (m/s)", en: "v(t): vertical component (m/s)" }, min: -3, max: 3, step: 0.5, value: 0 }
+      - { id: c, label: { fr: "v(t + Δt) : composante horizontale (m/s)", en: "v(t + Δt): horizontal component (m/s)" }, min: 0, max: 6, step: 0.5, value: 4 }
+      - { id: d, label: { fr: "v(t + Δt) : composante verticale (m/s)", en: "v(t + Δt): vertical component (m/s)" }, min: -3, max: 3, step: 0.5, value: -2 }
+      - { id: m, label: { fr: "masse m (kg)", en: "mass m (kg)" }, min: 0.25, max: 1, step: 0.25, value: 0.5 }
+    vectors:
+      - { id: v1, x: "a", y: "b", label: { fr: "v(t)", en: "v(t)" }, color: "#5ee6a8", components: true }
+      - { id: v2, x: "c", y: "d", label: { fr: "v(t + Δt)", en: "v(t + Δt)" }, color: "#7f9cff", hidden: true }
+      - { id: dv, x: "c-a", y: "d-b", from: v1, label: { fr: "Δv", en: "Δv" }, color: "#ff8fab", hidden: true }
+      - { id: f, x: "m*(c-a)/0.2", y: "m*(d-b)/0.2", label: { fr: "ΣF ≈ m Δv/Δt (N)", en: "ΣF ≈ m Δv/Δt (N)" }, color: "#ffb347", hidden: true }
+  - id: projectile
+    kind: simulation
+    title: { fr: "Lancer d'un projectile", en: "Projectile launch" }
+    simulationId: simulation.projectile.basic
+steps:
+  - id: delta_v
+    title: { fr: "Le vecteur variation de vitesse", en: "The velocity-variation vector" }
+    tool: vectors
+    text:
+      fr: >-
+        Une balle est lancée horizontalement à 4 mètres par seconde : c'est le vecteur vitesse v de t, horizontal.
+        Deux dixièmes de seconde plus tard, sa vitesse v de t plus delta t a toujours 4 mètres par seconde d'horizontale, mais aussi 2 mètres par seconde vers le bas.
+        Le vecteur variation de vitesse, delta v, va de la pointe de v de t à la pointe de v de t plus delta t : c'est v de t plus delta t moins v de t, de coordonnées 0 et moins 2.
+        Il est vertical, dirigé vers le bas, de norme 2 mètres par seconde, alors que la vitesse elle-même est presque horizontale.
+      en: >-
+        A ball is thrown horizontally at 4 metres per second: this is the velocity vector v of t, horizontal.
+        Two tenths of a second later, its velocity v of t plus delta t still has 4 metres per second horizontally, but also 2 metres per second downwards.
+        The velocity-variation vector, delta v, goes from the tip of v of t to the tip of v of t plus delta t: it is v of t plus delta t minus v of t, with coordinates 0 and minus 2.
+        It is vertical, pointing downwards, of magnitude 2 metres per second, whereas the velocity itself is almost horizontal.
+    actions:
+      - { at: 1, show: [v2] }
+      - { at: 2, show: [dv] }
+  - id: forces
+    title: { fr: "La somme des forces", en: "The sum of the forces" }
+    tool: vectors
+    text:
+      fr: >-
+        Faisons le bilan des forces sur la balle, de masse 0,5 kilogramme : si l'on néglige l'air, elle n'est soumise qu'à son poids.
+        La deuxième loi de Newton, sous sa forme approchée, dit que la somme des forces est à peu près égale à la masse multipliée par delta v sur delta t.
+        Ici, 0,5 fois 2 divisé par 0,2 donne 5 newtons, verticaux et dirigés vers le bas : c'est exactement le poids, 0,5 fois 9,8.
+        La somme des forces a toujours la direction et le sens de delta v, jamais ceux de la vitesse.
+      en: >-
+        Let us list the forces on the ball, of mass 0.5 kilogram: if the air is neglected, it is subject to its weight only.
+        Newton's second law, in its approximate form, says that the sum of the forces is roughly equal to the mass multiplied by delta v over delta t.
+        Here, 0.5 times 2 divided by 0.2 gives 5 newtons, vertical and pointing downwards: this is exactly the weight, 0.5 times 9.8.
+        The sum of the forces always has the direction and the sense of delta v, never those of the velocity.
+    actions:
+      - { at: 1, show: [f] }
+  - id: mass
+    title: { fr: "Le rôle de la masse", en: "The role of the mass" }
+    tool: vectors
+    text:
+      fr: >-
+        À somme des forces donnée, delta v sur delta t est inversement proportionnel à la masse : un système lourd change moins vite de vitesse.
+        Doublons la masse : pour obtenir la même variation de vitesse en deux dixièmes de seconde, il faudrait une force deux fois plus grande, 10 newtons.
+        Et si les forces se compensent, delta v est nul : la vitesse ne change ni en norme ni en direction, c'est le principe d'inertie.
+      en: >-
+        For a given sum of the forces, delta v over delta t is inversely proportional to the mass: a heavy system changes its velocity more slowly.
+        Let us double the mass: to obtain the same velocity variation in two tenths of a second, a force twice as large would be needed, 10 newtons.
+        And if the forces compensate, delta v is zero: the velocity changes neither in magnitude nor in direction, this is the principle of inertia.
+    actions:
+      - { at: 1, set: { m: 1 } }
+  - id: projectile
+    title: { fr: "Chute libre et projectile", en: "Free fall and projectile" }
+    tool: projectile
+    text:
+      fr: >-
+        Lançons maintenant la balle à 12 mètres par seconde, avec un angle de 45 degrés.
+        Pendant tout le vol, la seule force est le poids, vertical : delta v est donc vertical à chaque instant, de norme g fois delta t, quelle que soit la masse.
+        La composante horizontale de la vitesse ne change pas, la composante verticale diminue de 9,8 mètres par seconde chaque seconde : la trajectoire est une parabole.
+        Sans frottement, la masse ne change rien au mouvement : c'est la chute libre décrite par Galilée, et la balle retombe 14,7 mètres plus loin après 1,7 seconde.
+      en: >-
+        Let us now launch the ball at 12 metres per second, with an angle of 45 degrees.
+        During the whole flight, the only force is the weight, vertical: delta v is therefore vertical at every instant, of magnitude g times delta t, whatever the mass.
+        The horizontal component of the velocity does not change, the vertical component decreases by 9.8 metres per second every second: the trajectory is a parabola.
+        Without drag, the mass changes nothing in the motion: this is the free fall described by Galileo, and the ball lands 14.7 metres further after 1.7 second.
+    actions: []
+  - id: play
+    kind: play
+    title: { fr: "À vous de faire varier la vitesse", en: "Your turn to vary the velocity" }
+    tool: vectors
+    text:
+      fr: >-
+        À vous.
+        Déplacez les curseurs pour changer v de t, v de t plus delta t et la masse, puis lisez delta v et la somme des forces : ils restent colinéaires.
+        Passez ensuite à la simulation du projectile : changez l'angle et la vitesse de lancement, et observez la parabole et les énergies.
+      en: >-
+        Your turn.
+        Move the sliders to change v of t, v of t plus delta t and the mass, then read delta v and the sum of the forces: they stay collinear.
+        Then switch to the projectile simulation: change the launch angle and speed, and watch the parabola and the energies.
+    actions:
+      - { at: 0, show: [v2, dv, f], set: { a: 4, b: 0, c: 4, d: -2, m: 0.5 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : la norme d'un vecteur variation de vitesse, puis la direction de la somme des forces.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the magnitude of a velocity-variation vector, then the direction of the sum of the forces.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.newton.delta_v, exercise.newton.direction]

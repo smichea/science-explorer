@@ -1,0 +1,151 @@
+# Glossaire bilingue — chimie de Première (spécialité physique-chimie) : termes préférés et alias,
+# deux à trois entrées par destination et pour les nouvelles profondeurs de Seconde réalignées.
+entries:
+  # --- model.chemical_reaction (profondeur 2, Première) -----------------------
+  - id: glossary.extent
+    nodeId: model.chemical_reaction
+    fr: { preferred: avancement, aliases: [avancement x, tableau d'avancement, état intermédiaire] }
+    en: { preferred: extent, aliases: [extent of reaction, extent table, intermediate state] }
+    notes: "The French « avancement » is a quantity in mol, never a percentage; the table is the « tableau d'avancement »."
+  - id: glossary.maximum_extent
+    nodeId: model.chemical_reaction
+    fr: { preferred: avancement maximal, aliases: [x max, avancement final, état final] }
+    en: { preferred: maximum extent, aliases: [x max, final extent, final state] }
+    notes: "x_max = min(n_i / ν_i) over the reactants; equals the final extent only when the transformation is complete."
+  - id: glossary.stoichiometric_mixture
+    nodeId: model.chemical_reaction
+    fr: { preferred: mélange stœchiométrique, aliases: [proportions stœchiométriques, mélange dans les proportions de l'équation] }
+    en: { preferred: stoichiometric mixture, aliases: [stoichiometric proportions, mixture in the proportions of the equation] }
+  # --- concept.concentration (profondeur 2, Première) -------------------------
+  - id: glossary.molar_concentration
+    nodeId: concept.concentration
+    fr: { preferred: concentration en quantité de matière, aliases: [concentration molaire, C = n/V, mol/L] }
+    en: { preferred: concentration in amount of substance, aliases: [molar concentration, C = n/V, mol/L] }
+    notes: "The French programme says « concentration en quantité de matière »; « concentration molaire » is tolerated."
+  - id: glossary.solution_preparation
+    nodeId: concept.concentration
+    fr: { preferred: préparation d'une solution, aliases: [fiole jaugée, pipette jaugée, dissolution, dilution, C1 V1 = C2 V2] }
+    en: { preferred: preparation of a solution, aliases: [volumetric flask, volumetric pipette, dissolution, dilution, C1 V1 = C2 V2] }
+  - id: glossary.ion_concentration
+    nodeId: concept.concentration
+    fr: { preferred: concentration en ions, aliases: [crochets, "[Cl⁻]", concentration effective] }
+    en: { preferred: ion concentration, aliases: [square brackets, "[Cl⁻]", effective concentration] }
+    notes: "Written with square brackets; follows the stoichiometric coefficients of the dissolution equation."
+  # --- method.titration -------------------------------------------------------
+  - id: glossary.titration
+    nodeId: method.titration
+    fr: { preferred: titrage, aliases: [titrage direct, solution titrée, solution titrante, burette, réaction support de titrage] }
+    en: { preferred: titration, aliases: [direct titration, titrated solution, titrant solution, burette, titration reaction] }
+    notes: "« Titrage » consumes the sample; « dosage » is the general word for determining a concentration."
+  - id: glossary.equivalence
+    nodeId: method.titration
+    fr: { preferred: équivalence, aliases: [volume équivalent, VE, changement de réactif limitant, suivi colorimétrique] }
+    en: { preferred: equivalence point, aliases: [equivalence volume, VE, change of limiting reactant, colorimetric monitoring] }
+  - id: glossary.beer_lambert
+    nodeId: method.titration
+    fr: { preferred: loi de Beer-Lambert, aliases: [absorbance, droite d'étalonnage, dosage par étalonnage, spectrophotomètre] }
+    en: { preferred: Beer–Lambert law, aliases: [absorbance, calibration line, assay by calibration, spectrophotometer] }
+    notes: "A = k C for a dilute solution at a fixed wavelength; the absorbance has no unit."
+  # --- model.redox ------------------------------------------------------------
+  - id: glossary.oxidant_reductant
+    nodeId: model.redox
+    fr: { preferred: oxydant et réducteur, aliases: [oxydant, réducteur, oxydation, réduction] }
+    en: { preferred: oxidant and reductant, aliases: [oxidant, reductant, oxidation, reduction] }
+    notes: "The oxidant is a species, the oxidation a transformation: do not confuse the two."
+  - id: glossary.redox_couple
+    nodeId: model.redox
+    fr: { preferred: couple oxydant-réducteur, aliases: [couple Ox/Red, "Cu²⁺/Cu", "Fe³⁺/Fe²⁺"] }
+    en: { preferred: oxidant–reductant couple, aliases: [Ox/Red couple, "Cu²⁺/Cu", "Fe³⁺/Fe²⁺"] }
+  - id: glossary.half_equation
+    nodeId: model.redox
+    fr: { preferred: demi-équation électronique, aliases: [demi-équation, électrons échangés, transfert d'électrons] }
+    en: { preferred: electronic half-equation, aliases: [half-equation, electrons exchanged, electron transfer] }
+    notes: "Written with an equals sign, since it can be read both ways; electrons never appear in the overall equation."
+  # --- model.lewis_structure --------------------------------------------------
+  - id: glossary.lewis_structure
+    nodeId: model.lewis_structure
+    fr: { preferred: schéma de Lewis, aliases: [représentation de Lewis, doublet liant, doublet non liant, règle du duet, règle de l'octet] }
+    en: { preferred: Lewis structure, aliases: [Lewis representation, bonding pair, lone pair, duet rule, octet rule] }
+    notes: "A lone pair counts as a direction for the geometry even though it is not seen in the shape."
+  - id: glossary.molecular_geometry
+    nodeId: model.lewis_structure
+    fr: { preferred: géométrie d'une entité, aliases: [linéaire, coudée, plane trigonale, pyramidale, tétraédrique] }
+    en: { preferred: geometry of a species, aliases: [linear, bent, trigonal planar, pyramidal, tetrahedral] }
+    notes: "The geometry follows from the repulsion of the bonding and lone pairs around the central atom."
+  - id: glossary.electronegativity
+    nodeId: model.lewis_structure
+    fr: { preferred: électronégativité, aliases: [liaison polarisée, charge partielle, delta plus, delta moins, molécule polaire, molécule apolaire] }
+    en: { preferred: electronegativity, aliases: [polarised bond, partial charge, delta plus, delta minus, polar molecule, non-polar molecule] }
+  # --- concept.cohesion_dissolution ------------------------------------------
+  - id: glossary.ionic_solid
+    nodeId: concept.cohesion_dissolution
+    fr: { preferred: solide ionique, aliases: [solide moléculaire, cohésion, interaction électrostatique, interactions de Van der Waals, liaison hydrogène] }
+    en: { preferred: ionic solid, aliases: [molecular solid, cohesion, electrostatic interaction, Van der Waals interactions, hydrogen bond] }
+    notes: "The hydrogen bond is not a covalent bond: an interaction between an O–H or N–H hydrogen and a neighbouring lone pair."
+  - id: glossary.solvation
+    nodeId: concept.cohesion_dissolution
+    fr: { preferred: solvatation, aliases: [hydratation, dissociation, dispersion, équation de dissolution] }
+    en: { preferred: solvation, aliases: [hydration, dissociation, dispersion, dissolution equation] }
+  - id: glossary.solvent_extraction
+    nodeId: concept.cohesion_dissolution
+    fr: { preferred: extraction par solvant, aliases: [extraction liquide-liquide, ampoule à décanter, solubilité, miscibilité, espèce amphiphile] }
+    en: { preferred: solvent extraction, aliases: [liquid–liquid extraction, separating funnel, solubility, miscibility, amphiphilic species] }
+  # --- model.organic_molecules ------------------------------------------------
+  - id: glossary.carbon_skeleton
+    nodeId: model.organic_molecules
+    fr: { preferred: squelette carboné, aliases: [chaîne carbonée, chaîne linéaire, chaîne ramifiée, chaîne saturée, alcane] }
+    en: { preferred: carbon skeleton, aliases: [carbon chain, linear chain, branched chain, saturated chain, alkane] }
+  - id: glossary.characteristic_group
+    nodeId: model.organic_molecules
+    fr: { preferred: groupe caractéristique, aliases: [groupe hydroxyle, groupe carbonyle, groupe carboxyle, groupe fonctionnel] }
+    en: { preferred: characteristic group, aliases: [hydroxyl group, carbonyl group, carboxyl group, functional group] }
+    notes: "The French programme says « groupe caractéristique », not « groupe fonctionnel »."
+  - id: glossary.functional_family
+    nodeId: model.organic_molecules
+    fr: { preferred: famille fonctionnelle, aliases: [alcool, aldéhyde, cétone, acide carboxylique, isomères de constitution] }
+    en: { preferred: functional family, aliases: [alcohol, aldehyde, ketone, carboxylic acid, constitutional isomers] }
+  # --- method.ir_spectroscopy -------------------------------------------------
+  - id: glossary.infrared_spectrum
+    nodeId: method.ir_spectroscopy
+    fr: { preferred: spectre infrarouge, aliases: [spectroscopie infrarouge, spectre IR, transmittance] }
+    en: { preferred: infrared spectrum, aliases: [infrared spectroscopy, IR spectrum, transmittance] }
+    notes: "Transmittance in percent; an absorption band points downwards."
+  - id: glossary.wavenumber
+    nodeId: method.ir_spectroscopy
+    fr: { preferred: nombre d'onde, aliases: [sigma, cm⁻¹, inverse de la longueur d'onde] }
+    en: { preferred: wavenumber, aliases: [sigma, cm⁻¹, reciprocal of the wavelength] }
+    notes: "On a published spectrum the axis runs from 4000 down to 500 cm⁻¹, decreasing to the right."
+  - id: glossary.absorption_band
+    nodeId: method.ir_spectroscopy
+    fr: { preferred: bande d'absorption, aliases: [bande large, bande fine, valeurs de référence, empreinte digitale] }
+    en: { preferred: absorption band, aliases: [broad band, sharp band, reference values, fingerprint region] }
+  # --- method.organic_synthesis -----------------------------------------------
+  - id: glossary.synthesis_protocol
+    nodeId: method.organic_synthesis
+    fr: { preferred: protocole de synthèse, aliases: [chauffage à reflux, isolement, purification, filtration sous vide, séchage] }
+    en: { preferred: synthesis protocol, aliases: [heating under reflux, isolation, purification, vacuum filtration, drying] }
+  - id: glossary.reaction_yield
+    nodeId: method.organic_synthesis
+    fr: { preferred: rendement, aliases: [eta, quantité obtenue, quantité maximale, rendement d'une synthèse] }
+    en: { preferred: yield, aliases: [eta, amount obtained, maximum amount, yield of a synthesis] }
+    notes: "η = n obtained / n max: a ratio, never an extent; above 100 % it signals an impure product."
+  - id: glossary.esterification
+    nodeId: method.organic_synthesis
+    fr: { preferred: estérification, aliases: [ester, acide carboxylique et alcool, transformation non totale] }
+    en: { preferred: esterification, aliases: [ester, carboxylic acid and alcohol, incomplete transformation] }
+  # --- phenomenon.combustion --------------------------------------------------
+  - id: glossary.combustion
+    nodeId: phenomenon.combustion
+    fr: { preferred: combustion, aliases: [combustible, comburant, combustion complète, combustion incomplète, triangle du feu] }
+    en: { preferred: combustion, aliases: [fuel, oxidiser, complete combustion, incomplete combustion, fire triangle] }
+    notes: "« Combustible » is the fuel and « comburant » the oxidiser: French keeps the two words apart."
+  - id: glossary.bond_energy
+    nodeId: phenomenon.combustion
+    fr: { preferred: énergie de liaison, aliases: [liaisons rompues, liaisons formées, kJ/mol] }
+    en: { preferred: bond energy, aliases: [bonds broken, bonds formed, kJ/mol] }
+    notes: "Always positive: the energy needed to break one mole of that bond."
+  - id: glossary.molar_reaction_energy
+    nodeId: phenomenon.combustion
+    fr: { preferred: énergie molaire de réaction, aliases: [Er, réaction exothermique, réaction endothermique, énergie libérée] }
+    en: { preferred: molar reaction energy, aliases: [Er, exothermic reaction, endothermic reaction, energy released] }
+    notes: "Negative for an exothermic reaction: Er = sum of the bonds broken minus sum of the bonds formed."

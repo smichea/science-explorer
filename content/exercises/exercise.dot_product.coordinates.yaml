@@ -1,0 +1,53 @@
+# Produit scalaire — calculer u·v par les coordonnées dans un repère orthonormé (réponse numérique)
+id: exercise.dot_product.coordinates
+type: numeric
+nodeId: tool.dot_product
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Dans un repère **orthonormé**, on donne $\vec u\,(3\,;\,-2)$ et $\vec v\,(4\,;\,5)$.
+
+    Calculez le produit scalaire $\vec u \cdot \vec v$.
+  en: |-
+    In an **orthonormal** frame, let $\vec u\,(3\,;\,-2)$ and $\vec v\,(4\,;\,5)$.
+
+    Compute the dot product $\vec u \cdot \vec v$.
+numeric:
+  value: 2
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "u · v", en: "u · v" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Dans un repère orthonormé, $\vec u \cdot \vec v = xx' + yy'$ : on multiplie les abscisses entre elles, les ordonnées entre elles, et on additionne.
+      en: |-
+        In an orthonormal frame, $\vec u \cdot \vec v = xx' + yy'$: multiply the abscissae together, the ordinates together, and add.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\vec u \cdot \vec v = 3 \times 4 + (-2) \times 5$. Attention au signe du second produit.
+      en: |-
+        $\vec u \cdot \vec v = 3 \times 4 + (-2) \times 5$. Mind the sign of the second product.
+solution:
+  fr: |-
+    Le repère étant orthonormé, on applique la formule des coordonnées :
+    $$\vec u \cdot \vec v = xx' + yy' = 3 \times 4 + (-2) \times 5 = 12 - 10 = 2.$$
+
+    **Interprétation.** Le résultat est un **nombre**, pas un vecteur. Il est positif, donc l'angle des deux vecteurs est aigu : ils pointent globalement du même côté. Il est de plus très petit devant le produit des normes, $\|\vec u\| \times \|\vec v\| = \sqrt{13} \times \sqrt{41} \approx 23{,}1$, ce qui signifie que $\cos\theta \approx 0{,}087$ : les deux vecteurs sont presque orthogonaux, sans l'être tout à fait. Ils le seraient si l'on remplaçait $\vec v$ par $(2\,;\,3)$, puisque $3 \times 2 + (-2) \times 3 = 0$.
+  en: |-
+    Since the frame is orthonormal, the coordinate formula applies:
+    $$\vec u \cdot \vec v = xx' + yy' = 3 \times 4 + (-2) \times 5 = 12 - 10 = 2.$$
+
+    **Interpretation.** The result is a **number**, not a vector. It is positive, so the angle between the two vectors is acute: they broadly point the same way. It is moreover very small compared with the product of the norms, $\|\vec u\| \times \|\vec v\| = \sqrt{13} \times \sqrt{41} \approx 23.1$, which means $\cos\theta \approx 0.087$: the two vectors are almost orthogonal, without quite being so. They would be if $\vec v$ were replaced by $(2\,;\,3)$, since $3 \times 2 + (-2) \times 3 = 0$.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

@@ -1,0 +1,69 @@
+# Leçon combustions — énergie molaire de réaction de la combustion du dihydrogène estimée par les énergies de liaison (réponse numérique)
+id: exercise.combustion.bond_energy
+type: numeric
+nodeId: phenomenon.combustion
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    La combustion du dihydrogène en phase gazeuse est modélisée par
+    $$2\,\mathrm{H_2} + \mathrm{O_2} \to 2\,\mathrm{H_2O}.$$
+
+    Données, énergies de liaison en $\mathrm{kJ/mol}$ : $E(\mathrm{H{-}H}) = 436$, $E(\mathrm{O{=}O}) = 498$, $E(\mathrm{O{-}H}) = 463$.
+
+    Estimez l'énergie molaire de réaction $E_r$, en $\mathrm{kJ/mol}$, **sans oublier son signe**.
+  en: |-
+    The combustion of dihydrogen in the gas phase is modelled by
+    $$2\,\mathrm{H_2} + \mathrm{O_2} \to 2\,\mathrm{H_2O}.$$
+
+    Data, bond energies in $\mathrm{kJ/mol}$: $E(\mathrm{H{-}H}) = 436$, $E(\mathrm{O{=}O}) = 498$, $E(\mathrm{O{-}H}) = 463$.
+
+    Estimate the molar reaction energy $E_r$, in $\mathrm{kJ/mol}$, **without forgetting its sign**.
+numeric:
+  value: -482
+  unit: "kJ/mol"
+  tolerance: { kind: absolute, value: 10 }
+  inputLabel: { fr: "E_r", en: "E_r" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Comptez les liaisons rompues à gauche et les liaisons formées à droite. Une molécule d'eau contient **deux** liaisons $\mathrm{O{-}H}$.
+      en: |-
+        Count the bonds broken on the left and the bonds formed on the right. One water molecule contains **two** $\mathrm{O{-}H}$ bonds.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Rompre coûte, former libère : $E_r = \sum E(\text{liaisons rompues}) - \sum E(\text{liaisons formées})$.
+      en: |-
+        Breaking costs, forming releases: $E_r = \sum E(\text{bonds broken}) - \sum E(\text{bonds formed})$.
+solution:
+  fr: |-
+    Telle qu'elle est écrite, la réaction rompt les liaisons de $2\,\mathrm{H_2}$ et de $1\,\mathrm{O_2}$, et forme celles de $2\,\mathrm{H_2O}$, soit $4$ liaisons $\mathrm{O{-}H}$ puisque chaque molécule d'eau en compte deux.
+
+    Liaisons rompues :
+    $$2 \times 436 + 1 \times 498 = 872 + 498 = 1370\ \mathrm{kJ/mol}.$$
+
+    Liaisons formées :
+    $$4 \times 463 = 1852\ \mathrm{kJ/mol}.$$
+
+    D'où
+    $$E_r = 1370 - 1852 = -482\ \mathrm{kJ/mol}.$$
+
+    Le signe négatif dit que le système cède de l'énergie au milieu extérieur : la réaction est **exothermique**, parce que les liaisons formées sont, au total, plus fortes que celles qui ont été rompues. Brûler $2{,}0\ \mathrm{mol}$ de dihydrogène, c'est faire la réaction une fois telle qu'elle est écrite, donc libérer $482\ \mathrm{kJ}$. Cette estimation suppose des réactifs et des produits **gazeux** et des énergies de liaison moyennes : avec de l'eau liquide, l'énergie libérée serait un peu plus grande. Notons enfin que cette combustion ne rejette pas de dioxyde de carbone, ce qui explique l'intérêt porté au dihydrogène comme vecteur d'énergie.
+  en: |-
+    As it is written, the reaction breaks the bonds of $2\,\mathrm{H_2}$ and of $1\,\mathrm{O_2}$, and forms those of $2\,\mathrm{H_2O}$, that is $4$ $\mathrm{O{-}H}$ bonds since each water molecule contains two.
+
+    Bonds broken:
+    $$2 \times 436 + 1 \times 498 = 872 + 498 = 1370\ \mathrm{kJ/mol}.$$
+
+    Bonds formed:
+    $$4 \times 463 = 1852\ \mathrm{kJ/mol}.$$
+
+    Hence
+    $$E_r = 1370 - 1852 = -482\ \mathrm{kJ/mol}.$$
+
+    The negative sign says that the system gives energy away to the surroundings: the reaction is **exothermic**, because the bonds formed are, overall, stronger than those that were broken. Burning $2.0\ \mathrm{mol}$ of dihydrogen means carrying out the reaction once as written, hence releasing $482\ \mathrm{kJ}$. This estimate assumes **gaseous** reactants and products and average bond energies: with liquid water, the energy released would be slightly larger. Note lastly that this combustion releases no carbon dioxide, which explains the interest in dihydrogen as an energy carrier.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 3, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 2, transfer: 2, autonomy: 3 }

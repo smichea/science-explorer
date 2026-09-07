@@ -1,0 +1,45 @@
+# Photon — énergie du photon émis lors d'une transition de l'atome d'hydrogène (réponse numérique)
+id: exercise.photon.energy
+type: numeric
+nodeId: model.photon
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Les premiers niveaux d'énergie de l'atome d'hydrogène valent $E_1 = -13{,}6\ \mathrm{eV}$, $E_2 = -3{,}40\ \mathrm{eV}$, $E_3 = -1{,}51\ \mathrm{eV}$ et $E_4 = -0{,}85\ \mathrm{eV}$. Un atome initialement dans l'état $n = 3$ se désexcite vers l'état $n = 2$ en émettant un photon.
+
+    Quelle est l'énergie de ce photon ? Répondez en électronvolts, avec trois chiffres significatifs.
+  en: |-
+    The first energy levels of the hydrogen atom are $E_1 = -13.6\ \mathrm{eV}$, $E_2 = -3.40\ \mathrm{eV}$, $E_3 = -1.51\ \mathrm{eV}$ and $E_4 = -0.85\ \mathrm{eV}$. An atom initially in the state $n = 3$ de-excites towards the state $n = 2$ by emitting a photon.
+
+    What is the energy of this photon? Answer in electronvolts, with three significant figures.
+numeric:
+  value: 1.89
+  unit: "eV"
+  tolerance: { kind: absolute, value: 0.03 }
+  inputLabel: { fr: "E du photon", en: "E of the photon" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        L'énergie du photon émis est exactement l'écart entre les deux niveaux : $\Delta E = E_3 - E_2$.
+      en: |-
+        The energy of the emitted photon is exactly the gap between the two levels: $\Delta E = E_3 - E_2$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Attention aux signes : les deux niveaux sont négatifs, et soustraire $-3{,}40$ revient à ajouter $3{,}40$. L'énergie d'un photon est toujours positive.
+      en: |-
+        Beware of the signs: both levels are negative, and subtracting $-3.40$ amounts to adding $3.40$. The energy of a photon is always positive.
+solution:
+  fr: |-
+    L'atome passe d'un niveau haut à un niveau plus bas : il perd de l'énergie, et cette énergie part intégralement avec le photon.
+    $$\Delta E = E_3 - E_2 = (-1{,}51) - (-3{,}40) = 1{,}89\ \mathrm{eV}.$$
+    En joules, cela fait $1{,}89 \times 1{,}60 \times 10^{-19} = 3{,}02 \times 10^{-19}\ \mathrm{J}$, ce qui correspond à la longueur d'onde $\lambda = \dfrac{h\,c}{\Delta E} = 656\ \mathrm{nm}$ : la fameuse raie rouge de l'hydrogène, visible dans le spectre de nombreuses étoiles. Un photon d'une autre énergie ne pourrait ni être émis ni être absorbé lors de cette transition : c'est cela, la quantification.
+  en: |-
+    The atom goes from a high level to a lower one: it loses energy, and this energy leaves entirely with the photon.
+    $$\Delta E = E_3 - E_2 = (-1.51) - (-3.40) = 1.89\ \mathrm{eV}.$$
+    In joules, this is $1.89 \times 1.60 \times 10^{-19} = 3.02 \times 10^{-19}\ \mathrm{J}$, which corresponds to the wavelength $\lambda = \dfrac{h\,c}{\Delta E} = 656\ \mathrm{nm}$: the famous red line of hydrogen, visible in the spectrum of many stars. A photon of any other energy could be neither emitted nor absorbed in this transition: that is what quantisation means.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 3, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

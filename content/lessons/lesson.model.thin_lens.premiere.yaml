@@ -1,0 +1,86 @@
+# Leçon narrée — la lentille mince en Première : relation de conjugaison, grandissement, image réelle ou virtuelle, l'œil et l'appareil photo (outil optique en mode lentille).
+id: lesson.model.thin_lens.premiere
+nodeId: model.thin_lens
+depth: 2
+tools:
+  - id: lens
+    kind: optics
+    title: { fr: "Image par une lentille convergente", en: "Image through a converging lens" }
+    mode: lens
+    parameters:
+      - { id: d, label: { fr: "distance objet-lentille d (cm)", en: "object–lens distance d (cm)" }, min: 2, max: 40, step: 0.5, value: 12 }
+      - { id: f, label: { fr: "distance focale f' (cm)", en: "focal length f' (cm)" }, min: 2, max: 8, step: 0.5, value: 5 }
+    focal: "f"
+    object: { distance: "d", height: 3 }
+steps:
+  - id: conjugation
+    title: { fr: "La relation de conjugaison", en: "The conjugation relation" }
+    text:
+      fr: >-
+        Un objet de 3 centimètres est placé à 12 centimètres d'une lentille convergente de distance focale 5 centimètres.
+        Avec les mesures algébriques, comptées positivement dans le sens de propagation de la lumière, OA vaut moins 12 et f prime vaut plus 5.
+        La relation de conjugaison, 1 sur OA prime moins 1 sur OA égale 1 sur f prime, donne 1 sur OA prime égale 1 sur 5 moins 1 sur 12, soit OA prime égale 8,6 centimètres.
+        L'image se forme derrière la lentille : elle est réelle, on peut la recueillir sur un écran.
+      en: >-
+        An object 3 centimetres tall is placed 12 centimetres from a converging lens of focal length 5 centimetres.
+        With algebraic distances, counted positively in the direction of propagation of the light, OA is minus 12 and f prime is plus 5.
+        The conjugation relation, 1 over OA prime minus 1 over OA equals 1 over f prime, gives 1 over OA prime equals 1 over 5 minus 1 over 12, that is OA prime equals 8.6 centimetres.
+        The image forms behind the lens: it is real, it can be collected on a screen.
+    actions:
+      - { at: 0, set: { d: 12, f: 5 } }
+  - id: magnification
+    title: { fr: "Le grandissement", en: "The magnification" }
+    text:
+      fr: >-
+        Le grandissement gamma est le rapport des mesures algébriques A prime B prime sur AB, égal aussi à OA prime sur OA.
+        Ici, 8,6 divisé par moins 12 donne moins 0,71 : l'image est renversée et plus petite que l'objet, haute de 2,1 centimètres.
+        Rapprochons l'objet à 7 centimètres : OA prime passe à 17,5 centimètres et gamma à moins 2,5, l'image est agrandie.
+        Entre le foyer et la lentille, à 3 centimètres, il n'y a plus d'image réelle : la loupe donne une image virtuelle, droite et agrandie, que l'œil voit à travers la lentille.
+      en: >-
+        The magnification gamma is the ratio of the algebraic heights A prime B prime over AB, also equal to OA prime over OA.
+        Here, 8.6 divided by minus 12 gives minus 0.71: the image is inverted and smaller than the object, 2.1 centimetres tall.
+        Let us bring the object closer, to 7 centimetres: OA prime becomes 17.5 centimetres and gamma minus 2.5, the image is enlarged.
+        Between the focus and the lens, at 3 centimetres, there is no real image any more: the magnifying glass gives a virtual image, upright and enlarged, which the eye sees through the lens.
+    actions:
+      - { at: 2, set: { d: 7 } }
+      - { at: 3, set: { d: 3 } }
+  - id: eye_camera
+    title: { fr: "L'œil et l'appareil photo", en: "The eye and the camera" }
+    text:
+      fr: >-
+        L'œil se modélise par une lentille convergente, le cristallin, et un écran fixe, la rétine, à environ 17 millimètres.
+        Quand l'objet se rapproche, le cristallin se bombe et sa distance focale diminue, pour que l'image reste sur la rétine : c'est l'accommodation.
+        L'appareil photo fait l'inverse : la distance focale de l'objectif est fixe, et c'est la distance entre l'objectif et le capteur qui change pour la mise au point.
+        Dans les deux cas, l'image est réelle, renversée et plus petite que l'objet.
+      en: >-
+        The eye is modelled by a converging lens, the crystalline lens, and a fixed screen, the retina, about 17 millimetres away.
+        When the object comes closer, the crystalline lens bulges and its focal length decreases, so that the image stays on the retina: this is accommodation.
+        The camera does the opposite: the focal length of the lens is fixed, and it is the distance between the lens and the sensor that changes for focusing.
+        In both cases, the image is real, inverted and smaller than the object.
+    actions:
+      - { at: 0, set: { d: 20, f: 5 } }
+      - { at: 1, set: { d: 8, f: 3.5 } }
+      - { at: 2, set: { f: 5 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de former l'image", en: "Your turn to form the image" }
+    text:
+      fr: >-
+        À vous.
+        Déplacez l'objet et changez la distance focale ; lisez la position de l'image et le grandissement, et repérez à partir de quelle distance l'image devient virtuelle.
+      en: >-
+        Your turn.
+        Move the object and change the focal length; read the position of the image and the magnification, and spot from which distance the image becomes virtual.
+    actions:
+      - { at: 0, set: { d: 12, f: 5 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : la position d'une image par la relation de conjugaison, puis un grandissement.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the position of an image through the conjugation relation, then a magnification.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.lens.conjugation, exercise.lens.magnification]

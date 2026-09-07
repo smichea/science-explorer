@@ -1,0 +1,49 @@
+# Énergie mécanique — énergie dissipée par les frottements de l'air pendant une chute (réponse numérique)
+id: exercise.mechanical.loss
+type: numeric
+nodeId: concept.mechanical_energy
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Une balle de masse $m = 0{,}20\ \mathrm{kg}$ est lâchée sans vitesse initiale d'une hauteur $h = 8{,}0\ \mathrm{m}$. À cause des frottements de l'air, elle arrive au sol à la vitesse $v = 10\ \mathrm{m/s}$. On prend $g = 9{,}81\ \mathrm{N/kg}$ et l'altitude de référence au niveau du sol.
+
+    Quelle énergie les frottements ont-ils dissipée pendant la chute ? Répondez en joules, avec deux chiffres significatifs.
+  en: |-
+    A ball of mass $m = 0.20\ \mathrm{kg}$ is released from rest from a height $h = 8.0\ \mathrm{m}$. Because of air friction, it reaches the ground at the speed $v = 10\ \mathrm{m/s}$. Take $g = 9.81\ \mathrm{N/kg}$ and the reference altitude at ground level.
+
+    How much energy have the friction forces dissipated during the fall? Answer in joules, with two significant figures.
+numeric:
+  value: 5.7
+  unit: "J"
+  tolerance: { kind: absolute, value: 0.25 }
+  inputLabel: { fr: "énergie dissipée", en: "dissipated energy" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Calculez l'énergie mécanique au départ, puis à l'arrivée : l'énergie dissipée est la différence entre les deux.
+      en: |-
+        Compute the mechanical energy at the start, then at the arrival: the dissipated energy is the difference between the two.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Au départ, $E_m = m\,g\,h$ car la vitesse est nulle ; à l'arrivée, $E_m = \dfrac{1}{2}\,m\,v^2$ car l'altitude est nulle.
+      en: |-
+        At the start, $E_m = m\,g\,h$ since the speed is zero; at the arrival, $E_m = \dfrac{1}{2}\,m\,v^2$ since the altitude is zero.
+solution:
+  fr: |-
+    Au moment du lâcher, toute l'énergie mécanique est potentielle :
+    $$E_m(\text{départ}) = m\,g\,h = 0{,}20 \times 9{,}81 \times 8{,}0 = 15{,}7\ \mathrm{J}.$$
+    À l'arrivée au sol, elle est entièrement cinétique :
+    $$E_m(\text{arrivée}) = \tfrac{1}{2}\,m\,v^2 = 0{,}5 \times 0{,}20 \times 10^2 = 10{,}0\ \mathrm{J}.$$
+    L'énergie mécanique a donc **diminué** de $15{,}7 - 10{,}0 = 5{,}7\ \mathrm{J}$ : c'est le travail, négatif, des frottements de l'air. Cette énergie n'a pas disparu, elle a été transférée à l'air et à la balle sous forme thermique. Sans frottement, la balle serait arrivée à $\sqrt{2\,g\,h} = 12{,}5\ \mathrm{m/s}$ et non à $10\ \mathrm{m/s}$.
+  en: |-
+    At the moment of release, all the mechanical energy is potential:
+    $$E_m(\text{start}) = m\,g\,h = 0.20 \times 9.81 \times 8.0 = 15.7\ \mathrm{J}.$$
+    On reaching the ground, it is entirely kinetic:
+    $$E_m(\text{arrival}) = \tfrac{1}{2}\,m\,v^2 = 0.5 \times 0.20 \times 10^2 = 10.0\ \mathrm{J}.$$
+    The mechanical energy has therefore **decreased** by $15.7 - 10.0 = 5.7\ \mathrm{J}$: this is the work, negative, of the air friction. This energy has not vanished, it has been transferred to the air and to the ball as heat. Without friction, the ball would have arrived at $\sqrt{2\,g\,h} = 12.5\ \mathrm{m/s}$ and not at $10\ \mathrm{m/s}$.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 3, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 3, transfer: 2, autonomy: 3 }

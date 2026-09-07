@@ -2,7 +2,7 @@
 id: exercise.newton.force
 type: numeric
 nodeId: law.newton_second
-depth: 1
+depth: 2
 evidenceDimension: modelling_choice
 prompt:
   fr: Quelle force résultante faut-il pour donner à une masse de $1{,}5\ \mathrm{kg}$ une accélération de $4\ \mathrm{m/s^2}$ ?

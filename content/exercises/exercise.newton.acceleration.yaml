@@ -2,7 +2,7 @@
 id: exercise.newton.acceleration
 type: numeric
 nodeId: law.newton_second
-depth: 1
+depth: 2
 evidenceDimension: procedural_execution
 prompt:
   fr: |-

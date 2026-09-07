@@ -1,0 +1,105 @@
+# Leçon narrée — la lumière comme onde et comme photon : niveaux d'énergie de l'hydrogène, transitions et spectres de raies (outil niveaux d'énergie).
+id: lesson.model.photon
+nodeId: model.photon
+depth: 1
+tools:
+  - id: hydrogen
+    kind: energy_levels
+    title: { fr: "Niveaux d'énergie de l'atome d'hydrogène", en: "Energy levels of the hydrogen atom" }
+    levels:
+      - { id: n1, energy: -13.6, label: { fr: "n = 1", en: "n = 1" } }
+      - { id: n2, energy: -3.4, label: { fr: "n = 2", en: "n = 2" } }
+      - { id: n3, energy: -1.51, label: { fr: "n = 3", en: "n = 3" } }
+      - { id: n4, energy: -0.85, label: { fr: "n = 4", en: "n = 4" } }
+      - { id: n5, energy: -0.54, label: { fr: "n = 5", en: "n = 5" } }
+    selected: [n3, n2]
+    transitions:
+      - { id: alpha, from: n3, to: n2, label: { fr: "656 nm, rouge", en: "656 nm, red" }, hidden: true }
+      - { id: beta, from: n4, to: n2, label: { fr: "486 nm, bleu-vert", en: "486 nm, blue-green" }, hidden: true }
+      - { id: gamma, from: n5, to: n2, label: { fr: "434 nm, violet", en: "434 nm, violet" }, hidden: true }
+      - { id: lyman, from: n2, to: n1, label: { fr: "122 nm, ultraviolet", en: "122 nm, ultraviolet" }, hidden: true }
+steps:
+  - id: photon
+    title: { fr: "L'onde et le grain", en: "The wave and the grain" }
+    text:
+      fr: >-
+        La lumière se décrit de deux façons complémentaires.
+        Comme une onde d'abord, caractérisée par sa longueur d'onde et sa fréquence, liées par la célérité : c'est ce modèle qui explique la réfraction, la dispersion et les couleurs.
+        Comme un flux de grains ensuite, les photons, sans masse, allant tous à 3 fois dix puissance 8 mètres par seconde, et transportant chacun l'énergie h fois la fréquence.
+        La constante h de Planck vaut 6,63 fois dix puissance moins 34 joule-seconde : un photon rouge transporte donc moins d'énergie qu'un photon violet, dont la fréquence est plus grande.
+      en: >-
+        Light is described in two complementary ways.
+        As a wave first, characterised by its wavelength and its frequency, linked by the speed: it is this model that explains refraction, dispersion and colours.
+        As a flow of grains next, the photons, massless, all travelling at 3 times ten to the power 8 metres per second, each carrying the energy h times the frequency.
+        The Planck constant h is 6.63 times ten to the power minus 34 joule-second: a red photon therefore carries less energy than a violet photon, whose frequency is larger.
+    actions: []
+  - id: levels
+    title: { fr: "Une énergie quantifiée", en: "A quantised energy" }
+    text:
+      fr: >-
+        L'énergie d'un atome ne peut pas prendre n'importe quelle valeur : elle est quantifiée, comme les barreaux d'une échelle.
+        Voici les cinq premiers niveaux de l'atome d'hydrogène, comptés en électronvolts et négativement à partir de l'atome ionisé, pris comme zéro.
+        Le plus bas, moins 13,6 électronvolts, est l'état fondamental, celui où l'atome se trouve au repos ; les suivants, moins 3,4, moins 1,51, moins 0,85 et moins 0,54, sont des états excités.
+        Remarquez comme les barreaux se resserrent en montant : au-dessus de zéro, l'électron est arraché et l'atome est ionisé.
+      en: >-
+        The energy of an atom cannot take any value at all: it is quantised, like the rungs of a ladder.
+        Here are the first five levels of the hydrogen atom, counted in electronvolts and negatively from the ionised atom, taken as zero.
+        The lowest, minus 13.6 electronvolts, is the ground state, the one the atom sits in at rest; the next ones, minus 3.4, minus 1.51, minus 0.85 and minus 0.54, are excited states.
+        Notice how the rungs come closer together going up: above zero, the electron is torn away and the atom is ionised.
+    actions: []
+  - id: transition
+    title: { fr: "Émettre un photon", en: "Emitting a photon" }
+    text:
+      fr: >-
+        Un atome excité au niveau 3 peut redescendre au niveau 2 : il perd de l'énergie, et cette énergie part entièrement avec un photon.
+        L'écart entre les deux niveaux vaut moins 1,51 moins moins 3,4, c'est-à-dire 1,89 électronvolt, soit 3,02 fois dix puissance moins 19 joule.
+        La relation entre l'énergie et la longueur d'onde donne alors 656 nanomètres : c'est une lumière rouge, la raie la plus célèbre de l'hydrogène.
+        Un photon d'une autre énergie, même très proche, ne pourrait ni être émis ni être absorbé par cette transition : c'est cela, la quantification.
+      en: >-
+        An atom excited to level 3 can go back down to level 2: it loses energy, and this energy leaves entirely with a photon.
+        The gap between the two levels is minus 1.51 minus minus 3.4, that is 1.89 electronvolt, or 3.02 times ten to the power minus 19 joule.
+        The relation between the energy and the wavelength then gives 656 nanometres: this is a red light, the most famous line of hydrogen.
+        A photon of any other energy, even a very close one, could be neither emitted nor absorbed by this transition: that is what quantisation means.
+    actions:
+      - { at: 2, show: [alpha] }
+  - id: spectra
+    title: { fr: "Les spectres de raies", en: "Line spectra" }
+    text:
+      fr: >-
+        Les autres transitions vers le niveau 2 donnent d'autres raies visibles : 486 nanomètres depuis le niveau 4, bleu-vert, et 434 nanomètres depuis le niveau 5, violet.
+        Voilà pourquoi un gaz excité n'émet pas un arc-en-ciel continu mais quelques raies seulement, aux longueurs d'onde de ses écarts de niveaux.
+        Les transitions qui aboutissent au niveau fondamental sont bien plus énergétiques : depuis le niveau 2, l'écart vaut 10,2 électronvolts, et le photon émis, à 122 nanomètres, est ultraviolet, donc invisible.
+        Éclairé par de la lumière blanche, le même gaz froid absorbe exactement ces mêmes longueurs d'onde et laisse des raies noires : chaque élément possède ainsi sa signature, ce qui permet de lire la composition d'une étoile sans jamais s'en approcher.
+      en: >-
+        The other transitions towards level 2 give other visible lines: 486 nanometres from level 4, blue-green, and 434 nanometres from level 5, violet.
+        This is why an excited gas does not emit a continuous rainbow but only a few lines, at the wavelengths of its level gaps.
+        The transitions ending at the ground level are far more energetic: from level 2, the gap is 10.2 electronvolts, and the emitted photon, at 122 nanometres, is ultraviolet, therefore invisible.
+        Lit by white light, the same cold gas absorbs exactly those same wavelengths and leaves black lines: each element thus has its signature, which makes it possible to read the composition of a star without ever coming near it.
+    actions:
+      - { at: 0, show: [beta, gamma] }
+      - { at: 2, show: [lyman] }
+  - id: play
+    kind: play
+    title: { fr: "À vous de choisir une transition", en: "Your turn to pick a transition" }
+    text:
+      fr: >-
+        À vous.
+        Cliquez sur deux niveaux pour choisir une transition et lisez l'énergie du photon, sa fréquence, sa longueur d'onde et son domaine.
+        Cherchez quelles transitions tombent dans le visible, et vérifiez que plus l'écart d'énergie est grand, plus la longueur d'onde est courte.
+      en: >-
+        Your turn.
+        Click two levels to choose a transition and read the energy of the photon, its frequency, its wavelength and its domain.
+        Look for which transitions fall in the visible range, and check that the larger the energy gap, the shorter the wavelength.
+    actions:
+      - { at: 0, show: [alpha, beta, gamma, lyman] }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : l'énergie d'un photon émis par une transition, puis la longueur d'onde correspondante.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the energy of a photon emitted by a transition, then the corresponding wavelength.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.photon.energy, exercise.photon.wavelength]

@@ -1,0 +1,45 @@
+# Travail d'une force — travail d'une force constante inclinée sur un déplacement horizontal (réponse numérique)
+id: exercise.kinetic.work
+type: numeric
+nodeId: concept.kinetic_energy_work
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un enfant tire un traîneau sur la neige horizontale à l'aide d'une corde. La force exercée sur le traîneau a pour valeur $F = 20\ \mathrm{N}$ et fait un angle $\alpha = 30^\circ$ avec l'horizontale. Le traîneau se déplace en ligne droite de $A$ à $B$, avec $AB = 5{,}0\ \mathrm{m}$.
+
+    Calculez le travail de cette force entre $A$ et $B$, en joules, avec deux chiffres significatifs.
+  en: |-
+    A child pulls a sledge over horizontal snow with a rope. The force exerted on the sledge has the value $F = 20\ \mathrm{N}$ and makes an angle $\alpha = 30^\circ$ with the horizontal. The sledge moves in a straight line from $A$ to $B$, with $AB = 5.0\ \mathrm{m}$.
+
+    Compute the work of this force between $A$ and $B$, in joules, with two significant figures.
+numeric:
+  value: 86.6
+  unit: "J"
+  tolerance: { kind: absolute, value: 0.6 }
+  inputLabel: { fr: "W(F)", en: "W(F)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le travail d'une force constante est le produit scalaire $W_{AB}(\vec F) = \vec F \cdot \vec{AB}$, qui s'écrit aussi $F \times AB \times \cos\alpha$.
+      en: |-
+        The work of a constant force is the dot product $W_{AB}(\vec F) = \vec F \cdot \vec{AB}$, which is also written $F \times AB \times \cos\alpha$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\cos 30^\circ = \dfrac{\sqrt{3}}{2} \approx 0{,}866$ : seule la composante horizontale de la force travaille.
+      en: |-
+        $\cos 30^\circ = \dfrac{\sqrt{3}}{2} \approx 0.866$: only the horizontal component of the force does work.
+solution:
+  fr: |-
+    La force et le déplacement font entre eux l'angle $\alpha = 30^\circ$, donc
+    $$W_{AB}(\vec F) = \vec F \cdot \vec{AB} = F \times AB \times \cos\alpha = 20 \times 5{,}0 \times \cos 30^\circ = 100 \times 0{,}866 = 87\ \mathrm{J}.$$
+    L'angle étant inférieur à $90^\circ$, le travail est positif : la force est **motrice**, elle apporte de l'énergie au traîneau. On remarque que le poids et la réaction normale de la neige, tous deux perpendiculaires au déplacement, ont un travail **nul** : ils ne modifient pas l'énergie cinétique du traîneau.
+  en: |-
+    The force and the displacement make between them the angle $\alpha = 30^\circ$, so
+    $$W_{AB}(\vec F) = \vec F \cdot \vec{AB} = F \times AB \times \cos\alpha = 20 \times 5.0 \times \cos 30^\circ = 100 \times 0.866 = 87\ \mathrm{J}.$$
+    Since the angle is smaller than $90^\circ$, the work is positive: the force is **motive**, it brings energy to the sledge. Note that the weight and the normal reaction of the snow, both perpendicular to the displacement, have **zero** work: they do not change the kinetic energy of the sledge.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

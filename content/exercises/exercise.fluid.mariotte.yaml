@@ -1,0 +1,45 @@
+# Loi de Mariotte — volume d'une bulle d'air qui remonte à la surface (réponse numérique)
+id: exercise.fluid.mariotte
+type: numeric
+nodeId: law.fluid_statics
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    À $30\ \mathrm{m}$ de profondeur, où la pression vaut $P_1 = 4{,}0\ \mathrm{bar}$, un plongeur relâche une bulle d'air de volume $V_1 = 1{,}5\ \mathrm{L}$. La bulle remonte lentement jusqu'à la surface, où la pression vaut $P_2 = 1{,}0\ \mathrm{bar}$ ; la température de l'eau est supposée constante et la quantité d'air de la bulle ne change pas.
+
+    Quel est le volume $V_2$ de la bulle à la surface ? Répondez en litres, avec deux chiffres significatifs.
+  en: |-
+    At $30\ \mathrm{m}$ of depth, where the pressure is $P_1 = 4.0\ \mathrm{bar}$, a diver releases an air bubble of volume $V_1 = 1.5\ \mathrm{L}$. The bubble rises slowly to the surface, where the pressure is $P_2 = 1.0\ \mathrm{bar}$; the temperature of the water is assumed constant and the amount of air in the bubble does not change.
+
+    What is the volume $V_2$ of the bubble at the surface? Answer in litres, with two significant figures.
+numeric:
+  value: 6
+  unit: "L"
+  tolerance: { kind: relative, value: 0.03 }
+  inputLabel: { fr: "V₂", en: "V₂" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La température et la quantité de gaz étant constantes, la loi de Mariotte s'applique : le produit $P\,V$ garde la même valeur au fond et à la surface.
+      en: |-
+        Since the temperature and the amount of gas are constant, the Boyle–Mariotte law applies: the product $P\,V$ keeps the same value at the bottom and at the surface.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Écrivez $P_1\,V_1 = P_2\,V_2$ ; les bars et les litres peuvent rester tels quels, puisqu'ils apparaissent des deux côtés.
+      en: |-
+        Write $P_1\,V_1 = P_2\,V_2$; bars and litres may be kept as they are, since they appear on both sides.
+solution:
+  fr: |-
+    La loi de Mariotte, à température et quantité de matière constantes, donne
+    $$P_1\,V_1 = P_2\,V_2 \quad \Longrightarrow \quad V_2 = \frac{P_1\,V_1}{P_2} = \frac{4{,}0 \times 1{,}5}{1{,}0} = 6{,}0\ \mathrm{L}.$$
+    La bulle **quadruple** de volume en remontant, parce que la pression est divisée par quatre. C'est exactement ce qui arriverait à l'air contenu dans les poumons d'un plongeur qui remonterait en bloquant sa respiration : d'où la règle absolue d'expirer pendant la remontée.
+  en: |-
+    The Boyle–Mariotte law, at constant temperature and amount of substance, gives
+    $$P_1\,V_1 = P_2\,V_2 \quad \Longrightarrow \quad V_2 = \frac{P_1\,V_1}{P_2} = \frac{4.0 \times 1.5}{1.0} = 6.0\ \mathrm{L}.$$
+    The bubble **quadruples** in volume while rising, because the pressure is divided by four. This is exactly what would happen to the air in the lungs of a diver going up while holding their breath: hence the absolute rule of breathing out during the ascent.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 2, linkedConcepts: 2, transfer: 2, autonomy: 2 }

@@ -1,0 +1,53 @@
+# Suites en Première — dérouler une récurrence u(n+1) = 0,5 u(n) + 3 depuis u(0) = 2 jusqu'à u(4) (réponse numérique)
+id: exercise.sequence.recurrence_term
+type: numeric
+nodeId: concept.sequence
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    La suite $(u_n)$ est définie **par récurrence** par $u_0 = 2$ et, pour tout entier $n$, $u_{n+1} = 0{,}5\,u_n + 3$.
+
+    Calculez $u_4$.
+  en: |-
+    The sequence $(u_n)$ is defined **recursively** by $u_0 = 2$ and, for every integer $n$, $u_{n+1} = 0.5\,u_n + 3$.
+
+    Compute $u_4$.
+numeric:
+  value: 5.75
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "u(4)", en: "u(4)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Une définition par récurrence oblige à calculer les termes dans l'ordre : $u_1$, puis $u_2$, puis $u_3$, puis $u_4$.
+      en: |-
+        A recursive definition forces the terms to be computed in order: $u_1$, then $u_2$, then $u_3$, then $u_4$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $u_1 = 0{,}5 \times 2 + 3 = 4$. Recommencez avec $u_1$ pour obtenir $u_2$, et ainsi de suite.
+      en: |-
+        $u_1 = 0.5 \times 2 + 3 = 4$. Start again with $u_1$ to get $u_2$, and so on.
+solution:
+  fr: |-
+    On applique la relation quatre fois de suite, en partant de $u_0 = 2$ :
+    $$u_1 = 0{,}5 \times 2 + 3 = 4, \quad u_2 = 0{,}5 \times 4 + 3 = 5, \quad u_3 = 0{,}5 \times 5 + 3 = 5{,}5, \quad u_4 = 0{,}5 \times 5{,}5 + 3 = 5{,}75.$$
+
+    **Interprétation.** Chaque terme exige tous ceux qui le précèdent : c'est exactement ce que fait une boucle en programmation, où une variable $u$ est remplacée par $0{,}5\,u + 3$ à chaque tour. On observe que la suite croît et se rapproche de $6$, la valeur qui vérifie $x = 0{,}5x + 3$ : les termes s'en approchent sans jamais l'atteindre.
+  en: |-
+    The relation is applied four times in a row, starting from $u_0 = 2$:
+    $$u_1 = 0.5 \times 2 + 3 = 4, \quad u_2 = 0.5 \times 4 + 3 = 5, \quad u_3 = 0.5 \times 5 + 3 = 5.5, \quad u_4 = 0.5 \times 5.5 + 3 = 5.75.$$
+
+    **Interpretation.** Each term requires all those before it: this is exactly what a loop does in programming, where a variable $u$ is replaced by $0.5\,u + 3$ at each turn. One observes that the sequence increases and approaches $6$, the value satisfying $x = 0.5x + 3$: the terms get close to it without ever reaching it.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 2
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

@@ -1,0 +1,156 @@
+# Leçon narrée — schéma de Lewis : les doublets de l'eau construits liaison par liaison, la géométrie tétraédrique du méthane,
+# le doublet non liant de l'ammoniac, puis l'électronégativité et la polarité comparées sur le dioxyde de carbone et l'eau.
+id: lesson.model.lewis_structure
+nodeId: model.lewis_structure
+depth: 1
+tools:
+  - id: water
+    kind: molecule
+    title: { fr: "La molécule d'eau", en: "The water molecule" }
+    name: { fr: "eau", en: "water" }
+    geometry: bent
+    polarity: true
+    atoms:
+      - { id: o, element: O, x: 3, y: 3.2, lonePairs: 2 }
+      - { id: h1, element: H, x: 1.8, y: 2.2 }
+      - { id: h2, element: H, x: 4.2, y: 2.2 }
+    bonds:
+      - { id: b1, from: o, to: h1, order: 1 }
+      - { id: b2, from: o, to: h2, order: 1, hidden: true }
+  - id: methane
+    kind: molecule
+    title: { fr: "La molécule de méthane", en: "The methane molecule" }
+    name: { fr: "méthane", en: "methane" }
+    geometry: tetrahedral
+    polarity: true
+    polar: false
+    atoms:
+      - { id: c, element: C, x: 3, y: 2.6 }
+      - { id: h1, element: H, x: 1.4, y: 2.6 }
+      - { id: h2, element: H, x: 4.6, y: 2.6 }
+      - { id: h3, element: H, x: 3, y: 4.2 }
+      - { id: h4, element: H, x: 3, y: 1 }
+    bonds:
+      - { id: b1, from: c, to: h1, order: 1 }
+      - { id: b2, from: c, to: h2, order: 1 }
+      - { id: b3, from: c, to: h3, order: 1, hidden: true }
+      - { id: b4, from: c, to: h4, order: 1, hidden: true }
+  - id: ammonia
+    kind: molecule
+    title: { fr: "La molécule d'ammoniac", en: "The ammonia molecule" }
+    name: { fr: "ammoniac", en: "ammonia" }
+    geometry: pyramidal
+    polarity: true
+    polar: true
+    atoms:
+      - { id: n, element: N, x: 3, y: 3.4, lonePairs: 1 }
+      - { id: h1, element: H, x: 1.6, y: 2.4 }
+      - { id: h2, element: H, x: 3, y: 1.8 }
+      - { id: h3, element: H, x: 4.4, y: 2.4 }
+    bonds:
+      - { id: b1, from: n, to: h1, order: 1 }
+      - { id: b2, from: n, to: h2, order: 1 }
+      - { id: b3, from: n, to: h3, order: 1 }
+  - id: dioxide
+    kind: molecule
+    title: { fr: "La molécule de dioxyde de carbone", en: "The carbon dioxide molecule" }
+    name: { fr: "dioxyde de carbone", en: "carbon dioxide" }
+    geometry: linear
+    polarity: true
+    atoms:
+      - { id: c, element: C, x: 3, y: 2.5 }
+      - { id: o1, element: O, x: 1.4, y: 2.5, lonePairs: 2 }
+      - { id: o2, element: O, x: 4.6, y: 2.5, lonePairs: 2 }
+    bonds:
+      - { id: b1, from: c, to: o1, order: 2 }
+      - { id: b2, from: c, to: o2, order: 2, hidden: true }
+steps:
+  - id: lewis
+    title: { fr: "Compter les électrons de valence, placer les doublets", en: "Counting the valence electrons, placing the pairs" }
+    tool: water
+    text:
+      fr: >-
+        Le schéma de Lewis représente les électrons de valence d'une entité sous forme de doublets, liants entre deux atomes ou non liants sur un atome.
+        Comptons ceux de la molécule d'eau : un électron pour chaque hydrogène, six pour l'oxygène, soit huit électrons en tout, donc quatre doublets à placer.
+        Une seule liaison ne suffit pas : l'oxygène n'est alors entouré que de six électrons, il lui manque un doublet pour atteindre l'octet.
+        La seconde liaison complète son octet, chaque hydrogène atteint son duet, et les deux doublets restants sont non liants, portés par l'oxygène.
+      en: >-
+        The Lewis structure represents the valence electrons of a chemical species as pairs, bonding between two atoms or lone on one atom.
+        Let us count those of the water molecule: one electron for each hydrogen, six for the oxygen, that is eight electrons in all, hence four pairs to place.
+        A single bond is not enough: the oxygen is then surrounded by only six electrons, one pair short of the octet.
+        The second bond completes its octet, each hydrogen reaches its duet, and the two remaining pairs are lone pairs, carried by the oxygen.
+    actions:
+      - { at: 2, hide: [b2] }
+      - { at: 3, show: [b2] }
+  - id: geometry
+    title: { fr: "La répulsion des doublets fixe la géométrie", en: "The repulsion of the pairs sets the geometry" }
+    tool: methane
+    text:
+      fr: >-
+        Les doublets qui entourent un atome se repoussent et s'écartent le plus possible : c'est ce qui fixe la géométrie de l'entité.
+        Commençons par deux liaisons opposées autour du carbone du méthane : le compte n'y est pas, il manque deux doublets pour compléter l'octet.
+        Ajoutons les deux liaisons manquantes : le carbone porte quatre doublets liants, aucun doublet non liant, et son octet est atteint.
+        Ces quatre directions pointent vers les sommets d'un tétraèdre, avec des angles de cent neuf virgule cinq degrés, et le dessin plan n'en est qu'une projection.
+      en: >-
+        The pairs surrounding an atom repel one another and move as far apart as possible: that is what sets the geometry of the species.
+        Let us start with two opposite bonds around the carbon of methane: the count is wrong, two pairs are missing to complete the octet.
+        Let us add the two missing bonds: the carbon carries four bonding pairs, no lone pair, and its octet is reached.
+        These four directions point towards the vertices of a tetrahedron, with angles of one hundred and nine point five degrees, and the flat drawing is only a projection of it.
+    actions:
+      - { at: 1, hide: [b3, b4] }
+      - { at: 2, show: [b3, b4] }
+  - id: lone_pairs
+    title: { fr: "Un doublet non liant compte comme une direction", en: "A lone pair counts as a direction" }
+    tool: ammonia
+    text:
+      fr: >-
+        Un doublet non liant compte comme une direction, même s'il ne se voit pas dans la forme de la molécule.
+        L'azote de l'ammoniac porte trois liaisons et un doublet non liant : quatre directions, comme le carbone du méthane.
+        Mais on ne voit que les trois liaisons, et la molécule est pyramidale, l'azote au sommet de la pyramide.
+        Dans l'eau, deux liaisons et deux doublets non liants donnent de même une molécule coudée, d'angle voisin de cent quatre virgule cinq degrés.
+      en: >-
+        A lone pair counts as a direction, even though it is not seen in the shape of the molecule.
+        The nitrogen of ammonia carries three bonds and one lone pair: four directions, like the carbon of methane.
+        But only the three bonds are seen, and the molecule is pyramidal, with the nitrogen at the top of the pyramid.
+        In water, two bonds and two lone pairs likewise give a bent molecule, with an angle close to one hundred and four point five degrees.
+  - id: polarity
+    title: { fr: "Électronégativité, liaison polarisée, molécule polaire", en: "Electronegativity, polarised bond, polar molecule" }
+    tool: dioxide
+    text:
+      fr: >-
+        Deux atomes liés n'attirent pas également les électrons de leur doublet : le plus électronégatif porte une charge partielle négative, l'autre une charge partielle positive.
+        L'électronégativité croît de la gauche vers la droite d'une ligne et du bas vers le haut d'une colonne du tableau périodique, si bien que la double liaison entre le carbone et l'oxygène est polarisée.
+        Une seule liaison polarisée suffirait à rendre l'entité polaire, comme l'annonce l'outil.
+        Ajoutons la seconde double liaison : la molécule est linéaire, les deux polarisations se compensent exactement, et le dioxyde de carbone est apolaire, alors que l'eau, coudée, est polaire.
+      en: >-
+        Two bonded atoms do not attract the electrons of their pair equally: the more electronegative one carries a negative partial charge, the other a positive partial charge.
+        Electronegativity increases from left to right along a row and from bottom to top in a column of the periodic table, so that the double bond between carbon and oxygen is polarised.
+        A single polarised bond would be enough to make the species polar, as the tool announces.
+        Let us add the second double bond: the molecule is linear, the two polarisations cancel each other exactly, and carbon dioxide is non-polar, whereas water, bent, is polar.
+    actions:
+      - { at: 2, hide: [b2] }
+      - { at: 3, show: [b2] }
+  - id: play
+    kind: play
+    title: { fr: "À vous de lire les doublets", en: "Your turn to read the pairs" }
+    tool: water
+    text:
+      fr: >-
+        À vous. Cliquez sur un atome pour lire ses électrons de valence, son octet et son électronégativité, et affichez ou masquez les doublets non liants.
+        Passez ensuite d'une molécule à l'autre, méthane, ammoniac et dioxyde de carbone, et comparez à chaque fois la géométrie annoncée et le verdict de polarité.
+      en: >-
+        Your turn. Click an atom to read its valence electrons, its octet and its electronegativity, and show or hide the lone pairs.
+        Then switch from one molecule to the next, methane, ammonia and carbon dioxide, and compare each time the announced geometry with the polarity verdict.
+    actions:
+      - { at: 0, show: [b2] }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : les doublets non liants d'une molécule, puis un angle prévu par la répulsion des doublets.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the lone pairs of a molecule, then an angle predicted by the repulsion of the pairs.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.lewis.lone_pairs, exercise.lewis.geometry_angle]

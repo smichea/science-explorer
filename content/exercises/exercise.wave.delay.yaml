@@ -1,0 +1,45 @@
+# Onde mécanique progressive — retard d'une onde sismique entre l'épicentre et une station (réponse numérique)
+id: exercise.wave.delay
+type: numeric
+nodeId: phenomenon.mechanical_wave
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    Un séisme se produit à $240\ \mathrm{km}$ d'une station de mesure. L'onde de compression, dite onde P, se propage dans la croûte terrestre à la célérité $v = 6{,}0\ \mathrm{km/s}$.
+
+    Quel retard sépare le début du séisme de son enregistrement par la station ? Répondez en secondes.
+  en: |-
+    An earthquake occurs $240\ \mathrm{km}$ from a measuring station. The compression wave, called the P wave, travels through the Earth's crust at the speed $v = 6.0\ \mathrm{km/s}$.
+
+    What delay separates the beginning of the earthquake from its recording by the station? Answer in seconds.
+numeric:
+  value: 40
+  unit: "s"
+  tolerance: { kind: relative, value: 0.03 }
+  inputLabel: { fr: "τ", en: "τ" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Un point situé à la distance $d$ de la source reproduit son mouvement avec le retard $\tau = \dfrac{d}{v}$.
+      en: |-
+        A point at the distance $d$ from the source reproduces its motion with the delay $\tau = \dfrac{d}{v}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La distance et la célérité sont données dans la même unité de longueur, le kilomètre : le quotient donne directement des secondes.
+      en: |-
+        The distance and the speed are given with the same unit of length, the kilometre: the quotient directly gives seconds.
+solution:
+  fr: |-
+    Le retard de propagation vaut
+    $$\tau = \frac{d}{v} = \frac{240}{6{,}0} = 40\ \mathrm{s}.$$
+    Pendant ces quarante secondes, aucune matière n'a voyagé de l'épicentre à la station : seule la perturbation, et l'énergie qu'elle transporte, se sont propagées de proche en proche dans la roche. C'est ce retard, mesuré par plusieurs stations, qui permet de localiser un épicentre : chaque station donne une distance, et trois distances suffisent à croiser la position.
+  en: |-
+    The propagation delay is
+    $$\tau = \frac{d}{v} = \frac{240}{6.0} = 40\ \mathrm{s}.$$
+    During those forty seconds, no matter travelled from the epicentre to the station: only the perturbation, and the energy it carries, propagated step by step through the rock. It is this delay, measured by several stations, that makes it possible to locate an epicentre: each station gives a distance, and three distances are enough to pin down the position.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 2, linkedConcepts: 2, transfer: 3, autonomy: 2 }

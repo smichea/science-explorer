@@ -1,0 +1,90 @@
+# Leçon narrée — tableau d'avancement (profondeur 2, Première) sur la synthèse de l'ammoniac : la table ligne par ligne,
+# x_max = min(n_i / ν_i), la condition stœchiométrique, un produit initialement présent.
+id: lesson.model.chemical_reaction.premiere
+nodeId: model.chemical_reaction
+depth: 2
+tools:
+  - id: ammonia
+    kind: reaction
+    title: { fr: "Synthèse de l'ammoniac", en: "Synthesis of ammonia" }
+    parameters:
+      - { id: a, label: { fr: "diazote initial (mol)", en: "initial dinitrogen (mol)" }, min: 0, max: 3, step: 0.1, value: 1 }
+      - { id: b, label: { fr: "dihydrogène initial (mol)", en: "initial dihydrogen (mol)" }, min: 0, max: 6, step: 0.1, value: 2 }
+      - { id: p, label: { fr: "ammoniac initial (mol)", en: "initial ammonia (mol)" }, min: 0, max: 2, step: 0.1, value: 0 }
+      - { id: x, label: { fr: "avancement x des diapositives (mol)", en: "extent x of the slides (mol)" }, min: 0, max: 3, step: 0.01, value: 0.3 }
+    reactants:
+      - { id: nitrogen, formula: "N₂", coefficient: 1, initial: "a", label: { fr: "diazote", en: "dinitrogen" } }
+      - { id: hydrogen, formula: "H₂", coefficient: 3, initial: "b", label: { fr: "dihydrogène", en: "dihydrogen" } }
+    products:
+      - { id: ammonia, formula: "NH₃", coefficient: 2, initial: "p", label: { fr: "ammoniac", en: "ammonia" } }
+    unit: mol
+    extent: "x"
+steps:
+  - id: rows
+    title: { fr: "Le tableau d'avancement, ligne par ligne", en: "The extent table, row by row" }
+    text:
+      fr: >-
+        Prenons la synthèse de l'ammoniac : une mole de diazote réagit avec trois moles de dihydrogène pour donner deux moles d'ammoniac.
+        Le tableau d'avancement décrit le système à trois moments : la première ligne est l'état initial, avec 1,0 mole de diazote, 2,0 moles de dihydrogène et pas d'ammoniac.
+        La deuxième ligne est un état intermédiaire, pour un avancement x quelconque : il reste 1,0 moins x de diazote, 2,0 moins 3 x de dihydrogène, et il s'est formé 2 x d'ammoniac, chaque quantité suivant son nombre stœchiométrique.
+        Pour x égal 0,3 mole, la ligne indique 0,7, 1,1 et 0,6 mole.
+      en: >-
+        Let us take the synthesis of ammonia: one mole of dinitrogen reacts with three moles of dihydrogen to give two moles of ammonia.
+        The extent table describes the system at three moments: the first row is the initial state, with 1.0 mole of dinitrogen, 2.0 moles of dihydrogen and no ammonia.
+        The second row is an intermediate state, for any extent x: 1.0 minus x of dinitrogen is left, 2.0 minus 3 x of dihydrogen, and 2 x of ammonia has formed, each amount following its stoichiometric coefficient.
+        For x equal to 0.3 mole, the row reads 0.7, 1.1 and 0.6 mole.
+    actions:
+      - { at: 1, set: { a: 1, b: 2, p: 0, x: 0 } }
+      - { at: 3, set: { x: 0.3 } }
+  - id: maximum
+    title: { fr: "L'avancement maximal et le réactif limitant", en: "The maximum extent and the limiting reactant" }
+    text:
+      fr: >-
+        La transformation, supposée totale, s'arrête quand un réactif est épuisé.
+        Chaque réactif impose une borne à l'avancement : le diazote s'annule pour x égal 1,0 mole, le dihydrogène pour x égal 2,0 divisé par 3, soit 0,67 mole.
+        L'avancement maximal est la plus petite de ces bornes, le minimum des quotients de la quantité initiale par le nombre stœchiométrique : ici 0,67 mole, et le dihydrogène est le réactif limitant.
+        La dernière ligne, l'état final, s'obtient en remplaçant x par cette valeur : 0,33 mole de diazote, zéro dihydrogène, 1,33 mole d'ammoniac.
+      en: >-
+        The transformation, assumed complete, stops when one reactant is used up.
+        Each reactant sets a bound on the extent: dinitrogen reaches zero for x equal to 1.0 mole, dihydrogen for x equal to 2.0 divided by 3, that is 0.67 mole.
+        The maximum extent is the smallest of these bounds, the minimum of the quotients of the initial amount by the stoichiometric coefficient: here 0.67 mole, and dihydrogen is the limiting reactant.
+        The last row, the final state, is obtained by replacing x with this value: 0.33 mole of dinitrogen, zero dihydrogen, 1.33 mole of ammonia.
+    actions:
+      - { at: 2, set: { x: 0.67 } }
+  - id: stoichiometric
+    title: { fr: "Mélange stœchiométrique et produit déjà présent", en: "Stoichiometric mixture and product already present" }
+    text:
+      fr: >-
+        Le mélange est stœchiométrique quand les deux bornes coïncident, c'est-à-dire quand la quantité de diazote divisée par 1 égale la quantité de dihydrogène divisée par 3 : avec 1,0 et 3,0 moles, les deux réactifs disparaissent ensemble et l'avancement maximal vaut 1,0 mole.
+        Si de l'ammoniac est déjà présent au départ, 0,5 mole par exemple, sa ligne commence à 0,5 et vaut 0,5 plus 2 x ensuite : l'état final contient 2,5 moles d'ammoniac.
+        Un produit initialement présent ne change ni l'avancement maximal ni le réactif limitant, qui ne dépendent que des réactifs.
+        Retenez la méthode : écrire l'équation, remplir la ligne initiale, exprimer chaque quantité avec x, calculer les bornes, prendre la plus petite.
+      en: >-
+        The mixture is stoichiometric when the two bounds coincide, that is when the amount of dinitrogen divided by 1 equals the amount of dihydrogen divided by 3: with 1.0 and 3.0 moles, both reactants disappear together and the maximum extent is 1.0 mole.
+        If ammonia is already present at the start, 0.5 mole for instance, its row starts at 0.5 and reads 0.5 plus 2 x afterwards: the final state contains 2.5 moles of ammonia.
+        A product initially present changes neither the maximum extent nor the limiting reactant, which depend only on the reactants.
+        Remember the method: write the equation, fill in the initial row, express each amount with x, compute the bounds, take the smallest.
+    actions:
+      - { at: 0, set: { b: 3, x: 1 } }
+      - { at: 1, set: { p: 0.5 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de remplir le tableau", en: "Your turn to fill in the table" }
+    text:
+      fr: >-
+        À vous. Faites varier les quantités initiales de diazote, de dihydrogène et d'ammoniac, et déplacez l'avancement avec le curseur situé sous le tableau, qui remplace maintenant celui des diapositives : repérez à chaque fois le réactif limitant, l'avancement maximal et l'état final.
+      en: >-
+        Your turn. Vary the initial amounts of dinitrogen, dihydrogen and ammonia, and move the extent with the slider under the table, which now replaces the one of the slides: spot each time the limiting reactant, the maximum extent and the final state.
+    actions:
+      - { at: 0, set: { a: 1, b: 2, p: 0, x: 0.3 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : un avancement maximal, puis l'état final avec un produit déjà présent.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: a maximum extent, then the final state with a product already present.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.reaction.extent_table, exercise.reaction.final_state]

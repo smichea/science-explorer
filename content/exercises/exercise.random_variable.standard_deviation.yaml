@@ -1,0 +1,57 @@
+# Variables aléatoires — variance et écart-type d'un jeu équitable (réponse numérique)
+id: exercise.random_variable.standard_deviation
+type: numeric
+nodeId: concept.random_variable
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On lance un dé équilibré à six faces. Le joueur gagne $2$ euros si le résultat est $5$ ou $6$, et perd $1$ euro sinon. On note $X$ son gain algébrique.
+
+    On admet que $E(X) = 0$. Calculez l'**écart-type** $\sigma(X)$, en euros, arrondi au centième.
+  en: |-
+    A fair six-sided die is rolled. The player wins $2$ euros if the result is $5$ or $6$, and loses $1$ euro otherwise. Let $X$ be their net gain.
+
+    Given that $E(X) = 0$, compute the **standard deviation** $\sigma(X)$, in euros, rounded to the nearest hundredth.
+numeric:
+  value: 1.41
+  tolerance: { kind: absolute, value: 0.02 }
+  inputLabel: { fr: "σ(X) en euros", en: "σ(X) in euros" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Écrivez d'abord la loi de $X$ : la valeur $2$ avec la probabilité $\dfrac26$, la valeur $-1$ avec la probabilité $\dfrac46$.
+      en: |-
+        First write the distribution of $X$: the value $2$ with probability $\dfrac26$, the value $-1$ with probability $\dfrac46$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Utilisez $V(X) = E(X^2) - \left(E(X)\right)^2$. Comme $E(X) = 0$, la variance se réduit à $E(X^2)$. L'écart-type est ensuite la racine carrée de la variance.
+      en: |-
+        Use $V(X) = E(X^2) - \left(E(X)\right)^2$. Since $E(X) = 0$, the variance reduces to $E(X^2)$. The standard deviation is then the square root of the variance.
+solution:
+  fr: |-
+    La loi de $X$ est : $P(X = 2) = \dfrac26 = \dfrac13$ et $P(X = -1) = \dfrac46 = \dfrac23$. On vérifie au passage l'espérance : $\dfrac13 \times 2 + \dfrac23 \times (-1) = \dfrac23 - \dfrac23 = 0$. Puis
+    $$E(X^2) = \frac13 \times 2^2 + \frac23 \times (-1)^2 = \frac43 + \frac23 = 2,$$
+    donc $V(X) = E(X^2) - \left(E(X)\right)^2 = 2 - 0 = 2$, et
+    $$\sigma(X) = \sqrt{V(X)} = \sqrt2 \approx 1{,}41 \text{ euro}.$$
+
+    **Interprétation.** Le jeu est **équitable**, son espérance étant nulle : à long terme le joueur ne gagne ni ne perd. Mais l'écart-type de $1{,}41$ euro dit que chaque partie s'écarte fortement de cette moyenne — on gagne $2$ euros ou on en perd $1$, jamais $0$. Espérance et écart-type répondent à deux questions différentes : la première dit où l'on va en moyenne, la seconde de combien on s'en écarte à chaque coup. L'écart-type s'exprime en euros, comme $X$, alors que la variance s'exprimerait en euros au carré.
+  en: |-
+    The distribution of $X$ is: $P(X = 2) = \dfrac26 = \dfrac13$ and $P(X = -1) = \dfrac46 = \dfrac23$. The expectation checks out in passing: $\dfrac13 \times 2 + \dfrac23 \times (-1) = \dfrac23 - \dfrac23 = 0$. Then
+    $$E(X^2) = \frac13 \times 2^2 + \frac23 \times (-1)^2 = \frac43 + \frac23 = 2,$$
+    so $V(X) = E(X^2) - \left(E(X)\right)^2 = 2 - 0 = 2$, and
+    $$\sigma(X) = \sqrt{V(X)} = \sqrt2 \approx 1.41 \text{ euro}.$$
+
+    **Interpretation.** The game is **fair**, its expectation being zero: in the long run the player neither wins nor loses. But the standard deviation of $1.41$ euro says that each round strays far from that average — one wins $2$ euros or loses $1$, never $0$. Expectation and standard deviation answer two different questions: the first says where one goes on average, the second by how much one strays each time. The standard deviation is expressed in euros, like $X$, whereas the variance would be expressed in euros squared.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 3
+  calculationLength: 3
+  modellingOpenness: 1
+  linkedConcepts: 3
+  transfer: 1
+  autonomy: 3

@@ -44,3 +44,26 @@ depths:
         - "read and draw up a variation table from a curve or from a simple expression"
         - "determine a maximum or a minimum, its value and the point where it is reached"
         - "recognise an even or odd function by computing f(−x) and by the symmetry of its curve"
+  - depth: 2
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "relier le signe de la dérivée au sens de variation : $f' \\geq 0$ sur un intervalle $I$ équivaut à $f$ croissante sur $I$"
+        - "reconnaître un extremum local en un point où $f'$ s'annule en changeant de signe, et le distinguer d'un extremum global"
+        - "dresser le tableau de variations d'une fonction à partir du tableau de signes de sa dérivée"
+        - "résoudre un problème d'optimisation (aire, volume, coût) en étudiant les variations d'une fonction"
+      en:
+        - "relate the sign of the derivative to the direction of variation: $f' \\geq 0$ on an interval $I$ is equivalent to $f$ increasing on $I$"
+        - "recognise a local extremum at a point where $f'$ vanishes and changes sign, and tell it from a global extremum"
+        - "draw up the variation table of a function from the sign table of its derivative"
+        - "solve an optimisation problem (area, volume, cost) by studying the variations of a function"
+    lesson:
+      fr: |
+        **Signe de la dérivée et variations.** Soit $f$ dérivable sur un intervalle $I$. Si $f' \geq 0$ sur $I$, alors $f$ est croissante sur $I$ ; si $f' \leq 0$, elle est décroissante ; si $f' = 0$ sur $I$, elle est constante ; une dérivée strictement positive sauf en des points isolés donne une fonction strictement croissante. Le tableau de variations de $f$ se déduit donc du tableau de signes de $f'$ : on cherche les zéros de $f'$, on détermine son signe entre eux (souvent celui d'un trinôme), puis on place les flèches. Pour $f(x) = x^3 - 3x^2 + 2$, $f'(x) = 3x^2 - 6x = 3x(x - 2)$ est positive sur $]-\infty\,;\,0]$, négative sur $[0\,;\,2]$ et positive sur $[2\,;\,+\infty[$ : $f$ croît jusqu'à $f(0) = 2$, décroît jusqu'à $f(2) = -2$, puis croît.
+
+        **Extremums et optimisation.** Si $f'$ s'annule en $a$ en changeant de signe, $f$ admet un **extremum local** en $a$ : un maximum si $f'$ passe du positif au négatif, un minimum dans l'autre sens, et la tangente y est horizontale. Un extremum local n'est pas forcément global : dans l'exemple, $2$ est un maximum local mais $f$ prend des valeurs plus grandes pour $x > 3$. Attention, $f'(a) = 0$ ne suffit pas : $x \mapsto x^3$ a une dérivée nulle en $0$ sans extremum. Un **problème d'optimisation** se résout en exprimant la grandeur à optimiser comme une fonction d'une variable sur un intervalle, en dressant son tableau de variations et en lisant l'extremum : une boîte sans couvercle taillée dans une feuille carrée de côté $12\ \mathrm{cm}$ a pour volume $V(x) = x(12 - 2x)^2$ sur $[0\,;\,6]$, et $V'(x) = 12(x - 2)(x - 6)$ montre que le volume est maximal pour $x = 2$, soit $128\ \mathrm{cm^3}$.
+      en: |
+        **Sign of the derivative and variations.** Let $f$ be differentiable on an interval $I$. If $f' \geq 0$ on $I$, then $f$ is increasing on $I$; if $f' \leq 0$, it is decreasing; if $f' = 0$ on $I$, it is constant; a derivative strictly positive except at isolated points gives a strictly increasing function. The variation table of $f$ therefore follows from the sign table of $f'$: find the zeros of $f'$, determine its sign between them (often that of a trinomial), then place the arrows. For $f(x) = x^3 - 3x^2 + 2$, $f'(x) = 3x^2 - 6x = 3x(x - 2)$ is positive on $]-\infty\,;\,0]$, negative on $[0\,;\,2]$ and positive on $[2\,;\,+\infty[$: $f$ increases up to $f(0) = 2$, decreases down to $f(2) = -2$, then increases.
+
+        **Extrema and optimisation.** If $f'$ vanishes at $a$ and changes sign, $f$ has a **local extremum** at $a$: a maximum if $f'$ goes from positive to negative, a minimum the other way round, and the tangent there is horizontal. A local extremum is not necessarily global: in the example, $2$ is a local maximum but $f$ takes larger values for $x > 3$. Beware, $f'(a) = 0$ is not enough: $x \mapsto x^3$ has a zero derivative at $0$ without an extremum. An **optimisation problem** is solved by expressing the quantity to optimise as a function of one variable on an interval, drawing up its variation table and reading the extremum: an open box cut from a square sheet of side $12\ \mathrm{cm}$ has volume $V(x) = x(12 - 2x)^2$ on $[0\,;\,6]$, and $V'(x) = 12(x - 2)(x - 6)$ shows that the volume is maximal for $x = 2$, that is $128\ \mathrm{cm^3}$.

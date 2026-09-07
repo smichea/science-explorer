@@ -1,0 +1,72 @@
+# Couleur des objets — couleur perçue d'un objet rouge éclairé par une lumière verte (choix unique)
+id: exercise.colour.object
+type: choice
+nodeId: phenomenon.colour
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Un pull paraît **rouge** lorsqu'il est éclairé en lumière blanche : il diffuse la lumière rouge et absorbe les lumières verte et bleue. On l'éclaire maintenant, dans une pièce obscure, avec une lumière **verte** monochromatique.
+
+    De quelle couleur paraît alors le pull ?
+  en: |-
+    A jumper looks **red** when lit by white light: it diffuses red light and absorbs green and blue light. It is now lit, in a dark room, by a monochromatic **green** light.
+
+    What colour does the jumper then appear?
+choice:
+  multiple: false
+  choices:
+    - id: red
+      text: { fr: "Rouge, car c'est sa couleur propre", en: "Red, because that is its own colour" }
+      feedback:
+        fr: |-
+          Un objet n'a pas de couleur « propre » indépendante de l'éclairage : il ne peut renvoyer que des radiations **présentes dans la lumière qui l'éclaire**. Ici la lumière verte ne contient aucune radiation rouge, le pull n'a donc rien de rouge à diffuser.
+        en: |-
+          An object has no "own" colour independent of the lighting: it can only send back radiations **present in the light that illuminates it**. Here the green light contains no red radiation, so the jumper has nothing red to diffuse.
+    - id: green
+      text: { fr: "Vert, car il renvoie la lumière qu'il reçoit", en: "Green, because it sends back the light it receives" }
+      feedback:
+        fr: |-
+          Ce serait vrai pour un objet blanc, qui diffuse toutes les radiations. Ce pull, lui, **absorbe** le vert : il ne peut pas le renvoyer.
+        en: |-
+          This would be true for a white object, which diffuses every radiation. This jumper, however, **absorbs** green: it cannot send it back.
+    - id: black
+      text: { fr: "Noir, car il absorbe le vert et ne reçoit rien d'autre", en: "Black, because it absorbs green and receives nothing else" }
+      correct: true
+      feedback:
+        fr: |-
+          Exact. La lumière incidente ne contient que du vert, et le pull absorbe précisément le vert : aucune radiation n'est diffusée vers l'œil, l'objet paraît **noir**. La couleur perçue est toujours celle des radiations à la fois présentes dans l'éclairage et diffusées par l'objet.
+        en: |-
+          Correct. The incident light contains only green, and the jumper absorbs precisely green: no radiation is diffused towards the eye, and the object appears **black**. The perceived colour is always that of the radiations both present in the lighting and diffused by the object.
+    - id: yellow
+      text: { fr: "Jaune, car le rouge et le vert donnent du jaune", en: "Yellow, because red and green give yellow" }
+      feedback:
+        fr: |-
+          La synthèse additive du rouge et du vert donne bien du jaune, mais elle suppose que les **deux** lumières arrivent à l'œil. Ici seule une lumière verte éclaire l'objet, et aucune lumière rouge n'existe dans la pièce.
+        en: |-
+          The additive synthesis of red and green does give yellow, but it assumes that **both** lights reach the eye. Here only a green light illuminates the object, and no red light exists in the room.
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Demandez-vous d'abord quelles radiations arrivent sur le pull, puis lesquelles il est capable de diffuser.
+      en: |-
+        First ask yourself which radiations reach the jumper, then which ones it is able to diffuse.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Une couleur ne peut apparaître que si elle est présente dans la lumière incidente **et** diffusée par l'objet.
+      en: |-
+        A colour can appear only if it is present in the incident light **and** diffused by the object.
+solution:
+  fr: |-
+    La couleur perçue d'un objet est celle de la lumière qu'il **diffuse** vers l'œil. Deux conditions doivent être réunies : la radiation doit être présente dans la lumière incidente, et l'objet doit la diffuser au lieu de l'absorber.
+
+    Ici, la lumière incidente ne contient **que** du vert, et le pull **absorbe** le vert. Aucune radiation ne repart vers l'œil : le pull paraît **noir**. Le même pull éclairé en lumière blanche paraît rouge, et éclairé par une lumière magenta, superposition de rouge et de bleu, il paraîtrait de nouveau rouge. La couleur d'un objet n'est donc jamais une propriété absolue : c'est le résultat d'une rencontre entre un éclairage et une matière.
+  en: |-
+    The perceived colour of an object is that of the light it **diffuses** towards the eye. Two conditions must be met: the radiation must be present in the incident light, and the object must diffuse it instead of absorbing it.
+
+    Here, the incident light contains **only** green, and the jumper **absorbs** green. No radiation goes back to the eye: the jumper appears **black**. The same jumper lit by white light appears red, and lit by a magenta light, a superposition of red and blue, it would appear red again. The colour of an object is therefore never an absolute property: it is the outcome of an encounter between a lighting and a material.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 3, calculationLength: 1, modellingOpenness: 2, linkedConcepts: 2, transfer: 2, autonomy: 2 }

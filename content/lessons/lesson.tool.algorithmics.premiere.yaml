@@ -1,0 +1,99 @@
+# Leçon rédigée — algorithmique en Première (profondeur 2) : listes, une boucle qui calcule les termes de u(n+1) = 0,8 u(n) + 2 (paramètre a = u₀), et la simulation d'une variable aléatoire (moyennes d'échantillons de cent lancers de dé).
+id: lesson.tool.algorithmics.premiere
+nodeId: tool.algorithmics
+depth: 2
+tools:
+  - id: loop
+    kind: sequence
+    title: { fr: "Une boucle : u = 0,8 u + 2, douze fois", en: "A loop: u = 0.8 u + 2, twelve times" }
+    view: { x: [0, 12], y: [0, 16] }
+    parameters:
+      - { id: a, label: { fr: "premier terme u₀", en: "first term u₀" }, min: 0, max: 15, step: 1, value: 1 }
+    mode: recurrence
+    expr: "0.8*u+2"
+    first: "a"
+    start: 0
+    count: 12
+    input: true
+  - id: dice
+    kind: random
+    title: { fr: "Cent lancers de dé : la moyenne des valeurs", en: "A hundred die rolls: the mean of the values" }
+    experiment: die
+    sides: 6
+    mode: sampling
+    sample: 100
+    seed: 3
+    variable:
+      label: { fr: "valeur du dé", en: "value of the die" }
+      values: { "1": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6 }
+steps:
+  - id: lists
+    title: { fr: "Les listes", en: "Lists" }
+    tool: loop
+    text:
+      fr: >-
+        En Première, une liste range plusieurs valeurs sous un seul nom : L égale la liste 1 ; 2,8 ; 4,24 ; et ainsi de suite, comme la colonne des termes affichée ici.
+        On accède à un élément par son indice, qui commence à zéro : L indice 0 vaut 1, L indice 1 vaut 2,8.
+        On parcourt la liste avec une boucle for, et l'instruction append ajoute un élément à la fin.
+      en: >-
+        In Grade 11, a list stores several values under a single name: L equals the list 1; 2.8; 4.24; and so on, like the column of terms displayed here.
+        An element is accessed by its index, which starts at zero: L index 0 is 1, L index 1 is 2.8.
+        The list is traversed with a for loop, and the append instruction adds an element at the end.
+    actions:
+      - { at: 0, set: { a: 1 } }
+  - id: loop
+    title: { fr: "Une boucle qui calcule une suite", en: "A loop computing a sequence" }
+    tool: loop
+    text:
+      fr: >-
+        Une boucle calcule les termes d'une suite définie par récurrence.
+        Ici u suivant égale 0,8 fois u plus 2, en partant de u zéro égal 1 : chaque tour de boucle remplace u par 0,8 u plus 2, puis ajoute la nouvelle valeur à la liste avec append.
+        Après douze tours, les termes s'approchent de 10, la valeur qui vérifie u égale 0,8 u plus 2.
+        Changeons le premier terme : avec u zéro égal 15, la suite descend vers la même limite.
+      en: >-
+        A loop computes the terms of a recursively defined sequence.
+        Here the next u equals 0.8 times u plus 2, starting from u zero equal to 1: each turn of the loop replaces u by 0.8 u plus 2, then adds the new value to the list with append.
+        After twelve turns, the terms get close to 10, the value satisfying u equals 0.8 u plus 2.
+        Let us change the first term: with u zero equal to 15, the sequence goes down to the same limit.
+    actions:
+      - { at: 1, set: { a: 1 } }
+      - { at: 3, set: { a: 15 } }
+  - id: simulation
+    title: { fr: "Simuler une variable aléatoire", en: "Simulating a random variable" }
+    tool: dice
+    text:
+      fr: >-
+        Une fonction peut avoir plusieurs paramètres, par exemple moyenne de n et p, et renvoyer un résultat calculé à partir de ses arguments.
+        Pour simuler un dé, l'instruction randint de 1 et 6 tire un entier au hasard ; pour une variable aléatoire, on associe une valeur à chaque issue.
+        La moyenne d'un échantillon de cent lancers se calcule avec une boucle et une somme : elle fluctue autour de 3,5, l'espérance de la valeur du dé.
+        Chaque nouvel échantillon donne une moyenne différente, mais toutes restent proches de 3,5.
+      en: >-
+        A function may have several parameters, for instance mean of n and p, and return a result computed from its arguments.
+        To simulate a die, the instruction randint of 1 and 6 draws an integer at random; for a random variable, a value is attached to each outcome.
+        The mean of a sample of a hundred rolls is computed with a loop and a sum: it fluctuates around 3.5, the expectation of the value of the die.
+        Each new sample gives a different mean, but all stay close to 3.5.
+    actions: []
+  - id: play
+    kind: play
+    tool: loop
+    title: { fr: "À vous de faire tourner la boucle", en: "Your turn to run the loop" }
+    text:
+      fr: >-
+        À vous. Faites varier le premier terme u zéro et lisez les termes de la suite, ou tapez votre propre relation de récurrence.
+        Passez ensuite au dé : tirez plusieurs échantillons de cent lancers et comparez leurs moyennes à 3,5.
+      en: >-
+        Your turn. Vary the first term u zero and read the terms of the sequence, or type your own recurrence relation.
+        Then switch to the die: draw several samples of a hundred rolls and compare their means with 3.5.
+    actions:
+      - { at: 0, set: { a: 4 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : la somme d'éléments d'une liste, puis les termes d'une suite calculés par une boucle.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the sum of elements of a list, then the terms of a sequence computed by a loop.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.algorithmics.list_sum, exercise.algorithmics.loop_terms]

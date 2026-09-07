@@ -1,0 +1,46 @@
+id: method.ir_spectroscopy
+type: method
+world: world.chemistry
+region: region.chemistry.amount_measurement
+importance: 2
+tags: [lycee]
+title: { fr: "Spectroscopie infrarouge : bandes d'absorption, identification des groupes", en: "Infrared spectroscopy: absorption bands, identification of groups" }
+shortPurpose:
+  fr: "Lire sur un spectre infrarouge les bandes d'absorption des liaisons d'une molécule pour identifier ses groupes caractéristiques."
+  en: "Read on an infrared spectrum the absorption bands of the bonds of a molecule to identify its characteristic groups."
+overview:
+  fr: >-
+    Les liaisons d'une molécule vibrent, et chacune absorbe le rayonnement infrarouge dont la fréquence est celle de sa vibration. Le spectre infrarouge dessine ces absorptions sous forme de creux, les bandes, à des positions caractéristiques : une bande large vers trois mille trois cent cinquante pour un alcool, une bande fine et forte vers mille sept cent quinze pour une cétone. Avec une table de référence, on lit ainsi les groupes caractéristiques d'une molécule, et l'on vérifie qu'une synthèse a bien donné le produit attendu.
+  en: >-
+    The bonds of a molecule vibrate, and each absorbs the infrared radiation whose frequency is that of its vibration. The infrared spectrum draws these absorptions as dips, the bands, at characteristic positions: a broad band near three thousand three hundred and fifty for an alcohol, a sharp strong band near one thousand seven hundred and fifteen for a ketone. With a reference table, one thus reads the characteristic groups of a molecule, and checks that a synthesis has indeed given the expected product.
+aliases:
+  fr: ["spectre infrarouge", "spectroscopie IR", "transmittance", "nombre d'onde", "bande d'absorption"]
+  en: ["infrared spectrum", "IR spectroscopy", "transmittance", "wavenumber", "absorption band"]
+description:
+  fr: |
+    La **spectroscopie infrarouge** éclaire un échantillon avec un rayonnement infrarouge et mesure, pour chaque radiation, la fraction de lumière transmise : la **transmittance** $T$, en pourcentage. Le **spectre infrarouge** représente $T$ en fonction du **nombre d'onde** $\sigma = \dfrac{1}{\lambda}$, en $\mathrm{cm^{-1}}$, de $4000$ à $500\ \mathrm{cm^{-1}}$, les nombres d'onde décroissant de gauche à droite par convention. Les liaisons d'une molécule vibrent, s'allongent et se plient, à des fréquences qui dépendent des atomes liés et de la force de la liaison ; une liaison absorbe la radiation dont la fréquence est celle de sa vibration, et le spectre présente alors une **bande d'absorption**, un creux de la transmittance, à un nombre d'onde caractéristique. Chaque type de liaison a ainsi sa signature : la position de la bande, mais aussi sa forme, fine ou large, forte ou faible.
+
+    Les valeurs de référence sont fournies avec les exercices : la liaison $\mathrm{O{-}H}$ d'un alcool, engagée dans des liaisons hydrogène, absorbe entre $3200$ et $3400\ \mathrm{cm^{-1}}$ par une bande large et forte ; la liaison $\mathrm{O{-}H}$ d'un acide carboxylique entre $2500$ et $3200\ \mathrm{cm^{-1}}$, très large ; les liaisons $\mathrm{C{-}H}$ entre $2800$ et $3000\ \mathrm{cm^{-1}}$, fines ; la liaison $\mathrm{C{=}O}$ entre $1700$ et $1750\ \mathrm{cm^{-1}}$, fine et forte ; la liaison $\mathrm{C{-}O}$ entre $1000$ et $1300\ \mathrm{cm^{-1}}$. Le spectre de l'éthanol montre une bande large vers $3350\ \mathrm{cm^{-1}}$, des bandes fines juste sous $3000\ \mathrm{cm^{-1}}$ et une bande vers $1050\ \mathrm{cm^{-1}}$ : liaisons $\mathrm{O{-}H}$, $\mathrm{C{-}H}$ et $\mathrm{C{-}O}$, la signature d'un alcool. Celui de la propanone n'a pas de bande au-dessus de $3000\ \mathrm{cm^{-1}}$ mais une bande forte à $1715\ \mathrm{cm^{-1}}$ : une cétone. La méthode consiste à repérer les bandes, à leur associer des liaisons à l'aide de la table, puis à croiser avec la formule brute pour identifier le groupe caractéristique.
+
+    Le spectre infrarouge sert à identifier le produit d'une synthèse et à vérifier sa pureté : la disparition de la bande $\mathrm{O{-}H}$ de l'alcool et l'apparition de la bande $\mathrm{C{=}O}$ de l'ester confirment une estérification, la persistance d'une bande du réactif signale qu'il en reste. Il permet aussi d'analyser une atmosphère ou le milieu interstellaire à distance. Ses limites : il ne renseigne pas sur le squelette carboné, si bien que des isomères portant les mêmes groupes ont des spectres semblables au-dessus de $1500\ \mathrm{cm^{-1}}$ ; la région en dessous, dite empreinte digitale, est riche mais difficile à interpréter ; et la position d'une bande se déplace avec les liaisons hydrogène, qui élargissent la bande $\mathrm{O{-}H}$ des alcools et des acides en phase condensée. Deux pièges : l'axe des nombres d'onde décroît vers la droite, et une bande d'absorption pointe vers le bas puisque l'on trace la transmittance.
+  en: |
+    **Infrared spectroscopy** illuminates a sample with infrared radiation and measures, for each radiation, the fraction of light transmitted: the **transmittance** $T$, in percent. The **infrared spectrum** plots $T$ against the **wavenumber** $\sigma = \dfrac{1}{\lambda}$, in $\mathrm{cm^{-1}}$, from $4000$ to $500\ \mathrm{cm^{-1}}$, the wavenumbers decreasing from left to right by convention. The bonds of a molecule vibrate, stretch and bend, at frequencies that depend on the atoms bonded and on the strength of the bond; a bond absorbs the radiation whose frequency is that of its vibration, and the spectrum then shows an **absorption band**, a dip of the transmittance, at a characteristic wavenumber. Each type of bond thus has its signature: the position of the band, but also its shape, sharp or broad, strong or weak.
+
+    The reference values are supplied with the exercises: the $\mathrm{O{-}H}$ bond of an alcohol, engaged in hydrogen bonds, absorbs between $3200$ and $3400\ \mathrm{cm^{-1}}$ with a broad, strong band; the $\mathrm{O{-}H}$ bond of a carboxylic acid between $2500$ and $3200\ \mathrm{cm^{-1}}$, very broad; the $\mathrm{C{-}H}$ bonds between $2800$ and $3000\ \mathrm{cm^{-1}}$, sharp; the $\mathrm{C{=}O}$ bond between $1700$ and $1750\ \mathrm{cm^{-1}}$, sharp and strong; the $\mathrm{C{-}O}$ bond between $1000$ and $1300\ \mathrm{cm^{-1}}$. The spectrum of ethanol shows a broad band near $3350\ \mathrm{cm^{-1}}$, sharp bands just below $3000\ \mathrm{cm^{-1}}$ and a band near $1050\ \mathrm{cm^{-1}}$: $\mathrm{O{-}H}$, $\mathrm{C{-}H}$ and $\mathrm{C{-}O}$ bonds, the signature of an alcohol. That of propanone has no band above $3000\ \mathrm{cm^{-1}}$ but a strong band at $1715\ \mathrm{cm^{-1}}$: a ketone. The method consists in locating the bands, associating bonds with them using the table, then crossing with the molecular formula to identify the characteristic group.
+
+    The infrared spectrum is used to identify the product of a synthesis and to check its purity: the disappearance of the $\mathrm{O{-}H}$ band of the alcohol and the appearance of the $\mathrm{C{=}O}$ band of the ester confirm an esterification, the persistence of a band of the reactant signals that some is left. It also makes it possible to analyse an atmosphere or the interstellar medium from afar. Its limits: it gives no information on the carbon skeleton, so that isomers carrying the same groups have similar spectra above $1500\ \mathrm{cm^{-1}}$; the region below, called the fingerprint region, is rich but hard to interpret; and the position of a band shifts with hydrogen bonds, which broaden the $\mathrm{O{-}H}$ band of alcohols and acids in the condensed phase. Two traps: the wavenumber axis decreases to the right, and an absorption band points downwards since the transmittance is plotted.
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "décrire un spectre infrarouge : transmittance en fonction du nombre d'onde σ en cm⁻¹, et bandes d'absorption associées aux liaisons"
+        - "exploiter, à partir de valeurs de référence, un spectre d'absorption infrarouge pour identifier des liaisons et des groupes caractéristiques"
+        - "reconnaître la bande large de la liaison O–H engagée dans des liaisons hydrogène et distinguer alcool, aldéhyde ou cétone et acide carboxylique à partir des bandes O–H et C=O"
+        - "utiliser un spectre infrarouge pour identifier le produit d'une synthèse ou vérifier sa pureté, en croisant avec la formule brute et d'autres données"
+      en:
+        - "describe an infrared spectrum: transmittance against the wavenumber σ in cm⁻¹, and absorption bands associated with the bonds"
+        - "use, with reference values, an infrared absorption spectrum to identify bonds and characteristic groups"
+        - "recognise the broad band of the O–H bond engaged in hydrogen bonds and distinguish an alcohol, an aldehyde or ketone, and a carboxylic acid from the O–H and C=O bands"
+        - "use an infrared spectrum to identify the product of a synthesis or check its purity, crossing it with the molecular formula and other data"

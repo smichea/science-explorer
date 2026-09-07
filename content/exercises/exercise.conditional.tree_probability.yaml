@@ -1,0 +1,65 @@
+# Probabilités conditionnelles — remonter l'arbre d'un dépistage pour calculer P_T(M) (réponse numérique)
+id: exercise.conditional.tree_probability
+type: numeric
+nodeId: concept.conditional_probability
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Dans une population, $2\,\%$ des personnes portent une maladie. On note $M$ l'événement « la personne est malade » et $T$ l'événement « le test est positif ».
+
+    Le test est positif pour $99\,\%$ des personnes malades et pour $5\,\%$ des personnes non malades.
+
+    Une personne choisie au hasard a un test positif. Calculez la probabilité qu'elle soit réellement malade, $P_T(M)$, arrondie au millième.
+  en: |-
+    In a population, $2\,\%$ of the people carry a disease. Let $M$ be the event "the person is ill" and $T$ the event "the test is positive".
+
+    The test is positive for $99\,\%$ of ill people and for $5\,\%$ of healthy people.
+
+    A person chosen at random has a positive test. Compute the probability that they are really ill, $P_T(M)$, rounded to the nearest thousandth.
+numeric:
+  value: 0.288
+  tolerance: { kind: absolute, value: 0.002 }
+  inputLabel: { fr: "P_T(M)", en: "P_T(M)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Construisez l'arbre : premier niveau $M$ et $\overline{M}$, second niveau $T$ et $\overline{T}$. La probabilité d'un chemin est le produit des probabilités rencontrées.
+      en: |-
+        Build the tree: first level $M$ and $\overline{M}$, second level $T$ and $\overline{T}$. The probability of a path is the product of the probabilities met along it.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Calculez d'abord $P(T)$ avec la formule des probabilités totales, en additionnant les deux chemins menant à $T$, puis divisez $P(M \cap T)$ par $P(T)$.
+      en: |-
+        First compute $P(T)$ with the law of total probability, adding the two paths leading to $T$, then divide $P(M \cap T)$ by $P(T)$.
+solution:
+  fr: |-
+    L'énoncé donne $P(M) = 0{,}02$, $P_M(T) = 0{,}99$ et $P_{\overline{M}}(T) = 0{,}05$. La règle du produit donne les deux chemins menant à un test positif :
+    $$P(M \cap T) = 0{,}02 \times 0{,}99 = 0{,}0198, \qquad P(\overline{M} \cap T) = 0{,}98 \times 0{,}05 = 0{,}049.$$
+    Comme $M$ et $\overline{M}$ forment une partition de l'univers, la formule des probabilités totales donne
+    $$P(T) = 0{,}0198 + 0{,}049 = 0{,}0688,$$
+    puis, en remontant l'arbre,
+    $$P_T(M) = \frac{P(M \cap T)}{P(T)} = \frac{0{,}0198}{0{,}0688} \approx 0{,}288.$$
+
+    **Interprétation.** Moins d'un tiers des personnes testées positives sont malades, alors que le test se trompe rarement. La raison tient à la rareté de la maladie : les non-malades sont si nombreux que leurs $5\,\%$ de faux positifs, $49$ personnes sur $1000$, écrasent les $19{,}8$ vrais positifs. On voit ici que $P_T(M)$ et $P_M(T)$ n'ont rien à voir : la première vaut $0{,}288$, la seconde $0{,}99$.
+  en: |-
+    The statement gives $P(M) = 0.02$, $P_M(T) = 0.99$ and $P_{\overline{M}}(T) = 0.05$. The product rule gives the two paths leading to a positive test:
+    $$P(M \cap T) = 0.02 \times 0.99 = 0.0198, \qquad P(\overline{M} \cap T) = 0.98 \times 0.05 = 0.049.$$
+    Since $M$ and $\overline{M}$ form a partition of the sample space, the law of total probability gives
+    $$P(T) = 0.0198 + 0.049 = 0.0688,$$
+    then, climbing back up the tree,
+    $$P_T(M) = \frac{P(M \cap T)}{P(T)} = \frac{0.0198}{0.0688} \approx 0.288.$$
+
+    **Interpretation.** Fewer than a third of the people testing positive are ill, although the test is rarely wrong. The reason lies in the rarity of the disease: the healthy are so numerous that their $5\,\%$ of false positives, $49$ people out of $1000$, swamp the $19.8$ true positives. One sees here that $P_T(M)$ and $P_M(T)$ have nothing to do with each other: the first is $0.288$, the second $0.99$.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 3
+  calculationLength: 3
+  modellingOpenness: 2
+  linkedConcepts: 3
+  transfer: 2
+  autonomy: 3

@@ -1,0 +1,51 @@
+# Leçon dosages — concentration lue sur une droite d'étalonnage à partir de la loi de Beer-Lambert (réponse numérique)
+id: exercise.titration.beer_lambert
+type: numeric
+nodeId: method.titration
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On dose une solution colorée par étalonnage au spectrophotomètre. Une solution étalon de concentration $C = 25\ \mathrm{mmol/L}$ a une absorbance $A = 0{,}20$, et les points d'étalonnage sont alignés sur une droite passant par l'origine.
+
+    La solution inconnue a une absorbance $A_x = 0{,}32$. Donnez sa concentration, en $\mathrm{mmol/L}$.
+  en: |-
+    A coloured solution is assayed by calibration with a spectrophotometer. A standard solution of concentration $C = 25\ \mathrm{mmol/L}$ has an absorbance $A = 0.20$, and the calibration points lie on a straight line through the origin.
+
+    The unknown solution has an absorbance $A_x = 0.32$. Give its concentration, in $\mathrm{mmol/L}$.
+numeric:
+  value: 40
+  unit: "mmol/L"
+  tolerance: { kind: absolute, value: 1 }
+  inputLabel: { fr: "C_x", en: "C_x" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La droite passe par l'origine : l'absorbance est proportionnelle à la concentration, $A = k \times C$. Commencez par calculer la pente $k$ avec l'étalon.
+      en: |-
+        The line passes through the origin: the absorbance is proportional to the concentration, $A = k \times C$. Start by computing the slope $k$ with the standard.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $k = \dfrac{0{,}20}{25} = 8{,}0 \times 10^{-3}\ \mathrm{L/mmol}$, puis $C_x = \dfrac{A_x}{k}$.
+      en: |-
+        $k = \dfrac{0.20}{25} = 8.0 \times 10^{-3}\ \mathrm{L/mmol}$, then $C_x = \dfrac{A_x}{k}$.
+solution:
+  fr: |-
+    La loi de Beer-Lambert donne, pour une solution diluée et à une longueur d'onde fixée, $A = k \times C$. L'étalon fixe la pente de la droite d'étalonnage :
+    $$k = \frac{A}{C} = \frac{0{,}20}{25} = 8{,}0 \times 10^{-3}\ \mathrm{L/mmol}.$$
+
+    On lit alors la concentration de la solution inconnue sur cette même droite :
+    $$C_x = \frac{A_x}{k} = \frac{0{,}32}{8{,}0 \times 10^{-3}} = 40\ \mathrm{mmol/L},$$
+    soit $4{,}0 \times 10^{-2}\ \mathrm{mol/L}$. On peut aussi raisonner par proportionnalité directe : l'absorbance est $\dfrac{0{,}32}{0{,}20} = 1{,}6$ fois plus grande, donc la concentration aussi, $1{,}6 \times 25 = 40\ \mathrm{mmol/L}$. Ce dosage par étalonnage ne consomme pas l'échantillon, mais il exige une espèce colorée et une échelle de solutions étalons.
+  en: |-
+    The Beer–Lambert law gives, for a dilute solution and at a fixed wavelength, $A = k \times C$. The standard sets the slope of the calibration line:
+    $$k = \frac{A}{C} = \frac{0.20}{25} = 8.0 \times 10^{-3}\ \mathrm{L/mmol}.$$
+
+    The concentration of the unknown solution is then read on that same line:
+    $$C_x = \frac{A_x}{k} = \frac{0.32}{8.0 \times 10^{-3}} = 40\ \mathrm{mmol/L},$$
+    that is $4.0 \times 10^{-2}\ \mathrm{mol/L}$. One may also argue by direct proportionality: the absorbance is $\dfrac{0.32}{0.20} = 1.6$ times larger, so the concentration is too, $1.6 \times 25 = 40\ \mathrm{mmol/L}$. This assay by calibration does not consume the sample, but it requires a coloured species and a scale of standard solutions.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 2, transfer: 2, autonomy: 2 }

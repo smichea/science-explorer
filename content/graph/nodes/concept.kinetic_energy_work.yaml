@@ -1,0 +1,53 @@
+id: concept.kinetic_energy_work
+type: law
+world: world.physics
+region: region.physics.motion_mechanics
+importance: 3
+tags: [lycee]
+title: { fr: "Énergie cinétique, travail d'une force, théorème de l'énergie cinétique", en: "Kinetic energy, work of a force, work–energy theorem" }
+shortPurpose:
+  fr: "Relier la vitesse d'un système au travail des forces qui s'exercent sur lui, sans jamais calculer la trajectoire."
+  en: "Relate the speed of a system to the work of the forces acting on it, without ever computing the trajectory."
+overview:
+  fr: >-
+    Un corps en mouvement possède une énergie liée à sa vitesse, l'énergie cinétique : elle vaut la moitié de la masse multipliée par le carré de la vitesse, si bien que rouler deux fois plus vite quadruple l'énergie à dissiper au freinage. Une force qui accompagne le déplacement lui donne de l'énergie, une force qui s'y oppose lui en prend : c'est le travail, un produit scalaire entre la force et le déplacement. Le théorème de l'énergie cinétique relie les deux : la variation d'énergie cinétique est la somme des travaux. On obtient ainsi une vitesse sans jamais calculer la trajectoire.
+  en: >-
+    A moving body possesses an energy linked to its speed, the kinetic energy: it equals half the mass multiplied by the square of the speed, so that driving twice as fast quadruples the energy to be dissipated when braking. A force that accompanies the displacement gives it energy, a force that opposes it takes some away: this is the work, a dot product between the force and the displacement. The work–energy theorem relates the two: the change of kinetic energy is the sum of the works. A speed is thus obtained without ever computing the trajectory.
+aliases:
+  fr: ["énergie cinétique", "travail d'une force", "théorème de l'énergie cinétique", "travail moteur", "travail résistant"]
+  en: ["kinetic energy", "work of a force", "work–energy theorem", "motive work", "resistive work"]
+description:
+  fr: |
+    L'**énergie cinétique** d'un système de masse $m$ animé de la vitesse $v$ dans un référentiel donné vaut $E_c = \dfrac{1}{2}\,m\,v^2$, en joules ; elle est toujours positive et dépend du référentiel choisi. Le **travail** d'une force constante $\vec F$ entre deux points $A$ et $B$ est le produit scalaire $W_{AB}(\vec F) = \vec F \cdot \vec{AB} = F \times AB \times \cos\alpha$, où $\alpha$ est l'angle entre la force et le déplacement : il est **moteur** si $\alpha < 90^\circ$, **résistant** si $\alpha > 90^\circ$, et **nul** si la force est perpendiculaire au déplacement. Le **théorème de l'énergie cinétique** s'énonce alors ainsi : dans un référentiel galiléen, $\Delta E_c = E_c(B) - E_c(A) = \sum W_{AB}(\vec F)$.
+
+    Ce théorème résout les problèmes où l'on cherche une vitesse sans vouloir de la trajectoire. Un traîneau tiré par une force $F = 20\ \mathrm{N}$ inclinée de $30^\circ$ sur un déplacement horizontal $AB = 5{,}0\ \mathrm{m}$ reçoit $W = 20 \times 5{,}0 \times \cos 30^\circ = 87\ \mathrm{J}$ ; le poids et la réaction du sol, perpendiculaires au déplacement, ne travaillent pas. Autre exemple : une bille de $1\ \mathrm{kg}$ lâchée d'une hauteur $h = 10\ \mathrm{m}$ n'est soumise qu'à son poids, qui travaille de $W = m\,g\,h = 98\ \mathrm{J}$ ; partant du repos, elle arrive donc avec $\dfrac{1}{2}\,m\,v^2 = 98\ \mathrm{J}$, soit $v = \sqrt{2\,g\,h} = 14\ \mathrm{m/s}$, indépendamment de la masse.
+
+    Le travail d'une force est une **énergie**, en joules, pas une force : il dépend du chemin pour les frottements, mais seulement des positions de départ et d'arrivée pour le poids. Une force perpendiculaire au déplacement, comme la tension d'un fil de pendule ou la réaction normale d'un support, ne travaille jamais et ne change donc pas la vitesse. Pièges classiques : oublier le cosinus et écrire $W = F \times AB$ pour une force inclinée ; oublier le signe négatif d'un travail résistant, celui des frottements ou d'un freinage ; élever au carré la seule vitesse, jamais la masse. Ce théorème prépare l'énergie potentielle et l'énergie mécanique, où le travail du poids devient une variation d'énergie de position.
+  en: |
+    The **kinetic energy** of a system of mass $m$ moving at the speed $v$ in a given frame of reference is $E_c = \dfrac{1}{2}\,m\,v^2$, in joules; it is always positive and depends on the chosen frame. The **work** of a constant force $\vec F$ between two points $A$ and $B$ is the dot product $W_{AB}(\vec F) = \vec F \cdot \vec{AB} = F \times AB \times \cos\alpha$, where $\alpha$ is the angle between the force and the displacement: it is **motive** if $\alpha < 90^\circ$, **resistive** if $\alpha > 90^\circ$, and **zero** if the force is perpendicular to the displacement. The **work–energy theorem** then reads: in a Galilean frame of reference, $\Delta E_c = E_c(B) - E_c(A) = \sum W_{AB}(\vec F)$.
+
+    This theorem solves the problems where a speed is wanted without any need for the trajectory. A sledge pulled by a force $F = 20\ \mathrm{N}$ inclined at $30^\circ$ over a horizontal displacement $AB = 5.0\ \mathrm{m}$ receives $W = 20 \times 5.0 \times \cos 30^\circ = 87\ \mathrm{J}$; the weight and the reaction of the ground, perpendicular to the displacement, do no work. Another example: a ball of $1\ \mathrm{kg}$ released from a height $h = 10\ \mathrm{m}$ is subject only to its weight, whose work is $W = m\,g\,h = 98\ \mathrm{J}$; starting from rest, it therefore arrives with $\dfrac{1}{2}\,m\,v^2 = 98\ \mathrm{J}$, that is $v = \sqrt{2\,g\,h} = 14\ \mathrm{m/s}$, whatever the mass.
+
+    The work of a force is an **energy**, in joules, not a force: it depends on the path for friction, but only on the starting and arrival positions for the weight. A force perpendicular to the displacement, such as the tension of a pendulum string or the normal reaction of a support, never works and therefore never changes the speed. Classic traps: forgetting the cosine and writing $W = F \times AB$ for an inclined force; forgetting the negative sign of a resistive work, that of friction or of braking; squaring only the speed, never the mass. This theorem prepares potential energy and mechanical energy, where the work of the weight becomes a change of energy of position.
+law:
+  statement:
+    fr: "Dans un référentiel galiléen, la variation de l'énergie cinétique d'un système entre deux instants est égale à la somme des travaux des forces qui s'exercent sur lui : $\\Delta E_c = \\dfrac{1}{2}\\,m\\,v_B^2 - \\dfrac{1}{2}\\,m\\,v_A^2 = \\sum W_{AB}(\\vec F)$, avec $W_{AB}(\\vec F) = \\vec F \\cdot \\vec{AB}$ pour une force constante."
+    en: "In a Galilean frame of reference, the change of the kinetic energy of a system between two instants equals the sum of the works of the forces acting on it: $\\Delta E_c = \\dfrac{1}{2}\\,m\\,v_B^2 - \\dfrac{1}{2}\\,m\\,v_A^2 = \\sum W_{AB}(\\vec F)$, with $W_{AB}(\\vec F) = \\vec F \\cdot \\vec{AB}$ for a constant force."
+  validity:
+    fr: "Système modélisé par un point matériel de masse constante, étudié dans un référentiel galiléen, à des vitesses très inférieures à celle de la lumière ; l'expression $\\vec F \\cdot \\vec{AB}$ du travail suppose la force constante en direction et en valeur le long du déplacement."
+    en: "System modelled by a point mass of constant mass, studied in a Galilean frame of reference, at speeds far below that of light; the expression $\\vec F \\cdot \\vec{AB}$ of the work assumes the force constant in direction and value along the displacement."
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "calculer l'énergie cinétique $E_c = \\dfrac{1}{2}\\,m\\,v^2$ d'un système et l'exprimer en joules"
+        - "calculer le travail d'une force constante, $W_{AB}(\\vec F) = \\vec F \\cdot \\vec{AB}$, et déterminer s'il est moteur, résistant ou nul"
+        - "énoncer et appliquer le théorème de l'énergie cinétique dans un référentiel galiléen"
+        - "en déduire une vitesse, une distance de freinage ou l'intensité d'une force sans calculer la trajectoire"
+      en:
+        - "compute the kinetic energy $E_c = \\dfrac{1}{2}\\,m\\,v^2$ of a system and express it in joules"
+        - "compute the work of a constant force, $W_{AB}(\\vec F) = \\vec F \\cdot \\vec{AB}$, and decide whether it is motive, resistive or zero"
+        - "state and apply the work–energy theorem in a Galilean frame of reference"
+        - "deduce from it a speed, a braking distance or the magnitude of a force without computing the trajectory"

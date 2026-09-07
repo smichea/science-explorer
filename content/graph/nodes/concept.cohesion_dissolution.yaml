@@ -1,0 +1,69 @@
+id: concept.cohesion_dissolution
+type: model
+world: world.chemistry
+region: region.chemistry.micro_macro
+importance: 2
+tags: [lycee]
+title: { fr: "Cohésion des solides, dissolution, solvatation, extraction", en: "Cohesion of solids, dissolution, solvation, extraction" }
+shortPurpose:
+  fr: "Expliquer par les interactions entre entités ce qui tient un solide ensemble, comment l'eau dissout un solide ionique, et dans quel solvant une espèce se dissout ou s'extrait."
+  en: "Explain through the interactions between chemical species what holds a solid together, how water dissolves an ionic solid, and in which solvent a species dissolves or is extracted."
+overview:
+  fr: >-
+    Un cristal de sel tient par l'attraction électrostatique entre ses ions ; la glace tient par des liaisons hydrogène entre ses molécules. Dans l'eau, solvant polaire, les ions du sel sont arrachés au cristal, entourés de molécules d'eau, puis dispersés : le sel est dissous, et l'équation de dissolution donne la concentration de chaque ion. Le semblable dissout le semblable, ce qui guide le choix d'un solvant pour extraire une espèce et explique comment le savon emporte les graisses.
+  en: >-
+    A salt crystal holds together through the electrostatic attraction between its ions; ice holds together through hydrogen bonds between its molecules. In water, a polar solvent, the ions of the salt are pulled off the crystal, surrounded by water molecules, then dispersed: the salt is dissolved, and the dissolution equation gives the concentration of each ion. Like dissolves like, which guides the choice of a solvent to extract a species and explains how soap carries greases away.
+aliases:
+  fr: ["solide ionique", "solide moléculaire", "liaison hydrogène", "équation de dissolution", "solvatation des ions", "extraction par solvant"]
+  en: ["ionic solid", "molecular solid", "hydrogen bond", "dissolution equation", "solvation of ions", "solvent extraction"]
+description:
+  fr: |
+    Un **solide ionique**, comme le chlorure de sodium $\mathrm{NaCl}$, est un assemblage ordonné et électriquement neutre de cations et d'anions ; sa **cohésion** est assurée par l'**interaction électrostatique** attractive entre ions de charges opposées, qui l'emporte sur la répulsion entre ions de même charge. Sa formule indique les proportions des ions, $\mathrm{Na^+}$ et $\mathrm{Cl^-}$ en nombres égaux, deux $\mathrm{Cl^-}$ par $\mathrm{Ca^{2+}}$ dans $\mathrm{CaCl_2}$. Un **solide moléculaire**, comme la glace, le sucre ou le diiode, est un assemblage de molécules liées par des interactions bien plus faibles : les **interactions de Van der Waals**, présentes entre toutes les molécules et d'autant plus fortes que celles-ci sont grosses ou polaires, et la **liaison hydrogène**, entre un atome d'hydrogène lié à un oxygène ou un azote et un doublet non liant d'un oxygène ou d'un azote voisin. La force de ces interactions se lit dans les températures de fusion : $801\ ^\circ\mathrm{C}$ pour le chlorure de sodium, $0\ ^\circ\mathrm{C}$ pour la glace, $-182\ ^\circ\mathrm{C}$ pour le méthane.
+
+    Dans l'eau, solvant polaire, un solide ionique se **dissout** en trois étapes : la **dissociation**, où les molécules d'eau, attirées par les ions, arrachent ceux-ci au cristal ; la **solvatation**, ou hydratation, où chaque ion s'entoure de molécules d'eau orientées, l'oxygène $\delta^-$ vers les cations et les hydrogènes $\delta^+$ vers les anions ; la **dispersion** des ions solvatés dans toute la solution. On modélise la transformation par une **équation de dissolution**, qui conserve les éléments et la charge : $\mathrm{NaCl(s)} \to \mathrm{Na^+(aq)} + \mathrm{Cl^-(aq)}$, $\mathrm{CaCl_2(s)} \to \mathrm{Ca^{2+}(aq)} + 2\,\mathrm{Cl^-(aq)}$. Les concentrations des ions se déduisent des nombres stœchiométriques : $0{,}10\ \mathrm{mol}$ de chlorure de calcium dissous dans $1{,}0\ \mathrm{L}$ donnent $[\mathrm{Ca^{2+}}] = 0{,}10\ \mathrm{mol/L}$ et $[\mathrm{Cl^-}] = 0{,}20\ \mathrm{mol/L}$, et la solution reste électriquement neutre. Un solide moléculaire se dissout dans l'eau s'il peut former des liaisons hydrogène ou s'il est polaire, comme le sucre ou l'éthanol, tandis qu'une espèce apolaire, comme le diiode ou une huile, se dissout dans un solvant apolaire comme le cyclohexane : le semblable dissout le semblable.
+
+    Cette règle guide l'**extraction par solvant** : pour extraire une espèce d'une solution aqueuse, on choisit un solvant non miscible à l'eau, dans lequel l'espèce est plus **soluble** que dans l'eau ; on agite dans une ampoule à décanter, les deux phases se séparent selon leurs masses volumiques, et l'on recueille la phase qui contient l'espèce. Le diiode, peu soluble dans l'eau, passe ainsi dans le cyclohexane, moins dense, qui forme la phase supérieure et se colore en violet. La **solubilité** est la masse maximale d'espèce que l'on peut dissoudre par litre de solvant ; deux liquides qui se mélangent en toutes proportions sont **miscibles**. Les **espèces amphiphiles**, savons et tensioactifs, portent une tête hydrophile, polaire ou ionique, et une queue hydrophobe, une longue chaîne carbonée : elles s'organisent autour des graisses et les entraînent dans l'eau, ce qui explique le lavage, les émulsions et les mousses. Ce modèle est qualitatif : il explique et prévoit des tendances, mais les solubilités et les températures de fusion restent des données mesurées.
+  en: |
+    An **ionic solid**, such as sodium chloride $\mathrm{NaCl}$, is an ordered and electrically neutral assembly of cations and anions; its **cohesion** is ensured by the attractive **electrostatic interaction** between ions of opposite charges, which prevails over the repulsion between ions of the same charge. Its formula gives the proportions of the ions, $\mathrm{Na^+}$ and $\mathrm{Cl^-}$ in equal numbers, two $\mathrm{Cl^-}$ per $\mathrm{Ca^{2+}}$ in $\mathrm{CaCl_2}$. A **molecular solid**, such as ice, sugar or diiodine, is an assembly of molecules linked by much weaker interactions: the **Van der Waals interactions**, present between all molecules and stronger when these are large or polar, and the **hydrogen bond**, between a hydrogen atom bonded to an oxygen or a nitrogen and a lone pair of a neighbouring oxygen or nitrogen. The strength of these interactions can be read in the melting temperatures: $801\ ^\circ\mathrm{C}$ for sodium chloride, $0\ ^\circ\mathrm{C}$ for ice, $-182\ ^\circ\mathrm{C}$ for methane.
+
+    In water, a polar solvent, an ionic solid **dissolves** in three steps: **dissociation**, where the water molecules, attracted by the ions, pull them off the crystal; **solvation**, or hydration, where each ion surrounds itself with oriented water molecules, the $\delta^-$ oxygen towards the cations and the $\delta^+$ hydrogens towards the anions; the **dispersion** of the solvated ions throughout the solution. The transformation is modelled by a **dissolution equation**, which conserves the elements and the charge: $\mathrm{NaCl(s)} \to \mathrm{Na^+(aq)} + \mathrm{Cl^-(aq)}$, $\mathrm{CaCl_2(s)} \to \mathrm{Ca^{2+}(aq)} + 2\,\mathrm{Cl^-(aq)}$. The concentrations of the ions follow from the stoichiometric coefficients: $0.10\ \mathrm{mol}$ of calcium chloride dissolved in $1.0\ \mathrm{L}$ give $[\mathrm{Ca^{2+}}] = 0.10\ \mathrm{mol/L}$ and $[\mathrm{Cl^-}] = 0.20\ \mathrm{mol/L}$, and the solution stays electrically neutral. A molecular solid dissolves in water if it can form hydrogen bonds or if it is polar, like sugar or ethanol, whereas a non-polar species, like diiodine or an oil, dissolves in a non-polar solvent such as cyclohexane: like dissolves like.
+
+    This rule guides **solvent extraction**: to extract a species from an aqueous solution, one chooses a solvent that is not miscible with water, in which the species is more **soluble** than in water; the mixture is shaken in a separating funnel, the two phases separate according to their densities, and the phase containing the species is collected. Diiodine, poorly soluble in water, thus passes into cyclohexane, less dense, which forms the upper phase and turns purple. **Solubility** is the maximum mass of species that can be dissolved per litre of solvent; two liquids that mix in all proportions are **miscible**. **Amphiphilic species**, soaps and surfactants, carry a hydrophilic head, polar or ionic, and a hydrophobic tail, a long carbon chain: they organise around greases and carry them into the water, which explains washing, emulsions and foams. This model is qualitative: it explains and predicts trends, but solubilities and melting temperatures remain measured data.
+model:
+  assumptions:
+    fr:
+      - "Un solide ionique est un assemblage ordonné et électriquement neutre de cations et d'anions, dont la cohésion est assurée par l'interaction électrostatique."
+      - "Un solide moléculaire est un assemblage de molécules liées par des interactions de Van der Waals et, le cas échéant, par des liaisons hydrogène."
+      - "Dans l'eau, solvant polaire, les ions d'un solide ionique se dissocient, se solvatent et se dispersent ; l'équation de dissolution conserve les éléments et la charge."
+      - "Une espèce se dissout d'autant mieux dans un solvant que ses interactions avec lui ressemblent à celles qu'elle a avec elle-même : le semblable dissout le semblable."
+    en:
+      - "An ionic solid is an ordered and electrically neutral assembly of cations and anions, whose cohesion is ensured by the electrostatic interaction."
+      - "A molecular solid is an assembly of molecules linked by Van der Waals interactions and, where applicable, by hydrogen bonds."
+      - "In water, a polar solvent, the ions of an ionic solid dissociate, get solvated and disperse; the dissolution equation conserves the elements and the charge."
+      - "A species dissolves all the better in a solvent as its interactions with it resemble those it has with itself: like dissolves like."
+  limits:
+    fr:
+      - "Le modèle est qualitatif : il ne prédit ni la valeur d'une solubilité ni une température de fusion, qui restent des données expérimentales."
+      - "Certains solides ioniques sont très peu solubles (chlorure d'argent, carbonate de calcium) : la dissolution n'est pas toujours totale, ce que le modèle ne prévoit pas."
+      - "La dissolution d'un solide moléculaire (sucre, diiode) ne produit pas d'ions : l'équation de dissolution ionique ne s'applique qu'aux composés ioniques."
+      - "Les interactions entre entités sont nommées et comparées, pas calculées : leurs énergies relatives sont des données, non des résultats du modèle."
+    en:
+      - "The model is qualitative: it predicts neither the value of a solubility nor a melting temperature, which remain experimental data."
+      - "Some ionic solids are very poorly soluble (silver chloride, calcium carbonate): the dissolution is not always complete, which the model does not predict."
+      - "The dissolution of a molecular solid (sugar, diiodine) produces no ions: the ionic dissolution equation applies only to ionic compounds."
+      - "The interactions between species are named and compared, not computed: their relative energies are data, not results of the model."
+depths:
+  - depth: 1
+    stage: premiere
+    role: core
+    outcomes:
+      fr:
+        - "expliquer la cohésion d'un solide ionique par l'interaction électrostatique et celle d'un solide moléculaire par les interactions de Van der Waals et les liaisons hydrogène"
+        - "modéliser à l'échelle microscopique la dissolution d'un composé ionique dans l'eau (dissociation, solvatation, dispersion) et écrire son équation de dissolution"
+        - "calculer la concentration en quantité de matière des ions en solution à partir de la quantité de solide dissous"
+        - "prévoir la solubilité ou la miscibilité d'une espèce dans un solvant à partir des polarités, et interpréter un protocole d'extraction liquide-liquide et le rôle des espèces amphiphiles"
+      en:
+        - "explain the cohesion of an ionic solid by the electrostatic interaction and that of a molecular solid by Van der Waals interactions and hydrogen bonds"
+        - "model at the microscopic scale the dissolution of an ionic compound in water (dissociation, solvation, dispersion) and write its dissolution equation"
+        - "compute the concentration in amount of substance of the ions in solution from the amount of solid dissolved"
+        - "predict the solubility or miscibility of a species in a solvent from the polarities, and interpret a liquid–liquid extraction protocol and the role of amphiphilic species"

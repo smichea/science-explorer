@@ -31,7 +31,7 @@ describe('content package', () => {
     expect(graph.regions.filter((r) => r.isBridge)).toHaveLength(9);
     const derivative = graph.nodes.find((n) => n.id === 'tool.derivative')!;
     expect(derivative.backpack).toBe(true);
-    expect(derivative.depths.map((d) => d.stage)).toEqual(['terminale', 'mpsi', 'mp']);
+    expect(derivative.depths.map((d) => d.stage)).toEqual(['premiere', 'terminale', 'mpsi', 'mp']);
     expect(graph.edges.filter((e) => e.from === 'tool.derivative' && e.type === 'applies_to' && e.coverageEligible).length).toBeGreaterThanOrEqual(3);
     const missions = read<MissionDefinition[]>('missions.json');
     const galileo = missions.find((m) => m.id === 'mission.galileo.inclined_plane')!;
