@@ -179,11 +179,10 @@
   }
 
   const level = $derived(zoomLevelFor2d(scale));
-  // The budget of the 3D atlas, widened: a flat map carries more names than floating pills.
-  // A narrow map (a phone, or a stage squeezed by the panel) names fewer of them, as in 3D.
-  const budget = $derived(Math.ceil(LABEL_BUDGET[level] * 1.6 * (compact ? 0.55 : 1)));
   /** A narrow map (a phone, or a stage squeezed by the panel) carries fewer and smaller names. */
   const compact = $derived(mapWidth > 0 && mapWidth < 600);
+  // The budget of the 3D atlas, widened: a flat map carries more names than floating pills.
+  const budget = $derived(Math.ceil(LABEL_BUDGET[level] * 1.6 * (compact ? 0.55 : 1)));
   /** One screen pixel, in map units: a name then reads the same size on a phone and on a desk. */
   const unit = $derived(width / scale / Math.max(320, mapWidth || 960));
   const fontSize = $derived({
