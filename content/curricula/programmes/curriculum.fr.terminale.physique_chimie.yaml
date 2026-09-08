@@ -12,38 +12,108 @@ sourceReferences:
   - title: "Programme de physique-chimie de terminale générale (enseignement de spécialité), BO spécial n°8 du 25 juillet 2019"
     note: "to verify"
 items:
+  - id: composition_systeme
+    title: { fr: "Déterminer la composition d'un système", en: "Determining the composition of a system" }
+    reference: "Constitution et transformations de la matière — Déterminer la composition d'un système par des méthodes physiques et chimiques"
+    alignedNodes:
+      - { node: method.instrumental_analysis, depth: 1 }
+      - { node: method.titration, depth: 2 }
+  - id: cinetique_chimique
+    title: { fr: "Évolution temporelle d'un système chimique", en: "Time evolution of a chemical system" }
+    reference: "Constitution et transformations de la matière — Suivre et modéliser l'évolution temporelle d'un système, siège d'une transformation chimique"
+    alignedNodes:
+      - { node: concept.reaction_rate, depth: 1 }
+      - { node: phenomenon.chemistry.first_order_reaction, depth: 1 }
+      - { node: model.reaction_order_one, depth: 1 }
+      - { node: phenomenon.chemistry.concentration_over_time, depth: 1 }
+  - id: decroissance_radioactive
+    title: { fr: "Décroissance radioactive", en: "Radioactive decay" }
+    reference: "Constitution et transformations de la matière — Modéliser l'évolution temporelle d'un système, siège d'une transformation nucléaire"
+    alignedNodes:
+      - { node: phenomenon.nuclear.radioactive_decay, depth: 1 }
+  - id: etat_final
+    title: { fr: "Prévoir l'état final d'un système chimique", en: "Predicting the final state of a chemical system" }
+    reference: "Constitution et transformations de la matière — Prévoir l'état final d'un système, siège d'une transformation chimique : quotient de réaction, constante d'équilibre, taux d'avancement final"
+    alignedNodes:
+      - { node: concept.chemical_equilibrium, depth: 1 }
+  - id: acide_base
+    title: { fr: "Réactions acide-base et pH", en: "Acid-base reactions and pH" }
+    reference: "Constitution et transformations de la matière — Analyser un système chimique par des réactions acide-base : pH, constante d'acidité, domaines de prédominance"
+    alignedNodes:
+      - { node: model.acid_base, depth: 1 }
+  - id: sens_evolution
+    title: { fr: "Forcer et optimiser le sens d'évolution : piles", en: "Forcing and optimising the direction of evolution: cells" }
+    reference: "Constitution et transformations de la matière — Forcer le sens d'évolution d'un système : piles et accumulateurs, électrolyse"
+    alignedNodes:
+      - { node: model.electrochemical_cell, depth: 1 }
+  - id: strategie_synthese
+    title: { fr: "Stratégie de synthèse organique", en: "Strategy of an organic synthesis" }
+    reference: "Constitution et transformations de la matière — Élaborer une stratégie de synthèse organique : sélectivité, protection, rendement"
+    alignedNodes:
+      - { node: method.synthesis_strategy, depth: 1 }
   - id: decrire_mouvement
-    title: { fr: Décrire un mouvement, en: Describing motion }
-    reference: "Mouvement et interactions — Décrire un mouvement"
+    title: { fr: "Décrire un mouvement", en: "Describing motion" }
+    reference: "Mouvement et interactions — Décrire un mouvement : vecteurs position, vitesse et accélération"
     alignedNodes:
       - { node: model.kinematics_point, depth: 3 }
+      - { node: tool.vector, depth: 2 }
   - id: champ_uniforme
-    title: { fr: Mouvement dans un champ uniforme, en: Motion in a uniform field }
+    title: { fr: "Mouvement dans un champ uniforme", en: "Motion in a uniform field" }
     reference: "Mouvement et interactions — Relier les actions appliquées à un système à son mouvement : mouvement dans un champ uniforme"
     alignedNodes:
       - { node: phenomenon.motion.free_fall, depth: 1 }
       - { node: phenomenon.motion.uniformly_accelerated, depth: 1 }
       - { node: law.newton_second, depth: 2 }
+  - id: champ_gravitation
+    title: { fr: "Mouvement dans un champ de gravitation", en: "Motion in a gravitational field" }
+    reference: "Mouvement et interactions — Mouvement dans un champ de gravitation : lois de Kepler, satellites et planètes"
+    alignedNodes:
+      - { node: model.gravitational_motion, depth: 1 }
+      - { node: phenomenon.circular_motion, depth: 1 }
+  - id: premier_principe
+    title: { fr: "Premier principe et bilans d'énergie", en: "First principle and energy balances" }
+    reference: "L'énergie : conversions et transferts — Effectuer des bilans d'énergie sur un système : premier principe, capacité thermique"
+    alignedNodes:
+      - { node: law.first_principle, depth: 1 }
+  - id: transferts_thermiques
+    title: { fr: "Transferts thermiques", en: "Thermal transfers" }
+    reference: "L'énergie : conversions et transferts — Modéliser un transfert thermique : flux, résistance thermique, loi de Newton, régime transitoire"
+    alignedNodes:
+      - { node: phenomenon.thermal_transfer, depth: 1 }
+  - id: oscillateur
+    title: { fr: "Oscillateur mécanique et énergie", en: "Mechanical oscillator and energy" }
+    reference: "L'énergie : conversions et transferts — Étudier un oscillateur mécanique : pendule simple, période propre, conservation de l'énergie mécanique"
+    alignedNodes:
+      - { node: phenomenon.oscillator, depth: 1 }
+  - id: diffraction_interferences
+    title: { fr: "Diffraction et interférences", en: "Diffraction and interference" }
+    reference: "Ondes et signaux — Caractériser les phénomènes ondulatoires : diffraction, interférences"
+    alignedNodes:
+      - { node: phenomenon.interference, depth: 1 }
+  - id: effet_doppler
+    title: { fr: "Effet Doppler", en: "Doppler effect" }
+    reference: "Ondes et signaux — Caractériser les phénomènes ondulatoires : effet Doppler et ses applications"
+    alignedNodes:
+      - { node: phenomenon.doppler, depth: 1 }
+  - id: intensite_sonore
+    title: { fr: "Intensité sonore et niveau d'intensité sonore", en: "Sound intensity and sound intensity level" }
+    reference: "Ondes et signaux — Caractériser les phénomènes ondulatoires : intensité sonore, niveau d'intensité sonore, échelle logarithmique"
+    alignedNodes:
+      - { node: concept.sound_level, depth: 1 }
+  - id: lunette
+    title: { fr: "Former des images : la lunette astronomique", en: "Forming images: the astronomical telescope" }
+    reference: "Ondes et signaux — Former des images, décrire la lumière par un flux de photons : lunette astronomique afocale"
+    alignedNodes:
+      - { node: model.telescope, depth: 1 }
+      - { node: model.thin_lens, depth: 2 }
   - id: circuit_rc
     title: { fr: "Dynamique d'un système électrique (circuit RC)", en: "Dynamics of an electrical system (RC circuit)" }
     reference: "Ondes et signaux — Étudier la dynamique d'un système électrique"
     alignedNodes:
       - { node: phenomenon.circuit.capacitor_charging, depth: 1 }
       - { node: model.rc_circuit, depth: 1 }
-  - id: cinetique_chimique
-    title: { fr: "Évolution temporelle d'un système chimique", en: "Time evolution of a chemical system" }
-    reference: "Constitution et transformations de la matière — Suivre et modéliser l'évolution temporelle d'un système, siège d'une transformation chimique"
-    alignedNodes:
-      - { node: phenomenon.chemistry.first_order_reaction, depth: 1 }
-      - { node: model.reaction_order_one, depth: 1 }
-      - { node: phenomenon.chemistry.concentration_over_time, depth: 1 }
-  - id: decroissance_radioactive
-    title: { fr: Décroissance radioactive, en: Radioactive decay }
-    reference: "Constitution et transformations de la matière — Modéliser l'évolution temporelle d'un système, siège d'une transformation nucléaire"
-    alignedNodes:
-      - { node: phenomenon.nuclear.radioactive_decay, depth: 1 }
   - id: mesure_incertitudes
-    title: { fr: Mesure et incertitudes, en: Measurement and uncertainties }
+    title: { fr: "Mesure et incertitudes", en: "Measurement and uncertainties" }
     reference: "Mesure et incertitudes (partie transversale du programme)"
     alignedNodes:
       - { node: method.measurement, depth: 3 }

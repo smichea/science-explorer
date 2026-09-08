@@ -13,6 +13,21 @@ Ce guide s'adresse à l'adulte qui accompagne l'explorateur une heure par semain
 
 L'atlas couvre maintenant la Seconde et la Première (mathématiques et physique-chimie), en plus de la Terminale et de la prépa. Un explorateur de 15 ans reçoit l'étape Seconde comme étape courante (Seconde → Première → Terminale) : ses routes conseillées commencent par « Seconde : des nombres aux fonctions » et son vol d'oiseau les survole en premier. Un explorateur de 16 ans reçoit la Première (Première → Terminale → MPSI) : sa route conseillée est « Première : suites, second degré, dérivée, exponentielle, trigonométrie », son vol saute la Seconde et commence par les quatre jambes de Première, et la dérivée s'ouvre pour lui à sa profondeur de Première. Pour un explorateur de Terminale, les destinations enseignées seulement dans les années passées sont des **fondations** : elles restent visibles, un peu en dessous de la couche de l'année en cours, les filtres « Seconde » et « Première » les mettent en avant, et le vol d'oiseau ne les survole que si vous cochez « Survoler aussi les fondations ». Une notion enseignée deux fois (la fonction en Seconde puis en Terminale) est une seule destination : l'explorateur suit la profondeur de son année, et peut ouvrir les autres profondeurs dans la fiche de la destination.
 
+## 1 ter. La Terminale, au complet
+
+Le programme de Terminale est maintenant écrit en entier, mathématiques et physique-chimie : les
+limites d'une suite et d'une fonction, la continuité et le théorème des valeurs intermédiaires, le
+logarithme, le calcul intégral, la géométrie dans l'espace, le dénombrement, la loi binomiale et la
+loi des grands nombres ; les lois de Kepler et le mouvement circulaire, l'oscillateur, le premier
+principe et les transferts thermiques, la diffraction et les interférences, l'effet Doppler, la
+lunette, le niveau d'intensité sonore ; les acides et les bases, l'équilibre chimique, les piles,
+la vitesse d'une réaction, la stratégie de synthèse et l'analyse instrumentale. Un explorateur de
+Terminale a donc cinq routes conseillées avant les quatre routes historiques et thématiques, et son
+vol d'oiseau les survole dans l'ordre où les notions se construisent. Les notions que la Terminale
+reprend d'une année antérieure — la courbe, le vecteur, les unités, la mesure, la trigonométrie,
+l'algorithmique, le titrage — ont chacune leur propre leçon de Terminale : ouvrir la destination à
+l'étape de l'explorateur ne rejoue plus la leçon de l'année d'avant.
+
 ## 2. Déroulé d'une séance d'une heure
 
 | Temps | Moment | Ce que fait le guide |
@@ -31,7 +46,7 @@ Conseil pour la première séance : faites le vol complet une fois (une quinzain
 
 ## 2 ter. Les leçons : diapositives, outil, exercices
 
-Chaque destination s'ouvre avec sa **présentation lue à voix haute** (bouton 🔊 pour la rejouer, réglage « Lire à voix haute » dans Réglages pour couper la voix). Le bouton **▶ Suivre la leçon** ouvre la leçon en trois temps : des **diapositives** lues phrase par phrase, avec à droite un **outil** qui suit les mots (le traceur de courbes fait apparaître les courbes, les points, les cordes et les tangentes au moment où le texte les nomme ; les leçons de physique et de chimie montrent une simulation, un champ de pentes, des vecteurs, des mesures à modéliser ; la Seconde ajoute le crible des multiples, la série statistique, l'expérience aléatoire, la suite, l'onde et le signal, l'optique, le tableau périodique et le tableau d'avancement ; la Première ajoute le cercle trigonométrique, le champ vectoriel des charges et des masses, les niveaux d'énergie et le photon, la molécule avec ses doublets et ses groupes, l'arbre pondéré, la synthèse des couleurs, le rendement et l'énergie d'une réaction, les énergies dans les simulations) ; un **jeu libre** où l'explorateur tape ses propres fonctions, déplace un marqueur, fait varier les réglages ; puis des **exercices à réponse saisie** (nombres, expressions), avec indices, dont les résultats comptent dans la progression. Une leçon sans script rédigé est composée à partir de la description de la destination.
+Chaque destination s'ouvre avec sa **présentation lue à voix haute** (bouton 🔊 pour la rejouer, réglage « Lire à voix haute » dans Réglages pour couper la voix). Le bouton **▶ Suivre la leçon** ouvre la leçon en trois temps : des **diapositives** lues phrase par phrase, avec à droite un **outil** qui suit les mots (le traceur de courbes fait apparaître les courbes, les points, les cordes et les tangentes au moment où le texte les nomme ; les leçons de physique et de chimie montrent une simulation, un champ de pentes, des vecteurs, des mesures à modéliser ; la Seconde ajoute le crible des multiples, la série statistique, l'expérience aléatoire, la suite, l'onde et le signal, l'optique, le tableau périodique et le tableau d'avancement ; la Première ajoute le cercle trigonométrique, le champ vectoriel des charges et des masses, les niveaux d'énergie et le photon, la molécule avec ses doublets et ses groupes, l'arbre pondéré, la synthèse des couleurs, le rendement et l'énergie d'une réaction, les énergies dans les simulations ; la Terminale ajoute la géométrie dans l'espace que l'on fait tourner du doigt, l'aire sous une courbe avec ses rectangles de Riemann, la loi binomiale, les fronts d'onde d'une source qui se déplace, la lunette astronomique, les domaines de prédominance et la courbe de titrage, le quotient de réaction, et l'orbite d'un satellite avec ses aires balayées) ; un **jeu libre** où l'explorateur tape ses propres fonctions, déplace un marqueur, fait varier les réglages ; puis des **exercices à réponse saisie** (nombres, expressions), avec indices, dont les résultats comptent dans la progression. Une leçon sans script rédigé est composée à partir de la description de la destination.
 
 Conseil : laissez l'explorateur manipuler l'outil avant les exercices, et demandez-lui de dire à voix haute ce que montre la courbe.
 

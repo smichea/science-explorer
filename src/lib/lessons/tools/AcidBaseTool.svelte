@@ -45,7 +45,11 @@
       pka: couple?.pka,
     };
   });
-  const equivalence = $derived(setup ? equivalenceVolume(setup.c, setup.v, setup.titrant) : NaN);
+  const equivalence = $derived.by(() => {
+    const value = setup ? equivalenceVolume(setup.c, setup.v, setup.titrant) : NaN;
+    // A titrant of zero concentration never reaches the equivalence: keep a drawable axis anyway.
+    return Number.isFinite(value) && value > 0 ? value : NaN;
+  });
 
   /**
    * The pH read at the cursor, or the volume poured: whichever the mode moves. Written by the
@@ -63,7 +67,10 @@
   const CANVAS = { W: 560, H: 320, pad: { l: 46, r: 18, t: 18, b: 38 } };
   const view = $derived(
     titration
-      ? { x: [0, Math.max(1, 2 * equivalence)] as [number, number], y: [0, 14] as [number, number] }
+      ? {
+          x: [0, Number.isFinite(equivalence) ? 2 * equivalence : 1] as [number, number],
+          y: [0, 14] as [number, number],
+        }
       : { x: [0, 14] as [number, number], y: [0, 1] as [number, number] }
   );
   const sc = $derived(scales(view, CANVAS));
@@ -84,7 +91,9 @@
   const phEquivalence = $derived(setup ? titrationPH(setup, equivalence) : NaN);
   const phHalf = $derived(setup ? titrationPH(setup, equivalence / 2) : NaN);
   const slope = $derived(
-    setup ? slopeAt((v: number) => titrationPH(setup, v), pouring, equivalence / 400) : NaN
+    setup && Number.isFinite(equivalence)
+      ? slopeAt((v: number) => titrationPH(setup, v), pouring, equivalence / 400)
+      : NaN
   );
 
   /** Predominance lanes: one per couple, cut at its pKa. */
