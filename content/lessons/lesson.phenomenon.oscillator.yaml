@@ -1,0 +1,32 @@
+# Leçon — le pendule simple : θ(t), l'échange entre énergie cinétique et énergie potentielle et la période
+# propre réglée par la longueur et la pesanteur (traceur), puis l'analyse dimensionnelle de T₀ (outil dimensions).
+id: lesson.phenomenon.oscillator
+nodeId: phenomenon.oscillator
+depth: 1
+tools:
+  - id: swing
+    kind: plotter
+    title: { fr: "Angle en degrés et énergies en millijoules", en: "Angle in degrees and energies in millijoules" }
+    variable: t
+    view: { x: [0, 6], y: [-13, 36] }
+    input: false
+    parameters:
+      - { id: l, label: { fr: "longueur L (m)", en: "length L (m)" }, min: 0.25, max: 2, step: 0.05, value: 1 }
+      - { id: g, label: { fr: "pesanteur g (N/kg)", en: "gravity g (N/kg)" }, min: 1.6, max: 12, step: 0.1, value: 9.8 }
+    initial:
+      - { at: 0, view: { labels: { x: "t (s)", y: "θ (°)  ·  E (mJ)" } } }
+      - { at: 0, plot: { id: theta, expr: "10*cos(sqrt(g/l)*t)", label: { fr: "θ(t), amplitude 10°", en: "θ(t), amplitude 10°" } } }
+      - { at: 0, plot: { id: ep, expr: "3.0462*g*l*cos(sqrt(g/l)*t)^2", label: { fr: "Epp (mJ)", en: "Epp (mJ)" } } }
+      - { at: 0, plot: { id: ec, expr: "3.0462*g*l*sin(sqrt(g/l)*t)^2", label: { fr: "Ec (mJ)", en: "Ec (mJ)" } } }
+      - { at: 0, plot: { id: em, expr: "3.0462*g*l", label: { fr: "Em = Ec + Epp (mJ)", en: "Em = Ec + Epp (mJ)" }, dashed: true } }
+  - id: dims
+    kind: dimensions
+    title: { fr: "Quelle formule peut donner une durée ?", en: "Which formula can give a duration?" }
+    quantities:
+      - { id: length, symbol: "L", label: { fr: "longueur du fil", en: "length of the string" }, unit: "m", dims: { L: 1 } }
+      - { id: mass, symbol: "m", label: { fr: "masse du pendule", en: "mass of the pendulum" }, unit: "kg", dims: { M: 1 } }
+      - { id: time, symbol: "t", label: { fr: "temps", en: "time" }, unit: "s", dims: { T: 1 } }
+      - { id: gravity, symbol: "g", label: { fr: "intensité de la pesanteur", en: "strength of gravity" }, unit: "m/s²", dims: { L: 1, T: -2 }, base: false }
+      - { id: period, symbol: "T₀", label: { fr: "période propre", en: "natural period" }, unit: "s", dims: { T: 1 }, base: false }
+      - { id: speed, symbol: "v", label: { fr: "vitesse au point bas", en: "speed at the lowest point" }, unit: "m/s", dims: { L: 1, T: -1 }, base: false }
+      - { id: energy, symbol: "Em", label: { fr: "énergie mécanique", en: "mechanical energy" }, unit: "J", dims: { M: 1, L: 2, T: -2 }, base: false }

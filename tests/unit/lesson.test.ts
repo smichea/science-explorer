@@ -203,7 +203,8 @@ describe('lessons', () => {
     expect(next('concept.function')).toBe('concept.graph');
     // The derivative first appears on the Première analysis route: its next stop is the variations.
     expect(next('tool.derivative')).toBe('concept.variations_extremums');
-    expect(next('phenomenon.motion.with_drag')).toBeUndefined();
+    // The very last stop of the very last route has nothing after it.
+    expect(next('method.instrumental_analysis')).toBeUndefined();
   });
 
   it('lists the exercises of a node, closest depth first, without free explanations', () => {

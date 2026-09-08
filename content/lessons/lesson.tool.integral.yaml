@@ -1,0 +1,114 @@
+# Leçon rédigée — calcul intégral : l'aire sous la courbe lue par l'action area, les sommes de Riemann à quatre,
+# douze puis quarante rectangles, la primitive comme aire à borne mobile (paramètre a), puis une intégration par parties.
+id: lesson.tool.integral
+nodeId: tool.integral
+depth: 1
+tools:
+  - id: plot
+    kind: plotter
+    variable: x
+    view: { x: [-0.5, 3], y: [-1, 5] }
+    parameters:
+      - { id: a, label: { fr: "borne supérieure a", en: "upper bound a" }, min: 0, max: 2.5, step: 0.05, value: 2 }
+    input: true
+steps:
+  - id: area_under_curve
+    title: { fr: "L'aire sous la courbe", en: "The area under the curve" }
+    text:
+      fr: >-
+        Voici la courbe de la fonction carré, entre zéro et deux.
+        La question du calcul intégral est celle de l'aire du domaine compris entre cette courbe, l'axe des abscisses et les deux bornes.
+        On la note intégrale, de zéro à deux, de x au carré, et l'outil la lit pour nous.
+        Elle vaut environ deux virgule six sept, c'est-à-dire huit tiers, et tout l'enjeu de la leçon est de comprendre d'où sort ce nombre.
+      en: >-
+        Here is the curve of the square function, between zero and two.
+        The question of integral calculus is that of the area of the region between this curve, the horizontal axis and the two bounds.
+        It is written integral, from zero to two, of x squared, and the tool reads it for us.
+        It is about two point six seven, that is eight thirds, and the whole point of the lesson is to understand where that number comes from.
+    actions:
+      - { at: 0, plot: { id: f, expr: "x^2", label: { fr: "f(x) = x²", en: "f(x) = x²" } } }
+      - { at: 2, area: { id: s, on: f, from: 0, to: 2, label: { fr: "aire cherchée", en: "area sought" } } }
+  - id: riemann
+    title: { fr: "Les sommes de Riemann", en: "Riemann sums" }
+    text:
+      fr: >-
+        Pour approcher cette aire, découpons l'intervalle en tranches égales et remplaçons la courbe par un rectangle sur chacune.
+        Avec quatre rectangles pris à gauche, on obtient un virgule sept cinq : c'est trop peu, car chaque rectangle laisse passer un morceau de courbe.
+        Avec douze rectangles, on monte à deux virgule trois quatre.
+        Avec quarante, à deux virgule cinq sept, et la suite continue de grimper vers huit tiers sans jamais le dépasser.
+        C'est la somme de Riemann : plus le découpage est fin, plus elle serre l'aire, et l'intégrale est sa limite.
+      en: >-
+        To approach this area, let us cut the interval into equal slices and replace the curve by a rectangle on each of them.
+        With four rectangles taken on the left, one gets one point seven five: too little, since each rectangle lets a piece of curve escape.
+        With twelve rectangles, one rises to two point three four.
+        With forty, to two point five seven, and the sequence keeps climbing towards eight thirds without ever passing it.
+        This is the Riemann sum: the finer the cutting, the tighter it grips the area, and the integral is its limit.
+    actions:
+      - { at: 1, area: { id: r1, on: f, from: 0, to: 2, riemann: 4, side: left, label: { fr: "4 rectangles", en: "4 rectangles" } } }
+      - { at: 2, hide: [r1], area: { id: r2, on: f, from: 0, to: 2, riemann: 12, side: left, label: { fr: "12 rectangles", en: "12 rectangles" } } }
+      - { at: 3, hide: [r2], area: { id: r3, on: f, from: 0, to: 2, riemann: 40, side: left, label: { fr: "40 rectangles", en: "40 rectangles" } } }
+  - id: primitive
+    title: { fr: "La primitive, ou l'aire à borne mobile", en: "The antiderivative, or the area with a moving bound" }
+    text:
+      fr: >-
+        Comment obtenir la valeur exacte sans additionner une infinité de tranches ?
+        Regardons l'aire accumulée depuis zéro jusqu'à une borne mobile a : elle grandit quand a avance vers la droite.
+        Cette aire, vue comme une fonction de a, est exactement a au cube sur trois, dont la dérivée est a au carré, c'est-à-dire la fonction de départ.
+        C'est le théorème fondamental de l'analyse : l'aire accumulée est une primitive de la fonction.
+        L'intégrale de zéro à deux vaut donc deux au cube sur trois moins zéro, soit huit tiers, sans le moindre rectangle.
+      en: >-
+        How can the exact value be obtained without adding infinitely many slices?
+        Let us look at the area accumulated from zero up to a moving bound a: it grows as a advances to the right.
+        That area, seen as a function of a, is exactly a cubed over three, whose derivative is a squared, that is, the function we started from.
+        This is the fundamental theorem of calculus: the accumulated area is an antiderivative of the function.
+        The integral from zero to two is therefore two cubed over three minus zero, that is eight thirds, without a single rectangle.
+    actions:
+      - { at: 0, clear: true, view: { x: [-0.5, 3], y: [-1, 5] } }
+      - { at: 0, plot: { id: f, expr: "x^2", label: { fr: "f(x) = x²", en: "f(x) = x²" } } }
+      - { at: 1, area: { id: sa, on: f, from: 0, to: "a", label: { fr: "aire de 0 à a", en: "area from 0 to a" } } }
+      - { at: 2, plot: { id: cap, expr: "x^3/3", dashed: true, label: { fr: "F(x) = x³/3", en: "F(x) = x³/3" } } }
+      - { at: 2, point: { id: pf, on: cap, x: "a", guides: true, label: { fr: "F(a) = aire", en: "F(a) = area" } } }
+  - id: by_parts
+    title: { fr: "L'intégration par parties", en: "Integration by parts" }
+    text:
+      fr: >-
+        Terminons par un produit qui résiste : x multiplié par l'exponentielle de x, entre zéro et un.
+        L'intégration par parties vient de la dérivée d'un produit, lue à l'envers : on dérive le facteur x, qui devient un, et on primitive l'exponentielle, qui ne change pas.
+        L'intégrale vaut alors le crochet x exponentielle de x, pris entre zéro et un, moins l'intégrale de l'exponentielle.
+        Cela donne e moins la quantité e moins un, c'est-à-dire exactement un : l'aire sous cette courbe vaut une unité d'aire.
+      en: >-
+        Let us finish with a product that resists: x multiplied by the exponential of x, between zero and one.
+        Integration by parts comes from the derivative of a product, read backwards: one differentiates the factor x, which becomes one, and finds an antiderivative of the exponential, which does not change.
+        The integral is then the bracket x exponential of x, taken between zero and one, minus the integral of the exponential.
+        This gives e minus the quantity e minus one, that is exactly one: the area under this curve is one area unit.
+    actions:
+      - { at: 0, clear: true, view: { x: [-0.5, 1.5], y: [-0.5, 3] } }
+      - { at: 0, plot: { id: g, expr: "x*exp(x)", label: { fr: "g(x) = x eˣ", en: "g(x) = x eˣ" } } }
+      - { at: 3, area: { id: sb, on: g, from: 0, to: 1, label: { fr: "aire = 1", en: "area = 1" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de déplacer la borne", en: "Your turn to move the bound" }
+    text:
+      fr: >-
+        À vous. Faites glisser la borne a et regardez l'aire et la valeur de la primitive avancer ensemble, toujours égales.
+        Augmentez ensuite le nombre de rectangles en tapant votre propre fonction, par exemple un sur x ou exp de moins x au carré, et observez l'aire qu'elle accumule.
+      en: >-
+        Your turn. Slide the bound a and watch the area and the value of the antiderivative move together, always equal.
+        Then type a function of your own, for instance one over x or exp of minus x squared, and watch the area it accumulates.
+    actions:
+      - { at: 0, clear: true, view: { x: [-0.5, 3], y: [-1, 5] } }
+      - { at: 0, plot: { id: f, expr: "x^2", label: { fr: "f(x) = x²", en: "f(x) = x²" } } }
+      - { at: 0, area: { id: sa, on: f, from: 0, to: "a", label: { fr: "aire de 0 à a", en: "area from 0 to a" } } }
+      - { at: 0, plot: { id: cap, expr: "x^3/3", dashed: true, label: { fr: "F(x) = x³/3", en: "F(x) = x³/3" } } }
+      - { at: 0, point: { id: pf, on: cap, x: "a", guides: true, label: { fr: "F(a)", en: "F(a)" } } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : une primitive à trouver, puis une intégration par parties.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: an antiderivative to find, then an integration by parts.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.integral.antiderivative, exercise.integral.by_parts]

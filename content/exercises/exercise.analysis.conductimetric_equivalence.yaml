@@ -1,0 +1,51 @@
+# Leçon analyse instrumentale — exploiter l'intersection des deux droites d'un titrage conductimétrique (réponse numérique en mol/L)
+id: exercise.analysis.conductimetric_equivalence
+type: numeric
+nodeId: method.instrumental_analysis
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    On titre $V_A = 20{,}0\ \mathrm{mL}$ d'une solution d'acide chlorhydrique par une solution d'hydroxyde de sodium de concentration $c_B = 0{,}020\ \mathrm{mol/L}$, en suivant la conductivité du mélange. La courbe $\sigma = f(V)$ est faite de deux segments de droite, l'un décroissant, l'autre croissant, qui se coupent à $V_E = 10{,}0\ \mathrm{mL}$.
+
+    La réaction support du titrage est $\mathrm{H_3O^+} + \mathrm{HO^-} \to 2\,\mathrm{H_2O}$. Donnez la concentration de la solution d'acide, en $\mathrm{mol/L}$.
+  en: |-
+    $V_A = 20.0\ \mathrm{mL}$ of a hydrochloric acid solution is titrated with a sodium hydroxide solution of concentration $c_B = 0.020\ \mathrm{mol/L}$, following the conductivity of the mixture. The curve $\sigma = f(V)$ is made of two straight segments, one decreasing, the other increasing, which cross at $V_E = 10.0\ \mathrm{mL}$.
+
+    The titration reaction is $\mathrm{H_3O^+} + \mathrm{HO^-} \to 2\,\mathrm{H_2O}$. Give the concentration of the acid solution, in $\mathrm{mol/L}$.
+numeric:
+  value: 0.010
+  unit: "mol/L"
+  tolerance: { kind: relative, value: 0.03 }
+  inputLabel: { fr: "cA", en: "cA" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        À l'équivalence, les réactifs ont été mélangés dans les proportions de l'équation : ici, une mole d'ions oxonium pour une mole d'ions hydroxyde, donc $c_A V_A = c_B V_E$.
+      en: |-
+        At the equivalence, the reactants have been mixed in the proportions of the equation: here, one mole of oxonium ions for one mole of hydroxide ions, hence $c_A V_A = c_B V_E$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Les volumes peuvent rester en millilitres, puisqu'ils apparaissent des deux côtés : seul leur rapport compte, $c_A = c_B\,\dfrac{V_E}{V_A}$.
+      en: |-
+        The volumes may stay in millilitres, since they appear on both sides: only their ratio matters, $c_A = c_B\,\dfrac{V_E}{V_A}$.
+solution:
+  fr: |-
+    L'intersection des deux droites donne le volume équivalent, $V_E = 10{,}0\ \mathrm{mL}$. À l'équivalence, les réactifs ont été introduits dans les proportions stœchiométriques :
+    $$c_A V_A = c_B V_E \quad\Longrightarrow\quad c_A = c_B\,\frac{V_E}{V_A} = 0{,}020 \times \frac{10{,}0}{20{,}0} = 0{,}010\ \mathrm{mol/L}.$$
+
+    Les deux pentes s'expliquent ion par ion. Avant l'équivalence, chaque ion oxonium, très conducteur, est remplacé par un ion sodium, qui l'est beaucoup moins : la conductivité **diminue**. Après l'équivalence, les ions hydroxyde versés ne sont plus consommés et s'ajoutent aux ions sodium : elle **augmente**, mais moins vite qu'elle ne diminuait.
+
+    **Interprétation.** La force de la méthode est là : l'équivalence ne se lit pas sur un point de mesure, mais à l'**intersection de deux droites** ajustées sur des dizaines de points, ce qui la rend bien plus précise que le repérage d'un changement de teinte. Elle fonctionne d'ailleurs sur des solutions incolores, où aucun indicateur ne serait visible. Deux précautions de manipulation : la conductivité dépend de la température, donc on ne chauffe pas en cours de titrage ; et l'on ajoute souvent de l'eau distillée au bécher pour que la dilution due à la burette ne courbe pas les deux segments — c'est la seule façon de garder deux vraies droites.
+  en: |-
+    The intersection of the two lines gives the equivalence volume, $V_E = 10.0\ \mathrm{mL}$. At the equivalence, the reactants have been introduced in stoichiometric proportions:
+    $$c_A V_A = c_B V_E \quad\Longrightarrow\quad c_A = c_B\,\frac{V_E}{V_A} = 0.020 \times \frac{10.0}{20.0} = 0.010\ \mathrm{mol/L}.$$
+
+    The two slopes are explained ion by ion. Before the equivalence, each oxonium ion, a very good conductor, is replaced by a sodium ion, which is a much poorer one: the conductivity **decreases**. After the equivalence, the hydroxide ions poured in are no longer consumed and add to the sodium ions: it **increases**, but more slowly than it was decreasing.
+
+    **Interpretation.** The strength of the method lies there: the equivalence is not read on a single measured point, but at the **intersection of two lines** fitted on dozens of points, which makes it far more precise than spotting a change of shade. It works besides on colourless solutions, where no indicator would be visible. Two practical precautions: the conductivity depends on the temperature, so one does not heat during the titration; and distilled water is often added to the beaker so that the dilution caused by the burette does not bend the two segments — that is the only way to keep two genuine straight lines.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 3, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 3, transfer: 3, autonomy: 3 }

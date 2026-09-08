@@ -1,0 +1,47 @@
+# Lunette astronomique — distance focale de l'objectif imposée par la taille de l'image intermédiaire (réponse numérique)
+id: exercise.telescope.objective_focal
+type: numeric
+nodeId: model.telescope
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    On veut photographier la Lune en plaçant un capteur exactement dans le plan focal image de l'objectif d'une lunette, là où se forme l'image intermédiaire $A_1B_1$. La Lune est vue depuis la Terre sous le diamètre apparent $\theta = 0{,}52^\circ$, et l'on souhaite que son image mesure $A_1B_1 = 10\ \mathrm{mm}$ sur le capteur.
+
+    Quelle distance focale $f'_1$ l'objectif doit-il avoir ? Répondez en mètres, avec trois chiffres significatifs.
+  en: |-
+    We want to photograph the Moon by placing a sensor exactly in the image focal plane of the objective of a telescope, where the intermediate image $A_1B_1$ is formed. The Moon is seen from the Earth under the apparent diameter $\theta = 0.52^\circ$, and we want its image to measure $A_1B_1 = 10\ \mathrm{mm}$ on the sensor.
+
+    What focal length $f'_1$ must the objective have? Answer in metres, with three significant figures.
+numeric:
+  value: 1.10
+  unit: "m"
+  tolerance: { kind: relative, value: 0.05 }
+  inputLabel: { fr: "f'₁", en: "f'₁" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        L'objet étant à l'infini, son image se forme dans le plan focal de l'objectif et sa taille vaut $A_1B_1 = f'_1 \tan\theta$, avec $\tan\theta \approx \theta$ pour un si petit angle.
+      en: |-
+        The object being at infinity, its image is formed in the focal plane of the objective and its size is $A_1B_1 = f'_1 \tan\theta$, with $\tan\theta \approx \theta$ for such a small angle.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Convertissez l'angle en radians avant de l'utiliser comme un nombre : $\theta = 0{,}52 \times \dfrac{\pi}{180} = 9{,}08 \times 10^{-3}\ \mathrm{rad}$.
+      en: |-
+        Convert the angle into radians before using it as a number: $\theta = 0.52 \times \dfrac{\pi}{180} = 9.08 \times 10^{-3}\ \mathrm{rad}$.
+solution:
+  fr: |-
+    En radians, $\theta = 0{,}52 \times \dfrac{\pi}{180} = 9{,}08 \times 10^{-3}\ \mathrm{rad}$. L'image d'un objet à l'infini se formant dans le plan focal, sa taille vaut $A_1B_1 = f'_1\,\theta$, d'où
+    $$f'_1 = \frac{A_1B_1}{\theta} = \frac{1{,}00 \times 10^{-2}}{9{,}08 \times 10^{-3}} = 1{,}10\ \mathrm{m}.$$
+
+    **Interprétation.** Un mètre dix d'objectif pour un centimètre de Lune : c'est pourquoi les téléobjectifs d'astrophotographie sont si longs, et c'est aussi pourquoi la Lune paraît si petite sur les photographies prises au téléphone, dont l'objectif a une distance focale de quelques millimètres — son image y mesure quelques dizaines de micromètres. Remarquez que l'oculaire n'intervient nulle part : la taille de l'image intermédiaire ne dépend que de l'objectif et de l'angle de l'objet. L'oculaire, lui, ne sert qu'à regarder cette image à l'œil ; pour photographier, on l'enlève et on met le capteur à sa place. Attention enfin à convertir l'angle en radians : c'est la seule unité dans laquelle $\tan\theta \approx \theta$.
+  en: |-
+    In radians, $\theta = 0.52 \times \dfrac{\pi}{180} = 9.08 \times 10^{-3}\ \mathrm{rad}$. The image of an object at infinity being formed in the focal plane, its size is $A_1B_1 = f'_1\,\theta$, hence
+    $$f'_1 = \frac{A_1B_1}{\theta} = \frac{1.00 \times 10^{-2}}{9.08 \times 10^{-3}} = 1.10\ \mathrm{m}.$$
+
+    **Interpretation.** One metre ten of objective for one centimetre of Moon: this is why astrophotography telephoto lenses are so long, and it is also why the Moon looks so small on photographs taken with a telephone, whose lens has a focal length of a few millimetres — the image there measures a few tens of micrometres. Note that the eyepiece appears nowhere: the size of the intermediate image depends only on the objective and on the angle of the object. The eyepiece only serves to look at that image with the eye; to photograph, it is removed and the sensor put in its place. Take care finally to convert the angle into radians: it is the only unit in which $\tan\theta \approx \theta$.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 3, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 3, transfer: 3, autonomy: 3 }

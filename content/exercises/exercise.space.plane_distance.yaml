@@ -1,0 +1,53 @@
+# Géométrie dans l'espace en Terminale — distance d'un point à un plan d'équation cartésienne
+id: exercise.space.plane_distance
+type: numeric
+nodeId: tool.space_geometry
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Dans un repère orthonormé, le plan $\mathcal{P}$ a pour équation cartésienne $2x - y + 2z - 6 = 0$ et le point $M$ a pour coordonnées $(3\,;\,1\,;\,4)$.
+
+    Calculer la distance du point $M$ au plan $\mathcal{P}$.
+  en: |-
+    In an orthonormal frame, the plane $\mathcal{P}$ has cartesian equation $2x - y + 2z - 6 = 0$ and the point $M$ has coordinates $(3\,;\,1\,;\,4)$.
+
+    Compute the distance from the point $M$ to the plane $\mathcal{P}$.
+numeric:
+  value: 2.3333
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "distance de $M$ à $\\mathcal{P}$", en: "distance from $M$ to $\\mathcal{P}$" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le vecteur $\vec n\,(2\,;\,-1\,;\,2)$ lu sur l'équation est normal au plan ; sa norme vaut $\sqrt{4 + 1 + 4} = 3$.
+      en: |-
+        The vector $\vec n\,(2\,;\,-1\,;\,2)$ read off the equation is normal to the plane; its norm is $\sqrt{4 + 1 + 4} = 3$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La distance vaut $\dfrac{|ax_0 + by_0 + cz_0 + d|}{\sqrt{a^2+b^2+c^2}}$ : reportez les coordonnées de $M$ dans l'équation, sans oublier la valeur absolue.
+      en: |-
+        The distance is $\dfrac{|ax_0 + by_0 + cz_0 + d|}{\sqrt{a^2+b^2+c^2}}$: carry the coordinates of $M$ into the equation, without forgetting the absolute value.
+solution:
+  fr: |-
+    On reporte les coordonnées de $M$ dans le membre de gauche : $2 \times 3 - 1 + 2 \times 4 - 6 = 6 - 1 + 8 - 6 = 7$. La norme du vecteur normal $\vec n\,(2\,;\,-1\,;\,2)$ vaut $\sqrt{2^2 + (-1)^2 + 2^2} = \sqrt9 = 3$. D'où
+    $$d(M, \mathcal{P}) = \frac{|7|}{3} = \frac73 \approx 2{,}33.$$
+
+    **Interprétation.** Cette distance est celle du segment le plus court, porté par la perpendiculaire au plan passant par $M$ ; le nombre $7$ obtenu avant division mesure de combien $M$ « rate » l'équation du plan, et son signe indique de quel côté il se trouve. C'est ce calcul que fait une imprimante 3D pour savoir si un point est au-dessus ou au-dessous d'une face, et un moteur de jeu pour détecter une collision. Diviser par la norme de $\vec n$ est indispensable : sans cela, multiplier l'équation par $10$ multiplierait la « distance » par $10$ sans que rien n'ait bougé.
+  en: |-
+    Carry the coordinates of $M$ into the left-hand side: $2 \times 3 - 1 + 2 \times 4 - 6 = 6 - 1 + 8 - 6 = 7$. The norm of the normal vector $\vec n\,(2\,;\,-1\,;\,2)$ is $\sqrt{2^2 + (-1)^2 + 2^2} = \sqrt9 = 3$. Hence
+    $$d(M, \mathcal{P}) = \frac{|7|}{3} = \frac73 \approx 2.33.$$
+
+    **Interpretation.** This distance is that of the shortest segment, carried by the perpendicular to the plane through $M$; the number $7$ obtained before dividing measures by how much $M$ "misses" the equation of the plane, and its sign says on which side it lies. This is the computation a 3D printer makes to know whether a point is above or below a face, and a game engine to detect a collision. Dividing by the norm of $\vec n$ is essential: without it, multiplying the equation by $10$ would multiply the "distance" by $10$ although nothing had moved.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 3
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 3
+  transfer: 2
+  autonomy: 3

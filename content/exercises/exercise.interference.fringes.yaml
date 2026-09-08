@@ -1,0 +1,47 @@
+# Interférences — longueur d'onde déduite de l'interfrange de deux fentes de Young (réponse numérique)
+id: exercise.interference.fringes
+type: numeric
+nodeId: phenomenon.interference
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Deux fentes de Young distantes de $b = 0{,}30\ \mathrm{mm}$ sont éclairées par un laser, et l'on observe les franges sur un écran placé à $D = 2{,}0\ \mathrm{m}$. À la règle, on mesure $42\ \mathrm{mm}$ entre la première et la onzième frange brillante, soit dix interfranges.
+
+    Quelle est la longueur d'onde $\lambda$ du laser ? Répondez en mètres, avec deux chiffres significatifs.
+  en: |-
+    Two Young slits a distance $b = 0.30\ \mathrm{mm}$ apart are lit by a laser, and the fringes are observed on a screen placed at $D = 2.0\ \mathrm{m}$. With a ruler, $42\ \mathrm{mm}$ are measured between the first and the eleventh bright fringe, that is ten fringe spacings.
+
+    What is the wavelength $\lambda$ of the laser? Answer in metres, with two significant figures.
+numeric:
+  value: 6.3e-7
+  unit: "m"
+  tolerance: { kind: relative, value: 0.06 }
+  inputLabel: { fr: "λ", en: "λ" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Commencez par l'interfrange : dix interfranges couvrent $42\ \mathrm{mm}$, donc $i = 4{,}2\ \mathrm{mm}$. On mesure dix franges plutôt qu'une pour diviser l'incertitude par dix.
+      en: |-
+        Start with the fringe spacing: ten spacings cover $42\ \mathrm{mm}$, so $i = 4.2\ \mathrm{mm}$. Ten fringes rather than one are measured in order to divide the uncertainty by ten.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        L'interfrange vaut $i = \dfrac{\lambda\,D}{b}$, donc $\lambda = \dfrac{i\,b}{D}$. Convertissez $i$ et $b$ en mètres avant de calculer.
+      en: |-
+        The fringe spacing is $i = \dfrac{\lambda\,D}{b}$, so $\lambda = \dfrac{i\,b}{D}$. Convert $i$ and $b$ into metres before computing.
+solution:
+  fr: |-
+    L'interfrange se déduit de la mesure : $i = \dfrac{42\ \mathrm{mm}}{10} = 4{,}2\ \mathrm{mm} = 4{,}2 \times 10^{-3}\ \mathrm{m}$. La relation $i = \dfrac{\lambda D}{b}$, retournée, donne
+    $$\lambda = \frac{i\,b}{D} = \frac{4{,}2 \times 10^{-3} \times 3{,}0 \times 10^{-4}}{2{,}0} = \frac{1{,}26 \times 10^{-6}}{2{,}0} = 6{,}3 \times 10^{-7}\ \mathrm{m} = 630\ \mathrm{nm}.$$
+
+    **Interprétation.** Six cent trente nanomètres : c'est du rouge, et l'on reconnaît le laser hélium-néon de laboratoire, dont la longueur d'onde vaut $633\ \mathrm{nm}$. Une règle graduée en millimètres a donc mesuré une longueur dix mille fois plus petite que sa plus petite graduation : les interférences transforment une distance microscopique, la longueur d'onde, en une distance macroscopique, l'interfrange, avec le facteur d'agrandissement $D/b$, ici environ sept mille. C'est pour cela que les interféromètres sont les instruments les plus précis de la physique. Attention à ne pas confondre $b$, l'écartement des deux fentes, avec leur largeur, qui gouverne l'enveloppe de diffraction et non l'espacement des franges.
+  en: |-
+    The fringe spacing follows from the measurement: $i = \dfrac{42\ \mathrm{mm}}{10} = 4.2\ \mathrm{mm} = 4.2 \times 10^{-3}\ \mathrm{m}$. The relation $i = \dfrac{\lambda D}{b}$, turned round, gives
+    $$\lambda = \frac{i\,b}{D} = \frac{4.2 \times 10^{-3} \times 3.0 \times 10^{-4}}{2.0} = \frac{1.26 \times 10^{-6}}{2.0} = 6.3 \times 10^{-7}\ \mathrm{m} = 630\ \mathrm{nm}.$$
+
+    **Interpretation.** Six hundred and thirty nanometres: this is red, and one recognises the laboratory helium-neon laser, whose wavelength is $633\ \mathrm{nm}$. A ruler graduated in millimetres has therefore measured a length ten thousand times smaller than its smallest graduation: interference turns a microscopic distance, the wavelength, into a macroscopic one, the fringe spacing, with the magnifying factor $D/b$, here about seven thousand. That is why interferometers are the most precise instruments in physics. Take care not to confuse $b$, the spacing of the two slits, with their width, which governs the diffraction envelope and not the spacing of the fringes.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 3, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 3, transfer: 2, autonomy: 2 }

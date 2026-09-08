@@ -1,0 +1,47 @@
+# Transferts thermiques — température d'une tasse après dix minutes, loi de refroidissement de Newton (réponse numérique)
+id: exercise.thermal.cooling
+type: numeric
+nodeId: phenomenon.thermal_transfer
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    Une tasse de thé à $\theta_0 = 80\ ^\circ\mathrm{C}$ est posée dans une pièce à $\theta_{\text{ext}} = 20\ ^\circ\mathrm{C}$. Elle suit la loi de refroidissement de Newton, $\theta(t) = \theta_{\text{ext}} + (\theta_0 - \theta_{\text{ext}})\,e^{-t/\tau}$, avec une constante de temps $\tau = 300\ \mathrm{s}$.
+
+    Quelle est sa température au bout de $10$ minutes ? Répondez en degrés Celsius, avec deux chiffres significatifs.
+  en: |-
+    A cup of tea at $\theta_0 = 80\ ^\circ\mathrm{C}$ is put in a room at $\theta_{\text{ext}} = 20\ ^\circ\mathrm{C}$. It follows Newton's law of cooling, $\theta(t) = \theta_{\text{ext}} + (\theta_0 - \theta_{\text{ext}})\,e^{-t/\tau}$, with a time constant $\tau = 300\ \mathrm{s}$.
+
+    What is its temperature after $10$ minutes? Answer in degrees Celsius, with two significant figures.
+numeric:
+  value: 28.1
+  unit: "°C"
+  tolerance: { kind: absolute, value: 1 }
+  inputLabel: { fr: "θ", en: "θ" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        C'est l'**écart** avec la pièce qui décroît exponentiellement, pas la température elle-même : dix minutes valent $600\ \mathrm{s}$, soit deux constantes de temps.
+      en: |-
+        It is the **difference** with the room that decreases exponentially, not the temperature itself: ten minutes are $600\ \mathrm{s}$, that is two time constants.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\theta = 20 + 60\,e^{-2}$, avec $e^{-2} = 0{,}135$. N'oubliez pas de rajouter la température de la pièce à la fin.
+      en: |-
+        $\theta = 20 + 60\,e^{-2}$, with $e^{-2} = 0.135$. Do not forget to add the room temperature back at the end.
+solution:
+  fr: |-
+    Dix minutes font $t = 600\ \mathrm{s}$, soit $t/\tau = 2$. L'écart initial avec la pièce vaut $80 - 20 = 60\ ^\circ\mathrm{C}$, donc
+    $$\theta(600) = 20 + 60\,e^{-2} = 20 + 60 \times 0{,}135 = 20 + 8{,}1 = 28\ ^\circ\mathrm{C}.$$
+
+    **Interprétation.** En deux constantes de temps, l'écart avec la pièce a été divisé par $e^2 \approx 7{,}4$ : de soixante degrés, il ne reste que huit. Le thé est donc déjà tiède, alors qu'après une seule constante de temps, à cinq minutes, il était encore à $42\ ^\circ\mathrm{C}$. C'est toute la signature d'une exponentielle : le refroidissement est très rapide au début, quand l'écart est grand et que le flux perdu, proportionnel à cet écart, est maximal ; puis il ralentit sans jamais tout à fait s'arrêter, la tasse rejoignant asymptotiquement les vingt degrés de la pièce sans jamais passer en dessous. Une tasse isolée aurait un $\tau$ plus grand, donc un refroidissement plus lent : $\tau = C/(hS)$ croît avec la capacité thermique et décroît avec la qualité de l'échange.
+  en: |-
+    Ten minutes make $t = 600\ \mathrm{s}$, that is $t/\tau = 2$. The initial difference with the room is $80 - 20 = 60\ ^\circ\mathrm{C}$, so
+    $$\theta(600) = 20 + 60\,e^{-2} = 20 + 60 \times 0.135 = 20 + 8.1 = 28\ ^\circ\mathrm{C}.$$
+
+    **Interpretation.** In two time constants, the difference with the room has been divided by $e^2 \approx 7.4$: of sixty degrees, only eight are left. The tea is therefore already lukewarm, whereas after a single time constant, at five minutes, it was still at $42\ ^\circ\mathrm{C}$. This is the whole signature of an exponential: the cooling is very fast at the start, when the difference is large and the flux lost, proportional to that difference, is greatest; then it slows down without ever quite stopping, the cup joining the twenty degrees of the room asymptotically without ever going below. An insulated cup would have a larger $\tau$, hence a slower cooling: $\tau = C/(hS)$ grows with the heat capacity and falls with the quality of the exchange.
+difficulty: { mathematicalDepth: 3, conceptualNovelty: 3, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 4, transfer: 3, autonomy: 3 }

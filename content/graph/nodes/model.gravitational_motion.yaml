@@ -1,0 +1,74 @@
+id: model.gravitational_motion
+type: model
+world: world.physics
+region: region.physics.gravitation
+importance: 3
+tags: [lycee]
+title: { fr: "Mouvement dans un champ de gravitation : lois de Kepler, satellites", en: "Motion in a gravitational field: Kepler's laws, satellites" }
+shortPurpose:
+  fr: "Prévoir la trajectoire, la vitesse et la période d'un satellite ou d'une planète soumis à la seule attraction d'un astre central."
+  en: "Predict the trajectory, the speed and the period of a satellite or a planet subject only to the pull of a central body."
+overview:
+  fr: >-
+    Une pierre lancée assez vite ne retombe plus : elle tourne. C'est l'idée de Newton, et c'est tout ce qu'est un satellite. Autour d'un astre, la seule force de gravitation impose des trajectoires très particulières, décrites bien avant Newton par Kepler : des ellipses dont l'astre occupe un foyer, parcourues d'autant plus vite qu'on en est près, et dont le carré de la période est proportionnel au cube du demi-grand axe. De cette dernière loi on tire la masse du Soleil, l'altitude des satellites géostationnaires et la durée d'un voyage vers Mars.
+  en: >-
+    A stone thrown fast enough never falls back: it goes round. That is Newton's idea, and that is all a satellite is. Around a star, the single force of gravitation imposes very particular trajectories, described long before Newton by Kepler: ellipses with the star at one focus, travelled the faster the closer one is, and whose period squared is proportional to the cube of the semi-major axis. From that last law one gets the mass of the Sun, the altitude of geostationary satellites and the length of a journey to Mars.
+aliases:
+  fr: ["lois de Kepler", "orbite circulaire", "satellite géostationnaire", "troisième loi de Kepler", "vitesse orbitale"]
+  en: ["Kepler's laws", "circular orbit", "geostationary satellite", "Kepler's third law", "orbital speed"]
+description:
+  fr: |
+    Un corps de masse $m$ soumis à la seule attraction d'un astre de masse $M$ situé à la distance $r$ subit la force $\vec F = -\,G\dfrac{Mm}{r^2}\,\vec u_r$. La deuxième loi de Newton donne alors une accélération **indépendante de $m$** : $\vec a = -\,\dfrac{GM}{r^2}\,\vec u_r = \vec{\mathcal G}(M)$, le champ de gravitation de l'astre. Deux corps de masses différentes lâchés au même endroit avec la même vitesse suivent donc exactement la même trajectoire — c'est pourquoi les astronautes flottent dans la station spatiale : ils tombent avec elle. Les trajectoires possibles sont les **coniques** dont l'astre occupe un foyer, et les trois **lois de Kepler** les décrivent : les planètes décrivent des **ellipses** dont le Soleil occupe un foyer ; le segment astre-planète balaie des **aires égales en des temps égaux**, ce qui impose d'aller vite au périhélie et lentement à l'aphélie ; enfin
+    $$\frac{T^2}{a^3} = \frac{4\pi^2}{GM} \quad \text{est la même constante pour tous les satellites d'un même astre.}$$
+
+    Le **cas du mouvement circulaire uniforme** se traite entièrement : l'accélération est centripète, de valeur $\dfrac{v^2}{r}$, et elle doit valoir $\dfrac{GM}{r^2}$, d'où $v = \sqrt{\dfrac{GM}{r}}$ et $T = \dfrac{2\pi r}{v} = 2\pi\sqrt{\dfrac{r^3}{GM}}$. Pour la Terre, $GM_T = 3{,}986 \times 10^{14}\ \mathrm{m^3 \cdot s^{-2}}$. La Station spatiale internationale, à $400\ \mathrm{km}$ d'altitude, donc à $r = 6\,771\ \mathrm{km}$ du centre, va donc à $v = \sqrt{3{,}986 \times 10^{14} / 6{,}771 \times 10^{6}} = 7{,}7\ \mathrm{km \cdot s^{-1}}$ et fait un tour en $92$ minutes. À l'inverse, un satellite **géostationnaire** doit avoir $T = 86\,164\ \mathrm{s}$ (le jour sidéral) : $r = \sqrt[3]{GM_T\,T^2/4\pi^2} = 42\,164\ \mathrm{km}$, soit $35\,800\ \mathrm{km}$ d'altitude, où il va deux fois et demie moins vite, à $3{,}1\ \mathrm{km \cdot s^{-1}}$.
+
+    La troisième loi est une **balance céleste** : mesurer la période et le rayon de l'orbite d'un satellite donne la masse de l'astre autour duquel il tourne, et c'est ainsi qu'on pèse le Soleil, Jupiter ou un trou noir. Elle sert aussi à placer les satellites de télécommunication, à prévoir le passage d'une comète et à choisir la date d'un lancement vers Mars. Pièges classiques : confondre l'altitude $h$ et le rayon de l'orbite $r = R_T + h$, la plus fréquente des erreurs ; croire qu'il n'y a pas de gravité en orbite, alors que le champ y vaut encore $8{,}7\ \mathrm{N \cdot kg^{-1}}$ à $400\ \mathrm{km}$ ; penser qu'un satellite lourd doit aller plus vite, alors que la masse disparaît des équations ; et appliquer $T^2/a^3 = 4\pi^2/GM$ avec deux astres centraux différents, alors que la constante change avec $M$.
+  en: |
+    A body of mass $m$ subject only to the pull of a star of mass $M$ at the distance $r$ experiences the force $\vec F = -\,G\dfrac{Mm}{r^2}\,\vec u_r$. Newton's second law then gives an acceleration **independent of $m$**: $\vec a = -\,\dfrac{GM}{r^2}\,\vec u_r = \vec{\mathcal G}(M)$, the gravitational field of the star. Two bodies of different masses released at the same place with the same velocity therefore follow exactly the same trajectory — which is why astronauts float in the space station: they are falling with it. The possible trajectories are the **conics** with the star at one focus, and the three **laws of Kepler** describe them: the planets describe **ellipses** with the Sun at one focus; the star-planet segment sweeps out **equal areas in equal times**, which forces the planet to go fast at perihelion and slowly at aphelion; and finally
+    $$\frac{T^2}{a^3} = \frac{4\pi^2}{GM} \quad \text{is the same constant for every satellite of the same star.}$$
+
+    The **case of uniform circular motion** can be treated completely: the acceleration is centripetal, of value $\dfrac{v^2}{r}$, and it must equal $\dfrac{GM}{r^2}$, hence $v = \sqrt{\dfrac{GM}{r}}$ and $T = \dfrac{2\pi r}{v} = 2\pi\sqrt{\dfrac{r^3}{GM}}$. For the Earth, $GM_E = 3.986 \times 10^{14}\ \mathrm{m^3 \cdot s^{-2}}$. The International Space Station, at an altitude of $400\ \mathrm{km}$, hence at $r = 6{,}771\ \mathrm{km}$ from the centre, therefore travels at $v = \sqrt{3.986 \times 10^{14} / 6.771 \times 10^{6}} = 7.7\ \mathrm{km \cdot s^{-1}}$ and goes round in $92$ minutes. Conversely a **geostationary** satellite must have $T = 86{,}164\ \mathrm{s}$ (the sidereal day): $r = \sqrt[3]{GM_E\,T^2/4\pi^2} = 42{,}164\ \mathrm{km}$, that is an altitude of $35{,}800\ \mathrm{km}$, where it goes two and a half times slower, at $3.1\ \mathrm{km \cdot s^{-1}}$.
+
+    The third law is a **celestial balance**: measuring the period and the radius of the orbit of a satellite gives the mass of the body it turns around, and that is how the Sun, Jupiter or a black hole are weighed. It also serves to place telecommunication satellites, to predict the return of a comet and to choose the launch date of a journey to Mars. Classic traps: confusing the altitude $h$ with the radius of the orbit $r = R_E + h$, the most frequent error of all; believing there is no gravity in orbit, when the field is still $8.7\ \mathrm{N \cdot kg^{-1}}$ at $400\ \mathrm{km}$; thinking that a heavy satellite must go faster, when the mass disappears from the equations; and applying $T^2/a^3 = 4\pi^2/GM$ with two different central bodies, when the constant changes with $M$.
+model:
+  assumptions:
+    fr:
+      - "Le satellite est un point matériel : sa taille et sa rotation propre sont négligées devant le rayon de l'orbite."
+      - "L'astre central est fixe, sphérique et homogène : son champ est celui d'une masse ponctuelle placée en son centre."
+      - "La gravitation de l'astre central est la seule force : ni frottement de l'atmosphère, ni attraction des autres astres, ni pression de radiation."
+      - "L'étude se fait dans un référentiel géocentrique (ou héliocentrique) supposé galiléen pendant la durée du mouvement."
+    en:
+      - "The satellite is a point mass: its size and its own rotation are neglected against the radius of the orbit."
+      - "The central body is fixed, spherical and homogeneous: its field is that of a point mass placed at its centre."
+      - "The gravitation of the central body is the only force: no atmospheric drag, no pull of the other bodies, no radiation pressure."
+      - "The study is made in a geocentric (or heliocentric) frame assumed Galilean for the duration of the motion."
+  limits:
+    fr:
+      - "En orbite basse, sous $600\\ \\mathrm{km}$, l'atmosphère résiduelle freine le satellite, qui perd de l'altitude et finit par retomber."
+      - "L'aplatissement de la Terre fait lentement tourner le grand axe des orbites basses, effet exploité par les orbites héliosynchrones."
+      - "Pour deux corps de masses comparables, les deux tournent autour de leur centre de masse et il faut remplacer $M$ par $M + m$."
+      - "Près d'un astre très massif, la relativité générale corrige la trajectoire : c'est l'avance du périhélie de Mercure."
+    en:
+      - "In low orbit, below $600\\ \\mathrm{km}$, the residual atmosphere slows the satellite, which loses altitude and eventually falls back."
+      - "The flattening of the Earth slowly turns the major axis of low orbits, an effect exploited by Sun-synchronous orbits."
+      - "For two bodies of comparable masses, both turn around their centre of mass and $M$ must be replaced by $M + m$."
+      - "Near a very massive body, general relativity corrects the trajectory: this is the advance of Mercury's perihelion."
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "établir que l'accélération d'un satellite dans un champ de gravitation ne dépend pas de sa masse"
+        - "démontrer, pour un mouvement circulaire, que la vitesse vaut $v = \\sqrt{GM/r}$ et la période $T = 2\\pi\\sqrt{r^3/GM}$"
+        - "énoncer les trois lois de Kepler et les reconnaître sur une trajectoire ou sur un graphe"
+        - "exploiter la troisième loi de Kepler pour déterminer une période, un rayon d'orbite ou la masse de l'astre central"
+        - "citer et retrouver les caractéristiques de l'orbite géostationnaire"
+      en:
+        - "establish that the acceleration of a satellite in a gravitational field does not depend on its mass"
+        - "prove, for a circular motion, that the speed is $v = \\sqrt{GM/r}$ and the period $T = 2\\pi\\sqrt{r^3/GM}$"
+        - "state the three laws of Kepler and recognise them on a trajectory or on a graph"
+        - "use Kepler's third law to determine a period, an orbital radius or the mass of the central body"
+        - "quote and recover the characteristics of the geostationary orbit"
+sources: [source.bo.lycee.2019]

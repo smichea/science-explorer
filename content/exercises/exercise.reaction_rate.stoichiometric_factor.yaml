@@ -1,0 +1,57 @@
+# Leçon vitesse de réaction — passer de la pente d'une concentration à la vitesse volumique avec un nombre stœchiométrique de 2 (réponse numérique en mol/L/s)
+id: exercise.reaction_rate.stoichiometric_factor
+type: numeric
+nodeId: concept.reaction_rate
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    L'eau oxygénée se décompose selon
+    $$2\,\mathrm{H_2O_2} \to 2\,\mathrm{H_2O} + \mathrm{O_2}.$$
+
+    Le suivi de la concentration donne, à la date $t = 30\ \mathrm{s}$, une tangente de pente $\dfrac{\mathrm{d}[\mathrm{H_2O_2}]}{\mathrm{d}t} = -8{,}0\times10^{-3}\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}$.
+
+    Donnez la vitesse volumique de réaction à cette date, en $\mathrm{mol\cdot L^{-1}\cdot s^{-1}}$.
+  en: |-
+    Hydrogen peroxide decomposes according to
+    $$2\,\mathrm{H_2O_2} \to 2\,\mathrm{H_2O} + \mathrm{O_2}.$$
+
+    Monitoring the concentration gives, at the date $t = 30\ \mathrm{s}$, a tangent of slope $\dfrac{\mathrm{d}[\mathrm{H_2O_2}]}{\mathrm{d}t} = -8.0\times10^{-3}\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}$.
+
+    Give the volumic rate of reaction at that date, in $\mathrm{mol\cdot L^{-1}\cdot s^{-1}}$.
+numeric:
+  value: 0.004
+  unit: "mol·L⁻¹·s⁻¹"
+  tolerance: { kind: relative, value: 0.04 }
+  inputLabel: { fr: "v(30 s)", en: "v(30 s)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La vitesse volumique se définit à partir de l'avancement, pas d'une espèce particulière : pour un réactif $\mathrm{A}$, $v = -\dfrac{1}{\nu_A}\dfrac{\mathrm{d}[\mathrm{A}]}{\mathrm{d}t}$, où $\nu_A$ est son nombre stœchiométrique.
+      en: |-
+        The volumic rate is defined from the extent, not from one particular species: for a reactant $\mathrm{A}$, $v = -\dfrac{1}{\nu_A}\dfrac{\mathrm{d}[\mathrm{A}]}{\mathrm{d}t}$, where $\nu_A$ is its stoichiometric number.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Ici $\nu(\mathrm{H_2O_2}) = 2$ : deux molécules d'eau oxygénée disparaissent pour un avancement d'une mole. Divisez donc la pente par $2$ avant d'en changer le signe.
+      en: |-
+        Here $\nu(\mathrm{H_2O_2}) = 2$: two hydrogen peroxide molecules disappear for one mole of extent. So divide the slope by $2$ before changing its sign.
+solution:
+  fr: |-
+    L'eau oxygénée disparaît avec le nombre stœchiométrique $\nu = 2$, donc
+    $$v = -\frac{1}{2}\,\frac{\mathrm{d}[\mathrm{H_2O_2}]}{\mathrm{d}t} = -\frac{1}{2}\times(-8{,}0\times10^{-3}) = 4{,}0\times10^{-3}\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}.$$
+
+    Le même système, suivi par le dioxygène dégagé, donnerait $v = +\dfrac{\mathrm{d}[\mathrm{O_2}]}{\mathrm{d}t} = 4{,}0\times10^{-3}\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}$, puisque $\nu(\mathrm{O_2}) = 1$ : c'est bien la même vitesse, mesurée sur une autre espèce.
+
+    **Interprétation.** Oublier le facteur $1/\nu$ est l'erreur la plus fréquente de tout le chapitre : elle double ici le résultat. La vitesse volumique appartient à la **réaction**, pas à une espèce ; c'est pourquoi on la définit à partir de l'avancement, la seule grandeur commune à toutes les espèces. Cette décomposition est d'ailleurs le terrain d'expérience classique de la catalyse : très lente à l'abri de la lumière, elle mousse instantanément avec un peu d'ion fer III — catalyse homogène — ou avec une rondelle de pomme de terre, dont la catalase est une enzyme. Le catalyseur multiplie la vitesse, il se retrouve intact à la fin et il ne change ni les produits ni l'état final.
+  en: |-
+    Hydrogen peroxide disappears with the stoichiometric number $\nu = 2$, hence
+    $$v = -\frac{1}{2}\,\frac{\mathrm{d}[\mathrm{H_2O_2}]}{\mathrm{d}t} = -\frac{1}{2}\times(-8.0\times10^{-3}) = 4.0\times10^{-3}\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}.$$
+
+    The same system, followed through the dioxygen released, would give $v = +\dfrac{\mathrm{d}[\mathrm{O_2}]}{\mathrm{d}t} = 4.0\times10^{-3}\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}$, since $\nu(\mathrm{O_2}) = 1$: it is indeed the same rate, measured on another species.
+
+    **Interpretation.** Forgetting the factor $1/\nu$ is the most frequent mistake of the whole chapter: here it doubles the result. The volumic rate belongs to the **reaction**, not to a species; that is why it is defined from the extent, the only quantity common to all the species. This decomposition is besides the classic experimental ground of catalysis: very slow away from light, it foams instantly with a little iron III ion — homogeneous catalysis — or with a slice of potato, whose catalase is an enzyme. The catalyst multiplies the rate, it is found intact at the end and it changes neither the products nor the final state.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 3, calculationLength: 1, modellingOpenness: 2, linkedConcepts: 3, transfer: 3, autonomy: 3 }

@@ -1,0 +1,72 @@
+id: model.acid_base
+type: model
+world: world.chemistry
+region: region.chemistry.acid_base
+importance: 3
+tags: [lycee]
+title: { fr: "Transformations acide-base : pH, constante d'acidité, prédominance", en: "Acid-base transformations: pH, acidity constant, predominance" }
+shortPurpose:
+  fr: "Modéliser un transfert de proton entre deux couples acide-base, relier le pH à la concentration en ions oxonium et lire, sur un diagramme de prédominance, l'espèce majoritaire d'un couple."
+  en: "Model a proton transfer between two acid-base couples, relate the pH to the oxonium ion concentration, and read, on a predominance diagram, the major species of a couple."
+overview:
+  fr: >-
+    Un acide cède un proton, une base en capte un : ensemble, ils forment un couple acide-base, et une réaction acide-base n'est rien d'autre que le passage d'un proton de l'un à l'autre. Le pH mesure la concentration en ions oxonium de la solution : il vaut moins le logarithme décimal de cette concentration. À chaque couple correspond une constante d'acidité, dont le pKa partage l'axe des pH en deux domaines, celui où l'acide domine et celui où la base domine. Savoir laquelle des deux espèces est majoritaire à un pH donné, c'est comprendre pourquoi l'aspirine traverse l'estomac, pourquoi le sang reste à sept virgule quatre, et pourquoi un indicateur coloré change de couleur.
+  en: >-
+    An acid gives a proton away, a base gains one: together they form an acid-base couple, and an acid-base reaction is nothing but the passage of a proton from one to the other. The pH measures the oxonium ion concentration of the solution: it is minus the decimal logarithm of that concentration. Each couple has an acidity constant, whose pKa cuts the pH axis into two domains, the one where the acid dominates and the one where the base dominates. Knowing which of the two species is the major one at a given pH is understanding why aspirin crosses the stomach, why blood stays at seven point four, and why a colour indicator changes colour.
+aliases:
+  fr: ["acide et base de Brønsted", "couple acide-base", "constante d'acidité", "pKa", "diagramme de prédominance", "acide faible"]
+  en: ["Brønsted acid and base", "acid-base couple", "acidity constant", "pKa", "predominance diagram", "weak acid"]
+description:
+  fr: |
+    Un **acide** de Brønsted est une espèce capable de céder un proton $\mathrm{H^+}$, une **base** une espèce capable d'en capter un ; l'acide $\mathrm{AH}$ et la base $\mathrm{A^-}$ qui se transforment l'un en l'autre forment un **couple acide-base** $\mathrm{AH/A^-}$, décrit par la demi-équation $\mathrm{AH} = \mathrm{A^-} + \mathrm{H^+}$. Une **réaction acide-base** est un transfert de proton de l'acide d'un couple vers la base d'un autre : $\mathrm{CH_3COOH} + \mathrm{HO^-} \to \mathrm{CH_3COO^-} + \mathrm{H_2O}$. Le proton ne reste jamais libre en solution, si bien qu'il ne figure pas dans l'équation. L'eau appartient à deux couples, $\mathrm{H_3O^+/H_2O}$ et $\mathrm{H_2O/HO^-}$ : elle est **amphotère**, et son **autoprotolyse** $2\,\mathrm{H_2O} = \mathrm{H_3O^+} + \mathrm{HO^-}$ impose à toute solution aqueuse le **produit ionique** $K_e = [\mathrm{H_3O^+}][\mathrm{HO^-}] = 1{,}0\times10^{-14}$ à $25\ \mathrm{^\circ C}$, soit $\mathrm{p}K_e = 14$. Le **pH** mesure l'acidité de la solution : $\mathrm{pH} = -\log\dfrac{[\mathrm{H_3O^+}]}{c^\circ}$, et réciproquement $[\mathrm{H_3O^+}] = c^\circ\,10^{-\mathrm{pH}}$, avec $c^\circ = 1\ \mathrm{mol/L}$.
+
+    La **constante d'acidité** d'un couple est la constante d'équilibre de sa réaction avec l'eau : $K_A = \dfrac{[\mathrm{A^-}][\mathrm{H_3O^+}]}{[\mathrm{AH}]\,c^\circ}$, et l'on pose $\mathrm{p}K_A = -\log K_A$. En passant au logarithme, il vient la **relation de prédominance** $\mathrm{pH} = \mathrm{p}K_A + \log\dfrac{[\mathrm{A^-}]}{[\mathrm{AH}]}$ : l'acide prédomine quand $\mathrm{pH} < \mathrm{p}K_A$, la base quand $\mathrm{pH} > \mathrm{p}K_A$, et les deux espèces sont à la même concentration quand $\mathrm{pH} = \mathrm{p}K_A$. Exemple : une solution d'acide éthanoïque de concentration $c = 0{,}10\ \mathrm{mol/L}$ a un pH mesuré de $2{,}9$. Alors $[\mathrm{H_3O^+}] = 10^{-2{,}9} = 1{,}3\times10^{-3}\ \mathrm{mol/L}$, le **taux d'avancement final** de sa réaction avec l'eau vaut $\tau = \dfrac{1{,}3\times10^{-3}}{0{,}10} = 1{,}3\ \%$ — l'acide est **faible**, il n'est dissocié qu'à un peu plus d'un pour cent — et $K_A = \dfrac{(1{,}3\times10^{-3})^2}{0{,}10 - 1{,}3\times10^{-3}} = 1{,}7\times10^{-5}$, soit $\mathrm{p}K_A = 4{,}8$. À $\mathrm{pH} = 2{,}9$, le rapport $\dfrac{[\mathrm{CH_3COO^-}]}{[\mathrm{CH_3COOH}]} = 10^{2{,}9-4{,}8} = 1{,}3\times10^{-2}$ : il y a environ quatre-vingts fois plus d'acide que d'ion éthanoate.
+
+    Ce modèle sert partout où une espèce change de forme avec le pH. Le **diagramme de prédominance**, un axe de pH coupé au $\mathrm{p}K_A$, dit sous quelle forme un médicament traverse l'estomac ($\mathrm{pH} \approx 2$) puis l'intestin ($\mathrm{pH} \approx 8$) ; le **diagramme de distribution** donne, pour chaque pH, le pourcentage de chaque espèce. Un **indicateur coloré** est un couple dont les deux formes n'ont pas la même couleur : sa zone de virage encadre son $\mathrm{p}K_A$. Une **solution tampon**, mélange d'un acide faible et de sa base conjuguée en quantités voisines, garde un pH proche du $\mathrm{p}K_A$ malgré un ajout modéré d'acide ou de base : c'est le couple $\mathrm{CO_2,H_2O}/\mathrm{HCO_3^-}$, de $\mathrm{p}K_A = 6{,}4$, qui maintient le sang à $7{,}4$. Quatre pièges classiques : confondre un acide **fort**, entièrement dissocié, avec un acide **concentré** ; écrire $\ln$ au lieu de $\log$, le logarithme décimal ; croire qu'au-delà du $\mathrm{p}K_A$ l'acide a disparu, alors qu'il reste seulement minoritaire ; et oublier qu'une unité de pH est un facteur dix sur $[\mathrm{H_3O^+}]$.
+  en: |
+    A Brønsted **acid** is a species able to give a proton $\mathrm{H^+}$ away, a **base** a species able to gain one; the acid $\mathrm{AH}$ and the base $\mathrm{A^-}$ that turn into each other form an **acid-base couple** $\mathrm{AH/A^-}$, described by the half-equation $\mathrm{AH} = \mathrm{A^-} + \mathrm{H^+}$. An **acid-base reaction** is a transfer of a proton from the acid of one couple to the base of another: $\mathrm{CH_3COOH} + \mathrm{HO^-} \to \mathrm{CH_3COO^-} + \mathrm{H_2O}$. The proton never stays free in solution, so it does not appear in the equation. Water belongs to two couples, $\mathrm{H_3O^+/H_2O}$ and $\mathrm{H_2O/HO^-}$: it is **amphoteric**, and its **autoprotolysis** $2\,\mathrm{H_2O} = \mathrm{H_3O^+} + \mathrm{HO^-}$ imposes on every aqueous solution the **ionic product** $K_e = [\mathrm{H_3O^+}][\mathrm{HO^-}] = 1.0\times10^{-14}$ at $25\ \mathrm{^\circ C}$, that is $\mathrm{p}K_e = 14$. The **pH** measures the acidity of the solution: $\mathrm{pH} = -\log\dfrac{[\mathrm{H_3O^+}]}{c^\circ}$, and conversely $[\mathrm{H_3O^+}] = c^\circ\,10^{-\mathrm{pH}}$, with $c^\circ = 1\ \mathrm{mol/L}$.
+
+    The **acidity constant** of a couple is the equilibrium constant of its reaction with water: $K_A = \dfrac{[\mathrm{A^-}][\mathrm{H_3O^+}]}{[\mathrm{AH}]\,c^\circ}$, and one sets $\mathrm{p}K_A = -\log K_A$. Taking logarithms gives the **predominance relation** $\mathrm{pH} = \mathrm{p}K_A + \log\dfrac{[\mathrm{A^-}]}{[\mathrm{AH}]}$: the acid predominates when $\mathrm{pH} < \mathrm{p}K_A$, the base when $\mathrm{pH} > \mathrm{p}K_A$, and both species have the same concentration when $\mathrm{pH} = \mathrm{p}K_A$. Example: an ethanoic acid solution of concentration $c = 0.10\ \mathrm{mol/L}$ has a measured pH of $2.9$. Then $[\mathrm{H_3O^+}] = 10^{-2.9} = 1.3\times10^{-3}\ \mathrm{mol/L}$, the **final rate** of its reaction with water is $\tau = \dfrac{1.3\times10^{-3}}{0.10} = 1.3\ \%$ — the acid is **weak**, only a little over one percent of it is dissociated — and $K_A = \dfrac{(1.3\times10^{-3})^2}{0.10 - 1.3\times10^{-3}} = 1.7\times10^{-5}$, that is $\mathrm{p}K_A = 4.8$. At $\mathrm{pH} = 2.9$, the ratio $\dfrac{[\mathrm{CH_3COO^-}]}{[\mathrm{CH_3COOH}]} = 10^{2.9-4.8} = 1.3\times10^{-2}$: there is about eighty times more acid than ethanoate ion.
+
+    This model serves wherever a species changes form with the pH. The **predominance diagram**, a pH axis cut at the $\mathrm{p}K_A$, says in which form a drug crosses the stomach ($\mathrm{pH} \approx 2$) and then the intestine ($\mathrm{pH} \approx 8$); the **distribution diagram** gives, for each pH, the percentage of each species. A **colour indicator** is a couple whose two forms do not have the same colour: its turning range brackets its $\mathrm{p}K_A$. A **buffer solution**, a mixture of a weak acid and its conjugate base in comparable amounts, keeps a pH close to the $\mathrm{p}K_A$ despite a moderate addition of acid or base: it is the couple $\mathrm{CO_2,H_2O}/\mathrm{HCO_3^-}$, of $\mathrm{p}K_A = 6.4$, that keeps blood at $7.4$. Four classic traps: confusing a **strong** acid, entirely dissociated, with a **concentrated** acid; writing $\ln$ instead of $\log$, the decimal logarithm; believing that beyond the $\mathrm{p}K_A$ the acid has disappeared, when it is merely in the minority; and forgetting that one pH unit is a factor of ten on $[\mathrm{H_3O^+}]$.
+model:
+  assumptions:
+    fr:
+      - "Un acide cède un proton et une base en capte un : une réaction acide-base est un transfert de proton, jamais un proton libre en solution."
+      - "La solution est aqueuse et diluée, à 25 °C : le produit ionique de l'eau y vaut 1,0 × 10⁻¹⁴ et les concentrations remplacent les activités."
+      - "Chaque couple est décrit par une seule constante d'acidité KA, indépendante de la composition et fixée par la température."
+      - "Le pH est relié à la seule concentration en ions oxonium, pH = −log([H₃O⁺]/c°), avec c° = 1 mol/L."
+    en:
+      - "An acid gives a proton away and a base gains one: an acid-base reaction is a proton transfer, never a free proton in solution."
+      - "The solution is aqueous and dilute, at 25 °C: the ionic product of water is 1.0 × 10⁻¹⁴ there and concentrations replace activities."
+      - "Each couple is described by a single acidity constant KA, independent of the composition and set by the temperature."
+      - "The pH is related to the oxonium ion concentration alone, pH = −log([H₃O⁺]/c°), with c° = 1 mol/L."
+  limits:
+    fr:
+      - "Le produit ionique et les pKa dépendent de la température : à 60 °C l'eau pure a un pH de 6,5 sans être acide."
+      - "Au-delà de 0,1 mol/L environ, les interactions entre ions font diverger concentrations et activités : le modèle n'est plus quantitatif."
+      - "Les acides polyacides et les couples de pKa voisins demandent de traiter plusieurs équilibres simultanés, hors programme du lycée."
+      - "Le modèle donne l'état final, pas la vitesse du transfert ni le mécanisme à l'échelle des molécules."
+    en:
+      - "The ionic product and the pKa values depend on the temperature: at 60 °C pure water has a pH of 6.5 without being acidic."
+      - "Beyond about 0.1 mol/L, the interactions between ions make concentrations and activities diverge: the model is no longer quantitative."
+      - "Polyacids and couples with close pKa values require several simultaneous equilibria, beyond the school syllabus."
+      - "The model gives the final state, not the rate of the transfer nor the mechanism at the scale of the molecules."
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "identifier un acide et une base de Brønsted, écrire la demi-équation d'un couple acide-base et l'équation d'une réaction acide-base comme un transfert de proton"
+        - "relier le pH et la concentration en ions oxonium par pH = −log([H₃O⁺]/c°) et [H₃O⁺] = c° × 10^(−pH), et utiliser le produit ionique de l'eau"
+        - "écrire la constante d'acidité KA d'un couple, la relier au pKa et établir la relation pH = pKa + log([base]/[acide])"
+        - "tracer et exploiter un diagramme de prédominance ou de distribution pour déterminer l'espèce prédominante d'un couple à un pH donné"
+        - "distinguer un acide fort d'un acide faible par le taux d'avancement final de sa réaction avec l'eau, et calculer ce taux à partir du pH"
+      en:
+        - "identify a Brønsted acid and base, write the half-equation of an acid-base couple and the equation of an acid-base reaction as a proton transfer"
+        - "relate the pH and the oxonium ion concentration by pH = −log([H₃O⁺]/c°) and [H₃O⁺] = c° × 10^(−pH), and use the ionic product of water"
+        - "write the acidity constant KA of a couple, relate it to the pKa and establish the relation pH = pKa + log([base]/[acid])"
+        - "draw and use a predominance or a distribution diagram to determine the predominant species of a couple at a given pH"
+        - "distinguish a strong acid from a weak acid by the final rate of its reaction with water, and compute that rate from the pH"
+sources: []

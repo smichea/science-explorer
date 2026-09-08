@@ -1,0 +1,64 @@
+# Programme de Terminale — chimie de la spécialité physique-chimie (BO spécial n°8 du 25 juillet 2019,
+# « Constitution et transformations de la matière »).
+# requires_* : du prérequis vers le nœud qui en dépend ; models : du modèle vers le phénomène ;
+# specialises : du cas particulier vers le cas général ; measured_by : de la grandeur vers la méthode qui la mesure.
+edges:
+  # --- requires_essentially -------------------------------------------------
+  - { from: model.chemical_reaction, to: concept.chemical_equilibrium, type: requires_essentially, weight: 1,
+      note: { fr: "L'état final d'un système se lit dans le tableau d'avancement : le taux d'avancement final compare l'avancement final à l'avancement maximal.", en: "The final state of a system is read in the extent table: the final rate compares the final extent with the maximum extent." } }
+  - { from: concept.concentration, to: concept.chemical_equilibrium, type: requires_essentially, weight: 1,
+      note: { fr: "Le quotient de réaction est un rapport de concentrations élevées à leurs nombres stœchiométriques.", en: "The reaction quotient is a ratio of concentrations raised to their stoichiometric numbers." } }
+  - { from: model.chemical_reaction, to: model.acid_base, type: requires_essentially, weight: 1,
+      note: { fr: "Une transformation acide-base est d'abord une réaction chimique, avec son équation ajustée et son avancement.", en: "An acid-base transformation is first of all a chemical reaction, with its balanced equation and its extent." } }
+  - { from: concept.concentration, to: model.acid_base, type: requires_essentially, weight: 1,
+      note: { fr: "Le pH est défini à partir de la concentration en ions oxonium, et les domaines de prédominance comparent deux concentrations.", en: "The pH is defined from the oxonium ion concentration, and predominance domains compare two concentrations." } }
+  - { from: model.redox, to: model.electrochemical_cell, type: requires_essentially, weight: 1,
+      note: { fr: "Une pile est une réaction d'oxydoréduction dont on canalise les électrons dans un circuit extérieur : il faut d'abord savoir écrire ses deux demi-équations.", en: "A cell is a redox reaction whose electrons are channelled through an external circuit: one must first know how to write its two half-equations." } }
+  - { from: concept.chemical_equilibrium, to: model.electrochemical_cell, type: requires_essentially, weight: 1,
+      note: { fr: "Le sens de fonctionnement d'une pile est le sens d'évolution spontanée, donné par la comparaison du quotient de réaction et de la constante d'équilibre.", en: "The direction in which a cell works is the spontaneous direction of evolution, given by comparing the reaction quotient with the equilibrium constant." } }
+  - { from: model.chemical_reaction, to: concept.reaction_rate, type: requires_essentially, weight: 1,
+      note: { fr: "La vitesse volumique est la dérivée de l'avancement rapportée au volume : sans tableau d'avancement, pas d'avancement à dériver.", en: "The volumic rate is the derivative of the extent divided by the volume: without an extent table, there is no extent to differentiate." } }
+  - { from: concept.concentration, to: concept.reaction_rate, type: requires_essentially, weight: 1,
+      note: { fr: "Un suivi temporel est une suite de concentrations, et la vitesse s'exprime en moles par litre et par seconde.", en: "A time monitoring is a sequence of concentrations, and the rate is expressed in moles per litre per second." } }
+  - { from: tool.derivative, to: concept.reaction_rate, type: requires_essentially, weight: 1,
+      note: { fr: "Lire une vitesse, c'est lire la pente de la tangente à la courbe de suivi : la dérivée sert ici telle qu'elle a été construite en mathématiques.", en: "Reading a rate means reading the slope of the tangent to the monitoring curve: the derivative is used here exactly as it was built in mathematics." } }
+  - { from: method.organic_synthesis, to: method.synthesis_strategy, type: requires_essentially, weight: 1,
+      note: { fr: "Une stratégie enchaîne des étapes dont on sait déjà conduire le protocole et calculer le rendement.", en: "A strategy chains steps whose protocol one already knows how to run and whose yield one knows how to compute." } }
+  - { from: model.organic_molecules, to: method.synthesis_strategy, type: requires_essentially, weight: 1,
+      note: { fr: "Ce sont les groupes caractéristiques qui désignent les sites réactifs, donc celui qu'il faut protéger.", en: "It is the characteristic groups that point out the reactive sites, hence the one that has to be protected." } }
+  - { from: concept.concentration, to: method.instrumental_analysis, type: requires_essentially, weight: 1,
+      note: { fr: "Un dosage par étalonnage détermine une concentration, et la gamme d'étalonnage se prépare par dilutions successives.", en: "An assay by calibration determines a concentration, and the calibration range is prepared by successive dilutions." } }
+  - { from: method.titration, to: method.instrumental_analysis, type: requires_essentially, weight: 1,
+      note: { fr: "Le suivi conductimétrique est celui d'un titrage : la relation à l'équivalence vient de là, seul le repérage change.", en: "A conductimetric monitoring is that of a titration: the relation at the equivalence comes from there, only the way of locating it changes." } }
+  # --- requires_recommended -------------------------------------------------
+  - { from: model.acid_base, to: concept.chemical_equilibrium, type: requires_recommended, weight: 0.8,
+      note: { fr: "Un acide faible est le premier équilibre rencontré : sa constante d'acidité est une constante d'équilibre, dont le quotient de réaction généralise l'idée à toutes les transformations.", en: "A weak acid is the first equilibrium met: its acidity constant is an equilibrium constant, and the reaction quotient generalises the idea to every transformation." } }
+  - { from: tool.logarithm, to: model.acid_base, type: requires_recommended, weight: 0.8,
+      note: { fr: "Le pH est un logarithme décimal : la fonction qui fait descendre les puissances de dix rend la définition et la relation de prédominance lisibles.", en: "The pH is a decimal logarithm: the function that brings powers of ten down makes the definition and the predominance relation readable." } }
+  - { from: method.organic_synthesis, to: concept.chemical_equilibrium, type: requires_recommended, weight: 0.8,
+      note: { fr: "L'estérification s'arrête à un équilibre : le rendement inférieur à cent pour cent en était le premier indice, avant qu'on sache le calculer.", en: "Esterification stops at an equilibrium: a yield below one hundred percent was the first clue, before one could compute it." } }
+  - { from: concept.electrical_power, to: model.electrochemical_cell, type: requires_recommended, weight: 0.7,
+      note: { fr: "La charge débitée Q = I Δt et l'énergie fournie par une pile se lisent avec les grandeurs électriques usuelles.", en: "The charge delivered Q = I Δt and the energy supplied by a cell are read with the usual electrical quantities." } }
+  - { from: concept.reaction_rate, to: model.reaction_order_one, type: requires_recommended, weight: 0.8,
+      note: { fr: "La loi d'ordre un est une loi de vitesse : encore faut-il savoir ce qu'est une vitesse volumique et un temps de demi-réaction.", en: "The first-order law is a rate law: one must first know what a volumic rate and a half-reaction time are." } }
+  - { from: model.lewis_structure, to: method.synthesis_strategy, type: requires_recommended, weight: 0.7,
+      note: { fr: "Les doublets et la polarité des liaisons désignent les sites qui donnent et ceux qui acceptent, donc le lieu de la réaction.", en: "The pairs and the polarity of the bonds point out the sites that give and those that accept, hence where the reaction happens." } }
+  - { from: method.ir_spectroscopy, to: method.synthesis_strategy, type: requires_recommended, weight: 0.7,
+      note: { fr: "On contrôle après chaque étape que le groupe visé a bien été transformé, et lui seul.", en: "After each step one checks that the targeted group has indeed been transformed, and it alone." } }
+  - { from: concept.chemical_equilibrium, to: method.synthesis_strategy, type: requires_recommended, weight: 0.7,
+      note: { fr: "Une étape limitée par un équilibre plafonne le rendement de toute la séquence : c'est un critère de choix entre deux routes.", en: "A step limited by an equilibrium caps the yield of the whole sequence: it is a criterion for choosing between two routes." } }
+  - { from: method.measurement, to: method.instrumental_analysis, type: requires_recommended, weight: 0.7,
+      note: { fr: "Une droite d'étalonnage porte l'incertitude de ses mesures : la concentration lue en hérite.", en: "A calibration line carries the uncertainty of its measurements: the concentration read on it inherits that uncertainty." } }
+  - { from: tool.line_equations, to: method.instrumental_analysis, type: requires_recommended, weight: 0.7,
+      note: { fr: "La droite d'étalonnage est une droite passant par l'origine, que l'on parcourt à l'envers pour lire une concentration.", en: "The calibration line is a line through the origin, travelled backwards to read a concentration." } }
+  # --- models, specialises, contrasts_with, measured_by -----------------------
+  - { from: concept.reaction_rate, to: phenomenon.chemistry.concentration_over_time, type: models, weight: 0.9,
+      note: { fr: "La vitesse volumique modélise la variation d'une concentration au cours du temps par la pente de la tangente à la courbe de suivi.", en: "The volumic rate models the change of a concentration over time by the slope of the tangent to the monitoring curve." } }
+  - { from: model.acid_base, to: concept.chemical_equilibrium, type: specialises, weight: 1,
+      note: { fr: "Un équilibre acide-base est un équilibre chimique particulier, dont la constante porte un nom : la constante d'acidité.", en: "An acid-base equilibrium is a particular chemical equilibrium, whose constant has a name of its own: the acidity constant." } }
+  - { from: model.electrochemical_cell, to: model.redox, type: specialises, weight: 1,
+      note: { fr: "Une pile est une réaction d'oxydoréduction dans un dispositif particulier : les deux couples séparés, les électrons dans un fil.", en: "A cell is a redox reaction in a particular device: the two couples separated, the electrons in a wire." } }
+  - { from: concept.reaction_rate, to: concept.chemical_equilibrium, type: contrasts_with, weight: 0.9,
+      note: { fr: "La cinétique dit quand, l'équilibre dit jusqu'où : une transformation lente peut être totale, une transformation instantanée peut être très limitée.", en: "Kinetics says when, equilibrium says how far: a slow transformation can be complete, an instantaneous one can be very limited." } }
+  - { from: concept.concentration, to: method.instrumental_analysis, type: measured_by, weight: 1,
+      note: { fr: "Une concentration se mesure sans détruire l'échantillon par spectrophotométrie ou par conductimétrie, sur une droite d'étalonnage.", en: "A concentration is measured without destroying the sample by spectrophotometry or conductimetry, on a calibration line." } }

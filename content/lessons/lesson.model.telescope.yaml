@@ -1,0 +1,17 @@
+# Leçon — la lunette astronomique afocale : objectif, oculaire, image intermédiaire et grossissement
+# (outil optique en mode lunette, avec les trois curseurs des distances focales et du diamètre apparent).
+id: lesson.model.telescope
+nodeId: model.telescope
+depth: 1
+tools:
+  - id: scope
+    kind: optics
+    title: { fr: "Une lunette afocale : objectif, oculaire, grossissement", en: "An afocal telescope: objective, eyepiece, magnification" }
+    mode: telescope
+    parameters:
+      - { id: f, label: { fr: "distance focale de l'objectif f'₁ (cm)", en: "focal length of the objective f'₁ (cm)" }, min: 20, max: 120, step: 5, value: 90 }
+      - { id: p, label: { fr: "distance focale de l'oculaire f'₂ (cm)", en: "focal length of the eyepiece f'₂ (cm)" }, min: 0.5, max: 6, step: 0.5, value: 2 }
+      - { id: t, label: { fr: "diamètre apparent de l'objet (°)", en: "apparent diameter of the object (°)" }, min: 0.1, max: 1.5, step: 0.05, value: 0.5 }
+    focal: "f"
+    eyepiece: "p"
+    angle: "t"

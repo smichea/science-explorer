@@ -1,0 +1,55 @@
+# Loi des grands nombres en Terminale — taille d'échantillon garantissant une fréquence à 0,02 près
+id: exercise.large_numbers.sample_size
+type: numeric
+nodeId: concept.law_of_large_numbers
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    On veut estimer par sondage la proportion $p$ d'une population, en observant la fréquence $F_n$ sur un échantillon de taille $n$. On sait que la variance d'une variable de Bernoulli vérifie $p(1-p) \leqslant \dfrac14$.
+
+    Quelle taille $n$ garantit, d'après l'inégalité de concentration, que $P\big(|F_n - p| \geqslant 0{,}02\big) \leqslant 0{,}05$ ?
+  en: |-
+    A proportion $p$ of a population is to be estimated by a poll, observing the frequency $F_n$ on a sample of size $n$. The variance of a Bernoulli variable satisfies $p(1-p) \leqslant \dfrac14$.
+
+    Which size $n$ guarantees, according to the concentration inequality, that $P\big(|F_n - p| \geqslant 0.02\big) \leqslant 0.05$?
+numeric:
+  value: 12500
+  tolerance: { kind: relative, value: 0.01 }
+  inputLabel: { fr: "taille $n$ de l'échantillon", en: "sample size $n$" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La fréquence $F_n$ est la moyenne de $n$ variables de Bernoulli indépendantes : $P\big(|F_n - p| \geqslant \delta\big) \leqslant \dfrac{p(1-p)}{n\delta^{2}} \leqslant \dfrac{1}{4n\delta^{2}}$.
+      en: |-
+        The frequency $F_n$ is the mean of $n$ independent Bernoulli variables: $P\big(|F_n - p| \geqslant \delta\big) \leqslant \dfrac{p(1-p)}{n\delta^{2}} \leqslant \dfrac{1}{4n\delta^{2}}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Il suffit que $\dfrac{1}{4n \times 0{,}02^{2}} \leqslant 0{,}05$, c'est-à-dire $n \geqslant \dfrac{1}{4 \times 0{,}0004 \times 0{,}05}$.
+      en: |-
+        It suffices that $\dfrac{1}{4n \times 0.02^{2}} \leqslant 0.05$, that is $n \geqslant \dfrac{1}{4 \times 0.0004 \times 0.05}$.
+solution:
+  fr: |-
+    La fréquence $F_n$ est la moyenne de $n$ variables de Bernoulli indépendantes de paramètre $p$, d'espérance $p$ et de variance $p(1-p) \leqslant \frac14$. L'inégalité de concentration donne
+    $$P\big(|F_n - p| \geqslant 0{,}02\big) \leqslant \frac{1}{4n \times 0{,}0004} = \frac{625}{n}.$$
+    La condition $\frac{625}{n} \leqslant 0{,}05$ équivaut à $n \geqslant \dfrac{625}{0{,}05} = 12\,500$. Un échantillon de $$n = 12\,500$$ personnes suffit donc, quelle que soit la valeur inconnue de $p$.
+
+    **Interprétation.** Le résultat ne dépend pas de la taille de la population : mille personnes ou soixante millions, seul compte le nombre d'individus interrogés. Il illustre aussi le prix de la précision : passer de $2\,\%$ à $1\,\%$ d'erreur tolérée quadruplerait l'échantillon, à $50\,000$ personnes. La majoration étant très prudente, les instituts de sondage se contentent en pratique d'environ mille personnes pour une précision de l'ordre de $3\,\%$ ; l'inégalité donne une garantie sûre, pas la meilleure possible.
+  en: |-
+    The frequency $F_n$ is the mean of $n$ independent Bernoulli variables with parameter $p$, expectation $p$ and variance $p(1-p) \leqslant \frac14$. The concentration inequality gives
+    $$P\big(|F_n - p| \geqslant 0.02\big) \leqslant \frac{1}{4n \times 0.0004} = \frac{625}{n}.$$
+    The condition $\frac{625}{n} \leqslant 0.05$ is equivalent to $n \geqslant \dfrac{625}{0.05} = 12\,500$. A sample of $$n = 12\,500$$ people therefore suffices, whatever the unknown value of $p$.
+
+    **Interpretation.** The result does not depend on the size of the population: a thousand people or sixty million, only the number of individuals questioned counts. It also illustrates the price of precision: going from $2\,\%$ to $1\,\%$ of tolerated error would quadruple the sample, to $50\,000$ people. The bound being very cautious, polling institutes settle in practice for about a thousand people for a precision of the order of $3\,\%$; the inequality gives a safe guarantee, not the best possible one.
+difficulty:
+  mathematicalDepth: 3
+  conceptualNovelty: 3
+  calculationLength: 3
+  modellingOpenness: 3
+  linkedConcepts: 4
+  transfer: 4
+  autonomy: 4

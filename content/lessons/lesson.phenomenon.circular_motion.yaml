@@ -1,0 +1,26 @@
+# Leçon — mouvement circulaire uniforme : le vecteur vitesse tangent et l'accélération centripète (outil vecteurs),
+# puis l'orbite rendue circulaire en réglant la vitesse initiale (simulation force centrale).
+id: lesson.phenomenon.circular_motion
+nodeId: phenomenon.circular_motion
+depth: 1
+tools:
+  - id: turn
+    kind: vectors
+    title: { fr: "Vitesse tangente et accélération centripète", en: "Tangent velocity and centripetal acceleration" }
+    view: { x: [-6, 6], y: [-4.5, 4.5] }
+    parameters:
+      - { id: t, label: { fr: "position sur le cercle (°)", en: "position on the circle (°)" }, min: 0, max: 360, step: 5, value: 40 }
+      - { id: r, label: { fr: "rayon R (m)", en: "radius R (m)" }, min: 1, max: 4, step: 0.5, value: 3 }
+    paths:
+      - { id: circle, x: "r*cos(s)", y: "r*sin(s)", range: [0, 6.2832], label: { fr: "trajectoire", en: "trajectory" }, dashed: true }
+    points:
+      - { id: o, x: 0, y: 0, label: { fr: "O", en: "O" } }
+    vectors:
+      - { id: p, x: "r*cos(t*pi/180)", y: "r*sin(t*pi/180)", label: { fr: "OM", en: "OM" }, color: "#8fa3b8" }
+      - { id: v, x: "-2*sin(t*pi/180)", y: "2*cos(t*pi/180)", from: p, label: { fr: "v (tangente)", en: "v (tangent)" }, color: "#5ee6a8" }
+      - { id: n, x: "-1.4*cos(t*pi/180)", y: "-1.4*sin(t*pi/180)", from: p, label: { fr: "a (vers le centre)", en: "a (towards the centre)" }, color: "#ffb347" }
+    dot: [v, n]
+  - id: orbit
+    kind: simulation
+    title: { fr: "L'orbite devient un cercle vers 7 500 mètres par seconde", en: "The orbit becomes a circle around 7,500 metres per second" }
+    simulationId: simulation.orbit.satellite

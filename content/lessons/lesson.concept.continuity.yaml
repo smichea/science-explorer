@@ -1,0 +1,123 @@
+# Leçon rédigée — continuité : la courbe sans saut, le théorème des valeurs intermédiaires et son corollaire,
+# trois étapes de dichotomie sur le traceur, puis la longueur de l'encadrement comme suite récurrente u/2.
+id: lesson.concept.continuity
+nodeId: concept.continuity
+depth: 1
+tools:
+  - id: plot
+    kind: plotter
+    title: { fr: "La courbe de x³ + x − 1", en: "The curve of x³ + x − 1" }
+    variable: x
+    view: { x: [-0.2, 1.2], y: [-1.5, 4.5] }
+    parameters:
+      - { id: a, label: { fr: "abscisse a", en: "abscissa a" }, min: 0, max: 1, step: 0.005, value: 0.5 }
+    input: true
+  - id: halving
+    kind: sequence
+    title: { fr: "La longueur de l'encadrement", en: "The width of the bracket" }
+    mode: recurrence
+    expr: "u/2"
+    first: 1
+    start: 0
+    count: 12
+    view: { x: [0, 12], y: [0, 1.1] }
+    input: true
+steps:
+  - id: continuous
+    tool: plot
+    title: { fr: "Une courbe sans saut", en: "A curve without a jump" }
+    text:
+      fr: >-
+        Une fonction est continue sur un intervalle lorsque l'on peut y tracer sa courbe sans lever le crayon.
+        Toutes les fonctions construites à partir des fonctions de référence par somme, produit, quotient ou composition le sont là où elles sont définies ; la fonction partie entière, elle, ne l'est pas, car elle saute d'une unité à chaque nombre entier.
+        Voici la fonction f de x égale x au cube plus x moins un, sur l'intervalle allant de zéro à un.
+        Elle est continue, et strictement croissante puisque sa dérivée, trois x au carré plus un, est toujours strictement positive.
+      en: >-
+        A function is continuous on an interval when its curve can be drawn there without lifting the pencil.
+        Every function built from the reference functions by sum, product, quotient or composition is continuous where it is defined; the integer part function is not, since it jumps by one unit at every whole number.
+        Here is the function f of x equals x cubed plus x minus one, on the interval from zero to one.
+        It is continuous, and strictly increasing since its derivative, three x squared plus one, is always strictly positive.
+    actions:
+      - { at: 2, plot: { id: f, expr: "x^3+x-1", label: { fr: "f(x) = x³ + x − 1", en: "f(x) = x³ + x − 1" } } }
+      - { at: 3, plot: { id: fp, expr: "3*x^2+1", dashed: true, label: { fr: "f'(x) = 3x² + 1", en: "f'(x) = 3x² + 1" } } }
+  - id: ivt
+    tool: plot
+    title: { fr: "Le théorème des valeurs intermédiaires", en: "The intermediate value theorem" }
+    text:
+      fr: >-
+        Aux bornes, f de zéro vaut moins un et f de un vaut un : la courbe part sous l'axe des abscisses et arrive au-dessus.
+        Puisqu'elle ne saute pas, elle a forcément traversé la valeur zéro en chemin, et c'est exactement ce qu'affirme le théorème des valeurs intermédiaires.
+        La stricte croissance ajoute l'unicité : il existe une solution et une seule, que l'on note alpha.
+        Remarquez ce que le théorème donne et ce qu'il ne donne pas : l'existence, oui, la valeur, jamais.
+      en: >-
+        At the ends, f of zero is minus one and f of one is one: the curve starts below the horizontal axis and arrives above it.
+        Since it does not jump, it must have crossed the value zero on the way, and this is exactly what the intermediate value theorem states.
+        Strict monotonicity adds uniqueness: there exists one solution and only one, which we write alpha.
+        Note what the theorem gives and what it does not: existence, yes, the value, never.
+    actions:
+      - { at: 0, hide: [fp] }
+      - { at: 0, point: { id: p0, on: f, x: 0, guides: true, label: { fr: "f(0) = −1", en: "f(0) = −1" } } }
+      - { at: 0, point: { id: p1, on: f, x: 1, guides: true, label: { fr: "f(1) = 1", en: "f(1) = 1" } } }
+      - { at: 1, line: { id: zero, a: 0, b: 1, c: 0, dashed: true, label: { fr: "y = 0", en: "y = 0" } } }
+  - id: bisection
+    tool: plot
+    title: { fr: "La dichotomie", en: "Bisection" }
+    text:
+      fr: >-
+        Pour encadrer alpha, coupons l'intervalle en deux et gardons la moitié où le signe change.
+        Au milieu, en zéro virgule cinq, la fonction vaut moins zéro virgule trois sept cinq, donc alpha est entre zéro virgule cinq et un.
+        Recommençons en zéro virgule sept cinq, où elle vaut zéro virgule un sept : alpha est maintenant entre zéro virgule cinq et zéro virgule sept cinq.
+        Troisième coupe en zéro virgule six deux cinq, où elle est encore négative : alpha est entre zéro virgule six deux cinq et zéro virgule sept cinq.
+        En poursuivant, on trouve alpha environ égal à zéro virgule six huit deux, et l'algorithme n'a jamais eu besoin que du signe de la fonction.
+      en: >-
+        To bracket alpha, let us cut the interval in half and keep the half where the sign changes.
+        At the middle, at zero point five, the function is minus zero point three seven five, so alpha lies between zero point five and one.
+        Let us start again at zero point seven five, where it is zero point one seven: alpha now lies between zero point five and zero point seven five.
+        Third cut at zero point six two five, where it is still negative: alpha lies between zero point six two five and zero point seven five.
+        Carrying on, one finds alpha about equal to zero point six eight two, and the algorithm never needed anything but the sign of the function.
+    actions:
+      - { at: 0, hide: [p0, p1], view: { x: [0.4, 1], y: [-0.5, 0.5] } }
+      - { at: 1, interval: { id: i1, from: 0.5, to: 1, label: { fr: "étape 1", en: "step 1" } } }
+      - { at: 2, hide: [i1], interval: { id: i2, from: 0.5, to: 0.75, label: { fr: "étape 2", en: "step 2" } } }
+      - { at: 3, hide: [i2], interval: { id: i3, from: 0.625, to: 0.75, label: { fr: "étape 3", en: "step 3" } } }
+  - id: halving_steps
+    tool: halving
+    title: { fr: "La longueur de l'encadrement", en: "The width of the bracket" }
+    text:
+      fr: >-
+        La longueur de l'encadrement est elle-même une suite, définie par récurrence : chaque étape la divise par deux.
+        Partie de un, elle vaut un demi, puis un quart, puis un huitième.
+        C'est une suite géométrique de raison un demi, dont la limite est zéro : la dichotomie converge toujours.
+        Après dix étapes, la longueur vaut environ un millième, ce qui donne trois décimales sûres ; vingt étapes en donneraient six, ni plus ni moins.
+      en: >-
+        The width of the bracket is itself a sequence, defined by recurrence: each step halves it.
+        Starting from one, it is one half, then one quarter, then one eighth.
+        It is a geometric sequence of ratio one half, whose limit is zero: bisection always converges.
+        After ten steps the width is about one thousandth, which gives three safe decimal places; twenty steps would give six, no more and no less.
+  - id: play
+    kind: play
+    tool: plot
+    title: { fr: "À vous de traquer la racine", en: "Your turn to hunt the root" }
+    text:
+      fr: >-
+        À vous. Déplacez l'abscisse a et lisez le signe de f de a : cherchez à la main l'encadrement le plus fin que vous puissiez obtenir.
+        Tapez ensuite une autre fonction, par exemple x au cube moins trois x plus un, et comptez combien de fois elle traverse l'axe.
+      en: >-
+        Your turn. Move the abscissa a and read the sign of f of a: look by hand for the tightest bracket you can obtain.
+        Then type another function, for instance x cubed minus three x plus one, and count how many times it crosses the axis.
+    actions:
+      - { at: 0, clear: true, view: { x: [-0.2, 1.2], y: [-1.5, 1.5] } }
+      - { at: 0, plot: { id: f, expr: "x^3+x-1", label: { fr: "f(x) = x³ + x − 1", en: "f(x) = x³ + x − 1" } } }
+      - { at: 0, line: { id: zero, a: 0, b: 1, c: 0, dashed: true, label: { fr: "y = 0", en: "y = 0" } } }
+      - { at: 0, point: { id: pa, on: f, x: "a", guides: true, label: { fr: "f(a)", en: "f(a)" } } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : trois étapes de dichotomie à dérouler, puis le nombre d'étapes nécessaires à une précision donnée.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: three bisection steps to run through, then the number of steps needed for a given precision.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.continuity.bisection_bracket, exercise.continuity.bisection_steps]

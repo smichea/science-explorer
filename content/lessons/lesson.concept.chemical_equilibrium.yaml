@@ -1,0 +1,142 @@
+# Leçon narrée — équilibre chimique : l'estérification suivie par son quotient de réaction, l'état final où Qr atteint K,
+# le déplacement par un excès de réactif, puis un acide faible, équilibre très limité (outil réaction, bloc équilibre).
+id: lesson.concept.chemical_equilibrium
+nodeId: concept.chemical_equilibrium
+depth: 1
+tools:
+  - id: ester
+    kind: reaction
+    title: { fr: "Estérification de l'acide éthanoïque", en: "Esterification of ethanoic acid" }
+    parameters:
+      - { id: a, label: { fr: "acide éthanoïque initial (mol)", en: "initial ethanoic acid (mol)" }, min: 0.2, max: 2, step: 0.1, value: 1 }
+      - { id: b, label: { fr: "éthanol initial (mol)", en: "initial ethanol (mol)" }, min: 0.2, max: 3, step: 0.1, value: 1 }
+      - { id: k, label: { fr: "constante d'équilibre K", en: "equilibrium constant K" }, min: 0.5, max: 10, step: 0.5, value: 4 }
+    reactants:
+      - { id: acid, formula: "CH₃COOH", coefficient: 1, initial: "a", label: { fr: "acide éthanoïque", en: "ethanoic acid" } }
+      - { id: alcohol, formula: "C₂H₅OH", coefficient: 1, initial: "b", label: { fr: "éthanol", en: "ethanol" } }
+    products:
+      - { id: ester, formula: "CH₃COOC₂H₅", coefficient: 1, label: { fr: "ester", en: "ester" } }
+      - { id: water, formula: "H₂O", coefficient: 1, label: { fr: "eau", en: "water" } }
+    unit: mol
+    extent: 0.4
+    equilibrium: { k: "k", volume: 1 }
+  - id: weak
+    kind: reaction
+    title: { fr: "Un acide faible dans l'eau", en: "A weak acid in water" }
+    parameters:
+      - { id: c, label: { fr: "acide éthanoïque initial (mmol)", en: "initial ethanoic acid (mmol)" }, min: 1, max: 20, step: 1, value: 10 }
+    reactants:
+      - { id: acid, formula: "CH₃COOH", coefficient: 1, initial: "c", label: { fr: "acide éthanoïque", en: "ethanoic acid" } }
+    products:
+      - { id: ethanoate, formula: "CH₃COO⁻", coefficient: 1, label: { fr: "ion éthanoate", en: "ethanoate ion" } }
+      - { id: oxonium, formula: "H₃O⁺", coefficient: 1, label: { fr: "ion oxonium", en: "oxonium ion" } }
+    unit: mmol
+    extent: 0.13
+    equilibrium: { k: 1.8e-5, volume: 100 }
+steps:
+  - id: limited
+    title: { fr: "Une transformation qui s'arrête", en: "A transformation that stops" }
+    tool: ester
+    text:
+      fr: >-
+        Mélangeons une mole d'acide éthanoïque et une mole d'éthanol dans un litre : l'ester se forme, puis la transformation s'arrête.
+        Il reste des réactifs à côté des produits, et plus rien ne change : le système est dans un état d'équilibre.
+        À l'échelle des molécules, pourtant, la réaction directe et la réaction inverse continuent, exactement à la même vitesse ; l'équilibre est dynamique.
+        L'outil montre le tableau d'avancement de cette transformation, avec son avancement maximal d'une mole, celui qu'atteindrait une transformation totale.
+      en: >-
+        Let us mix one mole of ethanoic acid and one mole of ethanol in one litre: the ester forms, then the transformation stops.
+        Reactants are left beside the products, and nothing changes any more: the system is in a state of equilibrium.
+        On the scale of the molecules, however, the forward and the reverse reactions carry on, at exactly the same rate; the equilibrium is dynamic.
+        The tool shows the extent table of this transformation, with its maximum extent of one mole, the one a complete transformation would reach.
+    actions:
+      - { at: 0, set: { a: 1, b: 1, k: 4 } }
+  - id: quotient
+    title: { fr: "Le quotient de réaction", en: "The reaction quotient" }
+    tool: ester
+    text:
+      fr: >-
+        Pour décrire l'état du système, on calcule son quotient de réaction : les concentrations des produits multipliées entre elles, divisées par celles des réactifs, chacune élevée à son nombre stœchiométrique.
+        L'outil l'affiche pour l'état intermédiaire montré ici, à quatre dixièmes de mole d'avancement : le quotient y vaut zéro virgule quarante-quatre.
+        Il valait zéro au départ, quand il n'y avait encore aucun produit, et il grandit sans cesse à mesure que la transformation avance.
+        Les concentrations sont rapportées à une mole par litre, si bien que le quotient de réaction est un nombre sans unité ; ni le solvant ni les solides n'y figurent, parce que leur concentration ne varie pas.
+      en: >-
+        To describe the state of the system, one computes its reaction quotient: the concentrations of the products multiplied together, divided by those of the reactants, each raised to its stoichiometric number.
+        The tool displays it for the intermediate state shown here, at four tenths of a mole of extent: the quotient is zero point forty-four there.
+        It was zero at the start, when there was no product yet, and it grows without stopping as the transformation proceeds.
+        The concentrations are referred to one mole per litre, so that the reaction quotient is a number without a unit; neither the solvent nor the solids appear in it, because their concentration does not vary.
+  - id: constant
+    title: { fr: "Là où le quotient atteint la constante", en: "Where the quotient reaches the constant" }
+    tool: ester
+    text:
+      fr: >-
+        Le système s'arrête là où le quotient de réaction atteint la constante d'équilibre, ici quatre.
+        L'outil cherche cet avancement final et trouve zéro virgule six sept mole, alors que l'avancement maximal vaut une mole.
+        Le taux d'avancement final est le rapport des deux, soixante-sept pour cent : la fraction de la transformation totale réellement effectuée.
+        La constante d'équilibre, elle, ne dépend que de la réaction et de la température, jamais des quantités que l'on a versées.
+      en: >-
+        The system stops where the reaction quotient reaches the equilibrium constant, here four.
+        The tool looks for that final extent and finds zero point six seven mole, whereas the maximum extent is one mole.
+        The final rate of the transformation is the ratio of the two, sixty-seven percent: the fraction of the complete transformation actually carried out.
+        The equilibrium constant, for its part, depends only on the reaction and on the temperature, never on the amounts that were poured in.
+    actions:
+      - { at: 0, set: { a: 1, b: 1, k: 4 } }
+  - id: shift
+    title: { fr: "Déplacer l'état final", en: "Shifting the final state" }
+    tool: ester
+    text:
+      fr: >-
+        Changeons l'état initial : versons trois moles d'éthanol au lieu d'une, sans rien modifier d'autre.
+        L'avancement final passe à zéro virgule neuf mole, et le taux d'avancement final à quatre-vingt-dix pour cent.
+        La constante d'équilibre n'a pourtant pas bougé : c'est l'état final qui s'est déplacé, pas la loi qui le fixe.
+        Mettre un réactif en excès, ou retirer un produit au fur et à mesure de sa formation, sont les deux leviers ordinaires du chimiste devant une transformation limitée.
+      en: >-
+        Let us change the initial state: let us pour three moles of ethanol instead of one, changing nothing else.
+        The final extent goes up to zero point nine mole, and the final rate of the transformation to ninety percent.
+        The equilibrium constant has not moved, though: it is the final state that has shifted, not the law that sets it.
+        Putting one reactant in excess, or removing a product as it forms, are the chemist's two ordinary levers when facing a limited transformation.
+    actions:
+      - { at: 0, set: { b: 3 } }
+  - id: weak_acid
+    title: { fr: "Un acide faible est un équilibre", en: "A weak acid is an equilibrium" }
+    tool: weak
+    text:
+      fr: >-
+        Deuxième exemple : dix millimoles d'acide éthanoïque dans cent millilitres d'eau.
+        Sa réaction avec l'eau a pour constante un virgule huit fois dix puissance moins cinq, et l'eau, qui est le solvant, ne figure pas dans le quotient.
+        L'avancement final ne vaut que zéro virgule treize millimole : il reste neuf virgule quatre-vingt-sept millimoles d'acide non dissocié, soit un taux d'avancement final de un virgule trois pour cent.
+        Une petite constante annonce une transformation très limitée, une grande constante, au-delà de dix mille, une transformation quasi totale.
+        Rien de tout cela ne dit combien de temps il faut attendre : la cinétique et l'équilibre répondent à deux questions indépendantes.
+      en: >-
+        Second example: ten millimoles of ethanoic acid in one hundred millilitres of water.
+        Its reaction with water has the constant one point eight times ten to the power minus five, and water, being the solvent, does not appear in the quotient.
+        The final extent is no more than zero point thirteen millimole: nine point eight seven millimoles of undissociated acid are left, that is a final rate of one point three percent.
+        A small constant announces a very limited transformation, a large constant, beyond ten thousand, an all but complete one.
+        None of this says how long one has to wait: kinetics and equilibrium answer two independent questions.
+    actions:
+      - { at: 0, set: { c: 10 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de chercher l'état final", en: "Your turn to look for the final state" }
+    tool: ester
+    text:
+      fr: >-
+        À vous. Faites varier les quantités initiales d'acide et d'alcool et regardez le taux d'avancement final : un excès d'un réactif le fait monter, sans jamais atteindre cent pour cent.
+        Déplacez ensuite la constante d'équilibre : au-dessous de un, la transformation devient dérisoire ; au-dessus de dix, elle frôle la totalité.
+        Passez enfin à l'acide faible et cherchez la quantité initiale qui doublerait son taux d'avancement final.
+      en: >-
+        Your turn. Vary the initial amounts of acid and alcohol and watch the final rate of the transformation: an excess of one reactant makes it rise, without ever reaching one hundred percent.
+        Then move the equilibrium constant: below one, the transformation becomes negligible; above ten, it comes close to completion.
+        Finally switch to the weak acid and look for the initial amount that would double its final rate.
+    actions:
+      - { at: 0, set: { a: 1, b: 1, k: 4 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : déterminer un avancement final avec un réactif en excès, puis écrire le quotient de réaction en fonction de l'avancement.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: determining a final extent with one reactant in excess, then writing the reaction quotient as a function of the extent.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.equilibrium.final_extent, exercise.equilibrium.reaction_quotient]

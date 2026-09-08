@@ -1,0 +1,55 @@
+# Loi des grands nombres en Terminale — inégalité de concentration appliquée à la moyenne de 400 lancers de dé
+id: exercise.large_numbers.chebyshev
+type: numeric
+nodeId: concept.law_of_large_numbers
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On lance $400$ fois un dé équilibré et l'on note $M_{400}$ la moyenne des résultats. Pour un lancer, $\mu = 3{,}5$ et $\sigma^{2} = \dfrac{35}{12} \approx 2{,}917$.
+
+    À l'aide de l'inégalité de concentration, majorer $P\big(|M_{400} - 3{,}5| \geqslant 0{,}2\big)$. Arrondir à $10^{-3}$.
+  en: |-
+    A fair die is rolled $400$ times and $M_{400}$ denotes the mean of the results. For one roll, $\mu = 3.5$ and $\sigma^{2} = \dfrac{35}{12} \approx 2.917$.
+
+    Using the concentration inequality, bound $P\big(|M_{400} - 3.5| \geqslant 0.2\big)$. Round to $10^{-3}$.
+numeric:
+  value: 0.1823
+  tolerance: { kind: absolute, value: 0.002 }
+  inputLabel: { fr: "majorant de la probabilité", en: "bound on the probability" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        L'inégalité de concentration s'écrit $P\big(|M_n - \mu| \geqslant \delta\big) \leqslant \dfrac{\sigma^{2}}{n\,\delta^{2}}$.
+      en: |-
+        The concentration inequality reads $P\big(|M_n - \mu| \geqslant \delta\big) \leqslant \dfrac{\sigma^{2}}{n\,\delta^{2}}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Ici $n = 400$ et $\delta = 0{,}2$, donc $n\delta^{2} = 400 \times 0{,}04 = 16$ : il ne reste qu'une division.
+      en: |-
+        Here $n = 400$ and $\delta = 0.2$, so $n\delta^{2} = 400 \times 0.04 = 16$: only a division remains.
+solution:
+  fr: |-
+    La moyenne $M_{400}$ de $400$ lancers indépendants vérifie $E(M_{400}) = 3{,}5$ et $V(M_{400}) = \frac{\sigma^{2}}{400}$. L'inégalité de concentration donne
+    $$P\big(|M_{400} - 3{,}5| \geqslant 0{,}2\big) \leqslant \frac{\sigma^{2}}{n\,\delta^{2}} = \frac{2{,}917}{400 \times 0{,}04} = \frac{2{,}917}{16} \approx 0{,}182.$$
+    Autrement dit, plus de $81\,\%$ des séries de $400$ lancers ont une moyenne comprise entre $3{,}3$ et $3{,}7$.
+
+    **Interprétation.** L'inégalité ne suppose rien sur la loi du dé : elle vaut aussi bien pour un dé pipé ou pour une durée de vie, pourvu que la variance existe. C'est sa force, et sa faiblesse — la majoration est très prudente, la probabilité réelle ici est bien plus petite. Ce qui compte est le comportement en $\frac{1}{n}$ : avec $4000$ lancers, le majorant tomberait à $0{,}018$, et il tend vers zéro quel que soit l'écart toléré. C'est la loi des grands nombres, écrite avec un majorant que l'on peut calculer.
+  en: |-
+    The mean $M_{400}$ of $400$ independent rolls satisfies $E(M_{400}) = 3.5$ and $V(M_{400}) = \frac{\sigma^{2}}{400}$. The concentration inequality gives
+    $$P\big(|M_{400} - 3.5| \geqslant 0.2\big) \leqslant \frac{\sigma^{2}}{n\,\delta^{2}} = \frac{2.917}{400 \times 0.04} = \frac{2.917}{16} \approx 0.182.$$
+    In other words, more than $81\,\%$ of the runs of $400$ rolls have a mean between $3.3$ and $3.7$.
+
+    **Interpretation.** The inequality assumes nothing about the law of the die: it holds just as well for a loaded die or for a lifetime, provided the variance exists. That is its strength, and its weakness — the bound is very cautious, the real probability here is far smaller. What matters is the behaviour in $\frac{1}{n}$: with $4000$ rolls, the bound would fall to $0.018$, and it tends to zero whatever the tolerated gap. This is the law of large numbers, written with a bound one can actually compute.
+difficulty:
+  mathematicalDepth: 3
+  conceptualNovelty: 3
+  calculationLength: 2
+  modellingOpenness: 2
+  linkedConcepts: 3
+  transfer: 2
+  autonomy: 3

@@ -1,0 +1,56 @@
+id: tool.logarithm
+type: mathematical_tool
+world: world.mathematics
+region: region.math.functions_analysis
+importance: 3
+backpack: true
+tags: [lycee]
+title: { fr: "Logarithme népérien", en: "Natural logarithm" }
+shortPurpose:
+  fr: "Descendre un exposant : résoudre les équations où l'inconnue est en puissance, et transformer les produits en sommes."
+  en: "Bring an exponent down: solve the equations where the unknown sits in an exponent, and turn products into sums."
+overview:
+  fr: >-
+    Le logarithme népérien est la fonction qui défait l'exponentielle. Dès qu'une inconnue se trouve en exposant — au bout de combien de temps la moitié des noyaux ont-ils disparu, en combien d'années un capital double-t-il — c'est lui qui la fait descendre. Il transforme les produits en sommes, ce qui a fait de lui pendant trois siècles l'outil de calcul des astronomes, et il tasse les grandes échelles : le pH, les décibels et la magnitude des étoiles sont des logarithmes.
+  en: >-
+    The natural logarithm is the function that undoes the exponential. As soon as an unknown sits in an exponent — after how long has half of the nuclei disappeared, in how many years does a capital double — it is the logarithm that brings it down. It turns products into sums, which for three centuries made it the computing tool of astronomers, and it compresses large scales: pH, decibels and the magnitude of stars are logarithms.
+aliases:
+  fr: ["logarithme népérien", "ln", "fonction réciproque de l'exponentielle", "échelle logarithmique", "logarithme décimal"]
+  en: ["natural logarithm", "ln", "inverse function of the exponential", "logarithmic scale", "decimal logarithm"]
+description:
+  fr: |
+    La fonction exponentielle est continue et strictement croissante de $\mathbb{R}$ sur $]0\,;\,+\infty[$ : d'après le corollaire du théorème des valeurs intermédiaires, l'équation $e^{x} = y$ admet, pour chaque $y > 0$, une solution et une seule. On l'appelle **logarithme népérien** de $y$ et on la note $\ln y$. Le logarithme est donc la **fonction réciproque** de l'exponentielle : $\ln(e^{x}) = x$ pour tout réel $x$, $e^{\ln y} = y$ pour tout $y > 0$, et les deux courbes sont symétriques par rapport à la droite $y = x$. Il est défini sur $]0\,;\,+\infty[$, avec $\ln 1 = 0$, $\ln e = 1$, $\lim\limits_{x \to 0^{+}} \ln x = -\infty$ (asymptote verticale l'axe des ordonnées) et $\lim\limits_{x \to +\infty} \ln x = +\infty$, mais lentement : $\ln x$ est négligeable devant toute puissance de $x$.
+
+    Ses propriétés algébriques renversent celles de l'exponentielle : $\ln(ab) = \ln a + \ln b$, $\ln\left(\frac ab\right) = \ln a - \ln b$, $\ln(a^{n}) = n \ln a$ et $\ln\sqrt a = \frac12 \ln a$. Il est dérivable sur $]0\,;\,+\infty[$, de dérivée $\dfrac1x$, donc strictement croissant, et sa courbe est concave. C'est lui qui résout les équations à inconnue en exposant. Un noyau radioactif dont l'activité suit $N(t) = N_0\,e^{-\lambda t}$ perd la moitié de ses noyaux au bout du temps $t$ tel que $e^{-\lambda t} = \frac12$, c'est-à-dire $-\lambda t = \ln\frac12 = -\ln 2$, soit $t_{1/2} = \dfrac{\ln 2}{\lambda} \approx \dfrac{0{,}693}{\lambda}$. Pour le carbone $14$, $\lambda = 1{,}21 \times 10^{-4}\ \mathrm{an^{-1}}$ donne $t_{1/2} \approx 5730$ ans.
+
+    À quoi sert-il ? À dater, à mesurer une durée de vie, à trouver le nombre d'étapes d'un placement ou d'une dose, et à redresser une courbe : si $y = y_0 e^{-t/\tau}$, alors $\ln y = \ln y_0 - \frac{t}{\tau}$ est une droite dont la pente donne directement $\tau$ — c'est l'échelle semi-logarithmique du physicien. Le **logarithme décimal** $\log x = \dfrac{\ln x}{\ln 10}$ compte les ordres de grandeur : $\log(10^{n}) = n$, d'où le pH et les décibels. Trois pièges : écrire $\ln(a+b) = \ln a + \ln b$, qui est faux ; oublier que $\ln x$ n'existe que pour $x > 0$, ce qui impose de résoudre une condition d'existence avant l'équation ; et diviser par $\ln$ au lieu de composer, alors que de $e^{2x} = 5$ on tire $2x = \ln 5$ puis $x = \frac{\ln 5}{2} \approx 0{,}805$.
+  en: |
+    The exponential function is continuous and strictly increasing from $\mathbb{R}$ onto $]0\,;\,+\infty[$: by the corollary of the intermediate value theorem, the equation $e^{x} = y$ has, for each $y > 0$, exactly one solution. It is called the **natural logarithm** of $y$ and written $\ln y$. The logarithm is therefore the **inverse function** of the exponential: $\ln(e^{x}) = x$ for every real $x$, $e^{\ln y} = y$ for every $y > 0$, and the two curves are symmetric about the line $y = x$. It is defined on $]0\,;\,+\infty[$, with $\ln 1 = 0$, $\ln e = 1$, $\lim\limits_{x \to 0^{+}} \ln x = -\infty$ (the vertical axis is an asymptote) and $\lim\limits_{x \to +\infty} \ln x = +\infty$, but slowly: $\ln x$ is negligible against every power of $x$.
+
+    Its algebraic properties reverse those of the exponential: $\ln(ab) = \ln a + \ln b$, $\ln\left(\frac ab\right) = \ln a - \ln b$, $\ln(a^{n}) = n \ln a$ and $\ln\sqrt a = \frac12 \ln a$. It is differentiable on $]0\,;\,+\infty[$, with derivative $\dfrac1x$, hence strictly increasing, and its curve is concave. It is what solves equations whose unknown is an exponent. A radioactive nuclide whose activity follows $N(t) = N_0\,e^{-\lambda t}$ loses half of its nuclei after the time $t$ such that $e^{-\lambda t} = \frac12$, that is $-\lambda t = \ln\frac12 = -\ln 2$, hence $t_{1/2} = \dfrac{\ln 2}{\lambda} \approx \dfrac{0.693}{\lambda}$. For carbon $14$, $\lambda = 1.21 \times 10^{-4}\ \mathrm{yr^{-1}}$ gives $t_{1/2} \approx 5730$ years.
+
+    What is it for? For dating, for measuring a lifetime, for finding the number of steps of an investment or of a dose, and for straightening a curve: if $y = y_0 e^{-t/\tau}$, then $\ln y = \ln y_0 - \frac{t}{\tau}$ is a straight line whose slope gives $\tau$ directly — this is the physicist's semi-logarithmic scale. The **decimal logarithm** $\log x = \dfrac{\ln x}{\ln 10}$ counts orders of magnitude: $\log(10^{n}) = n$, whence pH and decibels. Three traps: writing $\ln(a+b) = \ln a + \ln b$, which is false; forgetting that $\ln x$ exists only for $x > 0$, which requires solving a condition of existence before the equation; and dividing by $\ln$ instead of composing, whereas from $e^{2x} = 5$ one gets $2x = \ln 5$ then $x = \frac{\ln 5}{2} \approx 0.805$.
+tool:
+  problemSolved:
+    fr: "Résoudre une équation dont l'inconnue est en exposant — une demi-vie, une durée de charge, un nombre d'années — et transformer un produit ou une puissance en somme pour comparer des grandeurs qui s'étalent sur des ordres de grandeur."
+    en: "Solve an equation whose unknown is an exponent — a half-life, a charging time, a number of years — and turn a product or a power into a sum in order to compare quantities that spread over orders of magnitude."
+  construction:
+    fr: "L'exponentielle étant continue et strictement croissante de $\\mathbb{R}$ sur $]0\\,;\\,+\\infty[$, le corollaire du théorème des valeurs intermédiaires donne à $e^{x} = y$ une solution unique pour chaque $y > 0$ : on la note $\\ln y$. La dérivée $\\frac1x$ se déduit alors de $\\ln(e^{x}) = x$ dérivée membre à membre."
+    en: "Since the exponential is continuous and strictly increasing from $\\mathbb{R}$ onto $]0\\,;\\,+\\infty[$, the corollary of the intermediate value theorem gives $e^{x} = y$ a unique solution for each $y > 0$: it is written $\\ln y$. The derivative $\\frac1x$ then follows from differentiating $\\ln(e^{x}) = x$ on both sides."
+  icon: logarithm
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "utiliser $\\ln$ comme réciproque de $\\exp$ : $\\ln(e^{x}) = x$, $e^{\\ln y} = y$, et résoudre $e^{ax} = k$ ou $q^{n} \\leqslant k$"
+        - "transformer une expression avec $\\ln(ab)$, $\\ln(a/b)$ et $\\ln(a^{n})$, en vérifiant les conditions d'existence"
+        - "connaître les limites, la dérivée $1/x$, les variations et la concavité de la fonction $\\ln$"
+        - "exploiter une échelle logarithmique ou semi-logarithmique pour lire une constante de temps ou une demi-vie"
+      en:
+        - "use $\\ln$ as the inverse of $\\exp$: $\\ln(e^{x}) = x$, $e^{\\ln y} = y$, and solve $e^{ax} = k$ or $q^{n} \\leqslant k$"
+        - "transform an expression with $\\ln(ab)$, $\\ln(a/b)$ and $\\ln(a^{n})$, checking the conditions of existence"
+        - "know the limits, the derivative $1/x$, the variations and the concavity of the function $\\ln$"
+        - "use a logarithmic or semi-logarithmic scale to read a time constant or a half-life"
+sources: [source.bo.lycee.2019]

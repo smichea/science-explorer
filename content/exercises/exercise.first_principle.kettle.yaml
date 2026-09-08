@@ -1,0 +1,47 @@
+# Premier principe — énergie nécessaire pour porter un litre et demi d'eau à ébullition (réponse numérique)
+id: exercise.first_principle.kettle
+type: numeric
+nodeId: law.first_principle
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On veut porter $V = 1{,}5\ \mathrm{L}$ d'eau de $20\ ^\circ\mathrm{C}$ à $100\ ^\circ\mathrm{C}$ dans une bouilloire. La masse volumique de l'eau vaut $1{,}0\ \mathrm{kg \cdot L^{-1}}$ et sa capacité thermique massique $c = 4185\ \mathrm{J \cdot kg^{-1} \cdot K^{-1}}$. L'eau ne bout pas encore : il n'y a pas de changement d'état.
+
+    Quelle énergie faut-il transférer à l'eau ? Répondez en joules, avec deux chiffres significatifs.
+  en: |-
+    We want to bring $V = 1.5\ \mathrm{L}$ of water from $20\ ^\circ\mathrm{C}$ to $100\ ^\circ\mathrm{C}$ in a kettle. The density of water is $1.0\ \mathrm{kg \cdot L^{-1}}$ and its specific heat capacity $c = 4185\ \mathrm{J \cdot kg^{-1} \cdot K^{-1}}$. The water is not boiling yet: there is no change of state.
+
+    What energy must be transferred to the water? Answer in joules, with two significant figures.
+numeric:
+  value: 5.0e5
+  unit: "J"
+  tolerance: { kind: relative, value: 0.04 }
+  inputLabel: { fr: "ΔU", en: "ΔU" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le système est l'eau seule, sans changement d'état : son énergie interne varie de $\Delta U = m\,c\,\Delta\theta$. Commencez par la masse, que le volume donne.
+      en: |-
+        The system is the water alone, with no change of state: its internal energy varies by $\Delta U = m\,c\,\Delta\theta$. Start with the mass, which the volume gives.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $m = 1{,}5\ \mathrm{kg}$ et $\Delta\theta = 100 - 20 = 80$. Un **écart** de température vaut le même nombre en degrés Celsius et en kelvins : il n'y a rien à convertir.
+      en: |-
+        $m = 1.5\ \mathrm{kg}$ and $\Delta\theta = 100 - 20 = 80$. A temperature **difference** is the same number in degrees Celsius and in kelvins: there is nothing to convert.
+solution:
+  fr: |-
+    Le volume donne la masse, $m = \rho\,V = 1{,}0 \times 1{,}5 = 1{,}5\ \mathrm{kg}$, et l'écart de température vaut $\Delta\theta = 80\ \mathrm{K}$. L'eau ne subissant aucun changement d'état,
+    $$\Delta U = m\,c\,\Delta\theta = 1{,}5 \times 4185 \times 80 = 5{,}0 \times 10^{5}\ \mathrm{J}.$$
+
+    **Interprétation.** Un demi-mégajoule pour une bouilloire : c'est l'énergie que fournit une plaque de $2\,000\ \mathrm{W}$ en $t = \dfrac{5{,}0 \times 10^{5}}{2\,000} = 251\ \mathrm{s}$, soit quatre minutes et dix secondes. Une vraie bouilloire en met plutôt cinq, la différence partant en pertes par les parois et dans le chauffage du récipient : le rapport des deux durées donne son rendement, environ quatre-vingt-cinq pour cent. Remarquez la valeur exceptionnelle de la capacité thermique massique de l'eau, la plus élevée des liquides courants : c'est pour cela que les océans mettent des mois à se réchauffer, que l'eau sert de fluide caloporteur, et qu'une bouillotte tient chaud toute la nuit. Attention enfin : porter l'eau à cent degrés est une chose, la faire **bouillir** en est une autre, qui demanderait $2{,}26 \times 10^{6}$ joules par kilogramme de plus, sans que le thermomètre ne bouge.
+  en: |-
+    The volume gives the mass, $m = \rho\,V = 1.0 \times 1.5 = 1.5\ \mathrm{kg}$, and the temperature difference is $\Delta\theta = 80\ \mathrm{K}$. The water undergoing no change of state,
+    $$\Delta U = m\,c\,\Delta\theta = 1.5 \times 4185 \times 80 = 5.0 \times 10^{5}\ \mathrm{J}.$$
+
+    **Interpretation.** Half a megajoule for a kettle: this is the energy a $2{,}000\ \mathrm{W}$ hotplate supplies in $t = \dfrac{5.0 \times 10^{5}}{2{,}000} = 251\ \mathrm{s}$, four minutes and ten seconds. A real kettle takes more like five, the difference going into losses through the walls and into heating the vessel: the ratio of the two times gives its efficiency, about eighty-five per cent. Note the exceptional value of the specific heat capacity of water, the highest of the common liquids: this is why the oceans take months to warm up, why water is used as a heat-carrying fluid, and why a hot-water bottle keeps you warm all night. Careful, finally: bringing the water to one hundred degrees is one thing, making it **boil** is another, which would demand $2.26 \times 10^{6}$ joules more per kilogram, without the thermometer moving at all.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 3, transfer: 2, autonomy: 2 }

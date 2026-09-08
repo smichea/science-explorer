@@ -1,0 +1,47 @@
+id: concept.law_of_large_numbers
+type: mathematical_concept
+world: world.mathematics
+region: bridge.statistics
+importance: 3
+tags: [lycee]
+title: { fr: "Concentration, inégalité de Bienaymé-Tchebychev, loi des grands nombres", en: "Concentration, Bienaymé-Chebyshev inequality, law of large numbers" }
+shortPurpose:
+  fr: "Majorer la probabilité de s'écarter de la moyenne, et démontrer que la moyenne d'un grand échantillon s'approche de l'espérance."
+  en: "Bound the probability of straying from the mean, and prove that the mean of a large sample approaches the expectation."
+overview:
+  fr: >-
+    Tout le monde sent bien qu'en lançant un dé mille fois, la moyenne des résultats sera proche de trois et demi. Ce sentiment devient ici un théorème, et surtout un calcul : une inégalité due à Bienaymé et à Tchebychev majore la probabilité de s'écarter de l'espérance par la variance divisée par le carré de l'écart toléré. Appliquée à une moyenne, elle montre que la dispersion fond comme un sur n, et c'est la loi des grands nombres, la clé qui relie enfin les probabilités calculées et les fréquences observées.
+  en: >-
+    Everybody feels that rolling a die a thousand times gives a mean close to three and a half. Here that feeling becomes a theorem, and above all a computation: an inequality due to Bienaymé and Chebyshev bounds the probability of straying from the expectation by the variance divided by the square of the tolerated gap. Applied to a mean, it shows that the spread melts like one over n, and this is the law of large numbers, the key that finally links computed probabilities with observed frequencies.
+aliases:
+  fr: ["inégalité de Bienaymé-Tchebychev", "inégalité de concentration", "loi des grands nombres", "moyenne d'un échantillon", "fluctuation d'échantillonnage"]
+  en: ["Bienaymé-Chebyshev inequality", "concentration inequality", "law of large numbers", "sample mean", "sampling fluctuation"]
+description:
+  fr: |
+    L'**inégalité de Bienaymé-Tchebychev** dit qu'une variable aléatoire s'écarte rarement de son espérance quand sa variance est petite : pour toute variable $X$ d'espérance $\mu$ et de variance $V$, et pour tout réel $\delta > 0$, $$P\big(|X - \mu| \geqslant \delta\big) \leqslant \frac{V}{\delta^{2}}.$$ Elle ne suppose rien sur la loi — ni symétrie, ni forme de courbe — ce qui la rend universelle mais grossière : elle donne toujours une majoration valable, rarement la meilleure. Sur un dé équilibré, $\mu = 3{,}5$ et $V = \frac{35}{12} \approx 2{,}92$ : la probabilité que le résultat s'écarte de plus de $2{,}5$ de l'espérance est majorée par $\frac{2{,}92}{6{,}25} \approx 0{,}47$, alors qu'elle vaut en réalité $\frac13 \approx 0{,}33$.
+
+    Elle devient redoutable appliquée à une **moyenne**. Si $M_n$ est la moyenne de $n$ variables indépendantes de même loi, d'espérance $\mu$ et de variance $\sigma^{2}$, alors $E(M_n) = \mu$ et $V(M_n) = \frac{\sigma^{2}}{n}$, d'où l'**inégalité de concentration** $$P\big(|M_n - \mu| \geqslant \delta\big) \leqslant \frac{\sigma^{2}}{n\,\delta^{2}}.$$ Le majorant tend vers $0$ quand $n$ tend vers l'infini, quel que soit l'écart $\delta$ toléré : c'est la **loi des grands nombres**. Sur le dé, pour $n = 100$ lancers et $\delta = 0{,}5$, la probabilité que la moyenne s'écarte de plus d'un demi-point de $3{,}5$ est majorée par $\frac{2{,}92}{100 \times 0{,}25} \approx 0{,}117$ : au moins $88\,\%$ des séries de cent lancers ont une moyenne entre $3$ et $4$. Pour $n = 1000$, le majorant tombe à $0{,}012$.
+
+    Appliquée à une **fréquence**, elle justifie enfin ce que la Seconde avait constaté sans le démontrer. La fréquence $F_n$ de succès sur $n$ répétitions est la moyenne de $n$ variables de Bernoulli, d'espérance $p$ et de variance $p(1-p) \leqslant \frac14$, donc $P\big(|F_n - p| \geqslant \delta\big) \leqslant \frac{1}{4n\delta^{2}}$. En prenant $\delta = \frac{2}{\sqrt n}$, le majorant vaut $\frac{1}{16}$ : au moins $93{,}75\,\%$ des échantillons donnent une fréquence à moins de $\frac{2}{\sqrt n}$ de $p$ — l'intervalle de fluctuation devient un théorème. C'est aussi la raison pour laquelle on répète une mesure physique : la moyenne de $n$ mesures indépendantes a une incertitude $\frac{\sigma}{\sqrt n}$. Trois pièges : croire que la loi des grands nombres oblige un écart à se « rattraper » — le nombre de piles peut s'éloigner indéfiniment de $\frac n2$ alors même que la fréquence se rapproche de $\frac12$ ; oublier l'indépendance, sans laquelle la variance de la moyenne ne vaut plus $\frac{\sigma^{2}}{n}$ ; et confondre la majoration donnée par l'inégalité avec la probabilité exacte.
+  en: |
+    The **Bienaymé-Chebyshev inequality** says that a random variable rarely strays from its expectation when its variance is small: for every variable $X$ with expectation $\mu$ and variance $V$, and every real $\delta > 0$, $$P\big(|X - \mu| \geqslant \delta\big) \leqslant \frac{V}{\delta^{2}}.$$ It assumes nothing about the law — no symmetry, no shape of curve — which makes it universal but coarse: it always gives a valid bound, rarely the best one. On a fair die, $\mu = 3.5$ and $V = \frac{35}{12} \approx 2.92$: the probability that the result strays by more than $2.5$ from the expectation is bounded by $\frac{2.92}{6.25} \approx 0.47$, whereas it is in fact $\frac13 \approx 0.33$.
+
+    It becomes formidable when applied to a **mean**. If $M_n$ is the mean of $n$ independent variables with the same law, expectation $\mu$ and variance $\sigma^{2}$, then $E(M_n) = \mu$ and $V(M_n) = \frac{\sigma^{2}}{n}$, whence the **concentration inequality** $$P\big(|M_n - \mu| \geqslant \delta\big) \leqslant \frac{\sigma^{2}}{n\,\delta^{2}}.$$ The bound tends to $0$ as $n$ tends to infinity, whatever the tolerated gap $\delta$: this is the **law of large numbers**. On the die, for $n = 100$ rolls and $\delta = 0.5$, the probability that the mean strays by more than half a point from $3.5$ is bounded by $\frac{2.92}{100 \times 0.25} \approx 0.117$: at least $88\,\%$ of the runs of a hundred rolls have a mean between $3$ and $4$. For $n = 1000$, the bound falls to $0.012$.
+
+    Applied to a **frequency**, it finally justifies what Grade 10 observed without proving. The frequency $F_n$ of successes over $n$ repetitions is the mean of $n$ Bernoulli variables, with expectation $p$ and variance $p(1-p) \leqslant \frac14$, so $P\big(|F_n - p| \geqslant \delta\big) \leqslant \frac{1}{4n\delta^{2}}$. Taking $\delta = \frac{2}{\sqrt n}$, the bound is $\frac{1}{16}$: at least $93.75\,\%$ of the samples give a frequency within $\frac{2}{\sqrt n}$ of $p$ — the fluctuation interval becomes a theorem. It is also the reason why a physical measurement is repeated: the mean of $n$ independent measurements has uncertainty $\frac{\sigma}{\sqrt n}$. Three traps: believing that the law of large numbers forces a gap to be "made up" — the number of heads may stray indefinitely from $\frac n2$ even as the frequency approaches $\frac12$; forgetting independence, without which the variance of the mean is no longer $\frac{\sigma^{2}}{n}$; and confusing the bound given by the inequality with the exact probability.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "appliquer l'inégalité de Bienaymé-Tchebychev pour majorer $P(|X - \\mu| \\geqslant \\delta)$"
+        - "établir $E(M_n) = \\mu$ et $V(M_n) = \\sigma^{2}/n$ pour la moyenne d'un échantillon"
+        - "utiliser l'inégalité de concentration et énoncer la loi des grands nombres"
+        - "justifier l'intervalle de fluctuation d'une fréquence et le choix d'une taille d'échantillon"
+      en:
+        - "apply the Bienaymé-Chebyshev inequality to bound $P(|X - \\mu| \\geqslant \\delta)$"
+        - "establish $E(M_n) = \\mu$ and $V(M_n) = \\sigma^{2}/n$ for the mean of a sample"
+        - "use the concentration inequality and state the law of large numbers"
+        - "justify the fluctuation interval of a frequency and the choice of a sample size"
+sources: [source.bo.lycee.2019]

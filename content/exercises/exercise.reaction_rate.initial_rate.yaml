@@ -1,0 +1,54 @@
+# Leçon vitesse de réaction — lire une vitesse volumique initiale sur la pente de la tangente à l'origine (réponse numérique en mol/L/s)
+id: exercise.reaction_rate.initial_rate
+type: numeric
+nodeId: concept.reaction_rate
+depth: 1
+phenomenonId: phenomenon.chemistry.concentration_over_time
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un réactif $\mathrm{A}$ se décompose dans un réacteur fermé de volume constant, selon $\mathrm{A} \to \mathrm{B}$. Le suivi spectrophotométrique part de $[\mathrm{A}]_0 = 0{,}50\ \mathrm{mol/L}$, et la tangente à la courbe $[\mathrm{A}](t)$ tracée à la date $t = 0$ coupe l'axe des temps à $t = 10\ \mathrm{s}$.
+
+    Donnez la vitesse volumique de réaction à l'instant initial, en $\mathrm{mol\cdot L^{-1}\cdot s^{-1}}$.
+  en: |-
+    A reactant $\mathrm{A}$ decomposes in a closed reactor of constant volume, according to $\mathrm{A} \to \mathrm{B}$. The spectrophotometric monitoring starts from $[\mathrm{A}]_0 = 0.50\ \mathrm{mol/L}$, and the tangent to the curve $[\mathrm{A}](t)$ drawn at the date $t = 0$ cuts the time axis at $t = 10\ \mathrm{s}$.
+
+    Give the volumic rate of reaction at the initial instant, in $\mathrm{mol\cdot L^{-1}\cdot s^{-1}}$.
+numeric:
+  value: 0.050
+  unit: "mol·L⁻¹·s⁻¹"
+  tolerance: { kind: relative, value: 0.05 }
+  inputLabel: { fr: "v(0)", en: "v(0)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La vitesse volumique se lit sur la **pente de la tangente** : ici $v = -\dfrac{\mathrm{d}[\mathrm{A}]}{\mathrm{d}t}$, car le nombre stœchiométrique de $\mathrm{A}$ vaut un et $\mathrm{A}$ est un réactif.
+      en: |-
+        The volumic rate is read on the **slope of the tangent**: here $v = -\dfrac{\mathrm{d}[\mathrm{A}]}{\mathrm{d}t}$, since the stoichiometric number of $\mathrm{A}$ is one and $\mathrm{A}$ is a reactant.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La tangente passe par les points $(0\ \mathrm{s}\,;\ 0{,}50\ \mathrm{mol/L})$ et $(10\ \mathrm{s}\,;\ 0)$ : calculez sa pente comme celle de n'importe quelle droite, puis changez le signe.
+      en: |-
+        The tangent passes through the points $(0\ \mathrm{s};\ 0.50\ \mathrm{mol/L})$ and $(10\ \mathrm{s};\ 0)$: compute its slope as for any straight line, then change the sign.
+solution:
+  fr: |-
+    La tangente à l'origine passe par $(0\,;\ 0{,}50)$ et $(10\,;\ 0)$, sa pente vaut donc
+    $$\left(\frac{\mathrm{d}[\mathrm{A}]}{\mathrm{d}t}\right)_{t=0} = \frac{0 - 0{,}50}{10 - 0} = -0{,}050\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}.$$
+
+    Comme $\mathrm{A}$ est un réactif de nombre stœchiométrique $1$, la vitesse volumique de réaction est l'opposé de cette pente :
+    $$v(0) = -\frac{\mathrm{d}[\mathrm{A}]}{\mathrm{d}t} = 0{,}050\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}.$$
+
+    **Interprétation.** Le signe moins n'est pas un détail de présentation : une concentration de réactif décroît, sa dérivée est négative, et une vitesse doit rester positive. C'est aussi à $t = 0$ que la vitesse est la plus grande, puisque les réactifs sont alors les plus concentrés ; la tangente ne fera que s'aplatir ensuite, jusqu'à devenir horizontale à l'état final, où la vitesse s'annule. Enfin, l'abscisse à l'origine de la tangente vaut ici $\tau = 10\ \mathrm{s}$ : c'est la constante de temps de la décroissance, et le temps de demi-réaction vaut $t_{1/2} = \tau \ln 2 = 6{,}9\ \mathrm{s}$, pas $5\ \mathrm{s}$.
+  en: |-
+    The tangent at the origin passes through $(0;\ 0.50)$ and $(10;\ 0)$, so its slope is
+    $$\left(\frac{\mathrm{d}[\mathrm{A}]}{\mathrm{d}t}\right)_{t=0} = \frac{0 - 0.50}{10 - 0} = -0.050\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}.$$
+
+    Since $\mathrm{A}$ is a reactant with stoichiometric number $1$, the volumic rate of reaction is the opposite of that slope:
+    $$v(0) = -\frac{\mathrm{d}[\mathrm{A}]}{\mathrm{d}t} = 0.050\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}.$$
+
+    **Interpretation.** The minus sign is no matter of presentation: the concentration of a reactant decreases, its derivative is negative, and a rate must stay positive. It is also at $t = 0$ that the rate is largest, since the reactants are then the most concentrated; the tangent will only flatten afterwards, until it becomes horizontal in the final state, where the rate vanishes. Finally, the intercept of the tangent on the time axis is here $\tau = 10\ \mathrm{s}$: it is the time constant of the decay, and the half-reaction time is $t_{1/2} = \tau \ln 2 = 6.9\ \mathrm{s}$, not $5\ \mathrm{s}$.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 2, linkedConcepts: 3, transfer: 2, autonomy: 3 }

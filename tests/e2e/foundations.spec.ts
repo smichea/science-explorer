@@ -57,7 +57,7 @@ test.describe('earlier years as foundations', () => {
     await createExplorer(page);
     await page.goto('universe');
     const start = page.getByTestId('tour-start-panel');
-    await expect(start).toContainText(/30 destinations/);
+    await expect(start).toContainText(/58 destinations/);
     await start.click();
     const card = page.getByTestId('tour-card');
     await page.getByTestId('tour-include-foundations').check();
@@ -65,7 +65,7 @@ test.describe('earlier years as foundations', () => {
     await page.getByTestId('tour-next').click();
     await expect(card).toContainText('Seconde');
     await page.getByTestId('tour-exit').click();
-    await expect(start).not.toContainText(/30 destinations/);
+    await expect(start).not.toContainText(/58 destinations/);
     // A destination taught in Seconde and again in Terminale opens at its Terminale depth.
     await page.goto('concept/concept.function');
     await expect(page.getByTestId('follow-lesson')).toHaveAttribute('href', /depth=2/);

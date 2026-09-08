@@ -1,0 +1,47 @@
+# Effet Doppler — vitesse d'éloignement d'une galaxie lue dans le décalage vers le rouge (réponse numérique)
+id: exercise.doppler.galaxy
+type: numeric
+nodeId: phenomenon.doppler
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    Dans le spectre d'une galaxie lointaine, la raie rouge de l'hydrogène, dont la longueur d'onde au laboratoire vaut $\lambda_0 = 656{,}3\ \mathrm{nm}$, est observée à $\lambda = 662{,}9\ \mathrm{nm}$. Pour une vitesse petite devant celle de la lumière, le décalage Doppler s'écrit $\dfrac{\Delta\lambda}{\lambda_0} = \dfrac{v}{c}$, avec $c = 3{,}00 \times 10^{8}\ \mathrm{m \cdot s^{-1}}$.
+
+    À quelle vitesse $v$ cette galaxie s'éloigne-t-elle de nous ? Répondez en mètres par seconde, avec deux chiffres significatifs.
+  en: |-
+    In the spectrum of a distant galaxy, the red line of hydrogen, whose laboratory wavelength is $\lambda_0 = 656.3\ \mathrm{nm}$, is observed at $\lambda = 662.9\ \mathrm{nm}$. For a speed small compared with that of light, the Doppler shift is written $\dfrac{\Delta\lambda}{\lambda_0} = \dfrac{v}{c}$, with $c = 3.00 \times 10^{8}\ \mathrm{m \cdot s^{-1}}$.
+
+    At what speed $v$ is this galaxy moving away from us? Answer in metres per second, with two significant figures.
+numeric:
+  value: 3.0e6
+  unit: "m/s"
+  tolerance: { kind: relative, value: 0.06 }
+  inputLabel: { fr: "v", en: "v" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Commencez par le décalage lui-même : $\Delta\lambda = \lambda - \lambda_0$, en nanomètres, puis formez le rapport sans unité $\Delta\lambda / \lambda_0$.
+      en: |-
+        Start with the shift itself: $\Delta\lambda = \lambda - \lambda_0$, in nanometres, then form the dimensionless ratio $\Delta\lambda / \lambda_0$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Le rapport étant sans unité, les nanomètres se simplifient : inutile de convertir. Il reste $v = c\,\dfrac{\Delta\lambda}{\lambda_0}$.
+      en: |-
+        The ratio being dimensionless, the nanometres cancel: no conversion is needed. There remains $v = c\,\dfrac{\Delta\lambda}{\lambda_0}$.
+solution:
+  fr: |-
+    Le décalage vaut $\Delta\lambda = 662{,}9 - 656{,}3 = 6{,}6\ \mathrm{nm}$, soit un décalage relatif
+    $$\frac{\Delta\lambda}{\lambda_0} = \frac{6{,}6}{656{,}3} = 1{,}01 \times 10^{-2}, \qquad v = c\,\frac{\Delta\lambda}{\lambda_0} = 3{,}00 \times 10^{8} \times 1{,}01 \times 10^{-2} = 3{,}0 \times 10^{6}\ \mathrm{m \cdot s^{-1}}.$$
+
+    **Interprétation.** Trois mille kilomètres par seconde, un pour cent de la vitesse de la lumière : voilà une vitesse mesurée sans avoir bougé, sur un objet dont on ignore la distance, simplement parce qu'une raie connue s'est déplacée de six nanomètres. La longueur d'onde ayant **augmenté**, la galaxie s'**éloigne** : c'est un décalage vers le rouge. Hubble a fait cette mesure sur des dizaines de galaxies dans les années 1920 et a trouvé que les plus lointaines fuient le plus vite, ce qui a fondé l'idée d'un Univers en expansion. Deux vérifications utiles : le rapport $\Delta\lambda/\lambda_0$ est sans unité, donc les nanomètres n'ont pas besoin d'être convertis ; et l'approximation $\Delta\lambda/\lambda_0 = v/c$ ne vaut que parce que le résultat, un pour cent de $c$, est bien petit devant $c$.
+  en: |-
+    The shift is $\Delta\lambda = 662.9 - 656.3 = 6.6\ \mathrm{nm}$, that is a relative shift
+    $$\frac{\Delta\lambda}{\lambda_0} = \frac{6.6}{656.3} = 1.01 \times 10^{-2}, \qquad v = c\,\frac{\Delta\lambda}{\lambda_0} = 3.00 \times 10^{8} \times 1.01 \times 10^{-2} = 3.0 \times 10^{6}\ \mathrm{m \cdot s^{-1}}.$$
+
+    **Interpretation.** Three thousand kilometres a second, one per cent of the speed of light: here is a speed measured without moving, on an object whose distance is unknown, simply because a known line has moved by six nanometres. The wavelength having **increased**, the galaxy is **receding**: this is a redshift. Hubble made this measurement on dozens of galaxies in the 1920s and found that the most distant ones flee the fastest, which founded the idea of an expanding Universe. Two useful checks: the ratio $\Delta\lambda/\lambda_0$ is dimensionless, so the nanometres need no conversion; and the approximation $\Delta\lambda/\lambda_0 = v/c$ only holds because the result, one per cent of $c$, is indeed small compared with $c$.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 4, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 3, transfer: 4, autonomy: 3 }

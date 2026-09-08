@@ -1,0 +1,61 @@
+# Leçon piles — relier la masse de zinc consommée à la quantité d'électricité, puis à la durée de fonctionnement (réponse numérique en h)
+id: exercise.cell.zinc_lifetime
+type: numeric
+nodeId: model.electrochemical_cell
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une pile Daniell a pour électrode négative une lame de zinc de masse $m = 3{,}27\ \mathrm{g}$, plongée dans une solution de sulfate de zinc ; l'autre demi-pile contient une lame de cuivre dans du sulfate de cuivre en large excès. La pile débite un courant constant $I = 0{,}100\ \mathrm{A}$.
+
+    Données : $M(\mathrm{Zn}) = 65{,}4\ \mathrm{g/mol}$, $\mathcal{F} = 96\,500\ \mathrm{C/mol}$.
+
+    Pendant combien de temps la pile peut-elle débiter, en heures, avant que le zinc soit entièrement consommé ?
+  en: |-
+    A Daniell cell has as its negative electrode a zinc plate of mass $m = 3.27\ \mathrm{g}$, dipped into a zinc sulfate solution; the other half-cell holds a copper plate in copper sulfate in large excess. The cell delivers a constant current $I = 0.100\ \mathrm{A}$.
+
+    Data: $M(\mathrm{Zn}) = 65.4\ \mathrm{g/mol}$, $\mathcal{F} = 96,500\ \mathrm{C/mol}$.
+
+    For how long can the cell deliver, in hours, before the zinc is entirely consumed?
+numeric:
+  value: 26.8
+  unit: "h"
+  tolerance: { kind: relative, value: 0.04 }
+  inputLabel: { fr: "Δt", en: "Δt" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La demi-équation à l'anode est $\mathrm{Zn} = \mathrm{Zn^{2+}} + 2\,\mathrm{e^-}$ : chaque atome de zinc consommé libère **deux** électrons dans le circuit.
+      en: |-
+        The half-equation at the anode is $\mathrm{Zn} = \mathrm{Zn^{2+}} + 2\,\mathrm{e^-}$: each zinc atom consumed releases **two** electrons into the circuit.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Enchaînez trois relations : $n(\mathrm{Zn}) = m/M$, puis $Q = n(\mathrm{e^-})\,\mathcal{F}$, puis $Q = I\,\Delta t$. Le temps obtenu est en secondes ; une heure vaut $3600\ \mathrm{s}$.
+      en: |-
+        Chain three relations: $n(\mathrm{Zn}) = m/M$, then $Q = n(\mathrm{e^-})\,\mathcal{F}$, then $Q = I\,\Delta t$. The time obtained is in seconds; one hour is $3600\ \mathrm{s}$.
+solution:
+  fr: |-
+    La quantité de zinc disponible vaut
+    $$n(\mathrm{Zn}) = \frac{m}{M} = \frac{3{,}27}{65{,}4} = 0{,}0500\ \mathrm{mol}.$$
+
+    À l'anode, $\mathrm{Zn} = \mathrm{Zn^{2+}} + 2\,\mathrm{e^-}$ : chaque atome cède deux électrons, donc $n(\mathrm{e^-}) = 2 \times 0{,}0500 = 0{,}100\ \mathrm{mol}$. La quantité d'électricité correspondante est
+    $$Q = n(\mathrm{e^-})\,\mathcal{F} = 0{,}100 \times 96\,500 = 9{,}65\times10^{3}\ \mathrm{C},$$
+    et comme $Q = I\,\Delta t$,
+    $$\Delta t = \frac{Q}{I} = \frac{9{,}65\times10^{3}}{0{,}100} = 9{,}65\times10^{4}\ \mathrm{s} = \frac{9{,}65\times10^{4}}{3600} = 26{,}8\ \mathrm{h}.$$
+
+    **Interprétation.** La pile s'arrête parce que son réactif limitant, le zinc, a disparu : les ions cuivre étant en large excès, c'est bien la lame de zinc qui fixe la durée de vie. On dit aussi que la pile a une **capacité** de $9{,}65\times10^{3}\ \mathrm{C}$, soit $2{,}7\ \mathrm{A\cdot h}$ — l'unité qu'affichent les batteries de téléphone. Pendant ces vingt-sept heures, $0{,}0500\ \mathrm{mol}$ de cuivre, soit $3{,}2\ \mathrm{g}$, se sont déposés sur l'autre électrode : la matière se conserve, elle change simplement de côté. Doubler le courant diviserait la durée par deux sans changer la capacité, qui est un bilan de matière et non un bilan de temps.
+  en: |-
+    The amount of zinc available is
+    $$n(\mathrm{Zn}) = \frac{m}{M} = \frac{3.27}{65.4} = 0.0500\ \mathrm{mol}.$$
+
+    At the anode, $\mathrm{Zn} = \mathrm{Zn^{2+}} + 2\,\mathrm{e^-}$: each atom gives two electrons away, so $n(\mathrm{e^-}) = 2 \times 0.0500 = 0.100\ \mathrm{mol}$. The corresponding quantity of electricity is
+    $$Q = n(\mathrm{e^-})\,\mathcal{F} = 0.100 \times 96,500 = 9.65\times10^{3}\ \mathrm{C},$$
+    and since $Q = I\,\Delta t$,
+    $$\Delta t = \frac{Q}{I} = \frac{9.65\times10^{3}}{0.100} = 9.65\times10^{4}\ \mathrm{s} = \frac{9.65\times10^{4}}{3600} = 26.8\ \mathrm{h}.$$
+
+    **Interpretation.** The cell stops because its limiting reactant, the zinc, has disappeared: the copper ions being in large excess, it is indeed the zinc plate that sets the lifetime. One also says that the cell has a **capacity** of $9.65\times10^{3}\ \mathrm{C}$, that is $2.7\ \mathrm{A\cdot h}$ — the unit displayed on telephone batteries. During those twenty-seven hours, $0.0500\ \mathrm{mol}$ of copper, that is $3.2\ \mathrm{g}$, has been deposited on the other electrode: matter is conserved, it simply changes sides. Doubling the current would halve the duration without changing the capacity, which is a balance of matter and not a balance of time.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 3, calculationLength: 3, modellingOpenness: 2, linkedConcepts: 3, transfer: 2, autonomy: 3 }

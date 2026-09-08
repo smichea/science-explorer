@@ -1,0 +1,51 @@
+# Oscillateur mécanique — vitesse au point le plus bas par conservation de l'énergie mécanique (réponse numérique)
+id: exercise.oscillator.energy
+type: numeric
+nodeId: phenomenon.oscillator
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    Un pendule simple est formé d'une bille de masse $m = 200\ \mathrm{g}$ au bout d'un fil de longueur $L = 1{,}0\ \mathrm{m}$. On l'écarte de $\theta_{\max} = 10^\circ$ de la verticale et on le lâche **sans vitesse initiale**. On néglige tous les frottements et on prend $g = 9{,}81\ \mathrm{m \cdot s^{-2}}$.
+
+    Quelle est la valeur de sa vitesse au passage par le point le plus bas ? Répondez en mètres par seconde, avec deux chiffres significatifs.
+  en: |-
+    A simple pendulum is made of a ball of mass $m = 200\ \mathrm{g}$ at the end of a string of length $L = 1.0\ \mathrm{m}$. It is pulled $\theta_{\max} = 10^\circ$ away from the vertical and released **from rest**. All friction is neglected and $g = 9.81\ \mathrm{m \cdot s^{-2}}$.
+
+    What is the value of its speed as it passes through the lowest point? Answer in metres per second, with two significant figures.
+numeric:
+  value: 0.546
+  unit: "m/s"
+  tolerance: { kind: relative, value: 0.06 }
+  inputLabel: { fr: "v", en: "v" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Sans frottement, l'énergie mécanique se conserve : toute l'énergie potentielle du départ se retrouve en énergie cinétique en bas.
+      en: |-
+        Without friction the mechanical energy is conserved: all the potential energy of the start is found again as kinetic energy at the bottom.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        La bille est remontée de $h = L\,(1 - \cos\theta_{\max})$ au-dessus du point bas. Écrivez $\tfrac{1}{2}m v^2 = m\,g\,h$ : la masse se simplifie.
+      en: |-
+        The ball is raised by $h = L\,(1 - \cos\theta_{\max})$ above the lowest point. Write $\tfrac{1}{2}m v^2 = m\,g\,h$: the mass cancels.
+solution:
+  fr: |-
+    Au départ, la bille est plus haute que le point bas de
+    $$h = L\,(1 - \cos\theta_{\max}) = 1{,}0 \times (1 - 0{,}9848) = 1{,}52 \times 10^{-2}\ \mathrm{m},$$
+    soit un centimètre et demi. L'énergie mécanique se conserve, et elle est purement potentielle au départ, purement cinétique en bas :
+    $$\tfrac{1}{2}m v^2 = m\,g\,h \quad \Longrightarrow \quad v = \sqrt{2\,g\,h} = \sqrt{2 \times 9{,}81 \times 1{,}52 \times 10^{-2}} = 0{,}55\ \mathrm{m \cdot s^{-1}}.$$
+
+    **Interprétation.** La masse a disparu des deux côtés : une bille de plomb et une bille de liège lâchées du même angle passent en bas à la même vitesse, exactement comme deux corps en chute libre. L'énergie mécanique en jeu vaut $E_m = m\,g\,h = 0{,}200 \times 9{,}81 \times 1{,}52 \times 10^{-2} = 3{,}0 \times 10^{-2}\ \mathrm{J}$, trois centièmes de joule : c'est peu, et c'est pourquoi le moindre frottement de l'air finit par arrêter le pendule. Notez enfin que la vitesse est maximale exactement là où l'énergie potentielle est minimale, c'est-à-dire au passage par la verticale, et nulle aux deux extrémités : l'énergie ne fait que changer de forme.
+  en: |-
+    At the start, the ball is higher than the lowest point by
+    $$h = L\,(1 - \cos\theta_{\max}) = 1.0 \times (1 - 0.9848) = 1.52 \times 10^{-2}\ \mathrm{m},$$
+    that is, a centimetre and a half. The mechanical energy is conserved, and it is purely potential at the start, purely kinetic at the bottom:
+    $$\tfrac{1}{2}m v^2 = m\,g\,h \quad \Longrightarrow \quad v = \sqrt{2\,g\,h} = \sqrt{2 \times 9.81 \times 1.52 \times 10^{-2}} = 0.55\ \mathrm{m \cdot s^{-1}}.$$
+
+    **Interpretation.** The mass has disappeared from both sides: a lead ball and a cork ball released from the same angle pass through the bottom at the same speed, exactly like two bodies in free fall. The mechanical energy involved is $E_m = m\,g\,h = 0.200 \times 9.81 \times 1.52 \times 10^{-2} = 3.0 \times 10^{-2}\ \mathrm{J}$, three hundredths of a joule: it is little, and that is why the slightest air friction eventually stops the pendulum. Note finally that the speed is greatest exactly where the potential energy is smallest, that is at the passage through the vertical, and zero at both ends: the energy only changes form.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 3, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 4, transfer: 3, autonomy: 3 }

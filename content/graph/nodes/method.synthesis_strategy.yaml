@@ -1,0 +1,49 @@
+id: method.synthesis_strategy
+type: method
+world: world.chemistry
+region: region.chemistry.reactions_stoichiometry
+importance: 2
+tags: [lycee]
+title: { fr: "Stratégie de synthèse : sélectivité, protection, rendement", en: "Synthesis strategy: selectivity, protection, yield" }
+shortPurpose:
+  fr: "Concevoir une synthèse en plusieurs étapes : choisir des réactifs sélectifs, protéger un groupe caractéristique qui gênerait, et évaluer le rendement global de la séquence."
+  en: "Design a synthesis in several steps: choose selective reagents, protect a characteristic group that would get in the way, and assess the overall yield of the sequence."
+overview:
+  fr: >-
+    Fabriquer une molécule précise, ce n'est pas seulement suivre un protocole : c'est choisir une route. Quand une molécule porte deux groupes caractéristiques, un réactif trop brutal les transforme tous les deux ; il faut donc un réactif sélectif, ou bien masquer temporairement le groupe que l'on veut garder intact, le faire réagir ailleurs, puis le démasquer. C'est la protection, suivie de la déprotection. Chaque étape supplémentaire coûte du rendement, car les rendements se multiplient : trois étapes à quatre-vingts pour cent ne rendent qu'un peu plus de la moitié de la matière de départ. Choisir la route la plus courte, la plus sélective et la moins polluante, c'est tout le métier du chimiste de synthèse.
+  en: >-
+    Making a precise molecule is not just following a protocol: it is choosing a route. When a molecule carries two characteristic groups, too brutal a reagent transforms both of them; a selective reagent is needed, or else the group one wants to keep intact must be temporarily masked, made to react elsewhere, then unmasked. That is protection, followed by deprotection. Every extra step costs yield, because yields multiply: three steps at eighty percent return only a little more than half of the starting matter. Choosing the shortest, the most selective and the least polluting route is the whole craft of the synthetic chemist.
+aliases:
+  fr: ["stratégie de synthèse", "sélectivité", "protection d'un groupe", "déprotection", "synthèse multi-étapes", "rendement global", "chimie verte"]
+  en: ["synthesis strategy", "selectivity", "protection of a group", "deprotection", "multi-step synthesis", "overall yield", "green chemistry"]
+description:
+  fr: |
+    Une **stratégie de synthèse** est la suite d'étapes qui mène d'un réactif disponible à la molécule cible. On la conçoit à l'envers, en partant de la cible : quelle liaison former en dernier, à partir de quels fragments, avec quel réactif ? À chaque étape se posent quatre questions : le réactif attaque-t-il le bon site, quelle température et quel solvant employer, faut-il un catalyseur, et comment isoler le produit avant l'étape suivante. La difficulté principale est la **sélectivité** : une molécule qui porte plusieurs **groupes caractéristiques** offre plusieurs sites réactifs, et un réactif peu sélectif les transforme tous. Un réactif est **chimiosélectif** lorsqu'il ne réagit qu'avec un seul type de groupe. Quand il n'en existe pas, on emploie une **protection** : on transforme temporairement le groupe gênant en un groupe inerte, on réalise la transformation voulue ailleurs dans la molécule, puis on **déprotège** pour restituer le groupe initial. Une synthèse peptidique de la glycine et de l'alanine illustre le procédé : sans protection, quatre dipeptides se forment au lieu d'un seul ; en protégeant l'amine de la glycine et l'acide carboxylique de l'alanine, on n'obtient que le dipeptide voulu.
+
+    Le **rendement global** d'une séquence est le produit des rendements des étapes : $\eta_{\text{global}} = \eta_1 \times \eta_2 \times \cdots \times \eta_n$, chaque $\eta_i$ valant $\dfrac{n_{\text{obtenu}}}{n_{\max}}$ pour son étape. Deux étapes de rendements $80\ \%$ et $75\ \%$ ne donnent donc que $0{,}80 \times 0{,}75 = 0{,}60$, soit $60\ \%$ : en partant de $0{,}20\ \mathrm{mol}$ de réactif, on isole $0{,}20 \times 0{,}60 = 0{,}12\ \mathrm{mol}$ de produit, et si sa masse molaire vaut $180\ \mathrm{g/mol}$, une masse $m = 0{,}12 \times 180 = 22\ \mathrm{g}$. Les étapes de protection et de déprotection comptent comme les autres : elles améliorent la sélectivité mais coûtent deux rendements de plus, si bien qu'une route plus courte et moins sélective peut rester préférable. Une synthèse en dix étapes à $90\ \%$ chacune ne rend que $0{,}90^{10} = 35\ \%$ : c'est pourquoi le nombre d'étapes est le premier critère de comparaison de deux routes.
+
+    Comparer deux stratégies, c'est donc peser le rendement global, le nombre d'étapes, le coût et la disponibilité des réactifs, la durée, la sécurité et l'impact environnemental. La **chimie verte** ajoute des critères : l'**économie d'atomes**, rapport de la masse molaire du produit à la somme des masses molaires des réactifs, qui mesure la part de la matière engagée que l'on retrouve dans la cible ; le choix de solvants moins toxiques, voire de l'eau ; la catalyse, qui remplace un réactif consommé par une espèce régénérée ; et la limitation de l'énergie dépensée. Trois pièges : un rendement global ne s'**additionne** pas, il se multiplie ; un rendement élevé sur une étape non sélective ne sert à rien si le produit obtenu n'est pas le bon, car la **sélectivité prime sur le rendement** ; enfin, protéger un groupe n'est jamais gratuit — on n'y recourt que lorsqu'aucun réactif sélectif ne convient.
+  en: |
+    A **synthesis strategy** is the sequence of steps leading from an available reactant to the target molecule. It is designed backwards, starting from the target: which bond should be formed last, from which fragments, with which reagent? At each step four questions arise: does the reagent attack the right site, which temperature and which solvent should be used, is a catalyst needed, and how is the product isolated before the next step. The main difficulty is **selectivity**: a molecule carrying several **characteristic groups** offers several reactive sites, and a poorly selective reagent transforms them all. A reagent is **chemoselective** when it reacts with only one kind of group. When none exists, a **protection** is used: the group in the way is temporarily turned into an inert group, the desired transformation is carried out elsewhere in the molecule, then one **deprotects** to restore the initial group. A peptide synthesis from glycine and alanine illustrates the procedure: without protection, four dipeptides form instead of one; by protecting the amine of the glycine and the carboxylic acid of the alanine, only the wanted dipeptide is obtained.
+
+    The **overall yield** of a sequence is the product of the yields of its steps: $\eta_{\text{overall}} = \eta_1 \times \eta_2 \times \cdots \times \eta_n$, each $\eta_i$ being $\dfrac{n_{\text{obtained}}}{n_{\max}}$ for its own step. Two steps of yields $80\ \%$ and $75\ \%$ therefore give only $0.80 \times 0.75 = 0.60$, that is $60\ \%$: starting from $0.20\ \mathrm{mol}$ of reactant, one isolates $0.20 \times 0.60 = 0.12\ \mathrm{mol}$ of product, and if its molar mass is $180\ \mathrm{g/mol}$, a mass $m = 0.12 \times 180 = 22\ \mathrm{g}$. Protection and deprotection steps count like the others: they improve the selectivity but cost two more yields, so that a shorter, less selective route may still be preferable. A ten-step synthesis at $90\ \%$ each returns only $0.90^{10} = 35\ \%$: that is why the number of steps is the first criterion when comparing two routes.
+
+    Comparing two strategies therefore means weighing the overall yield, the number of steps, the cost and the availability of the reagents, the duration, the safety and the environmental impact. **Green chemistry** adds criteria: the **atom economy**, the ratio of the molar mass of the product to the sum of the molar masses of the reactants, which measures the share of the engaged matter that ends up in the target; the choice of less toxic solvents, water if possible; catalysis, which replaces a consumed reagent by a regenerated species; and limiting the energy spent. Three traps: an overall yield is not **added**, it is multiplied; a high yield on a non-selective step is worthless if the product obtained is not the right one, for **selectivity comes before yield**; and finally, protecting a group is never free — one resorts to it only when no selective reagent will do.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "identifier, dans une molécule, les groupes caractéristiques et les sites susceptibles de réagir avec un réactif donné"
+        - "justifier le recours à un réactif sélectif, ou à la protection puis à la déprotection d'un groupe caractéristique, dans une synthèse multi-étapes"
+        - "calculer le rendement d'une étape à partir de la quantité obtenue et de la quantité maximale, et le rendement global comme produit des rendements"
+        - "comparer deux stratégies de synthèse selon le nombre d'étapes, le rendement global, la sélectivité, le coût et l'impact environnemental"
+        - "évaluer l'économie d'atomes d'une transformation et citer les principes de la chimie verte mis en jeu"
+      en:
+        - "identify, in a molecule, the characteristic groups and the sites likely to react with a given reagent"
+        - "justify the use of a selective reagent, or of the protection and then deprotection of a characteristic group, in a multi-step synthesis"
+        - "compute the yield of one step from the amount obtained and the maximum amount, and the overall yield as the product of the yields"
+        - "compare two synthesis strategies by the number of steps, the overall yield, the selectivity, the cost and the environmental impact"
+        - "assess the atom economy of a transformation and name the principles of green chemistry involved"
+sources: []

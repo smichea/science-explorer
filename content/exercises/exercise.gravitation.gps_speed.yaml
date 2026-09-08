@@ -1,0 +1,47 @@
+# Mouvement dans un champ de gravitation — vitesse d'un satellite GPS sur son orbite circulaire (réponse numérique)
+id: exercise.gravitation.gps_speed
+type: numeric
+nodeId: model.gravitational_motion
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un satellite du système GPS décrit une orbite **circulaire** à l'altitude $h = 20\,200\ \mathrm{km}$ au-dessus de la surface de la Terre. On donne le rayon de la Terre $R_T = 6\,371\ \mathrm{km}$ et la constante $GM_T = 3{,}986 \times 10^{14}\ \mathrm{m^3 \cdot s^{-2}}$.
+
+    Calculez la valeur de sa vitesse $v$ sur cette orbite, en mètres par seconde, avec trois chiffres significatifs.
+  en: |-
+    A satellite of the GPS system describes a **circular** orbit at the altitude $h = 20{,}200\ \mathrm{km}$ above the surface of the Earth. The radius of the Earth is $R_E = 6{,}371\ \mathrm{km}$ and the constant $GM_E = 3.986 \times 10^{14}\ \mathrm{m^3 \cdot s^{-2}}$.
+
+    Compute the value of its speed $v$ on that orbit, in metres per second, with three significant figures.
+numeric:
+  value: 3873
+  unit: "m/s"
+  tolerance: { kind: relative, value: 0.03 }
+  inputLabel: { fr: "v", en: "v" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le rayon de l'orbite se compte depuis le **centre** de la Terre, pas depuis sa surface : $r = R_T + h$.
+      en: |-
+        The radius of the orbit is counted from the **centre** of the Earth, not from its surface: $r = R_E + h$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Sur un cercle, l'accélération est centripète et vaut $\dfrac{v^2}{r}$ ; la deuxième loi de Newton l'égale à $\dfrac{GM_T}{r^2}$, d'où $v = \sqrt{\dfrac{GM_T}{r}}$.
+      en: |-
+        On a circle the acceleration is centripetal and equals $\dfrac{v^2}{r}$; Newton's second law makes it equal to $\dfrac{GM_E}{r^2}$, hence $v = \sqrt{\dfrac{GM_E}{r}}$.
+solution:
+  fr: |-
+    Le rayon de l'orbite vaut $r = R_T + h = 6\,371 + 20\,200 = 26\,571\ \mathrm{km} = 2{,}6571 \times 10^{7}\ \mathrm{m}$. La seule force est la gravitation, donc l'accélération est centripète :
+    $$\frac{v^2}{r} = \frac{GM_T}{r^2} \quad \Longrightarrow \quad v = \sqrt{\frac{GM_T}{r}} = \sqrt{\frac{3{,}986 \times 10^{14}}{2{,}6571 \times 10^{7}}} = \sqrt{1{,}500 \times 10^{7}} = 3{,}87 \times 10^{3}\ \mathrm{m \cdot s^{-1}}.$$
+
+    **Interprétation.** Presque quatre kilomètres par seconde : douze fois la vitesse du son, et pourtant deux fois moins vite que la Station spatiale, qui vole bien plus bas. C'est la règle générale du champ de gravitation : plus l'orbite est haute, plus le satellite est lent, car $v = \sqrt{GM_T/r}$ décroît quand $r$ augmente. La période s'en déduit, $T = \dfrac{2\pi r}{v} = 4{,}31 \times 10^{4}\ \mathrm{s}$, soit environ douze heures : un satellite GPS fait exactement deux tours pendant qu'un point de la Terre en fait un, ce qui le ramène chaque jour au-dessus des mêmes régions. Remarquez enfin que la masse du satellite n'est jamais intervenue.
+  en: |-
+    The radius of the orbit is $r = R_E + h = 6{,}371 + 20{,}200 = 26{,}571\ \mathrm{km} = 2.6571 \times 10^{7}\ \mathrm{m}$. Gravitation is the only force, so the acceleration is centripetal:
+    $$\frac{v^2}{r} = \frac{GM_E}{r^2} \quad \Longrightarrow \quad v = \sqrt{\frac{GM_E}{r}} = \sqrt{\frac{3.986 \times 10^{14}}{2.6571 \times 10^{7}}} = \sqrt{1.500 \times 10^{7}} = 3.87 \times 10^{3}\ \mathrm{m \cdot s^{-1}}.$$
+
+    **Interpretation.** Almost four kilometres a second: twelve times the speed of sound, and yet twice as slow as the Space Station, which flies far lower. This is the general rule of a gravitational field: the higher the orbit, the slower the satellite, because $v = \sqrt{GM_E/r}$ decreases as $r$ grows. The period follows, $T = \dfrac{2\pi r}{v} = 4.31 \times 10^{4}\ \mathrm{s}$, about twelve hours: a GPS satellite goes round exactly twice while a point of the Earth goes round once, which brings it back over the same regions every day. Note finally that the mass of the satellite never appeared.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 3, transfer: 2, autonomy: 2 }

@@ -1,0 +1,57 @@
+id: phenomenon.thermal_transfer
+type: phenomenon
+world: world.physics
+region: region.physics.thermodynamics
+importance: 2
+tags: [lycee]
+title: { fr: "Transferts thermiques : conduction, convection, rayonnement, loi de Newton", en: "Thermal transfers: conduction, convection, radiation, Newton's law" }
+shortPurpose:
+  fr: "Identifier par quel chemin l'énergie passe d'un corps chaud à un corps froid, et calculer le flux, la résistance thermique et le temps de refroidissement."
+  en: "Identify by which path energy goes from a hot body to a cold one, and compute the flux, the thermal resistance and the cooling time."
+overview:
+  fr: >-
+    Une tasse de thé posée sur la table refroidit toujours, jamais l'inverse : l'énergie va spontanément du chaud vers le froid. Elle peut y aller de trois façons. Par conduction, de proche en proche dans la matière immobile, comme le long d'une cuillère métallique. Par convection, emportée par un fluide qui circule, comme l'air au-dessus d'un radiateur. Par rayonnement, sous forme d'ondes qui traversent le vide, comme la lumière du Soleil. Plus l'écart de température est grand, plus le transfert est rapide, et c'est pourquoi le thé refroidit vite au début, puis de plus en plus lentement.
+  en: >-
+    A cup of tea left on the table always cools down, never the other way round: energy goes spontaneously from hot to cold. It can go three ways. By conduction, step by step through matter at rest, as along a metal spoon. By convection, carried by a circulating fluid, as the air above a radiator. By radiation, as waves crossing a vacuum, as the light of the Sun. The larger the temperature difference, the faster the transfer, and that is why tea cools quickly at first, then more and more slowly.
+aliases:
+  fr: ["conduction thermique", "convection", "rayonnement thermique", "flux thermique", "résistance thermique", "loi de refroidissement de Newton"]
+  en: ["thermal conduction", "convection", "thermal radiation", "thermal flux", "thermal resistance", "Newton's law of cooling"]
+description:
+  fr: |
+    Un **transfert thermique** est un passage d'énergie entre deux corps de températures différentes, sans travail mécanique. Il se fait toujours spontanément du corps **le plus chaud vers le plus froid**, et par trois modes. La **conduction** propage l'agitation thermique de proche en proche dans la matière immobile, sans déplacement d'ensemble : elle est rapide dans les métaux, lente dans l'air, le bois ou la laine de verre. La **convection** emporte l'énergie avec un fluide qui se déplace, l'air chaud montant au-dessus d'un radiateur, l'eau circulant dans un chauffage central. Le **rayonnement** transporte l'énergie par des ondes électromagnétiques, sans aucun support matériel : c'est ainsi que le Soleil chauffe la Terre à travers le vide. On mesure ces transferts par le **flux thermique** $\Phi = \dfrac{Q}{\Delta t}$, une puissance en watts, et l'on décrit une paroi par sa **résistance thermique** $R_{th}$, définie par
+    $$\Delta\theta = R_{th}\,\Phi, \qquad R_{th} = \frac{e}{\lambda\,S} \ \text{ en } \mathrm{K \cdot W^{-1}},$$
+    d'autant plus grande que la paroi est épaisse, peu conductrice et de petite surface : une bonne isolation est une grande résistance thermique.
+
+    Deux calculs suffisent à s'orienter. Un mur de béton de $S = 20\ \mathrm{m^2}$ et $e = 20\ \mathrm{cm}$, de conductivité $\lambda = 1{,}0\ \mathrm{W \cdot m^{-1} \cdot K^{-1}}$, a une résistance $R_{th} = \dfrac{0{,}20}{1{,}0 \times 20} = 1{,}0 \times 10^{-2}\ \mathrm{K \cdot W^{-1}}$ : sous un écart de $15\ ^\circ\mathrm{C}$ entre l'intérieur et l'extérieur, il laisse fuir $\Phi = \dfrac{15}{1{,}0 \times 10^{-2}} = 1\,500\ \mathrm{W}$, soit $36\ \mathrm{kWh}$ par jour. Ajoutez $10\ \mathrm{cm}$ de laine de verre, $\lambda = 0{,}040$ : la résistance passe à $0{,}135\ \mathrm{K \cdot W^{-1}}$ et le flux tombe à $111\ \mathrm{W}$, treize fois moins. Pour un corps qui refroidit dans l'air, la **loi de Newton** dit que le flux perdu est proportionnel à l'écart de température, $\Phi = h S\,(\theta - \theta_{\text{ext}})$ ; joint au premier principe, $C\,\dfrac{d\theta}{dt} = -h S\,(\theta - \theta_{\text{ext}})$, il donne une décroissance exponentielle
+    $$\theta(t) = \theta_{\text{ext}} + (\theta_0 - \theta_{\text{ext}})\,e^{-t/\tau}, \qquad \tau = \frac{C}{hS}.$$
+    Un thé à $80\ ^\circ\mathrm{C}$ dans une pièce à $20\ ^\circ\mathrm{C}$, avec $\tau = 300\ \mathrm{s}$, est à $42\ ^\circ\mathrm{C}$ après cinq minutes et à $23\ ^\circ\mathrm{C}$ après quinze.
+
+    Ces trois modes gouvernent l'isolation d'une maison, la thermos qui les combat tous les trois — parois isolantes contre la conduction, vide entre elles contre la convection, surfaces argentées contre le rayonnement —, le refroidissement d'un moteur, l'effet de serre et le climat. Pièges classiques : confondre le flux $\Phi$, en watts, et l'énergie $Q$, en joules, alors que $Q = \Phi\,\Delta t$ ; confondre température et énergie, et dire qu'un corps « donne du froid », alors que c'est l'énergie qui circule, toujours dans le même sens ; croire que la conduction peut traverser le vide, ce que seul le rayonnement fait ; oublier que la résistance d'une paroi croît avec l'épaisseur mais **décroît** avec la surface ; et penser que la loi de Newton donne une décroissance linéaire, alors que la pente diminue avec l'écart restant.
+  en: |
+    A **thermal transfer** is a passage of energy between two bodies at different temperatures, with no mechanical work. It always goes spontaneously from the **hotter body to the colder one**, and by three modes. **Conduction** propagates the thermal agitation step by step through matter at rest, with no bulk motion: it is fast in metals, slow in air, wood or glass wool. **Convection** carries the energy away with a moving fluid, hot air rising above a radiator, water circulating in a central heating system. **Radiation** carries the energy by electromagnetic waves, with no material support at all: this is how the Sun heats the Earth across a vacuum. These transfers are measured by the **thermal flux** $\Phi = \dfrac{Q}{\Delta t}$, a power in watts, and a wall is described by its **thermal resistance** $R_{th}$, defined by
+    $$\Delta\theta = R_{th}\,\Phi, \qquad R_{th} = \frac{e}{\lambda\,S} \ \text{ in } \mathrm{K \cdot W^{-1}},$$
+    the larger the thicker the wall, the less conducting and the smaller its area: a good insulation is a large thermal resistance.
+
+    Two computations are enough to find one's bearings. A concrete wall of $S = 20\ \mathrm{m^2}$ and $e = 20\ \mathrm{cm}$, of conductivity $\lambda = 1.0\ \mathrm{W \cdot m^{-1} \cdot K^{-1}}$, has a resistance $R_{th} = \dfrac{0.20}{1.0 \times 20} = 1.0 \times 10^{-2}\ \mathrm{K \cdot W^{-1}}$: under a difference of $15\ ^\circ\mathrm{C}$ between inside and outside, it lets $\Phi = \dfrac{15}{1.0 \times 10^{-2}} = 1{,}500\ \mathrm{W}$ escape, that is $36\ \mathrm{kWh}$ a day. Add $10\ \mathrm{cm}$ of glass wool, $\lambda = 0.040$: the resistance goes to $0.135\ \mathrm{K \cdot W^{-1}}$ and the flux drops to $111\ \mathrm{W}$, thirteen times less. For a body cooling in air, **Newton's law** says that the flux lost is proportional to the temperature difference, $\Phi = h S\,(\theta - \theta_{\text{ext}})$; joined to the first principle, $C\,\dfrac{d\theta}{dt} = -h S\,(\theta - \theta_{\text{ext}})$, it gives an exponential decrease
+    $$\theta(t) = \theta_{\text{ext}} + (\theta_0 - \theta_{\text{ext}})\,e^{-t/\tau}, \qquad \tau = \frac{C}{hS}.$$
+    A tea at $80\ ^\circ\mathrm{C}$ in a room at $20\ ^\circ\mathrm{C}$, with $\tau = 300\ \mathrm{s}$, is at $42\ ^\circ\mathrm{C}$ after five minutes and at $23\ ^\circ\mathrm{C}$ after fifteen.
+
+    These three modes govern the insulation of a house, the vacuum flask that fights all three of them — insulating walls against conduction, vacuum between them against convection, silvered surfaces against radiation —, the cooling of an engine, the greenhouse effect and the climate. Classic traps: confusing the flux $\Phi$, in watts, with the energy $Q$, in joules, when $Q = \Phi\,\Delta t$; confusing temperature and energy, and saying that a body "gives cold", when it is energy that circulates, always in the same direction; believing that conduction can cross a vacuum, which only radiation does; forgetting that the resistance of a wall grows with the thickness but **falls** with the area; and thinking that Newton's law gives a linear decrease, when the slope shrinks with the remaining difference.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "distinguer conduction, convection et rayonnement et identifier le mode dominant dans une situation donnée"
+        - "relier le flux thermique à l'énergie transférée par $Q = \\Phi\\,\\Delta t$ et manipuler des watts et des joules sans les confondre"
+        - "exploiter la résistance thermique d'une paroi, $\\Delta\\theta = R_{th}\\,\\Phi$, et comparer deux isolations"
+        - "écrire le bilan d'énergie d'un corps qui refroidit et reconnaître l'équation différentielle du premier ordre qui en découle"
+        - "exploiter la loi de refroidissement de Newton et la constante de temps $\\tau = C/(hS)$"
+      en:
+        - "distinguish conduction, convection and radiation and identify the dominant mode in a given situation"
+        - "relate the thermal flux to the energy transferred by $Q = \\Phi\\,\\Delta t$ and handle watts and joules without confusing them"
+        - "use the thermal resistance of a wall, $\\Delta\\theta = R_{th}\\,\\Phi$, and compare two insulations"
+        - "write the energy balance of a cooling body and recognise the first-order differential equation that follows"
+        - "use Newton's law of cooling and the time constant $\\tau = C/(hS)$"
+sources: [source.bo.lycee.2019]

@@ -1,0 +1,49 @@
+# Effet Doppler — vitesse d'une voiture déduite du décalage de fréquence entendu (réponse numérique)
+id: exercise.doppler.car_speed
+type: numeric
+nodeId: phenomenon.doppler
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une voiture s'approche en ligne droite d'un piéton immobile, klaxon bloqué. Le klaxon émet un son de fréquence $f = 500\ \mathrm{Hz}$, et le piéton entend $f' = 530\ \mathrm{Hz}$. La célérité du son dans l'air vaut $v = 340\ \mathrm{m \cdot s^{-1}}$.
+
+    Quelle est la vitesse $v_S$ de la voiture ? Répondez en mètres par seconde, avec deux chiffres significatifs.
+  en: |-
+    A car comes straight towards a motionless pedestrian, its horn stuck. The horn emits a sound of frequency $f = 500\ \mathrm{Hz}$, and the pedestrian hears $f' = 530\ \mathrm{Hz}$. The speed of sound in air is $v = 340\ \mathrm{m \cdot s^{-1}}$.
+
+    What is the speed $v_S$ of the car? Answer in metres per second, with two significant figures.
+numeric:
+  value: 19.2
+  unit: "m/s"
+  tolerance: { kind: relative, value: 0.05 }
+  inputLabel: { fr: "v_S", en: "v_S" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La source se rapproche, donc les crêtes se tassent devant elle : $f' = f\,\dfrac{v}{v - v_S}$. La fréquence perçue est bien plus grande que la fréquence émise, ce qui confirme le signe.
+      en: |-
+        The source is coming closer, so the crests pack together in front of it: $f' = f\,\dfrac{v}{v - v_S}$. The received frequency is indeed larger than the emitted one, which confirms the sign.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Isolez la vitesse : $v - v_S = v\,\dfrac{f}{f'}$, donc $v_S = v\left(1 - \dfrac{f}{f'}\right)$.
+      en: |-
+        Isolate the speed: $v - v_S = v\,\dfrac{f}{f'}$, so $v_S = v\left(1 - \dfrac{f}{f'}\right)$.
+solution:
+  fr: |-
+    La source se rapproche, donc $f' = f\,\dfrac{v}{v - v_S}$. En isolant la vitesse,
+    $$v_S = v\left(1 - \frac{f}{f'}\right) = 340 \times \left(1 - \frac{500}{530}\right) = 340 \times 0{,}0566 = 19\ \mathrm{m \cdot s^{-1}}.$$
+    Soit $19 \times 3{,}6 \approx 69\ \mathrm{km \cdot h^{-1}}$.
+
+    **Interprétation.** C'est exactement le principe du **radar de vitesse** : on n'a pas mesuré une position à deux instants, on a mesuré une seule fréquence, et la vitesse en est sortie. Le décalage relatif $\dfrac{\Delta f}{f} = \dfrac{30}{500} = 6\ \%$ n'est autre que le rapport $\dfrac{v_S}{v - v_S}$, très proche de $\dfrac{v_S}{v}$ tant que la voiture va bien moins vite que le son. Un vrai radar renvoie l'onde sur le véhicule, si bien que le décalage compte double : la voiture joue d'abord le rôle d'observateur mobile, puis celui de source mobile. Notez enfin que dès que la voiture aura dépassé le piéton, il entendra $f' = 500 \times \dfrac{340}{359} = 474\ \mathrm{Hz}$ : la note tombera d'un coup de cinquante-six hertz.
+  en: |-
+    The source is coming closer, so $f' = f\,\dfrac{v}{v - v_S}$. Isolating the speed,
+    $$v_S = v\left(1 - \frac{f}{f'}\right) = 340 \times \left(1 - \frac{500}{530}\right) = 340 \times 0.0566 = 19\ \mathrm{m \cdot s^{-1}}.$$
+    That is $19 \times 3.6 \approx 69\ \mathrm{km \cdot h^{-1}}$.
+
+    **Interpretation.** This is exactly the principle of the **speed radar**: no position was measured at two instants, a single frequency was measured, and the speed came out of it. The relative shift $\dfrac{\Delta f}{f} = \dfrac{30}{500} = 6\ \%$ is nothing but the ratio $\dfrac{v_S}{v - v_S}$, very close to $\dfrac{v_S}{v}$ as long as the car goes much slower than sound. A real radar bounces the wave off the vehicle, so the shift counts twice: the car first plays the part of a moving observer, then that of a moving source. Note finally that as soon as the car has passed the pedestrian, he will hear $f' = 500 \times \dfrac{340}{359} = 474\ \mathrm{Hz}$: the note will drop all at once by fifty-six hertz.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 3, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 2, transfer: 2, autonomy: 2 }

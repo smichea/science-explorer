@@ -157,82 +157,6 @@ routes:
       - method.ir_spectroscopy
       - method.organic_synthesis
       - phenomenon.combustion
-  - id: route.terminale.analysis
-    kind: recommended
-    stage: terminale
-    title:
-      fr: "Terminale : limites, continuité, logarithme, intégrale"
-      en: "Grade 12: limits, continuity, logarithm, integral"
-    summary:
-      fr: "Le parcours conseillé de Terminale en analyse : les limites d'une suite et d'une fonction, la continuité et le théorème des valeurs intermédiaires, le logarithme népérien, puis le calcul intégral comme aire et comme primitive."
-      en: "The recommended Grade 12 path in analysis: the limits of a sequence and of a function, continuity and the intermediate value theorem, the natural logarithm, then integral calculus as an area and as an antiderivative."
-    nodes:
-      - concept.sequence_limit
-      - concept.limit
-      - concept.continuity
-      - tool.logarithm
-      - tool.integral
-  - id: route.terminale.geometry_probability
-    kind: thematic
-    stage: terminale
-    title:
-      fr: "Terminale : géométrie dans l'espace, dénombrement, loi binomiale"
-      en: "Grade 12: geometry in space, counting, binomial law"
-    summary:
-      fr: "Les vecteurs, droites et plans de l'espace avec le produit scalaire, puis le dénombrement, la loi binomiale, la somme de variables aléatoires et la loi des grands nombres."
-      en: "Vectors, lines and planes in space with the dot product, then counting, the binomial law, the sum of random variables and the law of large numbers."
-    nodes:
-      - tool.space_geometry
-      - tool.counting
-      - concept.binomial_law
-      - concept.random_variable_sum
-      - concept.law_of_large_numbers
-  - id: route.terminale.motion_energy
-    kind: thematic
-    stage: terminale
-    title:
-      fr: "Terminale : mouvements, gravitation, oscillateur, énergie"
-      en: "Grade 12: motions, gravitation, oscillator, energy"
-    summary:
-      fr: "Le mouvement circulaire et son accélération centripète, les lois de Kepler et les satellites, l'oscillateur mécanique et sa période propre, puis le premier principe et les transferts thermiques."
-      en: "Circular motion and its centripetal acceleration, Kepler's laws and satellites, the mechanical oscillator and its natural period, then the first principle and thermal transfers."
-    nodes:
-      - phenomenon.circular_motion
-      - model.gravitational_motion
-      - phenomenon.oscillator
-      - law.first_principle
-      - phenomenon.thermal_transfer
-  - id: route.terminale.waves_light
-    kind: thematic
-    stage: terminale
-    title:
-      fr: "Terminale : intensité sonore, diffraction, Doppler, lunette"
-      en: "Grade 12: sound level, diffraction, Doppler, telescope"
-    summary:
-      fr: "Le niveau d'intensité sonore et son échelle logarithmique, la diffraction et les interférences de la lumière, l'effet Doppler, et la lunette astronomique qui grossit les angles."
-      en: "The sound intensity level and its logarithmic scale, the diffraction and interference of light, the Doppler effect, and the astronomical telescope that magnifies angles."
-    nodes:
-      - concept.sound_level
-      - phenomenon.interference
-      - phenomenon.doppler
-      - model.telescope
-  - id: route.terminale.matter
-    kind: thematic
-    stage: terminale
-    title:
-      fr: "Terminale : acides et bases, équilibres, piles, cinétique, synthèse"
-      en: "Grade 12: acids and bases, equilibria, cells, kinetics, synthesis"
-    summary:
-      fr: "Le pH et les domaines de prédominance, le quotient de réaction et l'équilibre, le titrage suivi par pH-métrie, les piles et l'évolution spontanée, la vitesse d'une réaction, puis la stratégie de synthèse et l'analyse instrumentale."
-      en: "The pH and the predominance domains, the reaction quotient and equilibrium, the titration followed by pH, cells and spontaneous evolution, the rate of a reaction, then the strategy of a synthesis and instrumental analysis."
-    nodes:
-      - model.acid_base
-      - concept.chemical_equilibrium
-      - method.titration
-      - model.electrochemical_cell
-      - concept.reaction_rate
-      - method.synthesis_strategy
-      - method.instrumental_analysis
   - id: route.first_journey
     kind: recommended
     stage: terminale
@@ -291,8 +215,8 @@ routes:
       fr: "L'exponentielle est partout"
       en: "The exponential is everywhere"
     summary:
-      fr: "Une seule équation pour trois mondes : l'exponentielle, la condition initiale et l'équation différentielle, puis le schéma « vitesse proportionnelle à la quantité restante » retrouvé dans un circuit, une réaction, un noyau et une chute freinée."
-      en: "One equation for three worlds: the exponential, the initial condition and the differential equation, then the pattern \"rate proportional to the remaining quantity\" found again in a circuit, a reaction, a nucleus and a braked fall."
+      fr: "Une seule équation pour trois mondes : l'exponentielle, la condition initiale et l'équation différentielle, puis le schéma « vitesse proportionnelle à la quantité restante » retrouvé dans un circuit, une réaction dont on mesure la vitesse, un noyau et une chute freinée."
+      en: "One equation for three worlds: the exponential, the initial condition and the differential equation, then the pattern \"rate proportional to the remaining quantity\" found again in a circuit, a reaction whose rate is measured, a nucleus and a braked fall."
     nodes:
       - tool.exponential
       - concept.initial_condition
@@ -300,11 +224,90 @@ routes:
       - concept.rate_proportional_to_quantity
       - model.rc_circuit
       - phenomenon.circuit.capacitor_charging
+      - concept.reaction_rate
       - phenomenon.chemistry.concentration_over_time
       - model.reaction_order_one
       - phenomenon.chemistry.first_order_reaction
       - phenomenon.nuclear.radioactive_decay
       - phenomenon.motion.with_drag
+
+  - id: route.terminale.analysis
+    kind: recommended
+    stage: terminale
+    title:
+      fr: "Terminale : programmer, les limites, la continuité, le logarithme, l'intégrale"
+      en: "Grade 12: programming, limits, continuity, the logarithm, the integral"
+    summary:
+      fr: "Le parcours conseillé de Terminale en analyse : les algorithmes de l'année (seuil, dichotomie, somme de Riemann), les limites d'une suite et d'une fonction, la continuité et le théorème des valeurs intermédiaires, le logarithme népérien, les dérivées trigonométriques, puis le calcul intégral comme aire et comme primitive."
+      en: "The recommended Grade 12 path in analysis: the algorithms of the year (threshold, bisection, Riemann sum), the limits of a sequence and of a function, continuity and the intermediate value theorem, the natural logarithm, the trigonometric derivatives, then integral calculus as an area and as an antiderivative."
+    nodes:
+      - tool.algorithmics
+      - concept.sequence_limit
+      - concept.limit
+      - concept.continuity
+      - tool.logarithm
+      - tool.trigonometric_functions
+      - tool.integral
+  - id: route.terminale.geometry_probability
+    kind: thematic
+    stage: terminale
+    title:
+      fr: "Terminale : géométrie dans l'espace, dénombrement, loi binomiale"
+      en: "Grade 12: geometry in space, counting, binomial law"
+    summary:
+      fr: "Les vecteurs, droites et plans de l'espace avec le produit scalaire, puis le dénombrement, la loi binomiale, la somme de variables aléatoires et la loi des grands nombres."
+      en: "Vectors, lines and planes in space with the dot product, then counting, the binomial law, the sum of random variables and the law of large numbers."
+    nodes:
+      - tool.space_geometry
+      - tool.counting
+      - concept.binomial_law
+      - concept.random_variable_sum
+      - concept.law_of_large_numbers
+  - id: route.terminale.motion_energy
+    kind: thematic
+    stage: terminale
+    title:
+      fr: "Terminale : mouvements, gravitation, oscillateur, énergie"
+      en: "Grade 12: motions, gravitation, oscillator, energy"
+    summary:
+      fr: "Le mouvement circulaire et son accélération centripète, les lois de Kepler et les satellites, l'oscillateur mécanique et sa période propre, puis le premier principe et les transferts thermiques."
+      en: "Circular motion and its centripetal acceleration, Kepler's laws and satellites, the mechanical oscillator and its natural period, then the first principle and thermal transfers."
+    nodes:
+      - phenomenon.circular_motion
+      - model.gravitational_motion
+      - phenomenon.oscillator
+      - law.first_principle
+      - phenomenon.thermal_transfer
+  - id: route.terminale.waves_light
+    kind: thematic
+    stage: terminale
+    title:
+      fr: "Terminale : intensité sonore, diffraction, Doppler, lunette"
+      en: "Grade 12: sound level, diffraction, Doppler, telescope"
+    summary:
+      fr: "Le niveau d'intensité sonore et son échelle logarithmique, la diffraction et les interférences de la lumière, l'effet Doppler, et la lunette astronomique qui grossit les angles."
+      en: "The sound intensity level and its logarithmic scale, the diffraction and interference of light, the Doppler effect, and the astronomical telescope that magnifies angles."
+    nodes:
+      - concept.sound_level
+      - phenomenon.interference
+      - phenomenon.doppler
+      - model.telescope
+  - id: route.terminale.matter
+    kind: thematic
+    stage: terminale
+    title:
+      fr: "Terminale : acides et bases, équilibres, piles, cinétique, synthèse"
+      en: "Grade 12: acids and bases, equilibria, cells, kinetics, synthesis"
+    summary:
+      fr: "Le pH et les domaines de prédominance, le quotient de réaction et l'équilibre, le titrage suivi par pH-métrie, les piles et l'évolution spontanée, puis la stratégie de synthèse et l'analyse instrumentale."
+      en: "The pH and the predominance domains, the reaction quotient and equilibrium, the titration followed by pH, cells and spontaneous evolution, then the strategy of a synthesis and instrumental analysis."
+    nodes:
+      - model.acid_base
+      - concept.chemical_equilibrium
+      - method.titration
+      - model.electrochemical_cell
+      - method.synthesis_strategy
+      - method.instrumental_analysis
 
 # Guided flights ("bird's-eye"): an ordered sequence of legs flown over automatically. A leg is an
 # authored route, or an automatic group collecting the lessons of the learner's horizon not yet
@@ -365,12 +368,36 @@ tours:
             Du mouvement et de l'énergie à la matière : suivre une transformation par son avancement, doser, échanger des électrons, dessiner les molécules et les synthétiser, jusqu'aux combustions.
           en: >-
             From motion and energy to matter: following a transformation through its extent, titrating, exchanging electrons, drawing molecules and synthesising them, down to combustions.
+      - route: route.first_journey
+        transition:
+          fr: >-
+            La Première est derrière nous. Voici le premier voyage de Terminale : la fonction et sa courbe, revues avec les limites, puis la dérivée approfondie, l'outil central de tout ce qui suit.
+          en: >-
+            Grade 11 is behind us. Here is the first journey of Grade 12: the function and its graph, revisited with limits, then the derivative deepened, the central tool of everything that follows.
+      - route: route.motion
+        transition:
+          fr: >-
+            La dérivée est forgée. Voyons ce qu'elle permet en physique : d'abord décrire un mouvement, position, vitesse, accélération, puis le prédire avec la deuxième loi de Newton.
+          en: >-
+            The derivative is forged. Let us see what it makes possible in physics: first describing a motion, position, velocity, acceleration, then predicting it with Newton's second law.
+      - route: route.galileo_history
+        transition:
+          fr: >-
+            Ces lois ont une histoire. Remontons le temps jusqu'à Padoue, vers mille six cent quatre, pour rencontrer l'homme, les lieux et l'époque où le mouvement a été mesuré avant d'être expliqué.
+          en: >-
+            These laws have a history. Let us go back in time to Padua, around sixteen hundred and four, to meet the man, the places and the era when motion was measured before it was explained.
+      - route: route.exponential_everywhere
+        transition:
+          fr: >-
+            Galilée a montré comment une loi sort d'une mesure. La route suivante montre comment une seule loi traverse trois mondes : partout où la vitesse est proportionnelle à ce qui reste, l'exponentielle apparaît.
+          en: >-
+            Galileo showed how a law comes out of a measurement. The next route shows how a single law crosses three worlds: wherever the rate is proportional to what remains, the exponential appears.
       - route: route.terminale.analysis
         transition:
           fr: >-
-            La Première est derrière nous. La Terminale commence par l'analyse : ce qui se passe quand on s'approche de l'infini ou d'un point interdit, la continuité qui garantit qu'une solution existe, le logarithme qui défait l'exponentielle, et l'intégrale qui mesure une aire.
+            Ces quatre routes ont posé les fondations de l'année. Poussons maintenant l'analyse jusqu'au bout : les algorithmes qui cherchent un seuil, une solution ou une aire, ce qui se passe quand on s'approche de l'infini ou d'un point interdit, la continuité qui garantit qu'une solution existe, le logarithme qui défait l'exponentielle, et l'intégrale qui mesure une aire.
           en: >-
-            Grade 11 is behind us. Grade 12 starts with analysis: what happens on approaching infinity or a forbidden point, the continuity that guarantees a solution exists, the logarithm that undoes the exponential, and the integral that measures an area.
+            Those four routes laid the foundations of the year. Let us now push analysis all the way: the algorithms that search for a threshold, a solution or an area, what happens on approaching infinity or a forbidden point, the continuity that guarantees a solution exists, the logarithm that undoes the exponential, and the integral that measures an area.
       - route: route.terminale.geometry_probability
         transition:
           fr: >-
@@ -392,33 +419,9 @@ tours:
       - route: route.terminale.matter
         transition:
           fr: >-
-            Reste la matière : le pH et les domaines de prédominance, l'équilibre chimique où la réaction s'arrête avant la fin, le titrage suivi par pH-métrie, les piles qui font circuler les électrons, la vitesse des réactions et la stratégie d'une synthèse.
+            Reste la matière : le pH et les domaines de prédominance, l'équilibre chimique où la réaction s'arrête avant la fin, le titrage suivi par pH-métrie, les piles qui font circuler les électrons, et la stratégie d'une synthèse jusqu'à son analyse.
           en: >-
-            Matter remains: the pH and the predominance domains, the chemical equilibrium where the reaction stops before the end, the titration followed by pH, the cells that make electrons flow, the rate of reactions and the strategy of a synthesis.
-      - route: route.first_journey
-        transition:
-          fr: >-
-            Revenons au cœur du programme, là où tout se rejoint : la fonction et sa courbe relues avec les limites, le taux de variation, et la dérivée approfondie — fonction composée, dérivée seconde, convexité — qui sert dans toutes les autres routes.
-          en: >-
-            Back to the heart of the programme, where everything meets: the function and its graph reread with limits, the rate of change, and the derivative deepened — composite function, second derivative, convexity — which serves in every other route.
-      - route: route.motion
-        transition:
-          fr: >-
-            La dérivée est forgée. Voyons ce qu'elle permet en physique : d'abord décrire un mouvement, position, vitesse, accélération, puis le prédire avec la deuxième loi de Newton.
-          en: >-
-            The derivative is forged. Let us see what it makes possible in physics: first describing a motion, position, velocity, acceleration, then predicting it with Newton's second law.
-      - route: route.galileo_history
-        transition:
-          fr: >-
-            Ces lois ont une histoire. Remontons le temps jusqu'à Padoue, vers mille six cent quatre, pour rencontrer l'homme, les lieux et l'époque où le mouvement a été mesuré avant d'être expliqué.
-          en: >-
-            These laws have a history. Let us go back in time to Padua, around sixteen hundred and four, to meet the man, the places and the era when motion was measured before it was explained.
-      - route: route.exponential_everywhere
-        transition:
-          fr: >-
-            Galilée a montré comment une loi sort d'une mesure. La route suivante montre comment une seule loi traverse trois mondes : partout où la vitesse est proportionnelle à ce qui reste, l'exponentielle apparaît.
-          en: >-
-            Galileo showed how a law comes out of a measurement. The next route shows how a single law crosses three worlds: wherever the rate is proportional to what remains, the exponential appears.
+            Matter remains: the pH and the predominance domains, the chemical equilibrium where the reaction stops before the end, the titration followed by pH, the cells that make electrons flow, and the strategy of a synthesis down to its analysis.
       - world: world.mathematics
         title: { fr: "Ce qui reste en mathématiques", en: "What remains in mathematics" }
         transition:

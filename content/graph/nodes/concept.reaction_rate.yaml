@@ -1,0 +1,72 @@
+id: concept.reaction_rate
+type: model
+world: world.chemistry
+region: region.chemistry.kinetics
+importance: 3
+tags: [lycee]
+title: { fr: "Vitesse volumique de réaction, temps de demi-réaction, catalyse", en: "Volumic rate of reaction, half-reaction time, catalysis" }
+shortPurpose:
+  fr: "Définir la vitesse d'une transformation comme la dérivée de son avancement, la lire sur la tangente d'un suivi temporel, et agir sur elle par la température, la concentration et un catalyseur."
+  en: "Define the rate of a transformation as the derivative of its extent, read it on the tangent of a time monitoring, and act on it through temperature, concentration and a catalyst."
+overview:
+  fr: >-
+    Deux transformations peuvent aboutir au même état final, l'une en une seconde, l'autre en un siècle. La vitesse volumique de réaction mesure cette rapidité : c'est la dérivée de l'avancement par rapport au temps, rapportée au volume, et elle se lit sur la pente de la tangente à la courbe de concentration. Elle est presque toujours maximale au début, puis diminue à mesure que les réactifs s'épuisent, et s'annule à l'état final. Le temps de demi-réaction, celui au bout duquel l'avancement atteint la moitié de sa valeur finale, en donne un ordre de grandeur commode. Chauffer, concentrer, broyer ou ajouter un catalyseur accélère la transformation, sans jamais changer l'état final vers lequel elle se dirige.
+  en: >-
+    Two transformations can reach the same final state, one in a second, the other in a century. The volumic rate of reaction measures that quickness: it is the derivative of the extent with respect to time, divided by the volume, and it is read on the slope of the tangent to the concentration curve. It is nearly always largest at the start, then decreases as the reactants run out, and vanishes in the final state. The half-reaction time, the time after which the extent reaches half of its final value, gives a convenient order of magnitude for it. Heating, concentrating, grinding or adding a catalyst speeds up the transformation, without ever changing the final state it is heading for.
+aliases:
+  fr: ["vitesse volumique de réaction", "temps de demi-réaction", "facteurs cinétiques", "catalyseur", "suivi temporel", "cinétique chimique"]
+  en: ["volumic rate of reaction", "half-reaction time", "kinetic factors", "catalyst", "time monitoring", "chemical kinetics"]
+description:
+  fr: |
+    La **vitesse volumique de réaction** mesure la rapidité d'une transformation dans un système fermé de volume $V$ constant : $v = \dfrac{1}{V}\,\dfrac{\mathrm{d}x}{\mathrm{d}t}$, en $\mathrm{mol\cdot L^{-1}\cdot s^{-1}}$. Comme la quantité de chaque espèce se déduit de l'avancement par le tableau d'avancement, on la calcule aussi bien à partir de n'importe quelle concentration : pour un réactif $\mathrm{A}$ de nombre stœchiométrique $\nu_A$, $v = -\dfrac{1}{\nu_A}\,\dfrac{\mathrm{d}[\mathrm{A}]}{\mathrm{d}t}$, et pour un produit $\mathrm{P}$, $v = \dfrac{1}{\nu_P}\,\dfrac{\mathrm{d}[\mathrm{P}]}{\mathrm{d}t}$ — le signe moins rend la vitesse positive, puisqu'un réactif disparaît. Sur la courbe d'un **suivi temporel**, la vitesse à une date est donc la **pente de la tangente** à cette date, au coefficient stœchiométrique près. Le **temps de demi-réaction** $t_{1/2}$ est la durée au bout de laquelle l'avancement atteint la moitié de sa valeur finale, $x(t_{1/2}) = x_f/2$ ; il donne l'ordre de grandeur de la durée de la transformation, dont on considère qu'elle est achevée au bout de quelques $t_{1/2}$.
+
+    Suivre une transformation, c'est mesurer sans la perturber une grandeur proportionnelle à une concentration : absorbance, conductivité, pression, volume de gaz dégagé. Exemple : la décomposition d'un réactif $\mathrm{A}$ suivie par spectrophotométrie part de $[\mathrm{A}]_0 = 0{,}50\ \mathrm{mol/L}$ et sa concentration suit $[\mathrm{A}](t) = [\mathrm{A}]_0\,e^{-t/\tau}$ avec $\tau = 10\ \mathrm{s}$. La tangente à l'origine a pour pente $-[\mathrm{A}]_0/\tau = -0{,}050\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}$ : la vitesse initiale vaut donc $v_0 = 0{,}050\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}$. À $t = 10\ \mathrm{s}$, il reste $[\mathrm{A}] = 0{,}50\,e^{-1} = 0{,}18\ \mathrm{mol/L}$ et la vitesse n'est plus que $0{,}018\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}$ : elle a été divisée par $e$, comme la concentration. Le temps de demi-réaction vaut ici $t_{1/2} = \tau \ln 2 = 6{,}9\ \mathrm{s}$, et il ne dépend pas de $[\mathrm{A}]_0$ : c'est la signature d'une cinétique d'ordre un.
+
+    Les **facteurs cinétiques** sont les grandeurs sur lesquelles on agit pour changer la vitesse sans changer l'état final : la **température**, qui augmente l'agitation et la fréquence des chocs efficaces — une élévation de dix degrés multiplie souvent la vitesse par deux ou trois ; la **concentration** des réactifs, ou la pression pour des gaz ; l'**état de division** d'un solide, qui augmente la surface de contact ; et l'**éclairement** pour les réactions photochimiques. Un **catalyseur** est une espèce qui accélère la transformation en ouvrant un chemin réactionnel plus facile, et que l'on retrouve intacte à la fin : il ne figure pas dans l'équation, il ne déplace **pas** l'état d'équilibre et ne change pas le taux d'avancement final. La catalyse est **homogène** si le catalyseur est dans la même phase que les réactifs, **hétérogène** s'il est solide, comme le platine du pot catalytique, **enzymatique** dans le vivant, où une enzyme peut multiplier la vitesse par un million. Trois pièges : la vitesse s'exprime en $\mathrm{mol\cdot L^{-1}\cdot s^{-1}}$ et non en $\mathrm{m/s}$ ; le temps de demi-réaction n'est pas la moitié de la durée de la transformation ; et une réaction lente n'est pas une réaction limitée — la cinétique dit **quand**, l'équilibre dit **jusqu'où**, et ces deux questions sont indépendantes l'une de l'autre.
+  en: |
+    The **volumic rate of reaction** measures the quickness of a transformation in a closed system of constant volume $V$: $v = \dfrac{1}{V}\,\dfrac{\mathrm{d}x}{\mathrm{d}t}$, in $\mathrm{mol\cdot L^{-1}\cdot s^{-1}}$. Since the amount of each species follows from the extent through the extent table, it is computed just as well from any concentration: for a reactant $\mathrm{A}$ with stoichiometric number $\nu_A$, $v = -\dfrac{1}{\nu_A}\,\dfrac{\mathrm{d}[\mathrm{A}]}{\mathrm{d}t}$, and for a product $\mathrm{P}$, $v = \dfrac{1}{\nu_P}\,\dfrac{\mathrm{d}[\mathrm{P}]}{\mathrm{d}t}$ — the minus sign makes the rate positive, since a reactant disappears. On the curve of a **time monitoring**, the rate at a given date is therefore the **slope of the tangent** at that date, up to the stoichiometric coefficient. The **half-reaction time** $t_{1/2}$ is the time after which the extent reaches half of its final value, $x(t_{1/2}) = x_f/2$; it gives the order of magnitude of the duration of the transformation, which is taken to be over after a few $t_{1/2}$.
+
+    Monitoring a transformation means measuring, without disturbing it, a quantity proportional to a concentration: absorbance, conductivity, pressure, volume of gas released. Example: the decomposition of a reactant $\mathrm{A}$ followed by spectrophotometry starts from $[\mathrm{A}]_0 = 0.50\ \mathrm{mol/L}$ and its concentration follows $[\mathrm{A}](t) = [\mathrm{A}]_0\,e^{-t/\tau}$ with $\tau = 10\ \mathrm{s}$. The tangent at the origin has slope $-[\mathrm{A}]_0/\tau = -0.050\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}$: the initial rate is therefore $v_0 = 0.050\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}$. At $t = 10\ \mathrm{s}$, $[\mathrm{A}] = 0.50\,e^{-1} = 0.18\ \mathrm{mol/L}$ is left and the rate is no more than $0.018\ \mathrm{mol\cdot L^{-1}\cdot s^{-1}}$: it has been divided by $e$, like the concentration. The half-reaction time is here $t_{1/2} = \tau \ln 2 = 6.9\ \mathrm{s}$, and it does not depend on $[\mathrm{A}]_0$: that is the signature of first-order kinetics.
+
+    The **kinetic factors** are the quantities one acts upon to change the rate without changing the final state: the **temperature**, which increases the agitation and the frequency of effective collisions — a rise of ten degrees often multiplies the rate by two or three; the **concentration** of the reactants, or the pressure for gases; the **state of division** of a solid, which increases the contact surface; and the **illumination** for photochemical reactions. A **catalyst** is a species that speeds up the transformation by opening an easier reaction path, and that is found intact at the end: it does not appear in the equation, it does **not** shift the state of equilibrium and does not change the final rate of the transformation. Catalysis is **homogeneous** if the catalyst is in the same phase as the reactants, **heterogeneous** if it is a solid, like the platinum of a catalytic converter, **enzymatic** in living beings, where an enzyme can multiply the rate by a million. Three traps: the rate is expressed in $\mathrm{mol\cdot L^{-1}\cdot s^{-1}}$ and not in $\mathrm{m/s}$; the half-reaction time is not half the duration of the transformation; and a slow reaction is not a limited one — kinetics says **when**, equilibrium says **how far**, and these two questions are independent of each other.
+model:
+  assumptions:
+    fr:
+      - "Le système est fermé, homogène et de volume constant : les concentrations se déduisent de l'avancement par le tableau d'avancement."
+      - "La température est maintenue constante pendant le suivi, sans quoi la vitesse changerait pour une autre raison que la consommation des réactifs."
+      - "La grandeur mesurée — absorbance, conductivité, pression — est proportionnelle à la concentration suivie, et la mesure ne perturbe pas la transformation."
+      - "La vitesse volumique est la dérivée de l'avancement par rapport au temps, rapportée au volume, donc la pente d'une tangente sur la courbe de suivi."
+    en:
+      - "The system is closed, homogeneous and of constant volume: the concentrations follow from the extent through the extent table."
+      - "The temperature is kept constant during the monitoring, otherwise the rate would change for a reason other than the consumption of the reactants."
+      - "The measured quantity — absorbance, conductivity, pressure — is proportional to the concentration followed, and the measurement does not disturb the transformation."
+      - "The volumic rate is the derivative of the extent with respect to time, divided by the volume, hence the slope of a tangent on the monitoring curve."
+  limits:
+    fr:
+      - "La définition suppose un volume constant : elle ne s'applique pas telle quelle à un système ouvert ou dont le volume varie."
+      - "Elle ne dit pas comment la vitesse dépend des concentrations : il faut une loi de vitesse, comme l'ordre un, établie par l'expérience."
+      - "Le temps de demi-réaction ne caractérise la transformation que si la loi de vitesse est connue ; il dépend en général de l'état initial."
+      - "La cinétique ne renseigne ni sur l'état final, ni sur le mécanisme réactionnel, dont l'étude vient plus tard."
+    en:
+      - "The definition assumes a constant volume: it does not apply as such to an open system or to one whose volume changes."
+      - "It does not say how the rate depends on the concentrations: a rate law is needed, such as first order, established by experiment."
+      - "The half-reaction time characterises the transformation only if the rate law is known; in general it depends on the initial state."
+      - "Kinetics tells nothing about the final state, nor about the reaction mechanism, whose study comes later."
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "définir la vitesse volumique de réaction comme la dérivée de l'avancement rapportée au volume, et l'exprimer à partir d'une concentration et de son nombre stœchiométrique"
+        - "déterminer une vitesse à une date donnée par la pente de la tangente à la courbe d'un suivi temporel, avec son unité mol·L⁻¹·s⁻¹"
+        - "déterminer graphiquement un temps de demi-réaction et l'utiliser pour estimer la durée d'une transformation"
+        - "identifier les facteurs cinétiques d'une transformation — température, concentration, état de division, éclairement — et justifier leur effet"
+        - "reconnaître l'action d'un catalyseur : une transformation accélérée, un catalyseur régénéré, un état final inchangé"
+      en:
+        - "define the volumic rate of reaction as the derivative of the extent divided by the volume, and express it from a concentration and its stoichiometric number"
+        - "determine a rate at a given date by the slope of the tangent to the curve of a time monitoring, with its unit mol·L⁻¹·s⁻¹"
+        - "determine a half-reaction time graphically and use it to estimate the duration of a transformation"
+        - "identify the kinetic factors of a transformation — temperature, concentration, state of division, illumination — and justify their effect"
+        - "recognise the action of a catalyst: a transformation sped up, a catalyst regenerated, a final state unchanged"
+sources: []

@@ -1,0 +1,56 @@
+id: tool.space_geometry
+type: mathematical_tool
+world: world.mathematics
+region: region.math.geometry
+importance: 3
+backpack: true
+tags: [lycee]
+title: { fr: "Vecteurs, droites et plans de l'espace, produit scalaire", en: "Vectors, lines and planes in space, dot product" }
+shortPurpose:
+  fr: "Repérer, orienter et mesurer dans les trois dimensions : décider si deux droites se coupent, écrire l'équation d'un plan, calculer une distance."
+  en: "Locate, orient and measure in three dimensions: decide whether two lines meet, write the equation of a plane, compute a distance."
+overview:
+  fr: >-
+    Le plan tenait sur une feuille ; l'espace demande une troisième coordonnée et un peu d'imagination. Un point y est repéré par trois nombres, une droite par un point et un vecteur directeur, un plan par un point et un vecteur normal. Le produit scalaire, qui existait déjà dans le plan, se prolonge tel quel : il mesure les angles, teste l'orthogonalité et donne la distance d'un point à un plan. C'est la géométrie dont se servent la mécanique, la cristallographie et toutes les images de synthèse.
+  en: >-
+    The plane fitted on a sheet of paper; space demands a third coordinate and a little imagination. A point is located there by three numbers, a line by a point and a direction vector, a plane by a point and a normal vector. The dot product, which already existed in the plane, extends unchanged: it measures angles, tests orthogonality and gives the distance from a point to a plane. This is the geometry used by mechanics, by crystallography and by every piece of computer graphics.
+aliases:
+  fr: ["géométrie dans l'espace", "vecteur directeur", "vecteur normal", "représentation paramétrique", "équation cartésienne d'un plan", "produit scalaire dans l'espace", "distance d'un point à un plan"]
+  en: ["geometry in space", "direction vector", "normal vector", "parametric representation", "cartesian equation of a plane", "dot product in space", "distance from a point to a plane"]
+description:
+  fr: |
+    Dans un repère orthonormé $(O\,;\,\vec\imath,\vec\jmath,\vec k)$ de l'espace, un point $M$ est repéré par trois coordonnées $(x\,;\,y\,;\,z)$ et un vecteur par ses trois composantes. Les règles du plan se prolongent sans changement : addition, multiplication par un réel, colinéarité. Trois vecteurs non coplanaires forment une **base** de l'espace, et tout vecteur s'écrit alors de façon unique comme combinaison des trois. Une **droite** est décrite par un point $A$ et un vecteur directeur $\vec u$ : $M$ appartient à la droite si et seulement si $\overrightarrow{AM} = t\,\vec u$ pour un réel $t$, ce qui donne sa **représentation paramétrique** coordonnée par coordonnée. Un **plan** est décrit par un point et deux vecteurs directeurs non colinéaires, ou — c'est la description décisive — par un point et un **vecteur normal**, orthogonal à toutes ses directions.
+
+    Le **produit scalaire** garde la même définition qu'en Première : $\vec u \cdot \vec v = xx' + yy' + zz'$ dans une base orthonormée, et $\vec u \cdot \vec v = \|\vec u\|\,\|\vec v\|\cos\theta$, avec $\|\vec u\| = \sqrt{x^2 + y^2 + z^2}$. Deux vecteurs sont **orthogonaux** exactement quand leur produit scalaire est nul. Pour $\vec u(1\,;\,2\,;\,0)$ et $\vec v(2\,;\,-1\,;\,1)$ : $\vec u \cdot \vec v = 2 - 2 + 0 = 0$, ils sont orthogonaux, et $\|\vec u\| = \sqrt5 \approx 2{,}24$. Écrire qu'un point appartient au plan passant par $A$ et de vecteur normal $\vec n(a\,;\,b\,;\,c)$, c'est écrire $\overrightarrow{AM} \cdot \vec n = 0$, ce qui donne l'**équation cartésienne** $ax + by + cz + d = 0$ : le plan passant par $A(3\,;\,0\,;\,0)$ de normale $\vec n(1\,;\,1\,;\,1)$ a pour équation $x + y + z - 3 = 0$.
+
+    Tout se calcule alors avec des équations. L'intersection d'une droite et d'un plan s'obtient en reportant la représentation paramétrique dans l'équation du plan : la droite passant par $O$ et dirigée par $\vec n(1\,;\,1\,;\,1)$ donne $3t - 3 = 0$, soit $t = 1$ et le point $(1\,;\,1\,;\,1)$. La **distance d'un point** $M(x_0\,;\,y_0\,;\,z_0)$ **au plan** d'équation $ax + by + cz + d = 0$ vaut $\dfrac{|ax_0 + by_0 + cz_0 + d|}{\sqrt{a^2+b^2+c^2}}$ : pour $M(2\,;\,2\,;\,2)$ et le plan précédent, $\dfrac{|2+2+2-3|}{\sqrt3} = \sqrt3 \approx 1{,}73$. Cette géométrie sert à décider si deux droites sont sécantes, parallèles ou non coplanaires, à calculer l'angle de deux faces d'un solide, à projeter orthogonalement un point sur un plan. Trois pièges : croire que deux droites non parallèles se coupent, ce qui est vrai dans le plan mais faux dans l'espace ; confondre vecteur directeur d'un plan et vecteur normal ; et oublier la valeur absolue au numérateur de la distance, qui est une longueur donc positive.
+  en: |
+    In an orthonormal frame $(O\,;\,\vec\imath,\vec\jmath,\vec k)$ of space, a point $M$ is located by three coordinates $(x\,;\,y\,;\,z)$ and a vector by its three components. The rules of the plane extend unchanged: addition, multiplication by a real number, collinearity. Three non-coplanar vectors form a **basis** of space, and every vector is then written in a unique way as a combination of the three. A **line** is described by a point $A$ and a direction vector $\vec u$: $M$ belongs to the line if and only if $\overrightarrow{AM} = t\,\vec u$ for some real $t$, which gives its **parametric representation** coordinate by coordinate. A **plane** is described by a point and two non-collinear direction vectors, or — and this is the decisive description — by a point and a **normal vector**, orthogonal to all of its directions.
+
+    The **dot product** keeps the same definition as in Grade 11: $\vec u \cdot \vec v = xx' + yy' + zz'$ in an orthonormal basis, and $\vec u \cdot \vec v = \|\vec u\|\,\|\vec v\|\cos\theta$, with $\|\vec u\| = \sqrt{x^2 + y^2 + z^2}$. Two vectors are **orthogonal** exactly when their dot product vanishes. For $\vec u(1\,;\,2\,;\,0)$ and $\vec v(2\,;\,-1\,;\,1)$: $\vec u \cdot \vec v = 2 - 2 + 0 = 0$, they are orthogonal, and $\|\vec u\| = \sqrt5 \approx 2.24$. Writing that a point belongs to the plane through $A$ with normal vector $\vec n(a\,;\,b\,;\,c)$ means writing $\overrightarrow{AM} \cdot \vec n = 0$, which gives the **cartesian equation** $ax + by + cz + d = 0$: the plane through $A(3\,;\,0\,;\,0)$ with normal $\vec n(1\,;\,1\,;\,1)$ has equation $x + y + z - 3 = 0$.
+
+    Everything is then computed with equations. The intersection of a line and a plane is obtained by carrying the parametric representation into the equation of the plane: the line through $O$ directed by $\vec n(1\,;\,1\,;\,1)$ gives $3t - 3 = 0$, hence $t = 1$ and the point $(1\,;\,1\,;\,1)$. The **distance from a point** $M(x_0\,;\,y_0\,;\,z_0)$ **to the plane** of equation $ax + by + cz + d = 0$ is $\dfrac{|ax_0 + by_0 + cz_0 + d|}{\sqrt{a^2+b^2+c^2}}$: for $M(2\,;\,2\,;\,2)$ and the plane above, $\dfrac{|2+2+2-3|}{\sqrt3} = \sqrt3 \approx 1.73$. This geometry serves to decide whether two lines are secant, parallel or skew, to compute the angle between two faces of a solid, to project a point orthogonally onto a plane. Three traps: believing that two non-parallel lines must meet, which is true in the plane but false in space; confusing a direction vector of a plane with a normal vector; and forgetting the absolute value in the numerator of the distance, which is a length and therefore positive.
+tool:
+  problemSolved:
+    fr: "Décider et mesurer dans les trois dimensions : appartenance d'un point à une droite ou à un plan, position relative de deux droites, intersection d'une droite et d'un plan, orthogonalité, angle, distance d'un point à un plan."
+    en: "Decide and measure in three dimensions: whether a point belongs to a line or a plane, the relative position of two lines, the intersection of a line and a plane, orthogonality, angle, distance from a point to a plane."
+  construction:
+    fr: "On munit l'espace d'un repère orthonormé ; une droite s'écrit $\\overrightarrow{AM} = t\\,\\vec u$ et un plan $\\overrightarrow{AM} \\cdot \\vec n = 0$, ce qui donne $ax + by + cz + d = 0$. Le produit scalaire $xx' + yy' + zz'$, prolongement direct de celui du plan, fournit alors les angles, l'orthogonalité et la distance."
+    en: "Space is given an orthonormal frame; a line is written $\\overrightarrow{AM} = t\\,\\vec u$ and a plane $\\overrightarrow{AM} \\cdot \\vec n = 0$, which gives $ax + by + cz + d = 0$. The dot product $xx' + yy' + zz'$, a direct extension of the one in the plane, then supplies angles, orthogonality and distance."
+  icon: cube
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "utiliser les coordonnées de l'espace, décomposer un vecteur dans une base et tester la colinéarité"
+        - "écrire une représentation paramétrique de droite et étudier la position relative de deux droites"
+        - "écrire l'équation cartésienne d'un plan à partir d'un point et d'un vecteur normal, et l'intersecter avec une droite"
+        - "calculer un produit scalaire dans l'espace, un angle, une orthogonalité et la distance d'un point à un plan"
+      en:
+        - "use coordinates in space, decompose a vector in a basis and test collinearity"
+        - "write a parametric representation of a line and study the relative position of two lines"
+        - "write the cartesian equation of a plane from a point and a normal vector, and intersect it with a line"
+        - "compute a dot product in space, an angle, an orthogonality and the distance from a point to a plane"
+sources: [source.bo.lycee.2019]

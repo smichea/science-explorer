@@ -1,0 +1,158 @@
+# Leçon narrée — transformations acide-base : les couples et le pH sur l'axe de prédominance (outil acide-base),
+# puis le diagramme de distribution tracé au pKa (outil traceur).
+id: lesson.model.acid_base
+nodeId: model.acid_base
+depth: 1
+tools:
+  - id: domains
+    kind: acid_base
+    mode: predominance
+    title: { fr: "Domaines de prédominance", en: "Predominance domains" }
+    parameters:
+      - { id: p, label: { fr: "pH de la solution", en: "pH of the solution" }, min: 0, max: 14, step: 0.1, value: 7 }
+    ph: "p"
+    couples:
+      - id: ethanoic
+        acid: { fr: "acide éthanoïque CH₃COOH", en: "ethanoic acid CH₃COOH" }
+        base: { fr: "ion éthanoate CH₃COO⁻", en: "ethanoate ion CH₃COO⁻" }
+        pka: 4.8
+      - id: carbonic
+        acid: { fr: "dioxyde de carbone dissous CO₂,H₂O", en: "dissolved carbon dioxide CO₂,H₂O" }
+        base: { fr: "ion hydrogénocarbonate HCO₃⁻", en: "hydrogencarbonate ion HCO₃⁻" }
+        pka: 6.4
+      - id: ammonium
+        acid: { fr: "ion ammonium NH₄⁺", en: "ammonium ion NH₄⁺" }
+        base: { fr: "ammoniac NH₃", en: "ammonia NH₃" }
+        pka: 9.2
+      - id: aspirin
+        acid: { fr: "aspirine (forme acide)", en: "aspirin (acid form)" }
+        base: { fr: "ion acétylsalicylate", en: "acetylsalicylate ion" }
+        pka: 3.5
+        hidden: true
+  - id: distribution
+    kind: plotter
+    title: { fr: "Diagramme de distribution", en: "Distribution diagram" }
+    variable: x
+    view: { x: [0, 14], y: [0, 105] }
+    input: false
+    parameters:
+      - { id: k, label: { fr: "pKa du couple", en: "pKa of the couple" }, min: 1, max: 13, step: 0.1, value: 4.8 }
+    initial:
+      - { view: { labels: { x: "pH", y: "% du couple" } } }
+steps:
+  - id: couples
+    title: { fr: "Acide, base, couple", en: "Acid, base, couple" }
+    tool: domains
+    text:
+      fr: >-
+        Un acide de Brønsted est une espèce capable de céder un proton, une base une espèce capable d'en capter un.
+        L'acide et la base qui se transforment l'un en l'autre forment un couple acide-base, comme l'acide éthanoïque et l'ion éthanoate.
+        Une réaction acide-base est un transfert de proton, de l'acide d'un couple vers la base d'un autre, et le proton ne reste jamais libre en solution.
+        L'eau appartient elle-même à deux couples : c'est elle qui capte le proton cédé par un acide, en formant l'ion oxonium.
+      en: >-
+        A Brønsted acid is a species able to give a proton away, a base a species able to gain one.
+        The acid and the base that turn into each other form an acid-base couple, like ethanoic acid and the ethanoate ion.
+        An acid-base reaction is a transfer of a proton, from the acid of one couple to the base of another, and the proton never stays free in solution.
+        Water itself belongs to two couples: it is water that gains the proton given away by an acid, forming the oxonium ion.
+    actions:
+      - { at: 0, set: { p: 7 } }
+  - id: ph
+    title: { fr: "Le pH mesure les ions oxonium", en: "The pH measures the oxonium ions" }
+    tool: domains
+    text:
+      fr: >-
+        Le pH mesure l'acidité de la solution : il vaut moins le logarithme décimal de la concentration en ions oxonium, exprimée en moles par litre.
+        Descendons le curseur jusqu'à deux : la concentration en ions oxonium y vaut un centième de mole par litre.
+        Gagner une unité de pH divise cette concentration par dix, et la relation se renverse en dix puissance moins pH.
+        L'eau pure, elle, se dissocie très peu : le produit des concentrations en ions oxonium et en ions hydroxyde vaut dix puissance moins quatorze à vingt-cinq degrés, ce qui lui donne un pH de sept.
+      en: >-
+        The pH measures the acidity of the solution: it is minus the decimal logarithm of the oxonium ion concentration, expressed in moles per litre.
+        Let us take the cursor down to two: the oxonium ion concentration there is one hundredth of a mole per litre.
+        Gaining one pH unit divides that concentration by ten, and the relation reverses into ten to the power minus pH.
+        Pure water, for its part, dissociates very little: the product of the oxonium and hydroxide ion concentrations is ten to the power minus fourteen at twenty-five degrees, which gives it a pH of seven.
+    actions:
+      - { at: 1, set: { p: 2 } }
+      - { at: 3, set: { p: 7 } }
+  - id: ka
+    title: { fr: "Constante d'acidité et pKa", en: "Acidity constant and pKa" }
+    tool: domains
+    text:
+      fr: >-
+        À chaque couple correspond une constante d'acidité, qui est la constante d'équilibre de sa réaction avec l'eau.
+        On en donne plutôt le pKa, moins son logarithme décimal : quatre virgule huit pour l'acide éthanoïque, six virgule quatre pour le dioxyde de carbone dissous, neuf virgule deux pour l'ion ammonium.
+        En passant au logarithme, cette constante devient une relation très commode : le pH vaut le pKa plus le logarithme du rapport de la base sur l'acide.
+        Plaçons le curseur exactement sur quatre virgule huit : le rapport vaut un, les deux espèces du premier couple sont à la même concentration.
+      en: >-
+        Each couple has an acidity constant, which is the equilibrium constant of its reaction with water.
+        One rather gives its pKa, minus its decimal logarithm: four point eight for ethanoic acid, six point four for dissolved carbon dioxide, nine point two for the ammonium ion.
+        Taking logarithms, that constant becomes a very convenient relation: the pH is the pKa plus the logarithm of the ratio of the base to the acid.
+        Let us place the cursor exactly on four point eight: the ratio is one, the two species of the first couple have the same concentration.
+    actions:
+      - { at: 3, set: { p: 4.8 } }
+  - id: predominance
+    title: { fr: "Deux domaines de part et d'autre du pKa", en: "Two domains on either side of the pKa" }
+    tool: domains
+    text:
+      fr: >-
+        Le pKa partage donc l'axe des pH en deux domaines : au-dessous, l'acide prédomine ; au-dessus, c'est la base.
+        Ajoutons le couple de l'aspirine, de pKa trois virgule cinq, et descendons au pH de l'estomac, voisin de deux.
+        L'aspirine y est très majoritairement sous sa forme acide, non chargée, celle qui traverse la paroi de l'estomac.
+        Remontons au pH de l'intestin, voisin de huit : la forme basique, chargée, est maintenant des dizaines de milliers de fois majoritaire.
+        Prédominer ne veut pas dire être seul : l'autre espèce est toujours présente, simplement minoritaire.
+      en: >-
+        The pKa therefore cuts the pH axis into two domains: below it, the acid predominates; above it, the base does.
+        Let us add the couple of aspirin, of pKa three point five, and go down to the pH of the stomach, close to two.
+        Aspirin is there overwhelmingly in its acid form, which carries no charge, the form that crosses the wall of the stomach.
+        Let us go back up to the pH of the intestine, close to eight: the basic form, which is charged, is now tens of thousands of times the major one.
+        To predominate does not mean to be alone: the other species is always present, simply in the minority.
+    actions:
+      - { at: 1, show: [aspirin], set: { p: 2 } }
+      - { at: 3, set: { p: 8 } }
+  - id: distribution
+    title: { fr: "Le diagramme de distribution", en: "The distribution diagram" }
+    tool: distribution
+    text:
+      fr: >-
+        Le diagramme de distribution dit la même chose en pourcentages.
+        Traçons, pour un couple de pKa quatre virgule huit, la part de la forme acide et celle de la forme basique en fonction du pH.
+        Les deux courbes se croisent à cinquante pour cent, exactement au pKa.
+        Une unité de pH plus haut, la forme basique représente déjà quatre-vingt-onze pour cent du couple.
+        C'est ce diagramme que lit un chimiste pour choisir une solution tampon, ou la zone de virage d'un indicateur coloré.
+      en: >-
+        The distribution diagram says the same thing in percentages.
+        Let us draw, for a couple of pKa four point eight, the share of the acid form and that of the basic form against the pH.
+        The two curves cross at fifty percent, exactly at the pKa.
+        One pH unit higher, the basic form already accounts for ninety-one percent of the couple.
+        This is the diagram a chemist reads to choose a buffer solution, or the turning range of a colour indicator.
+    actions:
+      - { at: 1, plot: { id: acid, expr: "100/(1+10^(x-k))", label: { fr: "% forme acide", en: "% acid form" } } }
+      - { at: 1, plot: { id: base, expr: "100*10^(x-k)/(1+10^(x-k))", label: { fr: "% forme basique", en: "% basic form" } } }
+      - { at: 2, line: { id: pka, a: 1, b: 0, c: "-k", dashed: true, label: { fr: "pH = pKa", en: "pH = pKa" } } }
+      - { at: 2, point: { id: half, on: acid, x: "k", guides: true, label: { fr: "50 % au pKa", en: "50 % at the pKa" } } }
+      - { at: 3, point: { id: above, on: base, x: "k+1", guides: true, label: { fr: "91 % une unité plus haut", en: "91 % one unit higher" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de lire les domaines", en: "Your turn to read the domains" }
+    tool: domains
+    text:
+      fr: >-
+        À vous. Déplacez le pH le long de l'axe et lisez, pour chacun des quatre couples, quelle espèce prédomine et dans quel rapport.
+        Cherchez le pH auquel l'ion ammonium et l'ammoniac sont à la même concentration, puis celui où la base est cent fois majoritaire.
+        Passez ensuite au diagramme de distribution et faites varier le pKa : les deux courbes se déplacent en bloc, sans jamais cesser de se croiser à cinquante pour cent.
+      en: >-
+        Your turn. Move the pH along the axis and read, for each of the four couples, which species predominates and in which ratio.
+        Look for the pH at which the ammonium ion and ammonia have the same concentration, then the one where the base is a hundred times the major species.
+        Then switch to the distribution diagram and vary the pKa: the two curves move together, without ever ceasing to cross at fifty percent.
+    actions:
+      - { at: 0, set: { p: 4.8 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : remonter du pH mesuré à la concentration en ions oxonium, puis trouver le pH auquel une forme est mille fois majoritaire.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: going back from the measured pH to the oxonium ion concentration, then finding the pH at which one form is a thousand times the major one.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.acid_base.oxonium_concentration, exercise.acid_base.predominance_ph]

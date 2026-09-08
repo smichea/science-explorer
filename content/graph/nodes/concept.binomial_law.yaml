@@ -1,0 +1,47 @@
+id: concept.binomial_law
+type: mathematical_concept
+world: world.mathematics
+region: region.math.probability_statistics
+importance: 3
+tags: [lycee]
+title: { fr: "Succession d'épreuves indépendantes, loi binomiale", en: "Succession of independent trials, binomial law" }
+shortPurpose:
+  fr: "Compter les succès d'une expérience répétée à l'identique, et calculer la probabilité d'en obtenir exactement k."
+  en: "Count the successes of an experiment repeated identically, and compute the probability of getting exactly k of them."
+overview:
+  fr: >-
+    Répétez la même épreuve dix fois, indépendamment, et comptez les succès : voilà la situation la plus fréquente de tout le calcul des probabilités. Un contrôle qualité, un sondage, un traitement médical, une suite de lancers, tous entrent dans ce moule. Le nombre de succès suit alors la loi binomiale, entièrement décrite par deux nombres, le nombre de répétitions et la probabilité d'un succès. Son espérance vaut le produit des deux, ce qui donne la prévision la plus utile du lycée.
+  en: >-
+    Repeat the same trial ten times, independently, and count the successes: this is the most frequent situation in the whole of probability. A quality check, an opinion poll, a medical treatment, a run of tosses, all fit this mould. The number of successes then follows the binomial law, entirely described by two numbers, the number of repetitions and the probability of a success. Its expectation is the product of the two, which gives the most useful prediction of secondary school.
+aliases:
+  fr: ["loi binomiale", "épreuve de Bernoulli", "schéma de Bernoulli", "répétition d'épreuves indépendantes", "coefficient binomial", "espérance d'une loi binomiale"]
+  en: ["binomial law", "Bernoulli trial", "Bernoulli scheme", "repetition of independent trials", "binomial coefficient", "expectation of a binomial law"]
+description:
+  fr: |
+    Une **épreuve de Bernoulli** est une expérience aléatoire à deux issues seulement, appelées succès et échec, la probabilité du succès étant notée $p$. Répéter $n$ fois cette épreuve **de façon identique et indépendante** — chaque répétition se fait dans les mêmes conditions et le résultat de l'une ne change rien aux autres — constitue un **schéma de Bernoulli**. La variable aléatoire $X$ qui compte le nombre de succès suit alors la **loi binomiale** de paramètres $n$ et $p$, notée $\mathcal{B}(n\,;\,p)$. L'arbre de l'expérience a $2^{n}$ chemins ; chaque chemin portant $k$ succès a pour probabilité $p^{k}(1-p)^{n-k}$, et il y en a exactement $\dbinom{n}{k}$, autant que de façons de choisir les rangs des succès.
+
+    D'où la formule : pour tout entier $k$ compris entre $0$ et $n$, $$P(X = k) = \binom{n}{k}\,p^{k}\,(1-p)^{n-k}.$$ Prenons $n = 10$ répétitions avec $p = 0{,}3$. La probabilité d'obtenir exactement trois succès vaut $\binom{10}{3} \times 0{,}3^{3} \times 0{,}7^{7} = 120 \times 0{,}027 \times 0{,}0824 \approx 0{,}267$, soit un peu plus d'une fois sur quatre. Celle de n'obtenir aucun succès vaut $0{,}7^{10} \approx 0{,}028$, donc la probabilité d'en obtenir au moins un est $1 - 0{,}028 = 0{,}972$ : on passe presque toujours par l'événement contraire pour les « au moins un ». La calculatrice donne aussi les probabilités cumulées $P(X \leqslant k)$, seules praticables pour les grands $n$.
+
+    L'**espérance** de cette loi vaut $E(X) = np$ et sa **variance** $V(X) = np(1-p)$, donc son écart type $\sigma = \sqrt{np(1-p)}$ : avec $n = 10$ et $p = 0{,}3$, on attend en moyenne $3$ succès, avec une dispersion de $\sqrt{2{,}1} \approx 1{,}45$. Ces deux formules se démontrent en écrivant $X$ comme la somme de $n$ variables de Bernoulli indépendantes. À quoi la loi sert-elle ? À décider si un écart observé est banal ou suspect : sur $100$ pièces d'un lot dont on annonce $2\,\%$ de défauts, on attend $2$ défauts et l'on s'étonne au-delà de $6$. Trois pièges : appliquer la loi à des tirages **sans remise**, où les épreuves ne sont plus indépendantes ; oublier le coefficient binomial, qui compte les ordres possibles ; et confondre $P(X = k)$, $P(X \leqslant k)$ et $P(X \geqslant k)$, dont on passe de l'une à l'autre par l'événement contraire.
+  en: |
+    A **Bernoulli trial** is a random experiment with only two outcomes, called success and failure, the probability of the success being written $p$. Repeating this trial $n$ times **identically and independently** — each repetition happens under the same conditions and the result of one changes nothing to the others — constitutes a **Bernoulli scheme**. The random variable $X$ counting the number of successes then follows the **binomial law** with parameters $n$ and $p$, written $\mathcal{B}(n\,;\,p)$. The tree of the experiment has $2^{n}$ paths; each path carrying $k$ successes has probability $p^{k}(1-p)^{n-k}$, and there are exactly $\dbinom{n}{k}$ of them, as many as there are ways of choosing the ranks of the successes.
+
+    Hence the formula: for every integer $k$ between $0$ and $n$, $$P(X = k) = \binom{n}{k}\,p^{k}\,(1-p)^{n-k}.$$ Take $n = 10$ repetitions with $p = 0.3$. The probability of getting exactly three successes is $\binom{10}{3} \times 0.3^{3} \times 0.7^{7} = 120 \times 0.027 \times 0.0824 \approx 0.267$, slightly more than once in four. That of getting no success is $0.7^{10} \approx 0.028$, so the probability of getting at least one is $1 - 0.028 = 0.972$: one almost always goes through the complementary event for "at least one". The calculator also gives the cumulative probabilities $P(X \leqslant k)$, the only workable ones for large $n$.
+
+    The **expectation** of this law is $E(X) = np$ and its **variance** $V(X) = np(1-p)$, hence its standard deviation $\sigma = \sqrt{np(1-p)}$: with $n = 10$ and $p = 0.3$, one expects $3$ successes on average, with a spread of $\sqrt{2.1} \approx 1.45$. These two formulas are proved by writing $X$ as the sum of $n$ independent Bernoulli variables. What is the law for? For deciding whether an observed gap is ordinary or suspicious: out of $100$ items from a batch announced with $2\,\%$ defects, one expects $2$ defects and becomes surprised beyond $6$. Three traps: applying the law to draws **without replacement**, where the trials are no longer independent; forgetting the binomial coefficient, which counts the possible orders; and confusing $P(X = k)$, $P(X \leqslant k)$ and $P(X \geqslant k)$, which are exchanged through the complementary event.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "reconnaître un schéma de Bernoulli et justifier l'indépendance et l'identité des épreuves"
+        - "calculer $P(X = k)$, $P(X \\leqslant k)$ et $P(X \\geqslant k)$ pour une loi binomiale, à la main ou à la calculatrice"
+        - "utiliser $E(X) = np$ et $V(X) = np(1-p)$, et interpréter l'espérance comme une prévision moyenne"
+        - "modéliser une situation de contrôle, de sondage ou de répétition par une loi binomiale et discuter le résultat"
+      en:
+        - "recognise a Bernoulli scheme and justify the independence and the identity of the trials"
+        - "compute $P(X = k)$, $P(X \\leqslant k)$ and $P(X \\geqslant k)$ for a binomial law, by hand or with a calculator"
+        - "use $E(X) = np$ and $V(X) = np(1-p)$, and interpret the expectation as an average prediction"
+        - "model a situation of quality control, polling or repetition by a binomial law and discuss the result"
+sources: [source.bo.lycee.2019]

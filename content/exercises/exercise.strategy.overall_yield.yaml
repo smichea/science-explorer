@@ -1,0 +1,55 @@
+# Leçon stratégie de synthèse — rendement global d'une séquence de deux étapes, puis masse isolée (réponse numérique en g)
+id: exercise.strategy.overall_yield
+type: numeric
+nodeId: method.synthesis_strategy
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une synthèse se fait en deux étapes : la première a un rendement de $80\ \%$, la seconde de $75\ \%$. On engage $0{,}20\ \mathrm{mol}$ du réactif de départ, et les nombres stœchiométriques valent $1$ à chaque étape.
+
+    La molécule cible a pour masse molaire $M = 180\ \mathrm{g/mol}$. Quelle masse en isole-t-on, en $\mathrm{g}$ ?
+  en: |-
+    A synthesis is carried out in two steps: the first has a yield of $80\ \%$, the second of $75\ \%$. $0.20\ \mathrm{mol}$ of the starting reactant is engaged, and the stoichiometric numbers are $1$ at each step.
+
+    The target molecule has molar mass $M = 180\ \mathrm{g/mol}$. What mass of it is isolated, in $\mathrm{g}$?
+numeric:
+  value: 21.6
+  unit: "g"
+  tolerance: { kind: relative, value: 0.03 }
+  inputLabel: { fr: "m obtenue", en: "mass obtained" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Les rendements d'une séquence ne s'additionnent pas : ce qui sort de la première étape est ce qui entre dans la seconde, donc ils se **multiplient**.
+      en: |-
+        The yields of a sequence are not added: what comes out of the first step is what goes into the second, so they **multiply**.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Calculez d'abord $n = 0{,}20 \times 0{,}80 \times 0{,}75$ en $\mathrm{mol}$, puis passez à la masse par $m = n\,M$.
+      en: |-
+        First compute $n = 0.20 \times 0.80 \times 0.75$ in $\mathrm{mol}$, then move to the mass through $m = n\,M$.
+solution:
+  fr: |-
+    La première étape ne rend que $80\ \%$ de ce qu'elle promettait :
+    $$n_1 = 0{,}20 \times 0{,}80 = 0{,}16\ \mathrm{mol}.$$
+    C'est cette quantité, et non $0{,}20\ \mathrm{mol}$, qui entre dans la seconde étape :
+    $$n_2 = 0{,}16 \times 0{,}75 = 0{,}12\ \mathrm{mol},$$
+    ce qui revient à un rendement global $\eta = 0{,}80 \times 0{,}75 = 0{,}60$, soit $60\ \%$. La masse isolée vaut donc
+    $$m = n_2\,M = 0{,}12 \times 180 = 21{,}6\ \mathrm{g}.$$
+
+    **Interprétation.** Deux étapes honnêtes, à quatre cinquièmes et trois quarts, ne laissent déjà que trois cinquièmes de la matière engagée : c'est pourquoi le nombre d'étapes est le premier critère quand on compare deux routes de synthèse. Une séquence de dix étapes à $90\ \%$ chacune ne rendrait que $0{,}90^{10} = 35\ \%$. Ajouter une protection et une déprotection, c'est ajouter deux étapes, donc deux facteurs de plus dans ce produit : on ne le fait que si l'on gagne en sélectivité ce que l'on perd en rendement. Et si l'on trouvait $m = 25\ \mathrm{g}$, il faudrait suspecter un produit encore humide ou impur, car aucun rendement ne dépasse $100\ \%$.
+  en: |-
+    The first step returns only $80\ \%$ of what it promised:
+    $$n_1 = 0.20 \times 0.80 = 0.16\ \mathrm{mol}.$$
+    It is this amount, and not $0.20\ \mathrm{mol}$, that goes into the second step:
+    $$n_2 = 0.16 \times 0.75 = 0.12\ \mathrm{mol},$$
+    which amounts to an overall yield $\eta = 0.80 \times 0.75 = 0.60$, that is $60\ \%$. The mass isolated is therefore
+    $$m = n_2\,M = 0.12 \times 180 = 21.6\ \mathrm{g}.$$
+
+    **Interpretation.** Two honest steps, at four fifths and three quarters, already leave only three fifths of the engaged matter: that is why the number of steps is the first criterion when comparing two synthesis routes. A ten-step sequence at $90\ \%$ each would return only $0.90^{10} = 35\ \%$. Adding a protection and a deprotection means adding two steps, hence two more factors in that product: one does it only if the selectivity gained is worth the yield lost. And if one found $m = 25\ \mathrm{g}$, one should suspect a product still damp or impure, for no yield exceeds $100\ \%$.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 2, transfer: 2, autonomy: 3 }

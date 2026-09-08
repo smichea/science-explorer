@@ -1,0 +1,76 @@
+id: concept.sound_level
+type: model
+world: world.physics
+region: region.physics.waves
+importance: 2
+tags: [lycee]
+title: { fr: "Intensité sonore et niveau d'intensité sonore", en: "Sound intensity and sound intensity level" }
+shortPurpose:
+  fr: "Mesurer la puissance qu'une onde sonore dépose par unité de surface, et la ramener à l'échelle logarithmique des décibels."
+  en: "Measure the power a sound wave deposits per unit area, and bring it back to the logarithmic scale of decibels."
+overview:
+  fr: >-
+    L'oreille humaine entend le froissement d'une feuille et supporte, un instant, le décollage d'un avion : entre les deux, la puissance reçue est mille milliards de fois plus grande. Aucune échelle ordinaire ne peut représenter un tel écart. On utilise donc une échelle logarithmique, le niveau d'intensité sonore, en décibels : chaque fois que l'intensité est multipliée par dix, on ajoute dix décibels, et quand elle double on n'en ajoute que trois. C'est pourquoi deux machines identiques ne font pas deux fois plus de bruit qu'une seule.
+  en: >-
+    The human ear hears the rustle of a leaf and bears, for a moment, the take-off of an aeroplane: between the two, the power received is a thousand billion times larger. No ordinary scale can represent such a gap. A logarithmic scale is therefore used, the sound intensity level, in decibels: every time the intensity is multiplied by ten, ten decibels are added, and when it doubles only three are. That is why two identical machines do not make twice as much noise as one.
+aliases:
+  fr: ["intensité sonore", "niveau d'intensité sonore", "décibel", "seuil d'audibilité", "atténuation"]
+  en: ["sound intensity", "sound intensity level", "decibel", "threshold of hearing", "attenuation"]
+description:
+  fr: |
+    Une onde sonore transporte de l'énergie. L'**intensité sonore** $I$ en un point est la puissance que l'onde y fait traverser une unité de surface perpendiculaire à sa propagation ; elle se mesure en watts par mètre carré. L'oreille est sensible sur un domaine gigantesque : de $I_0 = 1{,}0 \times 10^{-12}\ \mathrm{W \cdot m^{-2}}$, le **seuil d'audibilité** à mille hertz, jusqu'à $1\ \mathrm{W \cdot m^{-2}}$, le seuil de douleur — un rapport de $10^{12}$. Pour ramener cet écart à une échelle maniable, on définit le **niveau d'intensité sonore**
+    $$L = 10\,\log\!\left(\frac{I}{I_0}\right) \quad \text{en décibels (dB)},$$
+    où $\log$ est le logarithme décimal. Le niveau n'est donc pas une énergie, mais une **comparaison** avec l'intensité de référence $I_0$ : $L = 0\ \mathrm{dB}$ signifie $I = I_0$, et non l'absence de son. La relation se retourne en $I = I_0 \times 10^{L/10}$.
+
+    Deux règles suffisent à presque tout. Multiplier l'intensité par dix **ajoute** $10\ \mathrm{dB}$, puisque $10\log 10 = 10$ ; la doubler n'ajoute que $10 \log 2 = 3{,}0\ \mathrm{dB}$. Une conversation à un mètre correspond à $I = 10^{-6}\ \mathrm{W \cdot m^{-2}}$, donc $L = 10\log(10^{6}) = 60\ \mathrm{dB}$ ; deux personnes parlant en même temps, aussi fort, portent le niveau à $63\ \mathrm{dB}$ et non à $120$. Pour une source ponctuelle qui rayonne dans toutes les directions, la puissance $P$ se répartit sur une sphère et $I = \dfrac{P}{4\pi d^2}$ : un haut-parleur de $P = 0{,}10\ \mathrm{W}$ acoustique donne à $d = 2{,}0\ \mathrm{m}$ une intensité $I = \dfrac{0{,}10}{4\pi \times 2{,}0^2} = 2{,}0 \times 10^{-3}\ \mathrm{W \cdot m^{-2}}$, soit $L = 10\log(2{,}0 \times 10^{9}) = 93\ \mathrm{dB}$. Doubler la distance divise $I$ par quatre et **retire** $6\ \mathrm{dB}$ : à quatre mètres, $87\ \mathrm{dB}$.
+
+    L'échelle des décibels gouverne toute la protection de l'audition : $85\ \mathrm{dB}$ est le seuil réglementaire au-delà duquel une exposition de huit heures devient dangereuse, un concert atteint $100\ \mathrm{dB}$, et une exposition prolongée détruit définitivement des cellules ciliées qui ne repoussent pas. Elle sert aussi à dimensionner une isolation, à comparer deux moteurs, à cartographier le bruit d'une ville. Pièges classiques : additionner les décibels de deux sources, alors que ce sont les **intensités** qui s'ajoutent avant d'être converties ; utiliser le logarithme népérien au lieu du logarithme décimal ; oublier de diviser par $I_0$ et calculer le logarithme d'une grandeur qui a une unité ; croire qu'un son de $80\ \mathrm{dB}$ est « deux fois » plus intense qu'un son de $40\ \mathrm{dB}$, alors qu'il l'est dix mille fois ; et confondre le niveau, en décibels, avec la sensation de force sonore, qui dépend aussi de la fréquence.
+  en: |
+    A sound wave carries energy. The **sound intensity** $I$ at a point is the power the wave makes cross a unit area perpendicular to its propagation; it is measured in watts per square metre. The ear is sensitive over a gigantic range: from $I_0 = 1.0 \times 10^{-12}\ \mathrm{W \cdot m^{-2}}$, the **threshold of hearing** at one thousand hertz, up to $1\ \mathrm{W \cdot m^{-2}}$, the threshold of pain — a ratio of $10^{12}$. To bring that gap back to a manageable scale, the **sound intensity level** is defined as
+    $$L = 10\,\log\!\left(\frac{I}{I_0}\right) \quad \text{in decibels (dB)},$$
+    where $\log$ is the decimal logarithm. The level is therefore not an energy but a **comparison** with the reference intensity $I_0$: $L = 0\ \mathrm{dB}$ means $I = I_0$, not the absence of sound. The relation is turned round into $I = I_0 \times 10^{L/10}$.
+
+    Two rules cover almost everything. Multiplying the intensity by ten **adds** $10\ \mathrm{dB}$, since $10\log 10 = 10$; doubling it adds only $10 \log 2 = 3.0\ \mathrm{dB}$. A conversation at one metre corresponds to $I = 10^{-6}\ \mathrm{W \cdot m^{-2}}$, hence $L = 10\log(10^{6}) = 60\ \mathrm{dB}$; two people speaking at the same time, just as loudly, bring the level to $63\ \mathrm{dB}$ and not to $120$. For a point source radiating in every direction, the power $P$ spreads over a sphere and $I = \dfrac{P}{4\pi d^2}$: a loudspeaker of $P = 0.10\ \mathrm{W}$ acoustic gives at $d = 2.0\ \mathrm{m}$ an intensity $I = \dfrac{0.10}{4\pi \times 2.0^2} = 2.0 \times 10^{-3}\ \mathrm{W \cdot m^{-2}}$, that is $L = 10\log(2.0 \times 10^{9}) = 93\ \mathrm{dB}$. Doubling the distance divides $I$ by four and **removes** $6\ \mathrm{dB}$: at four metres, $87\ \mathrm{dB}$.
+
+    The decibel scale governs the whole protection of hearing: $85\ \mathrm{dB}$ is the regulatory threshold beyond which an exposure of eight hours becomes dangerous, a concert reaches $100\ \mathrm{dB}$, and a prolonged exposure permanently destroys hair cells that never grow back. It also serves to size an insulation, to compare two engines, to map the noise of a city. Classic traps: adding the decibels of two sources, when it is the **intensities** that add before being converted; using the natural logarithm instead of the decimal one; forgetting to divide by $I_0$ and taking the logarithm of a quantity that has a unit; believing that a sound of $80\ \mathrm{dB}$ is "twice" as intense as one of $40\ \mathrm{dB}$, when it is ten thousand times so; and confusing the level, in decibels, with the sensation of loudness, which also depends on the frequency.
+model:
+  assumptions:
+    fr:
+      - "L'intensité est la puissance moyenne traversant une unité de surface perpendiculaire à la propagation, moyennée sur plusieurs périodes."
+      - "L'intensité de référence est fixée par convention à $I_0 = 1{,}0 \\times 10^{-12}\\ \\mathrm{W \\cdot m^{-2}}$, seuil d'audibilité à mille hertz."
+      - "Les intensités de plusieurs sources indépendantes s'ajoutent avant toute conversion en décibels ; les niveaux, eux, ne s'ajoutent jamais."
+      - "Pour une source ponctuelle rayonnant également dans toutes les directions, sans obstacle ni absorption, $I = P / (4\\pi d^2)$."
+    en:
+      - "The intensity is the average power crossing a unit area perpendicular to the propagation, averaged over several periods."
+      - "The reference intensity is fixed by convention at $I_0 = 1.0 \\times 10^{-12}\\ \\mathrm{W \\cdot m^{-2}}$, the threshold of hearing at one thousand hertz."
+      - "The intensities of several independent sources add before any conversion into decibels; the levels themselves never add."
+      - "For a point source radiating equally in every direction, with no obstacle and no absorption, $I = P / (4\\pi d^2)$."
+  limits:
+    fr:
+      - "Le niveau en décibels ne dit rien de la fréquence : l'oreille est bien moins sensible dans les graves, d'où la pondération A des sonomètres."
+      - "La sensation de force sonore n'est pas proportionnelle au niveau ; il faut environ dix décibels de plus pour percevoir un son « deux fois plus fort »."
+      - "La décroissance en $1/d^2$ suppose un espace libre : dans une salle, les réflexions maintiennent le niveau bien plus loin."
+      - "L'absorption par l'air, sensible sur de grandes distances et pour les fréquences élevées, n'est pas prise en compte."
+    en:
+      - "The level in decibels says nothing about the frequency: the ear is far less sensitive in the low register, hence the A weighting of sound level meters."
+      - "The sensation of loudness is not proportional to the level; about ten decibels more are needed to perceive a sound as 'twice as loud'."
+      - "The decrease as $1/d^2$ assumes free space: in a room, reflections keep the level up much further away."
+      - "The absorption by the air, noticeable over long distances and for high frequencies, is not taken into account."
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "définir l'intensité sonore comme une puissance par unité de surface et citer son unité"
+        - "exploiter la relation $L = 10\\,\\log(I/I_0)$ dans les deux sens, avec $I_0 = 1{,}0 \\times 10^{-12}\\ \\mathrm{W \\cdot m^{-2}}$"
+        - "utiliser le caractère logarithmique de l'échelle : $\\times 10$ sur $I$ donne $+10$ dB, $\\times 2$ donne $+3$ dB"
+        - "additionner correctement les contributions de plusieurs sources, en ajoutant les intensités et non les niveaux"
+        - "relier l'atténuation avec la distance à la répartition de la puissance sur une sphère"
+      en:
+        - "define the sound intensity as a power per unit area and quote its unit"
+        - "use the relation $L = 10\\,\\log(I/I_0)$ both ways, with $I_0 = 1.0 \\times 10^{-12}\\ \\mathrm{W \\cdot m^{-2}}$"
+        - "use the logarithmic character of the scale: $\\times 10$ on $I$ gives $+10$ dB, $\\times 2$ gives $+3$ dB"
+        - "add correctly the contributions of several sources, by adding the intensities and not the levels"
+        - "relate the attenuation with distance to the spreading of the power over a sphere"
+sources: [source.bo.lycee.2019]

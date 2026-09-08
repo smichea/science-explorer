@@ -1,0 +1,53 @@
+# Loi binomiale en Terminale — probabilité d'au moins un succès par l'événement contraire
+id: exercise.binomial.at_least_one
+type: numeric
+nodeId: concept.binomial_law
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Un lot contient une proportion de $5\,\%$ d'articles défectueux. On en prélève $20$ au hasard, le lot étant assez grand pour que les prélèvements soient assimilés à des tirages indépendants.
+
+    Quelle est la probabilité d'obtenir **au moins un** article défectueux ? Arrondir à $10^{-3}$.
+  en: |-
+    A batch contains a proportion of $5\,\%$ of defective items. $20$ of them are drawn at random, the batch being large enough for the draws to be treated as independent.
+
+    What is the probability of getting **at least one** defective item? Round to $10^{-3}$.
+numeric:
+  value: 0.6415
+  tolerance: { kind: absolute, value: 0.002 }
+  inputLabel: { fr: "$P(X \\geqslant 1)$", en: "$P(X \\geqslant 1)$" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Calculer $P(X \geqslant 1)$ terme à terme demanderait vingt calculs. Passez par l'événement contraire : « au moins un » est le contraire de « aucun ».
+      en: |-
+        Computing $P(X \geqslant 1)$ term by term would require twenty computations. Go through the complementary event: "at least one" is the opposite of "none".
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $P(X = 0) = \dbinom{20}{0}\,0{,}05^{0}\,0{,}95^{20} = 0{,}95^{20}$, puis $P(X \geqslant 1) = 1 - P(X = 0)$.
+      en: |-
+        $P(X = 0) = \dbinom{20}{0}\,0.05^{0}\,0.95^{20} = 0.95^{20}$, then $P(X \geqslant 1) = 1 - P(X = 0)$.
+solution:
+  fr: |-
+    La variable $X$ qui compte les articles défectueux suit la loi $\mathcal{B}(20\,;\,0{,}05)$. L'événement contraire de $\{X \geqslant 1\}$ est $\{X = 0\}$, dont la probabilité est $0{,}95^{20} \approx 0{,}3585$. Donc
+    $$P(X \geqslant 1) = 1 - 0{,}95^{20} \approx 0{,}641.$$
+
+    **Interprétation.** Avec seulement $5\,\%$ de défauts, près de deux prélèvements sur trois contiennent au moins un article défectueux : l'intuition sous-estime presque toujours ce résultat, parce qu'elle raisonne sur une pièce et non sur vingt. C'est le même calcul qui dit qu'avec vingt-trois personnes dans une salle, deux partagent probablement leur anniversaire. La règle pratique à retenir : dès qu'un énoncé contient « au moins un », on passe par l'événement contraire, qui ne demande qu'un seul terme.
+  en: |-
+    The variable $X$ counting the defective items follows the law $\mathcal{B}(20\,;\,0.05)$. The complementary event of $\{X \geqslant 1\}$ is $\{X = 0\}$, whose probability is $0.95^{20} \approx 0.3585$. Hence
+    $$P(X \geqslant 1) = 1 - 0.95^{20} \approx 0.641.$$
+
+    **Interpretation.** With only $5\,\%$ of defects, nearly two draws out of three contain at least one defective item: intuition almost always underestimates this result, because it reasons about one item and not about twenty. It is the same computation that says that with twenty-three people in a room, two probably share a birthday. The practical rule to remember: as soon as a statement contains "at least one", go through the complementary event, which needs a single term.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 3
+  calculationLength: 2
+  modellingOpenness: 3
+  linkedConcepts: 3
+  transfer: 3
+  autonomy: 3

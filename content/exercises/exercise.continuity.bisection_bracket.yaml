@@ -1,0 +1,61 @@
+# Continuité en Terminale — trois étapes de dichotomie sur x³ + x − 1, borne inférieure de l'encadrement obtenu
+id: exercise.continuity.bisection_bracket
+type: numeric
+nodeId: concept.continuity
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    La fonction $f(x) = x^3 + x - 1$ est continue et strictement croissante sur $[0\,;\,1]$, avec $f(0) = -1$ et $f(1) = 1$ : l'équation $f(x) = 0$ y admet une solution unique $\alpha$.
+
+    On applique la méthode de dichotomie en partant de $[0\,;\,1]$. Après **trois** étapes, quelle est la borne **inférieure** de l'encadrement obtenu ?
+  en: |-
+    The function $f(x) = x^3 + x - 1$ is continuous and strictly increasing on $[0\,;\,1]$, with $f(0) = -1$ and $f(1) = 1$: the equation $f(x) = 0$ has a unique solution $\alpha$ there.
+
+    The bisection method is applied starting from $[0\,;\,1]$. After **three** steps, what is the **lower** bound of the bracket obtained?
+numeric:
+  value: 0.625
+  tolerance: { kind: absolute, value: 0.0001 }
+  inputLabel: { fr: "borne inférieure après trois étapes", en: "lower bound after three steps" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Une étape consiste à calculer $f$ au milieu de l'intervalle, puis à garder la moitié aux bornes de laquelle $f$ change de signe.
+      en: |-
+        One step consists in computing $f$ at the middle of the interval, then keeping the half at whose ends $f$ changes sign.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Première étape : $f(0{,}5) = -0{,}375 < 0$, donc $\alpha$ est dans $[0{,}5\,;\,1]$. Continuez avec $0{,}75$ puis $0{,}625$.
+      en: |-
+        First step: $f(0.5) = -0.375 < 0$, so $\alpha$ lies in $[0.5\,;\,1]$. Carry on with $0.75$ then $0.625$.
+solution:
+  fr: |-
+    - Étape 1 : $f(0{,}5) = 0{,}125 + 0{,}5 - 1 = -0{,}375 < 0$, donc $\alpha \in [0{,}5\,;\,1]$.
+    - Étape 2 : $f(0{,}75) \approx 0{,}422 + 0{,}75 - 1 = 0{,}172 > 0$, donc $\alpha \in [0{,}5\,;\,0{,}75]$.
+    - Étape 3 : $f(0{,}625) \approx 0{,}244 + 0{,}625 - 1 = -0{,}131 < 0$, donc $\alpha \in [0{,}625\,;\,0{,}75]$.
+
+    La borne inférieure demandée vaut donc $$0{,}625.$$
+    L'amplitude de l'encadrement est passée de $1$ à $2^{-3} = 0{,}125$ ; en poursuivant, on trouve $\alpha \approx 0{,}6823$.
+
+    **Interprétation.** La dichotomie n'a besoin que du **signe** de $f$, jamais d'une formule inverse : c'est ce qui la rend universelle et programmable en cinq lignes. Chaque étape divise l'incertitude par deux, ce qui est une suite géométrique de raison $\frac12$ ; on gagne donc environ trois décimales toutes les dix étapes, ni plus ni moins. C'est aussi la limite de la méthode : elle est sûre mais lente comparée aux méthodes qui utilisent la pente.
+  en: |-
+    - Step 1: $f(0.5) = 0.125 + 0.5 - 1 = -0.375 < 0$, so $\alpha \in [0.5\,;\,1]$.
+    - Step 2: $f(0.75) \approx 0.422 + 0.75 - 1 = 0.172 > 0$, so $\alpha \in [0.5\,;\,0.75]$.
+    - Step 3: $f(0.625) \approx 0.244 + 0.625 - 1 = -0.131 < 0$, so $\alpha \in [0.625\,;\,0.75]$.
+
+    The lower bound asked for is therefore $$0.625.$$
+    The width of the bracket has gone from $1$ to $2^{-3} = 0.125$; carrying on, one finds $\alpha \approx 0.6823$.
+
+    **Interpretation.** Bisection needs only the **sign** of $f$, never an inverse formula: this is what makes it universal and programmable in five lines. Each step halves the uncertainty, which is a geometric sequence of ratio $\frac12$; one therefore gains about three decimal places every ten steps, no more and no less. This is also the limitation of the method: it is safe but slow compared with methods that use the slope.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 3
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 2
+  autonomy: 3

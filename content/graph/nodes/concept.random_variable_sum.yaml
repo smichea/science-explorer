@@ -1,0 +1,47 @@
+id: concept.random_variable_sum
+type: mathematical_concept
+world: world.mathematics
+region: region.math.probability_statistics
+importance: 2
+tags: [lycee]
+title: { fr: "Somme de variables aléatoires, espérance, variance", en: "Sum of random variables, expectation, variance" }
+shortPurpose:
+  fr: "Additionner des variables aléatoires : l'espérance s'ajoute toujours, la variance seulement si elles sont indépendantes."
+  en: "Add random variables: expectation always adds, variance only if they are independent."
+overview:
+  fr: >-
+    Une variable aléatoire résume une expérience par un nombre ; quand on répète l'expérience, les nombres s'additionnent. La règle est simple et vaut toujours : l'espérance d'une somme est la somme des espérances. Pour la variance, une condition s'ajoute, l'indépendance, et c'est elle qui explique pourquoi la dispersion d'une moyenne diminue quand on prend plus de mesures. Deux formules courtes, mais ce sont celles qui font tenir toute la statistique.
+  en: >-
+    A random variable sums up an experiment by a number; when the experiment is repeated, the numbers add up. The rule is simple and always holds: the expectation of a sum is the sum of the expectations. For the variance a condition appears, independence, and it is that condition which explains why the spread of a mean decreases when more measurements are taken. Two short formulas, but they are the ones that hold the whole of statistics together.
+aliases:
+  fr: ["somme de variables aléatoires", "linéarité de l'espérance", "variance d'une somme", "variables indépendantes", "échantillon de taille n", "moyenne empirique"]
+  en: ["sum of random variables", "linearity of expectation", "variance of a sum", "independent variables", "sample of size n", "sample mean"]
+description:
+  fr: |
+    Deux variables aléatoires définies sur la même expérience peuvent être ajoutées : $X + Y$ est la variable qui, à chaque issue, associe la somme des deux valeurs. On sait aussi la multiplier par un réel et lui ajouter une constante. Les règles de calcul sont les suivantes. L'**espérance est linéaire** : $E(X + Y) = E(X) + E(Y)$ et $E(aX + b) = a\,E(X) + b$, sans aucune hypothèse. La **variance** ne l'est pas : $V(aX + b) = a^{2}\,V(X)$ — ajouter une constante déplace la distribution sans l'étaler — et $V(X + Y) = V(X) + V(Y)$ seulement lorsque $X$ et $Y$ sont **indépendantes**, c'est-à-dire lorsque le résultat de l'une n'influe pas sur la loi de l'autre. L'écart type, lui, ne s'additionne jamais : ce sont les variances qui s'ajoutent, puis on prend la racine.
+
+    Un exemple : le lancer d'un dé équilibré donne $E(X) = 3{,}5$ et $V(X) = \frac{35}{12} \approx 2{,}92$. Deux dés lancés indépendamment donnent $E(X_1 + X_2) = 7$ et $V(X_1 + X_2) = \frac{35}{6} \approx 5{,}83$, soit un écart type de $2{,}42$ au lieu de $2 \times 1{,}71 = 3{,}42$ : la somme est moins dispersée que si les deux dés étaient copiés l'un sur l'autre, parce que les écarts se compensent parfois. Autre exemple central : une variable de Bernoulli de paramètre $p$ a pour espérance $p$ et pour variance $p(1-p)$ ; une variable binomiale $X$ de paramètres $n$ et $p$ étant la somme de $n$ telles variables indépendantes, on retrouve immédiatement $E(X) = np$ et $V(X) = np(1-p)$, sans manipuler un seul coefficient binomial.
+
+    On appelle **échantillon de taille $n$** une liste $X_1, \dots, X_n$ de variables indépendantes suivant toutes la même loi, d'espérance $\mu$ et de variance $\sigma^{2}$. La somme $S_n = X_1 + \cdots + X_n$ vérifie $E(S_n) = n\mu$ et $V(S_n) = n\sigma^{2}$ ; la **moyenne** $M_n = \frac{S_n}{n}$ vérifie donc $E(M_n) = \mu$ et $V(M_n) = \frac{\sigma^{2}}{n}$, soit un écart type $\frac{\sigma}{\sqrt n}$. Voilà la formule qui justifie de répéter une mesure : la moyenne reste centrée sur la vraie valeur et se resserre comme l'inverse de la racine de $n$ — pour diviser l'incertitude par $2$, il faut quatre fois plus de mesures. Deux pièges : appliquer $V(X + Y) = V(X) + V(Y)$ à des variables liées, par exemple $Y = X$, où la variance de $2X$ vaut $4V(X)$ et non $2V(X)$ ; et croire que $E(XY) = E(X)E(Y)$ ou que l'écart type d'une somme est la somme des écarts types, ce qui est faux en général.
+  en: |
+    Two random variables defined on the same experiment can be added: $X + Y$ is the variable which, at each outcome, returns the sum of the two values. It can also be multiplied by a real number and shifted by a constant. The rules of computation are these. **Expectation is linear**: $E(X + Y) = E(X) + E(Y)$ and $E(aX + b) = a\,E(X) + b$, with no hypothesis at all. **Variance** is not: $V(aX + b) = a^{2}\,V(X)$ — adding a constant moves the distribution without spreading it — and $V(X + Y) = V(X) + V(Y)$ only when $X$ and $Y$ are **independent**, that is, when the result of one does not affect the law of the other. Standard deviations never add: variances add, and the square root comes afterwards.
+
+    An example: rolling a fair die gives $E(X) = 3.5$ and $V(X) = \frac{35}{12} \approx 2.92$. Two dice rolled independently give $E(X_1 + X_2) = 7$ and $V(X_1 + X_2) = \frac{35}{6} \approx 5.83$, that is a standard deviation of $2.42$ instead of $2 \times 1.71 = 3.42$: the sum is less spread out than if the two dice copied each other, because the deviations sometimes cancel. Another central example: a Bernoulli variable with parameter $p$ has expectation $p$ and variance $p(1-p)$; since a binomial variable $X$ with parameters $n$ and $p$ is the sum of $n$ such independent variables, one recovers $E(X) = np$ and $V(X) = np(1-p)$ at once, without handling a single binomial coefficient.
+
+    A **sample of size $n$** is a list $X_1, \dots, X_n$ of independent variables all following the same law, with expectation $\mu$ and variance $\sigma^{2}$. The sum $S_n = X_1 + \cdots + X_n$ satisfies $E(S_n) = n\mu$ and $V(S_n) = n\sigma^{2}$; the **mean** $M_n = \frac{S_n}{n}$ therefore satisfies $E(M_n) = \mu$ and $V(M_n) = \frac{\sigma^{2}}{n}$, that is a standard deviation $\frac{\sigma}{\sqrt n}$. Here is the formula that justifies repeating a measurement: the mean stays centred on the true value and tightens like the inverse of the square root of $n$ — to divide the uncertainty by $2$, four times as many measurements are needed. Two traps: applying $V(X + Y) = V(X) + V(Y)$ to related variables, for instance $Y = X$, where the variance of $2X$ is $4V(X)$ and not $2V(X)$; and believing that $E(XY) = E(X)E(Y)$ or that the standard deviation of a sum is the sum of the standard deviations, which is false in general.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "utiliser la linéarité de l'espérance, $E(X + Y) = E(X) + E(Y)$ et $E(aX + b) = aE(X) + b$"
+        - "utiliser $V(aX + b) = a^{2}V(X)$ et $V(X + Y) = V(X) + V(Y)$ pour des variables indépendantes"
+        - "retrouver l'espérance et la variance d'une loi binomiale comme somme de variables de Bernoulli"
+        - "calculer l'espérance, la variance et l'écart type de la somme et de la moyenne d'un échantillon de taille $n$"
+      en:
+        - "use the linearity of expectation, $E(X + Y) = E(X) + E(Y)$ and $E(aX + b) = aE(X) + b$"
+        - "use $V(aX + b) = a^{2}V(X)$ and $V(X + Y) = V(X) + V(Y)$ for independent variables"
+        - "recover the expectation and the variance of a binomial law as a sum of Bernoulli variables"
+        - "compute the expectation, the variance and the standard deviation of the sum and of the mean of a sample of size $n$"
+sources: [source.bo.lycee.2019]

@@ -1,0 +1,95 @@
+# Terminale — mathématiques : arêtes intra-disciplinaires des dix nouvelles destinations (prérequis venus de
+# Seconde, de Première et de la Terminale elle-même, applications des outils du sac à dos vers la physique, la
+# chimie et les mathématiques). Direction : requires_* du prérequis vers le dépendant ; applies_to de l'outil
+# vers l'application. Aucune arête de prérequis ne pointe d'un nœud de Terminale vers un nœud d'une année
+# antérieure : le vol au-dessus de l'atlas suivrait alors l'ordre inverse de celui de l'année.
+edges:
+  # --- requires_essentially : analyse ---------------------------------------
+  - { from: concept.sequence, to: concept.sequence_limit, type: requires_essentially, weight: 1,
+      note: { fr: "Il faut savoir ce qu'est une suite, un rang et un terme avant de demander où elle va.", en: "One must know what a sequence, a rank and a term are before asking where it goes." } }
+  - { from: tool.arithmetic_geometric_sequences, to: concept.sequence_limit, type: requires_essentially, weight: 1,
+      note: { fr: "Les limites de référence sont celles des suites géométriques : q puissance n tend vers zéro si la raison est entre moins un et un.", en: "The reference limits are those of geometric sequences: q to the power n tends to zero if the ratio lies between minus one and one." } }
+  - { from: concept.function, to: concept.limit, type: requires_essentially, weight: 1,
+      note: { fr: "Une limite décrit le comportement d'une fonction aux bords de son ensemble de définition.", en: "A limit describes the behaviour of a function at the edges of its domain of definition." } }
+  - { from: concept.limit, to: concept.continuity, type: requires_essentially, weight: 1,
+      note: { fr: "La continuité en a se définit par une limite : celle de f en a doit valoir f(a).", en: "Continuity at a is defined by a limit: that of f at a must equal f(a)." } }
+  - { from: concept.sequence_limit, to: concept.continuity, type: requires_essentially, weight: 0.8,
+      note: { fr: "La dichotomie construit deux suites adjacentes, et son amplitude est une suite géométrique de raison un demi.", en: "Bisection builds two adjacent sequences, and its width is a geometric sequence of ratio one half." } }
+  - { from: concept.limit, to: tool.logarithm, type: requires_essentially, weight: 1,
+      note: { fr: "Le logarithme n'existe que parce que l'exponentielle va de zéro à l'infini : ce sont ses limites qui donnent son ensemble de définition.", en: "The logarithm exists only because the exponential runs from zero to infinity: its limits give the domain of definition." } }
+  - { from: tool.exponential, to: tool.logarithm, type: requires_essentially, weight: 1,
+      note: { fr: "Le logarithme népérien est la fonction réciproque de l'exponentielle : ln(e^x) = x.", en: "The natural logarithm is the inverse function of the exponential: ln(e^x) = x." } }
+  - { from: concept.continuity, to: tool.integral, type: requires_essentially, weight: 1,
+      note: { fr: "L'intégrale d'une fonction continue existe : c'est la limite commune des sommes de Riemann.", en: "The integral of a continuous function exists: it is the common limit of the Riemann sums." } }
+  - { from: tool.derivative, to: tool.integral, type: requires_essentially, weight: 1,
+      note: { fr: "Une primitive est une fonction dont la dérivée est donnée : le calcul intégral se lit à l'envers du tableau des dérivées.", en: "An antiderivative is a function whose derivative is given: integral calculus is read backwards from the table of derivatives." } }
+  # --- requires_essentially : géométrie et probabilités ----------------------
+  - { from: tool.vector, to: tool.space_geometry, type: requires_essentially, weight: 1,
+      note: { fr: "Les vecteurs de l'espace se manipulent comme ceux du plan, avec une troisième composante.", en: "Vectors in space are handled like those in the plane, with a third component." } }
+  - { from: tool.dot_product, to: tool.space_geometry, type: requires_essentially, weight: 1,
+      note: { fr: "Le produit scalaire de l'espace prolonge celui du plan : x x' + y y' + z z'.", en: "The dot product in space extends the one in the plane: x x' + y y' + z z'." } }
+  - { from: concept.logic_sets, to: tool.counting, type: requires_essentially, weight: 1,
+      note: { fr: "Dénombrer, c'est calculer le cardinal d'un ensemble fini, de ses parties, de ses réunions et de ses produits.", en: "Counting means computing the cardinality of a finite set, of its subsets, its unions and its products." } }
+  - { from: tool.counting, to: concept.binomial_law, type: requires_essentially, weight: 1,
+      note: { fr: "Le coefficient binomial compte les chemins de l'arbre qui portent exactement k succès.", en: "The binomial coefficient counts the paths of the tree carrying exactly k successes." } }
+  - { from: concept.random_variable, to: concept.binomial_law, type: requires_essentially, weight: 1,
+      note: { fr: "Le nombre de succès est une variable aléatoire : on en donne la loi, l'espérance et la variance.", en: "The number of successes is a random variable: one gives its law, its expectation and its variance." } }
+  - { from: concept.conditional_probability, to: concept.binomial_law, type: requires_essentially, weight: 1,
+      note: { fr: "Répéter des épreuves indépendantes, c'est multiplier le long d'un chemin d'arbre pondéré.", en: "Repeating independent trials means multiplying along a path of a weighted tree." } }
+  - { from: concept.random_variable, to: concept.random_variable_sum, type: requires_essentially, weight: 1,
+      note: { fr: "On additionne des variables aléatoires définies sur la même expérience, dont on connaît déjà l'espérance et la variance.", en: "One adds random variables defined on the same experiment, whose expectation and variance are already known." } }
+  - { from: concept.binomial_law, to: concept.random_variable_sum, type: requires_essentially, weight: 0.8,
+      note: { fr: "La loi binomiale est la somme de n variables de Bernoulli indépendantes : c'est de là que sortent n p et n p (1 − p).", en: "The binomial law is the sum of n independent Bernoulli variables: this is where n p and n p (1 − p) come from." } }
+  - { from: concept.random_variable_sum, to: concept.law_of_large_numbers, type: requires_essentially, weight: 1,
+      note: { fr: "La concentration repose sur V(M_n) = σ²/n, donc sur la variance d'une somme de variables indépendantes.", en: "Concentration rests on V(M_n) = σ²/n, hence on the variance of a sum of independent variables." } }
+  # --- requires_recommended -------------------------------------------------
+  - { from: tool.derivative, to: concept.limit, type: requires_recommended, weight: 0.8,
+      note: { fr: "Le nombre dérivé est déjà une limite, celle du taux de variation quand l'écart tend vers zéro.", en: "The derivative number is already a limit, that of the rate of change as the gap tends to zero." } }
+  - { from: tool.reference_functions, to: concept.limit, type: requires_recommended, weight: 0.7,
+      note: { fr: "Les limites usuelles sont celles des fonctions de référence : inverse, carré, racine, exponentielle.", en: "The usual limits are those of the reference functions: reciprocal, square, square root, exponential." } }
+  - { from: tool.exponential, to: concept.limit, type: requires_recommended, weight: 0.7,
+      note: { fr: "Les croissances comparées opposent l'exponentielle et les puissances : elles supposent l'exponentielle connue.", en: "Comparative growth opposes the exponential and the powers: it presupposes the exponential." } }
+  - { from: concept.variations_extremums, to: concept.continuity, type: requires_recommended, weight: 0.7,
+      note: { fr: "Le corollaire du théorème des valeurs intermédiaires demande la stricte monotonie, lue dans le tableau de variations.", en: "The corollary of the intermediate value theorem requires strict monotonicity, read in the table of variations." } }
+  - { from: tool.algorithmics, to: concept.continuity, type: requires_recommended, weight: 0.7,
+      note: { fr: "La dichotomie est un algorithme : une boucle tant que, un test de signe, un encadrement qui se resserre.", en: "Bisection is an algorithm: a while loop, a sign test, a bracket that tightens." } }
+  - { from: tool.logarithm, to: tool.integral, type: requires_recommended, weight: 0.8,
+      note: { fr: "Le logarithme est la primitive de la fonction inverse sur les réels strictement positifs.", en: "The logarithm is the antiderivative of the reciprocal function on the strictly positive reals." } }
+  - { from: concept.coordinates, to: tool.space_geometry, type: requires_recommended, weight: 0.8,
+      note: { fr: "Tout se joue dans un repère orthonormé, avec une coordonnée de plus qu'en Seconde.", en: "Everything happens in an orthonormal frame, with one coordinate more than in Grade 10." } }
+  - { from: tool.analytic_geometry, to: tool.space_geometry, type: requires_recommended, weight: 0.8,
+      note: { fr: "L'équation cartésienne d'un plan prolonge celle d'une droite du plan, écrite avec un vecteur normal.", en: "The cartesian equation of a plane extends that of a line in the plane, written with a normal vector." } }
+  - { from: tool.arithmetic, to: tool.counting, type: requires_recommended, weight: 0.6,
+      note: { fr: "Les factorielles et les coefficients binomiaux sont des produits d'entiers que l'on simplifie avant de calculer.", en: "Factorials and binomial coefficients are products of integers to be simplified before computing." } }
+  - { from: concept.probability, to: tool.counting, type: requires_recommended, weight: 0.8,
+      note: { fr: "Dénombrer sert d'abord à calculer une probabilité en situation d'équiprobabilité.", en: "Counting serves first to compute a probability in a situation of equiprobability." } }
+  - { from: tool.descriptive_statistics, to: concept.law_of_large_numbers, type: requires_recommended, weight: 0.7,
+      note: { fr: "La moyenne et l'écart-type d'une série sont les analogues empiriques de l'espérance et de l'écart type.", en: "The mean and the standard deviation of a series are the empirical analogues of expectation and standard deviation." } }
+  - { from: concept.sampling_fluctuation, to: concept.law_of_large_numbers, type: requires_recommended, weight: 0.8,
+      note: { fr: "La fluctuation constatée en Seconde reçoit ici sa démonstration et sa majoration.", en: "The fluctuation observed in Grade 10 receives here its proof and its bound." } }
+  # --- applications des outils du sac à dos (coverageEligible) ---------------
+  - { from: tool.integral, to: phenomenon.motion.free_fall, type: applies_to, coverageEligible: true, weight: 1,
+      note: { fr: "La vitesse est l'intégrale de l'accélération et la position l'intégrale de la vitesse : la loi horaire d'une chute se reconstruit ainsi, la condition initiale fixant la constante.", en: "Velocity is the integral of acceleration and position the integral of velocity: the equation of motion of a fall is rebuilt this way, the initial condition fixing the constant." } }
+  - { from: tool.integral, to: phenomenon.circuit.capacitor_charging, type: applies_to, coverageEligible: true, weight: 0.9,
+      note: { fr: "La charge accumulée sur les armatures est l'intégrale de l'intensité : l'aire sous la courbe i(t) donne les coulombs stockés.", en: "The charge accumulated on the plates is the integral of the current: the area under the curve i(t) gives the coulombs stored." } }
+  - { from: tool.integral, to: concept.mechanical_energy, type: applies_to, coverageEligible: true, weight: 0.8,
+      note: { fr: "Le travail d'une force variable est l'intégrale de sa composante le long du déplacement, et l'énergie reçue l'intégrale de la puissance.", en: "The work of a variable force is the integral of its component along the displacement, and the energy received the integral of the power." } }
+  - { from: tool.logarithm, to: phenomenon.nuclear.radioactive_decay, type: applies_to, coverageEligible: true, weight: 1,
+      note: { fr: "La demi-vie se calcule en résolvant e^(−λt) = 1/2, ce qui donne t = ln 2 / λ : c'est le logarithme qui fait descendre le temps de l'exposant.", en: "The half-life is computed by solving e^(−λt) = 1/2, which gives t = ln 2 / λ: the logarithm brings time down from the exponent." } }
+  - { from: tool.logarithm, to: model.rc_circuit, type: applies_to, coverageEligible: true, weight: 0.8,
+      note: { fr: "En échelle semi-logarithmique, ln y = ln y₀ − t/τ est une droite dont la pente livre directement la constante de temps.", en: "On a semi-logarithmic scale, ln y = ln y₀ − t/τ is a straight line whose slope directly yields the time constant." } }
+  - { from: tool.logarithm, to: tool.exponential, type: applies_to, coverageEligible: true, weight: 0.9,
+      note: { fr: "Toute équation où l'inconnue est en exposant se résout en composant par le logarithme, réciproque de l'exponentielle.", en: "Every equation whose unknown sits in an exponent is solved by composing with the logarithm, the inverse of the exponential." } }
+  - { from: tool.space_geometry, to: phenomenon.motion.free_fall, type: applies_to, coverageEligible: true, weight: 0.8,
+      note: { fr: "Une trajectoire de projectile se décrit dans l'espace : le plan de la trajectoire, la droite de la vitesse initiale et la distance au sol se lisent avec les vecteurs et le produit scalaire.", en: "A projectile trajectory is described in space: the plane of the trajectory, the line of the initial velocity and the distance to the ground are read with vectors and the dot product." } }
+  - { from: tool.space_geometry, to: concept.mechanical_energy, type: applies_to, coverageEligible: true, weight: 0.7,
+      note: { fr: "Le travail d'une force dans l'espace est le produit scalaire de la force par le déplacement : il est nul quand la force est orthogonale au mouvement.", en: "The work of a force in space is the dot product of the force by the displacement: it vanishes when the force is orthogonal to the motion." } }
+  - { from: tool.counting, to: concept.binomial_law, type: applies_to, coverageEligible: true, weight: 1,
+      note: { fr: "Le coefficient binomial k parmi n est exactement le nombre de chemins de l'arbre qui donnent k succès : sans lui, pas de loi binomiale.", en: "The binomial coefficient k among n is exactly the number of paths of the tree giving k successes: without it, no binomial law." } }
+  - { from: tool.counting, to: concept.probability, type: applies_to, coverageEligible: true, weight: 0.8,
+      note: { fr: "En situation d'équiprobabilité, une probabilité est un quotient de deux dénombrements : cas favorables sur cas possibles.", en: "In a situation of equiprobability, a probability is a quotient of two counts: favourable cases over possible cases." } }
+  # --- applications des concepts (hors couverture des outils) ----------------
+  - { from: concept.binomial_law, to: concept.sampling_fluctuation, type: applies_to, weight: 0.8,
+      note: { fr: "La fréquence observée sur un échantillon est le nombre de succès divisé par n : sa loi est binomiale, ce qui explique la fluctuation.", en: "The frequency observed on a sample is the number of successes divided by n: its law is binomial, which explains the fluctuation." } }
+  - { from: concept.law_of_large_numbers, to: method.measurement, type: applies_to, weight: 0.8,
+      note: { fr: "Répéter n mesures indépendantes divise l'incertitude sur la moyenne par racine de n : c'est la raison mathématique de toute série de mesures.", en: "Repeating n independent measurements divides the uncertainty on the mean by the square root of n: this is the mathematical reason for every series of measurements." } }

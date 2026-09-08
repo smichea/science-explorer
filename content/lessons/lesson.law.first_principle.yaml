@@ -1,0 +1,106 @@
+# Leçon narrée — le premier principe : les dimensions de l'énergie interne, de la capacité thermique et du
+# coefficient d'échange (outil dimensions), puis le bilan rendu visible sur une casserole chauffée (simulation).
+id: lesson.law.first_principle
+nodeId: law.first_principle
+depth: 1
+tools:
+  - id: dims
+    kind: dimensions
+    title: { fr: "Joules, joules par kelvin, watts par kelvin", en: "Joules, joules per kelvin, watts per kelvin" }
+    quantities:
+      - { id: length, symbol: "ℓ", label: { fr: "longueur", en: "length" }, unit: "m", dims: { L: 1 } }
+      - { id: mass, symbol: "m", label: { fr: "masse", en: "mass" }, unit: "kg", dims: { M: 1 } }
+      - { id: time, symbol: "t", label: { fr: "temps", en: "time" }, unit: "s", dims: { T: 1 } }
+      - { id: temperature, symbol: "θ", label: { fr: "température", en: "temperature" }, unit: "K", dims: { Th: 1 } }
+      - { id: energy, symbol: "U", label: { fr: "énergie interne", en: "internal energy" }, unit: "J", dims: { M: 1, L: 2, T: -2 }, base: false }
+      - { id: power, symbol: "P", label: { fr: "puissance", en: "power" }, unit: "W", dims: { M: 1, L: 2, T: -3 }, base: false }
+      - { id: capacity, symbol: "C", label: { fr: "capacité thermique", en: "heat capacity" }, unit: "J/K", dims: { M: 1, L: 2, T: -2, Th: -1 }, base: false }
+      - { id: massic, symbol: "c", label: { fr: "capacité thermique massique", en: "specific heat capacity" }, unit: "J/(kg·K)", dims: { L: 2, T: -2, Th: -1 }, base: false }
+      - { id: exchange, symbol: "hS", label: { fr: "coefficient d'échange", en: "exchange coefficient" }, unit: "W/K", dims: { M: 1, L: 2, T: -3, Th: -1 }, base: false }
+  - id: pan
+    kind: simulation
+    title: { fr: "Une casserole chauffée par une résistance", en: "A pan heated by a resistor" }
+    simulationId: simulation.heating.basic
+steps:
+  - id: system
+    title: { fr: "Choisir un système et compter", en: "Choosing a system and counting" }
+    tool: dims
+    text:
+      fr: >-
+        Tout commence par un choix : celui du système, la portion de matière que l'on décide d'étudier, et de sa frontière.
+        Ce système contient une énergie interne, la somme de toutes les énergies microscopiques de ses molécules, que l'on note U et qui se mesure en joules.
+        Le premier principe dit alors une seule chose, mais il la dit exactement : la variation de l'énergie interne est égale à la somme du travail et du transfert thermique reçus.
+        Rien ne se perd, rien ne se crée : ce qui manque quelque part se retrouve ailleurs, et il suffit de compter juste, en comptant positivement ce qui entre.
+      en: >-
+        Everything starts with a choice: that of the system, the portion of matter one decides to study, and of its boundary.
+        This system holds an internal energy, the sum of all the microscopic energies of its molecules, written U and measured in joules.
+        The first principle then says only one thing, but it says it exactly: the change of the internal energy equals the sum of the work and of the heat transfer received.
+        Nothing is lost, nothing is created: what is missing somewhere is found elsewhere, and it is enough to count correctly, counting positively what enters.
+  - id: capacity
+    title: { fr: "La capacité thermique, lue dans ses unités", en: "The heat capacity, read in its units" }
+    tool: dims
+    text:
+      fr: >-
+        Pour un solide ou un liquide, l'énergie interne se lit sur le thermomètre : sa variation vaut la capacité thermique multipliée par l'écart de température.
+        La capacité thermique se mesure donc en joules par kelvin, et la capacité thermique massique en joules par kilogramme et par kelvin : quatre mille cent quatre-vingt-cinq pour l'eau, neuf cents pour l'aluminium.
+        Reconstruisez ces unités à partir des quatre grandeurs de base et vous ne les confondrez plus : le joule contient une masse, deux longueurs et deux temps à l'envers ; le watt en contient un troisième.
+        Vérifiez enfin qu'une capacité thermique divisée par un coefficient d'échange, en watts par kelvin, donne bien un temps : c'est la constante de temps du refroidissement.
+      en: >-
+        For a solid or a liquid, the internal energy is read on the thermometer: its change equals the heat capacity multiplied by the temperature difference.
+        The heat capacity is therefore measured in joules per kelvin, and the specific heat capacity in joules per kilogram and per kelvin: four thousand one hundred and eighty-five for water, nine hundred for aluminium.
+        Rebuild these units from the four base quantities and you will not confuse them again: the joule holds one mass, two lengths and two times upside down; the watt holds a third one.
+        Check finally that a heat capacity divided by an exchange coefficient, in watts per kelvin, does give a time: it is the time constant of the cooling.
+  - id: balance
+    title: { fr: "Le bilan en marche", en: "The balance at work" }
+    tool: pan
+    text:
+      fr: >-
+        Voici une demi-casserole d'eau, deux mille cent joules par kelvin de capacité thermique, chauffée par une résistance de deux cents watts dans une pièce à vingt degrés.
+        Pendant chaque seconde, la résistance apporte deux cents joules et les parois en cèdent d'autant plus que l'eau est chaude : la différence, seule, fait monter la température.
+        Au départ l'eau est à la température de la pièce, rien ne s'échappe encore, et la pente vaut la puissance divisée par la capacité, soit un dixième de degré par seconde.
+        À mesure que l'eau chauffe, les pertes grandissent, la pente diminue, et la température plafonne à soixante-dix degrés : là, l'eau perd exactement ce qu'elle reçoit.
+      en: >-
+        Here is half a pan of water, two thousand one hundred joules per kelvin of heat capacity, warmed by a two hundred watt resistor in a room at twenty degrees.
+        During each second the resistor brings two hundred joules and the walls give away the more the hotter the water is: only the difference raises the temperature.
+        At the start the water is at the temperature of the room, nothing escapes yet, and the slope is the power divided by the capacity, one tenth of a degree per second.
+        As the water warms up, the losses grow, the slope decreases, and the temperature levels off at seventy degrees: there, the water loses exactly what it receives.
+  - id: losses
+    title: { fr: "Où est passée l'énergie ?", en: "Where has the energy gone?" }
+    tool: pan
+    text:
+      fr: >-
+        Le second graphe compte l'énergie reçue par l'eau, c'est-à-dire la capacité multipliée par l'élévation de température.
+        Au bout de cinquante minutes, l'eau n'a gardé que cent cinq kilojoules, alors que la résistance en a fourni six cents : les cinq cents autres sont partis dans la pièce.
+        Ce n'est pas une contradiction avec le premier principe, c'est le premier principe : l'énergie n'a pas disparu, elle a simplement changé de propriétaire.
+        Coupez la puissance et vous verrez la courbe redescendre vers vingt degrés : c'est le refroidissement de Newton, le même bilan avec un terme en moins.
+      en: >-
+        The second graph counts the energy received by the water, that is the capacity multiplied by the rise in temperature.
+        After fifty minutes the water has kept only one hundred and five kilojoules, whereas the resistor has supplied six hundred: the other five hundred have gone into the room.
+        This is not a contradiction with the first principle, it is the first principle: the energy has not disappeared, it has simply changed owner.
+        Cut the power and you will see the curve come back down towards twenty degrees: that is Newton's cooling, the same balance with one term fewer.
+  - id: play
+    kind: play
+    title: { fr: "À vous de régler la casserole", en: "Your turn to set the pan" }
+    tool: pan
+    text:
+      fr: >-
+        À vous.
+        Doublez la puissance : l'asymptote monte, mais la constante de temps ne bouge pas.
+        Doublez ensuite le coefficient d'échange, comme si la casserole était mal isolée : l'asymptote descend de moitié et la montée est deux fois plus rapide.
+        Cherchez enfin le réglage pour lequel l'eau atteindrait cent degrés, et demandez-vous ce que le modèle cesse alors de décrire.
+      en: >-
+        Your turn.
+        Double the power: the asymptote rises, but the time constant does not move.
+        Then double the exchange coefficient, as if the pan were badly insulated: the asymptote halves and the rise is twice as fast.
+        Finally look for the setting at which the water would reach one hundred degrees, and ask yourself what the model then stops describing.
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : l'énergie nécessaire pour porter une bouilloire à ébullition, puis la température finale d'un mélange de deux eaux.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the energy needed to bring a kettle to the boil, then the final temperature of a mixture of two waters.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.first_principle.kettle, exercise.first_principle.mixture]

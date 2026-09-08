@@ -1,0 +1,63 @@
+# Leçon équilibre — déterminer l'avancement final d'une estérification par la condition Qr = K (réponse numérique en mol)
+id: exercise.equilibrium.final_extent
+type: numeric
+nodeId: concept.chemical_equilibrium
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On mélange $1{,}0\ \mathrm{mol}$ d'acide éthanoïque et $3{,}0\ \mathrm{mol}$ d'éthanol dans un volume $V = 1{,}0\ \mathrm{L}$, à température constante. L'estérification
+    $$\mathrm{CH_3COOH} + \mathrm{C_2H_5OH} = \mathrm{CH_3COOC_2H_5} + \mathrm{H_2O}$$
+    a pour constante d'équilibre $K = 4{,}0$.
+
+    Déterminez l'avancement final $x_f$, en $\mathrm{mol}$.
+  en: |-
+    $1.0\ \mathrm{mol}$ of ethanoic acid and $3.0\ \mathrm{mol}$ of ethanol are mixed in a volume $V = 1.0\ \mathrm{L}$, at constant temperature. The esterification
+    $$\mathrm{CH_3COOH} + \mathrm{C_2H_5OH} = \mathrm{CH_3COOC_2H_5} + \mathrm{H_2O}$$
+    has the equilibrium constant $K = 4.0$.
+
+    Determine the final extent $x_f$, in $\mathrm{mol}$.
+numeric:
+  value: 0.903
+  unit: "mol"
+  tolerance: { kind: absolute, value: 0.02 }
+  inputLabel: { fr: "x f", en: "x f" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Dressez le tableau d'avancement : il reste $1{,}0 - x$ d'acide et $3{,}0 - x$ d'alcool, et il s'est formé $x$ d'ester et $x$ d'eau. Comme $V = 1{,}0\ \mathrm{L}$, les concentrations ont la même valeur numérique que les quantités.
+      en: |-
+        Draw the extent table: $1.0 - x$ of acid and $3.0 - x$ of alcohol are left, and $x$ of ester and $x$ of water have formed. Since $V = 1.0\ \mathrm{L}$, the concentrations have the same numerical value as the amounts.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Écrivez $Q_r(x_f) = K$, soit $\dfrac{x_f^{2}}{(1{,}0-x_f)(3{,}0-x_f)} = 4{,}0$ : en développant, vous obtenez une équation du second degré. Ne gardez que la racine comprise entre $0$ et $x_{\max}$.
+      en: |-
+        Write $Q_r(x_f) = K$, that is $\dfrac{x_f^{2}}{(1.0-x_f)(3.0-x_f)} = 4.0$: expanding, you get a quadratic equation. Keep only the root between $0$ and $x_{\max}$.
+solution:
+  fr: |-
+    Le tableau d'avancement donne, avec $V = 1{,}0\ \mathrm{L}$,
+    $$Q_r(x) = \frac{[\mathrm{ester}][\mathrm{eau}]}{[\mathrm{acide}][\mathrm{alcool}]} = \frac{x^{2}}{(1{,}0-x)(3{,}0-x)}.$$
+
+    L'état final est celui où $Q_r$ atteint $K$ :
+    $$\frac{x_f^{2}}{(1{,}0-x_f)(3{,}0-x_f)} = 4{,}0 \quad\Longrightarrow\quad x_f^{2} = 4{,}0\,(3{,}0 - 4{,}0\,x_f + x_f^{2}),$$
+    soit $3\,x_f^{2} - 16\,x_f + 12 = 0$. Le discriminant vaut $\Delta = 256 - 144 = 112$, donc $x_f = \dfrac{16 - \sqrt{112}}{6} = 0{,}90\ \mathrm{mol}$ ; l'autre racine, $4{,}4\ \mathrm{mol}$, dépasse $x_{\max}$ et n'a pas de sens chimique.
+
+    L'acide est le réactif limitant, donc $x_{\max} = 1{,}0\ \mathrm{mol}$ et le taux d'avancement final vaut $\tau = \dfrac{0{,}90}{1{,}0} = 90\ \%$.
+
+    **Interprétation.** Avec un mélange équimolaire, le même calcul aurait donné $x_f = 0{,}67\ \mathrm{mol}$, soit $\tau = 67\ \%$ : l'excès d'alcool a fait passer le rendement de deux tiers à neuf dixièmes. La constante $K$, elle, n'a pas bougé — elle ne dépend que de la réaction et de la température. C'est le levier ordinaire du chimiste : pour tirer davantage d'un réactif cher, on met l'autre en excès, ou l'on retire l'eau au fur et à mesure. Et remarquez qu'aucun de ces calculs ne dit combien de temps il faudra attendre : sans catalyseur, cette estérification demande plusieurs jours.
+  en: |-
+    The extent table gives, with $V = 1.0\ \mathrm{L}$,
+    $$Q_r(x) = \frac{[\mathrm{ester}][\mathrm{water}]}{[\mathrm{acid}][\mathrm{alcohol}]} = \frac{x^{2}}{(1.0-x)(3.0-x)}.$$
+
+    The final state is the one where $Q_r$ reaches $K$:
+    $$\frac{x_f^{2}}{(1.0-x_f)(3.0-x_f)} = 4.0 \quad\Longrightarrow\quad x_f^{2} = 4.0\,(3.0 - 4.0\,x_f + x_f^{2}),$$
+    that is $3\,x_f^{2} - 16\,x_f + 12 = 0$. The discriminant is $\Delta = 256 - 144 = 112$, hence $x_f = \dfrac{16 - \sqrt{112}}{6} = 0.90\ \mathrm{mol}$; the other root, $4.4\ \mathrm{mol}$, exceeds $x_{\max}$ and has no chemical meaning.
+
+    The acid is the limiting reactant, so $x_{\max} = 1.0\ \mathrm{mol}$ and the final rate of the transformation is $\tau = \dfrac{0.90}{1.0} = 90\ \%$.
+
+    **Interpretation.** With an equimolar mixture, the same computation would have given $x_f = 0.67\ \mathrm{mol}$, that is $\tau = 67\ \%$: the excess of alcohol has taken the yield from two thirds to nine tenths. The constant $K$, for its part, has not moved — it depends only on the reaction and on the temperature. This is the chemist's ordinary lever: to get more out of an expensive reactant, the other one is put in excess, or the water is removed as it forms. And note that none of these computations says how long one will have to wait: without a catalyst, this esterification takes several days.
+difficulty: { mathematicalDepth: 3, conceptualNovelty: 3, calculationLength: 3, modellingOpenness: 2, linkedConcepts: 3, transfer: 2, autonomy: 3 }

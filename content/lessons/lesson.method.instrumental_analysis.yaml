@@ -1,0 +1,32 @@
+# Leçon (diapositives composées à partir de la description) — analyse instrumentale : la droite d'étalonnage ajustée sur une
+# gamme (outil ajustement), puis la courbe conductimétrique d'un titrage, deux droites qui se coupent à l'équivalence.
+id: lesson.method.instrumental_analysis
+nodeId: method.instrumental_analysis
+depth: 1
+tools:
+  - id: calibration
+    kind: fit
+    title: { fr: "Droite d'étalonnage d'un spectrophotomètre", en: "Calibration line of a spectrophotometer" }
+    view: { x: [0, 0.55], y: [0, 1.4] }
+    labels: { x: "C (mmol/L)", y: "A" }
+    parameters:
+      - { id: k, label: { fr: "pente k (L/mmol)", en: "slope k (L/mmol)" }, min: 1, max: 4, step: 0.05, value: 2.5 }
+    generator: { expr: "2.5*x", noise: 0.02, count: 6, from: 0.05, to: 0.5, seed: 7 }
+    models:
+      - { id: beer, expr: "k*x", label: { fr: "A = k C (loi de Beer-Lambert)", en: "A = k C (Beer-Lambert law)" } }
+    target: 0.29
+    measure: true
+  - id: conductimetry
+    kind: plotter
+    title: { fr: "Titrage suivi par conductimétrie", en: "Titration followed by conductimetry" }
+    variable: v
+    view: { x: [0, 20], y: [0, 4] }
+    input: false
+    parameters:
+      - { id: w, label: { fr: "volume équivalent VE (mL)", en: "equivalence volume VE (mL)" }, min: 5, max: 15, step: 0.5, value: 10 }
+    initial:
+      - view: { labels: { x: "V versé (mL)", y: "σ (mS/cm)" } }
+        plot: { id: sigma, expr: "0.5-0.075*(v-w)+0.225*abs(v-w)", label: { fr: "conductivité mesurée", en: "measured conductivity" } }
+      - line: { id: before, a: 0.3, b: 1, c: "-(0.5+0.3*w)", dashed: true, label: { fr: "avant l'équivalence", en: "before the equivalence" } }
+      - line: { id: after, a: -0.15, b: 1, c: "0.15*w-0.5", dashed: true, label: { fr: "après l'équivalence", en: "after the equivalence" } }
+      - point: { id: equivalence, on: sigma, x: "w", guides: true, label: { fr: "équivalence à l'intersection", en: "equivalence at the intersection" } }

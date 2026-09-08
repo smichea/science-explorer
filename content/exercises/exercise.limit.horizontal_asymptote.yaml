@@ -1,0 +1,53 @@
+# Limites en Terminale — limite en l'infini d'une fonction homographique et lecture de l'asymptote horizontale
+id: exercise.limit.horizontal_asymptote
+type: numeric
+nodeId: concept.limit
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Soit $f$ la fonction définie sur $]1\,;\,+\infty[$ par $f(x) = \dfrac{2x + 1}{x - 1}$.
+
+    Sa courbe admet en $+\infty$ une asymptote horizontale d'équation $y = \ell$. Donner la valeur de $\ell$.
+  en: |-
+    Let $f$ be the function defined on $]1\,;\,+\infty[$ by $f(x) = \dfrac{2x + 1}{x - 1}$.
+
+    Its curve has a horizontal asymptote of equation $y = \ell$ at $+\infty$. Give the value of $\ell$.
+numeric:
+  value: 2
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "ordonnée $\\ell$ de l'asymptote", en: "ordinate $\\ell$ of the asymptote" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        L'asymptote horizontale en $+\infty$ a pour équation $y = \lim\limits_{x \to +\infty} f(x)$ : tout revient à calculer cette limite.
+      en: |-
+        The horizontal asymptote at $+\infty$ has equation $y = \lim\limits_{x \to +\infty} f(x)$: everything reduces to computing that limit.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Factorisez $x$ au numérateur et au dénominateur : $f(x) = \dfrac{x\left(2 + \frac1x\right)}{x\left(1 - \frac1x\right)}$, puis simplifiez.
+      en: |-
+        Factor $x$ out of the numerator and the denominator: $f(x) = \dfrac{x\left(2 + \frac1x\right)}{x\left(1 - \frac1x\right)}$, then simplify.
+solution:
+  fr: |-
+    On lève la forme indéterminée $\frac{\infty}{\infty}$ en factorisant le terme dominant : $f(x) = \dfrac{x\left(2 + \frac1x\right)}{x\left(1 - \frac1x\right)} = \dfrac{2 + \frac1x}{1 - \frac1x}$. Comme $\frac1x \to 0$, le numérateur tend vers $2$ et le dénominateur vers $1$, donc $$\lim_{x \to +\infty} f(x) = 2 \quad\text{et}\quad \ell = 2.$$
+    On peut aussi écrire $f(x) = 2 + \dfrac{3}{x - 1}$, ce qui montre en plus que la courbe reste au-dessus de son asymptote sur $]1\,;\,+\infty[$. Valeurs : $f(10) \approx 2{,}33$, $f(100) \approx 2{,}03$, $f(1000) \approx 2{,}003$.
+
+    **Interprétation.** L'asymptote horizontale est la trace d'un régime permanent : très loin, la fonction ne bouge plus et vaut pratiquement $2$. La même fonction a par ailleurs une asymptote verticale d'équation $x = 1$, puisque le dénominateur s'annule en $1$ alors que le numérateur y vaut $3$. Les deux asymptotes suffisent presque à dessiner la courbe.
+  en: |-
+    The indeterminate form $\frac{\infty}{\infty}$ is settled by factoring out the dominant term: $f(x) = \dfrac{x\left(2 + \frac1x\right)}{x\left(1 - \frac1x\right)} = \dfrac{2 + \frac1x}{1 - \frac1x}$. Since $\frac1x \to 0$, the numerator tends to $2$ and the denominator to $1$, so $$\lim_{x \to +\infty} f(x) = 2 \quad\text{and}\quad \ell = 2.$$
+    One may also write $f(x) = 2 + \dfrac{3}{x - 1}$, which shows in addition that the curve stays above its asymptote on $]1\,;\,+\infty[$. Values: $f(10) \approx 2.33$, $f(100) \approx 2.03$, $f(1000) \approx 2.003$.
+
+    **Interpretation.** A horizontal asymptote is the trace of a steady state: very far away, the function no longer moves and is practically $2$. The same function also has a vertical asymptote of equation $x = 1$, since the denominator vanishes at $1$ while the numerator is $3$ there. The two asymptotes are almost enough to draw the curve.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 3

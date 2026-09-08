@@ -1,0 +1,113 @@
+# Leçon rédigée — géométrie dans l'espace avec l'outil space : coordonnées et vecteurs, produit scalaire et
+# orthogonalité, droite dirigée par n et plan de vecteur normal n, puis distance du point M au plan.
+id: lesson.tool.space_geometry
+nodeId: tool.space_geometry
+depth: 1
+tools:
+  - id: space
+    kind: space
+    title: { fr: "La figure de l'espace", en: "The figure in space" }
+    extent: 4
+    points:
+      - { id: o, x: 0, y: 0, z: 0, label: { fr: "O", en: "O" } }
+      - { id: m, x: 2, y: 2, z: 2, label: { fr: "M (2 ; 2 ; 2)", en: "M (2 ; 2 ; 2)" }, hidden: true }
+      - { id: pa, x: 3, y: 0, z: 0, label: { fr: "A (3 ; 0 ; 0)", en: "A (3 ; 0 ; 0)" }, hidden: true }
+    vectors:
+      - { id: u, x: 1, y: 2, z: 0, label: { fr: "u (1 ; 2 ; 0)", en: "u (1 ; 2 ; 0)" }, hidden: true }
+      - { id: v, x: 2, y: -1, z: 1, label: { fr: "v (2 ; −1 ; 1)", en: "v (2 ; −1 ; 1)" }, hidden: true }
+      - { id: nv, x: 1, y: 1, z: 1, label: { fr: "n (1 ; 1 ; 1)", en: "n (1 ; 1 ; 1)" }, hidden: true }
+    lines:
+      - { id: d, through: o, direction: nv, label: { fr: "droite (O ; n)", en: "line (O ; n)" }, hidden: true }
+    planes:
+      - { id: p, through: pa, normal: nv, label: { fr: "plan P", en: "plane P" }, hidden: true }
+    dot: [u, v]
+    distance: [m, p]
+steps:
+  - id: coordinates
+    title: { fr: "Trois coordonnées au lieu de deux", en: "Three coordinates instead of two" }
+    text:
+      fr: >-
+        Dans l'espace, un point se repère par trois nombres au lieu de deux : une abscisse, une ordonnée et une cote.
+        Le point M de coordonnées deux, deux, deux s'obtient en avançant de deux unités le long de chacun des trois axes.
+        Un vecteur se lit de la même façon : le vecteur u de coordonnées un, deux, zéro part de l'origine, et sa norme, racine de cinq, vaut environ deux virgule deux quatre.
+        Faites tourner la figure pour retrouver la profondeur que le dessin plat ne montre pas ; c'est le seul vrai obstacle de cette leçon.
+      en: >-
+        In space, a point is located by three numbers instead of two: an abscissa, an ordinate and an altitude.
+        The point M with coordinates two, two, two is reached by advancing two units along each of the three axes.
+        A vector is read in the same way: the vector u with coordinates one, two, zero starts from the origin, and its norm, the square root of five, is about two point two four.
+        Turn the figure to recover the depth the flat drawing does not show; this is the only real obstacle of the lesson.
+    actions:
+      - { at: 1, show: [m] }
+      - { at: 2, show: [u] }
+  - id: dot_product
+    title: { fr: "Le produit scalaire, inchangé", en: "The dot product, unchanged" }
+    text:
+      fr: >-
+        Ajoutons un second vecteur v, de coordonnées deux, moins un, un.
+        Le produit scalaire garde exactement la formule du plan, avec une coordonnée de plus : un fois deux, plus deux fois moins un, plus zéro fois un.
+        Le résultat est nul, et l'outil l'annonce : les deux vecteurs sont orthogonaux, l'angle qu'ils forment vaut quatre-vingt-dix degrés.
+        Retenez ce test, car il servira partout dans la suite : produit scalaire nul, vecteurs perpendiculaires.
+      en: >-
+        Let us add a second vector v, with coordinates two, minus one, one.
+        The dot product keeps exactly the formula of the plane, with one coordinate more: one times two, plus two times minus one, plus zero times one.
+        The result is zero, and the tool announces it: the two vectors are orthogonal, the angle between them is ninety degrees.
+        Remember this test, for it will serve everywhere in what follows: dot product zero, vectors perpendicular.
+    actions:
+      - { at: 0, show: [v] }
+  - id: lines_planes
+    title: { fr: "Droites et plans", en: "Lines and planes" }
+    text:
+      fr: >-
+        Une droite de l'espace se décrit par un point et un vecteur directeur : ici la droite passant par l'origine et dirigée par le vecteur n, de coordonnées un, un, un.
+        Un plan se décrit par un point et deux directions, ou bien, et c'est la description décisive, par un point et un vecteur normal orthogonal à toutes ses directions.
+        Prenons le point A de coordonnées trois, zéro, zéro et le même vecteur n comme normale.
+        Écrire que le vecteur allant de A au point courant est orthogonal à n donne l'équation cartésienne x plus y plus z moins trois égale zéro, que l'outil affiche.
+        En reportant la droite dans cette équation, on trouve qu'elles se coupent au point de coordonnées un, un, un.
+      en: >-
+        A line of space is described by a point and a direction vector: here the line through the origin directed by the vector n, with coordinates one, one, one.
+        A plane is described by a point and two directions, or else, and this is the decisive description, by a point and a normal vector orthogonal to all of its directions.
+        Take the point A with coordinates three, zero, zero and the same vector n as a normal.
+        Writing that the vector from A to the running point is orthogonal to n gives the cartesian equation x plus y plus z minus three equals zero, which the tool displays.
+        Carrying the line into that equation, one finds that they meet at the point with coordinates one, one, one.
+    actions:
+      - { at: 0, show: [nv, d] }
+      - { at: 2, show: [pa] }
+      - { at: 3, show: [p] }
+  - id: distance
+    title: { fr: "La distance d'un point à un plan", en: "The distance from a point to a plane" }
+    text:
+      fr: >-
+        Reste la question des distances, celle qui intéresse l'ingénieur autant que le mathématicien.
+        La distance du point M au plan est la longueur du plus court chemin, porté par la perpendiculaire au plan.
+        On reporte les coordonnées de M dans l'équation : deux plus deux plus deux moins trois donne trois, puis on divise par la norme du vecteur normal, qui vaut racine de trois.
+        La distance vaut donc racine de trois, environ un virgule sept trois, et l'outil confirme la lecture.
+      en: >-
+        There remains the question of distances, the one that interests the engineer as much as the mathematician.
+        The distance from the point M to the plane is the length of the shortest path, carried by the perpendicular to the plane.
+        Carry the coordinates of M into the equation: two plus two plus two minus three gives three, then divide by the norm of the normal vector, which is the square root of three.
+        The distance is therefore the square root of three, about one point seven three, and the tool confirms the reading.
+    actions:
+      - { at: 1, show: [m, p] }
+  - id: play
+    kind: play
+    title: { fr: "À vous de tourner la figure", en: "Your turn to turn the figure" }
+    text:
+      fr: >-
+        À vous. Faites tourner la scène avec la souris, ou avec les curseurs d'azimut et d'élévation, jusqu'à voir la droite percer le plan perpendiculairement.
+        Cherchez la position où le vecteur u et le vecteur v se superposent à l'écran : ils sont pourtant orthogonaux, et c'est la projection qui trompe l'œil.
+      en: >-
+        Your turn. Turn the scene with the mouse, or with the azimuth and elevation sliders, until you see the line pierce the plane perpendicularly.
+        Look for the position where the vectors u and v overlap on the screen: they are nevertheless orthogonal, and it is the projection that deceives the eye.
+    actions:
+      - { at: 0, show: [m, pa, u, v, nv, d, p] }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : une condition d'orthogonalité, puis une distance d'un point à un plan.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: a condition of orthogonality, then a distance from a point to a plane.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.space.orthogonality, exercise.space.plane_distance]

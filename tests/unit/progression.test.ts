@@ -262,10 +262,15 @@ describe('destination states and recommendations', () => {
   });
 
   it('suggests the first mission, then applications of a practised tool', () => {
+    // As the pages call it: with the horizon, so the routes of the years already passed are not
+    // pushed at an explorer who is beyond them.
+    const scope = { horizon, config: pkg.horizon };
     const none = recommend(
       graph,
       computeProgression([], graph, pkg.horizon, horizon, ctx.now),
-      pkg.routes
+      pkg.routes,
+      5,
+      scope
     );
     expect(none[0]?.kind).toBe('startFirstMission');
     const events = [
@@ -280,7 +285,9 @@ describe('destination states and recommendations', () => {
     const some = recommend(
       graph,
       computeProgression(events, graph, pkg.horizon, horizon, ctx.now),
-      pkg.routes
+      pkg.routes,
+      5,
+      scope
     );
     expect(some.some((r) => r.kind === 'apply_tool' && r.via?.id === 'tool.derivative')).toBe(true);
   });

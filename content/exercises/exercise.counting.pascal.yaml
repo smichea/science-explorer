@@ -1,0 +1,55 @@
+# Dénombrement en Terminale — relation de Pascal appliquée à la ligne 9 du triangle
+id: exercise.counting.pascal
+type: numeric
+nodeId: tool.counting
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On donne $\dbinom{9}{4} = 126$ et $\dbinom{9}{5} = 126$.
+
+    En utilisant la relation de Pascal, calculer $\dbinom{10}{5}$.
+  en: |-
+    You are given $\dbinom{9}{4} = 126$ and $\dbinom{9}{5} = 126$.
+
+    Using Pascal's rule, compute $\dbinom{10}{5}$.
+numeric:
+  value: 252
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "valeur de $\\binom{10}{5}$", en: "value of $\\binom{10}{5}$" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La relation de Pascal s'écrit $\dbinom{n}{k} + \dbinom{n}{k+1} = \dbinom{n+1}{k+1}$ : chaque terme du triangle est la somme des deux qui le surplombent.
+      en: |-
+        Pascal's rule reads $\dbinom{n}{k} + \dbinom{n}{k+1} = \dbinom{n+1}{k+1}$: each term of the triangle is the sum of the two above it.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Prenez $n = 9$ et $k = 4$ : la relation donne directement $\dbinom{10}{5}$ à partir des deux valeurs fournies.
+      en: |-
+        Take $n = 9$ and $k = 4$: the rule gives $\dbinom{10}{5}$ directly from the two values provided.
+solution:
+  fr: |-
+    Avec $n = 9$ et $k = 4$, la relation de Pascal donne
+    $$\binom{10}{5} = \binom{9}{4} + \binom{9}{5} = 126 + 126 = 252.$$
+    Le calcul direct confirme : $\dbinom{10}{5} = \dfrac{10 \times 9 \times 8 \times 7 \times 6}{5 \times 4 \times 3 \times 2 \times 1} = \dfrac{30240}{120} = 252$.
+
+    **Interprétation.** La relation de Pascal se démontre en une phrase : parmi les parties à $5$ éléments d'un ensemble à $10$ éléments, ou bien un élément fixé à l'avance y figure — il reste alors $4$ éléments à choisir parmi les $9$ autres —, ou bien il n'y figure pas — il faut alors choisir les $5$ éléments parmi les $9$ autres. Cette dichotomie sur un élément est le raisonnement de base du dénombrement, et c'est elle qui construit le triangle de Pascal ligne après ligne, avec de simples additions.
+  en: |-
+    With $n = 9$ and $k = 4$, Pascal's rule gives
+    $$\binom{10}{5} = \binom{9}{4} + \binom{9}{5} = 126 + 126 = 252.$$
+    The direct computation confirms it: $\dbinom{10}{5} = \dfrac{10 \times 9 \times 8 \times 7 \times 6}{5 \times 4 \times 3 \times 2 \times 1} = \dfrac{30240}{120} = 252$.
+
+    **Interpretation.** Pascal's rule is proved in one sentence: among the subsets with $5$ elements of a set with $10$ elements, either a fixed element belongs to it — then $4$ elements remain to be chosen among the other $9$ —, or it does not — then the $5$ elements must be chosen among the other $9$. This dichotomy on one element is the basic reasoning of counting, and it is what builds Pascal's triangle row after row, with simple additions.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 3

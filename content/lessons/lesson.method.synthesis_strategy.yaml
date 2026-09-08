@@ -1,0 +1,54 @@
+# Leçon (diapositives composées à partir de la description) — stratégie de synthèse : les deux sites réactifs d'un acide aminé
+# (outil molécule) et le rendement d'une étape lu sur le tableau d'avancement (outil réaction, quantité obtenue).
+id: lesson.method.synthesis_strategy
+nodeId: method.synthesis_strategy
+depth: 1
+tools:
+  - id: glycine
+    kind: molecule
+    title: { fr: "Glycine : deux groupes, deux sites réactifs", en: "Glycine: two groups, two reactive sites" }
+    name: { fr: "glycine", en: "glycine" }
+    atoms:
+      - { id: n, element: N, x: 1.2, y: 3.0, lonePairs: 1 }
+      - { id: h1, element: H, x: 0.4, y: 3.9 }
+      - { id: h2, element: H, x: 0.4, y: 2.2 }
+      - { id: c1, element: C, x: 2.5, y: 2.6 }
+      - { id: h3, element: H, x: 2.2, y: 1.4 }
+      - { id: h4, element: H, x: 2.8, y: 3.7 }
+      - { id: c2, element: C, x: 3.8, y: 2.1 }
+      - { id: o1, element: O, x: 3.8, y: 0.8, lonePairs: 2 }
+      - { id: o2, element: O, x: 5.0, y: 2.7, lonePairs: 2 }
+      - { id: h5, element: H, x: 5.9, y: 2.1 }
+    bonds:
+      - { id: b1, from: n, to: h1, order: 1 }
+      - { id: b2, from: n, to: h2, order: 1 }
+      - { id: b3, from: n, to: c1, order: 1 }
+      - { id: b4, from: c1, to: h3, order: 1 }
+      - { id: b5, from: c1, to: h4, order: 1 }
+      - { id: b6, from: c1, to: c2, order: 1 }
+      - { id: b7, from: c2, to: o1, order: 2 }
+      - { id: b8, from: c2, to: o2, order: 1 }
+      - { id: b9, from: o2, to: h5, order: 1 }
+    groups:
+      - id: amino
+        atoms: [n, h1, h2]
+        label: { fr: "groupe amino", en: "amino group" }
+        family: { fr: "amine", en: "amine" }
+      - id: carboxyl
+        atoms: [c2, o1, o2, h5]
+        label: { fr: "groupe carboxyle", en: "carboxyl group" }
+        family: { fr: "acide carboxylique", en: "carboxylic acid" }
+  - id: aspirin
+    kind: reaction
+    title: { fr: "Synthèse de l'aspirine : rendement d'une étape", en: "Synthesis of aspirin: yield of one step" }
+    parameters:
+      - { id: a, label: { fr: "acide salicylique engagé (mol)", en: "salicylic acid engaged (mol)" }, min: 0.01, max: 0.1, step: 0.005, value: 0.05 }
+      - { id: o, label: { fr: "aspirine isolée (mol)", en: "aspirin isolated (mol)" }, min: 0, max: 0.1, step: 0.002, value: 0.036 }
+    reactants:
+      - { id: salicylic, formula: "C₇H₆O₃", coefficient: 1, initial: "a", label: { fr: "acide salicylique", en: "salicylic acid" } }
+      - { id: anhydride, formula: "C₄H₆O₃", coefficient: 1, initial: 0.08, label: { fr: "anhydride éthanoïque (en excès)", en: "ethanoic anhydride (in excess)" } }
+    products:
+      - { id: aspirin, formula: "C₉H₈O₄", coefficient: 1, label: { fr: "aspirine", en: "aspirin" } }
+      - { id: ethanoic, formula: "CH₃COOH", coefficient: 1, label: { fr: "acide éthanoïque", en: "ethanoic acid" } }
+    unit: mol
+    obtained: "o"

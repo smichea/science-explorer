@@ -1,0 +1,124 @@
+# Glossaire bilingue — chimie de Terminale (spécialité physique-chimie) : termes préférés et alias,
+# trois à quatre entrées par destination du programme de Terminale.
+entries:
+  # --- model.acid_base --------------------------------------------------------
+  - id: glossary.ph
+    nodeId: model.acid_base
+    fr: { preferred: pH, aliases: [ion oxonium, "H₃O⁺", produit ionique de l'eau, Ke, logarithme décimal] }
+    en: { preferred: pH, aliases: [oxonium ion, "H₃O⁺", ionic product of water, Ke, decimal logarithm] }
+    notes: "pH = −log([H₃O⁺]/c°) with c° = 1 mol/L; one pH unit is a factor of ten on the concentration."
+  - id: glossary.acid_base_couple
+    nodeId: model.acid_base
+    fr: { preferred: couple acide-base, aliases: [acide de Brønsted, base de Brønsted, transfert de proton, espèce amphotère, autoprotolyse de l'eau] }
+    en: { preferred: acid-base couple, aliases: [Brønsted acid, Brønsted base, proton transfer, amphoteric species, autoprotolysis of water] }
+    notes: "Written AH/A⁻, acid first; the proton never appears free in the overall equation."
+  - id: glossary.acidity_constant
+    nodeId: model.acid_base
+    fr: { preferred: constante d'acidité, aliases: [KA, pKa, acide faible, acide fort, taux d'avancement final d'un acide] }
+    en: { preferred: acidity constant, aliases: [KA, pKa, weak acid, strong acid, final rate of an acid] }
+    notes: "A strong acid is entirely dissociated, which is not the same thing as a concentrated acid."
+  - id: glossary.predominance
+    nodeId: model.acid_base
+    fr: { preferred: diagramme de prédominance, aliases: [domaine de prédominance, diagramme de distribution, indicateur coloré, zone de virage, solution tampon] }
+    en: { preferred: predominance diagram, aliases: [predominance domain, distribution diagram, colour indicator, turning range, buffer solution] }
+    notes: "pH = pKa + log([base]/[acid]); predominating never means being alone."
+  # --- concept.chemical_equilibrium -------------------------------------------
+  - id: glossary.reaction_quotient
+    nodeId: concept.chemical_equilibrium
+    fr: { preferred: quotient de réaction, aliases: [Qr, concentrations rapportées à c°, nombres stœchiométriques en exposants] }
+    en: { preferred: reaction quotient, aliases: [Qr, concentrations referred to c°, stoichiometric numbers as exponents] }
+    notes: "Dimensionless; neither the solvent nor the solids appear in it."
+  - id: glossary.equilibrium_constant
+    nodeId: concept.chemical_equilibrium
+    fr: { preferred: constante d'équilibre, aliases: [K, état d'équilibre, équilibre dynamique, transformation limitée] }
+    en: { preferred: equilibrium constant, aliases: [K, state of equilibrium, dynamic equilibrium, limited transformation] }
+    notes: "Depends only on the reaction and on the temperature, never on the initial amounts."
+  - id: glossary.final_rate
+    nodeId: concept.chemical_equilibrium
+    fr: { preferred: taux d'avancement final, aliases: [tau, xf sur xmax, transformation totale, transformation non totale] }
+    en: { preferred: final rate of the transformation, aliases: [tau, xf over xmax, complete transformation, incomplete transformation] }
+    notes: "τ = xf / xmax, between 0 and 1; unlike K, it depends on the initial state."
+  - id: glossary.spontaneous_direction
+    nodeId: concept.chemical_equilibrium
+    fr: { preferred: sens d'évolution spontanée, aliases: [sens direct, sens inverse, comparaison de Qr et K] }
+    en: { preferred: spontaneous direction of evolution, aliases: [forward direction, reverse direction, comparison of Qr and K] }
+    notes: "Qr < K: forward; Qr > K: reverse; Qr = K: no evolution."
+  # --- model.electrochemical_cell ---------------------------------------------
+  - id: glossary.electrochemical_cell
+    nodeId: model.electrochemical_cell
+    fr: { preferred: pile, aliases: [pile électrochimique, demi-pile, électrode, pont salin, pile Daniell] }
+    en: { preferred: cell, aliases: [electrochemical cell, half-cell, electrode, salt bridge, Daniell cell] }
+    notes: "The salt bridge closes the circuit inside and keeps each half-cell neutral."
+  - id: glossary.anode_cathode
+    nodeId: model.electrochemical_cell
+    fr: { preferred: anode et cathode, aliases: [pôle négatif, pôle positif, sens du courant, sens des électrons] }
+    en: { preferred: anode and cathode, aliases: [negative pole, positive pole, direction of the current, direction of the electrons] }
+    notes: "Remember anode = oxidation: in a cell it is the negative pole, in an electrolysis it is not."
+  - id: glossary.faraday_constant
+    nodeId: model.electrochemical_cell
+    fr: { preferred: constante de Faraday, aliases: ["96 500 C/mol", quantité d'électricité, capacité d'une pile, ampère-heure] }
+    en: { preferred: Faraday constant, aliases: ["96,500 C/mol", quantity of electricity, capacity of a cell, ampere-hour] }
+    notes: "Q = I Δt = n(e⁻) × F: the charge of one mole of electrons."
+  - id: glossary.accumulator
+    nodeId: model.electrochemical_cell
+    fr: { preferred: accumulateur, aliases: [batterie, recharge, électrolyse, transformation forcée, pile à combustible] }
+    en: { preferred: accumulator, aliases: [battery, recharging, electrolysis, forced transformation, fuel cell] }
+    notes: "An accumulator is a cell whose reaction is reversed by an external generator."
+  # --- concept.reaction_rate --------------------------------------------------
+  - id: glossary.reaction_rate
+    nodeId: concept.reaction_rate
+    fr: { preferred: vitesse volumique de réaction, aliases: [dérivée de l'avancement, pente de la tangente, "mol·L⁻¹·s⁻¹", suivi temporel] }
+    en: { preferred: volumic rate of reaction, aliases: [derivative of the extent, slope of the tangent, "mol·L⁻¹·s⁻¹", time monitoring] }
+    notes: "v = (1/V) dx/dt = −(1/ν) d[A]/dt for a reactant: never forget the 1/ν."
+  - id: glossary.half_reaction_time
+    nodeId: concept.reaction_rate
+    fr: { preferred: temps de demi-réaction, aliases: ["t1/2", moitié de l'avancement final, durée d'une transformation] }
+    en: { preferred: half-reaction time, aliases: ["t1/2", half of the final extent, duration of a transformation] }
+    notes: "Not half the duration: the transformation is over after a few t1/2."
+  - id: glossary.kinetic_factors
+    nodeId: concept.reaction_rate
+    fr: { preferred: facteurs cinétiques, aliases: [température, concentration des réactifs, état de division, éclairement] }
+    en: { preferred: kinetic factors, aliases: [temperature, concentration of the reactants, state of division, illumination] }
+    notes: "They change the rate, never the final state."
+  - id: glossary.catalyst
+    nodeId: concept.reaction_rate
+    fr: { preferred: catalyseur, aliases: [catalyse homogène, catalyse hétérogène, catalyse enzymatique, enzyme] }
+    en: { preferred: catalyst, aliases: [homogeneous catalysis, heterogeneous catalysis, enzymatic catalysis, enzyme] }
+    notes: "Regenerated at the end, absent from the equation, and it does not shift the equilibrium."
+  # --- method.synthesis_strategy ----------------------------------------------
+  - id: glossary.selectivity
+    nodeId: method.synthesis_strategy
+    fr: { preferred: sélectivité, aliases: [réactif chimiosélectif, site réactif, réaction parasite] }
+    en: { preferred: selectivity, aliases: [chemoselective reagent, reactive site, side reaction] }
+    notes: "Selectivity comes before yield: a high yield of the wrong product is worthless."
+  - id: glossary.protecting_group
+    nodeId: method.synthesis_strategy
+    fr: { preferred: protection d'un groupe, aliases: [groupe protecteur, déprotection, synthèse peptidique] }
+    en: { preferred: protection of a group, aliases: [protecting group, deprotection, peptide synthesis] }
+    notes: "Two extra steps, hence two more factors in the overall yield: a last resort."
+  - id: glossary.overall_yield
+    nodeId: method.synthesis_strategy
+    fr: { preferred: rendement global, aliases: [produit des rendements, synthèse multi-étapes, nombre d'étapes] }
+    en: { preferred: overall yield, aliases: [product of the yields, multi-step synthesis, number of steps] }
+    notes: "Yields multiply, they are never added."
+  - id: glossary.green_chemistry
+    nodeId: method.synthesis_strategy
+    fr: { preferred: chimie verte, aliases: [économie d'atomes, solvant moins toxique, catalyse, limitation des déchets] }
+    en: { preferred: green chemistry, aliases: [atom economy, less toxic solvent, catalysis, limitation of waste] }
+    notes: "Atom economy: molar mass of the product over the sum of the molar masses of the reactants."
+  # --- method.instrumental_analysis -------------------------------------------
+  - id: glossary.spectrophotometry
+    nodeId: method.instrumental_analysis
+    fr: { preferred: spectrophotométrie, aliases: [absorbance, coefficient d'absorption molaire, longueur d'onde de travail, blanc] }
+    en: { preferred: spectrophotometry, aliases: [absorbance, molar absorption coefficient, working wavelength, blank] }
+    notes: "A = ε ℓ C: the absorbance has no unit and stays proportional only for dilute solutions."
+  - id: glossary.conductimetry
+    nodeId: method.instrumental_analysis
+    fr: { preferred: conductimétrie, aliases: [conductivité, sigma, conductivité molaire ionique, titrage conductimétrique] }
+    en: { preferred: conductimetry, aliases: [conductivity, sigma, molar ionic conductivity, conductimetric titration] }
+    notes: "σ = Σ λi [Xi]; it does not tell ions apart but sees colourless solutions."
+  - id: glossary.calibration_line
+    nodeId: method.instrumental_analysis
+    fr: { preferred: droite d'étalonnage, aliases: [dosage par étalonnage, gamme d'étalonnage, dosage non destructif, lecture inverse] }
+    en: { preferred: calibration line, aliases: [assay by calibration, calibration range, non-destructive assay, backwards reading] }
+    notes: "Never extrapolated outside the range: dilute the sample instead."

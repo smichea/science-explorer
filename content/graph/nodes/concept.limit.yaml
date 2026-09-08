@@ -1,0 +1,47 @@
+id: concept.limit
+type: mathematical_concept
+world: world.mathematics
+region: region.math.functions_analysis
+importance: 3
+tags: [lycee]
+title: { fr: "Limites de fonctions, asymptotes", en: "Limits of functions, asymptotes" }
+shortPurpose:
+  fr: "Décrire le comportement d'une fonction aux bords de son domaine, et lire sur la courbe les droites dont elle s'approche indéfiniment."
+  en: "Describe the behaviour of a function at the edges of its domain, and read on the curve the lines it approaches indefinitely."
+overview:
+  fr: >-
+    La limite répond à une question que le calcul seul ne tranche pas : que devient une fonction quand la variable s'en va vers l'infini, ou quand elle s'approche d'une valeur interdite ? Quand la courbe se colle à une droite sans jamais la rejoindre, cette droite est une asymptote. Les formes indéterminées se lèvent en factorisant le terme dominant, et les croissances comparées disent qui, de l'exponentielle ou de la puissance, finit par l'emporter.
+  en: >-
+    A limit answers a question that computation alone does not settle: what becomes of a function when the variable runs off to infinity, or when it approaches a forbidden value? When the curve clings to a line without ever meeting it, that line is an asymptote. Indeterminate forms are settled by factoring out the dominant term, and comparative growth says which of the exponential and the power wins in the end.
+aliases:
+  fr: ["limite en l'infini", "limite en un point", "asymptote horizontale", "asymptote verticale", "forme indéterminée", "croissances comparées"]
+  en: ["limit at infinity", "limit at a point", "horizontal asymptote", "vertical asymptote", "indeterminate form", "comparative growth"]
+description:
+  fr: |
+    Dire que $f(x)$ a pour **limite** $\ell$ quand $x$ tend vers $+\infty$, c'est dire que tout intervalle ouvert contenant $\ell$ contient toutes les valeurs $f(x)$ dès que $x$ est assez grand ; la droite d'équation $y = \ell$ est alors **asymptote horizontale** à la courbe en $+\infty$. Dire que $f(x)$ tend vers $+\infty$ quand $x$ tend vers $a$, c'est dire que $f(x)$ dépasse toute borne dès que $x$ est assez proche de $a$ ; la droite $x = a$ est alors **asymptote verticale**. Les limites usuelles sont celles des fonctions de référence : $\dfrac1x \to 0$ en $\pm\infty$, $x^2 \to +\infty$ en $\pm\infty$, $\sqrt{x} \to +\infty$, $e^x \to +\infty$ en $+\infty$ et $e^x \to 0$ en $-\infty$.
+
+    Les limites se composent comme les opérations, à quatre exceptions près, les **formes indéterminées** $\infty - \infty$, $0 \times \infty$, $\frac{\infty}{\infty}$ et $\frac00$, qu'il faut lever en transformant l'écriture. Pour $f(x) = \dfrac{2x+1}{x-1}$, on factorise le terme dominant en haut et en bas : $f(x) = \dfrac{x\left(2 + \frac1x\right)}{x\left(1 - \frac1x\right)} \to 2$ quand $x \to +\infty$, donc la droite $y = 2$ est asymptote horizontale ; et comme $2x+1 \to 3 > 0$ tandis que $x - 1 \to 0^{+}$ quand $x \to 1^{+}$, on a $f(x) \to +\infty$, donc la droite $x = 1$ est asymptote verticale. Les valeurs le confirment : $f(10) \approx 2{,}33$, $f(100) \approx 2{,}03$, et $f(1{,}01) = 302$. Les **croissances comparées** règlent les cas où l'exponentielle rencontre une puissance : $\lim\limits_{x \to +\infty} \dfrac{e^x}{x^n} = +\infty$ et $\lim\limits_{x \to -\infty} x^n e^{x} = 0$ pour tout entier $n$ — l'exponentielle l'emporte toujours.
+
+    À quoi cela sert-il ? À prévoir un régime permanent — la tension d'un condensateur tend vers celle du générateur, la vitesse d'un corps freiné tend vers sa vitesse limite —, à savoir si une aire ou une somme reste finie, et à tracer une courbe complète sans calculer des milliers de points. Trois pièges classiques : croire qu'une courbe ne peut pas traverser son asymptote, alors que $\frac{\sin x}{x}$ traverse l'axe une infinité de fois ; écrire « $\infty - \infty = 0$ », alors que $\sqrt{x^2+x} - x$ tend vers $\frac12$ ; et confondre la limite en $a$ avec la valeur $f(a)$, qui peut ne pas exister ou en différer.
+  en: |
+    Saying that $f(x)$ has **limit** $\ell$ as $x$ tends to $+\infty$ means that every open interval containing $\ell$ contains all the values $f(x)$ as soon as $x$ is large enough; the line of equation $y = \ell$ is then a **horizontal asymptote** to the curve at $+\infty$. Saying that $f(x)$ tends to $+\infty$ as $x$ tends to $a$ means that $f(x)$ passes every bound as soon as $x$ is close enough to $a$; the line $x = a$ is then a **vertical asymptote**. The usual limits are those of the reference functions: $\dfrac1x \to 0$ at $\pm\infty$, $x^2 \to +\infty$ at $\pm\infty$, $\sqrt{x} \to +\infty$, $e^x \to +\infty$ at $+\infty$ and $e^x \to 0$ at $-\infty$.
+
+    Limits combine like the operations, with four exceptions, the **indeterminate forms** $\infty - \infty$, $0 \times \infty$, $\frac{\infty}{\infty}$ and $\frac00$, which must be settled by rewriting the expression. For $f(x) = \dfrac{2x+1}{x-1}$, one factors out the dominant term above and below: $f(x) = \dfrac{x\left(2 + \frac1x\right)}{x\left(1 - \frac1x\right)} \to 2$ as $x \to +\infty$, so the line $y = 2$ is a horizontal asymptote; and since $2x+1 \to 3 > 0$ while $x - 1 \to 0^{+}$ as $x \to 1^{+}$, we get $f(x) \to +\infty$, so the line $x = 1$ is a vertical asymptote. The values confirm it: $f(10) \approx 2.33$, $f(100) \approx 2.03$, and $f(1.01) = 302$. **Comparative growth** settles the cases where the exponential meets a power: $\lim\limits_{x \to +\infty} \dfrac{e^x}{x^n} = +\infty$ and $\lim\limits_{x \to -\infty} x^n e^{x} = 0$ for every integer $n$ — the exponential always wins.
+
+    What is it for? For predicting a steady state — the voltage of a capacitor tends to that of the generator, the speed of a body with drag tends to its limiting speed —, for knowing whether an area or a sum stays finite, and for drawing a complete curve without computing thousands of points. Three classic traps: believing that a curve cannot cross its asymptote, whereas $\frac{\sin x}{x}$ crosses the axis infinitely often; writing "$\infty - \infty = 0$", whereas $\sqrt{x^2+x} - x$ tends to $\frac12$; and confusing the limit at $a$ with the value $f(a)$, which may not exist or may differ from it.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "déterminer la limite d'une fonction en $+\\infty$, en $-\\infty$ et en un point, à partir des limites de référence"
+        - "lever une forme indéterminée en factorisant le terme dominant ou en utilisant l'expression conjuguée"
+        - "interpréter une limite en termes d'asymptote horizontale ou verticale et l'exploiter pour tracer la courbe"
+        - "utiliser les croissances comparées de l'exponentielle et des puissances"
+      en:
+        - "determine the limit of a function at $+\\infty$, at $-\\infty$ and at a point, from the reference limits"
+        - "settle an indeterminate form by factoring out the dominant term or by using the conjugate expression"
+        - "interpret a limit as a horizontal or vertical asymptote and use it to draw the curve"
+        - "use the comparative growth of the exponential and of the powers"
+sources: [source.bo.lycee.2019]

@@ -1,0 +1,53 @@
+# Leçon analyse instrumentale — lire une concentration sur une droite d'étalonnage spectrophotométrique (réponse numérique en mol/L)
+id: exercise.analysis.calibration_reading
+type: numeric
+nodeId: method.instrumental_analysis
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une gamme de solutions d'ions permanganate, mesurée à $\lambda_{\max} = 540\ \mathrm{nm}$ dans une cuve de $\ell = 1{,}0\ \mathrm{cm}$, donne une droite d'étalonnage passant par l'origine, d'équation
+    $$A = 2{,}5\times10^{3} \times C, \qquad C \text{ en } \mathrm{mol/L}.$$
+
+    Un échantillon de la même espèce, mesuré dans les mêmes conditions, a une absorbance $A = 0{,}72$. Donnez sa concentration, en $\mathrm{mol/L}$.
+  en: |-
+    A range of permanganate ion solutions, measured at $\lambda_{\max} = 540\ \mathrm{nm}$ in a cell of $\ell = 1.0\ \mathrm{cm}$, gives a calibration line through the origin, of equation
+    $$A = 2.5\times10^{3} \times C, \qquad C \text{ in } \mathrm{mol/L}.$$
+
+    A sample of the same species, measured under the same conditions, has an absorbance $A = 0.72$. Give its concentration, in $\mathrm{mol/L}$.
+numeric:
+  value: 0.000288
+  unit: "mol/L"
+  tolerance: { kind: relative, value: 0.04 }
+  inputLabel: { fr: "C", en: "C" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La droite d'étalonnage se lit à l'envers : elle a servi à passer de concentrations connues à des absorbances, on la parcourt maintenant dans l'autre sens.
+      en: |-
+        The calibration line is read backwards: it served to go from known concentrations to absorbances, and it is now travelled the other way.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Isolez $C$ dans $A = k\,C$ : $C = A/k$, avec $k = 2{,}5\times10^{3}\ \mathrm{L/mol}$. Vérifiez l'ordre de grandeur : une absorbance inférieure à $1$ correspond ici à une solution très diluée.
+      en: |-
+        Isolate $C$ in $A = k\,C$: $C = A/k$, with $k = 2.5\times10^{3}\ \mathrm{L/mol}$. Check the order of magnitude: an absorbance below $1$ corresponds here to a very dilute solution.
+solution:
+  fr: |-
+    La droite d'étalonnage $A = k\,C$ se renverse en
+    $$C = \frac{A}{k} = \frac{0{,}72}{2{,}5\times10^{3}} = 2{,}9\times10^{-4}\ \mathrm{mol/L}.$$
+
+    Comme la cuve mesure $\ell = 1{,}0\ \mathrm{cm}$, la loi de Beer-Lambert $A = \varepsilon\,\ell\,C$ identifie la pente au coefficient d'absorption molaire : $\varepsilon = 2{,}5\times10^{3}\ \mathrm{L\cdot mol^{-1}\cdot cm^{-1}}$.
+
+    **Interprétation.** L'absorbance n'a pas d'unité : ce sont la pente, en $\mathrm{L/mol}$, et la concentration qui en portent une, et le résultat ne peut sortir qu'en $\mathrm{mol/L}$. La mesure vaut $0{,}72$, donc à l'intérieur de la gamme : lire une absorbance de $2{,}5$ sur cette même droite n'aurait aucun sens, car la proportionnalité cesse au-delà de $A \approx 1$ et la gamme ne s'extrapole pas — il faudrait diluer l'échantillon, puis multiplier le résultat par le facteur de dilution. Enfin, ce dosage est **non destructif** : l'échantillon ressort de la cuve intact, à la différence d'un titrage, qui consomme l'espèce dosée.
+  en: |-
+    The calibration line $A = k\,C$ reverses into
+    $$C = \frac{A}{k} = \frac{0.72}{2.5\times10^{3}} = 2.9\times10^{-4}\ \mathrm{mol/L}.$$
+
+    Since the cell measures $\ell = 1.0\ \mathrm{cm}$, the Beer-Lambert law $A = \varepsilon\,\ell\,C$ identifies the slope with the molar absorption coefficient: $\varepsilon = 2.5\times10^{3}\ \mathrm{L\cdot mol^{-1}\cdot cm^{-1}}$.
+
+    **Interpretation.** The absorbance has no unit: it is the slope, in $\mathrm{L/mol}$, and the concentration that carry one, and the result can only come out in $\mathrm{mol/L}$. The measurement is $0.72$, therefore inside the range: reading an absorbance of $2.5$ on that same line would make no sense, for proportionality ceases beyond $A \approx 1$ and a calibration range is not extrapolated — the sample would have to be diluted, and the result then multiplied by the dilution factor. Finally, this assay is **non-destructive**: the sample comes out of the cell intact, unlike a titration, which consumes the species assayed.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 2, linkedConcepts: 3, transfer: 2, autonomy: 3 }

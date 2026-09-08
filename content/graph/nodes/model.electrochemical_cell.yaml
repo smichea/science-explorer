@@ -1,0 +1,72 @@
+id: model.electrochemical_cell
+type: model
+world: world.chemistry
+region: region.chemistry.electrochemistry
+importance: 3
+tags: [lycee]
+title: { fr: "Piles et accumulateurs : oxydoréduction, sens d'évolution spontanée", en: "Cells and accumulators: redox, spontaneous direction of evolution" }
+shortPurpose:
+  fr: "Modéliser une pile par une réaction d'oxydoréduction spontanée dont les électrons passent par un circuit extérieur, et relier la quantité d'électricité débitée à l'avancement de la réaction."
+  en: "Model a cell by a spontaneous redox reaction whose electrons pass through an external circuit, and relate the quantity of electricity delivered to the extent of the reaction."
+overview:
+  fr: >-
+    Une pile, c'est une réaction d'oxydoréduction qu'on a séparée en deux. Le réducteur est d'un côté, l'oxydant de l'autre, et les électrons, au lieu de passer directement de l'un à l'autre, sont obligés de faire le tour par un fil : ce détour, c'est le courant électrique. L'électrode où se produit l'oxydation est le pôle négatif, celle où se produit la réduction le pôle positif, et un pont salin ferme le circuit à l'intérieur. Le sens dans lequel la pile fonctionne est celui que prévoit la comparaison du quotient de réaction et de la constante d'équilibre. La pile s'use quand son réactif limitant s'épuise ; un accumulateur, lui, se recharge en forçant la réaction dans l'autre sens.
+  en: >-
+    A cell is a redox reaction that has been split in two. The reductant sits on one side, the oxidant on the other, and the electrons, instead of passing straight from one to the other, are forced to go round through a wire: that detour is the electric current. The electrode where the oxidation takes place is the negative pole, the one where the reduction takes place the positive pole, and a salt bridge closes the circuit inside. The direction in which the cell works is the one predicted by comparing the reaction quotient with the equilibrium constant. The cell runs down when its limiting reactant is used up; an accumulator, on the other hand, is recharged by forcing the reaction the other way.
+aliases:
+  fr: ["pile électrochimique", "pile Daniell", "anode et cathode", "pont salin", "accumulateur", "capacité d'une pile", "constante de Faraday"]
+  en: ["electrochemical cell", "Daniell cell", "anode and cathode", "salt bridge", "accumulator", "capacity of a cell", "Faraday constant"]
+description:
+  fr: |
+    Une **pile** est un dispositif qui convertit l'énergie d'une réaction d'oxydoréduction **spontanée** en énergie électrique. On sépare les deux couples dans deux **demi-piles** : dans chacune, une électrode plonge dans une solution contenant l'autre membre du couple. Le réducteur d'un couple ne peut plus céder ses électrons directement à l'oxydant de l'autre : il les cède à son électrode, ils traversent le circuit extérieur, et ils sont captés à l'autre électrode. L'électrode où se produit l'**oxydation** est l'**anode**, pôle **négatif** de la pile, celle où se produit la **réduction** est la **cathode**, pôle **positif**. Un **pont salin**, rempli d'une solution ionique, ferme le circuit à l'intérieur et maintient l'électroneutralité de chaque demi-pile. Dans la pile Daniell, une lame de zinc plonge dans du sulfate de zinc, une lame de cuivre dans du sulfate de cuivre : $\mathrm{Zn} = \mathrm{Zn^{2+}} + 2\,\mathrm{e^-}$ à l'anode, $\mathrm{Cu^{2+}} + 2\,\mathrm{e^-} = \mathrm{Cu}$ à la cathode, et la réaction de fonctionnement est $\mathrm{Zn} + \mathrm{Cu^{2+}} \to \mathrm{Zn^{2+}} + \mathrm{Cu}$. Dans le circuit extérieur, les électrons vont du pôle négatif vers le pôle positif, donc le courant, de sens conventionnel opposé, sort par le pôle positif.
+
+    Le sens de fonctionnement n'est pas un choix : c'est celui du **sens d'évolution spontanée**, donné par la comparaison du quotient de réaction $Q_{r,i}$ et de la constante d'équilibre $K$. Pour la pile Daniell, $Q_r = \dfrac{[\mathrm{Zn^{2+}}]}{[\mathrm{Cu^{2+}}]}$ et $K \approx 10^{37}$ : quelles que soient les concentrations usuelles, $Q_{r,i} \ll K$, le système évolue dans le sens direct, le zinc est consommé. La **quantité d'électricité** débitée relie l'électricité à la chimie : $Q = I\,\Delta t = n(\mathrm{e^-})\,\mathcal{F}$, où $\mathcal{F} = 96\,500\ \mathrm{C/mol}$ est la constante de Faraday, la charge d'une mole d'électrons. Exemple : une pile Daniell contient $3{,}27\ \mathrm{g}$ de zinc, de masse molaire $65{,}4\ \mathrm{g/mol}$, soit $n(\mathrm{Zn}) = 0{,}0500\ \mathrm{mol}$ ; chaque atome cédant deux électrons, $n(\mathrm{e^-}) = 0{,}100\ \mathrm{mol}$ et $Q = 0{,}100 \times 96\,500 = 9{,}65\times10^{3}\ \mathrm{C}$. Débitée sous $I = 0{,}100\ \mathrm{A}$, cette charge dure $\Delta t = \dfrac{9{,}65\times10^{3}}{0{,}100} = 9{,}65\times10^{4}\ \mathrm{s}$, soit environ $27\ \mathrm{h}$.
+
+    Le modèle explique l'**usure** d'une pile : elle s'arrête quand son réactif limitant a disparu, ou quand le système atteint son équilibre, et sa **capacité**, en ampères-heures, se lit dans le tableau d'avancement. Un **accumulateur** est une pile dont la réaction est renversable : un générateur extérieur force le courant dans l'autre sens et régénère les réactifs, comme dans la batterie au plomb ou dans les accumulateurs lithium-ion des téléphones ; une **électrolyse** est cette même transformation forcée, non spontanée. Les piles à combustible, elles, sont alimentées en continu en dihydrogène et en dioxygène. Quatre pièges : l'anode d'une pile est le pôle **négatif**, alors que dans une électrolyse elle est reliée au pôle positif du générateur — retenir plutôt « anode = oxydation » ; les électrons circulent dans les fils, jamais dans la solution, où ce sont les ions qui se déplacent ; la tension d'une pile ne dit rien de sa capacité, une pile bouton et une pile bâton donnent toutes deux $1{,}5\ \mathrm{V}$ ; et le pont salin n'est pas un détail, sans lui les charges s'accumulent et le courant cesse aussitôt.
+  en: |
+    A **cell** is a device that converts the energy of a **spontaneous** redox reaction into electrical energy. The two couples are separated into two **half-cells**: in each, an electrode is dipped into a solution containing the other member of the couple. The reductant of one couple can no longer give its electrons straight to the oxidant of the other: it gives them to its electrode, they cross the external circuit, and they are gained at the other electrode. The electrode where the **oxidation** takes place is the **anode**, the **negative** pole of the cell, the one where the **reduction** takes place is the **cathode**, the **positive** pole. A **salt bridge**, filled with an ionic solution, closes the circuit inside and keeps each half-cell electrically neutral. In the Daniell cell, a zinc plate is dipped into zinc sulfate, a copper plate into copper sulfate: $\mathrm{Zn} = \mathrm{Zn^{2+}} + 2\,\mathrm{e^-}$ at the anode, $\mathrm{Cu^{2+}} + 2\,\mathrm{e^-} = \mathrm{Cu}$ at the cathode, and the working reaction is $\mathrm{Zn} + \mathrm{Cu^{2+}} \to \mathrm{Zn^{2+}} + \mathrm{Cu}$. In the external circuit, the electrons go from the negative pole to the positive pole, so the current, whose conventional direction is the opposite one, leaves through the positive pole.
+
+    The direction of operation is not a choice: it is the **spontaneous direction of evolution**, given by comparing the reaction quotient $Q_{r,i}$ with the equilibrium constant $K$. For the Daniell cell, $Q_r = \dfrac{[\mathrm{Zn^{2+}}]}{[\mathrm{Cu^{2+}}]}$ and $K \approx 10^{37}$: whatever the usual concentrations, $Q_{r,i} \ll K$, the system evolves in the forward direction, the zinc is consumed. The **quantity of electricity** delivered links electricity to chemistry: $Q = I\,\Delta t = n(\mathrm{e^-})\,\mathcal{F}$, where $\mathcal{F} = 96\,500\ \mathrm{C/mol}$ is the Faraday constant, the charge of one mole of electrons. Example: a Daniell cell contains $3.27\ \mathrm{g}$ of zinc, of molar mass $65.4\ \mathrm{g/mol}$, that is $n(\mathrm{Zn}) = 0.0500\ \mathrm{mol}$; each atom giving two electrons away, $n(\mathrm{e^-}) = 0.100\ \mathrm{mol}$ and $Q = 0.100 \times 96\,500 = 9.65\times10^{3}\ \mathrm{C}$. Delivered at $I = 0.100\ \mathrm{A}$, that charge lasts $\Delta t = \dfrac{9.65\times10^{3}}{0.100} = 9.65\times10^{4}\ \mathrm{s}$, that is about $27\ \mathrm{h}$.
+
+    The model explains why a cell **runs down**: it stops when its limiting reactant has disappeared, or when the system reaches its equilibrium, and its **capacity**, in ampere-hours, is read in the extent table. An **accumulator** is a cell whose reaction can be reversed: an external generator forces the current the other way and regenerates the reactants, as in the lead battery or in the lithium-ion accumulators of telephones; an **electrolysis** is that same forced, non-spontaneous transformation. Fuel cells, for their part, are continuously supplied with dihydrogen and dioxygen. Four traps: the anode of a cell is the **negative** pole, whereas in an electrolysis it is connected to the positive pole of the generator — better to remember "anode = oxidation"; the electrons flow in the wires, never in the solution, where it is the ions that move; the voltage of a cell says nothing about its capacity, a button cell and a stick cell both give $1.5\ \mathrm{V}$; and the salt bridge is no detail, without it charges pile up and the current stops at once.
+model:
+  assumptions:
+    fr:
+      - "Le fonctionnement de la pile est modélisé par une seule réaction d'oxydoréduction, spontanée, entre le réducteur d'un couple et l'oxydant de l'autre."
+      - "Tous les électrons cédés à l'anode traversent le circuit extérieur : aucun n'est perdu, la charge Q = I Δt = n(e⁻) × 96 500 C/mol."
+      - "Le pont salin assure l'électroneutralité des deux demi-piles sans participer à la réaction."
+      - "Le sens d'évolution est donné par la comparaison du quotient de réaction et de la constante d'équilibre."
+    en:
+      - "The working of the cell is modelled by a single, spontaneous redox reaction between the reductant of one couple and the oxidant of the other."
+      - "Every electron given at the anode crosses the external circuit: none is lost, the charge Q = I Δt = n(e⁻) × 96,500 C/mol."
+      - "The salt bridge keeps both half-cells electrically neutral without taking part in the reaction."
+      - "The direction of evolution is given by comparing the reaction quotient with the equilibrium constant."
+  limits:
+    fr:
+      - "Le modèle ne prévoit pas la tension délivrée : il faudrait les potentiels d'électrode et la relation de Nernst, en études supérieures."
+      - "Il ignore la résistance interne, l'échauffement et la chute de tension quand la pile débite un courant important."
+      - "Il ne dit rien de la vitesse des réactions aux électrodes, qui limite en pratique le courant disponible."
+      - "Les phénomènes de surface — passivation, dépôt irrégulier, corrosion locale — échappent à un bilan de matière."
+    en:
+      - "The model does not predict the voltage delivered: that would need electrode potentials and the Nernst relation, in higher education."
+      - "It ignores the internal resistance, the heating and the drop in voltage when the cell delivers a large current."
+      - "It says nothing about the rate of the electrode reactions, which in practice limits the available current."
+      - "Surface phenomena — passivation, uneven deposits, local corrosion — escape a balance of matter."
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "modéliser le fonctionnement d'une pile par une réaction d'oxydoréduction spontanée et écrire les demi-équations aux deux électrodes"
+        - "identifier l'anode et la cathode, les pôles positif et négatif, le rôle du pont salin, et donner le sens de circulation des électrons et du courant"
+        - "prévoir le sens d'évolution spontanée d'un système d'oxydoréduction en comparant le quotient de réaction initial à la constante d'équilibre"
+        - "relier la quantité d'électricité débitée à l'avancement de la réaction, Q = I Δt = n(e⁻) F, et en déduire la capacité ou la durée de vie d'une pile"
+        - "distinguer une pile, un accumulateur rechargeable et une électrolyse, et justifier l'usure d'une pile par la disparition de son réactif limitant"
+      en:
+        - "model the working of a cell by a spontaneous redox reaction and write the half-equations at both electrodes"
+        - "identify the anode and the cathode, the positive and negative poles, the role of the salt bridge, and give the direction in which electrons and current flow"
+        - "predict the spontaneous direction of evolution of a redox system by comparing the initial reaction quotient with the equilibrium constant"
+        - "relate the quantity of electricity delivered to the extent of the reaction, Q = I Δt = n(e⁻) F, and deduce the capacity or the lifetime of a cell"
+        - "distinguish a cell, a rechargeable accumulator and an electrolysis, and justify the running down of a cell by the disappearance of its limiting reactant"
+sources: []

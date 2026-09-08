@@ -1,0 +1,167 @@
+# Terminale physics glossary (BO spécial n°8 du 25 juillet 2019, enseignement de spécialité):
+# preferred learner-facing terms and aliases, 2–4 entries per destination of the year.
+entries:
+  # --- phenomenon.circular_motion ----------------------------------------------
+  - id: glossary.centripetal_acceleration
+    nodeId: phenomenon.circular_motion
+    fr: { preferred: accélération centripète, aliases: [accélération normale, v²/R, force centripète] }
+    en: { preferred: centripetal acceleration, aliases: [normal acceleration, v²/R, centripetal force] }
+    notes: "Perpendicular to the velocity, pointing at the centre; exists even though the speed is constant."
+  - id: glossary.angular_velocity
+    nodeId: phenomenon.circular_motion
+    fr: { preferred: vitesse angulaire, aliases: [oméga, radian par seconde, pulsation] }
+    en: { preferred: angular velocity, aliases: [omega, radian per second, angular frequency] }
+    notes: "ω = v/R = 2π/T; radians per second, never metres per second."
+  - id: glossary.frenet_frame
+    nodeId: phenomenon.circular_motion
+    fr: { preferred: repère de Frenet, aliases: [vecteur tangent, vecteur normal, base de Frenet] }
+    en: { preferred: Frenet frame, aliases: [tangent vector, normal vector, Frenet basis] }
+    notes: "The two axes attached to the moving point; the acceleration splits into a tangential and a normal part."
+  # --- model.gravitational_motion ----------------------------------------------
+  - id: glossary.kepler_laws
+    nodeId: model.gravitational_motion
+    fr: { preferred: lois de Kepler, aliases: [loi des aires, ellipse, demi-grand axe, T²/a³] }
+    en: { preferred: Kepler's laws, aliases: [law of areas, ellipse, semi-major axis, T²/a³] }
+    notes: "Ellipse with the star at a focus; equal areas in equal times; T²/a³ = 4π²/GM."
+  - id: glossary.orbital_speed
+    nodeId: model.gravitational_motion
+    fr: { preferred: vitesse orbitale, aliases: [vitesse sur une orbite circulaire, racine de GM sur r] }
+    en: { preferred: orbital speed, aliases: [speed on a circular orbit, square root of GM over r] }
+    notes: "v = √(GM/r): it does not contain the mass of the satellite, and falls as the orbit rises."
+  - id: glossary.geostationary_orbit
+    nodeId: model.gravitational_motion
+    fr: { preferred: orbite géostationnaire, aliases: [satellite géostationnaire, jour sidéral, 42 164 km] }
+    en: { preferred: geostationary orbit, aliases: [geostationary satellite, sidereal day, 42164 km] }
+    notes: "Period of one sidereal day, radius 42,164 km, altitude 35,800 km, in the equatorial plane."
+  # --- phenomenon.oscillator ---------------------------------------------------
+  - id: glossary.simple_pendulum
+    nodeId: phenomenon.oscillator
+    fr: { preferred: pendule simple, aliases: [oscillateur mécanique, amplitude, position d'équilibre] }
+    en: { preferred: simple pendulum, aliases: [mechanical oscillator, amplitude, equilibrium position] }
+    notes: "A point mass on an inextensible massless string; the barest model of a free oscillator."
+  - id: glossary.natural_period
+    nodeId: phenomenon.oscillator
+    fr: { preferred: période propre, aliases: [T₀, isochronisme des petites oscillations, 2π racine de L sur g] }
+    en: { preferred: natural period, aliases: [T₀, isochronism of small oscillations, 2π root of L over g] }
+    notes: "T₀ = 2π√(L/g): contains neither the mass nor the amplitude, as long as the angle stays small."
+  - id: glossary.damping
+    nodeId: phenomenon.oscillator
+    fr: { preferred: amortissement, aliases: [oscillations amorties, perte d'énergie mécanique, frottement] }
+    en: { preferred: damping, aliases: [damped oscillations, loss of mechanical energy, friction] }
+    notes: "The amplitude decreases, the mechanical energy falls, but the period hardly changes."
+  # --- phenomenon.interference -------------------------------------------------
+  - id: glossary.diffraction
+    nodeId: phenomenon.interference
+    fr: { preferred: diffraction, aliases: [écart angulaire, tache centrale, thêta égale lambda sur a] }
+    en: { preferred: diffraction, aliases: [angular spread, central spot, theta equals lambda over a] }
+    notes: "θ = λ/a in radians: the narrower the slit, the wider the spot. Half-width, not full width."
+  - id: glossary.interference
+    nodeId: phenomenon.interference
+    fr: { preferred: interférences, aliases: [fentes de Young, franges, sources cohérentes] }
+    en: { preferred: interference, aliases: [Young's slits, fringes, coherent sources] }
+    notes: "Two coherent waves superpose; their displacements add, bright or dark according to the phase."
+  - id: glossary.fringe_spacing
+    nodeId: phenomenon.interference
+    fr: { preferred: interfrange, aliases: [i égale lambda D sur b, espacement des franges] }
+    en: { preferred: fringe spacing, aliases: [i equals lambda D over b, spacing of the fringes] }
+    notes: "i = λD/b, with b the spacing of the two slits, never their width."
+  - id: glossary.path_difference
+    nodeId: phenomenon.interference
+    fr: { preferred: différence de chemin, aliases: [delta, interférence constructive, interférence destructive] }
+    en: { preferred: path difference, aliases: [delta, constructive interference, destructive interference] }
+    notes: "δ = kλ gives a bright fringe; δ = (k + ½)λ gives a dark one."
+  # --- phenomenon.doppler ------------------------------------------------------
+  - id: glossary.doppler_effect
+    nodeId: phenomenon.doppler
+    fr: { preferred: effet Doppler, aliases: [décalage Doppler, fréquence perçue, effet Doppler-Fizeau] }
+    en: { preferred: Doppler effect, aliases: [Doppler shift, received frequency, Doppler-Fizeau effect] }
+    notes: "The emitted frequency never changes; only the frequency received does."
+  - id: glossary.radial_velocity
+    nodeId: phenomenon.doppler
+    fr: { preferred: vitesse radiale, aliases: [décalage vers le rouge, décalage vers le bleu, delta lambda sur lambda] }
+    en: { preferred: radial velocity, aliases: [redshift, blueshift, delta lambda over lambda] }
+    notes: "Only the component along the line of sight counts; Δλ/λ ≈ v/c when v is small before c."
+  # --- model.telescope ---------------------------------------------------------
+  - id: glossary.afocal_telescope
+    nodeId: model.telescope
+    fr: { preferred: lunette afocale, aliases: [lunette astronomique, système afocal, objet à l'infini] }
+    en: { preferred: afocal telescope, aliases: [astronomical telescope, afocal system, object at infinity] }
+    notes: "The image focus of the objective is the object focus of the eyepiece; length f'₁ + f'₂."
+  - id: glossary.angular_magnification
+    nodeId: model.telescope
+    fr: { preferred: grossissement, aliases: [G égale thêta prime sur thêta, rapport des distances focales] }
+    en: { preferred: angular magnification, aliases: [G equals theta prime over theta, ratio of the focal lengths] }
+    notes: "G = f'₁/f'₂, a number without a unit — not the linear magnification of a lens."
+  - id: glossary.eyepiece
+    nodeId: model.telescope
+    fr: { preferred: oculaire, aliases: [objectif, image intermédiaire, plan focal] }
+    en: { preferred: eyepiece, aliases: [objective, intermediate image, focal plane] }
+    notes: "The short-focal lens through which the eye looks at the image formed by the objective."
+  # --- concept.sound_level -----------------------------------------------------
+  - id: glossary.sound_intensity
+    nodeId: concept.sound_level
+    fr: { preferred: intensité sonore, aliases: [watt par mètre carré, puissance par unité de surface] }
+    en: { preferred: sound intensity, aliases: [watt per square metre, power per unit area] }
+    notes: "I in W/m²; it is the intensities of several sources that add, never their levels."
+  - id: glossary.decibel
+    nodeId: concept.sound_level
+    fr: { preferred: décibel, aliases: [échelle logarithmique, dix log I sur I zéro, plus trois décibels] }
+    en: { preferred: decibel, aliases: [logarithmic scale, ten log I over I nought, plus three decibels] }
+    notes: "L = 10 log(I/I₀): ten times the intensity adds 10 dB, twice the intensity adds 3 dB."
+  - id: glossary.hearing_threshold
+    nodeId: concept.sound_level
+    fr: { preferred: seuil d'audibilité, aliases: [I zéro, intensité de référence, seuil de douleur] }
+    en: { preferred: threshold of hearing, aliases: [I nought, reference intensity, threshold of pain] }
+    notes: "I₀ = 1.0 × 10⁻¹² W/m² at 1 kHz, which is 0 dB — not the absence of sound."
+  # --- law.first_principle -----------------------------------------------------
+  - id: glossary.first_principle
+    nodeId: law.first_principle
+    fr: { preferred: premier principe, aliases: [bilan d'énergie, delta U égale W plus Q, système fermé] }
+    en: { preferred: first principle, aliases: [energy balance, delta U equals W plus Q, closed system] }
+    notes: "ΔU = W + Q, transfers counted positive when they enter the system."
+  - id: glossary.internal_energy
+    nodeId: law.first_principle
+    fr: { preferred: énergie interne, aliases: [U, énergie microscopique, agitation thermique] }
+    en: { preferred: internal energy, aliases: [U, microscopic energy, thermal agitation] }
+    notes: "A state function in joules; a body holds internal energy, never heat."
+  - id: glossary.heat_capacity
+    nodeId: law.first_principle
+    fr: { preferred: capacité thermique, aliases: [C, joule par kelvin, C delta thêta] }
+    en: { preferred: heat capacity, aliases: [C, joule per kelvin, C delta theta] }
+    notes: "ΔU = C Δθ for an incompressible body without a change of state."
+  - id: glossary.specific_heat_capacity
+    nodeId: law.first_principle
+    fr: { preferred: capacité thermique massique, aliases: [c, joule par kilogramme et par kelvin, 4185 pour l'eau] }
+    en: { preferred: specific heat capacity, aliases: [c, joule per kilogram per kelvin, 4185 for water] }
+    notes: "C = m c; water has the highest of the common liquids, which is why oceans warm slowly."
+  # --- phenomenon.thermal_transfer ---------------------------------------------
+  - id: glossary.thermal_conduction
+    nodeId: phenomenon.thermal_transfer
+    fr: { preferred: conduction thermique, aliases: [conductivité thermique, lambda, matière immobile] }
+    en: { preferred: thermal conduction, aliases: [thermal conductivity, lambda, matter at rest] }
+    notes: "Step by step through matter at rest; fast in metals, slow in air and glass wool."
+  - id: glossary.convection
+    nodeId: phenomenon.thermal_transfer
+    fr: { preferred: convection, aliases: [fluide en mouvement, courant de convection, radiateur] }
+    en: { preferred: convection, aliases: [moving fluid, convection current, radiator] }
+    notes: "Energy carried away by a fluid that moves; needs matter that can flow."
+  - id: glossary.thermal_radiation
+    nodeId: phenomenon.thermal_transfer
+    fr: { preferred: rayonnement thermique, aliases: [ondes électromagnétiques, transfert dans le vide, Soleil] }
+    en: { preferred: thermal radiation, aliases: [electromagnetic waves, transfer through a vacuum, Sun] }
+    notes: "The only mode that crosses a vacuum; how the Sun heats the Earth."
+  - id: glossary.thermal_flux
+    nodeId: phenomenon.thermal_transfer
+    fr: { preferred: flux thermique, aliases: [phi, watt, Q sur delta t] }
+    en: { preferred: thermal flux, aliases: [phi, watt, Q over delta t] }
+    notes: "A power in watts, never an energy in joules: Q = Φ Δt."
+  - id: glossary.thermal_resistance
+    nodeId: phenomenon.thermal_transfer
+    fr: { preferred: résistance thermique, aliases: [R thermique, kelvin par watt, isolation] }
+    en: { preferred: thermal resistance, aliases: [R thermal, kelvin per watt, insulation] }
+    notes: "Δθ = R_th Φ, with R_th = e/(λS); resistances of successive layers add."
+  - id: glossary.newton_cooling
+    nodeId: phenomenon.thermal_transfer
+    fr: { preferred: loi de refroidissement de Newton, aliases: [décroissance exponentielle, tau égale C sur hS, écart de température] }
+    en: { preferred: Newton's law of cooling, aliases: [exponential decrease, tau equals C over hS, temperature difference] }
+    notes: "The flux lost is proportional to θ − θ_ext, hence an exponential relaxation of time constant C/(hS)."

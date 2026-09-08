@@ -1,0 +1,53 @@
+# Logarithme en Terminale — dérivée du produit x ln x (réponse symbolique)
+id: exercise.logarithm.derivative
+type: symbolic
+nodeId: tool.logarithm
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Soit $f$ la fonction définie sur $]0\,;\,+\infty[$ par $f(x) = x\,\ln x$.
+
+    Donner l'expression de $f'(x)$ (écrivez le logarithme `ln(...)`, par exemple `2*ln(x)`).
+  en: |-
+    Let $f$ be the function defined on $]0\,;\,+\infty[$ by $f(x) = x\,\ln x$.
+
+    Give the expression of $f'(x)$ (write the logarithm as `ln(...)`, for example `2*ln(x)`).
+symbolic:
+  variable: x
+  accepted: ["ln(x)+1", "1+ln(x)"]
+  display: "f'(x) ="
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        C'est un produit $u\,v$ avec $u(x) = x$ et $v(x) = \ln x$ : sa dérivée est $u'v + uv'$.
+      en: |-
+        It is a product $u\,v$ with $u(x) = x$ and $v(x) = \ln x$: its derivative is $u'v + uv'$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Ici $u' = 1$ et $v' = \dfrac1x$, donc le second terme vaut $x \times \dfrac1x$, qui se simplifie.
+      en: |-
+        Here $u' = 1$ and $v' = \dfrac1x$, so the second term is $x \times \dfrac1x$, which simplifies.
+solution:
+  fr: |-
+    Avec $u(x) = x$ et $v(x) = \ln x$, on a $u'(x) = 1$ et $v'(x) = \frac1x$, donc $$f'(x) = 1 \times \ln x + x \times \frac1x = \ln x + 1.$$
+    Cette dérivée s'annule pour $\ln x = -1$, soit $x = e^{-1} \approx 0{,}368$, où $f$ atteint son minimum $-e^{-1} \approx -0{,}368$ ; elle est négative avant et positive après.
+
+    **Interprétation.** Le calcul montre au passage que $x \ln x - x$ est une primitive de $\ln x$, résultat que l'on retrouve par intégration par parties : dériver un produit et intégrer par parties sont la même identité lue dans les deux sens. Notez enfin que $f(x) = x\ln x$ tend vers $0$ quand $x$ tend vers $0$ par valeurs positives, alors que $\ln x$ tend vers $-\infty$ : le facteur $x$ l'emporte, c'est encore une croissance comparée.
+  en: |-
+    With $u(x) = x$ and $v(x) = \ln x$, we have $u'(x) = 1$ and $v'(x) = \frac1x$, so $$f'(x) = 1 \times \ln x + x \times \frac1x = \ln x + 1.$$
+    This derivative vanishes for $\ln x = -1$, that is $x = e^{-1} \approx 0.368$, where $f$ reaches its minimum $-e^{-1} \approx -0.368$; it is negative before and positive after.
+
+    **Interpretation.** The computation shows in passing that $x \ln x - x$ is an antiderivative of $\ln x$, a result also obtained by integration by parts: differentiating a product and integrating by parts are the same identity read in both directions. Note finally that $f(x) = x\ln x$ tends to $0$ as $x$ tends to $0$ from above, whereas $\ln x$ tends to $-\infty$: the factor $x$ wins, which is again comparative growth.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 3

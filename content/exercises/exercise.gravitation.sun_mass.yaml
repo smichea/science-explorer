@@ -1,0 +1,47 @@
+# Mouvement dans un champ de gravitation — peser le Soleil avec la troisième loi de Kepler (réponse numérique)
+id: exercise.gravitation.sun_mass
+type: numeric
+nodeId: model.gravitational_motion
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    La Terre décrit autour du Soleil une orbite que l'on assimilera à un cercle de rayon $a = 1{,}496 \times 10^{11}\ \mathrm{m}$, parcouru en $T = 365{,}25$ jours. On donne $G = 6{,}67 \times 10^{-11}\ \mathrm{N \cdot m^2 \cdot kg^{-2}}$.
+
+    Déterminez la masse $M_S$ du Soleil, en kilogrammes, avec deux chiffres significatifs.
+  en: |-
+    The Earth describes around the Sun an orbit that we shall treat as a circle of radius $a = 1.496 \times 10^{11}\ \mathrm{m}$, travelled in $T = 365.25$ days. Take $G = 6.67 \times 10^{-11}\ \mathrm{N \cdot m^2 \cdot kg^{-2}}$.
+
+    Determine the mass $M_S$ of the Sun, in kilograms, with two significant figures.
+numeric:
+  value: 2.0e30
+  unit: "kg"
+  tolerance: { kind: relative, value: 0.05 }
+  inputLabel: { fr: "M_S", en: "M_S" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La troisième loi de Kepler s'écrit $\dfrac{T^2}{a^3} = \dfrac{4\pi^2}{G M_S}$ : la masse cherchée y figure une seule fois.
+      en: |-
+        Kepler's third law is written $\dfrac{T^2}{a^3} = \dfrac{4\pi^2}{G M_S}$: the mass sought appears in it just once.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Isolez la masse : $M_S = \dfrac{4\pi^2\,a^3}{G\,T^2}$, et convertissez d'abord la période en secondes, $T = 365{,}25 \times 24 \times 3600 = 3{,}156 \times 10^{7}\ \mathrm{s}$.
+      en: |-
+        Isolate the mass: $M_S = \dfrac{4\pi^2\,a^3}{G\,T^2}$, and convert the period into seconds first, $T = 365.25 \times 24 \times 3600 = 3.156 \times 10^{7}\ \mathrm{s}$.
+solution:
+  fr: |-
+    En secondes, $T = 3{,}156 \times 10^{7}\ \mathrm{s}$, donc $T^2 = 9{,}96 \times 10^{14}\ \mathrm{s^2}$, et $a^3 = (1{,}496 \times 10^{11})^3 = 3{,}35 \times 10^{33}\ \mathrm{m^3}$. La troisième loi de Kepler, retournée, donne
+    $$M_S = \frac{4\pi^2\,a^3}{G\,T^2} = \frac{39{,}48 \times 3{,}35 \times 10^{33}}{6{,}67 \times 10^{-11} \times 9{,}96 \times 10^{14}} = \frac{1{,}32 \times 10^{35}}{6{,}64 \times 10^{4}} = 2{,}0 \times 10^{30}\ \mathrm{kg}.$$
+
+    **Interprétation.** Une balance céleste : on n'a pesé le Soleil qu'en regardant tourner la Terre autour de lui, sans jamais l'approcher. Deux milliards de milliards de milliards de tonnes, soit trois cent trente mille fois la masse de la Terre — le Soleil contient à lui seul plus de $99\ \%$ de la matière du système solaire, ce qui justifie a posteriori de l'avoir supposé fixe. La méthode est celle qu'on emploie encore aujourd'hui : la période et le rayon de l'orbite d'une lune donnent la masse de sa planète, et le mouvement des étoiles autour du centre de la Galaxie a révélé de la même manière le trou noir qui s'y cache. Attention : la masse de la Terre, elle, ne figure nulle part dans le calcul.
+  en: |-
+    In seconds, $T = 3.156 \times 10^{7}\ \mathrm{s}$, so $T^2 = 9.96 \times 10^{14}\ \mathrm{s^2}$, and $a^3 = (1.496 \times 10^{11})^3 = 3.35 \times 10^{33}\ \mathrm{m^3}$. Kepler's third law, turned round, gives
+    $$M_S = \frac{4\pi^2\,a^3}{G\,T^2} = \frac{39.48 \times 3.35 \times 10^{33}}{6.67 \times 10^{-11} \times 9.96 \times 10^{14}} = \frac{1.32 \times 10^{35}}{6.64 \times 10^{4}} = 2.0 \times 10^{30}\ \mathrm{kg}.$$
+
+    **Interpretation.** A celestial balance: the Sun has been weighed just by watching the Earth turn around it, without ever going near it. Two thousand million million million million tonnes, three hundred and thirty thousand times the mass of the Earth — the Sun alone holds more than $99\ \%$ of the matter of the solar system, which justifies after the fact having assumed it fixed. The method is still the one used today: the period and the radius of the orbit of a moon give the mass of its planet, and the motion of the stars around the centre of the Galaxy revealed in the same way the black hole hiding there. Careful: the mass of the Earth appears nowhere in the computation.
+difficulty: { mathematicalDepth: 3, conceptualNovelty: 3, calculationLength: 3, modellingOpenness: 2, linkedConcepts: 3, transfer: 4, autonomy: 3 }

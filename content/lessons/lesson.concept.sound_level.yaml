@@ -1,0 +1,31 @@
+# Leçon — l'intensité sonore et son niveau en décibels : la courbe logarithmique et le décalage de trois
+# décibels quand on double l'intensité (traceur), après un rappel du signal sonore périodique (outil onde).
+id: lesson.concept.sound_level
+nodeId: concept.sound_level
+depth: 1
+tools:
+  - id: scale
+    kind: plotter
+    title: { fr: "Le niveau en décibels en fonction de l'intensité", en: "The level in decibels against the intensity" }
+    variable: x
+    view: { x: [0, 1000], y: [0, 100] }
+    input: false
+    parameters: []
+    initial:
+      - { at: 0, view: { labels: { x: "I (µW/m²)", y: "L (dB)" } } }
+      - { at: 0, plot: { id: level, expr: "10*log(x)+60", label: { fr: "L = 10 log(I / I₀), une source", en: "L = 10 log(I / I₀), one source" } } }
+      - { at: 0, plot: { id: double, expr: "10*log(2*x)+60", label: { fr: "deux sources identiques : +3 dB", en: "two identical sources: +3 dB" }, dashed: true } }
+      - { at: 0, line: { id: danger, a: 0, b: 1, c: -85, label: { fr: "85 dB : seuil de danger", en: "85 dB: danger threshold" }, dashed: true } }
+      - { at: 0, point: { id: talk, on: level, x: 1, guides: true, label: { fr: "conversation : 60 dB", en: "conversation: 60 dB" } } }
+      - { at: 0, point: { id: street, on: level, x: 100, guides: true, label: { fr: "rue passante : 80 dB", en: "busy street: 80 dB" } } }
+  - id: signal
+    kind: wave
+    title: { fr: "Le signal sonore : une vibration périodique qui transporte de l'énergie", en: "The sound signal: a periodic vibration that carries energy" }
+    mode: string
+    parameters:
+      - { id: p, label: { fr: "période T (ms)", en: "period T (ms)" }, min: 1, max: 10, step: 0.5, value: 2.5 }
+    period: "p/1000"
+    speed: 340
+    amplitude: 0.5
+    length: 4
+    point: 2

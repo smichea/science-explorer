@@ -1,0 +1,51 @@
+id: phenomenon.circular_motion
+type: phenomenon
+world: world.physics
+region: region.physics.motion_mechanics
+importance: 2
+tags: [lycee]
+title: { fr: "Mouvement circulaire uniforme, accélération centripète", en: "Uniform circular motion, centripetal acceleration" }
+shortPurpose:
+  fr: "Comprendre pourquoi un corps qui tourne à vitesse constante accélère quand même, et calculer cette accélération dirigée vers le centre."
+  en: "Understand why a body turning at constant speed is nevertheless accelerating, and compute that acceleration directed towards the centre."
+overview:
+  fr: >-
+    Une bille au bout d'une ficelle, une voiture dans un virage, la Lune autour de la Terre : dans les trois cas la valeur de la vitesse ne change pas, et pourtant le mouvement n'est pas rectiligne uniforme. C'est que le vecteur vitesse tourne, et un vecteur qui tourne est un vecteur qui varie. L'accélération existe donc bien : elle est perpendiculaire à la vitesse, dirigée vers le centre du cercle, et elle vaut le carré de la vitesse divisé par le rayon. Coupez la ficelle et la bille part tout droit, par la tangente, jamais vers l'extérieur.
+  en: >-
+    A ball at the end of a string, a car in a bend, the Moon around the Earth: in all three the value of the speed does not change, and yet the motion is not uniform and rectilinear. The reason is that the velocity vector turns, and a vector that turns is a vector that changes. So the acceleration is really there: it is perpendicular to the velocity, directed towards the centre of the circle, and it equals the square of the speed divided by the radius. Cut the string and the ball flies straight ahead, along the tangent, never outwards.
+aliases:
+  fr: ["accélération centripète", "mouvement circulaire", "vitesse angulaire", "repère de Frenet", "force centripète"]
+  en: ["centripetal acceleration", "circular motion", "angular velocity", "Frenet frame", "centripetal force"]
+description:
+  fr: |
+    Un point décrit un **mouvement circulaire uniforme** lorsque sa trajectoire est un cercle de rayon $R$ et que la **valeur** de sa vitesse reste constante. Le vecteur vitesse, lui, est toujours **tangent** au cercle et change sans cesse de direction : le mouvement est donc accéléré, contrairement à ce que suggère l'expression « vitesse constante ». Dans le repère de Frenet, formé du vecteur unitaire tangent $\vec u_T$ et du vecteur unitaire normal $\vec u_N$ dirigé vers le centre, l'accélération se décompose en
+    $$\vec a = \frac{dv}{dt}\,\vec u_T + \frac{v^2}{R}\,\vec u_N .$$
+    Le mouvement étant uniforme, $\dfrac{dv}{dt} = 0$ : il ne reste que la composante normale, et l'accélération est **centripète**, perpendiculaire à la vitesse et dirigée vers le centre, de valeur $a = \dfrac{v^2}{R}$. On l'écrit aussi $a = \omega^2 R = \dfrac{4\pi^2 R}{T^2}$, avec la vitesse angulaire $\omega = \dfrac{v}{R} = \dfrac{2\pi}{T}$ en radians par seconde.
+
+    Le calcul est direct. Une voiture aborde un virage de rayon $R = 50\ \mathrm{m}$ à $90\ \mathrm{km \cdot h^{-1}}$, soit $v = 25\ \mathrm{m \cdot s^{-1}}$ : son accélération vaut $a = \dfrac{25^2}{50} = 12{,}5\ \mathrm{m \cdot s^{-2}}$, plus que l'accélération de la pesanteur. D'après la deuxième loi de Newton, il faut donc une force horizontale $F = m\,a$ dirigée vers le centre du virage — ici l'adhérence des pneus, qui vaut au mieux environ $0{,}8\,mg$, c'est-à-dire $8\ \mathrm{m \cdot s^{-2}}$ : la voiture sort de la route. Même calcul pour la Lune, à $R = 3{,}84 \times 10^{8}\ \mathrm{m}$ en $T = 27{,}3$ jours : $a = \dfrac{4\pi^2 R}{T^2} = 2{,}7 \times 10^{-3}\ \mathrm{m \cdot s^{-2}}$, exactement la valeur du champ de gravitation terrestre à cette distance. C'est le calcul par lequel Newton a compris que la pomme et la Lune tombent de la même façon.
+
+    Le mouvement circulaire uniforme est partout : rotors, centrifugeuses, manèges, virages relevés, satellites. Il sert surtout de **passage obligé** vers la gravitation, où la force centripète est fournie par l'attraction de l'astre. Pièges classiques : dire qu'il n'y a pas d'accélération parce que la vitesse est constante, alors que seule sa valeur l'est ; inventer une « force centrifuge » qui pousserait vers l'extérieur, alors qu'aucune force réelle ne tire l'objet dehors — ce que l'on sent dans un virage est l'inertie du corps, dans un référentiel qui n'est pas galiléen ; oublier d'exprimer $v$ en mètres par seconde et $R$ en mètres ; enfin confondre la vitesse angulaire $\omega$, en radians par seconde, avec la vitesse $v$, en mètres par seconde.
+  en: |
+    A point describes a **uniform circular motion** when its trajectory is a circle of radius $R$ and the **value** of its speed stays constant. The velocity vector, though, is always **tangent** to the circle and endlessly changes direction: the motion is therefore accelerated, contrary to what the phrase "constant speed" suggests. In the Frenet frame, made of the unit tangent vector $\vec u_T$ and the unit normal vector $\vec u_N$ pointing towards the centre, the acceleration splits into
+    $$\vec a = \frac{dv}{dt}\,\vec u_T + \frac{v^2}{R}\,\vec u_N .$$
+    The motion being uniform, $\dfrac{dv}{dt} = 0$: only the normal component is left, and the acceleration is **centripetal**, perpendicular to the velocity and directed towards the centre, of value $a = \dfrac{v^2}{R}$. It is also written $a = \omega^2 R = \dfrac{4\pi^2 R}{T^2}$, with the angular velocity $\omega = \dfrac{v}{R} = \dfrac{2\pi}{T}$ in radians per second.
+
+    The computation is direct. A car enters a bend of radius $R = 50\ \mathrm{m}$ at $90\ \mathrm{km \cdot h^{-1}}$, that is $v = 25\ \mathrm{m \cdot s^{-1}}$: its acceleration is $a = \dfrac{25^2}{50} = 12.5\ \mathrm{m \cdot s^{-2}}$, more than the acceleration of gravity. By Newton's second law a horizontal force $F = m\,a$ directed towards the centre of the bend is therefore needed — here the grip of the tyres, worth at best about $0.8\,mg$, that is $8\ \mathrm{m \cdot s^{-2}}$: the car leaves the road. The same computation for the Moon, at $R = 3.84 \times 10^{8}\ \mathrm{m}$ in $T = 27.3$ days: $a = \dfrac{4\pi^2 R}{T^2} = 2.7 \times 10^{-3}\ \mathrm{m \cdot s^{-2}}$, exactly the value of the Earth's gravitational field at that distance. This is the computation by which Newton understood that the apple and the Moon fall in the same way.
+
+    Uniform circular motion is everywhere: rotors, centrifuges, roundabouts, banked bends, satellites. Above all it is the **compulsory passage** towards gravitation, where the centripetal force is supplied by the pull of the star. Classic traps: saying there is no acceleration because the speed is constant, when only its value is; inventing a "centrifugal force" pushing outwards, when no real force pulls the object out — what one feels in a bend is the inertia of the body, in a frame that is not Galilean; forgetting to express $v$ in metres per second and $R$ in metres; and finally confusing the angular velocity $\omega$, in radians per second, with the speed $v$, in metres per second.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "justifier qu'un mouvement circulaire uniforme est accéléré, bien que la valeur de la vitesse soit constante"
+        - "décomposer l'accélération dans le repère de Frenet et reconnaître qu'elle est centripète quand le mouvement est uniforme"
+        - "calculer une accélération centripète par $a = v^2/R$, $a = \\omega^2 R$ ou $a = 4\\pi^2 R / T^2$"
+        - "relier la force centripète nécessaire à la deuxième loi de Newton et discuter si elle est disponible"
+      en:
+        - "justify that a uniform circular motion is accelerated, although the value of the speed is constant"
+        - "split the acceleration in the Frenet frame and recognise that it is centripetal when the motion is uniform"
+        - "compute a centripetal acceleration with $a = v^2/R$, $a = \\omega^2 R$ or $a = 4\\pi^2 R / T^2$"
+        - "relate the centripetal force needed to Newton's second law and discuss whether it is available"
+sources: [source.bo.lycee.2019]
