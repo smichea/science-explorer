@@ -676,7 +676,7 @@
     <p class="small muted" style="margin: 0" data-testid="plotter-area" aria-live="polite">
       {ar.label ?? t('lesson.plotter.area')} [{fmt(ar.a)} ; {fmt(ar.b)}] =
       <strong class="mono">{fmt(ar.value)}</strong>{#if ar.approximation !== null}
-        · {t('lesson.plotter.riemann')}
+        &nbsp;· {t('lesson.plotter.riemann')}
         {t('lesson.plotter.rectangles', { n: ar.rectangleCount })} =
         <strong class="mono">{fmt(ar.approximation)}</strong>{/if}
     </p>

@@ -10,16 +10,16 @@ tools:
     extent: 4
     points:
       - { id: o, x: 0, y: 0, z: 0, label: { fr: "O", en: "O" } }
-      - { id: m, x: 2, y: 2, z: 2, label: { fr: "M (2 ; 2 ; 2)", en: "M (2 ; 2 ; 2)" }, hidden: true }
-      - { id: pa, x: 3, y: 0, z: 0, label: { fr: "A (3 ; 0 ; 0)", en: "A (3 ; 0 ; 0)" }, hidden: true }
+      - { id: m, x: 2, y: 2, z: 2, label: { fr: "M", en: "M" }, hidden: true }
+      - { id: pa, x: 3, y: 0, z: 0, label: { fr: "A", en: "A" }, hidden: true }
     vectors:
-      - { id: u, x: 1, y: 2, z: 0, label: { fr: "u (1 ; 2 ; 0)", en: "u (1 ; 2 ; 0)" }, hidden: true }
-      - { id: v, x: 2, y: -1, z: 1, label: { fr: "v (2 ; −1 ; 1)", en: "v (2 ; −1 ; 1)" }, hidden: true }
-      - { id: nv, x: 1, y: 1, z: 1, label: { fr: "n (1 ; 1 ; 1)", en: "n (1 ; 1 ; 1)" }, hidden: true }
+      - { id: u, x: 1, y: 2, z: 0, label: { fr: "u", en: "u" }, hidden: true }
+      - { id: v, x: 2, y: -1, z: 1, label: { fr: "v", en: "v" }, hidden: true }
+      - { id: nv, x: 1, y: 1, z: 1, label: { fr: "n", en: "n" }, hidden: true }
     lines:
-      - { id: d, through: o, direction: nv, label: { fr: "droite (O ; n)", en: "line (O ; n)" }, hidden: true }
+      - { id: d, through: o, direction: nv, label: { fr: "d", en: "d" }, hidden: true }
     planes:
-      - { id: p, through: pa, normal: nv, label: { fr: "plan P", en: "plane P" }, hidden: true }
+      - { id: p, through: pa, normal: nv, label: { fr: "P", en: "P" }, hidden: true }
     dot: [u, v]
     distance: [m, p]
 steps:

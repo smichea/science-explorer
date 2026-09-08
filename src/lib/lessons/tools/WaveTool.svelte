@@ -89,12 +89,18 @@
   });
   const delay = $derived(point / wave.speed);
   const f = (v: number) => fmt(v, locale.current, 3);
+  const f1 = (v: number) => fmt(v, locale.current, 1);
 
   // -------------------------------------------------------------------------
   // Doppler mode: the wavefronts of a source that moves, seen from above
   // -------------------------------------------------------------------------
 
   const doppler = $derived(tool.mode === 'doppler');
+  // A source that has just started has emitted nothing: open a few periods in, so that the
+  // crowding ahead and the stretching behind are there to be seen before anything is played.
+  $effect(() => {
+    if (doppler && time === 0) time = wave.period * 4;
+  });
   const sourceSpeed = $derived(
     tool.sourceSpeed === undefined ? 0 : evaluateScalar(tool.sourceSpeed, tstate.params)
   );
@@ -155,16 +161,28 @@
         />
       {/each}
       <circle cx={scene.sx(sourceX)} cy={scene.sy(0)} r="7" fill="#ffb347" />
-      <text x={scene.sx(sourceX)} y={scene.sy(0) - 12} class="note" text-anchor="middle">S</text>
+      <text
+        x={scene.sx(sourceX)}
+        y={scene.sy(0) - 12}
+        class="note"
+        fill="#ffb347"
+        text-anchor="middle">S</text
+      >
       <polygon
         points="{scene.sx(observerX)},{scene.sy(0) - 9} {scene.sx(observerX) - 8},{scene.sy(0) +
           7} {scene.sx(observerX) + 8},{scene.sy(0) + 7}"
         fill="#5ee6a8"
       />
-      <text x={scene.sx(observerX)} y={scene.sy(0) + 22} class="note" text-anchor="middle">M</text>
+      <text
+        x={scene.sx(observerX)}
+        y={scene.sy(0) + 22}
+        class="note"
+        fill="#5ee6a8"
+        text-anchor="middle">M</text
+      >
     </svg>
     <p class="small" style="margin: 0" data-testid="wave-reading">
-      {t('lesson.wave.emitted')} f = {f(wave.frequency)} Hz · {t('lesson.wave.heard')} f′ = {f(
+      {t('lesson.wave.emitted')} f = {f1(wave.frequency)} Hz · {t('lesson.wave.heard')} f′ = {f1(
         heard
       )} Hz ·
       {t('lesson.wave.speed')} v = {f(wave.speed)} m/s · {t('lesson.wave.sourceSpeed')} = {f(

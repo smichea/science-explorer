@@ -329,7 +329,7 @@
         >
       {:else if item.kind === 'point' && item.point}
         <circle cx={sx(item.point.v)} cy={sy(item.point.v)} r="4.5" fill={item.point.color} />
-        <text x={sx(item.point.v) + 7} y={sy(item.point.v) - 6} class="note"
+        <text x={sx(item.point.v) + 8} y={sy(item.point.v) + 15} class="note"
           >{item.point.label}</text
         >
       {/if}
@@ -367,12 +367,31 @@
     {/if}
   </ul>
   {#if interactive}
-    <p class="small muted" style="margin: 0">
-      {t('lesson.space.rotateHint')} · {t('lesson.space.azimuth')}
-      {f(azimuth)}° ·
-      {t('lesson.space.elevation')}
-      {f(elevation)}°
-    </p>
+    <div class="cluster">
+      <label class="field" style="flex: 1">
+        <span class="label">{t('lesson.space.azimuth')} : {f(azimuth)}°</span>
+        <input
+          type="range"
+          min="-180"
+          max="180"
+          step="2"
+          bind:value={azimuth}
+          data-testid="space-azimuth"
+        />
+      </label>
+      <label class="field" style="flex: 1">
+        <span class="label">{t('lesson.space.elevation')} : {f(elevation)}°</span>
+        <input
+          type="range"
+          min="-80"
+          max="80"
+          step="2"
+          bind:value={elevation}
+          data-testid="space-elevation"
+        />
+      </label>
+    </div>
+    <p class="small muted" style="margin: 0">{t('lesson.space.rotateHint')}</p>
   {/if}
 </div>
 

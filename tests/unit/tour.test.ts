@@ -49,6 +49,40 @@ describe('bird’s-eye flight', () => {
     tour.legs.slice(1).forEach((leg) => expect(leg.transition?.fr).toBeTruthy());
   });
 
+  it('flies the Terminale chapters after the four routes that prepare them', () => {
+    const ids = stops(buildTour(tour, ctx)).map((s) => s.node.id);
+    const at = (id: string) => ids.indexOf(id);
+    // The first journey, the motion, Galileo and the exponential come first: the Terminale
+    // chapters lean on the function, the derivative, the kinematics and the first-order model.
+    expect(at('tool.derivative')).toBeLessThan(at('tool.integral'));
+    expect(at('model.kinematics_point')).toBeLessThan(at('phenomenon.circular_motion'));
+    expect(at('model.reaction_order_one')).toBeLessThan(at('concept.chemical_equilibrium'));
+    // Inside the analysis route, the algorithms come before the bisection that uses them.
+    expect(at('tool.algorithmics')).toBeLessThan(at('concept.continuity'));
+    expect(at('concept.limit')).toBeLessThan(at('tool.integral'));
+    // The whole year is flown: twenty-five new destinations, none of them missing.
+    for (const id of [
+      'concept.sequence_limit',
+      'tool.logarithm',
+      'tool.space_geometry',
+      'concept.binomial_law',
+      'concept.law_of_large_numbers',
+      'model.gravitational_motion',
+      'phenomenon.oscillator',
+      'phenomenon.interference',
+      'phenomenon.doppler',
+      'model.telescope',
+      'concept.sound_level',
+      'law.first_principle',
+      'phenomenon.thermal_transfer',
+      'model.acid_base',
+      'model.electrochemical_cell',
+      'method.synthesis_strategy',
+      'method.instrumental_analysis',
+    ])
+      expect(ids).toContain(id);
+  });
+
   it('flies over every lesson of the horizon exactly once, routes first, never a mission', () => {
     const steps = buildTour(tour, ctx);
     expect(steps[0].kind).toBe('intro');

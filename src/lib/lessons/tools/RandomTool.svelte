@@ -537,6 +537,8 @@
     padding: 0.25rem 0.6rem;
     border: 1px solid var(--border);
     text-align: center;
+    /* A binomial law has n + 1 columns: the table scrolls rather than folding its numbers. */
+    white-space: nowrap;
   }
   .law td.num {
     white-space: nowrap;

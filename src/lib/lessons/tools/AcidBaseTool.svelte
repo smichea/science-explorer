@@ -9,6 +9,7 @@
     type TitrationSetup,
   } from '$lib/domain/lessonTools';
   import { L, locale, t } from '$lib/state/locale.svelte';
+  import { shortLabel } from '$lib/atlas/labels';
   import { fmt, PALETTE, scales } from '../axes';
 
   type Tool = Extract<LessonTool, { kind: 'acid_base' }>;
@@ -101,6 +102,8 @@
 
   const f = (v: number) => fmt(v, locale.current, 2);
   const f1 = (v: number) => fmt(v, locale.current, 1);
+  /** A name cut to what its band can hold, so it never runs across the pKa line. */
+  const fit = (text: string, width: number) => shortLabel(text, Math.max(3, Math.floor(width / 7)));
 </script>
 
 <div class="tool stack-sm" data-testid="acid-base-tool" data-mode={tool.mode}>
@@ -203,13 +206,13 @@
           x={(sc.pad.l + sc.sx(couple.pka)) / 2}
           y={y + laneHeight / 2}
           class="note"
-          text-anchor="middle">{couple.acid}</text
+          text-anchor="middle">{fit(couple.acid, sc.sx(couple.pka) - sc.pad.l)}</text
         >
         <text
           x={(sc.sx(couple.pka) + sc.W - sc.pad.r) / 2}
           y={y + laneHeight / 2}
           class="note"
-          text-anchor="middle">{couple.base}</text
+          text-anchor="middle">{fit(couple.base, sc.W - sc.pad.r - sc.sx(couple.pka))}</text
         >
         <text x={sc.sx(couple.pka)} y={y + 2} class="tick" text-anchor="middle"
           >pKa = {f1(couple.pka)}</text
@@ -239,7 +242,7 @@
     <p class="small" style="margin: 0" data-testid="acid-base-reading" aria-live="polite">
       {t('lesson.acid.ph')} = {f(ph)}
       {#each couples as couple (couple.id)}
-        · {predominance(couple.pka, ph) === 'equal'
+        &nbsp;· {predominance(couple.pka, ph) === 'equal'
           ? `${couple.acid} / ${couple.base} : ${t('lesson.acid.equal')}`
           : `${predominance(couple.pka, ph) === 'acid' ? couple.acid : couple.base} ${t('lesson.acid.predominates')}`}
         ({t('lesson.acid.ratio')} = {ratioFromPH(couple.pka, ph) >= 1000
@@ -249,7 +252,7 @@
     </p>
   {/if}
 
-  {#if interactive}
+  {#if interactive && tool.parameters.length === 0}
     <label class="field">
       <span class="label"
         >{titration ? `${t('lesson.acid.volume')} (mL)` : t('lesson.acid.ph')} :
