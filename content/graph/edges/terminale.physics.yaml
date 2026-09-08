@@ -1,0 +1,96 @@
+# Terminale physics (BO spécial n°8 du 25 juillet 2019, enseignement de spécialité) :
+# prerequisites of the nine physics destinations of the year and the modelling links they carry.
+# Direction: requires_* from the prerequisite TO the dependent node; models / explains from the
+# model or the law TO the phenomenon. Prerequisite edges are written by the owner of the `to` node.
+# The Terminale physics legs are flown after the Terminale analysis and geometry legs, in the order
+# motion and energy → waves and light, which fixes the two internal prerequisites of the year:
+# circular_motion before gravitational_motion, first_principle before thermal_transfer.
+edges:
+  # --- requires_essentially -------------------------------------------------
+  - { from: model.kinematics_point, to: phenomenon.circular_motion, type: requires_essentially, weight: 1,
+      note: { fr: "Position, vitesse et accélération d'un point matériel dans un référentiel : sans elles, l'accélération centripète n'a pas de sens.", en: "Position, velocity and acceleration of a point mass in a frame: without them the centripetal acceleration means nothing." } }
+  - { from: law.newton_second, to: phenomenon.circular_motion, type: requires_essentially, weight: 1,
+      note: { fr: "C'est la deuxième loi de Newton qui exige une force dirigée vers le centre pour courber la trajectoire.", en: "It is Newton's second law that demands a force pointing at the centre to bend the trajectory." } }
+  - { from: law.universal_gravitation, to: model.gravitational_motion, type: requires_essentially, weight: 1,
+      note: { fr: "La force en $1/r^2$ est la seule donnée du problème : tout le reste, y compris les lois de Kepler, en découle.", en: "The $1/r^2$ force is the only datum of the problem: everything else, Kepler's laws included, follows from it." } }
+  - { from: phenomenon.circular_motion, to: model.gravitational_motion, type: requires_essentially, weight: 1,
+      note: { fr: "L'orbite circulaire se traite en égalant l'accélération centripète $v^2/r$ au champ de gravitation.", en: "The circular orbit is treated by making the centripetal acceleration $v^2/r$ equal to the gravitational field." } }
+  - { from: law.newton_second, to: model.gravitational_motion, type: requires_essentially, weight: 1,
+      note: { fr: "C'est en divisant la force par la masse que l'on voit celle-ci disparaître de la trajectoire.", en: "It is by dividing the force by the mass that one sees the mass disappear from the trajectory." } }
+  - { from: concept.mechanical_energy, to: phenomenon.oscillator, type: requires_essentially, weight: 1,
+      note: { fr: "L'oscillateur est l'exemple parfait d'un échange entre énergie cinétique et énergie potentielle à énergie mécanique constante.", en: "The oscillator is the perfect example of an exchange between kinetic and potential energy at constant mechanical energy." } }
+  - { from: phenomenon.mechanical_wave, to: phenomenon.interference, type: requires_essentially, weight: 1,
+      note: { fr: "Longueur d'onde, période et superposition des élongations sont installées sur la corde avant de servir à la lumière.", en: "Wavelength, period and superposition of displacements are set up on the rope before being used for light." } }
+  - { from: phenomenon.mechanical_wave, to: phenomenon.doppler, type: requires_essentially, weight: 1,
+      note: { fr: "Le décalage Doppler se lit sur les fronts d'onde : il faut d'abord savoir que $\\lambda = v\\,T$ et que la célérité appartient au milieu.", en: "The Doppler shift is read on the wavefronts: one must first know that $\\lambda = v\\,T$ and that the speed belongs to the medium." } }
+  - { from: model.thin_lens, to: model.telescope, type: requires_essentially, weight: 1,
+      note: { fr: "Une lunette est faite de deux lentilles minces convergentes : foyers, plans focaux et constructions d'images sont supposés acquis.", en: "A telescope is made of two thin converging lenses: foci, focal planes and image constructions are assumed known." } }
+  - { from: phenomenon.sound, to: concept.sound_level, type: requires_essentially, weight: 1,
+      note: { fr: "L'intensité sonore mesure l'énergie que transporte le signal sonore rencontré en Seconde.", en: "The sound intensity measures the energy carried by the sound signal met in Grade 10." } }
+  - { from: concept.mechanical_energy, to: law.first_principle, type: requires_essentially, weight: 1,
+      note: { fr: "Le premier principe étend à l'échelle microscopique la conservation de l'énergie déjà établie en mécanique.", en: "The first principle extends to the microscopic scale the conservation of energy already established in mechanics." } }
+  - { from: law.first_principle, to: phenomenon.thermal_transfer, type: requires_essentially, weight: 1,
+      note: { fr: "Un transfert thermique est le terme $Q$ du bilan : sans le bilan, le flux thermique n'a rien à alimenter.", en: "A thermal transfer is the $Q$ term of the balance: without the balance, the thermal flux has nothing to feed." } }
+  # --- requires_recommended -------------------------------------------------
+  - { from: tool.vector, to: phenomenon.circular_motion, type: requires_recommended, weight: 0.9,
+      note: { fr: "Il faut voir la vitesse et l'accélération comme deux vecteurs perpendiculaires pour comprendre qu'un mouvement uniforme puisse être accéléré.", en: "One must see the velocity and the acceleration as two perpendicular vectors to understand that a uniform motion can be accelerated." } }
+  - { from: tool.trigonometric_functions, to: phenomenon.circular_motion, type: requires_recommended, weight: 0.7,
+      note: { fr: "Le cosinus et le sinus paramètrent la position sur le cercle et donnent la vitesse angulaire en radians par seconde.", en: "Cosine and sine parametrise the position on the circle and give the angular velocity in radians per second." } }
+  - { from: concept.field, to: model.gravitational_motion, type: requires_recommended, weight: 0.8,
+      note: { fr: "L'accélération d'un satellite est le champ de gravitation de l'astre, indépendant de la masse qui le subit.", en: "The acceleration of a satellite is the gravitational field of the star, independent of the mass that experiences it." } }
+  - { from: concept.kinetic_energy_work, to: model.gravitational_motion, type: requires_recommended, weight: 0.6,
+      note: { fr: "La vitesse d'un satellite sur une ellipse se relit comme un échange d'énergie entre l'apogée et le périgée.", en: "The speed of a satellite on an ellipse is reread as an exchange of energy between apogee and perigee." } }
+  - { from: law.newton_second, to: phenomenon.oscillator, type: requires_recommended, weight: 0.8,
+      note: { fr: "L'équation du pendule vient du bilan des forces projeté sur la tangente à la trajectoire.", en: "The equation of the pendulum comes from the inventory of forces projected on the tangent to the trajectory." } }
+  - { from: tool.trigonometric_functions, to: phenomenon.oscillator, type: requires_recommended, weight: 0.7,
+      note: { fr: "L'élongation d'un oscillateur libre est une sinusoïde du temps, de période propre $T_0$.", en: "The displacement of a free oscillator is a sine function of time, of natural period $T_0$." } }
+  - { from: concept.dimension_unit, to: phenomenon.oscillator, type: requires_recommended, weight: 0.7,
+      note: { fr: "L'analyse dimensionnelle suffit à retrouver $T_0 = 2\\pi\\sqrt{L/g}$ et à montrer que la masse ne peut pas y figurer.", en: "Dimensional analysis is enough to recover $T_0 = 2\\pi\\sqrt{L/g}$ and to show that the mass cannot appear in it." } }
+  - { from: phenomenon.colour, to: phenomenon.interference, type: requires_recommended, weight: 0.7,
+      note: { fr: "Chaque couleur a sa longueur d'onde : c'est elle qui fixe la largeur de la tache et l'interfrange.", en: "Each colour has its wavelength: it is the wavelength that fixes the width of the spot and the fringe spacing." } }
+  - { from: model.photon, to: phenomenon.interference, type: requires_recommended, weight: 0.6,
+      note: { fr: "La lumière décrite comme un flux de photons rend la figure d'interférences d'autant plus surprenante : elle se construit grain par grain.", en: "Light described as a flux of photons makes the interference figure all the more surprising: it builds up grain by grain." } }
+  - { from: phenomenon.sound, to: phenomenon.doppler, type: requires_recommended, weight: 0.8,
+      note: { fr: "La sirène d'une ambulance est l'exemple de référence : hauteur, fréquence et célérité du son y sont déjà connues.", en: "The siren of an ambulance is the reference example: pitch, frequency and speed of sound are already known there." } }
+  - { from: model.kinematics_point, to: phenomenon.doppler, type: requires_recommended, weight: 0.7,
+      note: { fr: "Le décalage se démontre en suivant la position de la source entre deux émissions successives.", en: "The shift is proved by following the position of the source between two successive emissions." } }
+  - { from: law.snell_descartes, to: model.telescope, type: requires_recommended, weight: 0.6,
+      note: { fr: "C'est la réfraction qui fait converger les rayons dans une lentille : la lunette en enchaîne deux.", en: "It is refraction that makes the rays converge in a lens: the telescope puts two of them in a row." } }
+  - { from: tool.trigonometric_functions, to: model.telescope, type: requires_recommended, weight: 0.7,
+      note: { fr: "La taille de l'image intermédiaire vaut $f'_1 \\tan\\theta$, et le grossissement se lit sur des angles petits.", en: "The size of the intermediate image is $f'_1 \\tan\\theta$, and the magnification is read on small angles." } }
+  - { from: tool.logarithm, to: concept.sound_level, type: requires_recommended, weight: 0.9,
+      note: { fr: "Le niveau sonore est l'application la plus directe du logarithme décimal : $\\log(10x) = 1 + \\log x$ donne les dix décibels.", en: "The sound level is the most direct application of the decimal logarithm: $\\log(10x) = 1 + \\log x$ gives the ten decibels." } }
+  - { from: phenomenon.mechanical_wave, to: concept.sound_level, type: requires_recommended, weight: 0.7,
+      note: { fr: "L'intensité est la puissance transportée par l'onde à travers une surface : il faut d'abord savoir qu'une onde transporte de l'énergie.", en: "The intensity is the power carried by the wave through an area: one must first know that a wave carries energy." } }
+  - { from: concept.dimension_unit, to: law.first_principle, type: requires_recommended, weight: 0.8,
+      note: { fr: "Joules, watts, joules par kelvin : le bilan d'énergie se contrôle d'abord par ses unités.", en: "Joules, watts, joules per kelvin: an energy balance is checked first through its units." } }
+  - { from: phenomenon.state_changes, to: law.first_principle, type: requires_recommended, weight: 0.7,
+      note: { fr: "Le palier de température d'un changement d'état est le cas où l'énergie entre sans que le thermomètre bouge.", en: "The temperature plateau of a change of state is the case where energy enters without the thermometer moving." } }
+  - { from: concept.electrical_power, to: law.first_principle, type: requires_recommended, weight: 0.7,
+      note: { fr: "Une résistance chauffante convertit toute sa puissance électrique en transfert thermique : $E = P\\,\\Delta t$ alimente le bilan.", en: "A heating resistor converts all its electrical power into a heat transfer: $E = P\\,\\Delta t$ feeds the balance." } }
+  - { from: tool.exponential, to: phenomenon.thermal_transfer, type: requires_recommended, weight: 0.8,
+      note: { fr: "La loi de Newton conduit à une décroissance exponentielle de l'écart de température, de constante de temps $\\tau = C/(hS)$.", en: "Newton's law leads to an exponential decrease of the temperature difference, with time constant $\\tau = C/(hS)$." } }
+  - { from: phenomenon.state_changes, to: phenomenon.thermal_transfer, type: requires_recommended, weight: 0.6,
+      note: { fr: "Fondre, vaporiser, condenser : autant de transferts thermiques déjà rencontrés, à température constante.", en: "Melting, vaporising, condensing: so many thermal transfers already met, at constant temperature." } }
+  # --- models / explains (model or law → phenomenon) --------------------------
+  - { from: law.newton_second, to: phenomenon.circular_motion, type: models, weight: 1,
+      note: { fr: "Une force centripète de valeur $m\\,v^2/R$ suffit à rendre compte de tout le mouvement circulaire uniforme.", en: "A centripetal force of value $m\\,v^2/R$ is enough to account for the whole uniform circular motion." } }
+  - { from: law.newton_second, to: phenomenon.oscillator, type: models, weight: 0.9,
+      note: { fr: "Projetée sur la tangente, la deuxième loi donne l'équation du pendule et la période propre des petites oscillations.", en: "Projected on the tangent, the second law gives the equation of the pendulum and the natural period of small oscillations." } }
+  - { from: concept.mechanical_energy, to: phenomenon.oscillator, type: explains, weight: 0.9,
+      note: { fr: "L'énergie mécanique constante explique la vitesse maximale au point bas et l'arrêt aux extrémités ; sa décroissance mesure l'amortissement.", en: "The constant mechanical energy explains the greatest speed at the lowest point and the stop at the ends; its decrease measures the damping." } }
+  - { from: model.photon, to: phenomenon.interference, type: explains, weight: 0.7,
+      note: { fr: "Le modèle ondulatoire prévoit les franges, et le modèle du photon montre qu'elles se construisent photon par photon : les deux descriptions se rejoignent.", en: "The wave model predicts the fringes, and the photon model shows that they build up photon by photon: the two descriptions come together." } }
+  - { from: model.kinematics_point, to: phenomenon.doppler, type: models, weight: 0.9,
+      note: { fr: "Le décalage Doppler est un calcul de cinématique : la source avance de $v_S\\,T$ entre deux crêtes émises.", en: "The Doppler shift is a kinematics computation: the source advances by $v_S\\,T$ between two emitted crests." } }
+  - { from: concept.sound_level, to: phenomenon.sound, type: models, weight: 0.9,
+      note: { fr: "L'intensité sonore et son niveau en décibels quantifient enfin ce que l'oreille appelle un son fort ou faible.", en: "The sound intensity and its level in decibels finally quantify what the ear calls a loud or a soft sound." } }
+  - { from: law.first_principle, to: phenomenon.thermal_transfer, type: explains, weight: 1,
+      note: { fr: "Le flux thermique et la loi de Newton ne sont que le bilan $C\\,d\\theta/dt = -hS(\\theta - \\theta_{ext})$ écrit à chaque instant.", en: "The thermal flux and Newton's law are nothing but the balance $C\\,d\\theta/dt = -hS(\\theta - \\theta_{ext})$ written at every instant." } }
+  - { from: law.first_principle, to: phenomenon.state_changes, type: explains, weight: 0.8,
+      note: { fr: "Le palier de fusion s'explique par le bilan : l'énergie reçue casse les liaisons du solide au lieu d'augmenter l'agitation thermique.", en: "The melting plateau is explained by the balance: the energy received breaks the bonds of the solid instead of increasing the thermal agitation." } }
+  # --- analogies -------------------------------------------------------------
+  - { from: phenomenon.thermal_transfer, to: phenomenon.circuit.capacitor_charging, type: analogous_to, weight: 0.8,
+      note: { fr: "Même équation du premier ordre : la température rejoint celle de la pièce comme la tension rejoint celle du générateur, avec une constante de temps $C/(hS)$ au lieu de $RC$.", en: "The same first-order equation: the temperature joins that of the room as the voltage joins that of the generator, with a time constant $C/(hS)$ instead of $RC$." } }
+  - { from: phenomenon.circular_motion, to: phenomenon.oscillator, type: analogous_to, weight: 0.6,
+      note: { fr: "La projection d'un mouvement circulaire uniforme sur un diamètre est exactement une oscillation sinusoïdale de même période.", en: "The projection of a uniform circular motion on a diameter is exactly a sinusoidal oscillation of the same period." } }

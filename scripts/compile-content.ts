@@ -27,6 +27,7 @@ import {
   ExerciseSchema,
   FirstOrderConfigSchema,
   GlossaryFileSchema,
+  CentralForceConfigSchema,
   HorizonConfigSchema,
   LayoutAnchorsSchema,
   LOCALES,
@@ -607,7 +608,11 @@ for (const { file, data } of simulationFiles) {
     error(`duplicate simulation ${data.id}`, file, data.id);
     continue;
   }
-  const configSchema = data.engine === 'motion_2d' ? Motion2dConfigSchema : FirstOrderConfigSchema;
+  const configSchema = {
+    motion_2d: Motion2dConfigSchema,
+    first_order: FirstOrderConfigSchema,
+    central_force: CentralForceConfigSchema,
+  }[data.engine];
   const parsed = configSchema.safeParse(data.config);
   if (!parsed.success)
     error(
@@ -780,7 +785,10 @@ for (const { file, data } of lessonFiles) {
             ? ['heads', 'tails']
             : tool.experiment === 'urn'
               ? tool.urn.map((b) => b.id)
-              : Array.from({ length: tool.sides }, (_, i) => String(i + 1))
+              : tool.experiment === 'binomial'
+                ? // The outcomes of a binomial law are the numbers of successes, none to all.
+                  Array.from({ length: tool.trials + 1 }, (_, k) => String(k))
+                : Array.from({ length: tool.sides }, (_, i) => String(i + 1))
         );
         if (tool.mode === 'tree' && !tool.tree)
           error(`${where}: the tree mode needs a tree`, file, data.id);
@@ -856,8 +864,20 @@ for (const { file, data } of lessonFiles) {
         scalar(tool.speed, 'speed');
         if (tool.wavelength === undefined && tool.speed === undefined)
           error(`${where}: give a wavelength or a speed`, file, data.id);
-        if (tool.point > tool.length)
+        if (tool.point > tool.length && tool.mode === 'string')
           warn(`${where}: the observation point lies beyond the string`, file, data.id);
+        scalar(tool.sourceSpeed, 'source speed');
+        scalar(tool.observerSpeed, 'observer speed');
+        if (
+          tool.mode === 'doppler' &&
+          tool.sourceSpeed === undefined &&
+          tool.observerSpeed === undefined
+        )
+          error(
+            `${where}: the Doppler mode needs a source or an observer that moves`,
+            file,
+            data.id
+          );
         break;
       case 'optics':
         scalar(tool.n1, 'n1');
@@ -866,8 +886,15 @@ for (const { file, data } of lessonFiles) {
         scalar(tool.focal, 'focal length');
         scalar(tool.object.distance, 'object distance');
         scalar(tool.object.height, 'object height');
+        scalar(tool.eyepiece, 'eyepiece focal length');
         if (tool.mode === 'colour' && !tool.colour)
           error(`${where}: the colour mode needs a colour setup`, file, data.id);
+        if (tool.mode === 'telescope' && tool.eyepiece === undefined)
+          error(
+            `${where}: the telescope mode needs the focal length of its eyepiece`,
+            file,
+            data.id
+          );
         for (const c of tool.colour?.source ?? []) scalar(c, 'source light');
         break;
       case 'periodic_table':
@@ -889,6 +916,8 @@ for (const { file, data } of lessonFiles) {
         }
         scalar(tool.extent, 'extent');
         scalar(tool.obtained, 'obtained amount');
+        scalar(tool.equilibrium?.k, 'equilibrium constant');
+        scalar(tool.equilibrium?.volume, 'volume of the solution');
         for (const bond of tool.bonds) {
           if (items.has(bond.id)) error(`${where}: duplicate item ${bond.id}`, file, data.id);
           items.add(bond.id);
@@ -950,6 +979,107 @@ for (const { file, data } of lessonFiles) {
         }
         break;
       }
+      case 'space':
+        for (const point of tool.points) {
+          if (items.has(point.id)) error(`${where}: duplicate item ${point.id}`, file, data.id);
+          items.add(point.id);
+          scalar(point.x, `point ${point.id}`);
+          scalar(point.y, `point ${point.id}`);
+          scalar(point.z, `point ${point.id}`);
+        }
+        for (const vector of tool.vectors) {
+          if (items.has(vector.id)) error(`${where}: duplicate item ${vector.id}`, file, data.id);
+          items.add(vector.id);
+          scalar(vector.x, `vector ${vector.id}`);
+          scalar(vector.y, `vector ${vector.id}`);
+          scalar(vector.z, `vector ${vector.id}`);
+          if (vector.from && !tool.points.some((p) => p.id === vector.from))
+            error(
+              `${where}: vector ${vector.id} starts from unknown point ${vector.from}`,
+              file,
+              data.id
+            );
+        }
+        for (const line of tool.lines) {
+          if (items.has(line.id)) error(`${where}: duplicate item ${line.id}`, file, data.id);
+          items.add(line.id);
+          if (!tool.points.some((p) => p.id === line.through))
+            error(
+              `${where}: line ${line.id} passes by unknown point ${line.through}`,
+              file,
+              data.id
+            );
+          if (!tool.vectors.some((v) => v.id === line.direction))
+            error(
+              `${where}: line ${line.id} is directed by unknown vector ${line.direction}`,
+              file,
+              data.id
+            );
+        }
+        for (const plane of tool.planes) {
+          if (items.has(plane.id)) error(`${where}: duplicate item ${plane.id}`, file, data.id);
+          items.add(plane.id);
+          if (plane.of) {
+            for (const id of plane.of)
+              if (!tool.points.some((p) => p.id === id))
+                error(`${where}: plane ${plane.id} passes by unknown point ${id}`, file, data.id);
+          } else if (!plane.through || !plane.normal) {
+            error(
+              `${where}: plane ${plane.id} needs three points, or a point and a normal vector`,
+              file,
+              data.id
+            );
+          } else {
+            if (!tool.points.some((p) => p.id === plane.through))
+              error(
+                `${where}: plane ${plane.id} passes by unknown point ${plane.through}`,
+                file,
+                data.id
+              );
+            if (!tool.vectors.some((v) => v.id === plane.normal))
+              error(
+                `${where}: plane ${plane.id} has unknown normal vector ${plane.normal}`,
+                file,
+                data.id
+              );
+          }
+        }
+        for (const id of tool.dot ?? [])
+          if (!tool.vectors.some((v) => v.id === id))
+            error(`${where}: dot product of unknown vector ${id}`, file, data.id);
+        if (tool.distance) {
+          if (!tool.points.some((p) => p.id === tool.distance?.[0]))
+            error(`${where}: distance from unknown point ${tool.distance[0]}`, file, data.id);
+          if (!tool.planes.some((pl) => pl.id === tool.distance?.[1]))
+            error(`${where}: distance to unknown plane ${tool.distance[1]}`, file, data.id);
+        }
+        break;
+      case 'acid_base': {
+        for (const couple of tool.couples) {
+          if (items.has(couple.id)) error(`${where}: duplicate couple ${couple.id}`, file, data.id);
+          items.add(couple.id);
+          scalar(couple.pka, `couple ${couple.id}`);
+        }
+        scalar(tool.ph, 'pH');
+        const titration = tool.titration;
+        if (tool.mode === 'titration' && !titration)
+          error(`${where}: the titration mode needs a titration`, file, data.id);
+        if (titration) {
+          scalar(titration.c, 'concentration of the titrated solution');
+          scalar(titration.v, 'volume of the titrated solution');
+          scalar(titration.titrant, 'concentration of the titrant');
+          scalar(titration.volume, 'volume poured');
+          if (titration.couple && !tool.couples.some((c) => c.id === titration.couple))
+            error(
+              `${where}: the titration names unknown couple ${titration.couple}`,
+              file,
+              data.id
+            );
+          if (titration.indicator && titration.indicator.from >= titration.indicator.to)
+            error(`${where}: the indicator turns from a lower pH to a higher one`, file, data.id);
+        }
+        break;
+      }
       case 'molecule': {
         const atomIds = new Set<string>();
         for (const atom of tool.atoms) {
@@ -1007,6 +1137,8 @@ for (const { file, data } of lessonFiles) {
         action.tangent?.x,
         action.interval?.from,
         action.interval?.to,
+        action.area?.from,
+        action.area?.to,
         action.line?.a,
         action.line?.b,
         action.line?.c,
@@ -1018,6 +1150,7 @@ for (const { file, data } of lessonFiles) {
       action.secant ||
       action.tangent ||
       action.interval ||
+      action.area ||
       action.line
     ) {
       error(

@@ -1,0 +1,55 @@
+# Somme de variables aléatoires en Terminale — variance de la somme de deux dés indépendants
+id: exercise.sum_variables.two_dice
+type: numeric
+nodeId: concept.random_variable_sum
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On lance deux dés équilibrés à six faces, de façon indépendante. Pour un dé, l'espérance vaut $3{,}5$ et la variance $\dfrac{35}{12} \approx 2{,}917$.
+
+    Calculer la variance de la somme $S = X_1 + X_2$ des deux résultats. Arrondir à $10^{-2}$.
+  en: |-
+    Two fair six-sided dice are rolled independently. For one die, the expectation is $3.5$ and the variance $\dfrac{35}{12} \approx 2.917$.
+
+    Compute the variance of the sum $S = X_1 + X_2$ of the two results. Round to $10^{-2}$.
+numeric:
+  value: 5.8333
+  tolerance: { kind: absolute, value: 0.02 }
+  inputLabel: { fr: "variance de $S$", en: "variance of $S$" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        L'espérance s'additionne toujours ; la variance s'additionne aussi, mais seulement si les variables sont indépendantes — ce qui est le cas de deux dés lancés séparément.
+      en: |-
+        Expectation always adds; variance adds too, but only if the variables are independent — which is the case of two dice rolled separately.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $V(X_1 + X_2) = V(X_1) + V(X_2) = 2 \times \dfrac{35}{12}$. Attention : ce n'est pas $V(2X_1)$.
+      en: |-
+        $V(X_1 + X_2) = V(X_1) + V(X_2) = 2 \times \dfrac{35}{12}$. Careful: this is not $V(2X_1)$.
+solution:
+  fr: |-
+    Les deux dés étant indépendants, les variances s'ajoutent :
+    $$V(S) = V(X_1) + V(X_2) = \frac{35}{12} + \frac{35}{12} = \frac{35}{6} \approx 5{,}83.$$
+    L'écart type vaut donc $\sqrt{35/6} \approx 2{,}42$, et l'espérance $E(S) = 3{,}5 + 3{,}5 = 7$.
+
+    **Interprétation.** Comparez avec le doublement d'un seul dé : $V(2X_1) = 2^{2}\,V(X_1) = 4 \times 2{,}917 \approx 11{,}67$, deux fois plus. Deux dés indépendants sont donc **moins** dispersés que le double d'un seul, parce que leurs écarts se compensent parfois — l'un fait $6$ pendant que l'autre fait $1$. C'est exactement le mécanisme qui resserre la moyenne d'un échantillon quand on augmente sa taille, et qui justifie de répéter une mesure au lieu d'en refaire une seule plus longtemps.
+  en: |-
+    The two dice being independent, the variances add:
+    $$V(S) = V(X_1) + V(X_2) = \frac{35}{12} + \frac{35}{12} = \frac{35}{6} \approx 5.83.$$
+    The standard deviation is therefore $\sqrt{35/6} \approx 2.42$, and the expectation $E(S) = 3.5 + 3.5 = 7$.
+
+    **Interpretation.** Compare with doubling a single die: $V(2X_1) = 2^{2}\,V(X_1) = 4 \times 2.917 \approx 11.67$, twice as much. Two independent dice are therefore **less** spread out than twice a single one, because their deviations sometimes cancel — one shows $6$ while the other shows $1$. This is exactly the mechanism that tightens the mean of a sample when its size grows, and that justifies repeating a measurement instead of making a single longer one.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 3
+  calculationLength: 1
+  modellingOpenness: 2
+  linkedConcepts: 3
+  transfer: 2
+  autonomy: 3

@@ -24,7 +24,9 @@
   import EnergyLevelsTool from './tools/EnergyLevelsTool.svelte';
   import FieldTool from './tools/FieldTool.svelte';
   import FitTool from './tools/FitTool.svelte';
+  import AcidBaseTool from './tools/AcidBaseTool.svelte';
   import MoleculeTool from './tools/MoleculeTool.svelte';
+  import SpaceTool from './tools/SpaceTool.svelte';
   import OpticsTool from './tools/OpticsTool.svelte';
   import PeriodicTableTool from './tools/PeriodicTableTool.svelte';
   import RandomTool from './tools/RandomTool.svelte';
@@ -392,6 +394,10 @@
               <EnergyLevelsTool {tool} tstate={toolState} interactive={lesson.interactive} />
             {:else if tool.kind === 'molecule'}
               <MoleculeTool {tool} tstate={toolState} interactive={lesson.interactive} />
+            {:else if tool.kind === 'space'}
+              <SpaceTool {tool} tstate={toolState} interactive={lesson.interactive} />
+            {:else if tool.kind === 'acid_base'}
+              <AcidBaseTool {tool} tstate={toolState} interactive={lesson.interactive} />
             {/if}
             {#if lesson.interactive && (parameters.length || plotterTool)}
               <div class="stack-sm" data-testid="tool-controls">

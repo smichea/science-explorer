@@ -1,0 +1,101 @@
+# Leçon rédigée — loi binomiale : arbre de deux épreuves indépendantes, puis l'expérience binomiale à dix
+# répétitions (identity: true) qui lit la loi, l'espérance n p et la variance n p (1 − p).
+id: lesson.concept.binomial_law
+nodeId: concept.binomial_law
+depth: 1
+tools:
+  - id: tree
+    kind: random
+    title: { fr: "Deux épreuves indépendantes", en: "Two independent trials" }
+    mode: tree
+    seed: 2019
+    tree:
+      first:
+        - { id: s, label: { fr: "succès", en: "success" }, p: 0.3 }
+        - { id: f, label: { fr: "échec", en: "failure" }, p: 0.7 }
+      second:
+        - { id: s2, label: { fr: "succès", en: "success" } }
+        - { id: f2, label: { fr: "échec", en: "failure" } }
+      given:
+        s: [0.3, 0.7]
+        f: [0.3, 0.7]
+  - id: binom
+    kind: random
+    title: { fr: "Dix répétitions", en: "Ten repetitions" }
+    experiment: binomial
+    trials: 10
+    success: 0.3
+    identity: true
+    mode: frequencies
+    seed: 2019
+steps:
+  - id: repetition
+    tool: tree
+    title: { fr: "Répéter la même épreuve", en: "Repeating the same trial" }
+    text:
+      fr: >-
+        Une épreuve de Bernoulli est une expérience qui n'a que deux issues, appelées succès et échec.
+        Répétons-la deux fois, dans les mêmes conditions, et sans que le résultat de la première change quoi que ce soit à la seconde.
+        L'arbre pondéré montre les quatre chemins possibles, et chaque chemin se lit en multipliant les probabilités rencontrées.
+        Deux chemins différents donnent exactement un succès, celui qui commence par un succès et celui qui commence par un échec : leurs probabilités s'ajoutent, ce qui donne zéro virgule quatre deux.
+        L'outil confirme l'indépendance : la probabilité d'un succès à la seconde épreuve vaut zéro virgule trois, que la première ait réussi ou non.
+      en: >-
+        A Bernoulli trial is an experiment with only two outcomes, called success and failure.
+        Let us repeat it twice, under the same conditions, and without the result of the first changing anything to the second.
+        The weighted tree shows the four possible paths, and each path is read by multiplying the probabilities met along it.
+        Two different paths give exactly one success, the one starting with a success and the one starting with a failure: their probabilities add, which gives zero point four two.
+        The tool confirms the independence: the probability of a success at the second trial is zero point three, whether the first succeeded or not.
+  - id: formula
+    tool: binom
+    title: { fr: "La formule de la loi binomiale", en: "The formula of the binomial law" }
+    text:
+      fr: >-
+        Passons maintenant à dix répétitions, toujours avec une probabilité de succès de zéro virgule trois.
+        La variable aléatoire X qui compte les succès suit la loi binomiale de paramètres dix et zéro virgule trois.
+        Chaque chemin portant k succès a pour probabilité p puissance k multipliée par un moins p, puissance dix moins k.
+        Et il y a autant de chemins que de façons de choisir les rangs des succès, c'est-à-dire k parmi dix, le coefficient binomial.
+        Pour exactement trois succès, cela fait cent vingt chemins de probabilité zéro virgule zéro zéro deux deux chacun, soit au total environ zéro virgule deux sept.
+      en: >-
+        Let us now move to ten repetitions, still with a probability of success of zero point three.
+        The random variable X counting the successes follows the binomial law with parameters ten and zero point three.
+        Each path carrying k successes has probability p to the power k multiplied by one minus p, to the power ten minus k.
+        And there are as many paths as there are ways of choosing the ranks of the successes, that is, k among ten, the binomial coefficient.
+        For exactly three successes, that makes one hundred and twenty paths of probability zero point zero zero two two each, hence about zero point two seven in total.
+  - id: expectation
+    tool: binom
+    title: { fr: "Espérance et variance", en: "Expectation and variance" }
+    text:
+      fr: >-
+        Le diagramme des probabilités dessine une bosse, centrée un peu au-dessus de deux et culminant sur trois.
+        Ce n'est pas un hasard : l'espérance d'une loi binomiale vaut n multiplié par p, ici dix fois zéro virgule trois, soit trois succès en moyenne.
+        Sa variance vaut n fois p fois un moins p, soit deux virgule un, et son écart type environ un virgule quatre cinq.
+        Ces deux formules se démontrent en voyant X comme la somme de dix variables qui valent un en cas de succès et zéro sinon.
+        Lancez les tirages : les fréquences observées viennent se poser peu à peu sur les probabilités théoriques, sans jamais les recopier exactement.
+      en: >-
+        The diagram of the probabilities draws a hump, centred slightly above two and peaking at three.
+        This is no accident: the expectation of a binomial law is n multiplied by p, here ten times zero point three, that is three successes on average.
+        Its variance is n times p times one minus p, that is two point one, and its standard deviation about one point four five.
+        These two formulas are proved by seeing X as the sum of ten variables worth one in case of success and zero otherwise.
+        Launch the draws: the observed frequencies gradually settle onto the theoretical probabilities, without ever copying them exactly.
+  - id: play
+    kind: play
+    tool: binom
+    title: { fr: "À vous de tirer", en: "Your turn to draw" }
+    text:
+      fr: >-
+        À vous. Lancez une série de tirages, puis une autre, et comparez les fréquences obtenues aux probabilités affichées.
+        Comptez combien de séries donnent zéro succès : cela devrait arriver environ trois fois sur cent, puisque zéro virgule sept puissance dix vaut zéro virgule zéro deux huit.
+      en: >-
+        Your turn. Launch a run of draws, then another, and compare the frequencies obtained with the probabilities displayed.
+        Count how many runs give zero successes: this should happen about three times in a hundred, since zero point seven to the power ten is zero point zero two eight.
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : une probabilité exacte à calculer, puis un au moins un à traiter par l'événement contraire.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: an exact probability to compute, then an at least one to handle through the complementary event.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.binomial.exactly_k, exercise.binomial.at_least_one]

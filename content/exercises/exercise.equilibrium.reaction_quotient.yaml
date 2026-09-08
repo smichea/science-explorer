@@ -1,0 +1,56 @@
+# Leçon équilibre — écrire le quotient de réaction en fonction de l'avancement (réponse symbolique en x)
+id: exercise.equilibrium.reaction_quotient
+type: symbolic
+nodeId: concept.chemical_equilibrium
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    On mélange $1{,}0\ \mathrm{mol}$ d'acide éthanoïque et $1{,}0\ \mathrm{mol}$ d'éthanol dans $V = 1{,}0\ \mathrm{L}$, pour la réaction
+    $$\mathrm{CH_3COOH} + \mathrm{C_2H_5OH} = \mathrm{CH_3COOC_2H_5} + \mathrm{H_2O}.$$
+
+    Exprimez le quotient de réaction $Q_r$ en fonction de l'avancement $x$, en $\mathrm{mol}$ (les concentrations sont rapportées à $c^\circ = 1\ \mathrm{mol/L}$).
+  en: |-
+    $1.0\ \mathrm{mol}$ of ethanoic acid and $1.0\ \mathrm{mol}$ of ethanol are mixed in $V = 1.0\ \mathrm{L}$, for the reaction
+    $$\mathrm{CH_3COOH} + \mathrm{C_2H_5OH} = \mathrm{CH_3COOC_2H_5} + \mathrm{H_2O}.$$
+
+    Express the reaction quotient $Q_r$ as a function of the extent $x$, in $\mathrm{mol}$ (the concentrations being referred to $c^\circ = 1\ \mathrm{mol/L}$).
+symbolic:
+  variable: x
+  accepted: ["x^2/(1-x)^2", "(x/(1-x))^2", "x*x/((1-x)*(1-x))"]
+  display: "Q_r(x) ="
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Dressez d'abord le tableau d'avancement : à l'avancement $x$, il reste $1{,}0-x$ de chaque réactif et il s'est formé $x$ d'ester et $x$ d'eau. Divisez chaque quantité par $V = 1{,}0\ \mathrm{L}$.
+      en: |-
+        Draw the extent table first: at the extent $x$, $1.0-x$ of each reactant is left and $x$ of ester and $x$ of water have formed. Divide each amount by $V = 1.0\ \mathrm{L}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Le quotient met les produits au numérateur et les réactifs au dénominateur, chacun élevé à son nombre stœchiométrique — ici tous égaux à un. Deux facteurs identiques en haut, deux en bas : écrivez-les au carré.
+      en: |-
+        The quotient puts the products in the numerator and the reactants in the denominator, each raised to its stoichiometric number — here all equal to one. Two identical factors on top, two at the bottom: write them squared.
+solution:
+  fr: |-
+    Le tableau d'avancement donne, à l'avancement $x$ et dans $V = 1{,}0\ \mathrm{L}$,
+    $$[\mathrm{acide}] = [\mathrm{alcool}] = \frac{1{,}0-x}{V}, \qquad [\mathrm{ester}] = [\mathrm{eau}] = \frac{x}{V},$$
+    d'où
+    $$Q_r(x) = \frac{[\mathrm{ester}]\,[\mathrm{eau}]}{[\mathrm{acide}]\,[\mathrm{alcool}]} = \frac{x^{2}}{(1{,}0-x)^{2}}.$$
+
+    Le volume disparaît de l'expression, parce qu'il y a autant de produits que de réactifs : deux facteurs $1/V$ en haut, deux en bas. Ce n'est pas une règle générale — pour une réaction qui fabrique plus d'espèces qu'elle n'en consomme, le volume reste, et une dilution déplace alors l'état final.
+
+    **Interprétation.** Cette fonction part de $0$ pour $x = 0$, croît sans cesse et tend vers l'infini quand $x$ approche $1{,}0\ \mathrm{mol}$ : elle prend donc **une seule fois** la valeur $K = 4{,}0$, ce qui explique qu'un système fermé n'ait qu'un état final. Résoudre $Q_r(x_f) = 4{,}0$ revient ici à $\dfrac{x_f}{1{,}0-x_f} = 2{,}0$, soit $x_f = 0{,}67\ \mathrm{mol}$ et $\tau = 67\ \%$. Le quotient de réaction n'a pas d'unité : il se calcule avec des concentrations divisées par $c^\circ = 1\ \mathrm{mol/L}$.
+  en: |-
+    The extent table gives, at the extent $x$ and in $V = 1.0\ \mathrm{L}$,
+    $$[\mathrm{acid}] = [\mathrm{alcohol}] = \frac{1.0-x}{V}, \qquad [\mathrm{ester}] = [\mathrm{water}] = \frac{x}{V},$$
+    hence
+    $$Q_r(x) = \frac{[\mathrm{ester}]\,[\mathrm{water}]}{[\mathrm{acid}]\,[\mathrm{alcohol}]} = \frac{x^{2}}{(1.0-x)^{2}}.$$
+
+    The volume disappears from the expression, because there are as many products as reactants: two factors $1/V$ on top, two at the bottom. This is not a general rule — for a reaction that makes more species than it consumes, the volume stays, and a dilution then shifts the final state.
+
+    **Interpretation.** This function starts from $0$ at $x = 0$, grows without stopping and tends to infinity as $x$ approaches $1.0\ \mathrm{mol}$: it therefore takes the value $K = 4.0$ exactly **once**, which is why a closed system has only one final state. Solving $Q_r(x_f) = 4.0$ amounts here to $\dfrac{x_f}{1.0-x_f} = 2.0$, that is $x_f = 0.67\ \mathrm{mol}$ and $\tau = 67\ \%$. The reaction quotient has no unit: it is computed with concentrations divided by $c^\circ = 1\ \mathrm{mol/L}$.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 3, calculationLength: 2, modellingOpenness: 3, linkedConcepts: 3, transfer: 2, autonomy: 3 }

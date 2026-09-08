@@ -17,8 +17,8 @@ test.describe('bird’s-eye flight', () => {
     await createExplorer(page);
     await page.goto('universe');
     const start = page.getByTestId('tour-start-panel');
-    // 31 Terminale-and-beyond lessons minus the rate of change, a Première foundation for Paul.
-    await expect(start).toContainText(/30 destinations/);
+    // Every Terminale-and-beyond lesson, the Seconde and Première foundations excluded.
+    await expect(start).toContainText(/58 destinations/);
     await start.click();
 
     const card = page.getByTestId('tour-card');

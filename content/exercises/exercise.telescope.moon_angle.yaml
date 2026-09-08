@@ -1,0 +1,51 @@
+# Lunette astronomique — diamètre apparent de la Lune vue à travers la lunette (réponse numérique)
+id: exercise.telescope.moon_angle
+type: numeric
+nodeId: model.telescope
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une lunette astronomique afocale est formée d'un objectif de distance focale $f'_1 = 900\ \mathrm{mm}$ et d'un oculaire de distance focale $f'_2 = 20\ \mathrm{mm}$. On observe la Lune, dont le diamètre apparent à l'œil nu vaut $\theta = 0{,}52^\circ$.
+
+    Sous quel angle $\theta'$ voit-on la Lune à travers la lunette ? Répondez en degrés, avec deux chiffres significatifs.
+  en: |-
+    An afocal astronomical telescope is made of an objective of focal length $f'_1 = 900\ \mathrm{mm}$ and an eyepiece of focal length $f'_2 = 20\ \mathrm{mm}$. The Moon is observed, its apparent diameter to the naked eye being $\theta = 0.52^\circ$.
+
+    Under what angle $\theta'$ is the Moon seen through the telescope? Answer in degrees, with two significant figures.
+numeric:
+  value: 23.4
+  unit: "°"
+  tolerance: { kind: relative, value: 0.05 }
+  inputLabel: { fr: "θ'", en: "θ'" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le grossissement d'une lunette afocale est le **rapport** des deux distances focales, $G = \dfrac{f'_1}{f'_2}$, et non leur produit.
+      en: |-
+        The magnification of an afocal telescope is the **ratio** of the two focal lengths, $G = \dfrac{f'_1}{f'_2}$, not their product.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Par définition $G = \dfrac{\theta'}{\theta}$, donc $\theta' = G\,\theta$. Le grossissement étant sans unité, l'angle sort dans la même unité que $\theta$ : inutile de passer par les radians.
+      en: |-
+        By definition $G = \dfrac{\theta'}{\theta}$, so $\theta' = G\,\theta$. The magnification being dimensionless, the angle comes out in the same unit as $\theta$: no need to go through radians.
+solution:
+  fr: |-
+    Le grossissement vaut
+    $$G = \frac{f'_1}{f'_2} = \frac{900}{20} = 45,$$
+    nombre sans unité, et l'angle sous lequel on voit la Lune devient
+    $$\theta' = G\,\theta = 45 \times 0{,}52 = 23^\circ.$$
+
+    **Interprétation.** À l'œil nu, la Lune tient sous un demi-degré, à peine plus qu'un petit pois tenu à bout de bras ; à travers la lunette, elle occupe vingt-trois degrés, presque la moitié du champ de vision. La lunette n'a évidemment rapproché personne : elle a seulement multiplié l'angle par quarante-cinq. Notez que les deux distances focales sont ici en millimètres toutes les deux, si bien que leur rapport est correct sans conversion. La lunette mesure par ailleurs $\ell = f'_1 + f'_2 = 920\ \mathrm{mm}$ de long : c'est ce que l'on transporte pour obtenir ce grossissement. Enfin, un oculaire de $10\ \mathrm{mm}$ doublerait $G$, mais l'image serait deux fois moins lumineuse et le champ deux fois plus étroit.
+  en: |-
+    The magnification is
+    $$G = \frac{f'_1}{f'_2} = \frac{900}{20} = 45,$$
+    a number without a unit, and the angle under which the Moon is seen becomes
+    $$\theta' = G\,\theta = 45 \times 0.52 = 23^\circ.$$
+
+    **Interpretation.** To the naked eye the Moon fits under half a degree, hardly more than a pea held at arm's length; through the telescope it takes up twenty-three degrees, almost half the field of view. The telescope has of course brought nobody closer: it has only multiplied the angle by forty-five. Note that both focal lengths are here in millimetres, so that their ratio is correct without conversion. The telescope is besides $\ell = f'_1 + f'_2 = 920\ \mathrm{mm}$ long: that is what has to be carried to obtain this magnification. Finally a $10\ \mathrm{mm}$ eyepiece would double $G$, but the image would be half as bright and the field twice as narrow.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

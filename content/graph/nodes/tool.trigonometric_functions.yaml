@@ -53,3 +53,17 @@ depths:
         - "give the cosine and the sine of the remarkable angles and use cos² x + sin² x = 1"
         - "use the symmetries of the circle for cos(−x), sin(−x), cos(π − x) and sin(π − x)"
         - "recognise and draw the curves of the cosine and sine functions, periodic with period 2π"
+  - depth: 2
+    stage: terminale
+    role: extension_and_application
+    outcomes:
+      fr:
+        - "dériver les fonctions sinus et cosinus, et une fonction de la forme $t \\mapsto \\cos(\\omega t + \\varphi)$"
+        - "résoudre une équation $\\cos x = a$ ou $\\sin x = a$ sur un intervalle donné, en s'aidant du cercle"
+        - "étudier les variations d'une fonction trigonométrique et reconnaître sa parité et sa périodicité"
+        - "reconnaître une grandeur sinusoïdale du temps et lire son amplitude, sa pulsation et sa phase"
+      en:
+        - "differentiate the sine and cosine functions, and a function of the form $t \\mapsto \\cos(\\omega t + \\varphi)$"
+        - "solve an equation $\\cos x = a$ or $\\sin x = a$ on a given interval, with the help of the circle"
+        - "study the variations of a trigonometric function and recognise its parity and its periodicity"
+        - "recognise a quantity that is sinusoidal in time and read its amplitude, its angular frequency and its phase"

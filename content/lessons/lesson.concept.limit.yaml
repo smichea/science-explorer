@@ -1,0 +1,96 @@
+# Leçon rédigée — limites de fonctions : asymptote horizontale en l'infini, asymptote verticale en un point,
+# formes indéterminées et croissances comparées, avec le traceur (paramètre a pour promener le point).
+id: lesson.concept.limit
+nodeId: concept.limit
+depth: 1
+tools:
+  - id: plot
+    kind: plotter
+    variable: x
+    view: { x: [-4, 12], y: [-6, 8] }
+    parameters:
+      - { id: a, label: { fr: "abscisse a", en: "abscissa a" }, min: 1.2, max: 30, step: 0.2, value: 6 }
+    input: true
+steps:
+  - id: at_infinity
+    title: { fr: "La limite en l'infini", en: "The limit at infinity" }
+    text:
+      fr: >-
+        Voici la courbe de la fonction f de x égale deux x plus un, sur x moins un.
+        Quand x s'en va vers plus l'infini, la courbe s'aplatit et vient se coller à la droite horizontale d'équation y égale deux.
+        On dit que la limite de f en plus l'infini vaut deux, et que cette droite est une asymptote horizontale.
+        Pour le démontrer, on factorise x en haut et en bas : il reste deux plus un sur x, divisé par un moins un sur x, et les deux petits morceaux tendent vers zéro.
+      en: >-
+        Here is the curve of the function f of x equals two x plus one, over x minus one.
+        As x runs off to plus infinity, the curve flattens and comes to cling to the horizontal line of equation y equals two.
+        We say that the limit of f at plus infinity is two, and that this line is a horizontal asymptote.
+        To prove it, one factors x out above and below: what is left is two plus one over x, divided by one minus one over x, and the two small pieces tend to zero.
+    actions:
+      - { at: 0, plot: { id: f, expr: "(2*x+1)/(x-1)", label: { fr: "f(x) = (2x + 1)/(x − 1)", en: "f(x) = (2x + 1)/(x − 1)" } } }
+      - { at: 1, view: { x: [-4, 30], y: [-6, 8] } }
+      - { at: 1, line: { id: asy, a: 0, b: 1, c: -2, dashed: true, label: { fr: "y = 2", en: "y = 2" } } }
+      - { at: 2, point: { id: far, on: f, x: 20, guides: true, label: { fr: "f(20) ≈ 2,16", en: "f(20) ≈ 2.16" } } }
+  - id: at_a_point
+    title: { fr: "La limite en un point interdit", en: "The limit at a forbidden point" }
+    text:
+      fr: >-
+        Regardons maintenant ce qui se passe près de un, la valeur qui annule le dénominateur.
+        Juste à droite de un, le numérateur vaut trois et le dénominateur est un tout petit nombre positif : le quotient explose vers plus l'infini.
+        Juste à gauche, le dénominateur est négatif, et la courbe plonge vers moins l'infini.
+        La droite verticale d'équation x égale un est donc une asymptote verticale, et la fonction n'a pas de limite finie en un.
+      en: >-
+        Let us now look at what happens near one, the value that cancels the denominator.
+        Just to the right of one, the numerator is three and the denominator is a very small positive number: the quotient explodes to plus infinity.
+        Just to the left, the denominator is negative, and the curve dives to minus infinity.
+        The vertical line of equation x equals one is therefore a vertical asymptote, and the function has no finite limit at one.
+    actions:
+      - { at: 0, hide: [far, asy], view: { x: [-2, 4], y: [-20, 20] } }
+      - { at: 1, point: { id: right, on: f, x: 1.2, guides: true, label: { fr: "f(1,2) = 17", en: "f(1.2) = 17" } } }
+      - { at: 2, point: { id: left, on: f, x: 0.8, guides: true, label: { fr: "f(0,8) = −13", en: "f(0.8) = −13" } } }
+      - { at: 3, line: { id: vert, a: 1, b: 0, c: -1, dashed: true, label: { fr: "x = 1", en: "x = 1" } } }
+  - id: indeterminate
+    title: { fr: "Formes indéterminées et croissances comparées", en: "Indeterminate forms and comparative growth" }
+    text:
+      fr: >-
+        Les limites s'additionnent, se multiplient et se divisent comme les nombres, sauf dans quatre cas.
+        Infini moins infini, zéro fois infini, infini sur infini, zéro sur zéro : ce sont les formes indéterminées, où le résultat dépend de la fonction et où il faut transformer l'écriture.
+        Comparons par exemple x au cube et l'exponentielle de x.
+        L'exponentielle mène au départ, la puissance passe devant vers un virgule neuf, puis l'exponentielle la rattrape vers quatre virgule cinq et ne se laisse plus jamais reprendre.
+        C'est la croissance comparée : à l'infini, l'exponentielle l'emporte sur toute puissance, aussi grand que soit son exposant.
+      en: >-
+        Limits add, multiply and divide like numbers, except in four cases.
+        Infinity minus infinity, zero times infinity, infinity over infinity, zero over zero: these are the indeterminate forms, where the result depends on the function and where the expression must be rewritten.
+        Let us compare for instance x cubed and the exponential of x.
+        The exponential leads at the start, the power moves ahead around one point nine, then the exponential catches it back around four point five and is never overtaken again.
+        This is comparative growth: at infinity the exponential beats every power, however large its exponent.
+    actions:
+      - { at: 2, clear: true, view: { x: [0, 6], y: [0, 60] } }
+      - { at: 2, plot: { id: cube, expr: "x^3", label: { fr: "x³", en: "x³" } } }
+      - { at: 2, plot: { id: ex, expr: "exp(x)", label: { fr: "exp(x)", en: "exp(x)" } } }
+      - { at: 3, interval: { id: gap, from: 1.86, to: 4.54, label: { fr: "x³ au-dessus", en: "x³ above" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de suivre la courbe", en: "Your turn to follow the curve" }
+    text:
+      fr: >-
+        À vous. Faites glisser l'abscisse a vers la droite et lisez l'ordonnée du point : elle s'approche de deux sans jamais l'atteindre.
+        Tapez ensuite une fonction de votre choix, par exemple un sur x au carré, ou exp de moins x, et cherchez ses asymptotes.
+      en: >-
+        Your turn. Slide the abscissa a to the right and read the ordinate of the point: it approaches two without ever reaching it.
+        Then type a function of your own, for instance one over x squared, or exp of minus x, and look for its asymptotes.
+    actions:
+      - { at: 0, clear: true, view: { x: [-4, 30], y: [-6, 8] } }
+      - { at: 0, plot: { id: f, expr: "(2*x+1)/(x-1)", label: { fr: "f(x) = (2x + 1)/(x − 1)", en: "f(x) = (2x + 1)/(x − 1)" } } }
+      - { at: 0, line: { id: asy, a: 0, b: 1, c: -2, dashed: true, label: { fr: "y = 2", en: "y = 2" } } }
+      - { at: 0, point: { id: pa, on: f, x: "a", guides: true, label: { fr: "f(a)", en: "f(a)" } } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : une croissance comparée, puis la lecture d'une asymptote horizontale.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: a comparative growth, then reading a horizontal asymptote.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.limit.comparative_growth, exercise.limit.horizontal_asymptote]

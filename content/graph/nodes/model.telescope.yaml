@@ -1,0 +1,78 @@
+id: model.telescope
+type: model
+world: world.physics
+region: region.physics.optics
+importance: 2
+tags: [lycee]
+title: { fr: "Lunette astronomique", en: "Astronomical telescope" }
+shortPurpose:
+  fr: "Modéliser une lunette par deux lentilles convergentes accolées bout à bout et calculer le grossissement qu'elle apporte à un objet lointain."
+  en: "Model a telescope as two converging lenses placed end to end and compute the magnification it brings to a distant object."
+overview:
+  fr: >-
+    Une lunette astronomique ne rapproche rien : elle agrandit l'angle sous lequel on voit l'objet. Deux lentilles convergentes suffisent. La première, l'objectif, a une grande distance focale et fabrique de l'astre une petite image réelle dans son plan focal ; la seconde, l'oculaire, a une distance focale très courte et sert de loupe pour regarder cette image. Le grossissement est simplement le rapport des deux distances focales, et la longueur de l'instrument leur somme.
+  en: >-
+    An astronomical telescope brings nothing closer: it enlarges the angle under which the object is seen. Two converging lenses are enough. The first, the objective, has a long focal length and makes a small real image of the star in its focal plane; the second, the eyepiece, has a very short focal length and acts as a magnifier to look at that image. The magnification is simply the ratio of the two focal lengths, and the length of the instrument is their sum.
+aliases:
+  fr: ["lunette afocale", "objectif", "oculaire", "grossissement", "système afocal"]
+  en: ["afocal telescope", "objective", "eyepiece", "angular magnification", "afocal system"]
+description:
+  fr: |
+    Une **lunette astronomique** est modélisée par deux lentilles minces convergentes de même axe optique : l'**objectif**, de grande distance focale $f'_1$, et l'**oculaire**, de courte distance focale $f'_2$. Elle est réglée en **système afocal** : le foyer image de l'objectif est confondu avec le foyer objet de l'oculaire, de sorte que la distance entre les deux lentilles vaut
+    $$\ell = f'_1 + f'_2 .$$
+    Un astre est si loin que ses rayons arrivent **parallèles** entre eux, sous un **diamètre apparent** $\theta$. L'objectif en forme une image réelle et renversée $A_1B_1$ dans son plan focal image, de taille $A_1B_1 = f'_1 \tan\theta \approx f'_1\,\theta$. Cette image se trouve exactement dans le plan focal objet de l'oculaire, qui la renvoie donc **à l'infini**, sous l'angle $\theta' = \dfrac{A_1B_1}{f'_2}$ : l'œil, qui accommode au repos sur l'infini, la regarde sans fatigue. Le **grossissement** est le rapport de l'angle vu à travers l'instrument à l'angle vu à l'œil nu :
+    $$G = \frac{\theta'}{\theta} = \frac{f'_1}{f'_2},$$
+    nombre sans unité, qu'il ne faut pas confondre avec le **grandissement** d'une lentille, rapport de deux longueurs.
+
+    Prenons une lunette d'amateur, $f'_1 = 900\ \mathrm{mm}$ et $f'_2 = 20\ \mathrm{mm}$ : son grossissement vaut $G = \dfrac{900}{20} = 45$, et sa longueur $\ell = 920\ \mathrm{mm}$. La Lune, vue de la Terre sous $\theta = 0{,}52^\circ$, c'est-à-dire $9{,}1 \times 10^{-3}\ \mathrm{rad}$, donne une image intermédiaire de $A_1B_1 = 0{,}900 \times 9{,}1 \times 10^{-3} = 8{,}2\ \mathrm{mm}$ dans le plan focal de l'objectif, et l'oculaire la présente à l'œil sous $\theta' = 45 \times 0{,}52 = 23^\circ$ : elle occupe alors la moitié du champ de vision. Changer d'oculaire pour $f'_2 = 10\ \mathrm{mm}$ double le grossissement, à $G = 90$, mais réduit le champ observé et rend l'image deux fois moins lumineuse par unité de surface.
+
+    La lunette sert à observer les cratères de la Lune, les phases de Vénus et les satellites de Jupiter — c'est exactement ce que Galilée a fait en 1609 avec un grossissement de vingt. Le grossissement n'est pourtant pas la seule qualité : le **diamètre** de l'objectif décide de la quantité de lumière recueillie, donc de la faiblesse des astres visibles, et fixe une limite indépassable due à la diffraction, deux points ne pouvant être séparés au-delà d'un angle d'environ $\lambda/D$, soit deux secondes d'arc pour un objectif de $60\ \mathrm{mm}$. Pièges classiques : multiplier les deux distances focales au lieu de les diviser ; confondre grossissement et grandissement ; croire que l'objet doit être placé au foyer de l'objectif, alors qu'il est à l'infini ; oublier que l'image est **renversée**, ce dont l'astronome se moque mais pas le promeneur ; et croire qu'un très fort grossissement améliore toujours l'image, alors qu'il grossit aussi la turbulence de l'atmosphère.
+  en: |
+    An **astronomical telescope** is modelled by two thin converging lenses sharing an optical axis: the **objective**, of long focal length $f'_1$, and the **eyepiece**, of short focal length $f'_2$. It is set as an **afocal system**: the image focus of the objective coincides with the object focus of the eyepiece, so that the distance between the two lenses is
+    $$\ell = f'_1 + f'_2 .$$
+    A star is so far away that its rays arrive **parallel** to one another, under an **apparent diameter** $\theta$. The objective forms of it a real, inverted image $A_1B_1$ in its image focal plane, of size $A_1B_1 = f'_1 \tan\theta \approx f'_1\,\theta$. That image lies exactly in the object focal plane of the eyepiece, which therefore sends it back **to infinity**, under the angle $\theta' = \dfrac{A_1B_1}{f'_2}$: the eye, at rest and focused on infinity, looks at it without strain. The **angular magnification** is the ratio of the angle seen through the instrument to the angle seen with the naked eye:
+    $$G = \frac{\theta'}{\theta} = \frac{f'_1}{f'_2},$$
+    a number without a unit, not to be confused with the **linear magnification** of a lens, a ratio of two lengths.
+
+    Take an amateur telescope, $f'_1 = 900\ \mathrm{mm}$ and $f'_2 = 20\ \mathrm{mm}$: its magnification is $G = \dfrac{900}{20} = 45$, and its length $\ell = 920\ \mathrm{mm}$. The Moon, seen from the Earth under $\theta = 0.52^\circ$, that is $9.1 \times 10^{-3}\ \mathrm{rad}$, gives an intermediate image of $A_1B_1 = 0.900 \times 9.1 \times 10^{-3} = 8.2\ \mathrm{mm}$ in the focal plane of the objective, and the eyepiece presents it to the eye under $\theta' = 45 \times 0.52 = 23^\circ$: it then fills half the field of view. Changing the eyepiece for $f'_2 = 10\ \mathrm{mm}$ doubles the magnification, to $G = 90$, but reduces the field observed and makes the image half as bright per unit area.
+
+    A telescope serves to observe the craters of the Moon, the phases of Venus and the satellites of Jupiter — exactly what Galileo did in 1609 with a magnification of twenty. Magnification is not the only quality, though: the **diameter** of the objective decides how much light is collected, hence how faint the visible stars may be, and sets an unsurpassable limit due to diffraction, two points being impossible to separate beyond an angle of about $\lambda/D$, that is two seconds of arc for an objective of $60\ \mathrm{mm}$. Classic traps: multiplying the two focal lengths instead of dividing them; confusing angular and linear magnification; believing that the object must be placed at the focus of the objective, when it is at infinity; forgetting that the image is **inverted**, which the astronomer does not mind but the walker does; and believing that a very large magnification always improves the image, when it also magnifies the turbulence of the atmosphere.
+model:
+  assumptions:
+    fr:
+      - "Les deux lentilles sont minces, convergentes et centrées sur le même axe optique ; on reste dans les conditions de Gauss, avec des rayons peu inclinés et proches de l'axe."
+      - "L'objet observé est à l'infini : ses rayons arrivent parallèles entre eux, sous le diamètre apparent $\\theta$."
+      - "Le système est réglé afocal : le foyer image de l'objectif est confondu avec le foyer objet de l'oculaire, donc l'image finale est rejetée à l'infini."
+      - "Les angles sont petits, ce qui autorise $\\tan\\theta \\approx \\theta$ en radians."
+    en:
+      - "The two lenses are thin, converging and centred on the same optical axis; we stay in the Gauss conditions, with rays little inclined and close to the axis."
+      - "The object observed is at infinity: its rays arrive parallel to one another, under the apparent diameter $\\theta$."
+      - "The system is set afocal: the image focus of the objective coincides with the object focus of the eyepiece, so the final image is sent back to infinity."
+      - "The angles are small, which allows $\\tan\\theta \\approx \\theta$ in radians."
+  limits:
+    fr:
+      - "Le modèle ignore la diffraction, qui limite en réalité le pouvoir de résolution à environ $\\lambda/D$, où $D$ est le diamètre de l'objectif."
+      - "Il ignore les aberrations des lentilles réelles, notamment le chromatisme, qui borde les astres brillants d'un liseré coloré."
+      - "Il ne dit rien de la luminosité ni du champ observé, qui diminuent quand le grossissement augmente."
+      - "Il ne décrit pas les télescopes à miroirs, qui remplacent l'objectif par un miroir concave mais gardent le même oculaire."
+    en:
+      - "The model ignores diffraction, which in reality limits the resolving power to about $\\lambda/D$, where $D$ is the diameter of the objective."
+      - "It ignores the aberrations of real lenses, in particular chromatic aberration, which edges bright stars with a coloured fringe."
+      - "It says nothing about the brightness nor the field observed, both of which shrink as the magnification grows."
+      - "It does not describe reflecting telescopes, which replace the objective by a concave mirror but keep the same eyepiece."
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "modéliser une lunette afocale par deux lentilles minces convergentes et placer les foyers sur un schéma"
+        - "construire l'image intermédiaire d'un objet à l'infini dans le plan focal de l'objectif"
+        - "établir et exploiter le grossissement $G = \\theta'/\\theta = f'_1/f'_2$ d'une lunette afocale"
+        - "relier la longueur de la lunette aux deux distances focales et discuter le choix d'un oculaire"
+      en:
+        - "model an afocal telescope by two thin converging lenses and place the foci on a diagram"
+        - "construct the intermediate image of an object at infinity in the focal plane of the objective"
+        - "establish and use the magnification $G = \\theta'/\\theta = f'_1/f'_2$ of an afocal telescope"
+        - "relate the length of the telescope to the two focal lengths and discuss the choice of an eyepiece"
+sources: [source.bo.lycee.2019]

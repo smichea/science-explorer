@@ -1,0 +1,47 @@
+# Niveau d'intensité sonore — niveau produit par deux machines identiques (réponse numérique)
+id: exercise.sound_level.two_sources
+type: numeric
+nodeId: concept.sound_level
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    Dans un atelier, une machine produit à un poste de travail un niveau d'intensité sonore de $87\ \mathrm{dB}$. On met en marche une **seconde machine identique**, placée à la même distance du poste.
+
+    Quel niveau d'intensité sonore mesure-t-on alors au poste de travail ? Répondez en décibels, avec trois chiffres significatifs.
+  en: |-
+    In a workshop, one machine produces at a workstation a sound intensity level of $87\ \mathrm{dB}$. A **second identical machine** is switched on, placed at the same distance from the station.
+
+    What sound intensity level is then measured at the workstation? Answer in decibels, with three significant figures.
+numeric:
+  value: 90
+  unit: "dB"
+  tolerance: { kind: absolute, value: 0.6 }
+  inputLabel: { fr: "L", en: "L" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Les décibels ne s'additionnent jamais. Ce sont les **intensités**, en watts par mètre carré, qui s'ajoutent : $I_{\text{tot}} = I_1 + I_2 = 2\,I_1$.
+      en: |-
+        Decibels never add up. It is the **intensities**, in watts per square metre, that add: $I_{\text{tot}} = I_1 + I_2 = 2\,I_1$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $L_{\text{tot}} = 10\log\!\left(\dfrac{2 I_1}{I_0}\right) = 10\log 2 + 10\log\!\left(\dfrac{I_1}{I_0}\right) = L_1 + 10\log 2$, et $10\log 2 = 3{,}0$.
+      en: |-
+        $L_{\text{tot}} = 10\log\!\left(\dfrac{2 I_1}{I_0}\right) = 10\log 2 + 10\log\!\left(\dfrac{I_1}{I_0}\right) = L_1 + 10\log 2$, and $10\log 2 = 3.0$.
+solution:
+  fr: |-
+    Les deux machines sont indépendantes : leurs intensités s'ajoutent, $I_{\text{tot}} = 2\,I_1$. En passant au niveau,
+    $$L_{\text{tot}} = 10\,\log\!\left(\frac{2\,I_1}{I_0}\right) = 10\,\log 2 + 10\,\log\!\left(\frac{I_1}{I_0}\right) = 3{,}0 + 87 = 90{,}0\ \mathrm{dB}.$$
+
+    **Interprétation.** Trois décibels de plus, pas $174$ : c'est toute la logique de l'échelle logarithmique, où une multiplication de l'intensité devient une addition sur le niveau. La propriété du logarithme, $\log(2x) = \log 2 + \log x$, transporte le facteur deux en un décalage constant de $3{,}0\ \mathrm{dB}$, quel que soit le niveau de départ. Conséquence pratique déprimante pour l'atelier : pour faire descendre le niveau de $3\ \mathrm{dB}$, il faudrait supprimer la moitié des machines, et pour gagner $10\ \mathrm{dB}$, en supprimer neuf sur dix. À l'inverse, une machine dix fois plus silencieuse que sa voisine n'ajoute qu'un dixième d'intensité, donc $0{,}4\ \mathrm{dB}$ : elle est totalement masquée. C'est pourquoi on traite d'abord la source la plus bruyante.
+  en: |-
+    The two machines are independent: their intensities add, $I_{\text{tot}} = 2\,I_1$. Going over to the level,
+    $$L_{\text{tot}} = 10\,\log\!\left(\frac{2\,I_1}{I_0}\right) = 10\,\log 2 + 10\,\log\!\left(\frac{I_1}{I_0}\right) = 3.0 + 87 = 90.0\ \mathrm{dB}.$$
+
+    **Interpretation.** Three decibels more, not $174$: this is the whole logic of the logarithmic scale, where a multiplication of the intensity becomes an addition on the level. The property of the logarithm, $\log(2x) = \log 2 + \log x$, carries the factor two into a constant shift of $3.0\ \mathrm{dB}$, whatever the starting level. A depressing practical consequence for the workshop: to bring the level down by $3\ \mathrm{dB}$, half the machines would have to be removed, and to gain $10\ \mathrm{dB}$, nine out of ten. Conversely, a machine ten times quieter than its neighbour adds only one tenth of the intensity, hence $0.4\ \mathrm{dB}$: it is completely masked. That is why the noisiest source is dealt with first.
+difficulty: { mathematicalDepth: 3, conceptualNovelty: 4, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 3, transfer: 4, autonomy: 3 }

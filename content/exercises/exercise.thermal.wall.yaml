@@ -1,0 +1,47 @@
+# Transferts thermiques — flux qui traverse un mur de résistance thermique donnée (réponse numérique)
+id: exercise.thermal.wall
+type: numeric
+nodeId: phenomenon.thermal_transfer
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un mur de béton non isolé, de surface $S = 20\ \mathrm{m^2}$, a une résistance thermique $R_{th} = 1{,}0 \times 10^{-2}\ \mathrm{K \cdot W^{-1}}$. Il fait $19\ ^\circ\mathrm{C}$ à l'intérieur de la maison et $4\ ^\circ\mathrm{C}$ dehors, et le régime est stationnaire.
+
+    Quel est le flux thermique $\Phi$ qui traverse ce mur ? Répondez en watts, avec deux chiffres significatifs.
+  en: |-
+    An uninsulated concrete wall, of area $S = 20\ \mathrm{m^2}$, has a thermal resistance $R_{th} = 1.0 \times 10^{-2}\ \mathrm{K \cdot W^{-1}}$. It is $19\ ^\circ\mathrm{C}$ inside the house and $4\ ^\circ\mathrm{C}$ outside, and the regime is steady.
+
+    What is the thermal flux $\Phi$ crossing that wall? Answer in watts, with two significant figures.
+numeric:
+  value: 1500
+  unit: "W"
+  tolerance: { kind: relative, value: 0.04 }
+  inputLabel: { fr: "Φ", en: "Φ" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La résistance thermique est définie par $\Delta\theta = R_{th}\,\Phi$, exactement comme la loi d'Ohm relie une tension à un courant par une résistance.
+      en: |-
+        The thermal resistance is defined by $\Delta\theta = R_{th}\,\Phi$, exactly as Ohm's law relates a voltage to a current through a resistance.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        L'écart de température vaut $\Delta\theta = 19 - 4 = 15$, en degrés comme en kelvins, et $\Phi = \dfrac{\Delta\theta}{R_{th}}$.
+      en: |-
+        The temperature difference is $\Delta\theta = 19 - 4 = 15$, in degrees as in kelvins, and $\Phi = \dfrac{\Delta\theta}{R_{th}}$.
+solution:
+  fr: |-
+    L'écart de température de part et d'autre du mur vaut $\Delta\theta = 19 - 4 = 15\ \mathrm{K}$, et la définition de la résistance thermique donne
+    $$\Phi = \frac{\Delta\theta}{R_{th}} = \frac{15}{1{,}0 \times 10^{-2}} = 1{,}5 \times 10^{3}\ \mathrm{W}.$$
+
+    **Interprétation.** Mille cinq cents watts qui s'échappent en permanence par un seul mur : c'est un radiateur électrique qui chaufferait le jardin sans arrêt. Sur une journée, cela représente $Q = \Phi\,\Delta t = 1\,500 \times 86\,400 = 1{,}3 \times 10^{8}\ \mathrm{J}$, soit $36\ \mathrm{kWh}$. Ajoutons dix centimètres de laine de verre : la résistance passe de $0{,}010$ à $0{,}135\ \mathrm{K \cdot W^{-1}}$, et le flux tombe à $\dfrac{15}{0{,}135} = 111\ \mathrm{W}$, treize fois moins, pour quelques centimètres de matière. Deux points à retenir : les résistances thermiques de couches successives s'**ajoutent**, comme des résistances électriques en série ; et le flux est une **puissance**, en watts, qu'il ne faut jamais confondre avec l'énergie transférée, en joules.
+  en: |-
+    The temperature difference across the wall is $\Delta\theta = 19 - 4 = 15\ \mathrm{K}$, and the definition of the thermal resistance gives
+    $$\Phi = \frac{\Delta\theta}{R_{th}} = \frac{15}{1.0 \times 10^{-2}} = 1.5 \times 10^{3}\ \mathrm{W}.$$
+
+    **Interpretation.** One thousand five hundred watts escaping permanently through a single wall: an electric heater warming the garden non-stop. Over a day this makes $Q = \Phi\,\Delta t = 1{,}500 \times 86{,}400 = 1.3 \times 10^{8}\ \mathrm{J}$, that is $36\ \mathrm{kWh}$. Let us add ten centimetres of glass wool: the resistance goes from $0.010$ to $0.135\ \mathrm{K \cdot W^{-1}}$, and the flux drops to $\dfrac{15}{0.135} = 111\ \mathrm{W}$, thirteen times less, for a few centimetres of matter. Two things to remember: the thermal resistances of successive layers **add**, like electrical resistances in series; and the flux is a **power**, in watts, never to be confused with the energy transferred, in joules.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 3, calculationLength: 1, modellingOpenness: 2, linkedConcepts: 3, transfer: 2, autonomy: 2 }

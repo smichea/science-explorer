@@ -1,0 +1,49 @@
+# Limites en Terminale — croissances comparées : une puissance multipliée par une exponentielle décroissante
+id: exercise.limit.comparative_growth
+type: numeric
+nodeId: concept.limit
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Déterminer la limite de $f(x) = (x^2 + 3)\,e^{-x}$ quand $x$ tend vers $+\infty$.
+  en: |-
+    Determine the limit of $f(x) = (x^2 + 3)\,e^{-x}$ as $x$ tends to $+\infty$.
+numeric:
+  value: 0
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "limite en $+\\infty$", en: "limit at $+\\infty$" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le premier facteur tend vers $+\infty$ et le second vers $0$ : c'est la forme indéterminée $0 \times \infty$. Écrivez $f(x) = \dfrac{x^2 + 3}{e^{x}}$.
+      en: |-
+        The first factor tends to $+\infty$ and the second to $0$: this is the indeterminate form $0 \times \infty$. Write $f(x) = \dfrac{x^2 + 3}{e^{x}}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Les croissances comparées disent que $\dfrac{e^{x}}{x^{n}} \to +\infty$ : l'exponentielle l'emporte sur toute puissance, donc l'inverse tend vers $0$.
+      en: |-
+        Comparative growth says that $\dfrac{e^{x}}{x^{n}} \to +\infty$: the exponential beats every power, so the reciprocal tends to $0$.
+solution:
+  fr: |-
+    On écrit $f(x) = \dfrac{x^2 + 3}{e^{x}} = \dfrac{x^2}{e^{x}} + \dfrac{3}{e^{x}}$. D'après les croissances comparées, $\dfrac{e^{x}}{x^{2}} \to +\infty$ donc $\dfrac{x^{2}}{e^{x}} \to 0$ ; et $\dfrac{3}{e^{x}} \to 0$. Par somme, $$\lim_{x \to +\infty} (x^2 + 3)\,e^{-x} = 0.$$
+    Les valeurs le montrent : $f(5) \approx 0{,}189$, $f(10) \approx 0{,}0047$, $f(20) \approx 8 \times 10^{-7}$. L'axe des abscisses est asymptote horizontale à la courbe en $+\infty$.
+
+    **Interprétation.** Une exponentielle décroissante écrase tout ce qu'elle multiplie, même un polynôme qui explose. C'est exactement ce qui se passe en physique lorsqu'un régime transitoire s'éteint : quelle que soit la façon dont la grandeur monte au départ, le facteur $e^{-t/\tau}$ finit toujours par l'emporter et le signal retombe vers zéro.
+  en: |-
+    Write $f(x) = \dfrac{x^2 + 3}{e^{x}} = \dfrac{x^2}{e^{x}} + \dfrac{3}{e^{x}}$. By comparative growth, $\dfrac{e^{x}}{x^{2}} \to +\infty$ hence $\dfrac{x^{2}}{e^{x}} \to 0$; and $\dfrac{3}{e^{x}} \to 0$. By sum, $$\lim_{x \to +\infty} (x^2 + 3)\,e^{-x} = 0.$$
+    The values show it: $f(5) \approx 0.189$, $f(10) \approx 0.0047$, $f(20) \approx 8 \times 10^{-7}$. The horizontal axis is a horizontal asymptote to the curve at $+\infty$.
+
+    **Interpretation.** A decaying exponential crushes whatever it multiplies, even a polynomial that blows up. This is exactly what happens in physics when a transient dies out: however the quantity rises at the start, the factor $e^{-t/\tau}$ always wins in the end and the signal falls back to zero.
+difficulty:
+  mathematicalDepth: 3
+  conceptualNovelty: 3
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 3
+  transfer: 2
+  autonomy: 3

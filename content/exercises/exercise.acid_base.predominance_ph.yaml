@@ -1,0 +1,50 @@
+# Leçon acide-base — inverser la relation de prédominance : à quel pH la base est-elle mille fois majoritaire (réponse numérique, un pH n'a pas d'unité)
+id: exercise.acid_base.predominance_ph
+type: numeric
+nodeId: model.acid_base
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    L'aspirine est un acide faible ; son couple acide-base a pour constante d'acidité $\mathrm{p}K_A = 3{,}5$. Seule sa forme acide, non chargée, traverse facilement la paroi de l'estomac.
+
+    À quel pH la forme basique est-elle mille fois plus concentrée que la forme acide ?
+  en: |-
+    Aspirin is a weak acid; its acid-base couple has the acidity constant $\mathrm{p}K_A = 3.5$. Only its acid form, which carries no charge, crosses the wall of the stomach easily.
+
+    At which pH is the basic form a thousand times more concentrated than the acid form?
+numeric:
+  value: 6.5
+  tolerance: { kind: absolute, value: 0.05 }
+  inputLabel: { fr: "pH", en: "pH" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La relation de prédominance $\mathrm{pH} = \mathrm{p}K_A + \log\dfrac{[\mathrm{A^-}]}{[\mathrm{AH}]}$ relie le pH au rapport des deux concentrations : ici, ce rapport est donné.
+      en: |-
+        The predominance relation $\mathrm{pH} = \mathrm{p}K_A + \log\dfrac{[\mathrm{A^-}]}{[\mathrm{AH}]}$ relates the pH to the ratio of the two concentrations: here, that ratio is given.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        « Mille fois plus concentrée » signifie $\dfrac{[\mathrm{A^-}]}{[\mathrm{AH}]} = 10^{3}$, et le logarithme décimal de $10^{3}$ se lit sans calculatrice.
+      en: |-
+        "A thousand times more concentrated" means $\dfrac{[\mathrm{A^-}]}{[\mathrm{AH}]} = 10^{3}$, and the decimal logarithm of $10^{3}$ is read without a calculator.
+solution:
+  fr: |-
+    La relation de prédominance donne directement
+    $$\mathrm{pH} = \mathrm{p}K_A + \log\frac{[\mathrm{A^-}]}{[\mathrm{AH}]} = 3{,}5 + \log(10^{3}) = 3{,}5 + 3 = 6{,}5.$$
+
+    Chaque unité de pH au-dessus du $\mathrm{p}K_A$ multiplie par dix le rapport de la base à l'acide : une unité donne un rapport de dix, deux unités cent, trois unités mille.
+
+    **Interprétation.** Ce calcul explique le trajet de l'aspirine dans le corps. Dans l'estomac, à $\mathrm{pH} \approx 2$, on est bien en dessous du $\mathrm{p}K_A$ : la forme acide, non chargée, prédomine largement et traverse la paroi. Dans l'intestin, à $\mathrm{pH} \approx 8$, la forme basique est plus de trente mille fois majoritaire, et cet ion, chargé, passe beaucoup moins bien. Remarquez qu'à $\mathrm{pH} = 6{,}5$ la forme acide n'a pas disparu : elle est mille fois moins concentrée, ce qui n'est pas la même chose. Un diagramme de prédominance découpe l'axe des pH, il n'efface jamais une espèce.
+  en: |-
+    The predominance relation gives directly
+    $$\mathrm{pH} = \mathrm{p}K_A + \log\frac{[\mathrm{A^-}]}{[\mathrm{AH}]} = 3.5 + \log(10^{3}) = 3.5 + 3 = 6.5.$$
+
+    Each pH unit above the $\mathrm{p}K_A$ multiplies the ratio of the base to the acid by ten: one unit gives a ratio of ten, two units a hundred, three units a thousand.
+
+    **Interpretation.** This computation explains the journey of aspirin through the body. In the stomach, at $\mathrm{pH} \approx 2$, one is well below the $\mathrm{p}K_A$: the acid form, which carries no charge, largely predominates and crosses the wall. In the intestine, at $\mathrm{pH} \approx 8$, the basic form is more than thirty thousand times the major one, and that ion, being charged, passes far less easily. Note that at $\mathrm{pH} = 6.5$ the acid form has not disappeared: it is a thousand times less concentrated, which is not the same thing. A predominance diagram cuts up the pH axis, it never erases a species.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 3, calculationLength: 1, modellingOpenness: 2, linkedConcepts: 3, transfer: 3, autonomy: 3 }

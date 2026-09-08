@@ -1,0 +1,51 @@
+# Continuité en Terminale — nombre d'étapes de dichotomie nécessaires pour un encadrement d'amplitude 10⁻³
+id: exercise.continuity.bisection_steps
+type: numeric
+nodeId: concept.continuity
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    On encadre par dichotomie la solution $\alpha$ de $f(x) = 0$ en partant de l'intervalle $[0\,;\,1]$, d'amplitude $1$.
+
+    Combien d'étapes faut-il, au minimum, pour que l'amplitude de l'encadrement soit inférieure ou égale à $10^{-3}$ ?
+  en: |-
+    The solution $\alpha$ of $f(x) = 0$ is bracketed by bisection starting from the interval $[0\,;\,1]$, of width $1$.
+
+    How many steps are needed, at least, for the width of the bracket to be less than or equal to $10^{-3}$?
+numeric:
+  value: 10
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "nombre d'étapes", en: "number of steps" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        L'amplitude est divisée par $2$ à chaque étape : après $n$ étapes elle vaut $2^{-n}$, terme d'une suite géométrique de raison $\frac12$.
+      en: |-
+        The width is divided by $2$ at each step: after $n$ steps it is $2^{-n}$, a term of a geometric sequence of ratio $\frac12$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Cherchez le plus petit entier $n$ tel que $2^{-n} \leqslant 0{,}001$, c'est-à-dire $2^{n} \geqslant 1000$. Testez : $2^{9} = 512$, $2^{10} = 1024$.
+      en: |-
+        Look for the smallest integer $n$ such that $2^{-n} \leqslant 0.001$, that is $2^{n} \geqslant 1000$. Try: $2^{9} = 512$, $2^{10} = 1024$.
+solution:
+  fr: |-
+    Après $n$ étapes, l'amplitude de l'encadrement vaut $2^{-n}$. La condition $2^{-n} \leqslant 10^{-3}$ s'écrit $2^{n} \geqslant 1000$. Or $2^{9} = 512 < 1000$ et $2^{10} = 1024 \geqslant 1000$, donc il faut $$n = 10 \text{ étapes},$$ qui donnent une amplitude de $2^{-10} \approx 9{,}8 \times 10^{-4}$.
+
+    **Interprétation.** Dix étapes pour trois décimales : chaque étape apporte un facteur $2$, et il faut environ $3{,}3$ étapes pour gagner un facteur $10$, donc une décimale. Vingt étapes donneraient six décimales, trente en donneraient neuf — la dichotomie est lente mais parfaitement prévisible, et l'on sait d'avance combien de calculs coûtera une précision demandée. C'est le genre de majoration que l'on écrit avant de lancer le programme, pas après.
+  en: |-
+    After $n$ steps, the width of the bracket is $2^{-n}$. The condition $2^{-n} \leqslant 10^{-3}$ reads $2^{n} \geqslant 1000$. Now $2^{9} = 512 < 1000$ and $2^{10} = 1024 \geqslant 1000$, so $$n = 10 \text{ steps}$$ are needed, giving a width of $2^{-10} \approx 9.8 \times 10^{-4}$.
+
+    **Interpretation.** Ten steps for three decimal places: each step brings a factor $2$, and about $3.3$ steps are needed to gain a factor $10$, hence one decimal place. Twenty steps would give six decimal places, thirty would give nine — bisection is slow but perfectly predictable, and one knows in advance how many computations a required precision will cost. This is the kind of bound one writes before launching the program, not after.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 2
+  modellingOpenness: 2
+  linkedConcepts: 3
+  transfer: 3
+  autonomy: 3

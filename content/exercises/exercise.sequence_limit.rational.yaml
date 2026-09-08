@@ -1,0 +1,53 @@
+# Suites en Terminale — limite d'un quotient de polynômes en l'infini, forme indéterminée levée par factorisation
+id: exercise.sequence_limit.rational
+type: numeric
+nodeId: concept.sequence_limit
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On considère la suite définie pour tout entier $n \geqslant 1$ par
+    $$u_n = \frac{5n^2 - 3n}{2n^2 + 1}.$$
+    Déterminer sa limite quand $n$ tend vers $+\infty$.
+  en: |-
+    Consider the sequence defined for every integer $n \geqslant 1$ by
+    $$u_n = \frac{5n^2 - 3n}{2n^2 + 1}.$$
+    Determine its limit as $n$ tends to $+\infty$.
+numeric:
+  value: 2.5
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "limite de la suite", en: "limit of the sequence" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le numérateur et le dénominateur tendent tous les deux vers $+\infty$ : c'est la forme indéterminée $\frac{\infty}{\infty}$, qu'il faut lever avant de conclure.
+      en: |-
+        Numerator and denominator both tend to $+\infty$: this is the indeterminate form $\frac{\infty}{\infty}$, which must be settled before concluding.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Factorisez $n^2$ en haut et en bas : $u_n = \dfrac{n^2\left(5 - \frac3n\right)}{n^2\left(2 + \frac{1}{n^2}\right)}$, puis simplifiez et utilisez $\frac1n \to 0$.
+      en: |-
+        Factor out $n^2$ above and below: $u_n = \dfrac{n^2\left(5 - \frac3n\right)}{n^2\left(2 + \frac{1}{n^2}\right)}$, then simplify and use $\frac1n \to 0$.
+solution:
+  fr: |-
+    En factorisant le terme dominant, $u_n = \dfrac{n^2\left(5 - \frac3n\right)}{n^2\left(2 + \frac{1}{n^2}\right)} = \dfrac{5 - \frac3n}{2 + \frac{1}{n^2}}$. Comme $\frac3n \to 0$ et $\frac{1}{n^2} \to 0$, le numérateur tend vers $5$ et le dénominateur vers $2$ : $$\lim_{n \to +\infty} u_n = \frac52 = 2{,}5.$$
+    On le vérifie sur les valeurs : $u_{10} = \frac{470}{201} \approx 2{,}338$, $u_{100} \approx 2{,}485$, $u_{1000} \approx 2{,}4985$.
+
+    **Interprétation.** Seuls les termes de plus haut degré comptent à l'infini : la suite se comporte comme $\frac{5n^2}{2n^2}$, c'est-à-dire comme la constante $2{,}5$. Les termes $-3n$ et $+1$ ne pèsent plus rien devant $n^2$ ; ils décident seulement de la façon dont la suite s'approche de sa limite — ici par en dessous, puisque $u_n < 2{,}5$ pour tout $n$.
+  en: |-
+    Factoring out the dominant term, $u_n = \dfrac{n^2\left(5 - \frac3n\right)}{n^2\left(2 + \frac{1}{n^2}\right)} = \dfrac{5 - \frac3n}{2 + \frac{1}{n^2}}$. Since $\frac3n \to 0$ and $\frac{1}{n^2} \to 0$, the numerator tends to $5$ and the denominator to $2$: $$\lim_{n \to +\infty} u_n = \frac52 = 2.5.$$
+    The values confirm it: $u_{10} = \frac{470}{201} \approx 2.338$, $u_{100} \approx 2.485$, $u_{1000} \approx 2.4985$.
+
+    **Interpretation.** Only the terms of highest degree matter at infinity: the sequence behaves like $\frac{5n^2}{2n^2}$, that is, like the constant $2.5$. The terms $-3n$ and $+1$ weigh nothing against $n^2$; they only decide how the sequence approaches its limit — here from below, since $u_n < 2.5$ for every $n$.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 3

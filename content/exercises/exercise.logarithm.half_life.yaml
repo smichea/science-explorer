@@ -1,0 +1,52 @@
+# Logarithme en Terminale — demi-vie du carbone 14 à partir de la constante radioactive, résolution de e^(−λt) = 1/2
+id: exercise.logarithm.half_life
+type: numeric
+nodeId: tool.logarithm
+phenomenonId: phenomenon.nuclear.radioactive_decay
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    Le nombre de noyaux de carbone $14$ d'un échantillon suit $N(t) = N_0\,e^{-\lambda t}$, avec $\lambda = 1{,}21 \times 10^{-4}\ \mathrm{an^{-1}}$.
+
+    Calculer la demi-vie $t_{1/2}$, c'est-à-dire la durée au bout de laquelle il ne reste que la moitié des noyaux. Répondre en années.
+  en: |-
+    The number of carbon $14$ nuclei of a sample follows $N(t) = N_0\,e^{-\lambda t}$, with $\lambda = 1.21 \times 10^{-4}\ \mathrm{yr^{-1}}$.
+
+    Compute the half-life $t_{1/2}$, that is, the time after which only half of the nuclei remain. Answer in years.
+numeric:
+  value: 5729
+  tolerance: { kind: relative, value: 0.01 }
+  inputLabel: { fr: "demi-vie en années", en: "half-life in years" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La condition « il reste la moitié » s'écrit $N(t) = \frac12 N_0$, c'est-à-dire $e^{-\lambda t} = \frac12$ : l'inconnue est en exposant.
+      en: |-
+        The condition "half remains" reads $N(t) = \frac12 N_0$, that is $e^{-\lambda t} = \frac12$: the unknown sits in an exponent.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Composez par $\ln$ : $-\lambda t = \ln\frac12 = -\ln 2$, donc $t = \dfrac{\ln 2}{\lambda}$ avec $\ln 2 \approx 0{,}693$.
+      en: |-
+        Compose with $\ln$: $-\lambda t = \ln\frac12 = -\ln 2$, so $t = \dfrac{\ln 2}{\lambda}$ with $\ln 2 \approx 0.693$.
+solution:
+  fr: |-
+    On cherche $t$ tel que $N_0\,e^{-\lambda t} = \frac12 N_0$, soit $e^{-\lambda t} = \frac12$. En composant par le logarithme népérien, $-\lambda t = \ln\frac12 = -\ln 2$, donc $$t_{1/2} = \frac{\ln 2}{\lambda} = \frac{0{,}6931}{1{,}21 \times 10^{-4}} \approx 5729\ \text{ans}.$$
+
+    **Interprétation.** La demi-vie ne dépend pas de $N_0$ : que l'on parte d'un milliard de noyaux ou de mille, la moitié disparaît toujours au bout de $5729$ ans. C'est la signature d'une décroissance exponentielle, et c'est ce qui permet de dater : un charbon de bois qui ne contient plus qu'un quart du carbone $14$ atmosphérique a vécu deux demi-vies, soit environ $11\,500$ ans. Le logarithme est ici l'outil qui fait descendre le temps de l'exposant.
+  en: |-
+    We look for $t$ such that $N_0\,e^{-\lambda t} = \frac12 N_0$, that is $e^{-\lambda t} = \frac12$. Composing with the natural logarithm, $-\lambda t = \ln\frac12 = -\ln 2$, so $$t_{1/2} = \frac{\ln 2}{\lambda} = \frac{0.6931}{1.21 \times 10^{-4}} \approx 5729\ \text{years}.$$
+
+    **Interpretation.** The half-life does not depend on $N_0$: whether one starts from a billion nuclei or from a thousand, half of them always disappear after $5729$ years. This is the signature of an exponential decay, and it is what makes dating possible: a piece of charcoal containing only a quarter of the atmospheric carbon $14$ has lived through two half-lives, about $11\,500$ years. The logarithm is here the tool that brings time down from the exponent.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 2
+  modellingOpenness: 2
+  linkedConcepts: 3
+  transfer: 4
+  autonomy: 3

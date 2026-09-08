@@ -1,0 +1,53 @@
+id: phenomenon.interference
+type: phenomenon
+world: world.physics
+region: region.physics.waves
+importance: 3
+tags: [lycee]
+title: { fr: "Diffraction et interférences de la lumière", en: "Diffraction and interference of light" }
+shortPurpose:
+  fr: "Expliquer pourquoi la lumière s'étale derrière une fente fine et pourquoi deux faisceaux peuvent s'additionner ou s'annuler, et en tirer une longueur d'onde."
+  en: "Explain why light spreads out behind a narrow slit and why two beams can add up or cancel out, and get a wavelength from it."
+overview:
+  fr: >-
+    Faites passer un faisceau laser par une fente de plus en plus fine : au lieu de rétrécir, la tache lumineuse s'élargit. C'est la diffraction, et aucun modèle de rayon rectiligne ne peut en rendre compte : il faut que la lumière soit une onde. Ouvrez maintenant deux fentes voisines : l'écran se couvre de bandes claires et sombres régulièrement espacées, là où les deux ondes arrivent en phase ou en opposition de phase. Ces deux phénomènes servent aujourd'hui à mesurer des longueurs d'onde, l'épaisseur d'un cheveu et même le passage d'une onde gravitationnelle.
+  en: >-
+    Send a laser beam through a slit that you make narrower and narrower: instead of shrinking, the bright spot widens. This is diffraction, and no model of straight rays can account for it: light has to be a wave. Now open two neighbouring slits: the screen is covered with regularly spaced bright and dark bands, where the two waves arrive in phase or in antiphase. These two phenomena serve today to measure wavelengths, the thickness of a hair and even the passage of a gravitational wave.
+aliases:
+  fr: ["diffraction", "interférences", "fentes de Young", "interfrange", "écart angulaire", "différence de chemin"]
+  en: ["diffraction", "interference", "Young's slits", "fringe spacing", "angular spread", "path difference"]
+description:
+  fr: |
+    La **diffraction** est l'étalement d'une onde qui rencontre une ouverture ou un obstacle de taille comparable à sa longueur d'onde. Derrière une fente de largeur $a$ éclairée par une lumière de longueur d'onde $\lambda$, on n'observe pas l'image géométrique de la fente mais une tache centrale brillante, entourée de taches secondaires beaucoup plus faibles, séparées par des extinctions. La demi-largeur angulaire de la tache centrale vaut
+    $$\theta = \frac{\lambda}{a} \quad (\theta \text{ en radians, } \lambda \text{ et } a \text{ en mètres}),$$
+    d'autant plus grande que la fente est **fine** : c'est le contraire de l'intuition géométrique. Les **interférences** apparaissent, elles, quand deux ondes de même fréquence, issues d'une même source et donc cohérentes, se superposent : leurs élongations s'ajoutent. Là où la **différence de chemin** $\delta$ vaut un nombre entier de longueurs d'onde, $\delta = k\,\lambda$, les deux ondes sont en phase et s'additionnent — interférence **constructive**, frange brillante ; là où $\delta = \left(k + \tfrac{1}{2}\right)\lambda$, elles sont en opposition de phase et s'annulent — interférence **destructive**, frange sombre. Avec deux fentes distantes de $b$ et un écran à la distance $D$, les franges sont équidistantes, séparées de l'**interfrange** $i = \dfrac{\lambda\,D}{b}$.
+
+    Les ordres de grandeur se calculent en une ligne. Un laser hélium-néon, $\lambda = 633\ \mathrm{nm}$, éclaire une fente de $a = 0{,}10\ \mathrm{mm}$ et l'écran est à $D = 2{,}0\ \mathrm{m}$ : $\theta = \dfrac{633 \times 10^{-9}}{1{,}0 \times 10^{-4}} = 6{,}3 \times 10^{-3}\ \mathrm{rad}$, et la tache centrale, de largeur totale $L = 2D\theta = \dfrac{2\lambda D}{a}$, mesure $2{,}5\ \mathrm{cm}$ — vingt-cinq millimètres pour une fente de un dixième de millimètre. Retournée, la formule mesure : un cheveu qui donne une tache de $3{,}6\ \mathrm{cm}$ dans le même montage a un diamètre $a = \dfrac{2\lambda D}{L} = 70\ \mathrm{\mu m}$. Avec deux fentes distantes de $b = 0{,}30\ \mathrm{mm}$, l'interfrange vaut $i = \dfrac{633 \times 10^{-9} \times 2{,}0}{3{,}0 \times 10^{-4}} = 4{,}2\ \mathrm{mm}$ : on compte dix interfranges à la règle et on remonte à $\lambda$ à quelques pour cent près.
+
+    Ces deux phénomènes sont la **signature des ondes** : les ondes sonores, les vagues et les électrons diffractent aussi, et c'est parce que la lumière diffracte qu'elle ne peut pas être un simple jet de billes. La diffraction limite la finesse de tout instrument d'optique — un télescope de diamètre $d$ ne sépare pas deux étoiles plus proches que $\lambda/d$ — pendant que les interférences fournissent les mesures les plus précises de la physique, jusqu'aux interféromètres qui ont détecté en 2015 une variation de longueur de $10^{-18}\ \mathrm{m}$. Pièges classiques : confondre la demi-largeur angulaire $\theta = \lambda/a$ et la largeur totale de la tache $2\lambda D / a$ ; oublier que $\theta$ est en radians ; utiliser la largeur des fentes $a$ à la place de leur écartement $b$ dans l'interfrange ; croire que deux lampes de poche donnent des franges, alors qu'il faut des sources **cohérentes** ; et convertir les nanomètres et les micromètres à l'envers.
+  en: |
+    **Diffraction** is the spreading of a wave meeting an opening or an obstacle of a size comparable to its wavelength. Behind a slit of width $a$ lit by light of wavelength $\lambda$, one does not observe the geometrical image of the slit but a bright central spot, surrounded by much fainter secondary spots, separated by extinctions. The angular half-width of the central spot is
+    $$\theta = \frac{\lambda}{a} \quad (\theta \text{ in radians, } \lambda \text{ and } a \text{ in metres}),$$
+    the larger the **narrower** the slit: the opposite of geometrical intuition. **Interference**, for its part, appears when two waves of the same frequency, coming from a single source and therefore coherent, are superposed: their displacements add. Where the **path difference** $\delta$ is a whole number of wavelengths, $\delta = k\,\lambda$, the two waves are in phase and add up — **constructive** interference, a bright fringe; where $\delta = \left(k + \tfrac{1}{2}\right)\lambda$, they are in antiphase and cancel — **destructive** interference, a dark fringe. With two slits a distance $b$ apart and a screen at the distance $D$, the fringes are equally spaced, separated by the **fringe spacing** $i = \dfrac{\lambda\,D}{b}$.
+
+    The orders of magnitude are computed in one line. A helium-neon laser, $\lambda = 633\ \mathrm{nm}$, lights a slit of $a = 0.10\ \mathrm{mm}$ and the screen is at $D = 2.0\ \mathrm{m}$: $\theta = \dfrac{633 \times 10^{-9}}{1.0 \times 10^{-4}} = 6.3 \times 10^{-3}\ \mathrm{rad}$, and the central spot, of total width $L = 2D\theta = \dfrac{2\lambda D}{a}$, measures $2.5\ \mathrm{cm}$ — twenty-five millimetres for a slit of one tenth of a millimetre. Turned round, the formula measures: a hair giving a spot of $3.6\ \mathrm{cm}$ in the same setting has a diameter $a = \dfrac{2\lambda D}{L} = 70\ \mathrm{\mu m}$. With two slits a distance $b = 0.30\ \mathrm{mm}$ apart, the fringe spacing is $i = \dfrac{633 \times 10^{-9} \times 2.0}{3.0 \times 10^{-4}} = 4.2\ \mathrm{mm}$: ten fringe spacings are counted with a ruler and $\lambda$ is recovered to within a few per cent.
+
+    These two phenomena are the **signature of waves**: sound waves, sea waves and electrons diffract too, and it is because light diffracts that it cannot be a simple stream of pellets. Diffraction limits the sharpness of every optical instrument — a telescope of diameter $d$ does not separate two stars closer than $\lambda/d$ — while interference provides the most precise measurements in physics, up to the interferometers that detected in 2015 a change of length of $10^{-18}\ \mathrm{m}$. Classic traps: confusing the angular half-width $\theta = \lambda/a$ with the total width of the spot $2\lambda D / a$; forgetting that $\theta$ is in radians; using the width of the slits $a$ instead of their spacing $b$ in the fringe spacing; believing that two torches give fringes, when **coherent** sources are needed; and converting nanometres and micrometres the wrong way round.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "reconnaître une situation de diffraction et relier l'écart angulaire $\\theta = \\lambda/a$ à la longueur d'onde et à la taille de l'ouverture"
+        - "exploiter la largeur de la tache centrale $L = 2\\lambda D / a$ pour mesurer une longueur d'onde ou une épaisseur"
+        - "énoncer les conditions d'interférences constructives et destructives à partir de la différence de chemin"
+        - "exploiter l'interfrange $i = \\lambda D / b$ d'un dispositif de deux fentes et en déduire une longueur d'onde"
+        - "justifier que la diffraction et les interférences imposent un modèle ondulatoire de la lumière"
+      en:
+        - "recognise a diffraction situation and relate the angular spread $\\theta = \\lambda/a$ to the wavelength and to the size of the opening"
+        - "use the width of the central spot $L = 2\\lambda D / a$ to measure a wavelength or a thickness"
+        - "state the conditions of constructive and destructive interference from the path difference"
+        - "use the fringe spacing $i = \\lambda D / b$ of a two-slit device and deduce a wavelength from it"
+        - "justify that diffraction and interference impose a wave model of light"
+sources: [source.bo.lycee.2019]

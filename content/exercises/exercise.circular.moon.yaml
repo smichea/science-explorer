@@ -1,0 +1,49 @@
+# Mouvement circulaire uniforme — accélération de la Lune sur son orbite, le calcul de Newton (réponse numérique)
+id: exercise.circular.moon
+type: numeric
+nodeId: phenomenon.circular_motion
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    La Lune décrit autour de la Terre un cercle de rayon $R = 3{,}84 \times 10^{8}\ \mathrm{m}$, parcouru en $T = 27{,}3$ jours.
+
+    Calculez la valeur de son accélération, en mètres par seconde au carré, avec deux chiffres significatifs.
+  en: |-
+    The Moon describes around the Earth a circle of radius $R = 3.84 \times 10^{8}\ \mathrm{m}$, travelled in $T = 27.3$ days.
+
+    Compute the value of its acceleration, in metres per second squared, with two significant figures.
+numeric:
+  value: 2.72e-3
+  unit: "m/s²"
+  tolerance: { kind: relative, value: 0.05 }
+  inputLabel: { fr: "a", en: "a" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        On ne connaît pas la vitesse, mais la période : passez par $a = \dfrac{4\pi^2 R}{T^2}$, qui s'obtient en remplaçant $v$ par $\dfrac{2\pi R}{T}$ dans $a = \dfrac{v^2}{R}$.
+      en: |-
+        The speed is not given, but the period is: use $a = \dfrac{4\pi^2 R}{T^2}$, obtained by replacing $v$ with $\dfrac{2\pi R}{T}$ in $a = \dfrac{v^2}{R}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Convertissez la période en secondes : $T = 27{,}3 \times 24 \times 3600 = 2{,}36 \times 10^{6}\ \mathrm{s}$, donc $T^2 = 5{,}57 \times 10^{12}\ \mathrm{s^2}$.
+      en: |-
+        Convert the period into seconds: $T = 27.3 \times 24 \times 3600 = 2.36 \times 10^{6}\ \mathrm{s}$, so $T^2 = 5.57 \times 10^{12}\ \mathrm{s^2}$.
+solution:
+  fr: |-
+    La vitesse sur le cercle vaut $v = \dfrac{2\pi R}{T}$, donc
+    $$a = \frac{v^2}{R} = \frac{4\pi^2 R}{T^2} = \frac{39{,}5 \times 3{,}84 \times 10^{8}}{5{,}57 \times 10^{12}} = \frac{1{,}52 \times 10^{10}}{5{,}57 \times 10^{12}} = 2{,}7 \times 10^{-3}\ \mathrm{m \cdot s^{-2}}.$$
+    On peut vérifier au passage que $v = \dfrac{2\pi \times 3{,}84 \times 10^{8}}{2{,}36 \times 10^{6}} = 1{,}02 \times 10^{3}\ \mathrm{m \cdot s^{-1}}$, environ un kilomètre par seconde.
+
+    **Interprétation.** C'est le calcul le plus célèbre de la mécanique. Le champ de gravitation de la Terre à la distance de la Lune vaut $\dfrac{GM_T}{R^2} = \dfrac{3{,}99 \times 10^{14}}{(3{,}84 \times 10^{8})^2} = 2{,}7 \times 10^{-3}\ \mathrm{m \cdot s^{-2}}$ : exactement l'accélération que nous venons de trouver en ne regardant que la géométrie du mouvement. La Lune tombe donc vers la Terre comme une pomme, trois mille six cents fois moins fort seulement parce qu'elle est soixante fois plus loin du centre, et $60^2 = 3\,600$. Newton en a conclu que la même loi gouverne les pommes et les astres, ce qui n'allait pas de soi en 1666.
+  en: |-
+    The speed on the circle is $v = \dfrac{2\pi R}{T}$, so
+    $$a = \frac{v^2}{R} = \frac{4\pi^2 R}{T^2} = \frac{39.5 \times 3.84 \times 10^{8}}{5.57 \times 10^{12}} = \frac{1.52 \times 10^{10}}{5.57 \times 10^{12}} = 2.7 \times 10^{-3}\ \mathrm{m \cdot s^{-2}}.$$
+    On the way one can check that $v = \dfrac{2\pi \times 3.84 \times 10^{8}}{2.36 \times 10^{6}} = 1.02 \times 10^{3}\ \mathrm{m \cdot s^{-1}}$, about one kilometre a second.
+
+    **Interpretation.** This is the most famous computation in mechanics. The gravitational field of the Earth at the distance of the Moon is $\dfrac{GM_E}{R^2} = \dfrac{3.99 \times 10^{14}}{(3.84 \times 10^{8})^2} = 2.7 \times 10^{-3}\ \mathrm{m \cdot s^{-2}}$: exactly the acceleration we have just found by looking only at the geometry of the motion. The Moon therefore falls towards the Earth like an apple, three thousand six hundred times more gently only because it is sixty times further from the centre, and $60^2 = 3{,}600$. Newton concluded that the same law governs apples and stars, which was far from obvious in 1666.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 3, calculationLength: 3, modellingOpenness: 2, linkedConcepts: 4, transfer: 4, autonomy: 3 }

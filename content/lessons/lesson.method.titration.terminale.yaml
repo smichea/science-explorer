@@ -1,0 +1,109 @@
+# Leçon narrée — titrage en Terminale (profondeur 2) : suivi pH-métrique, équivalence, demi-
+# équivalence et choix de l'indicateur coloré.
+id: lesson.method.titration.terminale
+nodeId: method.titration
+depth: 2
+tools:
+  - id: curve
+    kind: acid_base
+    title: { fr: "Le suivi pH-métrique", en: "Following the pH" }
+    mode: titration
+    parameters:
+      - { id: v, label: { fr: "volume versé (mL)", en: "volume poured (mL)" }, min: 0, max: 40, step: 0.2, value: 10 }
+    couples:
+      - id: acetic
+        acid: { fr: "CH₃COOH", en: "CH₃COOH" }
+        base: { fr: "CH₃COO⁻", en: "CH₃COO⁻" }
+        pka: 4.8
+    ph: 7
+    titration:
+      c: 0.050
+      v: 20
+      couple: acetic
+      role: acid
+      titrant: 0.050
+      volume: "v"
+      indicator:
+        label: { fr: "phénolphtaléine", en: "phenolphthalein" }
+        from: 8.2
+        to: 10.0
+  - id: domains
+    kind: acid_base
+    title: { fr: "Les domaines de prédominance", en: "The predominance domains" }
+    mode: predominance
+    parameters:
+      - { id: p, label: { fr: "pH", en: "pH" }, min: 0, max: 14, step: 0.1, value: 4.8 }
+    couples:
+      - id: acetic
+        acid: { fr: "CH₃COOH", en: "CH₃COOH" }
+        base: { fr: "CH₃COO⁻", en: "CH₃COO⁻" }
+        pka: 4.8
+      - id: helianthine
+        acid: { fr: "hélianthine (rouge)", en: "methyl orange (red)" }
+        base: { fr: "hélianthine (jaune)", en: "methyl orange (yellow)" }
+        pka: 3.7
+        color: "#ffb347"
+      - id: phenol
+        acid: { fr: "phénolphtaléine (incolore)", en: "phenolphthalein (colourless)" }
+        base: { fr: "phénolphtaléine (rose)", en: "phenolphthalein (pink)" }
+        pka: 9.4
+        color: "#ff8fab"
+    ph: "p"
+steps:
+  - id: jump
+    title: { fr: "Le saut de pH marque l'équivalence", en: "The pH jump marks the equivalence" }
+    text:
+      fr: >-
+        On verse de la soude dans vingt millilitres d'acide éthanoïque à cinquante millimoles par litre, et on suit le pH.
+        Au début le pH monte lentement : l'acide et sa base conjuguée coexistent, la solution résiste au changement, c'est un tampon.
+        Puis, en quelques dixièmes de millilitre, le pH bondit de plusieurs unités : tout l'acide vient d'être consommé, c'est l'équivalence.
+        Elle se repère au milieu du saut, ici à vingt millilitres versés — et le pH y vaut environ 8,7, nettement au-dessus de sept.
+      en: >-
+        Sodium hydroxide is poured into twenty millilitres of ethanoic acid at fifty millimoles per litre, and the pH is followed.
+        At first the pH rises slowly: the acid and its conjugate base coexist, the solution resists the change, it is a buffer.
+        Then, within a few tenths of a millilitre, the pH leaps by several units: all the acid has just been consumed, that is the equivalence.
+        It is located at the middle of the jump, here at twenty millilitres poured — and the pH there is about 8.7, well above seven.
+  - id: half
+    title: { fr: "La demi-équivalence donne le pKa", en: "The half-equivalence gives the pKa" }
+    text:
+      fr: >-
+        À la moitié du volume équivalent, la moitié de l'acide a été transformée en sa base conjuguée : les deux espèces sont en quantités égales.
+        La relation pH égale pKa plus logarithme du rapport base sur acide se réduit alors à pH égale pKa, puisque le logarithme de un vaut zéro.
+        Lire le pH à dix millilitres versés donne donc directement le pKa du couple titré : 4,8 pour l'acide éthanoïque.
+        C'est une mesure, pas un calcul : un titrage identifie l'acide autant qu'il dose sa concentration.
+      en: >-
+        At half the equivalence volume, half the acid has been turned into its conjugate base: the two species are present in equal amounts.
+        The relation pH equals pKa plus the logarithm of the ratio base over acid then reduces to pH equals pKa, since the logarithm of one is zero.
+        Reading the pH at ten millilitres poured therefore gives the pKa of the titrated couple directly: 4.8 for ethanoic acid.
+        It is a measurement, not a computation: a titration identifies the acid as much as it measures its concentration.
+    actions:
+      - { at: 1, set: { v: 10 } }
+  - id: indicator
+    title: { fr: "Choisir l'indicateur coloré", en: "Choosing the colour indicator" }
+    tool: domains
+    text:
+      fr: >-
+        Un indicateur coloré est lui-même un couple acide-base, dont les deux formes n'ont pas la même couleur.
+        Il vire quand le pH traverse sa zone, à peu près un pKa plus ou moins une unité : hélianthine vers trois à quatre, phénolphtaléine vers huit à dix.
+        Le bon indicateur est celui dont la zone de virage contient le pH à l'équivalence : ici 8,7, donc la phénolphtaléine, et surtout pas l'hélianthine qui aurait viré bien avant.
+        Déplacez le pH et regardez quelle forme prédomine : c'est la même lecture pour l'acide titré et pour l'indicateur.
+      en: >-
+        A colour indicator is itself an acid-base couple, whose two forms do not have the same colour.
+        It turns when the pH crosses its range, roughly a pKa plus or minus one unit: methyl orange around three to four, phenolphthalein around eight to ten.
+        The right indicator is the one whose turning range contains the pH at the equivalence: here 8.7, so phenolphthalein, and certainly not methyl orange, which would have turned long before.
+        Move the pH and watch which form predominates: it is the same reading for the titrated acid and for the indicator.
+  - id: play
+    kind: play
+    title: { fr: "À vous", en: "Your turn" }
+    text:
+      fr: >-
+        Versez la soude millilitre par millilitre et suivez le pH, la pente et l'équivalence ; puis déplacez le pH sur les domaines de prédominance et jugez les deux indicateurs.
+      en: >-
+        Pour the sodium hydroxide millilitre by millilitre and follow the pH, the slope and the equivalence; then move the pH on the predominance domains and judge the two indicators.
+  - id: exercises
+    kind: exercises
+    title: { fr: "Deux lectures", en: "Two readings" }
+    text:
+      fr: "Une concentration à l'équivalence, un pKa à la demi-équivalence."
+      en: "A concentration at the equivalence, a pKa at the half-equivalence."
+    exercises: [exercise.titration.equivalence_ph, exercise.titration.pka]

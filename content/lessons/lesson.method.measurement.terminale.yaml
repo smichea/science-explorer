@@ -1,0 +1,82 @@
+# Leçon narrée — mesure et incertitudes en Terminale (profondeur 3) : erreur aléatoire et erreur
+# systématique, incertitude-type composée, écriture du résultat et écart normalisé.
+id: lesson.method.measurement.terminale
+nodeId: method.measurement
+depth: 3
+tools:
+  - id: series
+    kind: data
+    title: { fr: "Une série de mesures", en: "A series of measurements" }
+    label: { fr: "période mesurée (s)", en: "measured period (s)" }
+    unit: "s"
+    values: [2.03, 1.98, 2.11, 2.05, 1.95, 2.08, 2.01, 2.07, 1.99, 2.04]
+    bins: 6
+    uncertainty: true
+  - id: plotter
+    kind: plotter
+    title: { fr: "Composer deux incertitudes", en: "Composing two uncertainties" }
+    variable: x
+    view: { x: [0, 6], y: [0, 8] }
+    parameters:
+      - { id: u, label: { fr: "u(ℓ) en mm", en: "u(ℓ) in mm" }, min: 0, max: 5, step: 0.1, value: 2 }
+    input: true
+steps:
+  - id: errors
+    title: { fr: "Deux erreurs qui ne se corrigent pas de la même façon", en: "Two errors that are not cured the same way" }
+    text:
+      fr: >-
+        Voici dix mesures de la période d'un pendule, faites au chronomètre à la main.
+        Elles se dispersent autour de deux secondes : c'est l'erreur aléatoire, qui change de signe d'une mesure à l'autre et que la moyenne réduit.
+        L'incertitude-type sur la moyenne vaut l'écart-type divisé par racine de n : dix mesures valent mieux qu'une, mais quatre fois plus de mesures ne divisent l'incertitude que par deux.
+        L'erreur systématique, elle, ne se voit pas dans la dispersion : un chronomètre qui déclenche toujours trop tard décale toutes les mesures du même côté, et aucune moyenne ne la corrigera.
+      en: >-
+        Here are ten measurements of the period of a pendulum, taken with a hand-held stopwatch.
+        They scatter around two seconds: that is the random error, which changes sign from one measurement to the next and which the mean reduces.
+        The standard uncertainty on the mean is the standard deviation divided by the root of n: ten measurements are worth more than one, but four times as many measurements only halve the uncertainty.
+        The systematic error, on the other hand, does not show in the scatter: a stopwatch that always triggers too late shifts every measurement to the same side, and no average will correct it.
+  - id: writing
+    title: { fr: "Écrire un résultat", en: "Writing a result" }
+    text:
+      fr: >-
+        Un résultat de mesure n'est pas un nombre, c'est un intervalle : la valeur, son incertitude, son unité.
+        La lecture donne ici une moyenne d'environ deux virgule zéro trois secondes et une incertitude-type de l'ordre de dix-sept millisecondes.
+        On écrit alors T égale deux virgule zéro trois, plus ou moins zéro virgule zéro deux seconde : l'incertitude s'arrondit à un ou deux chiffres significatifs, et la valeur s'aligne sur elle.
+        Écrire deux virgule zéro deux neuf huit serait mentir : les chiffres au-delà du centième ne sont pas mesurés.
+      en: >-
+        A measurement result is not a number, it is an interval: the value, its uncertainty, its unit.
+        The readout here gives a mean of about two point zero three seconds and a standard uncertainty of the order of seventeen milliseconds.
+        We then write T equals two point zero three, plus or minus zero point zero two seconds: the uncertainty is rounded to one or two significant figures, and the value is aligned on it.
+        Writing two point zero two nine eight would be lying: the digits beyond the hundredth are not measured.
+  - id: composed
+    title: { fr: "Composer les incertitudes", en: "Composing the uncertainties" }
+    tool: plotter
+    text:
+      fr: >-
+        Une grandeur calculée hérite des incertitudes de ce qui entre dans le calcul.
+        Pour un produit ou un quotient, ce sont les incertitudes relatives qui s'ajoutent en quadrature : l'incertitude relative sur g égale racine de la somme des carrés des incertitudes relatives sur L et sur T au carré.
+        Sur la courbe, l'incertitude sur g croît d'abord vite avec celle sur la longueur, puis plus lentement : le terme dominant écrase les autres.
+        La leçon est pratique : améliorer la mesure la plus mauvaise fait tout gagner, améliorer la meilleure ne sert presque à rien.
+      en: >-
+        A computed quantity inherits the uncertainties of what goes into the computation.
+        For a product or a quotient, it is the relative uncertainties that add in quadrature: the relative uncertainty on g equals the root of the sum of the squares of the relative uncertainties on L and on T squared.
+        On the curve, the uncertainty on g grows quickly with the one on the length at first, then more slowly: the dominant term crushes the others.
+        The lesson is practical: improving the worst measurement gains everything, improving the best one gains almost nothing.
+    actions:
+      - { at: 1, view: { x: [0, 6], y: [0, 8], labels: { x: "u(ℓ) (mm)", y: "u(g)/g (%)" } } }
+      - { at: 2, plot: { id: comp, expr: "sqrt((x/500)^2+(2*0.017/2.03)^2)*100", label: { fr: "u(g)/g", en: "u(g)/g" } } }
+      - { at: 3, point: { id: here, on: comp, x: "u", guides: true, label: { fr: "réglage courant", en: "current setting" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous", en: "Your turn" }
+    text:
+      fr: >-
+        Changez les mesures de la série et regardez la moyenne, l'écart-type et l'incertitude bouger ; puis déplacez l'incertitude sur la longueur et cherchez à partir d'où elle cesse de compter.
+      en: >-
+        Change the measurements of the series and watch the mean, the standard deviation and the uncertainty move; then move the uncertainty on the length and look for where it stops counting.
+  - id: exercises
+    kind: exercises
+    title: { fr: "Deux résultats", en: "Two results" }
+    text:
+      fr: "Une incertitude composée, un écart normalisé."
+      en: "A composed uncertainty, a normalised gap."
+    exercises: [exercise.measurement.composed, exercise.measurement.normalised_gap]

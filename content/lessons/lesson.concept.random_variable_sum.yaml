@@ -1,0 +1,18 @@
+# Leçon composée depuis la description du nœud — deux épreuves indépendantes à pile ou face, valorisées par un
+# gain de trois euros par succès : l'outil lit la loi, E = 3 et V = 4,5, soit neuf fois la variance de la somme.
+id: lesson.concept.random_variable_sum
+nodeId: concept.random_variable_sum
+depth: 1
+tools:
+  - id: gain
+    kind: random
+    title: { fr: "Le gain de deux épreuves", en: "The gain of two trials" }
+    experiment: binomial
+    trials: 2
+    success: 0.5
+    mode: frequencies
+    seed: 7
+    variable:
+      label: { fr: "gain en euros", en: "gain in euros" }
+      unit: "€"
+      values: { "0": 0, "1": 3, "2": 6 }

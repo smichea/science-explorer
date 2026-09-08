@@ -1,0 +1,51 @@
+id: phenomenon.oscillator
+type: phenomenon
+world: world.physics
+region: region.physics.oscillations
+importance: 2
+tags: [lycee]
+title: { fr: "Oscillateur mécanique : pendule simple, période propre, énergie", en: "Mechanical oscillator: simple pendulum, natural period, energy" }
+shortPurpose:
+  fr: "Décrire un système qui revient toujours vers sa position d'équilibre, mesurer sa période propre et suivre l'échange entre énergie cinétique et énergie potentielle."
+  en: "Describe a system that always returns towards its equilibrium position, measure its natural period and follow the exchange between kinetic and potential energy."
+overview:
+  fr: >-
+    Écartez une masse pendue à un fil, puis lâchez-la : elle repasse par sa position d'équilibre, la dépasse, revient, et recommence. C'est un oscillateur, et ce qui surprend est que la durée d'un aller-retour ne dépend ni de la masse accrochée, ni, tant que l'écart reste petit, de l'amplitude du mouvement : elle ne dépend que de la longueur du fil et de la pesanteur. Pendant tout le mouvement, l'énergie ne fait que passer de la forme potentielle à la forme cinétique et retour, jusqu'à ce que les frottements l'emportent.
+  en: >-
+    Pull aside a mass hanging from a string, then let it go: it comes back through its equilibrium position, passes it, returns, and starts again. This is an oscillator, and what is surprising is that the time of one round trip depends neither on the mass hung, nor, as long as the displacement stays small, on the amplitude of the motion: it depends only on the length of the string and on gravity. Throughout the motion the energy only moves from the potential form to the kinetic form and back, until friction wins.
+aliases:
+  fr: ["pendule simple", "période propre", "isochronisme des petites oscillations", "oscillations libres", "amortissement"]
+  en: ["simple pendulum", "natural period", "isochronism of small oscillations", "free oscillations", "damping"]
+description:
+  fr: |
+    Un **oscillateur mécanique** est un système qui, écarté de sa position d'équilibre stable, y est ramené par une action qui le fait dépasser cette position, si bien que le mouvement se répète. Le **pendule simple** en est le modèle le plus dépouillé : une masse ponctuelle $m$ au bout d'un fil inextensible et sans masse de longueur $L$. On repère sa position par l'angle $\theta$ avec la verticale ; la position $\theta = 0$ est l'équilibre. Le mouvement libre est **périodique**, de **période propre** $T_0$, durée d'un aller-retour complet, et d'**amplitude** $\theta_{\max}$. Pour de petites oscillations, disons au-dessous de $15^\circ$,
+    $$T_0 = 2\pi\sqrt{\frac{L}{g}},$$
+    une formule remarquable par ce qu'elle **ne contient pas** : ni la masse, ni l'amplitude. C'est l'**isochronisme des petites oscillations**, remarqué par Galilée. L'analyse dimensionnelle suffit d'ailleurs à la retrouver : la seule combinaison de $L$ (en $\mathrm{m}$) et de $g$ (en $\mathrm{m \cdot s^{-2}}$) qui donne un temps est $\sqrt{L/g}$, et aucune puissance de $m$ ne peut fabriquer une seconde.
+
+    Le calcul est immédiat. Un pendule de $L = 1{,}00\ \mathrm{m}$, avec $g = 9{,}81\ \mathrm{m \cdot s^{-2}}$, a une période propre $T_0 = 2\pi\sqrt{1{,}00/9{,}81} = 2{,}01\ \mathrm{s}$ : il bat presque la seconde à chaque passage par la verticale, et c'est pourquoi les horloges à balancier du dix-septième siècle mesurent environ un mètre. Quadrupler la longueur double la période, mais changer la masse ne change rien. Côté énergie, en prenant l'origine des énergies potentielles au point le plus bas, $E_{pp} = m\,g\,L\,(1 - \cos\theta)$ et $E_c = \tfrac{1}{2}m v^2$ : aux extrémités le pendule est à l'arrêt et toute l'énergie est potentielle, au passage par la verticale elle est toute cinétique, et l'énergie mécanique $E_m = E_c + E_{pp}$ reste constante tant que les frottements sont négligeables. Pour $m = 200\ \mathrm{g}$, $L = 1{,}0\ \mathrm{m}$ et $\theta_{\max} = 10^\circ$ : $E_m = 0{,}200 \times 9{,}81 \times 1{,}0 \times (1 - \cos 10^\circ) = 3{,}0 \times 10^{-2}\ \mathrm{J}$, et la vitesse au point bas vaut $v = \sqrt{2gL(1 - \cos\theta_{\max})} = 0{,}55\ \mathrm{m \cdot s^{-1}}$.
+
+    Les oscillateurs mesurent le temps — pendule, ressort, quartz, atome de césium — et servent aussi à mesurer $g$ : chronométrer vingt allers-retours d'un pendule d'un mètre donne l'intensité de la pesanteur à mieux que un pour cent, et cette méthode a cartographié la Terre avant les satellites. En réalité les frottements de l'air et du support **amortissent** le mouvement : l'amplitude décroît, l'énergie mécanique diminue, et le pendule finit par s'arrêter ; la période, elle, ne change presque pas. Pièges classiques : croire que le pendule bat la seconde quand $T_0 = 1\ \mathrm{s}$, alors que la période est l'aller-retour complet et que le pendule « qui bat la seconde » a $T_0 = 2\ \mathrm{s}$ ; penser qu'une masse plus lourde oscille plus lentement ; oublier que la formule ne vaut que pour de petites amplitudes, l'écart atteignant $1{,}7\ \%$ à $30^\circ$ ; confondre période et fréquence ; et mesurer une seule oscillation au chronomètre au lieu d'en chronométrer dix ou vingt pour diviser l'incertitude.
+  en: |
+    A **mechanical oscillator** is a system which, pulled away from its stable equilibrium position, is brought back by an action that makes it overshoot that position, so that the motion repeats. The **simple pendulum** is its barest model: a point mass $m$ at the end of an inextensible, massless string of length $L$. Its position is given by the angle $\theta$ with the vertical; the position $\theta = 0$ is the equilibrium. The free motion is **periodic**, with a **natural period** $T_0$, the time of one complete round trip, and an **amplitude** $\theta_{\max}$. For small oscillations, say below $15^\circ$,
+    $$T_0 = 2\pi\sqrt{\frac{L}{g}},$$
+    a formula remarkable for what it **does not contain**: neither the mass, nor the amplitude. This is the **isochronism of small oscillations**, noticed by Galileo. Dimensional analysis is in fact enough to recover it: the only combination of $L$ (in $\mathrm{m}$) and $g$ (in $\mathrm{m \cdot s^{-2}}$) that gives a time is $\sqrt{L/g}$, and no power of $m$ can make a second.
+
+    The computation is immediate. A pendulum of $L = 1.00\ \mathrm{m}$, with $g = 9.81\ \mathrm{m \cdot s^{-2}}$, has a natural period $T_0 = 2\pi\sqrt{1.00/9.81} = 2.01\ \mathrm{s}$: it almost beats the second at every passage through the vertical, which is why the pendulum clocks of the seventeenth century are about one metre tall. Quadrupling the length doubles the period, but changing the mass changes nothing. On the energy side, taking the origin of the potential energies at the lowest point, $E_{pp} = m\,g\,L\,(1 - \cos\theta)$ and $E_c = \tfrac{1}{2}m v^2$: at the ends the pendulum is at rest and all the energy is potential, at the passage through the vertical it is all kinetic, and the mechanical energy $E_m = E_c + E_{pp}$ stays constant as long as friction is negligible. For $m = 200\ \mathrm{g}$, $L = 1.0\ \mathrm{m}$ and $\theta_{\max} = 10^\circ$: $E_m = 0.200 \times 9.81 \times 1.0 \times (1 - \cos 10^\circ) = 3.0 \times 10^{-2}\ \mathrm{J}$, and the speed at the lowest point is $v = \sqrt{2gL(1 - \cos\theta_{\max})} = 0.55\ \mathrm{m \cdot s^{-1}}$.
+
+    Oscillators measure time — pendulum, spring, quartz, caesium atom — and also serve to measure $g$: timing twenty round trips of a one-metre pendulum gives the strength of gravity to better than one per cent, and this method mapped the Earth before satellites. In reality the friction of the air and of the support **damps** the motion: the amplitude decreases, the mechanical energy falls, and the pendulum eventually stops; the period, though, hardly changes. Classic traps: believing that the pendulum beats the second when $T_0 = 1\ \mathrm{s}$, when the period is the complete round trip and the pendulum "that beats the second" has $T_0 = 2\ \mathrm{s}$; thinking that a heavier mass oscillates more slowly; forgetting that the formula only holds for small amplitudes, the deviation reaching $1.7\ \%$ at $30^\circ$; confusing period and frequency; and timing a single oscillation with a stopwatch instead of ten or twenty to divide the uncertainty.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "décrire un oscillateur mécanique par sa position d'équilibre, son amplitude et sa période propre"
+        - "exploiter la relation $T_0 = 2\\pi\\sqrt{L/g}$ et justifier par analyse dimensionnelle qu'elle ne peut pas contenir la masse"
+        - "reconnaître l'isochronisme des petites oscillations et en connaître la limite de validité"
+        - "suivre l'échange entre énergie cinétique et énergie potentielle de pesanteur, et interpréter l'amortissement comme une perte d'énergie mécanique"
+      en:
+        - "describe a mechanical oscillator by its equilibrium position, its amplitude and its natural period"
+        - "use the relation $T_0 = 2\\pi\\sqrt{L/g}$ and justify by dimensional analysis that it cannot contain the mass"
+        - "recognise the isochronism of small oscillations and know the limit of its validity"
+        - "follow the exchange between kinetic energy and gravitational potential energy, and interpret damping as a loss of mechanical energy"
+sources: [source.bo.lycee.2019]

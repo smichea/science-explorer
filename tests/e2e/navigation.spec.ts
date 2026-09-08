@@ -106,7 +106,7 @@ test.describe('universe navigation', () => {
     await expect(page.getByTestId('world-panel')).toContainText('Physique');
     await page.goto('region/region.chemistry.kinetics');
     await expect(page.getByTestId('region-panel')).toContainText('Cinétique');
-    await page.goto('region/region.physics.oscillations');
+    await page.goto('region/region.math.complex_numbers');
     await expect(page.getByTestId('region-panel')).toContainText(/pas encore de destination/);
   });
 });

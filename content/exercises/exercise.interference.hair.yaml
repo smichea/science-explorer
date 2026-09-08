@@ -1,0 +1,47 @@
+# Diffraction — diamètre d'un cheveu mesuré par la largeur de la tache centrale (réponse numérique)
+id: exercise.interference.hair
+type: numeric
+nodeId: phenomenon.interference
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    On tend un cheveu verticalement dans le faisceau d'un laser hélium-néon de longueur d'onde $\lambda = 633\ \mathrm{nm}$. Sur un écran placé à $D = 2{,}0\ \mathrm{m}$, la tache centrale de diffraction a une largeur totale $L = 3{,}6\ \mathrm{cm}$. Un cheveu diffracte comme une fente de même épaisseur.
+
+    Quel est le diamètre $a$ du cheveu ? Répondez en mètres, avec deux chiffres significatifs.
+  en: |-
+    A hair is stretched vertically across the beam of a helium-neon laser of wavelength $\lambda = 633\ \mathrm{nm}$. On a screen placed at $D = 2.0\ \mathrm{m}$, the central diffraction spot has a total width $L = 3.6\ \mathrm{cm}$. A hair diffracts like a slit of the same thickness.
+
+    What is the diameter $a$ of the hair? Answer in metres, with two significant figures.
+numeric:
+  value: 7.0e-5
+  unit: "m"
+  tolerance: { kind: relative, value: 0.06 }
+  inputLabel: { fr: "a", en: "a" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La demi-largeur angulaire vaut $\theta = \dfrac{\lambda}{a}$, et sur l'écran la tache centrale occupe $L = 2\,D\,\theta$ : attention au facteur deux.
+      en: |-
+        The angular half-width is $\theta = \dfrac{\lambda}{a}$, and on the screen the central spot occupies $L = 2\,D\,\theta$: watch out for the factor two.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Combinez les deux : $L = \dfrac{2\lambda D}{a}$, donc $a = \dfrac{2\lambda D}{L}$, avec $\lambda = 633 \times 10^{-9}\ \mathrm{m}$ et $L = 3{,}6 \times 10^{-2}\ \mathrm{m}$.
+      en: |-
+        Combine the two: $L = \dfrac{2\lambda D}{a}$, so $a = \dfrac{2\lambda D}{L}$, with $\lambda = 633 \times 10^{-9}\ \mathrm{m}$ and $L = 3.6 \times 10^{-2}\ \mathrm{m}$.
+solution:
+  fr: |-
+    La tache centrale s'étend de part et d'autre de l'axe sur l'angle $\theta = \lambda / a$, donc sa largeur totale sur l'écran vaut $L = 2 D \theta = \dfrac{2\lambda D}{a}$. En isolant l'épaisseur,
+    $$a = \frac{2\lambda D}{L} = \frac{2 \times 633 \times 10^{-9} \times 2{,}0}{3{,}6 \times 10^{-2}} = \frac{2{,}53 \times 10^{-6}}{3{,}6 \times 10^{-2}} = 7{,}0 \times 10^{-5}\ \mathrm{m}.$$
+
+    **Interprétation.** Soixante-dix micromètres, l'épaisseur ordinaire d'un cheveu : on l'a mesurée sans microscope, sans jamais toucher le cheveu, simplement en lisant une largeur de trois centimètres et demi à la règle. C'est le principe de toute une famille de contrôles industriels, où l'on mesure le diamètre d'un fil qui défile en regardant sa figure de diffraction. Remarquez le renversement : plus l'objet est **fin**, plus la tache est **large**, donc plus la mesure est précise pour les petits objets. Et vérifiez la cohérence des unités : des nanomètres divisés par des centimètres donnent bien des mètres une fois tout converti.
+  en: |-
+    The central spot extends on either side of the axis over the angle $\theta = \lambda / a$, so its total width on the screen is $L = 2 D \theta = \dfrac{2\lambda D}{a}$. Isolating the thickness,
+    $$a = \frac{2\lambda D}{L} = \frac{2 \times 633 \times 10^{-9} \times 2.0}{3.6 \times 10^{-2}} = \frac{2.53 \times 10^{-6}}{3.6 \times 10^{-2}} = 7.0 \times 10^{-5}\ \mathrm{m}.$$
+
+    **Interpretation.** Seventy micrometres, the ordinary thickness of a hair: it has been measured with no microscope, without ever touching the hair, simply by reading a width of three and a half centimetres with a ruler. This is the principle of a whole family of industrial checks, where the diameter of a running wire is measured by looking at its diffraction figure. Note the reversal: the **thinner** the object, the **wider** the spot, hence the more precise the measurement for small objects. And check the consistency of the units: nanometres divided by centimetres do give metres once everything is converted.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 3, calculationLength: 2, modellingOpenness: 2, linkedConcepts: 3, transfer: 4, autonomy: 3 }

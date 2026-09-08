@@ -1,0 +1,25 @@
+# Leçon — les transferts thermiques : le refroidissement d'une tasse (simulation de Newton), puis la
+# courbe exponentielle avec sa tangente à l'origine et sa constante de temps (traceur).
+id: lesson.phenomenon.thermal_transfer
+nodeId: phenomenon.thermal_transfer
+depth: 1
+tools:
+  - id: cup
+    kind: simulation
+    title: { fr: "Une tasse de thé qui refroidit", en: "A cup of tea cooling down" }
+    simulationId: simulation.cooling.basic
+  - id: curve
+    kind: plotter
+    title: { fr: "La loi de Newton, sa tangente et sa constante de temps", en: "Newton's law, its tangent and its time constant" }
+    variable: t
+    view: { x: [0, 1800], y: [0, 90] }
+    input: false
+    parameters:
+      - { id: k, label: { fr: "constante de temps τ (s)", en: "time constant τ (s)" }, min: 60, max: 900, step: 30, value: 300 }
+      - { id: r, label: { fr: "température de la pièce (°C)", en: "room temperature (°C)" }, min: 0, max: 40, step: 1, value: 20 }
+    initial:
+      - { at: 0, view: { labels: { x: "t (s)", y: "θ (°C)" } } }
+      - { at: 0, plot: { id: cool, expr: "r+(80-r)*exp(-t/k)", label: { fr: "θ(t) = θ_ext + (θ₀ − θ_ext) e^(−t/τ)", en: "θ(t) = θ_ext + (θ₀ − θ_ext) e^(−t/τ)" } } }
+      - { at: 0, plot: { id: room, expr: "r", label: { fr: "température de la pièce", en: "room temperature" }, dashed: true } }
+      - { at: 0, tangent: { id: slope, on: cool, x: 0, label: { fr: "tangente à l'origine : elle atteint la pièce en τ", en: "tangent at the origin: it reaches the room at τ" } } }
+      - { at: 0, point: { id: one_tau, on: cool, x: "k", guides: true, label: { fr: "à t = τ, il reste 37 % de l'écart", en: "at t = τ, 37 % of the gap is left" } } }

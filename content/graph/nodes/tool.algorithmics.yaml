@@ -96,3 +96,17 @@ depths:
         builds the list `[1, 3, 7, 15, 31]` of the first five terms of the sequence $u_{n+1} = 2u_n + 1$, $u_0 = 1$; `L[n]` is then $u_n$. A sum is computed by accumulating in a variable initialised at $0$, and **nested loops** run through a table row by row: `for i in range(3):` followed by `for j in range(4):` executes the inner block $12$ times.
 
         **Functions and simulation.** A function may take several parameters and return a list: `def termes(a, n):` computes the first $n$ terms of a sequence with first term `a`. To simulate a **random variable**, `randint(1, 6)` returns an integer at random between $1$ and $6$, and a function `gain()` attaches a value to each outcome; the mean of a sample of $1000$ games, the sum of the gains divided by $1000$, fluctuates around the expectation $E(X)$. The loop that repeats the experiment and accumulates the results is the same move as the one computing the terms of a sequence: the algorithm makes the mathematical objects of Grade 11 experimental.
+  - depth: 3
+    stage: terminale
+    role: extension_and_application
+    outcomes:
+      fr:
+        - "écrire une fonction Python qui renvoie une valeur et l'appeler dans un autre calcul"
+        - "programmer les termes d'une suite définie par récurrence et le seuil à partir duquel elle dépasse une valeur"
+        - "programmer une recherche par dichotomie d'une solution de $f(x) = 0$ avec une précision donnée"
+        - "programmer une somme de Riemann pour approcher une intégrale, et une simulation d'échantillonnage"
+      en:
+        - "write a Python function that returns a value and call it inside another computation"
+        - "program the terms of a sequence defined by a recurrence, and the threshold beyond which it passes a value"
+        - "program a bisection search for a solution of $f(x) = 0$ to a given precision"
+        - "program a Riemann sum to approach an integral, and a sampling simulation"

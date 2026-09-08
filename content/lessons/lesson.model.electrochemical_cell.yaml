@@ -1,0 +1,145 @@
+# Leçon narrée — piles : la pile Daniell séparée en deux demi-piles (outil réaction, demi-équations à 2 électrons),
+# le sens spontané, la capacité lue dans le tableau d'avancement, puis l'accumulateur au plomb et l'électrolyse.
+id: lesson.model.electrochemical_cell
+nodeId: model.electrochemical_cell
+depth: 1
+tools:
+  - id: daniell
+    kind: reaction
+    title: { fr: "Pile Daniell : zinc et ions cuivre II", en: "Daniell cell: zinc and copper II ions" }
+    parameters:
+      - { id: a, label: { fr: "ions Cu²⁺ initiaux (mol)", en: "initial Cu²⁺ ions (mol)" }, min: 0.005, max: 0.2, step: 0.005, value: 0.08 }
+      - { id: b, label: { fr: "zinc initial (mol)", en: "initial zinc (mol)" }, min: 0.005, max: 0.2, step: 0.005, value: 0.05 }
+    reactants:
+      - { id: zinc, formula: "Zn", coefficient: 1, initial: "b", label: { fr: "zinc de l'électrode négative", en: "zinc of the negative electrode" } }
+      - { id: copper_ion, formula: "Cu²⁺", coefficient: 1, initial: "a", label: { fr: "ions cuivre II", en: "copper II ions" } }
+    products:
+      - { id: zinc_ion, formula: "Zn²⁺", coefficient: 1, label: { fr: "ions zinc II", en: "zinc II ions" } }
+      - { id: copper, formula: "Cu", coefficient: 1, label: { fr: "cuivre déposé", en: "copper deposited" } }
+    unit: mol
+    halfEquations:
+      - { id: oxidation, left: "Zn", right: "Zn²⁺", electrons: 2, role: oxidation }
+      - { id: reduction, left: "Cu²⁺", right: "Cu", electrons: 2, role: reduction }
+  - id: lead
+    kind: reaction
+    title: { fr: "Accumulateur au plomb", en: "Lead accumulator" }
+    parameters:
+      - { id: a, label: { fr: "plomb et dioxyde de plomb (mol)", en: "lead and lead dioxide (mol)" }, min: 0.2, max: 2, step: 0.1, value: 1 }
+    reactants:
+      - { id: lead_metal, formula: "Pb", coefficient: 1, initial: "a", label: { fr: "plomb de l'électrode négative", en: "lead of the negative electrode" } }
+      - { id: dioxide, formula: "PbO₂", coefficient: 1, initial: "a", label: { fr: "dioxyde de plomb", en: "lead dioxide" } }
+      - { id: sulfuric, formula: "H₂SO₄", coefficient: 2, initial: 4, label: { fr: "acide sulfurique", en: "sulfuric acid" } }
+    products:
+      - { id: sulfate, formula: "PbSO₄", coefficient: 2, label: { fr: "sulfate de plomb solide", en: "solid lead sulfate" } }
+      - { id: water, formula: "H₂O", coefficient: 2, label: { fr: "eau", en: "water" } }
+    unit: mol
+    halfEquations:
+      - { id: oxidation, left: "Pb", right: "PbSO₄", electrons: 2, role: oxidation }
+      - { id: reduction, left: "PbO₂", right: "PbSO₄", electrons: 2, role: reduction }
+steps:
+  - id: principle
+    title: { fr: "Une oxydoréduction séparée en deux", en: "A redox reaction split in two" }
+    tool: daniell
+    text:
+      fr: >-
+        Une pile, c'est une réaction d'oxydoréduction que l'on a séparée en deux.
+        Ici le zinc est le réducteur et les ions cuivre l'oxydant : mis en contact direct, la lame de zinc se couvrirait de cuivre et toute l'énergie partirait en chaleur.
+        Dans une pile, chaque couple occupe sa propre demi-pile, et les électrons cédés par le zinc sont obligés de faire le tour par un fil.
+        Ce détour des électrons est le courant électrique ; l'outil rappelle les deux demi-équations, à deux électrons chacune, et l'équation de fonctionnement qu'elles donnent.
+      en: >-
+        A cell is a redox reaction that has been split in two.
+        Here zinc is the reductant and copper ions the oxidant: put in direct contact, the zinc plate would get coated with copper and all the energy would leave as heat.
+        In a cell, each couple occupies its own half-cell, and the electrons given away by the zinc are forced to go round through a wire.
+        That detour of the electrons is the electric current; the tool recalls the two half-equations, with two electrons each, and the working equation they give.
+    actions:
+      - { at: 0, set: { a: 0.08, b: 0.05 } }
+  - id: electrodes
+    title: { fr: "Anode, cathode, pont salin", en: "Anode, cathode, salt bridge" }
+    tool: daniell
+    text:
+      fr: >-
+        À l'électrode de zinc se produit l'oxydation : c'est l'anode, et c'est le pôle négatif de la pile.
+        À l'électrode de cuivre se produit la réduction : c'est la cathode, et c'est le pôle positif.
+        Dans le fil, les électrons vont du pôle négatif vers le pôle positif, tandis que le courant, de sens conventionnel opposé, sort par le pôle positif.
+        Un pont salin ferme le circuit à l'intérieur et maintient l'électroneutralité de chaque demi-pile : sans lui, les charges s'accumulent et le courant cesse aussitôt.
+      en: >-
+        At the zinc electrode the oxidation takes place: it is the anode, and it is the negative pole of the cell.
+        At the copper electrode the reduction takes place: it is the cathode, and it is the positive pole.
+        In the wire, the electrons go from the negative pole to the positive pole, while the current, whose conventional direction is the opposite one, leaves through the positive pole.
+        A salt bridge closes the circuit inside and keeps each half-cell electrically neutral: without it, charges pile up and the current stops at once.
+  - id: direction
+    title: { fr: "Pourquoi dans ce sens", en: "Why in that direction" }
+    tool: daniell
+    text:
+      fr: >-
+        Pourquoi le zinc est-il oxydé, plutôt que l'inverse ?
+        Le sens de fonctionnement est le sens d'évolution spontanée, celui que donne la comparaison du quotient de réaction et de la constante d'équilibre.
+        Ici le quotient de réaction vaut la concentration en ions zinc divisée par celle en ions cuivre, car les deux métaux sont des solides et n'y figurent pas.
+        La constante d'équilibre de cette réaction est de l'ordre de dix puissance trente-sept : le quotient initial lui est très inférieur, donc le système évolue dans le sens direct.
+        C'est le même critère qui dit qu'un clou de fer se couvre de cuivre dans une solution de sulfate de cuivre, et qu'une lame de cuivre ne se couvre jamais de fer.
+      en: >-
+        Why is the zinc oxidised, rather than the other way round?
+        The direction of operation is the spontaneous direction of evolution, the one given by comparing the reaction quotient with the equilibrium constant.
+        Here the reaction quotient is the zinc ion concentration divided by the copper ion concentration, since the two metals are solids and do not appear in it.
+        The equilibrium constant of this reaction is of the order of ten to the power thirty-seven: the initial quotient is far below it, so the system evolves in the forward direction.
+        It is the same criterion that says an iron nail gets coated with copper in a copper sulfate solution, and that a copper plate never gets coated with iron.
+  - id: capacity
+    title: { fr: "Capacité et usure de la pile", en: "Capacity and wear of the cell" }
+    tool: daniell
+    text:
+      fr: >-
+        Chaque atome de zinc consommé libère deux électrons dans le circuit.
+        La quantité d'électricité débitée vaut donc la quantité d'électrons multipliée par la constante de Faraday, quatre-vingt-seize mille cinq cents coulombs par mole ; elle vaut aussi le courant multiplié par la durée.
+        Regardons l'état final affiché par l'outil : avec cinquante millimoles de zinc et des ions cuivre en excès, c'est le zinc qui est limitant, et la pile s'arrête quand il a disparu.
+        Cent millimoles d'électrons font neuf mille six cent cinquante coulombs, soit deux virgule sept ampères-heures : la capacité d'une pile se lit dans son tableau d'avancement.
+      en: >-
+        Each zinc atom consumed releases two electrons into the circuit.
+        The quantity of electricity delivered is therefore the amount of electrons multiplied by the Faraday constant, ninety-six thousand five hundred coulombs per mole; it is also the current multiplied by the duration.
+        Let us look at the final state shown by the tool: with fifty millimoles of zinc and copper ions in excess, it is the zinc that is limiting, and the cell stops when it has disappeared.
+        One hundred millimoles of electrons make nine thousand six hundred and fifty coulombs, that is two point seven ampere-hours: the capacity of a cell is read in its extent table.
+    actions:
+      - { at: 2, set: { a: 0.08, b: 0.05 } }
+  - id: accumulator
+    title: { fr: "Accumulateur et électrolyse", en: "Accumulator and electrolysis" }
+    tool: lead
+    text:
+      fr: >-
+        Passons à l'accumulateur au plomb, celui des batteries de voiture.
+        Le plomb métallique y est oxydé, le dioxyde de plomb y est réduit, et les deux électrodes se couvrent du même sulfate de plomb solide.
+        La différence avec une pile est que cette transformation est renversable : un générateur extérieur force le courant dans l'autre sens et régénère le plomb et le dioxyde de plomb.
+        Cette transformation forcée, non spontanée, porte un nom : c'est une électrolyse.
+        Retenez plutôt anode égale oxydation que anode égale pôle négatif, car dans une électrolyse l'anode est reliée au pôle positif du générateur.
+      en: >-
+        Let us move on to the lead accumulator, the one in car batteries.
+        Metallic lead is oxidised there, lead dioxide is reduced, and both electrodes get coated with the same solid lead sulfate.
+        The difference from a cell is that this transformation can be reversed: an external generator forces the current the other way and regenerates the lead and the lead dioxide.
+        That forced, non-spontaneous transformation has a name: it is an electrolysis.
+        Remember anode equals oxidation rather than anode equals negative pole, for in an electrolysis the anode is connected to the positive pole of the generator.
+    actions:
+      - { at: 0, set: { a: 1 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de faire débiter la pile", en: "Your turn to make the cell deliver" }
+    tool: daniell
+    text:
+      fr: >-
+        À vous. Faites varier les quantités de zinc et d'ions cuivre, déplacez l'avancement et repérez à chaque fois le réactif limitant : c'est lui qui fixe la durée de vie de la pile.
+        Vérifiez que la masse de cuivre déposée correspond exactement à la quantité de zinc consommée, et comptez les électrons qui sont passés par le fil.
+        Passez ensuite à l'accumulateur au plomb : lisez ses deux demi-équations et observez que les deux électrodes fabriquent le même solide.
+      en: >-
+        Your turn. Vary the amounts of zinc and copper ions, move the extent and spot the limiting reactant each time: it is the one that sets the lifetime of the cell.
+        Check that the mass of copper deposited matches exactly the amount of zinc consumed, and count the electrons that went through the wire.
+        Then switch to the lead accumulator: read its two half-equations and notice that both electrodes make the same solid.
+    actions:
+      - { at: 0, set: { a: 0.08, b: 0.05 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : la durée de vie d'une pile à partir de la masse de zinc, puis le sens d'évolution spontanée lu sur le quotient de réaction.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the lifetime of a cell from the mass of zinc, then the spontaneous direction of evolution read on the reaction quotient.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.cell.zinc_lifetime, exercise.cell.spontaneous_direction]

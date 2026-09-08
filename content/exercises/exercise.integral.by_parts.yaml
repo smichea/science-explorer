@@ -1,0 +1,51 @@
+# Calcul intégral en Terminale — intégration par parties de x e^x entre 0 et 1
+id: exercise.integral.by_parts
+type: numeric
+nodeId: tool.integral
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Calculer $$\int_0^1 x\,e^{x}\,\mathrm{d}x$$ à l'aide d'une intégration par parties.
+  en: |-
+    Compute $$\int_0^1 x\,e^{x}\,\mathrm{d}x$$ using integration by parts.
+numeric:
+  value: 1
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "valeur de l'intégrale", en: "value of the integral" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La formule est $\displaystyle\int_a^b u v' = \big[uv\big]_a^b - \int_a^b u'v$. Choisissez $u(x) = x$, dont la dérivée est plus simple, et $v'(x) = e^{x}$.
+      en: |-
+        The formula is $\displaystyle\int_a^b u v' = \big[uv\big]_a^b - \int_a^b u'v$. Choose $u(x) = x$, whose derivative is simpler, and $v'(x) = e^{x}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Avec $u = x$, $u' = 1$, $v = e^{x}$ : l'intégrale vaut $\big[x e^{x}\big]_0^1 - \displaystyle\int_0^1 e^{x}\,\mathrm{d}x$, et $\int_0^1 e^{x}\,\mathrm{d}x = e - 1$.
+      en: |-
+        With $u = x$, $u' = 1$, $v = e^{x}$: the integral is $\big[x e^{x}\big]_0^1 - \displaystyle\int_0^1 e^{x}\,\mathrm{d}x$, and $\int_0^1 e^{x}\,\mathrm{d}x = e - 1$.
+solution:
+  fr: |-
+    On pose $u(x) = x$ et $v'(x) = e^{x}$, donc $u'(x) = 1$ et $v(x) = e^{x}$. La formule d'intégration par parties donne
+    $$\int_0^1 x\,e^{x}\,\mathrm{d}x = \big[x\,e^{x}\big]_0^1 - \int_0^1 e^{x}\,\mathrm{d}x = (1 \times e - 0) - \big[e^{x}\big]_0^1 = e - (e - 1) = 1.$$
+    L'aire sous la courbe de $x \mapsto x e^{x}$ entre $0$ et $1$ vaut donc exactement une unité d'aire.
+
+    **Interprétation.** L'intégration par parties n'est rien d'autre que la dérivée d'un produit, $(uv)' = u'v + uv'$, intégrée puis réarrangée. Elle échange une intégrale contre une autre : le pari est que la nouvelle soit plus simple, ce qui impose de dériver le facteur qui se simplifie ($x$ devient $1$) et de primitiver celui qui ne change pas ($e^{x}$ reste $e^{x}$). Choisir dans l'autre sens ferait empirer le calcul — c'est là tout le métier.
+  en: |-
+    Set $u(x) = x$ and $v'(x) = e^{x}$, so $u'(x) = 1$ and $v(x) = e^{x}$. The integration by parts formula gives
+    $$\int_0^1 x\,e^{x}\,\mathrm{d}x = \big[x\,e^{x}\big]_0^1 - \int_0^1 e^{x}\,\mathrm{d}x = (1 \times e - 0) - \big[e^{x}\big]_0^1 = e - (e - 1) = 1.$$
+    The area under the curve of $x \mapsto x e^{x}$ between $0$ and $1$ is therefore exactly one area unit.
+
+    **Interpretation.** Integration by parts is nothing but the derivative of a product, $(uv)' = u'v + uv'$, integrated and rearranged. It exchanges one integral for another: the bet is that the new one is simpler, which requires differentiating the factor that simplifies ($x$ becomes $1$) and finding an antiderivative of the one that does not change ($e^{x}$ stays $e^{x}$). Choosing the other way round would make the computation worse — that is the whole craft.
+difficulty:
+  mathematicalDepth: 3
+  conceptualNovelty: 3
+  calculationLength: 3
+  modellingOpenness: 1
+  linkedConcepts: 3
+  transfer: 1
+  autonomy: 3

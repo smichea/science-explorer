@@ -1,0 +1,127 @@
+# Leçon narrée — mouvement dans un champ de gravitation : l'orbite d'un satellite (simulation force centrale),
+# puis la troisième loi de Kepler mesurée sur les quatre planètes telluriques (outil ajustement).
+id: lesson.model.gravitational_motion
+nodeId: model.gravitational_motion
+depth: 1
+tools:
+  - id: orbit
+    kind: simulation
+    title: { fr: "Un satellite en orbite autour de la Terre", en: "A satellite orbiting the Earth" }
+    simulationId: simulation.orbit.satellite
+  - id: kepler
+    kind: fit
+    title: { fr: "La troisième loi de Kepler sur les planètes", en: "Kepler's third law on the planets" }
+    view: { x: [0, 13], y: [0, 4] }
+    labels: { x: "a³ (10³³ m³)", y: "T² (10¹⁵ s²)" }
+    parameters:
+      - { id: k, label: { fr: "constante k (10⁻¹⁸ s²·m⁻³)", en: "constant k (10⁻¹⁸ s²·m⁻³)" }, min: 0.1, max: 0.6, step: 0.005, value: 0.4 }
+    points:
+      - [0.194, 0.0578]
+      - [1.267, 0.377]
+      - [3.348, 0.996]
+      - [11.84, 3.523]
+    models:
+      - { id: kepler, expr: "k*x", label: { fr: "T² = k × a³", en: "T² = k × a³" } }
+      - { id: rival, expr: "0.447*x^(2/3)", label: { fr: "T² proportionnel à a² (écarté)", en: "T² proportional to a² (rejected)" }, hidden: true }
+steps:
+  - id: cannonball
+    title: { fr: "Le boulet de canon de Newton", en: "Newton's cannonball" }
+    tool: orbit
+    text:
+      fr: >-
+        Newton imaginait un canon posé au sommet d'une très haute montagne : plus le boulet part vite, plus il tombe loin, et s'il part assez vite il ne retombe jamais.
+        Un satellite n'est rien d'autre que cela : une pierre qui tombe sans arrêt vers la Terre, mais qui la manque toujours.
+        La seule force est l'attraction de la Terre, dirigée vers son centre, et elle décroît comme un sur le carré de la distance.
+        Comme cette force est proportionnelle à la masse du satellite, la masse disparaît de l'accélération : deux satellites de masses différentes lâchés au même endroit à la même vitesse suivent exactement la même trajectoire.
+      en: >-
+        Newton imagined a cannon standing on the top of a very high mountain: the faster the ball leaves, the further it falls, and if it leaves fast enough it never falls back.
+        A satellite is nothing else: a stone falling endlessly towards the Earth, but always missing it.
+        The only force is the pull of the Earth, directed towards its centre, and it decreases as one over the square of the distance.
+        Since that force is proportional to the mass of the satellite, the mass disappears from the acceleration: two satellites of different masses released at the same place with the same velocity follow exactly the same trajectory.
+  - id: ellipse
+    title: { fr: "La première loi : une ellipse", en: "The first law: an ellipse" }
+    tool: orbit
+    text:
+      fr: >-
+        Voici un satellite lâché à sept mille kilomètres du centre de la Terre, avec une vitesse de huit mille deux cents mètres par seconde perpendiculaire au rayon.
+        Sa trajectoire n'est pas un cercle mais une ellipse, dont la Terre occupe un foyer : c'est la première loi de Kepler.
+        Le point le plus proche s'appelle le périgée, le plus lointain l'apogée, et la demi-somme de leurs distances est le demi-grand axe.
+        En baissant la vitesse initiale jusqu'à sept mille cinq cents mètres par seconde, l'ellipse se referme en cercle ; au-delà de dix mille six cents, le satellite s'échappe pour toujours.
+      en: >-
+        Here is a satellite released seven thousand kilometres from the centre of the Earth, with a speed of eight thousand two hundred metres per second perpendicular to the radius.
+        Its trajectory is not a circle but an ellipse, with the Earth at one focus: this is Kepler's first law.
+        The nearest point is called the perigee, the furthest the apogee, and half the sum of their distances is the semi-major axis.
+        Lowering the initial speed to seven thousand five hundred metres per second, the ellipse closes into a circle; beyond ten thousand six hundred, the satellite escapes for ever.
+  - id: areas
+    title: { fr: "La deuxième loi : des aires égales", en: "The second law: equal areas" }
+    tool: orbit
+    text:
+      fr: >-
+        Regardez maintenant la vitesse du satellite : elle double presque entre l'apogée et le périgée.
+        Une quantité, pourtant, ne bouge pas : la vitesse aréolaire, c'est-à-dire l'aire que balaie chaque seconde le segment qui joint la Terre au satellite.
+        Sur son graphe, c'est une droite horizontale, et c'est exactement la deuxième loi de Kepler : des aires égales en des temps égaux.
+        Loin de la Terre le rayon est long mais l'angle balayé est petit ; près de la Terre c'est l'inverse, et le produit des deux reste constant.
+      en: >-
+        Now look at the speed of the satellite: it nearly doubles between apogee and perigee.
+        One quantity, however, does not move: the areal speed, that is, the area swept every second by the segment joining the Earth to the satellite.
+        On its graph it is a horizontal line, and this is exactly Kepler's second law: equal areas in equal times.
+        Far from the Earth the radius is long but the angle swept is small; near the Earth it is the other way round, and the product of the two stays constant.
+  - id: third_law
+    title: { fr: "La troisième loi, mesurée sur les planètes", en: "The third law, measured on the planets" }
+    tool: kepler
+    text:
+      fr: >-
+        Passons du satellite aux planètes, et cherchons ce qui relie la période d'une orbite à sa taille.
+        Chaque point porte une planète : en abscisse le cube du demi-grand axe, en ordonnée le carré de la période.
+        Mercure, Vénus, la Terre et Mars s'alignent sur une droite qui passe par l'origine, et cette droite est la troisième loi de Kepler.
+        Le curseur ajuste la pente : elle vaut environ zéro virgule trois, en unités de dix puissance moins dix-huit seconde carrée par mètre cube.
+        Le modèle rival, où le carré de la période serait proportionnel au carré du demi-grand axe, passe par la Terre mais rate Mercure et Mars : c'est celui que Kepler a mis dix ans à écarter.
+      en: >-
+        Let us move from the satellite to the planets, and look for what links the period of an orbit to its size.
+        Each point carries a planet: on the horizontal axis the cube of the semi-major axis, on the vertical axis the square of the period.
+        Mercury, Venus, the Earth and Mars line up on a straight line through the origin, and that line is Kepler's third law.
+        The slider adjusts the slope: it is about zero point three, in units of ten to the power minus eighteen second squared per cubic metre.
+        The rival model, in which the square of the period would be proportional to the square of the semi-major axis, passes through the Earth but misses Mercury and Mars: it is the one Kepler took ten years to discard.
+    actions:
+      - { at: 3, set: { k: 0.295 } }
+      - { at: 4, show: [rival] }
+  - id: circular
+    title: { fr: "Le cercle et l'orbite géostationnaire", en: "The circle and the geostationary orbit" }
+    tool: orbit
+    text:
+      fr: >-
+        Revenons au cercle, le seul cas que l'on sache traiter entièrement au lycée.
+        L'accélération y est centripète et vaut le carré de la vitesse divisé par le rayon ; en l'égalant au champ de gravitation, on trouve que la vitesse est la racine carrée de G M divisé par r.
+        La période vaut alors deux pi fois la racine de r au cube divisé par G M, et l'on retrouve la troisième loi de Kepler sans rien mesurer du tout.
+        En cherchant le rayon pour lequel la période vaut un jour sidéral, on tombe sur quarante-deux mille cent soixante-quatre kilomètres : c'est l'orbite géostationnaire des satellites de télévision, à trente-cinq mille huit cents kilomètres d'altitude.
+      en: >-
+        Let us come back to the circle, the only case one can treat completely at school.
+        The acceleration there is centripetal and equals the square of the speed divided by the radius; making it equal to the gravitational field, one finds that the speed is the square root of G M divided by r.
+        The period is then two pi times the square root of r cubed divided by G M, and Kepler's third law comes back without measuring anything at all.
+        Looking for the radius at which the period is one sidereal day, one lands on forty-two thousand one hundred and sixty-four kilometres: that is the geostationary orbit of television satellites, thirty-five thousand eight hundred kilometres above the ground.
+  - id: play
+    kind: play
+    title: { fr: "À vous de mettre en orbite", en: "Your turn to put a satellite in orbit" }
+    tool: orbit
+    text:
+      fr: >-
+        À vous.
+        Cherchez d'abord la vitesse initiale qui rend l'orbite exactement circulaire, puis augmentez-la de cent en cent et regardez l'ellipse naître, la Terre restant à un foyer.
+        Vérifiez que la vitesse aréolaire reste une droite horizontale, et que le rapport du carré de la période au cube du demi-grand axe ne change pas quand vous déplacez la distance initiale.
+        Passez ensuite à l'ajustement et retrouvez la constante de Kepler du système solaire.
+      en: >-
+        Your turn.
+        First look for the initial speed that makes the orbit exactly circular, then raise it a hundred at a time and watch the ellipse appear, with the Earth staying at one focus.
+        Check that the areal speed stays a horizontal line, and that the ratio of the square of the period to the cube of the semi-major axis does not change when you move the initial distance.
+        Then switch to the fit and recover the Kepler constant of the solar system.
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : la vitesse d'un satellite GPS sur son orbite circulaire, puis la masse du Soleil obtenue en regardant tourner la Terre.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the speed of a GPS satellite on its circular orbit, then the mass of the Sun obtained by watching the Earth go round.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.gravitation.gps_speed, exercise.gravitation.sun_mass]

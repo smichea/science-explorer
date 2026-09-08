@@ -1,0 +1,72 @@
+id: concept.chemical_equilibrium
+type: model
+world: world.chemistry
+region: region.chemistry.equilibria
+importance: 3
+tags: [lycee]
+title: { fr: "Quotient de réaction, constante d'équilibre, taux d'avancement final", en: "Reaction quotient, equilibrium constant, final rate of the transformation" }
+shortPurpose:
+  fr: "Décrire une transformation qui ne va pas à son terme par le quotient de réaction, la constante d'équilibre et le taux d'avancement final, et prévoir le sens d'évolution d'un système."
+  en: "Describe a transformation that does not go to completion by the reaction quotient, the equilibrium constant and the final rate, and predict the direction in which a system evolves."
+overview:
+  fr: >-
+    Toutes les transformations ne vont pas jusqu'au bout. Mélangez de l'acide éthanoïque et de l'éthanol : au bout de plusieurs jours, il reste des réactifs à côté de l'ester, et plus rien ne bouge. Le système est à l'équilibre : la réaction directe et la réaction inverse se compensent. Pour décrire cet état, on calcule le quotient de réaction, un rapport de concentrations qui grandit à mesure que la transformation avance ; il s'arrête à une valeur qui ne dépend que de la réaction et de la température, la constante d'équilibre. Comparer le quotient à la constante, c'est savoir dans quel sens le système va évoluer, et le taux d'avancement final dit à quelle fraction de la transformation totale il s'est arrêté.
+  en: >-
+    Not every transformation goes to completion. Mix ethanoic acid and ethanol: after several days, reactants remain beside the ester, and nothing moves any more. The system is at equilibrium: the forward and the reverse reactions balance each other. To describe that state, one computes the reaction quotient, a ratio of concentrations that grows as the transformation proceeds; it stops at a value that depends only on the reaction and on the temperature, the equilibrium constant. Comparing the quotient with the constant tells in which direction the system will evolve, and the final rate says at which fraction of the complete transformation it stopped.
+aliases:
+  fr: ["quotient de réaction", "constante d'équilibre", "taux d'avancement final", "transformation non totale", "équilibre chimique", "sens d'évolution spontanée"]
+  en: ["reaction quotient", "equilibrium constant", "final rate of the transformation", "incomplete transformation", "chemical equilibrium", "spontaneous direction of evolution"]
+description:
+  fr: |
+    Une transformation est **totale** lorsque le réactif limitant disparaît entièrement, $x_f = x_{\max}$ ; elle est **non totale**, ou **limitée**, lorsqu'elle s'arrête avant, réactifs et produits coexistant dans un **état d'équilibre**. À l'échelle macroscopique plus rien ne change ; à l'échelle microscopique, la réaction directe et la réaction inverse se poursuivent à la même vitesse : l'équilibre est **dynamique**. Pour décrire l'état d'un système en solution aqueuse, on écrit son **quotient de réaction** : pour l'équation $a\,\mathrm{A} + b\,\mathrm{B} = c\,\mathrm{C} + d\,\mathrm{D}$, $Q_r = \dfrac{[\mathrm{C}]^c\,[\mathrm{D}]^d}{[\mathrm{A}]^a\,[\mathrm{B}]^b}$, les concentrations étant divisées par $c^\circ = 1\ \mathrm{mol/L}$, si bien que $Q_r$ est un nombre sans unité. N'y figurent ni les solides, ni le solvant : leur « concentration » ne varie pas. À l'équilibre, le quotient prend une valeur qui ne dépend que de la réaction et de la température : la **constante d'équilibre** $K$, telle que $Q_{r,\text{éq}} = K$. Le **taux d'avancement final** $\tau = \dfrac{x_f}{x_{\max}}$ mesure, entre $0$ et $1$, la fraction de la transformation totale réellement effectuée.
+
+    Déterminer l'état final, c'est donc résoudre $Q_r(x_f) = K$. Exemple : on mélange $1{,}0\ \mathrm{mol}$ d'acide éthanoïque et $1{,}0\ \mathrm{mol}$ d'éthanol dans $V = 1{,}0\ \mathrm{L}$, pour l'estérification $\mathrm{CH_3COOH} + \mathrm{C_2H_5OH} = \mathrm{CH_3COOC_2H_5} + \mathrm{H_2O}$, de constante $K = 4{,}0$. Le tableau d'avancement donne $[\mathrm{acide}] = [\mathrm{alcool}] = \dfrac{1{,}0-x}{V}$ et $[\mathrm{ester}] = [\mathrm{eau}] = \dfrac{x}{V}$, d'où $Q_r = \dfrac{x^2}{(1{,}0-x)^2}$ — le volume se simplifie ici, car il y a autant de produits que de réactifs. L'équation $\dfrac{x_f^2}{(1{,}0-x_f)^2} = 4{,}0$ donne $\dfrac{x_f}{1{,}0-x_f} = 2{,}0$, soit $x_f = 0{,}67\ \mathrm{mol}$ ; comme $x_{\max} = 1{,}0\ \mathrm{mol}$, $\tau = 67\ \%$. Avec $3{,}0\ \mathrm{mol}$ d'alcool au lieu de $1{,}0$, le même calcul donne $x_f = 0{,}90\ \mathrm{mol}$ et $\tau = 90\ \%$ : l'excès d'un réactif déplace l'état final, sans changer $K$.
+
+    La comparaison de $Q_{r,i}$, calculé dans l'état initial, avec $K$ donne le **sens d'évolution spontanée** : si $Q_{r,i} < K$, le système évolue dans le **sens direct**, de la gauche vers la droite de l'équation ; si $Q_{r,i} > K$, dans le **sens inverse** ; s'ils sont égaux, il n'évolue pas. C'est ce critère qui prévoit quel métal attaque quelle solution, quel sens prend une pile, ou si un précipité se forme. Une grande constante, $K > 10^4$, signale une transformation quasi totale ; une petite, $K < 10^{-4}$, une transformation qui n'a pratiquement pas lieu. Trois pièges : $K$ ne dépend que de la température, jamais des quantités initiales, alors que $\tau$ dépend des deux ; un $\tau$ faible ne veut pas dire une réaction lente, car la constante d'équilibre ne dit **rien** de la durée — c'est la cinétique qui s'en charge, et les deux questions sont indépendantes ; enfin, l'expression de $Q_r$ suit les nombres stœchiométriques en exposants, qu'il ne faut pas confondre avec des facteurs.
+  en: |
+    A transformation is **complete** when the limiting reactant disappears entirely, $x_f = x_{\max}$; it is **incomplete**, or **limited**, when it stops before that, reactants and products coexisting in a **state of equilibrium**. On the macroscopic scale nothing changes any more; on the microscopic scale, the forward and the reverse reactions carry on at the same rate: the equilibrium is **dynamic**. To describe the state of a system in aqueous solution, one writes its **reaction quotient**: for the equation $a\,\mathrm{A} + b\,\mathrm{B} = c\,\mathrm{C} + d\,\mathrm{D}$, $Q_r = \dfrac{[\mathrm{C}]^c\,[\mathrm{D}]^d}{[\mathrm{A}]^a\,[\mathrm{B}]^b}$, the concentrations being divided by $c^\circ = 1\ \mathrm{mol/L}$, so that $Q_r$ is a number without a unit. Neither solids nor the solvent appear in it: their "concentration" does not vary. At equilibrium, the quotient takes a value that depends only on the reaction and on the temperature: the **equilibrium constant** $K$, such that $Q_{r,\text{eq}} = K$. The **final rate of the transformation** $\tau = \dfrac{x_f}{x_{\max}}$ measures, between $0$ and $1$, the fraction of the complete transformation actually carried out.
+
+    Determining the final state therefore means solving $Q_r(x_f) = K$. Example: $1.0\ \mathrm{mol}$ of ethanoic acid and $1.0\ \mathrm{mol}$ of ethanol are mixed in $V = 1.0\ \mathrm{L}$, for the esterification $\mathrm{CH_3COOH} + \mathrm{C_2H_5OH} = \mathrm{CH_3COOC_2H_5} + \mathrm{H_2O}$, of constant $K = 4.0$. The extent table gives $[\mathrm{acid}] = [\mathrm{alcohol}] = \dfrac{1.0-x}{V}$ and $[\mathrm{ester}] = [\mathrm{water}] = \dfrac{x}{V}$, hence $Q_r = \dfrac{x^2}{(1.0-x)^2}$ — the volume cancels here, since there are as many products as reactants. The equation $\dfrac{x_f^2}{(1.0-x_f)^2} = 4.0$ gives $\dfrac{x_f}{1.0-x_f} = 2.0$, that is $x_f = 0.67\ \mathrm{mol}$; since $x_{\max} = 1.0\ \mathrm{mol}$, $\tau = 67\ \%$. With $3.0\ \mathrm{mol}$ of alcohol instead of $1.0$, the same computation gives $x_f = 0.90\ \mathrm{mol}$ and $\tau = 90\ \%$: an excess of one reactant shifts the final state, without changing $K$.
+
+    Comparing $Q_{r,i}$, computed in the initial state, with $K$ gives the **spontaneous direction of evolution**: if $Q_{r,i} < K$, the system evolves in the **forward direction**, from the left to the right of the equation; if $Q_{r,i} > K$, in the **reverse direction**; if they are equal, it does not evolve. It is this criterion that predicts which metal attacks which solution, which way a battery runs, or whether a precipitate forms. A large constant, $K > 10^4$, signals an all but complete transformation; a small one, $K < 10^{-4}$, a transformation that hardly takes place at all. Three traps: $K$ depends only on the temperature, never on the initial amounts, whereas $\tau$ depends on both; a small $\tau$ does not mean a slow reaction, for the equilibrium constant says **nothing** about duration — kinetics takes care of that, and the two questions are independent; finally, the expression of $Q_r$ carries the stoichiometric numbers as exponents, which must not be mistaken for factors.
+model:
+  assumptions:
+    fr:
+      - "La transformation est décrite par une seule équation de réaction, renversable, à laquelle s'applique le tableau d'avancement."
+      - "Le système est fermé, à volume et à température constants, et il a eu le temps d'atteindre son état final."
+      - "Le quotient de réaction se calcule avec les concentrations rapportées à c° = 1 mol/L ; solides et solvant n'y figurent pas."
+      - "À l'équilibre le quotient de réaction est égal à la constante K, qui ne dépend que de la réaction et de la température."
+    en:
+      - "The transformation is described by a single, reversible reaction equation, to which the extent table applies."
+      - "The system is closed, at constant volume and temperature, and has had the time to reach its final state."
+      - "The reaction quotient is computed with the concentrations referred to c° = 1 mol/L; solids and the solvent do not appear in it."
+      - "At equilibrium the reaction quotient equals the constant K, which depends only on the reaction and on the temperature."
+  limits:
+    fr:
+      - "Le modèle donne l'état final, jamais la durée nécessaire pour l'atteindre : un système peut rester des années loin de son équilibre."
+      - "Il suppose les solutions diluées : au-delà de 0,1 mol/L environ, il faudrait remplacer les concentrations par des activités."
+      - "K dépend de la température, et le modèle du lycée ne dit pas comment (loi de van 't Hoff, en études supérieures)."
+      - "Un système ouvert, où un produit s'échappe, n'atteint jamais l'équilibre : la transformation y devient totale."
+    en:
+      - "The model gives the final state, never the time needed to reach it: a system can stay far from its equilibrium for years."
+      - "It assumes dilute solutions: beyond about 0.1 mol/L, concentrations would have to be replaced by activities."
+      - "K depends on the temperature, and the school model does not say how (van 't Hoff's law, in higher education)."
+      - "An open system, from which a product escapes, never reaches equilibrium: the transformation becomes complete there."
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "distinguer une transformation totale d'une transformation limitée par un équilibre, et décrire l'équilibre comme un état dynamique"
+        - "écrire l'expression du quotient de réaction d'un système en solution aqueuse, sans y faire figurer ni le solvant ni les solides"
+        - "déterminer l'état final d'un système par la condition Qr = K, et calculer le taux d'avancement final τ = xf / xmax"
+        - "prévoir le sens d'évolution spontanée d'un système en comparant le quotient de réaction initial à la constante d'équilibre"
+        - "interpréter l'influence de l'état initial — excès d'un réactif, dilution — sur le taux d'avancement final, à constante d'équilibre inchangée"
+      en:
+        - "distinguish a complete transformation from one limited by an equilibrium, and describe the equilibrium as a dynamic state"
+        - "write the expression of the reaction quotient of a system in aqueous solution, without the solvent or the solids"
+        - "determine the final state of a system by the condition Qr = K, and compute the final rate of the transformation τ = xf / xmax"
+        - "predict the spontaneous direction of evolution of a system by comparing the initial reaction quotient with the equilibrium constant"
+        - "interpret the influence of the initial state — an excess of one reactant, a dilution — on the final rate, at an unchanged equilibrium constant"
+sources: []

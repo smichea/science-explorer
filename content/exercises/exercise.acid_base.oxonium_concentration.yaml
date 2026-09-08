@@ -1,0 +1,53 @@
+# Leçon acide-base — remonter du pH mesuré à la concentration en ions oxonium, puis au taux d'avancement final (réponse numérique en mol/L)
+id: exercise.acid_base.oxonium_concentration
+type: numeric
+nodeId: model.acid_base
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une solution d'acide éthanoïque de concentration en soluté apporté $c = 0{,}10\ \mathrm{mol/L}$ a un pH mesuré de $2{,}9$ à $25\ \mathrm{^\circ C}$.
+
+    Donnez la concentration en ions oxonium de cette solution, en $\mathrm{mol/L}$.
+  en: |-
+    An ethanoic acid solution of nominal concentration $c = 0.10\ \mathrm{mol/L}$ has a measured pH of $2.9$ at $25\ \mathrm{^\circ C}$.
+
+    Give the oxonium ion concentration of this solution, in $\mathrm{mol/L}$.
+numeric:
+  value: 0.00126
+  unit: "mol/L"
+  tolerance: { kind: relative, value: 0.08 }
+  inputLabel: { fr: "[H₃O⁺]", en: "[H₃O⁺]" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La définition $\mathrm{pH} = -\log\dfrac{[\mathrm{H_3O^+}]}{c^\circ}$ se renverse : la fonction réciproque du logarithme décimal est la puissance de dix.
+      en: |-
+        The definition $\mathrm{pH} = -\log\dfrac{[\mathrm{H_3O^+}]}{c^\circ}$ can be reversed: the inverse function of the decimal logarithm is the power of ten.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Écrivez $[\mathrm{H_3O^+}] = c^\circ\,10^{-\mathrm{pH}}$ avec $c^\circ = 1\ \mathrm{mol/L}$, puis calculez $10^{-2{,}9}$ à la calculatrice — attention, c'est bien $\log$, le logarithme décimal, et non $\ln$.
+      en: |-
+        Write $[\mathrm{H_3O^+}] = c^\circ\,10^{-\mathrm{pH}}$ with $c^\circ = 1\ \mathrm{mol/L}$, then compute $10^{-2.9}$ on the calculator — careful, it is indeed $\log$, the decimal logarithm, not $\ln$.
+solution:
+  fr: |-
+    La définition du pH se renverse en
+    $$[\mathrm{H_3O^+}] = c^\circ\,10^{-\mathrm{pH}} = 1 \times 10^{-2{,}9} = 1{,}3\times10^{-3}\ \mathrm{mol/L}.$$
+
+    La réaction de l'acide avec l'eau, $\mathrm{CH_3COOH} + \mathrm{H_2O} = \mathrm{CH_3COO^-} + \mathrm{H_3O^+}$, produit autant d'ions oxonium que d'ions éthanoate. L'avancement volumique final vaut donc $1{,}3\times10^{-3}\ \mathrm{mol/L}$, alors qu'une réaction totale aurait consommé tout l'acide, soit $0{,}10\ \mathrm{mol/L}$ : le taux d'avancement final vaut
+    $$\tau = \frac{1{,}3\times10^{-3}}{0{,}10} = 1{,}3\times10^{-2} = 1{,}3\ \%.$$
+
+    **Interprétation.** Un acide fort aurait imposé $[\mathrm{H_3O^+}] = c = 0{,}10\ \mathrm{mol/L}$, donc un pH de $1{,}0$. Le pH mesuré est presque deux unités plus haut, c'est-à-dire une concentration en ions oxonium quatre-vingts fois plus faible : l'acide éthanoïque est un **acide faible**, dont un peu plus d'un pour cent seulement des molécules ont cédé leur proton. Les $98{,}7\ \%$ restants sont toujours là, sous forme $\mathrm{CH_3COOH}$ : c'est bien ce que dit le diagramme de prédominance, puisque $\mathrm{pH} = 2{,}9$ est inférieur au $\mathrm{p}K_A = 4{,}8$ du couple.
+  en: |-
+    The definition of the pH reverses into
+    $$[\mathrm{H_3O^+}] = c^\circ\,10^{-\mathrm{pH}} = 1 \times 10^{-2.9} = 1.3\times10^{-3}\ \mathrm{mol/L}.$$
+
+    The reaction of the acid with water, $\mathrm{CH_3COOH} + \mathrm{H_2O} = \mathrm{CH_3COO^-} + \mathrm{H_3O^+}$, produces as many oxonium ions as ethanoate ions. The final volumic extent is therefore $1.3\times10^{-3}\ \mathrm{mol/L}$, whereas a complete reaction would have consumed all the acid, that is $0.10\ \mathrm{mol/L}$: the final rate of the transformation is
+    $$\tau = \frac{1.3\times10^{-3}}{0.10} = 1.3\times10^{-2} = 1.3\ \%.$$
+
+    **Interpretation.** A strong acid would have imposed $[\mathrm{H_3O^+}] = c = 0.10\ \mathrm{mol/L}$, hence a pH of $1.0$. The measured pH is almost two units higher, that is an oxonium ion concentration eighty times smaller: ethanoic acid is a **weak acid**, only a little over one percent of whose molecules have given their proton away. The remaining $98.7\ \%$ are still there, as $\mathrm{CH_3COOH}$: that is exactly what the predominance diagram says, since $\mathrm{pH} = 2.9$ is below the $\mathrm{p}K_A = 4.8$ of the couple.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 3, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 3, transfer: 1, autonomy: 3 }

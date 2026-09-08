@@ -1,0 +1,64 @@
+id: law.first_principle
+type: law
+world: world.physics
+region: bridge.energy
+importance: 3
+tags: [lycee]
+title: { fr: "Premier principe, bilans d'énergie, capacité thermique", en: "First principle, energy balances, heat capacity" }
+shortPurpose:
+  fr: "Compter l'énergie d'un système : ce qu'il en contient, ce qui entre par travail et par transfert thermique, et ce qu'il en garde."
+  en: "Count the energy of a system: what it holds, what enters as work and as heat, and what it keeps."
+overview:
+  fr: >-
+    Choisissez un système, une casserole d'eau par exemple, et faites-en la comptabilité. Tout ce qui entre par la plaque ou par le mélangeur augmente son énergie interne, tout ce qui s'échappe par les parois la diminue, et rien ne se perd en route : c'est le premier principe de la thermodynamique. Pour un liquide ou un solide, cette énergie interne se lit sur le thermomètre, à travers la capacité thermique : il faut environ quatre mille deux cents joules pour élever d'un degré un kilogramme d'eau. Toute la thermique domestique, du chauffage à l'isolation, tient dans ce bilan.
+  en: >-
+    Choose a system, a pan of water for example, and keep its accounts. Everything that enters through the hotplate or the stirrer raises its internal energy, everything that escapes through the walls lowers it, and nothing is lost on the way: this is the first principle of thermodynamics. For a liquid or a solid, that internal energy is read on the thermometer, through the heat capacity: about four thousand two hundred joules are needed to raise one kilogram of water by one degree. All domestic thermal engineering, from heating to insulation, is contained in this balance.
+aliases:
+  fr: ["premier principe de la thermodynamique", "énergie interne", "capacité thermique", "capacité thermique massique", "transfert thermique", "bilan d'énergie"]
+  en: ["first law of thermodynamics", "internal energy", "heat capacity", "specific heat capacity", "heat transfer", "energy balance"]
+description:
+  fr: |
+    Un **système thermodynamique** est une portion de matière que l'on choisit d'étudier et que l'on sépare du reste par une frontière. Son **énergie interne** $U$, en joules, est la somme de toutes les énergies microscopiques qu'il contient : agitation thermique des molécules et interactions entre elles. Le **premier principe** énonce que, pour un système fermé passant d'un état à un autre,
+    $$\Delta U = W + Q,$$
+    où $W$ est le travail reçu et $Q$ le **transfert thermique** reçu, comptés positivement quand ils entrent. C'est une comptabilité exacte : l'énergie ne se crée ni ne disparaît, elle change de forme et de propriétaire. La variation $\Delta U$ ne dépend que des états de départ et d'arrivée, alors que $W$ et $Q$ dépendent, eux, du chemin suivi. Pour un solide ou un liquide **incompressible**, l'énergie interne ne dépend pratiquement que de la température, et sa variation s'écrit
+    $$\Delta U = C\,\Delta\theta = m\,c\,\Delta\theta,$$
+    avec la **capacité thermique** $C$ du corps, en $\mathrm{J \cdot K^{-1}}$, et la **capacité thermique massique** $c$, en $\mathrm{J \cdot kg^{-1} \cdot K^{-1}}$ : $c = 4185$ pour l'eau liquide, $900$ pour l'aluminium, $385$ pour le cuivre. Comme un écart de température vaut le même nombre en kelvins et en degrés Celsius, $\Delta\theta$ se met indifféremment dans l'une ou l'autre unité.
+
+    Chauffons $1{,}5\ \mathrm{L}$ d'eau de $20$ à $100\ ^\circ\mathrm{C}$ : il faut $\Delta U = 1{,}5 \times 4185 \times 80 = 5{,}0 \times 10^{5}\ \mathrm{J}$, un demi-mégajoule. Une bouilloire de $2\,000\ \mathrm{W}$ fournit cette énergie en $t = \dfrac{5{,}0 \times 10^{5}}{2\,000} = 251\ \mathrm{s}$, soit quatre minutes et dix secondes si rien ne se perd ; en pratique elle met une minute de plus, ce qui donne son rendement. Le même bilan résout les mélanges : $200\ \mathrm{g}$ d'eau à $80\ ^\circ\mathrm{C}$ versés sur $300\ \mathrm{g}$ à $20\ ^\circ\mathrm{C}$ dans un récipient calorifugé donnent, l'énergie perdue par l'une étant gagnée par l'autre, une température finale de $44\ ^\circ\mathrm{C}$. Et lors d'un **changement d'état**, le thermomètre s'arrête sans que l'énergie cesse d'entrer : fondre $100\ \mathrm{g}$ de glace à $0\ ^\circ\mathrm{C}$ demande $m\,L_f = 0{,}100 \times 3{,}34 \times 10^{5} = 3{,}34 \times 10^{4}\ \mathrm{J}$, entièrement dépensés à casser les liaisons du solide, à température constante.
+
+    Le premier principe est l'outil de tout **audit énergétique** : dimensionner un chauffage, comparer une isolation, calculer le rendement d'un moteur ou d'un panneau solaire, expliquer pourquoi un ordinateur chauffe exactement de la puissance électrique qu'il consomme. Pièges classiques : confondre le transfert thermique $Q$, en joules, avec la température, en degrés ; confondre une énergie, en joules, et une puissance, en watts, alors que $E = P\,\Delta t$ ; oublier la masse dans $m\,c\,\Delta\theta$ ou prendre le volume en litres pour une masse en kilogrammes sans le dire ; croire qu'un corps « contient de la chaleur », alors qu'il contient de l'énergie interne et que la chaleur n'existe que comme transfert ; se tromper de signe en oubliant que $Q$ est compté positivement quand il **entre** ; et appliquer $\Delta U = m c \Delta \theta$ pendant un changement d'état, où la température ne bouge pas.
+  en: |
+    A **thermodynamic system** is a portion of matter one chooses to study and separates from the rest by a boundary. Its **internal energy** $U$, in joules, is the sum of all the microscopic energies it holds: thermal agitation of the molecules and interactions between them. The **first principle** states that, for a closed system going from one state to another,
+    $$\Delta U = W + Q,$$
+    where $W$ is the work received and $Q$ the **heat transfer** received, both counted positive when they enter. It is exact bookkeeping: energy is neither created nor destroyed, it changes form and owner. The change $\Delta U$ depends only on the starting and finishing states, whereas $W$ and $Q$ do depend on the path followed. For an **incompressible** solid or liquid, the internal energy depends practically only on the temperature, and its change is written
+    $$\Delta U = C\,\Delta\theta = m\,c\,\Delta\theta,$$
+    with the **heat capacity** $C$ of the body, in $\mathrm{J \cdot K^{-1}}$, and the **specific heat capacity** $c$, in $\mathrm{J \cdot kg^{-1} \cdot K^{-1}}$: $c = 4185$ for liquid water, $900$ for aluminium, $385$ for copper. Since a temperature difference is the same number in kelvins and in degrees Celsius, $\Delta\theta$ may be put in either unit.
+
+    Let us heat $1.5\ \mathrm{L}$ of water from $20$ to $100\ ^\circ\mathrm{C}$: it takes $\Delta U = 1.5 \times 4185 \times 80 = 5.0 \times 10^{5}\ \mathrm{J}$, half a megajoule. A $2{,}000\ \mathrm{W}$ kettle supplies that energy in $t = \dfrac{5.0 \times 10^{5}}{2{,}000} = 251\ \mathrm{s}$, four minutes and ten seconds if nothing is lost; in practice it takes a minute more, which gives its efficiency. The same balance settles mixtures: $200\ \mathrm{g}$ of water at $80\ ^\circ\mathrm{C}$ poured onto $300\ \mathrm{g}$ at $20\ ^\circ\mathrm{C}$ in an insulated vessel give, the energy lost by one being gained by the other, a final temperature of $44\ ^\circ\mathrm{C}$. And during a **change of state**, the thermometer stops without energy ceasing to enter: melting $100\ \mathrm{g}$ of ice at $0\ ^\circ\mathrm{C}$ demands $m\,L_f = 0.100 \times 3.34 \times 10^{5} = 3.34 \times 10^{4}\ \mathrm{J}$, entirely spent breaking the bonds of the solid, at constant temperature.
+
+    The first principle is the tool of every **energy audit**: sizing a heating system, comparing an insulation, computing the efficiency of an engine or of a solar panel, explaining why a computer heats up by exactly the electrical power it consumes. Classic traps: confusing the heat transfer $Q$, in joules, with the temperature, in degrees; confusing an energy, in joules, with a power, in watts, when $E = P\,\Delta t$; forgetting the mass in $m\,c\,\Delta\theta$ or silently taking a volume in litres for a mass in kilograms; believing that a body "contains heat", when it holds internal energy and heat only exists as a transfer; getting the sign wrong by forgetting that $Q$ is counted positive when it **enters**; and applying $\Delta U = m c \Delta \theta$ during a change of state, where the temperature does not move.
+law:
+  statement:
+    fr: "Pour un système fermé évoluant entre deux états, la variation de son énergie interne est égale à la somme du travail et du transfert thermique reçus : $\\Delta U = W + Q$, comptés positivement lorsqu'ils entrent dans le système. Pour un solide ou un liquide incompressible, $\\Delta U = C\\,\\Delta\\theta = m\\,c\\,\\Delta\\theta$."
+    en: "For a closed system evolving between two states, the change of its internal energy equals the sum of the work and of the heat transfer received: $\\Delta U = W + Q$, both counted positive when they enter the system. For an incompressible solid or liquid, $\\Delta U = C\\,\\Delta\\theta = m\\,c\\,\\Delta\\theta$."
+  validity:
+    fr: "Le principe vaut pour tout système fermé, sans exception connue ; l'écriture $\\Delta U = m\\,c\\,\\Delta\\theta$ suppose en revanche un corps incompressible, sans changement d'état ni réaction chimique, et une capacité thermique massique constante sur l'intervalle de température considéré. Le système doit être défini et sa frontière fixée avant tout calcul."
+    en: "The principle holds for every closed system, with no known exception; the writing $\\Delta U = m\\,c\\,\\Delta\\theta$ assumes, on the other hand, an incompressible body, with no change of state and no chemical reaction, and a specific heat capacity constant over the temperature range considered. The system must be defined and its boundary fixed before any computation."
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "définir un système thermodynamique, sa frontière et son énergie interne"
+        - "énoncer le premier principe $\\Delta U = W + Q$ et respecter la convention de signe des transferts reçus"
+        - "exploiter $\\Delta U = C\\,\\Delta\\theta = m\\,c\\,\\Delta\\theta$ pour un solide ou un liquide incompressible"
+        - "effectuer un bilan d'énergie sur un système : mélange, chauffage, changement d'état"
+        - "relier une énergie et une puissance par $E = P\\,\\Delta t$ et estimer un rendement"
+      en:
+        - "define a thermodynamic system, its boundary and its internal energy"
+        - "state the first principle $\\Delta U = W + Q$ and respect the sign convention of the transfers received"
+        - "use $\\Delta U = C\\,\\Delta\\theta = m\\,c\\,\\Delta\\theta$ for an incompressible solid or liquid"
+        - "carry out an energy balance on a system: mixture, heating, change of state"
+        - "relate an energy and a power by $E = P\\,\\Delta t$ and estimate an efficiency"
+sources: [source.bo.lycee.2019]

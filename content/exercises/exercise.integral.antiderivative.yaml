@@ -1,0 +1,53 @@
+# Calcul intégral en Terminale — primitive s'annulant en 0 d'un polynôme (réponse symbolique)
+id: exercise.integral.antiderivative
+type: symbolic
+nodeId: tool.integral
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Soit $f$ la fonction définie sur $\mathbb{R}$ par $f(x) = 3x^2 + 2x$.
+
+    Donner l'expression de la primitive $F$ de $f$ qui s'annule en $0$ (écrivez les puissances avec `^`, par exemple `x^3`).
+  en: |-
+    Let $f$ be the function defined on $\mathbb{R}$ by $f(x) = 3x^2 + 2x$.
+
+    Give the expression of the antiderivative $F$ of $f$ that vanishes at $0$ (write powers with `^`, for example `x^3`).
+symbolic:
+  variable: x
+  accepted: ["x^3+x^2", "x^2*(x+1)"]
+  display: "F(x) ="
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Une primitive de $x^{n}$ est $\dfrac{x^{n+1}}{n+1}$ : on remonte le tableau des dérivées, terme par terme.
+      en: |-
+        An antiderivative of $x^{n}$ is $\dfrac{x^{n+1}}{n+1}$: one goes back up the table of derivatives, term by term.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Vous obtenez $x^3 + x^2 + C$. La condition $F(0) = 0$ fixe la constante $C$.
+      en: |-
+        You obtain $x^3 + x^2 + C$. The condition $F(0) = 0$ fixes the constant $C$.
+solution:
+  fr: |-
+    Une primitive de $3x^2$ est $x^3$ et une primitive de $2x$ est $x^2$, donc les primitives de $f$ sont les fonctions $x \mapsto x^3 + x^2 + C$, $C$ réel. La condition $F(0) = 0$ donne $C = 0$, d'où $$F(x) = x^3 + x^2.$$
+    On vérifie en dérivant : $F'(x) = 3x^2 + 2x = f(x)$. On peut alors calculer une aire sans rien additionner : $\displaystyle\int_0^2 f(x)\,\mathrm{d}x = F(2) - F(0) = 12$.
+
+    **Interprétation.** Chercher une primitive, c'est remonter le courant de la dérivation : la question n'est plus « à quelle vitesse cela varie-t-il ? » mais « quelle grandeur varie ainsi ? ». Toutes les réponses diffèrent d'une constante, car deux fonctions de même dérivée diffèrent d'une constante ; une seule condition — ici $F(0) = 0$, ailleurs une position initiale ou une charge initiale — suffit à choisir la bonne. C'est exactement le rôle d'une condition initiale en physique.
+  en: |-
+    An antiderivative of $3x^2$ is $x^3$ and an antiderivative of $2x$ is $x^2$, so the antiderivatives of $f$ are the functions $x \mapsto x^3 + x^2 + C$, $C$ real. The condition $F(0) = 0$ gives $C = 0$, hence $$F(x) = x^3 + x^2.$$
+    Check by differentiating: $F'(x) = 3x^2 + 2x = f(x)$. One may then compute an area without adding anything: $\displaystyle\int_0^2 f(x)\,\mathrm{d}x = F(2) - F(0) = 12$.
+
+    **Interpretation.** Looking for an antiderivative means going back up the stream of differentiation: the question is no longer "how fast does this vary?" but "which quantity varies like this?". All the answers differ by a constant, since two functions with the same derivative differ by a constant; a single condition — here $F(0) = 0$, elsewhere an initial position or an initial charge — is enough to choose the right one. This is exactly the role of an initial condition in physics.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 3
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 2
+  autonomy: 3

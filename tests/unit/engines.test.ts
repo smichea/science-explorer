@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { FirstOrderConfigSchema, Motion2dConfigSchema } from '../../src/lib/content-schema';
+import {
+  CentralForceConfigSchema,
+  FirstOrderConfigSchema,
+  Motion2dConfigSchema,
+} from '../../src/lib/content-schema';
+import * as cforce from '../../src/lib/domain/simulation/centralForce';
 import * as fo from '../../src/lib/domain/simulation/firstOrder';
 import * as m2 from '../../src/lib/domain/simulation/motion2d';
 import { loadPackage } from './helpers';
@@ -123,6 +128,9 @@ describe('first_order', () => {
       if (sim.engine === 'motion_2d') {
         const config = Motion2dConfigSchema.parse(sim.config);
         expect(m2.duration(config)).toBeGreaterThan(0);
+      } else if (sim.engine === 'central_force') {
+        const config = CentralForceConfigSchema.parse(sim.config);
+        expect(cforce.duration(config)).toBeGreaterThan(0);
       } else {
         const config = FirstOrderConfigSchema.parse(sim.config);
         expect(fo.valueAt(config, config.duration)).toBeDefined();
@@ -130,3 +138,120 @@ describe('first_order', () => {
     }
   });
 });
+
+describe('first_order as an energy balance', () => {
+  it('reads the time constant and the asymptote from the capacity, the exchange and the power', () => {
+    // A kilogram of water (C = 4180 J/K) losing heat at 8 W/K towards a room at 20 °C, with a
+    // 100 W heater inside it: τ = C/hS and θ∞ = θ_ext + P/hS, both written by the balance itself.
+    const config = FirstOrderConfigSchema.parse({
+      scene: 'newton_cooling',
+      target: 20,
+      initial: 80,
+      tau: 1,
+      duration: 3000,
+      capacity: 4180,
+      exchange: 8,
+      power: 100,
+    });
+    expect(fo.timeConstant(config)).toBeCloseTo(4180 / 8, 9);
+    expect(fo.asymptote(config)).toBeCloseTo(20 + 100 / 8, 9);
+    expect(fo.valueAt(config, 1e5)).toBeCloseTo(32.5, 6);
+    const now = fo.observe(config, fo.stateAt(config, 500));
+    expect(now.energy).toBeCloseTo(4180 * (now.q - 80), 6);
+    expect(now.flux).toBeCloseTo(4180 * now.rate, 6);
+    // The body is still above its asymptote, so it is losing energy.
+    expect(now.flux).toBeLessThan(0);
+  });
+
+  it('leaves a configuration without a balance exactly as it was', () => {
+    const config = FirstOrderConfigSchema.parse({ scene: 'rc_charging', target: 5, tau: 2 });
+    expect(fo.timeConstant(config)).toBe(2);
+    expect(fo.asymptote(config)).toBe(5);
+    expect(fo.observe(config, fo.stateAt(config, 1)).energy).toBe(0);
+  });
+});
+
+describe('central_force', () => {
+  const earth = { mu: 3.986e14, r0: 7e6, centralRadius: 0, dt: 0.5, duration: 40000 };
+
+  it('keeps a circular orbit circular, and closes it after one period', () => {
+    const config = CentralForceConfigSchema.parse({
+      scene: 'orbit',
+      ...earth,
+      v0: cforce.circularSpeed(3.986e14, 7e6),
+    });
+    const elements = cforce.orbitElements(config);
+    expect(elements.eccentricity).toBeCloseTo(0, 6);
+    expect(elements.semiMajorAxis).toBeCloseTo(7e6, 0);
+    // The radius stays put all the way round: that is what circular means.
+    for (const fraction of [0.25, 0.5, 0.75, 1]) {
+      const state = cforce.stateAt(config, elements.period * fraction);
+      expect(Math.hypot(state.x, state.y)).toBeCloseTo(7e6, -1);
+    }
+    const closed = cforce.stateAt(config, elements.period);
+    expect(closed.x).toBeCloseTo(7e6, -2);
+    expect(closed.y).toBeCloseTo(0, -2);
+  });
+
+  it('sweeps equal areas in equal times, however fast the body runs', () => {
+    const config = CentralForceConfigSchema.parse({
+      scene: 'orbit',
+      ...earth,
+      v0: 1.15 * cforce.circularSpeed(3.986e14, 7e6),
+    });
+    expect(cforce.orbitElements(config).eccentricity).toBeGreaterThan(0.2);
+    const period = cforce.orbitElements(config).period;
+    const readings = [0, 0.25, 0.5, 0.75].map((k) =>
+      cforce.observe(config, cforce.stateAt(config, k * period))
+    );
+    const first = readings[0];
+    // The body runs half again as fast at the perigee as at the apogee...
+    expect(Math.max(...readings.map((o) => o.v))).toBeGreaterThan(
+      1.5 * Math.min(...readings.map((o) => o.v))
+    );
+    // ...but the areal speed does not move: Kepler's second law.
+    for (const reading of readings) expect(reading.arealSpeed / first.arealSpeed).toBeCloseTo(1, 6);
+    // The energy of a bound orbit is negative and conserved.
+    expect(first.total).toBeLessThan(0);
+    for (const reading of readings) expect(reading.total / first.total).toBeCloseTo(1, 5);
+  });
+
+  it('gives the same T² / a³ to every orbit around the same centre', () => {
+    const ratios = [7e6, 1.2e7, 4.2e7].map((r) => {
+      const config = CentralForceConfigSchema.parse({
+        scene: 'orbit',
+        ...earth,
+        r0: r,
+        v0: cforce.circularSpeed(3.986e14, r),
+      });
+      return cforce.orbitElements(config).keplerRatio;
+    });
+    for (const ratio of ratios) expect(ratio).toBeCloseTo((4 * Math.PI ** 2) / 3.986e14, 18);
+    // The geostationary radius comes out of that law: a period of one sidereal day.
+    const geo = CentralForceConfigSchema.parse({
+      scene: 'orbit',
+      ...earth,
+      r0: 4.2164e7,
+      v0: cforce.circularSpeed(3.986e14, 4.2164e7),
+    });
+    expect(cforce.orbitElements(geo).period).toBeCloseTo(86164, -2);
+  });
+
+  it('lets a body escape when it is launched beyond the escape speed', () => {
+    const config = CentralForceConfigSchema.parse({
+      scene: 'orbit',
+      ...earth,
+      v0: Math.sqrt((2 * 3.986e14) / 7e6) * 1.05,
+    });
+    const elements = cforce.orbitElements(config);
+    expect(elements.bound).toBe(false);
+    expect(Number.isNaN(elements.period)).toBe(true);
+    expect(cource(config)).toBeGreaterThan(7e6);
+  });
+});
+
+/** Distance reached after the whole authored duration: an escaping body never comes back. */
+function cource(config: Parameters<typeof cforce.stateAt>[0]): number {
+  const state = cforce.stateAt(config, config.duration);
+  return Math.hypot(state.x, state.y);
+}

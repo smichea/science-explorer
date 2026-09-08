@@ -1,0 +1,56 @@
+id: tool.integral
+type: mathematical_tool
+world: world.mathematics
+region: region.math.functions_analysis
+importance: 3
+backpack: true
+tags: [lycee]
+title: { fr: "Calcul intégral : aire, primitive, intégration par parties", en: "Integral calculus: area, antiderivative, integration by parts" }
+shortPurpose:
+  fr: "Additionner une infinité de contributions infiniment petites : une aire sous une courbe, une distance à partir d'une vitesse, une charge à partir d'un courant."
+  en: "Add up infinitely many infinitely small contributions: an area under a curve, a distance from a speed, a charge from a current."
+overview:
+  fr: >-
+    L'intégrale est l'opération inverse de la dérivée. Là où la dérivée découpe une grandeur pour en lire la vitesse, l'intégrale recolle les morceaux : elle additionne une infinité de tranches infiniment fines et rend l'aire comprise entre une courbe et l'axe. La distance parcourue est l'intégrale de la vitesse, la charge d'un condensateur l'intégrale du courant, le travail d'une force l'intégrale de cette force le long du chemin. Et le miracle du théorème fondamental est qu'on la calcule sans additionner : il suffit de trouver une primitive.
+  en: >-
+    The integral is the operation inverse to the derivative. Where the derivative cuts a quantity up to read its rate, the integral glues the pieces back together: it adds up infinitely many infinitely thin slices and returns the area between a curve and the axis. The distance travelled is the integral of the speed, the charge of a capacitor the integral of the current, the work of a force the integral of that force along the path. And the miracle of the fundamental theorem is that it is computed without adding anything: it is enough to find an antiderivative.
+aliases:
+  fr: ["intégrale", "primitive", "aire sous la courbe", "somme de Riemann", "théorème fondamental de l'analyse", "intégration par parties", "valeur moyenne"]
+  en: ["integral", "antiderivative", "area under the curve", "Riemann sum", "fundamental theorem of calculus", "integration by parts", "mean value"]
+description:
+  fr: |
+    Pour une fonction $f$ continue et positive sur $[a\,;\,b]$, l'**intégrale** $\displaystyle\int_a^b f(x)\,\mathrm{d}x$ est l'**aire**, en unités d'aire, du domaine compris entre la courbe, l'axe des abscisses et les droites $x = a$ et $x = b$. On l'approche par des **sommes de Riemann** : on découpe $[a\,;\,b]$ en $n$ tranches de largeur $\frac{b-a}{n}$ et l'on remplace la courbe par un rectangle sur chaque tranche ; quand $n$ grandit, l'écart entre les rectangles et la courbe s'efface. Sur $[0\,;\,2]$ avec $f(x) = x^2$, quatre rectangles pris à gauche donnent $1{,}75$, huit donnent $2{,}19$, cent donnent $2{,}63$ : la suite s'approche de $\frac83 \approx 2{,}667$. Une **primitive** de $f$ est une fonction $F$ dérivable telle que $F' = f$ ; deux primitives d'une même fonction ne diffèrent que d'une constante.
+
+    Le **théorème fondamental** relie les deux idées : si $f$ est continue sur $[a\,;\,b]$, la fonction $x \mapsto \int_a^x f(t)\,\mathrm{d}t$ est la primitive de $f$ qui s'annule en $a$, et pour toute primitive $F$ de $f$, $\displaystyle\int_a^b f(x)\,\mathrm{d}x = F(b) - F(a)$. Calculer une aire revient donc à chercher une fonction dont la dérivée est connue : $\int_0^2 x^2\,\mathrm{d}x = \left[\frac{x^3}{3}\right]_0^2 = \frac83$, exactement la limite des sommes de Riemann. Les primitives usuelles se lisent à l'envers du tableau des dérivées : $x^{n}$ a pour primitive $\frac{x^{n+1}}{n+1}$, $\frac1x$ a pour primitive $\ln x$ sur $]0\,;\,+\infty[$, $e^{kx}$ a pour primitive $\frac1k e^{kx}$. L'intégrale est **linéaire**, additive sur les intervalles (relation de Chasles), et croissante ; la **valeur moyenne** de $f$ sur $[a\,;\,b]$ vaut $\frac{1}{b-a}\int_a^b f$.
+
+    Quand le produit de deux fonctions résiste, l'**intégration par parties** transforme l'intégrale en une autre, plus simple : de $(uv)' = u'v + uv'$ on tire $\displaystyle\int_a^b u(x)v'(x)\,\mathrm{d}x = \big[u(x)v(x)\big]_a^b - \int_a^b u'(x)v(x)\,\mathrm{d}x$. Ainsi $\int_0^1 x\,e^{x}\,\mathrm{d}x$ avec $u = x$ et $v' = e^{x}$ vaut $\big[x e^{x}\big]_0^1 - \int_0^1 e^{x}\,\mathrm{d}x = e - (e - 1) = 1$. À quoi tout cela sert-il ? La distance parcourue est l'intégrale de la vitesse, la charge d'un condensateur l'intégrale de l'intensité, l'énergie l'intégrale de la puissance, le travail d'une force l'intégrale de sa composante le long du déplacement. Trois pièges : oublier que l'aire sous l'axe compte négativement, si bien que $\int_{-1}^{1} x\,\mathrm{d}x = 0$ alors que l'aire géométrique vaut $1$ ; oublier la constante d'intégration quand on cherche toutes les primitives ; et croire qu'une primitive s'écrit toujours avec les fonctions usuelles, ce qui est faux pour $e^{-x^2}$.
+  en: |
+    For a function $f$ continuous and positive on $[a\,;\,b]$, the **integral** $\displaystyle\int_a^b f(x)\,\mathrm{d}x$ is the **area**, in area units, of the region between the curve, the horizontal axis and the lines $x = a$ and $x = b$. It is approached by **Riemann sums**: one cuts $[a\,;\,b]$ into $n$ slices of width $\frac{b-a}{n}$ and replaces the curve by a rectangle on each slice; as $n$ grows, the gap between the rectangles and the curve fades away. On $[0\,;\,2]$ with $f(x) = x^2$, four rectangles taken on the left give $1.75$, eight give $2.19$, a hundred give $2.63$: the sequence approaches $\frac83 \approx 2.667$. An **antiderivative** of $f$ is a differentiable function $F$ with $F' = f$; two antiderivatives of the same function differ only by a constant.
+
+    The **fundamental theorem** links the two ideas: if $f$ is continuous on $[a\,;\,b]$, the function $x \mapsto \int_a^x f(t)\,\mathrm{d}t$ is the antiderivative of $f$ vanishing at $a$, and for every antiderivative $F$ of $f$, $\displaystyle\int_a^b f(x)\,\mathrm{d}x = F(b) - F(a)$. Computing an area therefore amounts to looking for a function whose derivative is known: $\int_0^2 x^2\,\mathrm{d}x = \left[\frac{x^3}{3}\right]_0^2 = \frac83$, exactly the limit of the Riemann sums. The usual antiderivatives are read backwards from the table of derivatives: $x^{n}$ has antiderivative $\frac{x^{n+1}}{n+1}$, $\frac1x$ has antiderivative $\ln x$ on $]0\,;\,+\infty[$, $e^{kx}$ has antiderivative $\frac1k e^{kx}$. The integral is **linear**, additive over intervals (Chasles' relation), and increasing; the **mean value** of $f$ on $[a\,;\,b]$ is $\frac{1}{b-a}\int_a^b f$.
+
+    When the product of two functions resists, **integration by parts** turns the integral into another, simpler one: from $(uv)' = u'v + uv'$ one gets $\displaystyle\int_a^b u(x)v'(x)\,\mathrm{d}x = \big[u(x)v(x)\big]_a^b - \int_a^b u'(x)v(x)\,\mathrm{d}x$. Thus $\int_0^1 x\,e^{x}\,\mathrm{d}x$ with $u = x$ and $v' = e^{x}$ equals $\big[x e^{x}\big]_0^1 - \int_0^1 e^{x}\,\mathrm{d}x = e - (e - 1) = 1$. What is all this for? The distance travelled is the integral of the speed, the charge of a capacitor the integral of the current, the energy the integral of the power, the work of a force the integral of its component along the displacement. Three traps: forgetting that the area below the axis counts negatively, so that $\int_{-1}^{1} x\,\mathrm{d}x = 0$ whereas the geometric area is $1$; forgetting the constant of integration when looking for all the antiderivatives; and believing that an antiderivative can always be written with the usual functions, which is false for $e^{-x^2}$.
+tool:
+  problemSolved:
+    fr: "Additionner une grandeur qui varie continûment : l'aire sous une courbe, la distance parcourue à partir d'une vitesse instantanée, la charge accumulée à partir d'un courant, l'énergie reçue à partir d'une puissance, la valeur moyenne d'un signal."
+    en: "Add up a quantity that varies continuously: the area under a curve, the distance travelled from an instantaneous speed, the charge accumulated from a current, the energy received from a power, the mean value of a signal."
+  construction:
+    fr: "On encadre l'aire par des sommes de Riemann, $\\sum_{k} f(x_k)\\,\\frac{b-a}{n}$, dont la limite existe pour toute fonction continue ; le théorème fondamental montre que $x \\mapsto \\int_a^x f$ est dérivable de dérivée $f$, si bien que l'intégrale se calcule par $F(b) - F(a)$ avec n'importe quelle primitive $F$."
+    en: "The area is bracketed by Riemann sums, $\\sum_{k} f(x_k)\\,\\frac{b-a}{n}$, whose limit exists for every continuous function; the fundamental theorem shows that $x \\mapsto \\int_a^x f$ is differentiable with derivative $f$, so that the integral is computed as $F(b) - F(a)$ with any antiderivative $F$."
+  icon: area
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "interpréter $\\int_a^b f$ comme l'aire algébrique sous la courbe et l'encadrer par des sommes de Riemann"
+        - "déterminer les primitives des fonctions usuelles et celle qui vérifie une condition initiale donnée"
+        - "calculer une intégrale par $F(b) - F(a)$, utiliser la linéarité, la relation de Chasles et la valeur moyenne"
+        - "mener une intégration par parties sur un produit du type $x\\,e^{x}$ ou $\\ln x$"
+      en:
+        - "interpret $\\int_a^b f$ as the signed area under the curve and bracket it by Riemann sums"
+        - "determine the antiderivatives of the usual functions and the one satisfying a given initial condition"
+        - "compute an integral as $F(b) - F(a)$, use linearity, Chasles' relation and the mean value"
+        - "carry out an integration by parts on a product such as $x\\,e^{x}$ or $\\ln x$"
+sources: [source.bo.lycee.2019]

@@ -1,0 +1,51 @@
+# Mesure en Terminale — comparer un résultat à une valeur de référence par l'écart normalisé.
+id: exercise.measurement.normalised_gap
+type: numeric
+nodeId: method.measurement
+depth: 3
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Une classe mesure la masse volumique d'un métal et trouve $\rho = 8\,760\ \mathrm{kg \cdot m^{-3}}$ avec une incertitude-type $u(\rho) = 90\ \mathrm{kg \cdot m^{-3}}$. La valeur de référence pour le cuivre est $\rho_{\text{ref}} = 8\,960\ \mathrm{kg \cdot m^{-3}}$.
+
+    Quelle est la valeur de l'écart normalisé $z = \dfrac{|\rho - \rho_{\text{ref}}|}{u(\rho)}$ ?
+  en: |-
+    A class measures the density of a metal and finds $\rho = 8{,}760\ \mathrm{kg \cdot m^{-3}}$ with a standard uncertainty $u(\rho) = 90\ \mathrm{kg \cdot m^{-3}}$. The reference value for copper is $\rho_{\text{ref}} = 8{,}960\ \mathrm{kg \cdot m^{-3}}$.
+
+    What is the value of the normalised gap $z = \dfrac{|\rho - \rho_{\text{ref}}|}{u(\rho)}$?
+numeric:
+  value: 2.22
+  tolerance: { kind: absolute, value: 0.05 }
+  inputLabel: { fr: "z", en: "z" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: "L'écart absolu vaut $8\\,960 - 8\\,760 = 200\\ \\mathrm{kg \\cdot m^{-3}}$."
+      en: "The absolute gap is $8{,}960 - 8{,}760 = 200\\ \\mathrm{kg \\cdot m^{-3}}$."
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: "L'écart normalisé compte cet écart en nombre d'incertitudes-types : il est sans unité."
+      en: "The normalised gap counts that gap in numbers of standard uncertainties: it has no unit."
+solution:
+  fr: |-
+    $z = \dfrac{|8\,760 - 8\,960|}{90} = \dfrac{200}{90} = 2{,}2$.
+
+    Comme $z > 2$, le résultat n'est **pas** compatible avec la valeur de référence : soit l'échantillon n'est pas du cuivre pur, soit une erreur systématique n'a pas été prise en compte (un volume mesuré par déplacement d'eau surestime le volume si une bulle d'air reste accrochée, ce qui abaisse la masse volumique — exactement le sens de l'écart observé).
+
+    **Interprétation.** L'écart normalisé transforme une comparaison vague en une décision : en dessous de $2$, on conclut à la compatibilité ; au-dessus, on cherche une cause. Il ne dit pas que la mesure est « fausse », il dit que l'écart est trop grand pour la seule dispersion aléatoire. Augmenter le nombre de mesures ne le fera pas baisser si la cause est systématique : au contraire, $u$ diminuant, $z$ grandira — et c'est précisément ce qui rend une erreur systématique détectable.
+  en: |-
+    $z = \dfrac{|8{,}760 - 8{,}960|}{90} = \dfrac{200}{90} = 2.2$.
+
+    Since $z > 2$, the result is **not** compatible with the reference value: either the sample is not pure copper, or a systematic error has not been accounted for (a volume measured by water displacement overestimates the volume if an air bubble stays attached, which lowers the density — exactly the direction of the observed gap).
+
+    **Interpretation.** The normalised gap turns a vague comparison into a decision: below $2$, we conclude compatibility; above, we look for a cause. It does not say the measurement is "wrong", it says the gap is too large for random scatter alone. Taking more measurements will not bring it down if the cause is systematic: on the contrary, as $u$ decreases, $z$ will grow — and that is precisely what makes a systematic error detectable.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 3
+  linkedConcepts: 2
+  transfer: 2
+  autonomy: 2

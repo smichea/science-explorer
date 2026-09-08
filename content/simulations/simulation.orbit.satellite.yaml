@@ -1,0 +1,70 @@
+# Orbite d'un satellite autour de la Terre : force centrale en 1/r², lois de Kepler.
+id: simulation.orbit.satellite
+engine: central_force
+title: { fr: "Un satellite en orbite autour de la Terre", en: "A satellite orbiting the Earth" }
+description:
+  fr: |-
+    Un satellite est lâché à $7\,000\ \mathrm{km}$ du centre de la Terre, avec une vitesse perpendiculaire au rayon. La Terre l'attire vers son centre avec une force en $1/r^2$ : $\vec{a} = -\dfrac{\mu}{r^2}\,\vec{u_r}$, où $\mu = GM_T = 3{,}986 \times 10^{14}\ \mathrm{m^3\,s^{-2}}$. À la vitesse exacte $v_0 = \sqrt{\mu/r_0} \approx 7{,}5\ \mathrm{km\,s^{-1}}$, l'orbite est un **cercle** ; un peu plus vite, c'est une **ellipse** dont la Terre occupe un foyer ; au-delà de $\sqrt{2\mu/r_0}$, le satellite s'échappe. Deux lectures méritent le détour : la **vitesse aréolaire** $\frac{1}{2}(x\,v_y - y\,v_x)$ reste constante — le rayon balaie des aires égales en des temps égaux —, et le rapport $T^2/a^3$ vaut $4\pi^2/\mu$ quelle que soit l'orbite.
+  en: |-
+    A satellite is released $7{,}000\ \mathrm{km}$ from the centre of the Earth, with a speed perpendicular to the radius. The Earth pulls it towards its centre with a force in $1/r^2$: $\vec{a} = -\dfrac{\mu}{r^2}\,\vec{u_r}$, where $\mu = GM_E = 3.986 \times 10^{14}\ \mathrm{m^3\,s^{-2}}$. At exactly $v_0 = \sqrt{\mu/r_0} \approx 7.5\ \mathrm{km\,s^{-1}}$ the orbit is a **circle**; a little faster, an **ellipse** with the Earth at one focus; beyond $\sqrt{2\mu/r_0}$ the satellite escapes. Two readings are worth the detour: the **areal speed** $\frac{1}{2}(x\,v_y - y\,v_x)$ stays constant — the radius sweeps out equal areas in equal times — and the ratio $T^2/a^3$ is $4\pi^2/\mu$ whatever the orbit.
+seedPolicy: deterministic
+seed: 1609
+config:
+  scene: orbit
+  mu: 3.986e14
+  mass: 1000
+  r0: 7.0e6
+  v0: 8200
+  centralRadius: 6.371e6
+  duration: 40000
+  dt: 1
+controls:
+  - { variable: v0, label: { fr: "Vitesse initiale", en: "Initial speed" }, min: 5000, max: 10500, step: 100, unit: "m/s", default: 8200 }
+  - { variable: r0, label: { fr: "Distance initiale", en: "Initial distance" }, min: 6.6e6, max: 4.5e7, step: 1.0e6, unit: "m", default: 7.0e6 }
+observables: [radius, velocity, areal_speed, energy]
+views: [world, radius_time_graph, velocity_time_graph, energy_graph, areal_speed_graph, table]
+modelNode: law.universal_gravitation
+assumptions:
+  fr:
+    - "Le satellite est un point matériel : sa taille et sa rotation propre ne comptent pas devant les milliers de kilomètres parcourus."
+    - "La Terre est fixe et sphérique, sa masse concentrée en son centre : elle crée le champ d'une masse ponctuelle, et son mouvement autour du barycentre est négligé (le satellite est un million de fois plus léger)."
+    - |-
+      Seule la force de gravitation agit : $\vec{F} = -\dfrac{GM_T m}{r^2}\,\vec{u_r}$, d'où l'accélération $\vec{a} = -\dfrac{\mu}{r^2}\,\vec{u_r}$ indépendante de la masse du satellite.
+    - "Le mouvement se fait dans le plan défini par la position et la vitesse initiales : la force étant centrale, il n'en sort jamais."
+  en:
+    - "The satellite is a point mass: its size and its own rotation do not count against the thousands of kilometres travelled."
+    - "The Earth is fixed and spherical, its mass concentrated at its centre: it creates the field of a point mass, and its motion around the barycentre is neglected (the satellite is a million times lighter)."
+    - |-
+      Gravitation is the only force: $\vec{F} = -\dfrac{GM_E m}{r^2}\,\vec{u_r}$, hence the acceleration $\vec{a} = -\dfrac{\mu}{r^2}\,\vec{u_r}$, independent of the mass of the satellite.
+    - "The motion stays in the plane defined by the initial position and velocity: the force being central, it never leaves it."
+validity:
+  fr: |-
+    Le modèle décrit bien les orbites hautes, au-dessus de $600\ \mathrm{km}$ d'altitude, où l'atmosphère résiduelle ne freine presque plus le satellite : une station spatiale à $400\ \mathrm{km}$ perd une centaine de mètres d'altitude par jour, ce que ce modèle ignore. Il donne des périodes exactes à moins d'un pour cent pour les satellites de télécommunication et pour la Lune, mais il ne rend compte ni de l'aplatissement de la Terre (qui fait tourner lentement le grand axe des orbites basses) ni de l'attraction du Soleil et de la Lune.
+  en: |-
+    The model describes high orbits well, above $600\ \mathrm{km}$ of altitude, where the residual atmosphere hardly slows the satellite any more: a space station at $400\ \mathrm{km}$ loses a hundred metres of altitude a day, which this model ignores. It gives periods accurate to better than one per cent for telecommunication satellites and for the Moon, but it accounts neither for the flattening of the Earth (which slowly turns the major axis of low orbits) nor for the pull of the Sun and the Moon.
+numericalMethod:
+  fr: |-
+    Runge-Kutta d'ordre 4, pas fixe $dt = 1\ \mathrm{s}$ : l'accélération dépend cette fois de la position, et les quatre étages la réévaluent en quatre points de l'orbite. Deux quantités servent de contrôle : le moment cinétique (donc la vitesse aréolaire) et l'énergie mécanique, conservés à mieux que $10^{-6}$ en valeur relative sur deux périodes.
+  en: |-
+    Fourth-order Runge-Kutta, fixed step $dt = 1\ \mathrm{s}$: the acceleration now depends on the position, and the four stages re-evaluate it at four points of the orbit. Two quantities serve as checks: the angular momentum (hence the areal speed) and the mechanical energy, conserved to better than $10^{-6}$ in relative value over two periods.
+ignoredEffects:
+  fr:
+    - "Frottement de l'atmosphère résiduelle, qui fait spiraler et retomber les satellites bas."
+    - "Aplatissement de la Terre aux pôles : le champ n'est pas exactement celui d'une masse ponctuelle."
+    - "Attraction du Soleil, de la Lune et des autres planètes ; pression de radiation solaire."
+    - "Mouvement de la Terre autour du barycentre du système, et effets relativistes."
+  en:
+    - "Drag of the residual atmosphere, which makes low satellites spiral in and fall back."
+    - "Flattening of the Earth at the poles: the field is not exactly that of a point mass."
+    - "Pull of the Sun, the Moon and the other planets; solar radiation pressure."
+    - "Motion of the Earth around the barycentre of the system, and relativistic effects."
+learningUse:
+  fr: |-
+    Chercher d'abord la vitesse qui rend l'orbite circulaire, puis l'augmenter par pas de cent mètres par seconde et regarder l'ellipse naître, la Terre restant à un foyer. Vérifier ensuite les deux lois de Kepler sur les graphes : la vitesse aréolaire est une droite horizontale, alors que la vitesse, elle, double presque entre l'apogée et le périgée ; et le rapport $T^2/a^3$ annoncé ne bouge pas quand on change la distance initiale. Enfin, chercher la distance pour laquelle la période vaut un jour sidéral : c'est l'orbite géostationnaire, à $42\,164\ \mathrm{km}$ du centre.
+  en: |-
+    First look for the speed that makes the orbit circular, then raise it a hundred metres per second at a time and watch the ellipse appear, with the Earth staying at one focus. Then check Kepler's two laws on the graphs: the areal speed is a horizontal line, whereas the speed itself nearly doubles between apogee and perigee; and the announced $T^2/a^3$ does not move when the initial distance is changed. Finally, look for the distance at which the period is one sidereal day: that is the geostationary orbit, $42{,}164\ \mathrm{km}$ from the centre.
+a11y:
+  fr: |-
+    Représentation alternative : tableau de la distance au centre, de la vitesse et des trois énergies à douze instants de l'orbite, et description textuelle (« le satellite s'éloigne jusqu'à l'apogée en ralentissant, puis revient en accélérant ; sa distance varie de 7 000 à 13 400 km »). Le demi-grand axe, l'excentricité, la période et le rapport $T^2/a^3$ sont écrits en toutes lettres sous la figure. Curseurs manipulables au clavier.
+  en: |-
+    Alternative representation: a table of the distance to the centre, the speed and the three energies at twelve instants of the orbit, and a textual description ("the satellite moves away to its apogee while slowing down, then comes back speeding up; its distance varies from 7,000 to 13,400 km"). The semi-major axis, the eccentricity, the period and the ratio $T^2/a^3$ are spelled out under the figure. Keyboard-operable sliders.

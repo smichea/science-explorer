@@ -1,0 +1,142 @@
+# Leçon rédigée — limites de suites : convergence lue sur les termes, définition par intervalles sur le traceur,
+# limites de référence q^n (paramètre q), puis récurrence et théorème de la limite monotone sur la suite en escalier.
+id: lesson.concept.sequence_limit
+nodeId: concept.sequence_limit
+depth: 1
+tools:
+  - id: seq
+    kind: sequence
+    title: { fr: "La suite (3n + 1)/(n + 2)", en: "The sequence (3n + 1)/(n + 2)" }
+    mode: explicit
+    expr: "(3*n+1)/(n+2)"
+    start: 1
+    count: 20
+    view: { x: [0, 20], y: [0, 4] }
+    input: true
+  - id: plot
+    kind: plotter
+    title: { fr: "La bande autour de la limite", en: "The band around the limit" }
+    variable: x
+    view: { x: [0, 60], y: [2, 3.4] }
+    input: true
+  - id: geo
+    kind: sequence
+    title: { fr: "Les puissances de q", en: "The powers of q" }
+    mode: explicit
+    expr: "q^n"
+    start: 0
+    count: 20
+    view: { x: [0, 20], y: [-0.5, 4] }
+    parameters:
+      - { id: q, label: { fr: "raison q", en: "ratio q" }, min: -1.2, max: 1.2, step: 0.05, value: 0.8 }
+    input: true
+  - id: rec
+    kind: sequence
+    title: { fr: "La suite en escalier", en: "The staircase sequence" }
+    mode: recurrence
+    expr: "0.5*u+3"
+    first: 1
+    start: 0
+    count: 15
+    cobweb: true
+    view: { x: [0, 15], y: [0, 8] }
+    input: true
+steps:
+  - id: converge
+    tool: seq
+    title: { fr: "Une suite qui s'approche d'un nombre", en: "A sequence that approaches a number" }
+    text:
+      fr: >-
+        Voici les termes de la suite u de n égale trois n plus un, sur n plus deux.
+        Ils montent : environ un virgule trois, puis un virgule huit, puis deux, et au rang vingt déjà deux virgule huit.
+        Ils semblent s'approcher de trois sans jamais l'atteindre, et c'est exactement ce qui se passe : on dit que la suite converge vers trois.
+        Pour le voir, écrivons la formule autrement, trois moins cinq sur n plus deux : le second morceau s'efface quand n grandit, et il ne reste que trois.
+      en: >-
+        Here are the terms of the sequence u of n equals three n plus one, over n plus two.
+        They rise: about one point three, then one point eight, then two, and by rank twenty already two point eight.
+        They seem to approach three without ever reaching it, and that is exactly what happens: we say that the sequence converges to three.
+        To see it, let us write the formula differently, three minus five over n plus two: the second piece fades away as n grows, and only three is left.
+    actions:
+      - { at: 3, view: { x: [0, 20], y: [2, 3.2] } }
+  - id: definition
+    tool: plot
+    title: { fr: "La définition, avec une bande", en: "The definition, with a band" }
+    text:
+      fr: >-
+        Que veut dire exactement converger vers trois ?
+        Traçons la courbe qui porte les termes, et deux droites horizontales, l'une à deux virgule neuf, l'autre à trois virgule un.
+        Aussi étroite que soit cette bande autour de trois, la suite finit par y entrer et n'en ressort plus.
+        Ici tous les termes de rang supérieur à quarante-huit sont dans la bande.
+        C'est la définition : tout intervalle ouvert contenant la limite contient tous les termes à partir d'un certain rang.
+      en: >-
+        What does converging to three mean exactly?
+        Let us draw the curve that carries the terms, and two horizontal lines, one at two point nine, the other at three point one.
+        However narrow this band around three, the sequence eventually enters it and never leaves again.
+        Here every term of rank greater than forty-eight lies in the band.
+        This is the definition: every open interval containing the limit contains all the terms from some rank onwards.
+    actions:
+      - { at: 1, plot: { id: f, expr: "3-5/(x+2)", label: { fr: "u(n) = 3 − 5/(n + 2)", en: "u(n) = 3 − 5/(n + 2)" } } }
+      - { at: 1, line: { id: lo, a: 0, b: 1, c: -2.9, dashed: true, label: { fr: "y = 2,9", en: "y = 2.9" } } }
+      - { at: 1, line: { id: hi, a: 0, b: 1, c: -3.1, dashed: true, label: { fr: "y = 3,1", en: "y = 3.1" } } }
+      - { at: 3, point: { id: enter, on: f, x: 48, guides: true, label: { fr: "rang 48", en: "rank 48" } } }
+  - id: reference
+    tool: geo
+    title: { fr: "Les limites de référence", en: "The reference limits" }
+    text:
+      fr: >-
+        Les suites géométriques donnent les limites que l'on doit connaître par cœur.
+        Avec une raison q égale à zéro virgule huit, les puissances de q s'écrasent vers zéro, de plus en plus lentement mais sans s'arrêter.
+        C'est vrai pour toute raison strictement comprise entre moins un et un.
+        Avec une raison plus grande que un, ici un virgule zéro cinq, la suite dépasse au contraire toute borne : elle diverge vers plus l'infini.
+      en: >-
+        Geometric sequences give the limits one must know by heart.
+        With a ratio q equal to zero point eight, the powers of q collapse towards zero, more and more slowly but without ever stopping.
+        This holds for every ratio strictly between minus one and one.
+        With a ratio greater than one, here one point zero five, the sequence on the contrary passes every bound: it diverges to plus infinity.
+    actions:
+      - { at: 1, set: { q: 0.8 } }
+      - { at: 3, set: { q: 1.05 } }
+  - id: induction
+    tool: rec
+    title: { fr: "Récurrence et limite monotone", en: "Induction and monotone limit" }
+    text:
+      fr: >-
+        Passons à une suite définie par récurrence : u zéro vaut un, et chaque terme suivant vaut la moitié du précédent, plus trois.
+        L'escalier tracé entre la courbe et la droite d'équation y égale x montre des termes qui montent en se resserrant.
+        Démontrons par récurrence que tous les termes restent inférieurs à six.
+        L'initialisation est vraie, puisque u zéro vaut un.
+        L'hérédité aussi : si un terme est inférieur à six, alors sa moitié plus trois est inférieure à trois plus trois, donc à six.
+        La suite est croissante et majorée, donc elle converge ; sa limite vérifie l égale la moitié de l plus trois, c'est-à-dire six.
+      en: >-
+        Let us turn to a sequence defined by recurrence: u zero is one, and each following term is half the previous one, plus three.
+        The staircase drawn between the curve and the line of equation y equals x shows terms that rise while tightening.
+        Let us prove by induction that all the terms stay below six.
+        The initialisation is true, since u zero is one.
+        So is the inductive step: if a term is below six, then its half plus three is below three plus three, hence below six.
+        The sequence is increasing and bounded above, so it converges; its limit satisfies l equals half of l plus three, that is, six.
+    actions:
+      - { at: 5, view: { x: [0, 15], y: [0, 7] } }
+  - id: play
+    kind: play
+    tool: geo
+    title: { fr: "À vous de chercher la limite", en: "Your turn to look for the limit" }
+    text:
+      fr: >-
+        À vous. Déplacez la raison q entre moins un et un virgule deux, et regardez la suite s'écraser, osciller ou exploser.
+        Cherchez la valeur de q pour laquelle la suite ne bouge plus du tout, puis tapez une formule de votre choix, par exemple deux plus un sur n.
+      en: >-
+        Your turn. Move the ratio q between minus one and one point two, and watch the sequence collapse, oscillate or explode.
+        Look for the value of q at which the sequence no longer moves at all, then type a formula of your own, for instance two plus one over n.
+    actions:
+      - { at: 0, set: { q: 0.8 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : une limite en l'infini à lever par factorisation, puis la limite d'une suite définie par récurrence.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: a limit at infinity to settle by factoring, then the limit of a sequence defined by recurrence.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.sequence_limit.rational, exercise.sequence_limit.fixed_point]

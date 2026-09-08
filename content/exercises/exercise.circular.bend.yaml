@@ -1,0 +1,47 @@
+# Mouvement circulaire uniforme — accélération centripète d'une voiture dans un virage (réponse numérique)
+id: exercise.circular.bend
+type: numeric
+nodeId: phenomenon.circular_motion
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une voiture aborde à vitesse constante un virage circulaire de rayon $R = 50\ \mathrm{m}$, à la vitesse $v = 90\ \mathrm{km \cdot h^{-1}}$.
+
+    Calculez la valeur de son accélération, en mètres par seconde au carré, avec deux chiffres significatifs.
+  en: |-
+    A car takes at constant speed a circular bend of radius $R = 50\ \mathrm{m}$, at the speed $v = 90\ \mathrm{km \cdot h^{-1}}$.
+
+    Compute the value of its acceleration, in metres per second squared, with two significant figures.
+numeric:
+  value: 12.5
+  unit: "m/s²"
+  tolerance: { kind: relative, value: 0.03 }
+  inputLabel: { fr: "a", en: "a" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le mouvement est circulaire uniforme : l'accélération est **centripète**, dirigée vers le centre du virage, et sa valeur est $a = \dfrac{v^2}{R}$.
+      en: |-
+        The motion is uniform and circular: the acceleration is **centripetal**, directed towards the centre of the bend, and its value is $a = \dfrac{v^2}{R}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Convertissez d'abord la vitesse : $90\ \mathrm{km \cdot h^{-1}} = \dfrac{90}{3{,}6} = 25\ \mathrm{m \cdot s^{-1}}$. Une vitesse en kilomètres par heure ne se met jamais telle quelle dans une formule.
+      en: |-
+        Convert the speed first: $90\ \mathrm{km \cdot h^{-1}} = \dfrac{90}{3.6} = 25\ \mathrm{m \cdot s^{-1}}$. A speed in kilometres per hour is never put as it stands into a formula.
+solution:
+  fr: |-
+    En unités du Système international, $v = \dfrac{90}{3{,}6} = 25\ \mathrm{m \cdot s^{-1}}$. Le mouvement étant circulaire uniforme, l'accélération est entièrement normale :
+    $$a = \frac{v^2}{R} = \frac{25^2}{50} = \frac{625}{50} = 12{,}5\ \mathrm{m \cdot s^{-2}}.$$
+
+    **Interprétation.** Douze mètres et demi par seconde au carré, c'est plus que l'accélération de la pesanteur. D'après la deuxième loi de Newton, il faut donc une force horizontale $F = m\,a$ dirigée **vers le centre du virage** : pour une voiture d'une tonne, six mille deux cent cinquante newtons, fournis par l'adhérence des pneus sur la route. Or l'adhérence ne dépasse guère $0{,}8\,mg$, soit environ $8\ \mathrm{m \cdot s^{-2}}$ : à cette vitesse la voiture part en glissade. Deux leçons : l'accélération existe alors même que la vitesse ne change pas de valeur, et comme elle varie comme le carré de la vitesse, rouler deux fois plus vite demande quatre fois plus d'adhérence.
+  en: |-
+    In SI units, $v = \dfrac{90}{3.6} = 25\ \mathrm{m \cdot s^{-1}}$. The motion being uniform and circular, the acceleration is entirely normal:
+    $$a = \frac{v^2}{R} = \frac{25^2}{50} = \frac{625}{50} = 12.5\ \mathrm{m \cdot s^{-2}}.$$
+
+    **Interpretation.** Twelve and a half metres per second squared is more than the acceleration of gravity. By Newton's second law a horizontal force $F = m\,a$ directed **towards the centre of the bend** is therefore needed: for a one-tonne car, six thousand two hundred and fifty newtons, supplied by the grip of the tyres on the road. But grip hardly exceeds $0.8\,mg$, that is about $8\ \mathrm{m \cdot s^{-2}}$: at that speed the car slides off. Two lessons: the acceleration exists even though the speed does not change in value, and since it varies as the square of the speed, driving twice as fast demands four times as much grip.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 3, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

@@ -1,0 +1,47 @@
+id: concept.continuity
+type: mathematical_concept
+world: world.mathematics
+region: region.math.functions_analysis
+importance: 2
+tags: [lycee]
+title: { fr: "Continuité, théorème des valeurs intermédiaires, dichotomie", en: "Continuity, intermediate value theorem, bisection" }
+shortPurpose:
+  fr: "Garantir qu'une équation a une solution parce que la courbe ne saute pas, puis l'encadrer aussi finement que voulu."
+  en: "Guarantee that an equation has a solution because the curve does not jump, then bracket it as finely as wanted."
+overview:
+  fr: >-
+    Une fonction continue est une fonction dont on trace la courbe sans lever le crayon. Cette idée toute simple a une conséquence puissante : si la courbe part d'en dessous d'une valeur et arrive au-dessus, elle a forcément traversé cette valeur en chemin. C'est le théorème des valeurs intermédiaires, qui garantit l'existence d'une solution sans la calculer, et la dichotomie qui la coince ensuite entre deux bornes de plus en plus proches.
+  en: >-
+    A continuous function is one whose curve is drawn without lifting the pencil. This very simple idea has a powerful consequence: if the curve starts below a value and arrives above it, it must have crossed that value on the way. This is the intermediate value theorem, which guarantees that a solution exists without computing it, and bisection then traps it between two bounds ever closer together.
+aliases:
+  fr: ["fonction continue", "théorème des valeurs intermédiaires", "corollaire du TVI", "méthode de dichotomie", "encadrement d'une solution"]
+  en: ["continuous function", "intermediate value theorem", "corollary of the IVT", "bisection method", "bracketing a solution"]
+description:
+  fr: |
+    Une fonction $f$ est **continue en** $a$ lorsque $\lim\limits_{x \to a} f(x) = f(a)$, et **continue sur un intervalle** lorsqu'elle l'est en chacun de ses points : sa courbe se trace d'un seul trait, sans saut. Toutes les fonctions construites à partir des fonctions de référence par somme, produit, quotient ou composition sont continues sur tout intervalle où elles sont définies ; en particulier, toute fonction **dérivable** est continue, mais la réciproque est fausse — la fonction valeur absolue est continue en $0$ sans y être dérivable. La partie entière, elle, n'est pas continue : elle saute d'une unité à chaque entier.
+
+    Le **théorème des valeurs intermédiaires** énonce que si $f$ est continue sur $[a\,;\,b]$, alors pour tout réel $k$ compris entre $f(a)$ et $f(b)$, l'équation $f(x) = k$ admet au moins une solution dans $[a\,;\,b]$. Si de plus $f$ est **strictement monotone**, cette solution est unique : c'est le corollaire que l'on utilise en pratique. Prenons $f(x) = x^3 + x - 1$ sur $[0\,;\,1]$ : elle est continue, strictement croissante car $f'(x) = 3x^2 + 1 > 0$, et $f(0) = -1 < 0 < 1 = f(1)$ ; l'équation $f(x) = 0$ a donc une solution unique $\alpha$ dans $[0\,;\,1]$.
+
+    La **dichotomie** l'encadre : on coupe l'intervalle en deux et l'on garde la moitié où le signe change. Ici $f(0{,}5) = -0{,}375 < 0$ donc $\alpha \in [0{,}5\,;\,1]$ ; $f(0{,}75) \approx 0{,}172 > 0$ donc $\alpha \in [0{,}5\,;\,0{,}75]$ ; $f(0{,}625) \approx -0{,}131$ donc $\alpha \in [0{,}625\,;\,0{,}75]$. La longueur de l'encadrement est une suite géométrique de raison $\frac12$ : après $n$ étapes elle vaut $2^{-n}$, et il suffit de $10$ étapes pour descendre sous $10^{-3}$ — on trouve $\alpha \approx 0{,}682$. Cet algorithme est celui que programme la calculatrice ; il ne demande que le signe de $f$, jamais sa formule inverse. Deux pièges : appliquer le théorème à une fonction discontinue (une facture d'électricité par tranches ne prend pas toutes les valeurs intermédiaires) et oublier la stricte monotonie, sans laquelle le théorème donne l'existence mais jamais l'unicité.
+  en: |
+    A function $f$ is **continuous at** $a$ when $\lim\limits_{x \to a} f(x) = f(a)$, and **continuous on an interval** when it is continuous at each of its points: its curve is drawn in a single stroke, without a jump. Every function built from the reference functions by sum, product, quotient or composition is continuous on every interval where it is defined; in particular, every **differentiable** function is continuous, but the converse is false — the absolute value function is continuous at $0$ without being differentiable there. The integer part, on the other hand, is not continuous: it jumps by one unit at each integer.
+
+    The **intermediate value theorem** states that if $f$ is continuous on $[a\,;\,b]$, then for every real number $k$ between $f(a)$ and $f(b)$, the equation $f(x) = k$ has at least one solution in $[a\,;\,b]$. If moreover $f$ is **strictly monotonic**, that solution is unique: this is the corollary used in practice. Take $f(x) = x^3 + x - 1$ on $[0\,;\,1]$: it is continuous, strictly increasing since $f'(x) = 3x^2 + 1 > 0$, and $f(0) = -1 < 0 < 1 = f(1)$; the equation $f(x) = 0$ therefore has a unique solution $\alpha$ in $[0\,;\,1]$.
+
+    **Bisection** brackets it: one cuts the interval in half and keeps the half where the sign changes. Here $f(0.5) = -0.375 < 0$ so $\alpha \in [0.5\,;\,1]$; $f(0.75) \approx 0.172 > 0$ so $\alpha \in [0.5\,;\,0.75]$; $f(0.625) \approx -0.131$ so $\alpha \in [0.625\,;\,0.75]$. The length of the bracket is a geometric sequence of ratio $\frac12$: after $n$ steps it is $2^{-n}$, and $10$ steps are enough to go below $10^{-3}$ — one finds $\alpha \approx 0.682$. This algorithm is the one the calculator runs; it needs only the sign of $f$, never an inverse formula. Two traps: applying the theorem to a discontinuous function (an electricity bill charged by brackets does not take every intermediate value) and forgetting strict monotonicity, without which the theorem gives existence but never uniqueness.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "reconnaître une fonction continue sur un intervalle et citer un contre-exemple de fonction non continue"
+        - "appliquer le théorème des valeurs intermédiaires et son corollaire pour prouver l'existence et l'unicité d'une solution"
+        - "encadrer une solution par dichotomie et majorer l'erreur par $2^{-n}$ fois la longueur initiale"
+        - "programmer ou dérouler l'algorithme de dichotomie sur un exemple"
+      en:
+        - "recognise a function continuous on an interval and give a counter-example of a non-continuous function"
+        - "apply the intermediate value theorem and its corollary to prove the existence and uniqueness of a solution"
+        - "bracket a solution by bisection and bound the error by $2^{-n}$ times the initial length"
+        - "program or run through the bisection algorithm on an example"
+sources: [source.bo.lycee.2019]

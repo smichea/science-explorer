@@ -1,0 +1,77 @@
+# Chauffage d'un corps par une résistance : bilan d'énergie C dθ/dt = P − hS (θ − θ_ext).
+id: simulation.heating.basic
+engine: first_order
+title: { fr: "Chauffage d'une casserole d'eau", en: "Heating a pan of water" }
+description:
+  fr: |-
+    Une demi-litre d'eau, de capacité thermique $C = 2\,100\ \mathrm{J \cdot K^{-1}}$, est posée dans une pièce à $\theta_{\text{ext}} = 20\ ^\circ\mathrm{C}$ avec une résistance chauffante de puissance $P = 200\ \mathrm{W}$ plongée dedans. Le **premier principe** appliqué à l'eau s'écrit $C\,\dfrac{d\theta}{dt} = P - h S\,(\theta - \theta_{\text{ext}})$ : la résistance apporte $P$, les parois cèdent $hS\,(\theta - \theta_{\text{ext}})$ à la pièce, et la différence fait monter la température. Avec $hS = 4{,}0\ \mathrm{W \cdot K^{-1}}$, le temps caractéristique vaut $\tau = \dfrac{C}{hS} = 525\ \mathrm{s}$ et la température plafonne à $\theta_\infty = \theta_{\text{ext}} + \dfrac{P}{hS} = 70\ ^\circ\mathrm{C}$ : l'eau ne bout jamais, car à $70\ ^\circ\mathrm{C}$ elle perd exactement ce que la résistance lui donne.
+  en: |-
+    Half a litre of water, of heat capacity $C = 2{,}100\ \mathrm{J \cdot K^{-1}}$, is placed in a room at $\theta_{\text{ext}} = 20\ ^\circ\mathrm{C}$ with a heating resistor of power $P = 200\ \mathrm{W}$ immersed in it. The **first principle** applied to the water is written $C\,\dfrac{d\theta}{dt} = P - h S\,(\theta - \theta_{\text{ext}})$: the resistor brings in $P$, the walls give $hS\,(\theta - \theta_{\text{ext}})$ back to the room, and the difference raises the temperature. With $hS = 4.0\ \mathrm{W \cdot K^{-1}}$, the characteristic time is $\tau = \dfrac{C}{hS} = 525\ \mathrm{s}$ and the temperature levels off at $\theta_\infty = \theta_{\text{ext}} + \dfrac{P}{hS} = 70\ ^\circ\mathrm{C}$: the water never boils, because at $70\ ^\circ\mathrm{C}$ it loses exactly what the resistor gives it.
+seedPolicy: deterministic
+seed: 1824
+config:
+  scene: newton_cooling
+  target: 20
+  initial: 20
+  capacity: 2100
+  exchange: 4
+  power: 200
+  unit: "°C"
+  timeUnit: "s"
+  duration: 3000
+  dt: 0.5
+controls:
+  - { variable: power, label: { fr: "Puissance de la résistance P", en: "Power of the resistor P" }, min: 0, max: 400, step: 25, unit: "W", default: 200 }
+  - { variable: exchange, label: { fr: "Coefficient d'échange hS", en: "Exchange coefficient hS" }, min: 1, max: 10, step: 0.5, unit: "W/K", default: 4 }
+  - { variable: capacity, label: { fr: "Capacité thermique C", en: "Heat capacity C" }, min: 500, max: 4200, step: 100, unit: "J/K", default: 2100 }
+observables: [quantity, rate, remaining, heat, flux]
+views: [quantity_time_graph, tangent, heat_graph, table]
+modelNode: law.first_principle
+assumptions:
+  fr:
+    - "Le système est l'eau seule : la casserole, la résistance et l'air ne font qu'échanger de l'énergie avec elle, sans en stocker."
+    - "La température de l'eau est uniforme à chaque instant (elle est brassée par la convection) : une seule température $\\theta(t)$ décrit tout le système."
+    - |-
+      Bilan d'énergie sur une durée $dt$ : $C\,d\theta = P\,dt - hS\,(\theta - \theta_{\text{ext}})\,dt$, soit $C\,\dfrac{d\theta}{dt} = P - hS\,(\theta - \theta_{\text{ext}})$, une équation du premier ordre de constante de temps $\tau = C/hS$.
+    - "Le flux perdu vers l'extérieur suit la loi de Newton : il est proportionnel à l'écart $\\theta - \\theta_{\\text{ext}}$, avec un coefficient $hS$ constant."
+    - "La pièce est un thermostat : sa température ne monte pas, quelle que soit l'énergie qu'elle reçoit ; la puissance $P$ de la résistance est constante."
+  en:
+    - "The system is the water alone: the pan, the resistor and the air only exchange energy with it, without storing any."
+    - "The temperature of the water is uniform at every instant (convection stirs it): a single temperature $\\theta(t)$ describes the whole system."
+    - |-
+      Energy balance over a time $dt$: $C\,d\theta = P\,dt - hS\,(\theta - \theta_{\text{ext}})\,dt$, that is $C\,\dfrac{d\theta}{dt} = P - hS\,(\theta - \theta_{\text{ext}})$, a first-order equation with time constant $\tau = C/hS$.
+    - "The flux lost to the outside follows Newton's law: it is proportional to the difference $\\theta - \\theta_{\\text{ext}}$, with a constant coefficient $hS$."
+    - "The room is a thermostat: its temperature does not rise, whatever energy it receives; the power $P$ of the resistor is constant."
+validity:
+  fr: |-
+    Le modèle vaut tant que l'eau reste liquide et que l'écart avec la pièce reste modéré, quelques dizaines de degrés : au-delà de $100\ ^\circ\mathrm{C}$ il faudrait ajouter le palier d'ébullition, que ce modèle ignore complètement. Avec les valeurs par défaut, l'asymptote est à $70\ ^\circ\mathrm{C}$ et le problème ne se pose pas ; en poussant la puissance à $400\ \mathrm{W}$ ou en descendant $hS$ à $1\ \mathrm{W \cdot K^{-1}}$, la courbe annonce des températures que l'eau réelle n'atteindra jamais, et c'est là que le modèle cesse d'être honnête. Les ordres de grandeur restent ceux d'une petite casserole ou d'une bouilloire mal isolée : $\tau$ de 5 à 30 minutes, $hS$ de 1 à 10 watts par kelvin.
+  en: |-
+    The model holds as long as the water stays liquid and the difference with the room stays moderate, a few tens of degrees: beyond $100\ ^\circ\mathrm{C}$ the boiling plateau would have to be added, which this model ignores completely. With the default values the asymptote is at $70\ ^\circ\mathrm{C}$ and the question does not arise; pushing the power to $400\ \mathrm{W}$ or lowering $hS$ to $1\ \mathrm{W \cdot K^{-1}}$, the curve announces temperatures that real water will never reach, and that is where the model stops being honest. The orders of magnitude remain those of a small pan or of a badly insulated kettle: $\tau$ from 5 to 30 minutes, $hS$ from 1 to 10 watts per kelvin.
+numericalMethod:
+  fr: |-
+    L'équation étant linéaire du premier ordre, la solution exacte $\theta(t) = \theta_\infty + (\theta_0 - \theta_\infty)\,e^{-t/\tau}$ est connue : l'état est évalué directement par cette formule à chaque pas de $dt = 0{,}5\ \mathrm{s}$, sans erreur d'intégration. L'énergie reçue par l'eau est lue comme $Q = C\,(\theta - \theta_0)$ et la puissance qui traverse la frontière comme $C\,\dfrac{d\theta}{dt}$ ; leur cohérence avec $P$ et $hS$ sert de contrôle.
+  en: |-
+    The equation being linear and first order, the exact solution $\theta(t) = \theta_\infty + (\theta_0 - \theta_\infty)\,e^{-t/\tau}$ is known: the state is evaluated directly from that formula at every step of $dt = 0.5\ \mathrm{s}$, with no integration error. The energy received by the water is read as $Q = C\,(\theta - \theta_0)$ and the power crossing the boundary as $C\,\dfrac{d\theta}{dt}$; their consistency with $P$ and $hS$ serves as a check.
+ignoredEffects:
+  fr:
+    - "Changement d'état : ni ébullition à $100\\ ^\\circ\\mathrm{C}$, ni évaporation à la surface, qui emporte pourtant de l'énergie bien avant."
+    - "Inertie thermique de la casserole et de la résistance elles-mêmes, qui s'ajouterait à la capacité $C$ de l'eau."
+    - "Variation du coefficient d'échange avec l'écart de température et avec les courants d'air (convection naturelle ou forcée)."
+    - "Rayonnement thermique de la surface libre, sensible dès que l'écart dépasse quelques dizaines de degrés."
+    - "Écarts de température à l'intérieur de l'eau : le fond, au contact de la résistance, est plus chaud que la surface."
+  en:
+    - "Change of state: neither boiling at $100\\ ^\\circ\\mathrm{C}$, nor evaporation at the surface, which nevertheless carries energy away well before that."
+    - "Thermal inertia of the pan and of the resistor themselves, which would add to the capacity $C$ of the water."
+    - "Variation of the exchange coefficient with the temperature difference and with draughts (natural or forced convection)."
+    - "Thermal radiation of the free surface, noticeable as soon as the difference exceeds a few tens of degrees."
+    - "Temperature differences inside the water: the bottom, in contact with the resistor, is hotter than the surface."
+learningUse:
+  fr: |-
+    C'est le bilan d'énergie rendu visible : la courbe monte, mais la pente diminue, parce que la part de $P$ qui reste dans l'eau diminue à mesure que les pertes $hS\,(\theta - \theta_{\text{ext}})$ grandissent. Lire d'abord la pente à l'origine, $P/C$, soit environ six degrés par minute, et vérifier qu'elle ne dépend que de la puissance et de la capacité ; couper ensuite la puissance à zéro pour retrouver le refroidissement de Newton. Doubler $P$ double l'écart final mais ne change pas $\tau$ ; doubler $hS$ divise l'écart final par deux et divise aussi $\tau$ par deux ; doubler $C$ double $\tau$ sans toucher à l'asymptote. Le graphe de l'énergie reçue montre enfin que l'eau ne garde que $105\ \mathrm{kJ}$ des $600\ \mathrm{kJ}$ fournis en cinquante minutes : tout le reste est parti dans la pièce.
+  en: |-
+    This is the energy balance made visible: the curve rises, but the slope decreases, because the share of $P$ that stays in the water shrinks as the losses $hS\,(\theta - \theta_{\text{ext}})$ grow. First read the slope at the origin, $P/C$, about six degrees a minute, and check that it depends only on the power and on the capacity; then cut the power to zero to recover Newton's cooling. Doubling $P$ doubles the final difference but does not change $\tau$; doubling $hS$ halves the final difference and halves $\tau$ too; doubling $C$ doubles $\tau$ without touching the asymptote. The graph of the received energy finally shows that the water keeps only $105\ \mathrm{kJ}$ of the $600\ \mathrm{kJ}$ supplied in fifty minutes: all the rest has gone into the room.
+a11y:
+  fr: |-
+    Représentation alternative : tableau de la température, de la vitesse d'échauffement, de l'écart restant avec l'asymptote, de l'énergie reçue et de la puissance qui traverse la frontière toutes les 300 s, et description textuelle (« la température monte vite puis de plus en plus lentement vers 70 °C ; à 8 min 45 elle vaut 52 °C, et l'eau a reçu 67 kJ »). La vue « tangente » est doublée d'une annonce vocale de la pente au point choisi ; les trois curseurs sont manipulables au clavier et annoncent la nouvelle constante de temps et la nouvelle asymptote.
+  en: |-
+    Alternative representation: a table of the temperature, the heating rate, the remaining difference with the asymptote, the energy received and the power crossing the boundary every 300 s, and a textual description ("the temperature rises quickly then more and more slowly towards 70 °C; at 8 min 45 it is 52 °C, and the water has received 67 kJ"). The "tangent" view is doubled by a spoken announcement of the slope at the chosen point; the three sliders are keyboard-operable and announce the new time constant and the new asymptote.

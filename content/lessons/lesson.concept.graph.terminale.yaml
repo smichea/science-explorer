@@ -1,0 +1,97 @@
+# Leçon narrée — lire une courbe en Terminale (profondeur 2) : pente d'une tangente, limites et
+# asymptotes, puis confrontation d'un nuage de mesures à une courbe modèle.
+id: lesson.concept.graph.terminale
+nodeId: concept.graph
+depth: 2
+tools:
+  - id: plotter
+    kind: plotter
+    title: { fr: "La courbe et ses tangentes", en: "The curve and its tangents" }
+    variable: x
+    view: { x: [-4, 6], y: [-4, 8] }
+    parameters:
+      - { id: a, label: { fr: "abscisse a", en: "abscissa a" }, min: -3, max: 5, step: 0.05, value: 2 }
+    input: true
+  - id: measures
+    kind: fit
+    title: { fr: "Des mesures et un modèle", en: "Measurements and a model" }
+    view: { x: [0, 10], y: [0, 12] }
+    parameters:
+      - { id: k, label: { fr: "coefficient k", en: "coefficient k" }, min: 0.5, max: 2.5, step: 0.05, value: 1 }
+    labels: { x: "t (s)", y: "h (m)" }
+    generator: { expr: "10*(1-exp(-x/3))", noise: 0.35, count: 12, from: 0.5, to: 9.5, seed: 2019 }
+    models:
+      - { id: line, expr: "k*x", label: { fr: "modèle affine h = k·t", en: "affine model h = k·t" } }
+      - { id: sat, expr: "10*(1-exp(-x/(3*k)))", label: { fr: "modèle exponentiel", en: "exponential model" } }
+    target: 6
+    measure: true
+steps:
+  - id: tangent
+    title: { fr: "La pente de la tangente est le nombre dérivé", en: "The slope of the tangent is the derivative" }
+    text:
+      fr: >-
+        Une courbe ne dit pas seulement des valeurs : elle dit aussi des pentes.
+        Prenons f de x égale x carré moins deux x moins un, et plaçons le point d'abscisse a.
+        La tangente en ce point est la droite qui épouse la courbe au plus près : sa pente est le nombre dérivé f prime de a.
+        Ici f prime de x vaut deux x moins deux, donc en a égal deux la tangente monte avec la pente deux ; déplacez a et regardez la tangente basculer quand la pente change de signe en x égal un.
+      en: >-
+        A curve does not only tell values: it also tells slopes.
+        Take f of x equals x squared minus two x minus one, and place the point of abscissa a.
+        The tangent at that point is the line that hugs the curve most closely: its slope is the derivative f prime of a.
+        Here f prime of x is two x minus two, so at a equal to two the tangent rises with slope two; move a and watch the tangent tip over when the slope changes sign at x equal to one.
+    actions:
+      - { at: 1, plot: { id: f, expr: "x^2-2*x-1", label: { fr: "f(x) = x² − 2x − 1", en: "f(x) = x² − 2x − 1" } } }
+      - { at: 1, point: { id: pa, on: f, x: "a", guides: true, label: { fr: "point d'abscisse a", en: "point of abscissa a" } } }
+      - { at: 2, tangent: { id: ta, on: f, x: "a", label: { fr: "tangente en a", en: "tangent at a" } } }
+      - { at: 3, plot: { id: fp, expr: "2*x-2", dashed: true, label: { fr: "f'(x) = 2x − 2", en: "f'(x) = 2x − 2" } } }
+  - id: limits
+    title: { fr: "Lire une limite, lire une asymptote", en: "Reading a limit, reading an asymptote" }
+    text:
+      fr: >-
+        Changeons de fonction : g de x égale deux x plus un, sur x moins un.
+        En x égal un le dénominateur s'annule et la courbe file vers l'infini : la droite verticale d'équation x égal un est une asymptote verticale.
+        Quand x devient très grand, le quotient se rapproche de deux : la droite horizontale d'équation y égal deux est une asymptote horizontale.
+        Une asymptote n'est pas une barrière, c'est une direction : la courbe s'en approche autant qu'on veut sans jamais l'atteindre ici.
+      en: >-
+        Let us change function: g of x equals two x plus one, over x minus one.
+        At x equal to one the denominator vanishes and the curve runs off to infinity: the vertical line of equation x equal to one is a vertical asymptote.
+        When x becomes very large, the quotient closes in on two: the horizontal line of equation y equal to two is a horizontal asymptote.
+        An asymptote is not a barrier, it is a direction: the curve comes as close to it as we please without ever reaching it here.
+    actions:
+      - { at: 0, clear: true }
+      - { at: 0, view: { x: [-6, 10], y: [-8, 12] } }
+      - { at: 1, plot: { id: g, expr: "(2*x+1)/(x-1)", label: { fr: "g(x) = (2x + 1)/(x − 1)", en: "g(x) = (2x + 1)/(x − 1)" } } }
+      - { at: 2, line: { id: va, a: 1, b: 0, c: -1, dashed: true, color: "#ff8fab", label: { fr: "x = 1", en: "x = 1" } } }
+      - { at: 3, line: { id: ha, a: 0, b: 1, c: -2, dashed: true, color: "#5ee6a8", label: { fr: "y = 2", en: "y = 2" } } }
+  - id: model
+    title: { fr: "Confronter des mesures à une courbe", en: "Comparing measurements with a curve" }
+    tool: measures
+    text:
+      fr: >-
+        Une courbe sert enfin à juger un modèle.
+        Voici douze mesures de la hauteur d'eau dans un bac qui se remplit, avec leur dispersion.
+        Le modèle affine, une simple proportionnalité, colle au début puis s'envole : les points s'en écartent de plus en plus.
+        Le modèle exponentiel, lui, suit le ralentissement : réglez le coefficient k pour minimiser l'écart, et lisez la prédiction à six secondes.
+      en: >-
+        A curve finally serves to judge a model.
+        Here are twelve measurements of the water height in a tank being filled, with their scatter.
+        The affine model, a plain proportionality, fits at first then flies away: the points drift further and further from it.
+        The exponential model follows the slowing down: tune the coefficient k to make the gap smallest, and read the prediction at six seconds.
+    actions:
+      - { at: 1, show: [line] }
+      - { at: 3, show: [sat] }
+  - id: play
+    kind: play
+    title: { fr: "À vous", en: "Your turn" }
+    text:
+      fr: >-
+        Déplacez l'abscisse a et suivez la tangente ; tapez votre propre expression pour chercher une asymptote ; ajoutez des mesures et jugez les deux modèles.
+      en: >-
+        Move the abscissa a and follow the tangent; type your own expression to look for an asymptote; add measurements and judge the two models.
+  - id: exercises
+    kind: exercises
+    title: { fr: "Deux lectures", en: "Two readings" }
+    text:
+      fr: "Une pente lue sur une tangente, une asymptote lue sur une expression."
+      en: "A slope read on a tangent, an asymptote read on an expression."
+    exercises: [exercise.graph.tangent_slope, exercise.graph.asymptote]

@@ -1,0 +1,47 @@
+# Premier principe — température finale d'un mélange de deux masses d'eau (réponse numérique)
+id: exercise.first_principle.mixture
+type: numeric
+nodeId: law.first_principle
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    Dans un vase calorifugé, de capacité thermique négligeable, on verse $m_1 = 200\ \mathrm{g}$ d'eau à $\theta_1 = 80\ ^\circ\mathrm{C}$ sur $m_2 = 300\ \mathrm{g}$ d'eau à $\theta_2 = 20\ ^\circ\mathrm{C}$. Aucun échange avec l'extérieur, aucun changement d'état.
+
+    Quelle est la température finale $\theta_f$ du mélange ? Répondez en degrés Celsius, avec deux chiffres significatifs.
+  en: |-
+    In an insulated vessel of negligible heat capacity, $m_1 = 200\ \mathrm{g}$ of water at $\theta_1 = 80\ ^\circ\mathrm{C}$ are poured onto $m_2 = 300\ \mathrm{g}$ of water at $\theta_2 = 20\ ^\circ\mathrm{C}$. No exchange with the outside, no change of state.
+
+    What is the final temperature $\theta_f$ of the mixture? Answer in degrees Celsius, with two significant figures.
+numeric:
+  value: 44
+  unit: "°C"
+  tolerance: { kind: absolute, value: 1 }
+  inputLabel: { fr: "θ_f", en: "θ_f" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Prenez pour système l'ensemble des deux masses d'eau : il est isolé, donc son énergie interne ne change pas. Ce que l'eau chaude cède, l'eau froide le reçoit.
+      en: |-
+        Take as your system the two masses of water together: it is isolated, so its internal energy does not change. What the hot water gives, the cold water receives.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Écrivez $m_1 c\,(\theta_f - \theta_1) + m_2 c\,(\theta_f - \theta_2) = 0$ : la capacité thermique massique $c$ se simplifie, puisque les deux corps sont de l'eau.
+      en: |-
+        Write $m_1 c\,(\theta_f - \theta_1) + m_2 c\,(\theta_f - \theta_2) = 0$: the specific heat capacity $c$ cancels, since both bodies are water.
+solution:
+  fr: |-
+    Le système formé des deux masses d'eau est isolé : $\Delta U = 0$, c'est-à-dire
+    $$m_1 c\,(\theta_f - \theta_1) + m_2 c\,(\theta_f - \theta_2) = 0 \quad \Longrightarrow \quad \theta_f = \frac{m_1\theta_1 + m_2\theta_2}{m_1 + m_2} = \frac{0{,}200 \times 80 + 0{,}300 \times 20}{0{,}500} = \frac{16{,}0 + 6{,}0}{0{,}500} = 44\ ^\circ\mathrm{C}.$$
+
+    **Interprétation.** La température finale est la **moyenne pondérée par les masses**, et non la moyenne des deux températures, qui vaudrait cinquante degrés : il y a une fois et demie plus d'eau froide, elle tire donc le résultat vers le bas. La capacité thermique massique a disparu du calcul parce que les deux corps sont faits de la même substance ; avec de l'eau versée sur un bloc d'aluminium, elle resterait et déplacerait le résultat. Vérification par le bilan : l'eau chaude perd $0{,}200 \times 4185 \times 36 = 3{,}0 \times 10^{4}\ \mathrm{J}$, l'eau froide gagne $0{,}300 \times 4185 \times 24 = 3{,}0 \times 10^{4}\ \mathrm{J}$ — exactement le même compte, ce qui est tout le premier principe. C'est le principe de la calorimétrie, par laquelle on mesure justement les capacités thermiques.
+  en: |-
+    The system made of the two masses of water is isolated: $\Delta U = 0$, that is
+    $$m_1 c\,(\theta_f - \theta_1) + m_2 c\,(\theta_f - \theta_2) = 0 \quad \Longrightarrow \quad \theta_f = \frac{m_1\theta_1 + m_2\theta_2}{m_1 + m_2} = \frac{0.200 \times 80 + 0.300 \times 20}{0.500} = \frac{16.0 + 6.0}{0.500} = 44\ ^\circ\mathrm{C}.$$
+
+    **Interpretation.** The final temperature is the **average weighted by the masses**, not the average of the two temperatures, which would be fifty degrees: there is one and a half times more cold water, so it pulls the result down. The specific heat capacity has disappeared from the computation because both bodies are made of the same substance; with water poured onto a block of aluminium it would stay and move the result. Check by the balance: the hot water loses $0.200 \times 4185 \times 36 = 3.0 \times 10^{4}\ \mathrm{J}$, the cold water gains $0.300 \times 4185 \times 24 = 3.0 \times 10^{4}\ \mathrm{J}$ — exactly the same count, which is the whole first principle. This is the principle of calorimetry, by which heat capacities are actually measured.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 3, calculationLength: 3, modellingOpenness: 3, linkedConcepts: 3, transfer: 4, autonomy: 3 }

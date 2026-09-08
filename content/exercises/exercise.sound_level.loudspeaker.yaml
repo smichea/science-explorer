@@ -1,0 +1,51 @@
+# Niveau d'intensité sonore — niveau produit par un haut-parleur à deux mètres (réponse numérique)
+id: exercise.sound_level.loudspeaker
+type: numeric
+nodeId: concept.sound_level
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Un haut-parleur rayonne une puissance acoustique $P = 0{,}10\ \mathrm{W}$, également dans toutes les directions. On se place à $d = 2{,}0\ \mathrm{m}$ de lui, en plein air. On donne l'intensité de référence $I_0 = 1{,}0 \times 10^{-12}\ \mathrm{W \cdot m^{-2}}$.
+
+    Quel est le niveau d'intensité sonore $L$ à cet endroit ? Répondez en décibels, avec deux chiffres significatifs.
+  en: |-
+    A loudspeaker radiates an acoustic power $P = 0.10\ \mathrm{W}$, equally in every direction. We stand $d = 2.0\ \mathrm{m}$ from it, in the open air. The reference intensity is $I_0 = 1.0 \times 10^{-12}\ \mathrm{W \cdot m^{-2}}$.
+
+    What is the sound intensity level $L$ at that place? Answer in decibels, with two significant figures.
+numeric:
+  value: 93
+  unit: "dB"
+  tolerance: { kind: absolute, value: 1 }
+  inputLabel: { fr: "L", en: "L" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Deux étapes. D'abord l'intensité : la puissance se répartit sur la sphère de rayon $d$, d'aire $4\pi d^2$, donc $I = \dfrac{P}{4\pi d^2}$.
+      en: |-
+        Two steps. First the intensity: the power spreads over the sphere of radius $d$, of area $4\pi d^2$, so $I = \dfrac{P}{4\pi d^2}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Ensuite le niveau : $L = 10\,\log\!\left(\dfrac{I}{I_0}\right)$, avec le logarithme **décimal**. Le rapport $I/I_0$ doit être un nombre sans unité.
+      en: |-
+        Then the level: $L = 10\,\log\!\left(\dfrac{I}{I_0}\right)$, with the **decimal** logarithm. The ratio $I/I_0$ must be a number without a unit.
+solution:
+  fr: |-
+    La puissance se répartit sur une sphère de rayon $d$ :
+    $$I = \frac{P}{4\pi d^2} = \frac{0{,}10}{4\pi \times 2{,}0^2} = \frac{0{,}10}{50{,}3} = 2{,}0 \times 10^{-3}\ \mathrm{W \cdot m^{-2}}.$$
+    Puis, en décibels,
+    $$L = 10\,\log\!\left(\frac{2{,}0 \times 10^{-3}}{1{,}0 \times 10^{-12}}\right) = 10\,\log\!\left(2{,}0 \times 10^{9}\right) = 10 \times 9{,}3 = 93\ \mathrm{dB}.$$
+
+    **Interprétation.** Quatre-vingt-treize décibels, c'est au-dessus du seuil de $85\ \mathrm{dB}$ à partir duquel une exposition de huit heures est réglementée : à deux mètres d'une enceinte d'un dixième de watt, on est déjà dans le rouge. Un dixième de watt acoustique paraît pourtant ridicule à côté des cent watts affichés sur un amplificateur : c'est que le rendement d'un haut-parleur dépasse rarement quelques pour cent, presque toute la puissance électrique partant en chaleur. Reculez à quatre mètres et l'intensité est divisée par quatre, ce qui retire $10 \log 4 = 6\ \mathrm{dB}$ : le niveau tombe à $87\ \mathrm{dB}$. Deux mètres de recul valent donc mieux que beaucoup de bonne volonté.
+  en: |-
+    The power spreads over a sphere of radius $d$:
+    $$I = \frac{P}{4\pi d^2} = \frac{0.10}{4\pi \times 2.0^2} = \frac{0.10}{50.3} = 2.0 \times 10^{-3}\ \mathrm{W \cdot m^{-2}}.$$
+    Then, in decibels,
+    $$L = 10\,\log\!\left(\frac{2.0 \times 10^{-3}}{1.0 \times 10^{-12}}\right) = 10\,\log\!\left(2.0 \times 10^{9}\right) = 10 \times 9.3 = 93\ \mathrm{dB}.$$
+
+    **Interpretation.** Ninety-three decibels is above the threshold of $85\ \mathrm{dB}$ from which an eight-hour exposure is regulated: two metres from a one-tenth-of-a-watt speaker, one is already in the red. A tenth of an acoustic watt nevertheless looks ridiculous next to the hundred watts written on an amplifier: the efficiency of a loudspeaker rarely exceeds a few per cent, almost all the electrical power leaving as heat. Step back to four metres and the intensity is divided by four, which removes $10 \log 4 = 6\ \mathrm{dB}$: the level drops to $87\ \mathrm{dB}$. Two metres of retreat are therefore worth more than a lot of good will.
+difficulty: { mathematicalDepth: 3, conceptualNovelty: 3, calculationLength: 3, modellingOpenness: 2, linkedConcepts: 3, transfer: 2, autonomy: 2 }

@@ -1,0 +1,68 @@
+# Mesure en Terminale — composer les incertitudes relatives d'un produit et d'un quotient.
+id: exercise.measurement.composed
+type: numeric
+nodeId: method.measurement
+depth: 3
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On mesure l'intensité de pesanteur avec un pendule simple, par $g = \dfrac{4\pi^2 \ell}{T^2}$.
+
+    On trouve $\ell = 1{,}000\ \mathrm{m}$ avec $u(\ell) = 2\ \mathrm{mm}$, et $T = 2{,}006\ \mathrm{s}$ avec $u(T) = 0{,}008\ \mathrm{s}$.
+
+    Quelle est l'incertitude-type $u(g)$, en $\mathrm{m \cdot s^{-2}}$ ?
+  en: |-
+    The gravitational field strength is measured with a simple pendulum, through $g = \dfrac{4\pi^2 \ell}{T^2}$.
+
+    We find $\ell = 1.000\ \mathrm{m}$ with $u(\ell) = 2\ \mathrm{mm}$, and $T = 2.006\ \mathrm{s}$ with $u(T) = 0.008\ \mathrm{s}$.
+
+    What is the standard uncertainty $u(g)$, in $\mathrm{m \cdot s^{-2}}$?
+numeric:
+  value: 0.081
+  unit: "m/s²"
+  tolerance: { kind: relative, value: 0.08 }
+  inputLabel: { fr: "u(g)", en: "u(g)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Pour un produit ou un quotient, ce sont les incertitudes **relatives** qui se composent : $\dfrac{u(g)}{g} = \sqrt{\left(\dfrac{u(\ell)}{\ell}\right)^2 + \left(2\,\dfrac{u(T)}{T}\right)^2}$.
+      en: |-
+        For a product or a quotient, it is the **relative** uncertainties that compose: $\dfrac{u(g)}{g} = \sqrt{\left(\dfrac{u(\ell)}{\ell}\right)^2 + \left(2\,\dfrac{u(T)}{T}\right)^2}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        L'exposant $2$ de $T$ double son incertitude relative. Calculez d'abord $g$, puis multipliez par l'incertitude relative trouvée.
+      en: |-
+        The exponent $2$ of $T$ doubles its relative uncertainty. Compute $g$ first, then multiply by the relative uncertainty found.
+solution:
+  fr: |-
+    Valeur : $g = \dfrac{4\pi^2 \times 1{,}000}{2{,}006^2} = \dfrac{39{,}478}{4{,}024} = 9{,}811\ \mathrm{m \cdot s^{-2}}$.
+
+    Incertitudes relatives : $\dfrac{u(\ell)}{\ell} = \dfrac{0{,}002}{1{,}000} = 2{,}0 \times 10^{-3}$ et $2\dfrac{u(T)}{T} = 2 \times \dfrac{0{,}008}{2{,}006} = 8{,}0 \times 10^{-3}$.
+
+    Composition : $\dfrac{u(g)}{g} = \sqrt{(2{,}0 \times 10^{-3})^2 + (8{,}0 \times 10^{-3})^2} = 8{,}2 \times 10^{-3}$, d'où $u(g) = 9{,}811 \times 8{,}2 \times 10^{-3} = 0{,}081\ \mathrm{m \cdot s^{-2}}$.
+
+    On écrit donc $g = 9{,}81 \pm 0{,}08\ \mathrm{m \cdot s^{-2}}$.
+
+    **Interprétation.** Les carrés font que le plus grand terme domine : ici la période pèse seize fois plus que la longueur dans la somme des carrés. Mesurer la longueur au dixième de millimètre ne changerait quasiment rien ; chronométrer dix oscillations au lieu d'une diviserait par dix l'incertitude sur $T$ et ferait tomber $u(g)$ à $0{,}02\ \mathrm{m \cdot s^{-2}}$. C'est ainsi qu'on décide où porter l'effort expérimental.
+  en: |-
+    Value: $g = \dfrac{4\pi^2 \times 1.000}{2.006^2} = \dfrac{39.478}{4.024} = 9.811\ \mathrm{m \cdot s^{-2}}$.
+
+    Relative uncertainties: $\dfrac{u(\ell)}{\ell} = \dfrac{0.002}{1.000} = 2.0 \times 10^{-3}$ and $2\dfrac{u(T)}{T} = 2 \times \dfrac{0.008}{2.006} = 8.0 \times 10^{-3}$.
+
+    Composition: $\dfrac{u(g)}{g} = \sqrt{(2.0 \times 10^{-3})^2 + (8.0 \times 10^{-3})^2} = 8.2 \times 10^{-3}$, hence $u(g) = 9.811 \times 8.2 \times 10^{-3} = 0.081\ \mathrm{m \cdot s^{-2}}$.
+
+    We therefore write $g = 9.81 \pm 0.08\ \mathrm{m \cdot s^{-2}}$.
+
+    **Interpretation.** The squares make the largest term dominate: here the period weighs sixteen times more than the length in the sum of squares. Measuring the length to a tenth of a millimetre would change almost nothing; timing ten oscillations instead of one would divide the uncertainty on $T$ by ten and bring $u(g)$ down to $0.02\ \mathrm{m \cdot s^{-2}}$. That is how one decides where to spend the experimental effort.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 3
+  modellingOpenness: 2
+  linkedConcepts: 2
+  transfer: 2
+  autonomy: 3

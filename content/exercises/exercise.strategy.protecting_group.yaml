@@ -1,0 +1,77 @@
+# Leçon stratégie de synthèse — pourquoi protéger un groupe : question qualitative, à choix, avec justification demandée
+id: exercise.strategy.protecting_group
+type: choice
+nodeId: method.synthesis_strategy
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    On veut fabriquer le dipeptide Gly-Ala en formant une liaison entre le groupe carboxyle de la glycine et le groupe amino de l'alanine. Chacun de ces deux acides aminés porte à la fois un groupe carboxyle et un groupe amino, et le réactif de couplage n'est pas sélectif.
+
+    Avant le couplage, on protège le groupe amino de la glycine et le groupe carboxyle de l'alanine. **Pourquoi ?**
+  en: |-
+    One wants to make the dipeptide Gly-Ala by forming a bond between the carboxyl group of glycine and the amino group of alanine. Each of these two amino acids carries both a carboxyl group and an amino group, and the coupling reagent is not selective.
+
+    Before the coupling, the amino group of the glycine and the carboxyl group of the alanine are protected. **Why?**
+choice:
+  multiple: false
+  requireReasoning: true
+  choices:
+    - id: selectivity
+      text:
+        fr: "Pour empêcher les couplages non voulus : sans protection, les deux acides aminés peuvent se lier dans les deux sens et sur eux-mêmes, et l'on obtient un mélange de dipeptides au lieu du seul Gly-Ala."
+        en: "To prevent the unwanted couplings: without protection, the two amino acids can bond both ways and to themselves, and one obtains a mixture of dipeptides instead of Gly-Ala alone."
+      correct: true
+      feedback:
+        fr: "Exactement : la protection sert la **sélectivité**. Quatre dipeptides sont possibles avec deux acides aminés libres — Gly-Ala, Ala-Gly, Gly-Gly et Ala-Ala — et masquer deux groupes n'en laisse qu'un seul possible."
+        en: "Exactly: protection serves **selectivity**. Four dipeptides are possible with two free amino acids — Gly-Ala, Ala-Gly, Gly-Gly and Ala-Ala — and masking two groups leaves only one possible."
+    - id: yield
+      text:
+        fr: "Pour augmenter le rendement global de la synthèse, car chaque étape supplémentaire améliore la quantité de produit obtenue."
+        en: "To increase the overall yield of the synthesis, since each additional step improves the amount of product obtained."
+      feedback:
+        fr: "Non : les rendements se multiplient, donc protéger puis déprotéger ajoute deux étapes et **fait baisser** le rendement global. On l'accepte parce que le produit obtenu est le bon."
+        en: "No: yields multiply, so protecting and then deprotecting adds two steps and **lowers** the overall yield. One accepts it because the product obtained is the right one."
+    - id: speed
+      text:
+        fr: "Pour accélérer la réaction de couplage, la protection jouant le rôle d'un catalyseur."
+        en: "To speed up the coupling reaction, the protection acting as a catalyst."
+      feedback:
+        fr: "Non : un groupe protecteur est consommé puis retiré, alors qu'un catalyseur se retrouve intact à la fin. La protection est une question de sélectivité, pas de cinétique."
+        en: "No: a protecting group is consumed and then removed, whereas a catalyst is found intact at the end. Protection is a matter of selectivity, not of kinetics."
+    - id: equilibrium
+      text:
+        fr: "Pour déplacer l'équilibre du couplage vers le dipeptide, en supprimant l'un des produits."
+        en: "To shift the equilibrium of the coupling towards the dipeptide, by removing one of the products."
+      feedback:
+        fr: "Non : les groupes protégés sont ceux des **réactifs**, pas un produit à éliminer. Déplacer un équilibre se fait en mettant un réactif en excès ou en retirant un produit au fur et à mesure, ce qui est une autre stratégie."
+        en: "No: the protected groups are those of the **reactants**, not a product to be removed. Shifting an equilibrium is done by putting a reactant in excess or by removing a product as it forms, which is another strategy."
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Comptez les liaisons peptidiques que le réactif de couplage pourrait former si les quatre groupes restaient libres : combien de dipeptides différents peut-on obtenir avec deux acides aminés ?
+      en: |-
+        Count the peptide bonds the coupling reagent could form if the four groups stayed free: how many different dipeptides can be obtained from two amino acids?
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Un groupe protecteur est mis puis retiré : il coûte deux étapes, donc deux rendements. On n'accepte ce coût que pour obtenir quelque chose qu'un réactif seul ne sait pas donner.
+      en: |-
+        A protecting group is put on and then taken off: it costs two steps, hence two yields. That cost is accepted only to obtain something that a reagent alone cannot give.
+solution:
+  fr: |-
+    Avec deux acides aminés libres, le réactif de couplage peut lier le carboxyle de l'un à l'amine de l'autre **dans les deux sens**, et chaque acide aminé peut aussi réagir avec lui-même : quatre dipeptides sont possibles, Gly-Ala, Ala-Gly, Gly-Gly et Ala-Ala, sans compter les tripeptides. Le mélange serait ensuite très difficile à séparer.
+
+    En protégeant l'amine de la glycine, on l'empêche de jouer le rôle du partenaire amino ; en protégeant le carboxyle de l'alanine, on l'empêche de jouer celui du partenaire acide. Il ne reste alors qu'une seule liaison possible, celle que l'on veut, et la déprotection restitue ensuite les deux groupes.
+
+    **Interprétation.** La protection ne rend pas la réaction plus rapide, ni plus rentable : elle la rend **sélective**. Elle coûte même deux étapes supplémentaires, donc deux facteurs dans le rendement global — si chacune rend $90\ \%$, la séquence perd déjà près d'un cinquième de sa matière. C'est un arbitrage constant en synthèse : on préfère toujours un réactif chimiosélectif, qui n'attaque qu'un type de groupe ; la protection n'arrive qu'en second recours, quand aucun réactif de ce genre n'existe. C'est ainsi que sont fabriqués les peptides de synthèse, et c'est le même raisonnement, appliqué des dizaines de fois, qui permet la synthèse totale de molécules naturelles complexes.
+  en: |-
+    With two free amino acids, the coupling reagent can bond the carboxyl of one to the amine of the other **both ways**, and each amino acid can also react with itself: four dipeptides are possible, Gly-Ala, Ala-Gly, Gly-Gly and Ala-Ala, without counting the tripeptides. The mixture would then be very hard to separate.
+
+    By protecting the amine of the glycine, one prevents it from playing the part of the amino partner; by protecting the carboxyl of the alanine, one prevents it from playing that of the acid partner. Only one bond then remains possible, the wanted one, and the deprotection afterwards restores both groups.
+
+    **Interpretation.** Protection does not make the reaction faster, nor more profitable: it makes it **selective**. It even costs two extra steps, hence two factors in the overall yield — if each returns $90\ \%$, the sequence already loses nearly a fifth of its matter. This is a constant trade-off in synthesis: a chemoselective reagent, which attacks only one kind of group, is always preferred; protection comes only as a second resort, when no such reagent exists. This is how synthetic peptides are made, and it is the same reasoning, applied dozens of times, that makes the total synthesis of complex natural molecules possible.
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 3, calculationLength: 1, modellingOpenness: 3, linkedConcepts: 3, transfer: 3, autonomy: 3 }

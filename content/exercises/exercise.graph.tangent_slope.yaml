@@ -1,0 +1,55 @@
+# Courbe représentative en Terminale — lire un nombre dérivé comme la pente d'une tangente.
+id: exercise.graph.tangent_slope
+type: numeric
+nodeId: concept.graph
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Sur la courbe de $f(x) = x^2 - 2x - 1$, la tangente au point d'abscisse $a$ passe par le point $A(3\,;\,2)$ de la courbe et par le point $B(5\,;\,10)$.
+
+    Quel est le nombre dérivé $f'(3)$ ?
+  en: |-
+    On the curve of $f(x) = x^2 - 2x - 1$, the tangent at the point of abscissa $a$ passes through the point $A(3, 2)$ of the curve and through the point $B(5, 10)$.
+
+    What is the derivative $f'(3)$?
+numeric:
+  value: 4
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "f'(3)", en: "f'(3)" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La tangente est une droite : sa pente se lit entre deux de ses points, $\dfrac{y_B - y_A}{x_B - x_A}$.
+      en: |-
+        The tangent is a straight line: its slope is read between two of its points, $\dfrac{y_B - y_A}{x_B - x_A}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Le nombre dérivé $f'(a)$ **est** la pente de la tangente au point d'abscisse $a$ : rien de plus à calculer une fois la pente trouvée.
+      en: |-
+        The derivative $f'(a)$ **is** the slope of the tangent at the point of abscissa $a$: nothing more to compute once the slope is found.
+solution:
+  fr: |-
+    La pente de la droite $(AB)$ vaut $\dfrac{10 - 2}{5 - 3} = \dfrac{8}{2} = 4$. Comme cette droite est la tangente à la courbe au point d'abscisse $3$, sa pente est le nombre dérivé : $f'(3) = 4$.
+
+    On peut vérifier par le calcul : $f'(x) = 2x - 2$, donc $f'(3) = 6 - 2 = 4$. Les deux lectures, graphique et algébrique, donnent le même nombre.
+
+    **Interprétation.** Une tangente porte deux informations : le point de contact donne $f(3) = 2$, la pente donne $f'(3) = 4$. C'est ce couple qui permet d'écrire l'équation de la tangente, $y = f'(3)(x - 3) + f(3) = 4x - 10$, et de l'utiliser comme approximation affine de $f$ près de $3$ : pour $x = 3{,}1$, la tangente annonce $2{,}4$ alors que $f(3{,}1) = 2{,}41$.
+  en: |-
+    The slope of the line $(AB)$ is $\dfrac{10 - 2}{5 - 3} = \dfrac{8}{2} = 4$. Since this line is the tangent to the curve at the point of abscissa $3$, its slope is the derivative: $f'(3) = 4$.
+
+    It can be checked by computation: $f'(x) = 2x - 2$, so $f'(3) = 6 - 2 = 4$. The two readings, graphical and algebraic, give the same number.
+
+    **Interpretation.** A tangent carries two pieces of information: the point of contact gives $f(3) = 2$, the slope gives $f'(3) = 4$. It is that pair which allows the equation of the tangent to be written, $y = f'(3)(x - 3) + f(3) = 4x - 10$, and used as an affine approximation of $f$ near $3$: for $x = 3.1$, the tangent announces $2.4$ whereas $f(3.1) = 2.41$.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 1
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

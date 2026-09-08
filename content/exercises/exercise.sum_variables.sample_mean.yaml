@@ -1,0 +1,54 @@
+# Somme de variables aléatoires en Terminale — écart type de la moyenne d'un échantillon de taille 25
+id: exercise.sum_variables.sample_mean
+type: numeric
+nodeId: concept.random_variable_sum
+depth: 1
+evidenceDimension: transfer
+prompt:
+  fr: |-
+    Une machine remplit des bouteilles. Le volume versé est une variable aléatoire d'espérance $\mu = 500\ \mathrm{mL}$ et d'écart type $\sigma = 4\ \mathrm{mL}$, et les bouteilles sont remplies indépendamment les unes des autres.
+
+    On prélève $25$ bouteilles et l'on calcule le volume moyen $M_{25}$. Quel est l'écart type de $M_{25}$, en millilitres ?
+  en: |-
+    A machine fills bottles. The volume poured is a random variable with expectation $\mu = 500\ \mathrm{mL}$ and standard deviation $\sigma = 4\ \mathrm{mL}$, and the bottles are filled independently of one another.
+
+    $25$ bottles are taken and the mean volume $M_{25}$ is computed. What is the standard deviation of $M_{25}$, in millilitres?
+numeric:
+  value: 0.8
+  unit: "mL"
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "écart type de la moyenne", en: "standard deviation of the mean" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        La moyenne $M_n$ d'un échantillon de taille $n$ vérifie $E(M_n) = \mu$ et $V(M_n) = \dfrac{\sigma^{2}}{n}$.
+      en: |-
+        The mean $M_n$ of a sample of size $n$ satisfies $E(M_n) = \mu$ and $V(M_n) = \dfrac{\sigma^{2}}{n}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        L'écart type est la racine de la variance : $\dfrac{\sigma}{\sqrt n} = \dfrac{4}{\sqrt{25}}$.
+      en: |-
+        The standard deviation is the square root of the variance: $\dfrac{\sigma}{\sqrt n} = \dfrac{4}{\sqrt{25}}$.
+solution:
+  fr: |-
+    La somme $S_{25}$ de $25$ variables indépendantes de même loi a pour variance $25\,\sigma^{2}$, donc la moyenne $M_{25} = \frac{S_{25}}{25}$ a pour variance $\frac{25\sigma^{2}}{25^{2}} = \frac{\sigma^{2}}{25}$. D'où l'écart type
+    $$\sigma(M_{25}) = \frac{\sigma}{\sqrt{25}} = \frac{4}{5} = 0{,}8\ \mathrm{mL}.$$
+
+    **Interprétation.** Une bouteille prise au hasard s'écarte typiquement de $4\ \mathrm{mL}$ de la valeur visée ; la moyenne de vingt-cinq bouteilles ne s'en écarte plus que de $0{,}8\ \mathrm{mL}$, cinq fois moins. Le facteur $\sqrt n$ est impitoyable dans les deux sens : pour diviser encore par deux cette dispersion, il faudrait cent bouteilles. C'est la formule qui gouverne toute mesure répétée en physique et en chimie, où l'incertitude sur la moyenne s'écrit $u = \frac{s}{\sqrt n}$.
+  en: |-
+    The sum $S_{25}$ of $25$ independent variables with the same law has variance $25\,\sigma^{2}$, so the mean $M_{25} = \frac{S_{25}}{25}$ has variance $\frac{25\sigma^{2}}{25^{2}} = \frac{\sigma^{2}}{25}$. Hence the standard deviation
+    $$\sigma(M_{25}) = \frac{\sigma}{\sqrt{25}} = \frac{4}{5} = 0.8\ \mathrm{mL}.$$
+
+    **Interpretation.** A bottle taken at random typically strays by $4\ \mathrm{mL}$ from the target value; the mean of twenty-five bottles strays by only $0.8\ \mathrm{mL}$, five times less. The factor $\sqrt n$ is merciless in both directions: to halve that spread again, a hundred bottles would be needed. This is the formula that governs every repeated measurement in physics and chemistry, where the uncertainty on the mean is written $u = \frac{s}{\sqrt n}$.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 3
+  calculationLength: 2
+  modellingOpenness: 2
+  linkedConcepts: 3
+  transfer: 4
+  autonomy: 3

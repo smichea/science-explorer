@@ -1,0 +1,25 @@
+# Leçon (diapositives composées à partir de la description) — vitesse volumique : un traceur où la tangente à l'origine,
+# une tangente plus tardive et le temps de demi-réaction sont dessinés, puis la simulation d'une cinétique d'ordre 1.
+id: lesson.concept.reaction_rate
+nodeId: concept.reaction_rate
+depth: 1
+tools:
+  - id: tangents
+    kind: plotter
+    title: { fr: "Tangente et temps de demi-réaction", en: "Tangent and half-reaction time" }
+    variable: t
+    view: { x: [0, 40], y: [0, 0.55] }
+    input: false
+    parameters:
+      - { id: c, label: { fr: "concentration initiale (mol/L)", en: "initial concentration (mol/L)" }, min: 0.1, max: 0.5, step: 0.05, value: 0.5 }
+      - { id: r, label: { fr: "constante de temps τ (s)", en: "time constant τ (s)" }, min: 2, max: 30, step: 1, value: 10 }
+    initial:
+      - view: { labels: { x: "t (s)", y: "[A] (mol/L)" } }
+        plot: { id: conc, expr: "c*exp(-t/r)", label: { fr: "[A](t)", en: "[A](t)" } }
+      - tangent: { id: start, on: conc, x: 0, label: { fr: "tangente à l'origine : pente −0,050 mol/L/s", en: "tangent at the origin: slope −0.050 mol/L/s" } }
+      - tangent: { id: later, on: conc, x: 20, label: { fr: "tangente à 20 s : la vitesse y est plus de sept fois plus faible", en: "tangent at 20 s: the rate there is more than seven times smaller" } }
+      - point: { id: half, on: conc, x: "0.6931*r", guides: true, label: { fr: "temps de demi-réaction", en: "half-reaction time" } }
+  - id: kinetics
+    kind: simulation
+    simulationId: simulation.kinetics.first_order
+    title: { fr: "Suivi d'une transformation", en: "Monitoring a transformation" }

@@ -1,0 +1,53 @@
+# Suites en Terminale — récurrence, théorème de la limite monotone, puis limite lue sur l'équation de point fixe
+id: exercise.sequence_limit.fixed_point
+type: numeric
+nodeId: concept.sequence_limit
+depth: 1
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Soit la suite définie par $u_0 = 1$ et, pour tout entier $n$, $u_{n+1} = \dfrac12 u_n + 3$.
+
+    On a démontré par récurrence que $u_n < 6$ pour tout $n$, et l'on sait que la suite est croissante : elle converge donc. Quelle est sa limite ?
+  en: |-
+    Consider the sequence defined by $u_0 = 1$ and, for every integer $n$, $u_{n+1} = \dfrac12 u_n + 3$.
+
+    It has been proved by induction that $u_n < 6$ for every $n$, and the sequence is known to be increasing: it therefore converges. What is its limit?
+numeric:
+  value: 6
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "limite de la suite", en: "limit of the sequence" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Si $u_n \to \ell$, alors $u_{n+1} \to \ell$ aussi : les deux membres de la relation de récurrence ont la même limite.
+      en: |-
+        If $u_n \to \ell$, then $u_{n+1} \to \ell$ as well: both sides of the recurrence relation have the same limit.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Passez à la limite dans $u_{n+1} = \frac12 u_n + 3$ : cela donne l'équation $\ell = \frac12 \ell + 3$, qu'il reste à résoudre.
+      en: |-
+        Pass to the limit in $u_{n+1} = \frac12 u_n + 3$: this gives the equation $\ell = \frac12 \ell + 3$, which remains to be solved.
+solution:
+  fr: |-
+    La suite est croissante et majorée par $6$, donc convergente d'après le théorème de la limite monotone ; notons $\ell$ sa limite. Les suites $(u_{n+1})$ et $(u_n)$ ont la même limite $\ell$, donc en passant à la limite dans $u_{n+1} = \frac12 u_n + 3$ on obtient $\ell = \frac12 \ell + 3$, soit $\frac12 \ell = 3$ et $$\ell = 6.$$
+    Les termes le confirment : $u_1 = 3{,}5$, $u_2 = 4{,}75$, $u_3 = 5{,}375$, $u_{10} \approx 5{,}995$.
+
+    **Interprétation.** Le théorème de la limite monotone donne l'existence de la limite, jamais sa valeur : c'est l'équation de point fixe $\ell = f(\ell)$ qui la livre. L'ordre du raisonnement est essentiel — résoudre $\ell = \frac12\ell + 3$ sans avoir prouvé la convergence ne démontre rien, car une suite divergente peut très bien vérifier la même relation de récurrence. Remarquez enfin que la limite $6$ est le majorant obtenu par récurrence, mais ce n'est pas une règle : une suite majorée par $10$ aurait la même limite.
+  en: |-
+    The sequence is increasing and bounded above by $6$, hence convergent by the monotone convergence theorem; write $\ell$ for its limit. The sequences $(u_{n+1})$ and $(u_n)$ have the same limit $\ell$, so passing to the limit in $u_{n+1} = \frac12 u_n + 3$ gives $\ell = \frac12 \ell + 3$, that is $\frac12 \ell = 3$ and $$\ell = 6.$$
+    The terms confirm it: $u_1 = 3.5$, $u_2 = 4.75$, $u_3 = 5.375$, $u_{10} \approx 5.995$.
+
+    **Interpretation.** The monotone convergence theorem gives the existence of the limit, never its value: it is the fixed-point equation $\ell = f(\ell)$ that delivers it. The order of the reasoning is essential — solving $\ell = \frac12\ell + 3$ without having proved convergence proves nothing, since a divergent sequence may perfectly well satisfy the same recurrence. Note finally that the limit $6$ is the bound obtained by induction, but that is not a rule: a sequence bounded above by $10$ would have the same limit.
+difficulty:
+  mathematicalDepth: 3
+  conceptualNovelty: 3
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 3
+  transfer: 1
+  autonomy: 3

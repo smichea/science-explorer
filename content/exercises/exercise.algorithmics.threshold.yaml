@@ -1,0 +1,69 @@
+# Algorithmique en Terminale — le rang de dépassement d'un seuil par une suite géométrique.
+id: exercise.algorithmics.threshold
+type: numeric
+nodeId: tool.algorithmics
+depth: 3
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On exécute le programme suivant :
+
+    ```python
+    u = 10
+    n = 0
+    while u <= 1000:
+        u = 1.3 * u
+        n = n + 1
+    print(n)
+    ```
+
+    Quelle valeur est affichée ?
+  en: |-
+    The following program is run:
+
+    ```python
+    u = 10
+    n = 0
+    while u <= 1000:
+        u = 1.3 * u
+        n = n + 1
+    print(n)
+    ```
+
+    Which value is displayed?
+numeric:
+  value: 18
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "valeur affichée", en: "displayed value" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: "La suite est géométrique : $u_n = 10 \\times 1{,}3^{\\,n}$. Le programme s'arrête au premier $n$ tel que $u_n > 1000$."
+      en: "The sequence is geometric: $u_n = 10 \\times 1.3^{\\,n}$. The program stops at the first $n$ such that $u_n > 1000$."
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: "Résolvez $10 \\times 1{,}3^{\\,n} > 1000$, soit $1{,}3^{\\,n} > 100$, en passant au logarithme : $n > \\dfrac{\\ln 100}{\\ln 1{,}3}$."
+      en: "Solve $10 \\times 1.3^{\\,n} > 1000$, that is $1.3^{\\,n} > 100$, by taking logarithms: $n > \\dfrac{\\ln 100}{\\ln 1.3}$."
+solution:
+  fr: |-
+    La boucle multiplie $u$ par $1{,}3$ et compte les tours, donc après $n$ tours $u = 10 \times 1{,}3^{\,n}$. Elle s'arrête dès que $u > 1000$, c'est-à-dire dès que $1{,}3^{\,n} > 100$.
+
+    En passant au logarithme népérien : $n \ln 1{,}3 > \ln 100$, soit $n > \dfrac{4{,}605}{0{,}2624} = 17{,}55$. Le premier entier qui convient est $n = 18$ : le programme affiche $18$ (on vérifie $u_{17} = 10 \times 1{,}3^{17} \approx 970$ et $u_{18} \approx 1261$).
+
+    **Interprétation.** Le programme et le calcul par le logarithme répondent à la même question par deux chemins : l'un cherche, l'autre résout. Le programme reste utile quand la suite n'a pas de formule explicite — une suite définie par $u_{n+1} = \sqrt{u_n + 2}$, par exemple. La condition `while u <= 1000` mérite d'être lue avec soin : écrite `< 1000` elle donnerait le même résultat ici, mais changerait la réponse si un terme tombait exactement sur le seuil.
+  en: |-
+    The loop multiplies $u$ by $1.3$ and counts the turns, so after $n$ turns $u = 10 \times 1.3^{\,n}$. It stops as soon as $u > 1000$, that is as soon as $1.3^{\,n} > 100$.
+
+    Taking natural logarithms: $n \ln 1.3 > \ln 100$, that is $n > \dfrac{4.605}{0.2624} = 17.55$. The first suitable integer is $n = 18$: the program displays $18$ (check $u_{17} = 10 \times 1.3^{17} \approx 970$ and $u_{18} \approx 1261$).
+
+    **Interpretation.** The program and the logarithm computation answer the same question by two roads: one searches, the other solves. The program stays useful when the sequence has no explicit formula — a sequence defined by $u_{n+1} = \sqrt{u_n + 2}$, for instance. The condition `while u <= 1000` deserves careful reading: written `< 1000` it would give the same result here, but would change the answer if a term landed exactly on the threshold.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 1
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 3
+  transfer: 2
+  autonomy: 2

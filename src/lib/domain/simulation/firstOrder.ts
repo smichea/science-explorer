@@ -19,9 +19,31 @@ export interface FirstOrderObservables {
   q: number;
   /** dq/dt at t. */
   rate: number;
-  /** Quantity still to change: target − q. */
+  /** Quantity still to change: the asymptote minus q. */
   remaining: number;
   finished: boolean;
+  /** Energy received since the start, C (q − q₀), when a heat capacity is given. */
+  energy: number;
+  /** Net power crossing the boundary, C dq/dt: positive while the body warms up. */
+  flux: number;
+}
+
+/**
+ * A body that exchanges heat is still first order: C dθ/dt = P − hS (θ − θ_ext) is
+ * dθ/dt = (θ∞ − θ)/τ with τ = C/hS and θ∞ = θ_ext + P/hS. The three fields make that balance
+ * visible in the content instead of baking it into a time constant and an asymptote.
+ */
+export function timeConstant(config: FirstOrderConfig): number {
+  return config.capacity !== undefined && config.exchange !== undefined
+    ? config.capacity / config.exchange
+    : config.tau;
+}
+
+/** The value the quantity tends to: the target, raised by P/hS when a power is supplied. */
+export function asymptote(config: FirstOrderConfig): number {
+  return config.exchange !== undefined && config.power > 0
+    ? config.target + config.power / config.exchange
+    : config.target;
 }
 
 export function initialState(config: FirstOrderConfig): FirstOrderState {
@@ -29,11 +51,12 @@ export function initialState(config: FirstOrderConfig): FirstOrderState {
 }
 
 export function valueAt(config: FirstOrderConfig, t: number): number {
-  return config.target + (config.initial - config.target) * Math.exp(-t / config.tau);
+  const limit = asymptote(config);
+  return limit + (config.initial - limit) * Math.exp(-t / timeConstant(config));
 }
 
 export function rateAt(config: FirstOrderConfig, t: number): number {
-  return (config.target - valueAt(config, t)) / config.tau;
+  return (asymptote(config) - valueAt(config, t)) / timeConstant(config);
 }
 
 export function step(
@@ -41,7 +64,8 @@ export function step(
   state: FirstOrderState,
   dt: number
 ): FirstOrderState {
-  const q = config.target + (state.q - config.target) * Math.exp(-dt / config.tau);
+  const limit = asymptote(config);
+  const q = limit + (state.q - limit) * Math.exp(-dt / timeConstant(config));
   return { t: state.t + dt, q };
 }
 
@@ -50,17 +74,21 @@ export function stateAt(config: FirstOrderConfig, t: number): FirstOrderState {
 }
 
 export function observe(config: FirstOrderConfig, state: FirstOrderState): FirstOrderObservables {
+  const limit = asymptote(config);
+  const rate = (limit - state.q) / timeConstant(config);
   return {
     t: state.t,
     q: state.q,
-    rate: (config.target - state.q) / config.tau,
-    remaining: config.target - state.q,
+    rate,
+    remaining: limit - state.q,
     finished: state.t >= config.duration,
+    energy: config.capacity !== undefined ? config.capacity * (state.q - config.initial) : 0,
+    flux: config.capacity !== undefined ? config.capacity * rate : 0,
   };
 }
 
 export function halfLife(config: FirstOrderConfig): number {
-  return config.tau * Math.LN2;
+  return timeConstant(config) * Math.LN2;
 }
 
 /** Tangent line at t0: q(t) ≈ q(t0) + rate(t0) (t − t0). */

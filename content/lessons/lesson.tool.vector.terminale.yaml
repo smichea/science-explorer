@@ -1,0 +1,95 @@
+# Leçon narrée — le vecteur en Terminale (profondeur 2) : produit scalaire, projection sur un
+# repère bien choisi, et dérivation d'un vecteur position coordonnée par coordonnée.
+id: lesson.tool.vector.terminale
+nodeId: tool.vector
+depth: 2
+tools:
+  - id: vectors
+    kind: vectors
+    title: { fr: "Vecteurs et produit scalaire", en: "Vectors and dot product" }
+    view: { x: [-5, 6], y: [-5, 5] }
+    parameters:
+      - { id: t, label: { fr: "angle du plan (°)", en: "plane angle (°)" }, min: 0, max: 60, step: 1, value: 30 }
+    vectors:
+      - { id: u, x: 4, y: 1, label: { fr: "u", en: "u" }, components: true, drag: true }
+      - { id: v, x: -1, y: 4, label: { fr: "v", en: "v" }, components: true, drag: true }
+      - { id: p, x: 0, y: -4, color: "#ffd166", label: { fr: "P (poids)", en: "P (weight)" }, hidden: true }
+      - { id: pt, x: "-4*sin(t*pi/180)*cos(t*pi/180)", y: "-4*sin(t*pi/180)*sin(t*pi/180)", color: "#5ee6a8", label: { fr: "P tangentiel", en: "P along the plane" }, hidden: true }
+      - { id: pn, x: "4*cos(t*pi/180)*sin(t*pi/180)", y: "-4*cos(t*pi/180)*cos(t*pi/180)", color: "#b39dff", label: { fr: "P normal", en: "P normal to the plane" }, hidden: true }
+    dot: [u, v]
+  - id: plotter
+    kind: plotter
+    title: { fr: "Dériver coordonnée par coordonnée", en: "Differentiating coordinate by coordinate" }
+    variable: x
+    view: { x: [0, 1.1], y: [-6, 6] }
+    parameters:
+      - { id: a, label: { fr: "instant a (s)", en: "instant a (s)" }, min: 0, max: 1, step: 0.02, value: 0.5 }
+    input: true
+steps:
+  - id: dot
+    title: { fr: "Le produit scalaire lit un angle", en: "The dot product reads an angle" }
+    text:
+      fr: >-
+        Deux vecteurs du plan, u de coordonnées 4 et 1, v de coordonnées moins 1 et 4.
+        Leur produit scalaire se calcule coordonnée par coordonnée : 4 fois moins 1, plus 1 fois 4, égale zéro.
+        Un produit scalaire nul signifie des vecteurs orthogonaux, et la lecture confirme l'angle de quatre-vingt-dix degrés.
+        Déplacez une pointe : le produit scalaire devient positif si l'angle est aigu, négatif s'il est obtus, et sa valeur vaut aussi norme de u fois norme de v fois cosinus de l'angle.
+      en: >-
+        Two vectors of the plane, u with coordinates 4 and 1, v with coordinates minus 1 and 4.
+        Their dot product is computed coordinate by coordinate: 4 times minus 1, plus 1 times 4, equals zero.
+        A dot product equal to zero means orthogonal vectors, and the readout confirms the angle of ninety degrees.
+        Move one tip: the dot product turns positive if the angle is acute, negative if it is obtuse, and its value is also the norm of u times the norm of v times the cosine of the angle.
+  - id: projection
+    title: { fr: "Projeter dans un repère bien choisi", en: "Projecting in a well-chosen frame" }
+    text:
+      fr: >-
+        Le poids d'un objet posé sur un plan incliné est vertical, vers le bas : il ne dépend pas de la pente.
+        Ce qui dépend de la pente, c'est la façon dont on le lit : on choisit un repère dont un axe suit le plan.
+        Le poids se décompose alors en deux vecteurs, l'un le long du plan, qui fait glisser, l'autre perpendiculaire, que la table compense.
+        Faites varier l'angle : la composante tangentielle vaut P sinus alpha, la composante normale P cosinus alpha, et leur somme reste le poids, inchangé.
+      en: >-
+        The weight of an object resting on an inclined plane is vertical, downwards: it does not depend on the slope.
+        What depends on the slope is the way it is read: we choose a frame with one axis along the plane.
+        The weight then splits into two vectors, one along the plane, which makes the object slide, the other perpendicular, which the table balances.
+        Vary the angle: the tangential component is P sine alpha, the normal component P cosine alpha, and their sum stays the weight, unchanged.
+    actions:
+      - { at: 0, hide: [u, v] }
+      - { at: 0, show: [p] }
+      - { at: 2, show: [pt, pn] }
+  - id: derivative
+    title: { fr: "Dériver un vecteur position", en: "Differentiating a position vector" }
+    tool: plotter
+    text:
+      fr: >-
+        Un point qui bouge a un vecteur position dont les deux coordonnées dépendent du temps.
+        Pour un projectile lancé horizontalement à deux mètres par seconde depuis cinq mètres de haut, x de t vaut deux t et y de t vaut cinq moins 4,9 t carré.
+        Le vecteur vitesse s'obtient en dérivant chaque coordonnée séparément : deux pour la première, moins 9,8 t pour la seconde.
+        À l'instant a, lisez les deux coordonnées de la vitesse : l'horizontale ne bouge jamais, la verticale descend proportionnellement au temps.
+      en: >-
+        A moving point has a position vector whose two coordinates depend on time.
+        For a projectile launched horizontally at two metres per second from five metres up, x of t is two t and y of t is five minus 4.9 t squared.
+        The velocity vector is obtained by differentiating each coordinate separately: two for the first, minus 9.8 t for the second.
+        At the instant a, read the two coordinates of the velocity: the horizontal one never moves, the vertical one falls in proportion to time.
+    actions:
+      - { at: 1, view: { labels: { x: "t (s)", y: "m, m/s" } } }
+      - { at: 1, plot: { id: px, expr: "2*x", label: { fr: "x(t) = 2t", en: "x(t) = 2t" } } }
+      - { at: 1, plot: { id: py, expr: "5-4.9*x^2", label: { fr: "y(t) = 5 − 4,9t²", en: "y(t) = 5 − 4.9t²" } } }
+      - { at: 2, plot: { id: vx, expr: "2+0*x", dashed: true, label: { fr: "vx = 2", en: "vx = 2" } } }
+      - { at: 2, plot: { id: vy, expr: "-9.8*x", dashed: true, label: { fr: "vy = −9,8t", en: "vy = −9.8t" } } }
+      - { at: 3, point: { id: mx, on: vx, x: "a", guides: true, label: { fr: "vx(a)", en: "vx(a)" } } }
+      - { at: 3, point: { id: my, on: vy, x: "a", guides: true, label: { fr: "vy(a)", en: "vy(a)" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous", en: "Your turn" }
+    text:
+      fr: >-
+        Glissez les pointes des deux vecteurs et cherchez la position où le produit scalaire s'annule ; faites varier l'angle du plan ; déplacez l'instant a sur les courbes de vitesse.
+      en: >-
+        Drag the tips of the two vectors and look for the position where the dot product vanishes; vary the angle of the plane; move the instant a on the velocity curves.
+  - id: exercises
+    kind: exercises
+    title: { fr: "Deux calculs", en: "Two computations" }
+    text:
+      fr: "Un produit scalaire, une projection sur un plan incliné."
+      en: "A dot product, a projection on an inclined plane."
+    exercises: [exercise.vector.dot_angle, exercise.vector.projection]

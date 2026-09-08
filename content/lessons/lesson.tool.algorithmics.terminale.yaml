@@ -1,0 +1,106 @@
+# Leçon narrée — algorithmique en Terminale (profondeur 3) : fonctions, seuil d'une suite,
+# dichotomie et somme de Riemann.
+id: lesson.tool.algorithmics.terminale
+nodeId: tool.algorithmics
+depth: 3
+tools:
+  - id: seq
+    kind: sequence
+    title: { fr: "Une suite et son seuil", en: "A sequence and its threshold" }
+    view: { x: [0, 20], y: [0, 1200] }
+    parameters:
+      - { id: q, label: { fr: "raison q", en: "ratio q" }, min: 1.05, max: 1.6, step: 0.05, value: 1.3 }
+    mode: recurrence
+    expr: "q*u"
+    first: 10
+    start: 0
+    count: 20
+    input: true
+  - id: plotter
+    kind: plotter
+    title: { fr: "Dichotomie et somme de Riemann", en: "Bisection and Riemann sum" }
+    variable: x
+    view: { x: [0, 2.5], y: [-2, 6] }
+    parameters:
+      - { id: n, label: { fr: "nombre de rectangles", en: "number of rectangles" }, min: 2, max: 40, step: 1, value: 6 }
+    input: true
+steps:
+  - id: functions
+    title: { fr: "Une fonction qui renvoie une valeur", en: "A function that returns a value" }
+    text:
+      fr: >-
+        Jusqu'ici un programme affichait ; maintenant il renvoie.
+        Une fonction Python se définit avec def, prend des paramètres et rend une valeur avec return, qu'on peut alors réutiliser dans un autre calcul.
+        Écrire def terme de n : puis une boucle et return u, c'est fabriquer un outil réutilisable au lieu d'un calcul jetable.
+        La suite affichée ici est géométrique de raison q, à partir de dix : chaque terme est le précédent multiplié par q.
+      en: >-
+        Until now a program printed; now it returns.
+        A Python function is defined with def, takes parameters and gives back a value with return, which can then be reused in another computation.
+        Writing def term of n: then a loop and return u is building a reusable tool instead of a throwaway computation.
+        The sequence shown here is geometric with ratio q, starting from ten: each term is the previous one multiplied by q.
+  - id: threshold
+    title: { fr: "Chercher un seuil", en: "Looking for a threshold" }
+    text:
+      fr: >-
+        La question la plus fréquente sur une suite croissante est : à partir de quel rang dépasse-t-elle une valeur donnée ?
+        On ne le calcule pas, on le cherche : une boucle tant que multiplie le terme courant par q et compte les tours, jusqu'à dépasser le seuil.
+        Avec q égal 1,3, le premier terme au-dessus de mille est le dix-huitième : réglez la raison et regardez le rang du dépassement reculer ou avancer.
+        Une boucle tant que est le bon outil quand on ignore le nombre de tours d'avance ; une boucle pour convient quand on le connaît.
+      en: >-
+        The most frequent question about an increasing sequence is: from which index does it pass a given value?
+        It is not computed, it is searched: a while loop multiplies the current term by q and counts the turns, until the threshold is passed.
+        With q equal to 1.3, the first term above a thousand is the eighteenth: set the ratio and watch the index of the crossing move back or forth.
+        A while loop is the right tool when the number of turns is unknown in advance; a for loop suits when it is known.
+  - id: bisection
+    title: { fr: "Une solution par dichotomie", en: "A solution by bisection" }
+    tool: plotter
+    text:
+      fr: >-
+        Changeons de problème : trouver la solution de f de x égale zéro pour f de x égale x cube moins deux x moins un, entre un et deux.
+        La fonction est continue, elle change de signe entre un et deux : une solution existe dans cet intervalle.
+        La dichotomie coupe l'intervalle en deux et garde la moitié où le signe change encore ; dix coupes divisent la largeur par mille.
+        C'est le théorème des valeurs intermédiaires transformé en algorithme : la boucle tourne tant que la largeur dépasse la précision voulue.
+      en: >-
+        Let us change problem: find the solution of f of x equals zero for f of x equals x cubed minus two x minus one, between one and two.
+        The function is continuous and changes sign between one and two: a solution exists in that interval.
+        Bisection cuts the interval in two and keeps the half where the sign still changes; ten cuts divide the width by a thousand.
+        This is the intermediate value theorem turned into an algorithm: the loop runs while the width exceeds the precision wanted.
+    actions:
+      - { at: 1, plot: { id: f, expr: "x^3-2*x-1", label: { fr: "f(x) = x³ − 2x − 1", en: "f(x) = x³ − 2x − 1" } } }
+      - { at: 1, line: { id: axis, a: 0, b: 1, c: 0, dashed: true, color: "#7f9cff" } }
+      - { at: 2, interval: { id: bracket, from: 1, to: 2, label: { fr: "intervalle de départ", en: "starting interval" } } }
+      - { at: 3, point: { id: root, on: f, x: 1.618, guides: true, label: { fr: "≈ 1,618", en: "≈ 1.618" } } }
+  - id: riemann
+    title: { fr: "Approcher une aire par une somme", en: "Approaching an area by a sum" }
+    tool: plotter
+    text:
+      fr: >-
+        Dernier programme : approcher l'aire sous une courbe entre zéro et deux.
+        On découpe l'intervalle en n morceaux, on calcule la hauteur au bord gauche de chacun, on additionne les aires des rectangles : trois lignes de Python.
+        Avec six rectangles l'approximation est grossière ; augmentez n et regardez la somme s'approcher de l'aire exacte, qui vaut ici huit tiers.
+        C'est la définition même de l'intégrale : la limite de ces sommes quand le découpage devient infiniment fin.
+      en: >-
+        Last program: approach the area under a curve between zero and two.
+        Cut the interval into n pieces, compute the height at the left edge of each, add the areas of the rectangles: three lines of Python.
+        With six rectangles the approximation is crude; raise n and watch the sum close in on the exact area, which here is eight thirds.
+        That is the very definition of the integral: the limit of those sums as the cutting becomes infinitely fine.
+    actions:
+      - { at: 0, clear: true }
+      - { at: 0, view: { x: [0, 2.5], y: [-0.5, 6] } }
+      - { at: 1, plot: { id: g, expr: "x^2", label: { fr: "g(x) = x²", en: "g(x) = x²" } } }
+      - { at: 2, area: { id: under, on: g, from: 0, to: 2, riemann: 6, side: left, label: { fr: "aire sous g", en: "area under g" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous", en: "Your turn" }
+    text:
+      fr: >-
+        Changez la raison de la suite et cherchez le rang du dépassement ; augmentez le nombre de rectangles et regardez l'écart à huit tiers se refermer.
+      en: >-
+        Change the ratio of the sequence and look for the index of the crossing; raise the number of rectangles and watch the gap to eight thirds close.
+  - id: exercises
+    kind: exercises
+    title: { fr: "Deux programmes", en: "Two programs" }
+    text:
+      fr: "Un seuil à trouver, une somme de Riemann à évaluer."
+      en: "A threshold to find, a Riemann sum to evaluate."
+    exercises: [exercise.algorithmics.threshold, exercise.algorithmics.riemann]

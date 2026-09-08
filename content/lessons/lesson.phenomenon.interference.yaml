@@ -1,0 +1,125 @@
+# Leçon narrée — diffraction et interférences : la figure sur l'écran, en sinus cardinal au carré puis
+# modulée par les franges de deux fentes (traceur), après un rappel de l'onde périodique (outil onde).
+id: lesson.phenomenon.interference
+nodeId: phenomenon.interference
+depth: 1
+tools:
+  - id: light
+    kind: wave
+    title: { fr: "Une onde périodique et sa longueur d'onde", en: "A periodic wave and its wavelength" }
+    mode: string
+    parameters:
+      - { id: d, label: { fr: "longueur d'onde λ (m)", en: "wavelength λ (m)" }, min: 0.5, max: 3, step: 0.1, value: 1.5 }
+    period: 1
+    wavelength: "d"
+    amplitude: 0.4
+    length: 8
+    point: 4
+  - id: screen
+    kind: plotter
+    title: { fr: "L'éclairement sur l'écran, à deux mètres", en: "The illumination on the screen, two metres away" }
+    variable: x
+    view: { x: [-30, 30], y: [0, 1.15] }
+    input: false
+    parameters:
+      - { id: a, label: { fr: "largeur de la fente a (µm)", en: "slit width a (µm)" }, min: 20, max: 200, step: 5, value: 100 }
+      - { id: w, label: { fr: "longueur d'onde λ (nm)", en: "wavelength λ (nm)" }, min: 400, max: 750, step: 10, value: 633 }
+      - { id: b, label: { fr: "écartement des deux fentes b (µm)", en: "spacing of the two slits b (µm)" }, min: 100, max: 600, step: 25, value: 300 }
+    initial:
+      - { at: 0, view: { labels: { x: "position sur l'écran (mm)", y: "éclairement relatif" } } }
+steps:
+  - id: wave_recall
+    title: { fr: "La lumière est une onde", en: "Light is a wave" }
+    tool: light
+    text:
+      fr: >-
+        La lumière est une onde : une vibration qui se propage, à trois cent mille kilomètres par seconde dans le vide.
+        Sa longueur d'onde, la distance entre deux crêtes, vaut quatre cents nanomètres pour le violet et huit cents pour le rouge.
+        Sur cette corde, la longueur d'onde se voit à l'œil nu ; pour la lumière elle est mille fois plus petite qu'un millimètre, et c'est pourquoi personne ne l'aperçoit directement.
+        Il faut donc un obstacle de cette taille-là pour révéler l'onde : une fente de quelques centièmes de millimètre suffira.
+      en: >-
+        Light is a wave: a vibration that travels, at three hundred thousand kilometres a second in a vacuum.
+        Its wavelength, the distance between two crests, is four hundred nanometres for violet and eight hundred for red.
+        On this rope the wavelength can be seen with the naked eye; for light it is a thousand times smaller than a millimetre, which is why nobody ever sees it directly.
+        An obstacle of that very size is therefore needed to reveal the wave: a slit of a few hundredths of a millimetre will do.
+  - id: diffraction
+    title: { fr: "La diffraction par une fente", en: "Diffraction by a slit" }
+    tool: screen
+    text:
+      fr: >-
+        Voici l'écran, à deux mètres derrière une fente de un dixième de millimètre éclairée par un laser rouge de six cent trente-trois nanomètres.
+        L'optique géométrique prédirait un trait fin, large comme la fente ; on observe au contraire une large tache centrale, encadrée de taches secondaires bien plus faibles.
+        La demi-largeur angulaire de la tache centrale vaut la longueur d'onde divisée par la largeur de la fente, en radians, soit ici six virgule trois millièmes de radian.
+        Multipliée par la distance à l'écran, puis doublée, elle donne deux centimètres et demi de tache pour un dixième de millimètre de fente.
+      en: >-
+        Here is the screen, two metres behind a slit of one tenth of a millimetre lit by a red laser of six hundred and thirty-three nanometres.
+        Geometrical optics would predict a thin line, as wide as the slit; instead a wide central spot is observed, flanked by much fainter secondary spots.
+        The angular half-width of the central spot is the wavelength divided by the width of the slit, in radians, here six point three thousandths of a radian.
+        Multiplied by the distance to the screen, then doubled, it gives two and a half centimetres of spot for a tenth of a millimetre of slit.
+    actions:
+      - { at: 1, plot: { id: diff, expr: "(sin(pi*a*(x+1e-6)/(2*w))/(pi*a*(x+1e-6)/(2*w)))^2", label: { fr: "une fente : sinus cardinal au carré", en: "one slit: cardinal sine squared" } } }
+  - id: narrower
+    title: { fr: "Plus la fente est fine, plus la tache est large", en: "The narrower the slit, the wider the spot" }
+    tool: screen
+    text:
+      fr: >-
+        Rétrécissons la fente à cinquante micromètres, deux fois moins qu'auparavant.
+        La tache ne rétrécit pas : elle double de largeur, car la demi-largeur varie comme un sur la largeur de la fente.
+        Cette loi se retourne pour mesurer : un cheveu tendu dans le faisceau diffracte comme une fente de même épaisseur, et la largeur de sa tache donne son diamètre, environ soixante-dix micromètres.
+        Changeons enfin de couleur, pour un bleu de quatre cent cinquante nanomètres : la tache se resserre, puisque la longueur d'onde est plus courte.
+      en: >-
+        Let us narrow the slit to fifty micrometres, half of what it was.
+        The spot does not shrink: it doubles in width, because the half-width varies as one over the width of the slit.
+        This law can be turned round to measure: a hair stretched across the beam diffracts like a slit of the same thickness, and the width of its spot gives its diameter, about seventy micrometres.
+        Let us finally change colour, to a blue of four hundred and fifty nanometres: the spot narrows, since the wavelength is shorter.
+    actions:
+      - { at: 0, set: { a: 50 } }
+      - { at: 3, set: { a: 100, w: 450 } }
+  - id: young
+    title: { fr: "Deux fentes : les interférences", en: "Two slits: interference" }
+    tool: screen
+    text:
+      fr: >-
+        Ouvrons maintenant deux fentes identiques, distantes de trois dixièmes de millimètre, éclairées par le même laser rouge.
+        Les deux ondes se superposent sur l'écran et leurs élongations s'ajoutent : là où elles arrivent en phase, la lumière est double ; là où elles arrivent en opposition de phase, il fait noir.
+        C'est la différence de chemin qui décide : un nombre entier de longueurs d'onde donne une frange brillante, un nombre entier plus une demie donne une frange sombre.
+        Les franges sont régulièrement espacées de l'interfrange, la longueur d'onde multipliée par la distance à l'écran et divisée par l'écartement des fentes, soit ici quatre virgule deux millimètres.
+        Les deux phénomènes se superposent en réalité : les franges d'interférence sont modulées par la tache de diffraction d'une seule fente, qui leur sert d'enveloppe.
+      en: >-
+        Let us now open two identical slits, three tenths of a millimetre apart, lit by the same red laser.
+        The two waves are superposed on the screen and their displacements add: where they arrive in phase the light is doubled; where they arrive in antiphase it is dark.
+        It is the path difference that decides: a whole number of wavelengths gives a bright fringe, a whole number plus a half gives a dark one.
+        The fringes are regularly spaced by the fringe spacing, the wavelength multiplied by the distance to the screen and divided by the spacing of the slits, here four point two millimetres.
+        In reality the two phenomena are superposed: the interference fringes are modulated by the diffraction spot of a single slit, which acts as their envelope.
+    actions:
+      - { at: 0, set: { a: 100, w: 633 } }
+      - { at: 1, plot: { id: fringes, expr: "cos(pi*b*x/(2*w))^2", label: { fr: "deux fentes seules : cosinus au carré", en: "two slits alone: cosine squared" }, dashed: true } }
+      - { at: 4, plot: { id: both, expr: "cos(pi*b*x/(2*w))^2*(sin(pi*a*(x+1e-6)/(2*w))/(pi*a*(x+1e-6)/(2*w)))^2", label: { fr: "figure observée", en: "observed figure" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous d'écarter les fentes", en: "Your turn to move the slits apart" }
+    tool: screen
+    text:
+      fr: >-
+        À vous.
+        Écartez les deux fentes et regardez les franges se resserrer, puis rapprochez-les et regardez-les s'écarter : l'interfrange varie comme un sur l'écartement.
+        Changez ensuite la largeur des fentes sans toucher à leur écartement : seule l'enveloppe bouge, l'espacement des franges reste le même.
+        Cherchez enfin le réglage qui ne laisse voir que trois franges dans toute la tache centrale.
+      en: >-
+        Your turn.
+        Move the two slits apart and watch the fringes crowd together, then bring them closer and watch the fringes spread: the fringe spacing varies as one over the slit spacing.
+        Then change the width of the slits without touching their spacing: only the envelope moves, the spacing of the fringes stays the same.
+        Finally look for the setting that leaves only three fringes inside the whole central spot.
+    actions:
+      - { at: 0, set: { a: 100, w: 633, b: 300 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : le diamètre d'un cheveu lu dans sa figure de diffraction, puis la longueur d'onde d'un laser lue dans un interfrange.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the diameter of a hair read from its diffraction figure, then the wavelength of a laser read from a fringe spacing.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.interference.hair, exercise.interference.fringes]

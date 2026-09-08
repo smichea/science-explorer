@@ -1,0 +1,54 @@
+# Titrage en Terminale — déterminer une concentration à partir du volume équivalent lu sur la courbe.
+id: exercise.titration.equivalence_ph
+type: numeric
+nodeId: method.titration
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On titre $V_A = 20{,}0\ \mathrm{mL}$ d'une solution d'acide éthanoïque par une solution d'hydroxyde de sodium de concentration $C_B = 5{,}00 \times 10^{-2}\ \mathrm{mol \cdot L^{-1}}$. Le suivi pH-métrique place le saut de pH à $V_E = 16{,}4\ \mathrm{mL}$.
+
+    Quelle est la concentration $C_A$ de la solution d'acide, en $\mathrm{mol \cdot L^{-1}}$ ?
+  en: |-
+    $V_A = 20.0\ \mathrm{mL}$ of an ethanoic acid solution is titrated by a sodium hydroxide solution of concentration $C_B = 5.00 \times 10^{-2}\ \mathrm{mol \cdot L^{-1}}$. Following the pH places the jump at $V_E = 16.4\ \mathrm{mL}$.
+
+    What is the concentration $C_A$ of the acid solution, in $\mathrm{mol \cdot L^{-1}}$?
+numeric:
+  value: 0.0410
+  unit: "mol/L"
+  tolerance: { kind: relative, value: 0.02 }
+  inputLabel: { fr: "C_A", en: "C_A" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        À l'équivalence, les réactifs ont été introduits dans les proportions de l'équation : $n_A = n_B$ pour $\mathrm{CH_3COOH} + \mathrm{HO^-} \to \mathrm{CH_3COO^-} + \mathrm{H_2O}$.
+      en: |-
+        At the equivalence, the reactants have been introduced in the proportions of the equation: $n_A = n_B$ for $\mathrm{CH_3COOH} + \mathrm{HO^-} \to \mathrm{CH_3COO^-} + \mathrm{H_2O}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: "Écrivez $C_A V_A = C_B V_E$ ; les volumes peuvent rester en millilitres, ils se simplifient."
+      en: "Write $C_A V_A = C_B V_E$; the volumes may stay in millilitres, they cancel."
+solution:
+  fr: |-
+    L'équation du titrage est $\mathrm{CH_3COOH} + \mathrm{HO^-} \to \mathrm{CH_3COO^-} + \mathrm{H_2O}$ : un pour un. À l'équivalence, la quantité d'ions hydroxyde versée est exactement celle de l'acide initialement présent, donc $C_A V_A = C_B V_E$.
+
+    D'où $C_A = \dfrac{C_B V_E}{V_A} = \dfrac{5{,}00 \times 10^{-2} \times 16{,}4}{20{,}0} = 4{,}10 \times 10^{-2}\ \mathrm{mol \cdot L^{-1}}$.
+
+    **Interprétation.** L'équivalence n'est pas « le moment où le pH vaut sept » : pour un acide faible titré par une base forte, la solution à l'équivalence ne contient que la base conjuguée, qui rend le milieu basique — ici pH $\approx 8{,}7$. Le repère est le **saut**, pas une valeur de pH particulière. Le titrage donne la concentration sans jamais peser l'acide : c'est ce qui le rend précis sur des solutions très diluées, là où une pesée serait impossible.
+  en: |-
+    The titration equation is $\mathrm{CH_3COOH} + \mathrm{HO^-} \to \mathrm{CH_3COO^-} + \mathrm{H_2O}$: one for one. At the equivalence, the amount of hydroxide poured is exactly that of the acid initially present, so $C_A V_A = C_B V_E$.
+
+    Hence $C_A = \dfrac{C_B V_E}{V_A} = \dfrac{5.00 \times 10^{-2} \times 16.4}{20.0} = 4.10 \times 10^{-2}\ \mathrm{mol \cdot L^{-1}}$.
+
+    **Interpretation.** The equivalence is not "the moment when the pH is seven": for a weak acid titrated by a strong base, the solution at the equivalence contains only the conjugate base, which makes the medium basic — here pH $\approx 8.7$. The landmark is the **jump**, not a particular pH value. The titration gives the concentration without ever weighing the acid: that is what makes it accurate on very dilute solutions, where a weighing would be impossible.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 2
+  calculationLength: 2
+  modellingOpenness: 2
+  linkedConcepts: 3
+  transfer: 2
+  autonomy: 2

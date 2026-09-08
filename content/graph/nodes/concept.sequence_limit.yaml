@@ -1,0 +1,47 @@
+id: concept.sequence_limit
+type: mathematical_concept
+world: world.mathematics
+region: region.math.sequences_series
+importance: 3
+tags: [lycee]
+title: { fr: "Suites : limite, convergence, raisonnement par récurrence", en: "Sequences: limit, convergence, proof by induction" }
+shortPurpose:
+  fr: "Décider vers quoi tend une suite quand le rang grandit, et démontrer par récurrence une propriété vraie à tous les rangs."
+  en: "Decide what a sequence tends to as the rank grows, and prove by induction a property true at every rank."
+overview:
+  fr: >-
+    Une suite avance terme après terme, et la question de la Terminale est de savoir où elle va. Certaines s'approchent d'un nombre d'aussi près que l'on veut et ne le quittent plus : elles convergent. D'autres dépassent toute borne, si grande soit-elle : elles divergent vers l'infini. Pour démontrer qu'une propriété reste vraie à tous les rangs, on aligne des dominos : c'est le raisonnement par récurrence, la première vraie démonstration du lycée.
+  en: >-
+    A sequence advances term after term, and the question of the final year is where it is going. Some come as close as one likes to a number and never leave it again: they converge. Others go beyond every bound, however large: they diverge to infinity. To prove that a property stays true at every rank, one lines up dominoes: this is proof by induction, the first real proof of secondary school.
+aliases:
+  fr: ["limite d'une suite", "suite convergente", "suite divergente", "raisonnement par récurrence", "théorème des gendarmes", "théorème de la limite monotone", "suite majorée"]
+  en: ["limit of a sequence", "convergent sequence", "divergent sequence", "proof by induction", "squeeze theorem", "monotone convergence theorem", "bounded sequence"]
+description:
+  fr: |
+    Une suite $(u_n)$ **converge vers le réel** $\ell$ lorsque tout intervalle ouvert contenant $\ell$ contient tous les termes de la suite à partir d'un certain rang : aussi étroite que soit la fourchette choisie autour de $\ell$, la suite finit par y entrer et n'en sort plus. On écrit alors $\lim\limits_{n \to +\infty} u_n = \ell$. Elle **diverge vers** $+\infty$ lorsque tout intervalle $[A\,;\,+\infty[$ contient tous les termes à partir d'un certain rang, c'est-à-dire qu'elle dépasse toute borne. Une suite peut aussi n'avoir aucune limite : $u_n = (-1)^n$ saute indéfiniment de $-1$ à $1$. Les **limites de référence** sont $\lim \dfrac1n = \lim \dfrac{1}{\sqrt n} = \lim \dfrac{1}{n^2} = 0$, $\lim n = \lim n^2 = \lim \sqrt n = +\infty$, et pour une suite géométrique de raison $q$ : $\lim q^n = 0$ si $-1 < q < 1$, $\lim q^n = +\infty$ si $q > 1$.
+
+    On calcule une limite avec les opérations sur les limites — somme, produit, quotient — en levant les **formes indéterminées** $\frac{\infty}{\infty}$, $\infty - \infty$, $0 \times \infty$ et $\frac00$ par une factorisation du terme dominant. Ainsi $u_n = \dfrac{3n+1}{n+2} = 3 - \dfrac{5}{n+2}$ : le second terme tend vers $0$, donc $u_n \to 3$. On le vérifie sur les valeurs : $u_{10} = \frac{31}{12} \approx 2{,}583$, $u_{100} \approx 2{,}951$, $u_{1000} \approx 2{,}995$. Deux théorèmes évitent souvent le calcul : le **théorème de comparaison** ($u_n \geq v_n$ à partir d'un rang et $v_n \to +\infty$ entraînent $u_n \to +\infty$) et le **théorème des gendarmes** ($v_n \leq u_n \leq w_n$ avec $v_n$ et $w_n$ de même limite $\ell$ entraînent $u_n \to \ell$) ; enfin le **théorème de la limite monotone** affirme qu'une suite croissante et majorée converge, sans dire vers quoi.
+
+    Le **raisonnement par récurrence** démontre qu'une propriété $P(n)$ est vraie pour tout entier $n \geq n_0$ : on vérifie $P(n_0)$, c'est l'**initialisation**, puis on démontre que $P(n)$ entraîne $P(n+1)$, c'est l'**hérédité** ; les dominos tombent alors tous. Prenons $u_0 = 1$ et $u_{n+1} = \frac12 u_n + 3$. Si $u_n < 6$, alors $u_{n+1} = \frac12 u_n + 3 < \frac12 \times 6 + 3 = 6$ : la majoration par $6$ est héréditaire, et vraie au rang $0$, donc vraie partout. La suite est de plus croissante, donc elle converge ; sa limite $\ell$ vérifie $\ell = \frac12 \ell + 3$, d'où $\ell = 6$. Trois pièges : oublier l'initialisation (la propriété « $3$ divise $10^n + 1$ » est héréditaire mais fausse à tous les rangs) ; confondre « majorée par $6$ » et « de limite $6$ », alors que $3 - \frac1n$ est majorée par $6$ et tend vers $3$ ; et croire que la limite est atteinte, alors qu'une suite convergente n'a en général aucun terme égal à sa limite.
+  en: |
+    A sequence $(u_n)$ **converges to the real number** $\ell$ when every open interval containing $\ell$ contains all the terms of the sequence from some rank onwards: however narrow the bracket chosen around $\ell$, the sequence eventually enters it and never leaves it again. One then writes $\lim\limits_{n \to +\infty} u_n = \ell$. It **diverges to** $+\infty$ when every interval $[A\,;\,+\infty[$ contains all the terms from some rank onwards, that is, when it passes every bound. A sequence may also have no limit at all: $u_n = (-1)^n$ jumps for ever between $-1$ and $1$. The **reference limits** are $\lim \dfrac1n = \lim \dfrac{1}{\sqrt n} = \lim \dfrac{1}{n^2} = 0$, $\lim n = \lim n^2 = \lim \sqrt n = +\infty$, and for a geometric sequence of ratio $q$: $\lim q^n = 0$ if $-1 < q < 1$, $\lim q^n = +\infty$ if $q > 1$.
+
+    A limit is computed with the operations on limits — sum, product, quotient — settling the **indeterminate forms** $\frac{\infty}{\infty}$, $\infty - \infty$, $0 \times \infty$ and $\frac00$ by factoring out the dominant term. Thus $u_n = \dfrac{3n+1}{n+2} = 3 - \dfrac{5}{n+2}$: the second term tends to $0$, so $u_n \to 3$. The values confirm it: $u_{10} = \frac{31}{12} \approx 2.583$, $u_{100} \approx 2.951$, $u_{1000} \approx 2.995$. Two theorems often spare the computation: the **comparison theorem** ($u_n \geq v_n$ from some rank and $v_n \to +\infty$ imply $u_n \to +\infty$) and the **squeeze theorem** ($v_n \leq u_n \leq w_n$ with $v_n$ and $w_n$ of the same limit $\ell$ imply $u_n \to \ell$); finally the **monotone convergence theorem** states that an increasing sequence bounded above converges, without saying to what.
+
+    **Proof by induction** shows that a property $P(n)$ is true for every integer $n \geq n_0$: one checks $P(n_0)$, the **initialisation**, then proves that $P(n)$ implies $P(n+1)$, the **inductive step**; the dominoes then all fall. Take $u_0 = 1$ and $u_{n+1} = \frac12 u_n + 3$. If $u_n < 6$, then $u_{n+1} = \frac12 u_n + 3 < \frac12 \times 6 + 3 = 6$: the bound $6$ is inherited, and true at rank $0$, hence true everywhere. The sequence is moreover increasing, so it converges; its limit $\ell$ satisfies $\ell = \frac12 \ell + 3$, hence $\ell = 6$. Three traps: forgetting the initialisation (the property "$3$ divides $10^n + 1$" is inherited but false at every rank); confusing "bounded above by $6$" with "of limit $6$", whereas $3 - \frac1n$ is bounded above by $6$ and tends to $3$; and believing that the limit is reached, whereas a convergent sequence generally has no term equal to its limit.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "traduire la convergence vers $\\ell$ et la divergence vers $+\\infty$ avec des intervalles, et reconnaître une suite sans limite"
+        - "calculer une limite avec les opérations et les limites de référence, en levant une forme indéterminée par factorisation"
+        - "utiliser le théorème de comparaison, le théorème des gendarmes et le théorème de la limite monotone"
+        - "démontrer par récurrence une majoration, une monotonie ou une formule explicite, initialisation comprise"
+      en:
+        - "express convergence to $\\ell$ and divergence to $+\\infty$ with intervals, and recognise a sequence without a limit"
+        - "compute a limit with the operations and the reference limits, settling an indeterminate form by factoring"
+        - "use the comparison theorem, the squeeze theorem and the monotone convergence theorem"
+        - "prove by induction a bound, a monotonicity or an explicit formula, initialisation included"
+sources: [source.bo.lycee.2019]

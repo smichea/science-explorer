@@ -1,0 +1,53 @@
+# Dénombrement en Terminale — nombre de délégations de 3 élèves parmi 12 (combinaison)
+id: exercise.counting.combination
+type: numeric
+nodeId: tool.counting
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Une classe compte $12$ élèves. On doit former une délégation de $3$ élèves, sans distinction de rôle entre eux.
+
+    Combien de délégations différentes peut-on former ?
+  en: |-
+    A class has $12$ pupils. A delegation of $3$ pupils is to be formed, with no distinction of role between them.
+
+    How many different delegations can be formed?
+numeric:
+  value: 220
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "nombre de délégations", en: "number of delegations" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Les trois élèves jouent le même rôle : l'ordre dans lequel on les cite ne change pas la délégation. On compte donc des parties, pas des listes.
+      en: |-
+        The three pupils play the same role: the order in which they are named does not change the delegation. One therefore counts subsets, not lists.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Le nombre de parties à $3$ éléments d'un ensemble à $12$ éléments est $\dbinom{12}{3} = \dfrac{12 \times 11 \times 10}{3 \times 2 \times 1}$.
+      en: |-
+        The number of subsets with $3$ elements of a set with $12$ elements is $\dbinom{12}{3} = \dfrac{12 \times 11 \times 10}{3 \times 2 \times 1}$.
+solution:
+  fr: |-
+    Une délégation est une partie à $3$ éléments de l'ensemble des $12$ élèves, donc leur nombre est le coefficient binomial
+    $$\binom{12}{3} = \frac{12!}{3!\,9!} = \frac{12 \times 11 \times 10}{6} = 220.$$
+
+    **Interprétation.** Le raisonnement se lit en deux temps : il y a $12 \times 11 \times 10 = 1320$ façons de choisir trois élèves **dans l'ordre**, mais chaque délégation a alors été comptée $3! = 6$ fois, une fois par ordre possible ; on divise donc par $6$. Si les trois élèves avaient des rôles distincts — président, secrétaire, trésorier —, la réponse serait bien $1320$. Reconnaître si l'ordre compte est la seule vraie difficulté du dénombrement ; le calcul, lui, ne s'invente pas.
+  en: |-
+    A delegation is a subset with $3$ elements of the set of $12$ pupils, so their number is the binomial coefficient
+    $$\binom{12}{3} = \frac{12!}{3!\,9!} = \frac{12 \times 11 \times 10}{6} = 220.$$
+
+    **Interpretation.** The reasoning reads in two stages: there are $12 \times 11 \times 10 = 1320$ ways of choosing three pupils **in order**, but each delegation has then been counted $3! = 6$ times, once per possible order; one therefore divides by $6$. If the three pupils had distinct roles — chair, secretary, treasurer —, the answer would indeed be $1320$. Recognising whether order matters is the only real difficulty of counting; the computation itself is not invented.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 3
+  linkedConcepts: 2
+  transfer: 2
+  autonomy: 3

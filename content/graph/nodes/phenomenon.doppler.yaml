@@ -1,0 +1,51 @@
+id: phenomenon.doppler
+type: phenomenon
+world: world.physics
+region: region.physics.waves
+importance: 2
+tags: [lycee]
+title: { fr: "Effet Doppler", en: "Doppler effect" }
+shortPurpose:
+  fr: "Comprendre pourquoi la fréquence reçue diffère de la fréquence émise quand la source ou l'observateur se déplace, et en tirer une vitesse."
+  en: "Understand why the frequency received differs from the frequency emitted when the source or the observer moves, and get a speed from it."
+overview:
+  fr: >-
+    Une ambulance passe : le son est aigu quand elle approche, grave dès qu'elle s'éloigne. La sirène, pourtant, n'a pas changé de note une seule fois. Ce qui change, c'est le rythme auquel les crêtes de l'onde arrivent à votre oreille : la source court derrière celles qu'elle vient d'émettre, les tasse devant elle et les étire derrière. On appelle cela l'effet Doppler, et il permet aujourd'hui de mesurer la vitesse d'une voiture, celle du sang dans une artère, ou celle d'une galaxie lointaine.
+  en: >-
+    An ambulance goes past: the sound is high while it comes closer, low as soon as it goes away. The siren, however, has not changed its note once. What changes is the rate at which the crests of the wave reach your ear: the source runs after the crests it has just emitted, packing them in front of it and stretching them behind. This is called the Doppler effect, and it now serves to measure the speed of a car, that of the blood in an artery, or that of a distant galaxy.
+aliases:
+  fr: ["décalage Doppler", "effet Doppler-Fizeau", "vitesse radiale", "décalage vers le rouge", "radar de vitesse"]
+  en: ["Doppler shift", "Doppler-Fizeau effect", "radial velocity", "redshift", "speed radar"]
+description:
+  fr: |
+    L'**effet Doppler** est la différence entre la fréquence $f$ **émise** par une source et la fréquence $f'$ **reçue** par un observateur, lorsque l'un des deux se déplace par rapport au milieu. Le mécanisme se lit sur les fronts d'onde : la source émet une crête toutes les périodes $T$, et chaque crête s'éloigne ensuite en cercle à la célérité $v$ du milieu, indépendante du mouvement de la source. Si la source avance à la vitesse $v_S$ vers l'observateur, elle a parcouru $v_S\,T$ entre deux émissions, si bien que devant elle les crêtes sont séparées non plus de $\lambda = v\,T$ mais de $\lambda' = (v - v_S)\,T$ : elles se **tassent**. En divisant la célérité par cette nouvelle longueur d'onde,
+    $$f' = \frac{v}{\lambda'} = f\,\frac{v}{v - v_S} \quad \text{(source qui se rapproche)}, \qquad f' = f\,\frac{v}{v + v_S} \quad \text{(source qui s'éloigne)}.$$
+    Derrière la source, les crêtes s'**étirent** et le son descend. La fréquence émise, elle, n'a jamais varié.
+
+    Une ambulance dont la sirène émet $f = 700\ \mathrm{Hz}$ roule à $90\ \mathrm{km \cdot h^{-1}}$, soit $v_S = 25\ \mathrm{m \cdot s^{-1}}$, dans un air où $v = 340\ \mathrm{m \cdot s^{-1}}$. En approche, $f' = 700 \times \dfrac{340}{340 - 25} = 756\ \mathrm{Hz}$ ; après le passage, $f' = 700 \times \dfrac{340}{340 + 25} = 652\ \mathrm{Hz}$. Le saut au moment du passage vaut une centaine de hertz, plus de deux demi-tons : parfaitement audible. Le décalage relatif $\dfrac{\Delta f}{f} = \dfrac{v_S}{v}$ vaut ici $7\ \%$. Pour la **lumière**, la même idée donne, tant que la vitesse reste petite devant $c$, $\dfrac{\Delta \lambda}{\lambda} \approx \dfrac{v}{c}$ : une raie de l'hydrogène à $656{,}3\ \mathrm{nm}$ observée à $662{,}9\ \mathrm{nm}$ dans le spectre d'une galaxie signale un éloignement à $v = c\,\dfrac{6{,}6}{656{,}3} = 3{,}0 \times 10^{6}\ \mathrm{m \cdot s^{-1}}$, trois mille kilomètres par seconde.
+
+    L'effet Doppler est devenu un instrument de mesure universel : le **radar de vitesse** renvoie l'onde sur le véhicule et exploite un décalage doublé par l'aller-retour, l'**échographie Doppler** cartographie la vitesse du sang dans les artères, le radar météorologique suit le déplacement des gouttes dans un nuage, et les astronomes pèsent les étoiles et découvrent des exoplanètes en mesurant l'oscillation de leurs raies. C'est aussi le décalage vers le rouge des galaxies lointaines qui a révélé l'expansion de l'Univers. Pièges classiques : croire que la source change de note, alors que seule la réception change ; croire que le son monte continûment pendant l'approche, alors que la fréquence perçue reste constante tant que la vitesse ne change pas, puis chute d'un coup au passage ; se tromper de signe au dénominateur ; oublier que seule compte la composante de la vitesse **le long de la ligne** qui joint la source à l'observateur, nulle exactement au moment où l'ambulance passe devant vous ; et appliquer la formule du son à la lumière sans passer par $\Delta\lambda/\lambda \approx v/c$.
+  en: |
+    The **Doppler effect** is the difference between the frequency $f$ **emitted** by a source and the frequency $f'$ **received** by an observer, when one of the two moves with respect to the medium. The mechanism can be read on the wavefronts: the source emits a crest every period $T$, and each crest then moves away in a circle at the speed $v$ of the medium, which does not depend on the motion of the source. If the source advances at the speed $v_S$ towards the observer, it has travelled $v_S\,T$ between two emissions, so that in front of it the crests are separated no longer by $\lambda = v\,T$ but by $\lambda' = (v - v_S)\,T$: they are **packed together**. Dividing the speed by this new wavelength,
+    $$f' = \frac{v}{\lambda'} = f\,\frac{v}{v - v_S} \quad \text{(source coming closer)}, \qquad f' = f\,\frac{v}{v + v_S} \quad \text{(source going away)}.$$
+    Behind the source the crests are **stretched** and the pitch goes down. The emitted frequency itself has never varied.
+
+    An ambulance whose siren emits $f = 700\ \mathrm{Hz}$ drives at $90\ \mathrm{km \cdot h^{-1}}$, that is $v_S = 25\ \mathrm{m \cdot s^{-1}}$, in air where $v = 340\ \mathrm{m \cdot s^{-1}}$. Coming closer, $f' = 700 \times \dfrac{340}{340 - 25} = 756\ \mathrm{Hz}$; after it has passed, $f' = 700 \times \dfrac{340}{340 + 25} = 652\ \mathrm{Hz}$. The jump at the moment of passing is about a hundred hertz, more than two semitones: perfectly audible. The relative shift $\dfrac{\Delta f}{f} = \dfrac{v_S}{v}$ is here $7\ \%$. For **light**, the same idea gives, as long as the speed stays small compared with $c$, $\dfrac{\Delta \lambda}{\lambda} \approx \dfrac{v}{c}$: a hydrogen line at $656.3\ \mathrm{nm}$ observed at $662.9\ \mathrm{nm}$ in the spectrum of a galaxy signals a recession at $v = c\,\dfrac{6.6}{656.3} = 3.0 \times 10^{6}\ \mathrm{m \cdot s^{-1}}$, three thousand kilometres a second.
+
+    The Doppler effect has become a universal measuring instrument: the **speed radar** bounces the wave off the vehicle and uses a shift doubled by the round trip, **Doppler ultrasound** maps the speed of blood in the arteries, weather radar follows the motion of the drops inside a cloud, and astronomers weigh stars and discover exoplanets by measuring the oscillation of their lines. It is also the redshift of distant galaxies that revealed the expansion of the Universe. Classic traps: believing that the source changes its note, when only the reception changes; believing that the pitch rises continuously during the approach, when the received frequency stays constant as long as the speed does not change, then drops all at once at the passage; getting the sign wrong in the denominator; forgetting that only the component of the velocity **along the line** joining the source to the observer counts, which is exactly zero at the moment the ambulance passes in front of you; and applying the sound formula to light without going through $\Delta\lambda/\lambda \approx v/c$.
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "décrire et interpréter qualitativement les manifestations de l'effet Doppler, sur le son comme sur la lumière"
+        - "établir l'expression du décalage Doppler pour une source mobile, un observateur fixe et une propagation colinéaire"
+        - "exploiter l'expression du décalage Doppler pour déterminer une fréquence perçue ou une vitesse"
+        - "citer des applications de l'effet Doppler : radar de vitesse, échographie, mesure d'une vitesse radiale en astrophysique"
+      en:
+        - "describe and interpret qualitatively the manifestations of the Doppler effect, on sound as on light"
+        - "establish the expression of the Doppler shift for a moving source, a fixed observer and a collinear propagation"
+        - "use the expression of the Doppler shift to determine a received frequency or a speed"
+        - "quote applications of the Doppler effect: speed radar, ultrasound, measurement of a radial velocity in astrophysics"
+sources: [source.bo.lycee.2019]

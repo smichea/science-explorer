@@ -1,0 +1,111 @@
+# Leçon narrée — l'effet Doppler : les fronts d'onde d'une source qui avance, qui recule, puis d'un
+# observateur qui court vers elle (outil onde en mode Doppler), avec la fréquence perçue lue sous la figure.
+id: lesson.phenomenon.doppler
+nodeId: phenomenon.doppler
+depth: 1
+tools:
+  - id: horn
+    kind: wave
+    title: { fr: "Les fronts d'onde d'un klaxon en mouvement", en: "The wavefronts of a moving horn" }
+    mode: doppler
+    parameters:
+      - { id: s, label: { fr: "vitesse de la source (m/s)", en: "speed of the source (m/s)" }, min: -120, max: 120, step: 5, value: 0 }
+      - { id: o, label: { fr: "vitesse de l'observateur (m/s)", en: "speed of the observer (m/s)" }, min: -60, max: 60, step: 5, value: 0 }
+    sourceSpeed: "s"
+    observerSpeed: "o"
+    period: 0.00294118
+    speed: 340
+    amplitude: 1
+    length: 4
+    point: 1.5
+steps:
+  - id: siren
+    title: { fr: "L'ambulance qui passe", en: "The ambulance going past" }
+    tool: horn
+    text:
+      fr: >-
+        Vous avez tous entendu une ambulance passer : le son est aigu tant qu'elle approche, grave dès qu'elle s'éloigne.
+        Pourtant la sirène, elle, n'a pas changé de note une seule fois.
+        Ce qui change, c'est le rythme auquel les crêtes de l'onde arrivent à votre oreille, et cela s'appelle l'effet Doppler.
+        Sur la figure, la source S émet une crête à chaque période et chaque crête s'éloigne ensuite d'elle en cercle, à trois cent quarante mètres par seconde : la source étant immobile, les cercles sont concentriques et l'observateur M entend exactement les trois cent quarante hertz émis.
+      en: >-
+        You have all heard an ambulance go past: the sound is high while it comes closer, low as soon as it goes away.
+        The siren, however, has not changed its note once.
+        What changes is the rate at which the crests of the wave reach your ear, and that is called the Doppler effect.
+        On the figure the source S emits one crest every period and each crest then moves away from it in a circle, at three hundred and forty metres a second: the source being at rest, the circles are concentric and the observer M hears exactly the three hundred and forty hertz emitted.
+  - id: piling
+    title: { fr: "La source avance : les crêtes se tassent", en: "The source advances: the crests pack together" }
+    tool: horn
+    text:
+      fr: >-
+        Lançons maintenant la source vers l'observateur, à quatre-vingt-cinq mètres par seconde, environ trois cents kilomètres par heure.
+        Chaque nouvelle crête part d'un point plus avancé que la précédente : devant, les cercles se resserrent ; derrière, ils s'écartent.
+        Entre deux émissions, la source a parcouru sa vitesse multipliée par la période, et la longueur d'onde reçue devant vaut la longueur d'onde d'origine diminuée d'autant.
+        La lecture sous la figure le confirme : le son émis à trois cent quarante hertz est entendu à quatre cent cinquante-trois hertz, presque une quarte plus haut.
+      en: >-
+        Let us now launch the source towards the observer, at eighty-five metres a second, about three hundred kilometres an hour.
+        Each new crest leaves from a point further ahead than the previous one: in front the circles crowd together; behind, they spread apart.
+        Between two emissions the source has travelled its speed multiplied by the period, and the wavelength received in front is the original wavelength reduced by that much.
+        The reading under the figure confirms it: the sound emitted at three hundred and forty hertz is heard at four hundred and fifty-three hertz, almost a fourth higher.
+    actions:
+      - { at: 0, set: { s: 85 } }
+  - id: formula
+    title: { fr: "La formule, et le passage", en: "The formula, and the passing" }
+    tool: horn
+    text:
+      fr: >-
+        Écrivons-le proprement : devant la source, la longueur d'onde vaut la célérité moins la vitesse de la source, le tout multiplié par la période.
+        En divisant la célérité par cette longueur d'onde, on obtient la fréquence perçue : la fréquence émise multipliée par la célérité, divisée par la célérité moins la vitesse de la source.
+        Faisons maintenant reculer la source à la même vitesse, comme si l'ambulance venait de passer devant nous.
+        La fréquence perçue tombe à deux cent soixante-douze hertz : le rapport entre les deux notes entendues, avant et après le passage, vaut exactement cinq tiers, une quinte musicale.
+      en: >-
+        Let us write it properly: in front of the source the wavelength is the speed of sound minus the speed of the source, all multiplied by the period.
+        Dividing the speed of sound by that wavelength gives the received frequency: the emitted frequency multiplied by the speed of sound, divided by the speed of sound minus the speed of the source.
+        Let us now send the source backwards at the same speed, as if the ambulance had just gone past us.
+        The received frequency drops to two hundred and seventy-two hertz: the ratio between the two notes heard, before and after the passing, is exactly five thirds, a musical fifth.
+    actions:
+      - { at: 2, set: { s: -85 } }
+  - id: observer
+    title: { fr: "L'observateur bouge aussi, et la lumière s'y met", en: "The observer moves too, and light joins in" }
+    tool: horn
+    text:
+      fr: >-
+        L'observateur peut bouger à son tour : arrêtons la source et lançons M vers elle à la même vitesse.
+        Il rencontre les crêtes plus souvent et la fréquence perçue monte encore, mais pas tout à fait de la même façon : cette fois c'est la célérité augmentée de la vitesse de l'observateur que l'on divise par la longueur d'onde, restée intacte.
+        Ce décalage se mesure très bien, et il sert partout : radar de vitesse, échographie du sang qui coule dans une artère, radar météorologique, détection des exoplanètes.
+        Pour la lumière le raisonnement se transpose : une raie de galaxie décalée vers le rouge de un pour cent signale un éloignement à un pour cent de la vitesse de la lumière, soit trois mille kilomètres par seconde.
+      en: >-
+        The observer may move in turn: let us stop the source and launch M towards it at the same speed.
+        He meets the crests more often and the received frequency rises again, but not in quite the same way: this time it is the speed of sound increased by the speed of the observer that is divided by the wavelength, which has stayed intact.
+        This shift is measured very well, and it serves everywhere: speed radar, ultrasound of the blood flowing in an artery, weather radar, detection of exoplanets.
+        For light the reasoning carries over: a galaxy line shifted towards the red by one per cent signals a recession at one per cent of the speed of light, three thousand kilometres a second.
+    actions:
+      - { at: 0, set: { s: 0, o: 85 } }
+  - id: play
+    kind: play
+    title: { fr: "À vous de lancer la source", en: "Your turn to launch the source" }
+    tool: horn
+    text:
+      fr: >-
+        À vous.
+        Faites varier la vitesse de la source des deux côtés de zéro et lisez à chaque fois la fréquence perçue sous la figure.
+        Cherchez la vitesse pour laquelle la fréquence entendue vaut le double de la fréquence émise, puis celle pour laquelle elle vaut la moitié.
+        Faites bouger ensuite l'observateur seul, à la même vitesse, et comparez : les deux situations ne donnent pas exactement la même fréquence.
+      en: >-
+        Your turn.
+        Vary the speed of the source on both sides of zero and read the received frequency under the figure each time.
+        Look for the speed at which the frequency heard is twice the frequency emitted, then the one at which it is half of it.
+        Then move the observer alone, at the same speed, and compare: the two situations do not give exactly the same frequency.
+    actions:
+      - { at: 0, set: { s: 60, o: 0 } }
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : la vitesse d'une voiture retrouvée à partir du son de son klaxon, puis celle d'une galaxie lue dans le décalage de ses raies.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: the speed of a car recovered from the sound of its horn, then that of a galaxy read from the shift of its lines.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.doppler.car_speed, exercise.doppler.galaxy]

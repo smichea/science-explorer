@@ -1,0 +1,56 @@
+id: tool.counting
+type: mathematical_tool
+world: world.mathematics
+region: region.math.probability_statistics
+importance: 2
+backpack: true
+tags: [lycee]
+title: { fr: "Dénombrement, combinaisons, coefficients binomiaux", en: "Counting, combinations, binomial coefficients" }
+shortPurpose:
+  fr: "Compter sans énumérer : combien de listes, combien de tirages, combien de chemins mènent au même résultat."
+  en: "Count without listing: how many arrangements, how many draws, how many paths lead to the same result."
+overview:
+  fr: >-
+    Compter semble facile jusqu'au jour où il faut compter des millions de possibilités. Le dénombrement donne les quelques règles qui suffisent : le principe multiplicatif pour les choix successifs, la factorielle pour les rangements, et le coefficient binomial pour les parties d'un ensemble, quand l'ordre ne compte pas. C'est ce dernier qui compte les chemins d'un arbre menant au même nombre de succès, et qui ouvre la porte à la loi binomiale.
+  en: >-
+    Counting looks easy until the day one has to count millions of possibilities. Counting theory gives the few rules that suffice: the multiplication principle for successive choices, the factorial for orderings, and the binomial coefficient for the subsets of a set, when order does not matter. It is this last one that counts the paths of a tree leading to the same number of successes, and that opens the door to the binomial law.
+aliases:
+  fr: ["dénombrement", "principe multiplicatif", "factorielle", "k-uplet", "permutation", "combinaison", "coefficient binomial", "triangle de Pascal"]
+  en: ["counting", "multiplication principle", "factorial", "k-tuple", "permutation", "combination", "binomial coefficient", "Pascal's triangle"]
+description:
+  fr: |
+    Dénombrer, c'est déterminer le **cardinal** d'un ensemble fini, c'est-à-dire son nombre d'éléments. Trois règles suffisent au lycée. Le **principe multiplicatif** : si un choix se fait en deux étapes indépendantes, l'une offrant $p$ possibilités et l'autre $q$, l'ensemble des couples en offre $p \times q$ ; le nombre de **$k$-uplets** d'un ensemble à $n$ éléments, c'est-à-dire de listes ordonnées avec répétition, est donc $n^{k}$. Le nombre de $k$-uplets **d'éléments distincts** est $n(n-1)\cdots(n-k+1)$, et pour $k = n$ on obtient les **permutations**, au nombre de $n! = 1 \times 2 \times \cdots \times n$ ; ainsi $5! = 120$ façons d'ordonner cinq livres sur une étagère.
+
+    Quand l'ordre ne compte pas, on compte les **parties à $k$ éléments** d'un ensemble à $n$ éléments : leur nombre est le **coefficient binomial** $\dbinom{n}{k} = \dfrac{n!}{k!\,(n-k)!}$. Le raisonnement est le suivant : les $k$-uplets d'éléments distincts sont au nombre de $n(n-1)\cdots(n-k+1)$, et chaque partie a été comptée $k!$ fois, une fois par ordre possible ; on divise donc par $k!$. Pour tirer $2$ délégués parmi $30$ élèves : $\dbinom{30}{2} = \dfrac{30 \times 29}{2} = 435$ ; pour former une main de $5$ cartes dans un jeu de $32$ : $\dbinom{32}{5} = 201\,376$. Les propriétés utiles sont $\dbinom{n}{0} = \dbinom{n}{n} = 1$, la symétrie $\dbinom{n}{k} = \dbinom{n}{n-k}$ et la **relation de Pascal** $\dbinom{n}{k} + \dbinom{n}{k+1} = \dbinom{n+1}{k+1}$, qui construit le triangle de Pascal ligne après ligne.
+
+    À quoi cela sert-il ? À calculer une probabilité en situation d'équiprobabilité, où il faut compter les cas favorables et les cas possibles ; et surtout à compter les **chemins d'un arbre**. Dans une répétition de $n$ épreuves identiques et indépendantes, les chemins qui donnent exactement $k$ succès sont exactement les parties à $k$ éléments de l'ensemble des rangs : il y en a $\dbinom{n}{k}$, ce qui donne la loi binomiale. Deux pièges : confondre l'ordre et le désordre — le podium d'une course ($3$-uplet d'éléments distincts parmi $10$, soit $720$) n'est pas la sélection d'une équipe de trois ($\binom{10}{3} = 120$) ; et additionner au lieu de multiplier, alors que des choix successifs se multiplient et que seuls des cas disjoints s'additionnent.
+  en: |
+    Counting means determining the **cardinality** of a finite set, that is, its number of elements. Three rules are enough at secondary school. The **multiplication principle**: if a choice is made in two independent steps, one offering $p$ possibilities and the other $q$, the set of pairs offers $p \times q$; the number of **$k$-tuples** of a set with $n$ elements, that is, of ordered lists with repetition, is therefore $n^{k}$. The number of $k$-tuples of **distinct elements** is $n(n-1)\cdots(n-k+1)$, and for $k = n$ one gets the **permutations**, $n! = 1 \times 2 \times \cdots \times n$ of them; thus $5! = 120$ ways of ordering five books on a shelf.
+
+    When order does not matter, one counts the **subsets with $k$ elements** of a set with $n$ elements: their number is the **binomial coefficient** $\dbinom{n}{k} = \dfrac{n!}{k!\,(n-k)!}$. The reasoning is this: there are $n(n-1)\cdots(n-k+1)$ $k$-tuples of distinct elements, and each subset has been counted $k!$ times, once per possible order; one therefore divides by $k!$. To draw $2$ representatives out of $30$ pupils: $\dbinom{30}{2} = \dfrac{30 \times 29}{2} = 435$; to form a hand of $5$ cards from a deck of $32$: $\dbinom{32}{5} = 201\,376$. The useful properties are $\dbinom{n}{0} = \dbinom{n}{n} = 1$, the symmetry $\dbinom{n}{k} = \dbinom{n}{n-k}$ and **Pascal's rule** $\dbinom{n}{k} + \dbinom{n}{k+1} = \dbinom{n+1}{k+1}$, which builds Pascal's triangle row after row.
+
+    What is it for? For computing a probability in a situation of equiprobability, where the favourable cases and the possible cases have to be counted; and above all for counting the **paths of a tree**. In a repetition of $n$ identical and independent trials, the paths giving exactly $k$ successes are exactly the subsets with $k$ elements of the set of ranks: there are $\dbinom{n}{k}$ of them, which yields the binomial law. Two traps: confusing order and disorder — the podium of a race (a $3$-tuple of distinct elements out of $10$, that is $720$) is not the selection of a team of three ($\binom{10}{3} = 120$); and adding instead of multiplying, whereas successive choices multiply and only disjoint cases add.
+tool:
+  problemSolved:
+    fr: "Compter les issues d'une expérience sans les énumérer : listes ordonnées, rangements, tirages simultanés, mains de cartes, chemins d'un arbre — donc calculer une probabilité par le quotient des cas favorables sur les cas possibles."
+    en: "Count the outcomes of an experiment without listing them: ordered lists, orderings, simultaneous draws, card hands, paths of a tree — hence compute a probability as the ratio of favourable cases to possible cases."
+  construction:
+    fr: "Le principe multiplicatif donne $n^{k}$ $k$-uplets et $n!$ permutations ; en divisant les $k$-uplets d'éléments distincts par les $k!$ ordres qui donnent la même partie, on obtient le coefficient binomial $\\binom{n}{k} = \\frac{n!}{k!\\,(n-k)!}$, dont la relation de Pascal permet le calcul de proche en proche."
+    en: "The multiplication principle gives $n^{k}$ $k$-tuples and $n!$ permutations; dividing the $k$-tuples of distinct elements by the $k!$ orders that yield the same subset gives the binomial coefficient $\\binom{n}{k} = \\frac{n!}{k!\\,(n-k)!}$, which Pascal's rule computes step by step."
+  icon: combinations
+depths:
+  - depth: 1
+    stage: terminale
+    role: core
+    outcomes:
+      fr:
+        - "utiliser le principe multiplicatif, dénombrer les $k$-uplets, les $k$-uplets d'éléments distincts et les permutations"
+        - "calculer un coefficient binomial, l'interpréter comme un nombre de parties et utiliser la symétrie"
+        - "établir et utiliser la relation de Pascal, et lire le triangle de Pascal"
+        - "compter les chemins d'un arbre qui réalisent $k$ succès et en déduire une probabilité"
+      en:
+        - "use the multiplication principle, count $k$-tuples, $k$-tuples of distinct elements and permutations"
+        - "compute a binomial coefficient, interpret it as a number of subsets and use the symmetry"
+        - "establish and use Pascal's rule, and read Pascal's triangle"
+        - "count the paths of a tree that realise $k$ successes and deduce a probability"
+sources: [source.bo.lycee.2019]

@@ -1,0 +1,134 @@
+# Terminale — mathématiques : termes préférés et alias des dix nouvelles destinations (trois entrées par nœud).
+entries:
+  - id: glossary.sequence_limit
+    nodeId: concept.sequence_limit
+    fr: { preferred: limite d'une suite, aliases: [suite convergente, suite divergente, converge vers] }
+    en: { preferred: limit of a sequence, aliases: [convergent sequence, divergent sequence, converges to] }
+  - id: glossary.induction
+    nodeId: concept.sequence_limit
+    fr: { preferred: raisonnement par récurrence, aliases: [initialisation, hérédité, démonstration par récurrence] }
+    en: { preferred: proof by induction, aliases: [initialisation, inductive step, induction proof] }
+  - id: glossary.monotone_limit
+    nodeId: concept.sequence_limit
+    fr: { preferred: théorème de la limite monotone, aliases: [suite croissante et majorée, théorème des gendarmes, théorème de comparaison] }
+    en: { preferred: monotone convergence theorem, aliases: [increasing sequence bounded above, squeeze theorem, comparison theorem] }
+  - id: glossary.function_limit
+    nodeId: concept.limit
+    fr: { preferred: limite d'une fonction, aliases: [limite en l'infini, limite en un point, limite à droite] }
+    en: { preferred: limit of a function, aliases: [limit at infinity, limit at a point, right-hand limit] }
+  - id: glossary.asymptote
+    nodeId: concept.limit
+    fr: { preferred: asymptote, aliases: [asymptote horizontale, asymptote verticale, branche infinie] }
+    en: { preferred: asymptote, aliases: [horizontal asymptote, vertical asymptote, infinite branch] }
+  - id: glossary.indeterminate_form
+    nodeId: concept.limit
+    fr: { preferred: forme indéterminée, aliases: [lever une indétermination, factorisation du terme dominant, expression conjuguée] }
+    en: { preferred: indeterminate form, aliases: [settling an indeterminacy, factoring the dominant term, conjugate expression] }
+  - id: glossary.comparative_growth
+    nodeId: concept.limit
+    fr: { preferred: croissances comparées, aliases: [exponentielle contre puissance, négligeable devant, domination] }
+    en: { preferred: comparative growth, aliases: [exponential against power, negligible compared with, domination] }
+  - id: glossary.continuity
+    nodeId: concept.continuity
+    fr: { preferred: fonction continue, aliases: [continuité en un point, courbe sans saut, fonction discontinue] }
+    en: { preferred: continuous function, aliases: [continuity at a point, curve without a jump, discontinuous function] }
+  - id: glossary.intermediate_value
+    nodeId: concept.continuity
+    fr: { preferred: théorème des valeurs intermédiaires, aliases: [corollaire du TVI, existence d'une solution, unicité de la solution] }
+    en: { preferred: intermediate value theorem, aliases: [corollary of the IVT, existence of a solution, uniqueness of the solution] }
+  - id: glossary.bisection
+    nodeId: concept.continuity
+    fr: { preferred: méthode de dichotomie, aliases: [encadrement d'une solution, amplitude de l'encadrement, algorithme de dichotomie] }
+    en: { preferred: bisection method, aliases: [bracketing a solution, width of the bracket, bisection algorithm] }
+  - id: glossary.natural_logarithm
+    nodeId: tool.logarithm
+    fr: { preferred: logarithme népérien, aliases: [ln, fonction réciproque de l'exponentielle, logarithme décimal] }
+    en: { preferred: natural logarithm, aliases: [ln, inverse function of the exponential, decimal logarithm] }
+  - id: glossary.logarithm_rules
+    nodeId: tool.logarithm
+    fr: { preferred: propriétés algébriques du logarithme, aliases: [logarithme d'un produit, logarithme d'une puissance, transformer un produit en somme] }
+    en: { preferred: algebraic properties of the logarithm, aliases: [logarithm of a product, logarithm of a power, turning a product into a sum] }
+  - id: glossary.logarithmic_scale
+    nodeId: tool.logarithm
+    fr: { preferred: échelle logarithmique, aliases: [échelle semi-logarithmique, ordre de grandeur, décibel] }
+    en: { preferred: logarithmic scale, aliases: [semi-logarithmic scale, order of magnitude, decibel] }
+  - id: glossary.integral
+    nodeId: tool.integral
+    fr: { preferred: intégrale, aliases: [aire sous la courbe, aire algébrique, valeur moyenne d'une fonction] }
+    en: { preferred: integral, aliases: [area under the curve, signed area, mean value of a function] }
+  - id: glossary.antiderivative
+    nodeId: tool.integral
+    fr: { preferred: primitive, aliases: [constante d'intégration, théorème fondamental de l'analyse, primitive vérifiant une condition] }
+    en: { preferred: antiderivative, aliases: [constant of integration, fundamental theorem of calculus, antiderivative satisfying a condition] }
+  - id: glossary.riemann_sum
+    nodeId: tool.integral
+    fr: { preferred: somme de Riemann, aliases: [rectangles d'approximation, subdivision d'un intervalle, méthode des rectangles] }
+    en: { preferred: Riemann sum, aliases: [approximating rectangles, subdivision of an interval, rectangle method] }
+  - id: glossary.integration_by_parts
+    nodeId: tool.integral
+    fr: { preferred: intégration par parties, aliases: [relation de Chasles, linéarité de l'intégrale, dérivée d'un produit] }
+    en: { preferred: integration by parts, aliases: [Chasles relation, linearity of the integral, derivative of a product] }
+  - id: glossary.space_coordinates
+    nodeId: tool.space_geometry
+    fr: { preferred: coordonnées dans l'espace, aliases: [base de l'espace, vecteurs coplanaires, norme d'un vecteur de l'espace] }
+    en: { preferred: coordinates in space, aliases: [basis of space, coplanar vectors, norm of a vector in space] }
+  - id: glossary.parametric_line
+    nodeId: tool.space_geometry
+    fr: { preferred: représentation paramétrique d'une droite, aliases: [droites non coplanaires, position relative de deux droites, paramètre d'une droite] }
+    en: { preferred: parametric representation of a line, aliases: [skew lines, relative position of two lines, parameter of a line] }
+  - id: glossary.plane_equation
+    nodeId: tool.space_geometry
+    fr: { preferred: équation cartésienne d'un plan, aliases: [vecteur normal à un plan, plan de l'espace, intersection d'une droite et d'un plan] }
+    en: { preferred: cartesian equation of a plane, aliases: [vector normal to a plane, plane of space, intersection of a line and a plane] }
+  - id: glossary.point_plane_distance
+    nodeId: tool.space_geometry
+    fr: { preferred: distance d'un point à un plan, aliases: [projeté orthogonal sur un plan, orthogonalité dans l'espace, produit scalaire dans l'espace] }
+    en: { preferred: distance from a point to a plane, aliases: [orthogonal projection onto a plane, orthogonality in space, dot product in space] }
+  - id: glossary.factorial
+    nodeId: tool.counting
+    fr: { preferred: factorielle, aliases: [permutation, k-uplet, principe multiplicatif] }
+    en: { preferred: factorial, aliases: [permutation, k-tuple, multiplication principle] }
+  - id: glossary.binomial_coefficient
+    nodeId: tool.counting
+    fr: { preferred: coefficient binomial, aliases: [combinaison, partie à k éléments, k parmi n] }
+    en: { preferred: binomial coefficient, aliases: [combination, subset with k elements, k among n] }
+  - id: glossary.pascal_rule
+    nodeId: tool.counting
+    fr: { preferred: relation de Pascal, aliases: [triangle de Pascal, symétrie des coefficients binomiaux, cardinal d'un ensemble] }
+    en: { preferred: Pascal rule, aliases: [Pascal triangle, symmetry of binomial coefficients, cardinality of a set] }
+  - id: glossary.bernoulli_trial
+    nodeId: concept.binomial_law
+    fr: { preferred: épreuve de Bernoulli, aliases: [schéma de Bernoulli, succès et échec, répétition d'épreuves indépendantes] }
+    en: { preferred: Bernoulli trial, aliases: [Bernoulli scheme, success and failure, repetition of independent trials] }
+  - id: glossary.binomial_law
+    nodeId: concept.binomial_law
+    fr: { preferred: loi binomiale, aliases: [nombre de succès, probabilité cumulée, événement contraire] }
+    en: { preferred: binomial law, aliases: [number of successes, cumulative probability, complementary event] }
+  - id: glossary.binomial_expectation
+    nodeId: concept.binomial_law
+    fr: { preferred: espérance d'une loi binomiale, aliases: [n fois p, variance d'une loi binomiale, écart type binomial] }
+    en: { preferred: expectation of a binomial law, aliases: [n times p, variance of a binomial law, binomial standard deviation] }
+  - id: glossary.expectation_linearity
+    nodeId: concept.random_variable_sum
+    fr: { preferred: linéarité de l'espérance, aliases: [espérance d'une somme, espérance d'une transformation affine, somme de variables aléatoires] }
+    en: { preferred: linearity of expectation, aliases: [expectation of a sum, expectation of an affine transformation, sum of random variables] }
+  - id: glossary.variance_sum
+    nodeId: concept.random_variable_sum
+    fr: { preferred: variance d'une somme, aliases: [variables indépendantes, variance d'une transformation affine, les variances s'ajoutent] }
+    en: { preferred: variance of a sum, aliases: [independent variables, variance of an affine transformation, variances add] }
+  - id: glossary.sample_mean
+    nodeId: concept.random_variable_sum
+    fr: { preferred: moyenne d'un échantillon, aliases: [échantillon de taille n, somme d'un échantillon, écart type en racine de n] }
+    en: { preferred: sample mean, aliases: [sample of size n, sum of a sample, standard deviation in square root of n] }
+  - id: glossary.chebyshev
+    nodeId: concept.law_of_large_numbers
+    fr: { preferred: inégalité de Bienaymé-Tchebychev, aliases: [majoration d'un écart, écart à l'espérance, inégalité universelle] }
+    en: { preferred: Bienaymé-Chebyshev inequality, aliases: [bound on a deviation, deviation from the expectation, universal inequality] }
+  - id: glossary.concentration_inequality
+    nodeId: concept.law_of_large_numbers
+    fr: { preferred: inégalité de concentration, aliases: [concentration de la moyenne, taille d'échantillon, précision garantie] }
+    en: { preferred: concentration inequality, aliases: [concentration of the mean, sample size, guaranteed precision] }
+  - id: glossary.law_of_large_numbers
+    nodeId: concept.law_of_large_numbers
+    fr: { preferred: loi des grands nombres, aliases: [fréquence et probabilité, stabilisation des fréquences, moyenne d'un grand échantillon] }
+    en: { preferred: law of large numbers, aliases: [frequency and probability, stabilisation of frequencies, mean of a large sample] }

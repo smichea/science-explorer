@@ -1,0 +1,52 @@
+# Leçon piles — calculer le quotient de réaction initial et le comparer à la constante d'équilibre pour prévoir le sens de fonctionnement (réponse numérique sans unité)
+id: exercise.cell.spontaneous_direction
+type: numeric
+nodeId: model.electrochemical_cell
+depth: 1
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    On assemble une pile en reliant une demi-pile zinc, où $[\mathrm{Zn^{2+}}] = 1{,}0\times10^{-1}\ \mathrm{mol/L}$, et une demi-pile cuivre, où $[\mathrm{Cu^{2+}}] = 1{,}0\times10^{-3}\ \mathrm{mol/L}$. La réaction associée est
+    $$\mathrm{Zn} + \mathrm{Cu^{2+}} = \mathrm{Zn^{2+}} + \mathrm{Cu}, \qquad K = 1{,}0\times10^{37}.$$
+
+    Calculez le quotient de réaction dans l'état initial, puis concluez sur le sens d'évolution.
+  en: |-
+    A cell is assembled by connecting a zinc half-cell, where $[\mathrm{Zn^{2+}}] = 1.0\times10^{-1}\ \mathrm{mol/L}$, and a copper half-cell, where $[\mathrm{Cu^{2+}}] = 1.0\times10^{-3}\ \mathrm{mol/L}$. The associated reaction is
+    $$\mathrm{Zn} + \mathrm{Cu^{2+}} = \mathrm{Zn^{2+}} + \mathrm{Cu}, \qquad K = 1.0\times10^{37}.$$
+
+    Compute the reaction quotient in the initial state, then conclude on the direction of evolution.
+numeric:
+  value: 100
+  tolerance: { kind: relative, value: 0.03 }
+  inputLabel: { fr: "Qr,i", en: "Qr,i" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le zinc et le cuivre sont des **solides** : leur concentration n'a pas de sens et ils ne figurent pas dans le quotient de réaction. Il ne reste que les deux ions.
+      en: |-
+        Zinc and copper are **solids**: their concentration has no meaning and they do not appear in the reaction quotient. Only the two ions are left.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Écrivez $Q_r = \dfrac{[\mathrm{Zn^{2+}}]}{[\mathrm{Cu^{2+}}]}$ avec les concentrations rapportées à $c^\circ = 1\ \mathrm{mol/L}$, puis comparez le résultat à $K$ : si $Q_{r,i} < K$, le système évolue dans le sens direct.
+      en: |-
+        Write $Q_r = \dfrac{[\mathrm{Zn^{2+}}]}{[\mathrm{Cu^{2+}}]}$ with the concentrations referred to $c^\circ = 1\ \mathrm{mol/L}$, then compare the result with $K$: if $Q_{r,i} < K$, the system evolves in the forward direction.
+solution:
+  fr: |-
+    Le zinc métallique et le cuivre métallique sont des solides : ils n'apparaissent pas dans le quotient de réaction, qui se réduit à
+    $$Q_{r,i} = \frac{[\mathrm{Zn^{2+}}]_i}{[\mathrm{Cu^{2+}}]_i} = \frac{1{,}0\times10^{-1}}{1{,}0\times10^{-3}} = 1{,}0\times10^{2} = 100.$$
+
+    Comme $Q_{r,i} = 10^{2}$ est très inférieur à $K = 10^{37}$, le système évolue dans le **sens direct**, celui qui fait croître $Q_r$ : le zinc est oxydé et les ions cuivre sont réduits.
+
+    **Interprétation.** Ce critère décide de tout le fonctionnement de la pile. Le zinc étant oxydé, son électrode est l'**anode**, donc le pôle **négatif** ; les ions cuivre étant réduits, l'électrode de cuivre est la **cathode**, pôle **positif**. Dans le fil, les électrons vont du zinc vers le cuivre, et le courant conventionnel dans l'autre sens. Avec un écart de trente-cinq ordres de grandeur entre $Q_{r,i}$ et $K$, aucune concentration raisonnable ne pourrait renverser le sens : la transformation est quasi totale, et le zinc se consomme jusqu'au bout. C'est la même comparaison $Q_r$ contre $K$ qui explique qu'un clou de fer se couvre de cuivre dans une solution de sulfate de cuivre, mais qu'une lame de cuivre ne se couvre jamais de fer.
+  en: |-
+    Metallic zinc and metallic copper are solids: they do not appear in the reaction quotient, which reduces to
+    $$Q_{r,i} = \frac{[\mathrm{Zn^{2+}}]_i}{[\mathrm{Cu^{2+}}]_i} = \frac{1.0\times10^{-1}}{1.0\times10^{-3}} = 1.0\times10^{2} = 100.$$
+
+    Since $Q_{r,i} = 10^{2}$ is far below $K = 10^{37}$, the system evolves in the **forward direction**, the one that makes $Q_r$ grow: zinc is oxidised and copper ions are reduced.
+
+    **Interpretation.** This criterion decides the whole working of the cell. Zinc being oxidised, its electrode is the **anode**, hence the **negative** pole; copper ions being reduced, the copper electrode is the **cathode**, the **positive** pole. In the wire, the electrons go from the zinc to the copper, and the conventional current the other way. With a gap of thirty-five orders of magnitude between $Q_{r,i}$ and $K$, no reasonable concentration could reverse the direction: the transformation is all but complete, and the zinc is consumed to the end. It is the same comparison of $Q_r$ against $K$ that explains why an iron nail gets coated with copper in a copper sulfate solution, but a copper plate never gets coated with iron.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 3, calculationLength: 2, modellingOpenness: 3, linkedConcepts: 3, transfer: 2, autonomy: 3 }

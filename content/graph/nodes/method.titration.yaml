@@ -44,3 +44,17 @@ depths:
         - "identify the titration reaction of a direct titration, the titrated solution and the titrant solution, and locate the equivalence point during a colorimetric monitoring"
         - "establish, from the extent table, the relation between the amounts of reactants introduced at the equivalence point"
         - "determine a concentration in amount of substance from the equivalence volume, and compare an assay by calibration with a titration"
+  - depth: 2
+    stage: terminale
+    role: extension_and_application
+    outcomes:
+      fr:
+        - "suivre un titrage par pH-métrie et repérer l'équivalence au saut de pH, maximum de $\\mathrm{d}pH/\\mathrm{d}V$"
+        - "suivre un titrage par conductimétrie et repérer l'équivalence à la rupture de pente"
+        - "lire le pKa du couple titré au pH de la demi-équivalence"
+        - "choisir un indicateur coloré dont la zone de virage contient le pH à l'équivalence"
+      en:
+        - "follow a titration by pH measurement and spot the equivalence at the pH jump, the maximum of $\\mathrm{d}pH/\\mathrm{d}V$"
+        - "follow a titration by conductimetry and spot the equivalence at the break of slope"
+        - "read the pKa of the titrated couple at the pH of the half-equivalence"
+        - "choose a colour indicator whose turning range contains the pH at the equivalence"

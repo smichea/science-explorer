@@ -190,6 +190,17 @@ export interface PlotterSegment {
   to: number | string;
   label?: LocalisedText;
 }
+/** The area between a curve and the axis, with an optional Riemann subdivision drawn under it. */
+export interface PlotterArea {
+  id: string;
+  on: string;
+  from: number | string;
+  to: number | string;
+  label?: LocalisedText;
+  color?: string;
+  riemann?: number;
+  side: 'left' | 'right' | 'middle';
+}
 export interface PlotterLine {
   id: string;
   a: number | string;
@@ -218,6 +229,7 @@ export interface PlotterState {
   secants: PlotterSegment[];
   tangents: PlotterTangent[];
   intervals: PlotterSegment[];
+  areas: PlotterArea[];
   lines: PlotterLine[];
   /** Ids in the order they appeared, so that the newest item can be animated. */
   order: string[];
@@ -260,6 +272,7 @@ export function initialPlotterState(tool: PlotterTool): PlotterState {
     secants: [],
     tangents: [],
     intervals: [],
+    areas: [],
     lines: [],
     order: [],
   };
@@ -304,6 +317,7 @@ export function applyPlotterAction(state: PlotterState, action: PlotterAction): 
       secants: [],
       tangents: [],
       intervals: [],
+      areas: [],
       lines: [],
       order: [],
     };
@@ -318,6 +332,7 @@ export function applyPlotterAction(state: PlotterState, action: PlotterAction): 
       secants: keep(next.secants),
       tangents: keep(next.tangents),
       intervals: keep(next.intervals),
+      areas: keep(next.areas),
       lines: next.lines.filter((l) => !hidden.has(l.id)),
       order: next.order.filter((id) => !hidden.has(id)),
     };
@@ -346,6 +361,10 @@ export function applyPlotterAction(state: PlotterState, action: PlotterAction): 
   if (action.interval) {
     next.intervals = upsert(next.intervals, action.interval);
     touch(action.interval.id);
+  }
+  if (action.area) {
+    next.areas = upsert(next.areas, action.area);
+    touch(action.area.id);
   }
   if (action.line) {
     next.lines = upsert(next.lines, action.line);

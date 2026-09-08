@@ -12,30 +12,87 @@ sourceReferences:
   - title: "Programme de mathématiques de terminale générale (enseignement de spécialité), BO spécial n°8 du 25 juillet 2019"
     note: "to verify"
 items:
+  - id: combinatoire
+    title: { fr: "Combinatoire et dénombrement", en: "Combinatorics and counting" }
+    reference: "Algèbre et géométrie — Combinatoire et dénombrement"
+    alignedNodes:
+      - { node: tool.counting, depth: 1 }
+  - id: vecteurs_espace
+    title: { fr: "Vecteurs, droites et plans de l'espace", en: "Vectors, lines and planes in space" }
+    reference: "Algèbre et géométrie — Manipuler les vecteurs, les droites et les plans de l'espace"
+    alignedNodes:
+      - { node: tool.space_geometry, depth: 1 }
+      - { node: tool.vector, depth: 2 }
+  - id: orthogonalite_espace
+    title: { fr: "Orthogonalité et distances dans l'espace", en: "Orthogonality and distances in space" }
+    reference: "Algèbre et géométrie — Orthogonalité et distances dans l'espace ; représentations paramétriques et équations cartésiennes"
+    alignedNodes:
+      - { node: tool.space_geometry, depth: 1 }
+  - id: suites_limites
+    title: { fr: "Suites : limites et raisonnement par récurrence", en: "Sequences: limits and proof by induction" }
+    reference: "Analyse — Suites numériques, limites de suites ; raisonnement par récurrence"
+    alignedNodes:
+      - { node: concept.sequence_limit, depth: 1 }
+  - id: limites_fonctions
+    title: { fr: "Limites des fonctions", en: "Limits of functions" }
+    reference: "Analyse — Limites des fonctions ; croissances comparées"
+    alignedNodes:
+      - { node: concept.limit, depth: 1 }
+      - { node: concept.function, depth: 2 }
+      - { node: concept.graph, depth: 2 }
   - id: derivation
-    title: { fr: Compléments sur la dérivation, en: Further differentiation }
-    reference: "Analyse — Compléments sur la dérivation"
+    title: { fr: "Compléments sur la dérivation", en: "Further differentiation" }
+    reference: "Analyse — Compléments sur la dérivation : fonction composée, dérivée seconde, convexité"
     alignedNodes:
       - { node: tool.derivative, depth: 2 }
+  - id: continuite
+    title: { fr: "Continuité des fonctions d'une variable réelle", en: "Continuity of functions of one real variable" }
+    reference: "Analyse — Continuité des fonctions d'une variable réelle ; théorème des valeurs intermédiaires"
+    alignedNodes:
+      - { node: concept.continuity, depth: 1 }
+  - id: logarithme
+    title: { fr: "Fonction logarithme népérien", en: "Natural logarithm function" }
+    reference: "Analyse — Fonction logarithme"
+    alignedNodes:
+      - { node: tool.logarithm, depth: 1 }
   - id: exponentielle
-    title: { fr: Fonction exponentielle, en: Exponential function }
-    reference: "Analyse — Fonction logarithme (réciproque de l'exponentielle) ; Limites des fonctions (croissances comparées) ; acquis de première : fonction exponentielle"
+    title: { fr: "Fonction exponentielle", en: "Exponential function" }
+    reference: "Analyse — Fonction exponentielle : limites, croissances comparées (acquis de première)"
     alignedNodes:
       - { node: tool.exponential, depth: 2 }
+  - id: trigonometriques
+    title: { fr: "Fonctions trigonométriques", en: "Trigonometric functions" }
+    reference: "Analyse — Fonctions sinus et cosinus : dérivées, équations, variations"
+    alignedNodes:
+      - { node: tool.trigonometric_functions, depth: 2 }
   - id: primitives_equations_differentielles
     title: { fr: "Primitives, équations différentielles", en: "Antiderivatives, differential equations" }
     reference: "Analyse — Primitives, équations différentielles"
     alignedNodes:
       - { node: tool.ode_first_order, depth: 1 }
       - { node: concept.initial_condition, depth: 1 }
-  - id: fonctions
-    title: { fr: "Fonctions : limites et continuité", en: "Functions: limits and continuity" }
-    reference: "Analyse — Limites des fonctions ; Continuité des fonctions d'une variable réelle"
+  - id: integrale
+    title: { fr: "Calcul intégral", en: "Integral calculus" }
+    reference: "Analyse — Calcul intégral : aire sous la courbe, primitives, intégration par parties"
     alignedNodes:
-      - { node: concept.function, depth: 2 }
-      - { node: concept.graph, depth: 2 }
-  - id: vecteurs
-    title: { fr: "Vecteurs, droites et plans de l'espace", en: "Vectors, lines and planes in space" }
-    reference: "Géométrie — Manipuler les vecteurs, les droites et les plans de l'espace ; Orthogonalité et distances dans l'espace"
+      - { node: tool.integral, depth: 1 }
+  - id: loi_binomiale
+    title: { fr: "Succession d'épreuves indépendantes, loi binomiale", en: "Independent repeated trials, binomial law" }
+    reference: "Probabilités — Succession d'épreuves indépendantes, schéma de Bernoulli, loi binomiale"
     alignedNodes:
-      - { node: tool.vector, depth: 2 }
+      - { node: concept.binomial_law, depth: 1 }
+  - id: somme_variables
+    title: { fr: "Sommes de variables aléatoires", en: "Sums of random variables" }
+    reference: "Probabilités — Sommes de variables aléatoires : espérance, variance, échantillon"
+    alignedNodes:
+      - { node: concept.random_variable_sum, depth: 1 }
+  - id: concentration
+    title: { fr: "Concentration, loi des grands nombres", en: "Concentration, law of large numbers" }
+    reference: "Probabilités — Inégalité de Bienaymé-Tchebychev, inégalité de concentration, loi des grands nombres"
+    alignedNodes:
+      - { node: concept.law_of_large_numbers, depth: 1 }
+  - id: algorithmique
+    title: { fr: "Algorithmique et programmation", en: "Algorithmics and programming" }
+    reference: "Algorithmique et programmation (partie transversale du programme)"
+    alignedNodes:
+      - { node: tool.algorithmics, depth: 3 }

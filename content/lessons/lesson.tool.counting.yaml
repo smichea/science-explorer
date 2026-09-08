@@ -1,0 +1,114 @@
+# Leçon rédigée — dénombrement : principe multiplicatif et factorielle sur le crible (120 = 5!), passage aux
+# combinaisons en divisant par les ordres, relation de Pascal, puis les chemins d'un arbre à deux niveaux.
+id: lesson.tool.counting
+nodeId: tool.counting
+depth: 1
+tools:
+  - id: sieve
+    kind: arithmetic
+    title: { fr: "Les entiers et leurs diviseurs", en: "The integers and their divisors" }
+    max: 120
+    highlight: 6
+    number: 120
+  - id: paths
+    kind: random
+    title: { fr: "Les chemins d'un arbre", en: "The paths of a tree" }
+    mode: tree
+    seed: 12
+    tree:
+      first:
+        - { id: s, label: { fr: "succès", en: "success" }, p: 0.5 }
+        - { id: f, label: { fr: "échec", en: "failure" }, p: 0.5 }
+      second:
+        - { id: s2, label: { fr: "succès", en: "success" } }
+        - { id: f2, label: { fr: "échec", en: "failure" } }
+      given:
+        s: [0.5, 0.5]
+        f: [0.5, 0.5]
+steps:
+  - id: multiplication
+    tool: sieve
+    title: { fr: "Le principe multiplicatif", en: "The multiplication principle" }
+    text:
+      fr: >-
+        Dénombrer, c'est compter les éléments d'un ensemble fini sans les énumérer un par un.
+        La première règle est le principe multiplicatif : deux choix successifs, l'un parmi p possibilités et l'autre parmi q, donnent p multiplié par q couples.
+        Une liste de k éléments choisis parmi n, avec répétition permise, se compte donc n puissance k.
+        Si les éléments doivent être distincts, le nombre de possibilités diminue d'une unité à chaque étape ; pour k égal à n on obtient les permutations, au nombre de factorielle n.
+        Cinq livres se rangent ainsi de cent vingt façons sur une étagère, car factorielle cinq vaut cent vingt : c'est le nombre affiché ici, avec ses seize diviseurs.
+      en: >-
+        Counting means counting the elements of a finite set without listing them one by one.
+        The first rule is the multiplication principle: two successive choices, one among p possibilities and the other among q, give p multiplied by q pairs.
+        A list of k elements chosen among n, with repetition allowed, is therefore counted as n to the power k.
+        If the elements must be distinct, the number of possibilities drops by one at each step; for k equal to n one obtains the permutations, factorial n of them.
+        Five books can thus be arranged in one hundred and twenty ways on a shelf, since factorial five is one hundred and twenty: it is the number displayed here, with its sixteen divisors.
+  - id: combinations
+    tool: sieve
+    title: { fr: "Quand l'ordre ne compte pas", en: "When order does not matter" }
+    text:
+      fr: >-
+        Quand l'ordre ne compte pas, on ne compte plus des listes mais des parties.
+        Choisir trois délégués parmi douze élèves dans l'ordre offre douze fois onze fois dix possibilités, soit mille trois cent vingt.
+        Mais chaque délégation a alors été comptée six fois, une fois par ordre possible, puisque factorielle trois vaut six.
+        On divise donc par six, et l'on obtient deux cent vingt : c'est le coefficient binomial trois parmi douze.
+        La formule générale s'écrit factorielle n, divisée par factorielle k multipliée par factorielle n moins k.
+      en: >-
+        When order does not matter, one no longer counts lists but subsets.
+        Choosing three representatives among twelve pupils in order offers twelve times eleven times ten possibilities, that is one thousand three hundred and twenty.
+        But each delegation has then been counted six times, once per possible order, since factorial three is six.
+        One therefore divides by six and obtains two hundred and twenty: this is the binomial coefficient three among twelve.
+        The general formula is written factorial n, divided by factorial k multiplied by factorial n minus k.
+  - id: pascal
+    tool: sieve
+    title: { fr: "Symétrie et relation de Pascal", en: "Symmetry and Pascal's rule" }
+    text:
+      fr: >-
+        Deux propriétés font gagner beaucoup de temps.
+        La symétrie d'abord : choisir les k éléments que l'on garde revient à choisir les n moins k que l'on laisse, donc les deux coefficients sont égaux.
+        La relation de Pascal ensuite : k parmi n, ajouté à k plus un parmi n, donne k plus un parmi n plus un.
+        Elle se démontre en une phrase, en séparant les parties qui contiennent un élément fixé de celles qui ne le contiennent pas.
+        C'est elle qui construit le triangle de Pascal ligne après ligne, avec de simples additions, comme on le faisait avant les calculatrices.
+      en: >-
+        Two properties save a great deal of time.
+        Symmetry first: choosing the k elements one keeps amounts to choosing the n minus k one leaves, so the two coefficients are equal.
+        Pascal's rule next: k among n, added to k plus one among n, gives k plus one among n plus one.
+        It is proved in one sentence, by separating the subsets that contain a fixed element from those that do not.
+        It is what builds Pascal's triangle row after row, with simple additions, as was done before calculators.
+  - id: counting_paths
+    tool: paths
+    title: { fr: "Compter les chemins d'un arbre", en: "Counting the paths of a tree" }
+    text:
+      fr: >-
+        Voilà pourquoi le dénombrement ouvre la porte aux probabilités.
+        Répétons deux fois une épreuve à deux issues équiprobables : l'arbre montre quatre chemins, chacun de probabilité un quart.
+        Deux de ces chemins donnent exactement un succès, autant qu'il y a de façons de choisir le rang de ce succès, c'est-à-dire un parmi deux.
+        Avec dix répétitions, l'arbre aurait mille vingt-quatre chemins, et deux cent dix d'entre eux donneraient exactement quatre succès.
+        Personne ne dessine un tel arbre : on compte ses chemins, et c'est exactement ce que fait la loi binomiale.
+      en: >-
+        This is why counting opens the door to probability.
+        Let us repeat twice a trial with two equally likely outcomes: the tree shows four paths, each of probability one quarter.
+        Two of these paths give exactly one success, as many as there are ways of choosing the rank of that success, that is, one among two.
+        With ten repetitions, the tree would have one thousand and twenty-four paths, and two hundred and ten of them would give exactly four successes.
+        Nobody draws such a tree: one counts its paths, and that is exactly what the binomial law does.
+  - id: play
+    kind: play
+    tool: sieve
+    title: { fr: "À vous de compter", en: "Your turn to count" }
+    text:
+      fr: >-
+        À vous. Choisissez un entier et regardez ses diviseurs et sa décomposition en facteurs premiers : comparez factorielle six, sept cent vingt, à factorielle cinq.
+        Cherchez ensuite combien de mains de cinq cartes se tirent d'un jeu de trente-deux, et vérifiez que la réponse dépasse deux cent mille.
+      en: >-
+        Your turn. Choose an integer and look at its divisors and its prime factorisation: compare factorial six, seven hundred and twenty, with factorial five.
+        Then look for how many hands of five cards can be drawn from a deck of thirty-two, and check that the answer exceeds two hundred thousand.
+  - id: exercises
+    kind: exercises
+    title: { fr: "Exercices", en: "Exercises" }
+    text:
+      fr: >-
+        Deux exercices : une combinaison à reconnaître, puis la relation de Pascal.
+        Saisissez vos réponses ; un indice est disponible si vous bloquez.
+      en: >-
+        Two exercises: a combination to recognise, then Pascal's rule.
+        Type your answers; a hint is available if you get stuck.
+    exercises: [exercise.counting.combination, exercise.counting.pascal]

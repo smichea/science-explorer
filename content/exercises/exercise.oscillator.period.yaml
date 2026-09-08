@@ -1,0 +1,47 @@
+# Oscillateur mécanique — longueur du pendule qui bat la seconde (réponse numérique)
+id: exercise.oscillator.period
+type: numeric
+nodeId: phenomenon.oscillator
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une horloge comtoise est réglée par un pendule qui « bat la seconde » : il met exactement une seconde pour aller d'un extrême à l'autre, donc sa période propre vaut $T_0 = 2{,}00\ \mathrm{s}$. Les oscillations sont de faible amplitude et l'on prendra $g = 9{,}81\ \mathrm{m \cdot s^{-2}}$.
+
+    Quelle doit être la longueur $L$ du pendule ? Répondez en mètres, avec trois chiffres significatifs.
+  en: |-
+    A grandfather clock is regulated by a pendulum that "beats the second": it takes exactly one second to go from one end to the other, so its natural period is $T_0 = 2.00\ \mathrm{s}$. The oscillations have a small amplitude and we take $g = 9.81\ \mathrm{m \cdot s^{-2}}$.
+
+    What must the length $L$ of the pendulum be? Answer in metres, with three significant figures.
+numeric:
+  value: 0.994
+  unit: "m"
+  tolerance: { kind: relative, value: 0.03 }
+  inputLabel: { fr: "L", en: "L" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Partez de $T_0 = 2\pi\sqrt{\dfrac{L}{g}}$ et isolez $L$ : élevez au carré avant de faire quoi que ce soit d'autre.
+      en: |-
+        Start from $T_0 = 2\pi\sqrt{\dfrac{L}{g}}$ and isolate $L$: square before doing anything else.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $T_0^2 = \dfrac{4\pi^2 L}{g}$, donc $L = \dfrac{g\,T_0^2}{4\pi^2}$, avec $4\pi^2 \approx 39{,}5$.
+      en: |-
+        $T_0^2 = \dfrac{4\pi^2 L}{g}$, so $L = \dfrac{g\,T_0^2}{4\pi^2}$, with $4\pi^2 \approx 39.5$.
+solution:
+  fr: |-
+    En élevant au carré la période propre des petites oscillations, $T_0^2 = \dfrac{4\pi^2\,L}{g}$, d'où
+    $$L = \frac{g\,T_0^2}{4\pi^2} = \frac{9{,}81 \times 2{,}00^2}{39{,}48} = \frac{39{,}24}{39{,}48} = 0{,}994\ \mathrm{m}.$$
+
+    **Interprétation.** Un peu moins d'un mètre : c'est très exactement la taille des balanciers des horloges comtoises, et ce n'est pas un hasard, puisque la seconde a longtemps été définie par eux. Remarquez ce qui n'apparaît nulle part dans le calcul : la masse du balancier, et l'amplitude des oscillations. Remarquez aussi la sensibilité de l'horloge à $g$ : transportée à l'équateur, où $g$ vaut $9{,}78$ au lieu de $9{,}81$, la même horloge retarde de treize secondes par jour. C'est ainsi que les pendules ont servi à mesurer la pesanteur avant les satellites — et c'est pourquoi les horlogers prévoient une vis pour rallonger le fil de quelques millimètres.
+  en: |-
+    Squaring the natural period of small oscillations, $T_0^2 = \dfrac{4\pi^2\,L}{g}$, hence
+    $$L = \frac{g\,T_0^2}{4\pi^2} = \frac{9.81 \times 2.00^2}{39.48} = \frac{39.24}{39.48} = 0.994\ \mathrm{m}.$$
+
+    **Interpretation.** A little under one metre: this is exactly the size of the pendulums of grandfather clocks, and it is no accident, since the second was long defined by them. Note what appears nowhere in the computation: the mass of the pendulum, and the amplitude of the oscillations. Note also how sensitive the clock is to $g$: carried to the equator, where $g$ is $9.78$ instead of $9.81$, the same clock loses thirteen seconds a day. This is how pendulums served to measure gravity before satellites — and it is why clockmakers provide a screw to lengthen the rod by a few millimetres.
+difficulty: { mathematicalDepth: 2, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

@@ -172,4 +172,74 @@ test.describe('narrated lessons', () => {
     await expect(page.getByTestId('optics-reading')).toContainText('60');
     await expectNoHorizontalScroll(page);
   });
+
+  test('the Terminale tools answer to the learner: space, area, binomial, Doppler, pH', async ({
+    page,
+  }) => {
+    test.skip(test.info().project.name !== 'desktop', 'checked once, on desktop');
+    await createExplorer(page);
+    /** Clicks the tool tabs until the shown tool has the wanted kind. */
+    const showTool = async (kind: string) => {
+      const tabs = page.locator('[data-testid^="lesson-tab-"]');
+      for (let i = 0; i < (await tabs.count()); i++) {
+        if ((await page.getByTestId('lesson-tool').getAttribute('data-tool')) === kind) return;
+        await tabs.nth(i).click();
+      }
+      await expect(page.getByTestId('lesson-tool')).toHaveAttribute('data-tool', kind);
+    };
+    // Space turns rather than drags: the azimuth slider moves the whole figure.
+    await page.goto('lesson/tool.space_geometry');
+    await nextUntil(page, 'play');
+    await showTool('space');
+    await expect(page.getByTestId('space-tool')).toBeVisible();
+    await page.getByTestId('space-azimuth').fill('90');
+    await expect(page.getByTestId('space-dot')).toContainText(/orthogonaux/);
+    // The area under the curve reads out its integral, and its Riemann sum where one is drawn.
+    await page.goto('lesson/tool.integral');
+    await nextUntil(page, 'play');
+    await showTool('plotter');
+    await expect(page.getByTestId('plotter-area').first()).toBeVisible();
+    await page.goto('lesson/tool.algorithmics?depth=3');
+    await nextUntil(page, 'play');
+    await showTool('plotter');
+    await expect(page.getByTestId('plotter-area').first()).toContainText(/Riemann/i);
+    // The binomial law fills its own table: no value has to be listed by hand.
+    await page.goto('lesson/concept.binomial_law');
+    await nextUntil(page, 'play');
+    await showTool('random');
+    await expect(page.getByTestId('random-law')).toBeVisible();
+    await expect(page.getByTestId('random-variable')).toContainText(/E =/);
+    // The wavefronts of a moving source, and the frequency heard.
+    await page.goto('lesson/phenomenon.doppler');
+    await nextUntil(page, 'play');
+    await showTool('wave');
+    await expect(page.getByTestId('doppler-scene')).toBeVisible();
+    await expect(page.getByTestId('wave-reading')).toContainText(/perçue/);
+    // A pH cursor names the species that predominates at that pH.
+    await page.goto('lesson/model.acid_base');
+    await nextUntil(page, 'play');
+    await showTool('acid_base');
+    // The lesson drives the pH through its own parameter, so the tool shows no second cursor.
+    await page.getByTestId('plotter-param-p').fill('2');
+    await expect(page.getByTestId('acid-base-reading')).toContainText(/prédomine/);
+    await expectNoHorizontalScroll(page);
+  });
+
+  test('the Terminale simulations: an orbit with its areal speed, a heated body', async ({
+    page,
+  }) => {
+    test.skip(test.info().project.name !== 'desktop', 'checked once, on desktop');
+    await createExplorer(page);
+    // The orbit prints its elements and draws the areal speed that Kepler's second law flattens.
+    await page.goto('lesson/model.gravitational_motion');
+    await nextUntil(page, 'play');
+    await expect(page.getByTestId('orbit-elements')).toContainText(/T²\/a³/);
+    await expect(page.getByTestId('sim-areal-graph')).toBeVisible();
+    await expect(page.getByTestId('sim-energy-graph')).toBeVisible();
+    // A body heated while it loses heat: the first-order engine now graphs the energy balance.
+    await page.goto('lesson/law.first_principle');
+    await nextUntil(page, 'play');
+    await expect(page.getByTestId('sim-heat-graph')).toBeVisible();
+    await expectNoHorizontalScroll(page);
+  });
 });

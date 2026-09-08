@@ -1,0 +1,53 @@
+# Loi binomiale en Terminale — probabilité d'obtenir exactement quatre succès sur dix répétitions
+id: exercise.binomial.exactly_k
+type: numeric
+nodeId: concept.binomial_law
+depth: 1
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Une machine produit des pièces dont $30\,\%$ portent un défaut. On prélève au hasard, avec remise, $10$ pièces. La variable aléatoire $X$ compte les pièces défectueuses.
+
+    Calculer $P(X = 4)$, arrondie à $10^{-3}$.
+  en: |-
+    A machine produces items of which $30\,\%$ carry a defect. $10$ items are drawn at random, with replacement. The random variable $X$ counts the defective items.
+
+    Compute $P(X = 4)$, rounded to $10^{-3}$.
+numeric:
+  value: 0.2001
+  tolerance: { kind: absolute, value: 0.002 }
+  inputLabel: { fr: "$P(X = 4)$", en: "$P(X = 4)$" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Les prélèvements sont identiques et indépendants, à deux issues : $X$ suit la loi binomiale de paramètres $n = 10$ et $p = 0{,}3$.
+      en: |-
+        The draws are identical and independent, with two outcomes: $X$ follows the binomial law with parameters $n = 10$ and $p = 0.3$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Appliquez $P(X = k) = \dbinom{n}{k} p^{k}(1-p)^{n-k}$ avec $\dbinom{10}{4} = 210$, $0{,}3^{4} = 0{,}0081$ et $0{,}7^{6} \approx 0{,}1176$.
+      en: |-
+        Apply $P(X = k) = \dbinom{n}{k} p^{k}(1-p)^{n-k}$ with $\dbinom{10}{4} = 210$, $0.3^{4} = 0.0081$ and $0.7^{6} \approx 0.1176$.
+solution:
+  fr: |-
+    Le prélèvement avec remise de $10$ pièces est un schéma de Bernoulli : $10$ épreuves identiques, indépendantes, à deux issues, de probabilité de succès $p = 0{,}3$. Donc $X$ suit la loi $\mathcal{B}(10\,;\,0{,}3)$ et
+    $$P(X = 4) = \binom{10}{4}\,0{,}3^{4}\,0{,}7^{6} = 210 \times 0{,}0081 \times 0{,}117649 \approx 0{,}200.$$
+
+    **Interprétation.** Quatre défauts sur dix pièces arrivent donc une fois sur cinq, alors qu'on n'en attend que trois en moyenne ($E(X) = np = 3$) : un tel écart n'a rien d'anormal. Le coefficient $\dbinom{10}{4} = 210$ compte les positions possibles des quatre pièces défectueuses dans la série ; sans lui, on ne calculerait la probabilité que d'un seul scénario précis, par exemple « les quatre premières défectueuses », qui vaut $0{,}00095$ — deux cents fois moins.
+  en: |-
+    Drawing $10$ items with replacement is a Bernoulli scheme: $10$ identical, independent trials with two outcomes and probability of success $p = 0.3$. So $X$ follows the law $\mathcal{B}(10\,;\,0.3)$ and
+    $$P(X = 4) = \binom{10}{4}\,0.3^{4}\,0.7^{6} = 210 \times 0.0081 \times 0.117649 \approx 0.200.$$
+
+    **Interpretation.** Four defects out of ten items therefore happen once in five, whereas only three are expected on average ($E(X) = np = 3$): such a gap is in no way abnormal. The coefficient $\dbinom{10}{4} = 210$ counts the possible positions of the four defective items in the run; without it, one would compute the probability of a single precise scenario only, for instance "the first four are defective", which is $0.00095$ — two hundred times less.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 3
+  calculationLength: 2
+  modellingOpenness: 2
+  linkedConcepts: 3
+  transfer: 2
+  autonomy: 3
