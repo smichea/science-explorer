@@ -1,0 +1,54 @@
+# Fonctions trigonométriques en Terminale — dériver une fonction sinusoïdale du temps.
+id: exercise.trigonometric.derivative
+type: symbolic
+nodeId: tool.trigonometric_functions
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    L'élongation d'un oscillateur s'écrit $x(t) = 0{,}05\cos(4t)$ (en mètres, $t$ en secondes).
+
+    Donner l'expression de la vitesse $v(t) = x'(t)$.
+  en: |-
+    The elongation of an oscillator is written $x(t) = 0.05\cos(4t)$ (in metres, $t$ in seconds).
+
+    Give the expression of the velocity $v(t) = x'(t)$.
+symbolic:
+  variable: t
+  accepted:
+    - "-0.2*sin(4*t)"
+    - "-0.20*sin(4*t)"
+    - "-(1/5)*sin(4*t)"
+  display: "-0.2 sin(4t)"
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: "La dérivée de $\\cos u$ est $-u' \\sin u$ : ici $u = 4t$, donc $u' = 4$."
+      en: "The derivative of $\\cos u$ is $-u' \\sin u$: here $u = 4t$, so $u' = 4$."
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: "Le facteur constant $0{,}05$ se garde, et le $4$ sorti de la composée le multiplie."
+      en: "The constant factor $0.05$ is kept, and the $4$ coming out of the composition multiplies it."
+solution:
+  fr: |-
+    Avec $u(t) = 4t$, $x(t) = 0{,}05\cos(u(t))$, donc $x'(t) = 0{,}05 \times \left(-u'(t)\sin(u(t))\right) = -0{,}05 \times 4 \sin(4t) = -0{,}20\sin(4t)$.
+
+    La vitesse est donc $v(t) = -0{,}20\sin(4t)$, en $\mathrm{m \cdot s^{-1}}$.
+
+    **Interprétation.** L'amplitude de la vitesse, $0{,}20\ \mathrm{m \cdot s^{-1}}$, est l'amplitude de l'élongation multipliée par la pulsation : $A\omega$. C'est général — dériver une sinusoïde multiplie son amplitude par $\omega$ et la décale d'un quart de période. La vitesse est maximale au passage par la position d'équilibre ($\sin$ maximal quand $\cos$ s'annule) et nulle aux extrémités : le mouvement s'arrête pour repartir en sens inverse. Une seconde dérivation donnerait $a(t) = -0{,}80\cos(4t) = -16\,x(t)$, c'est-à-dire $x'' = -\omega^2 x$, l'équation de l'oscillateur harmonique.
+  en: |-
+    With $u(t) = 4t$, $x(t) = 0.05\cos(u(t))$, so $x'(t) = 0.05 \times \left(-u'(t)\sin(u(t))\right) = -0.05 \times 4 \sin(4t) = -0.20\sin(4t)$.
+
+    The velocity is therefore $v(t) = -0.20\sin(4t)$, in $\mathrm{m \cdot s^{-1}}$.
+
+    **Interpretation.** The amplitude of the velocity, $0.20\ \mathrm{m \cdot s^{-1}}$, is the amplitude of the elongation multiplied by the angular frequency: $A\omega$. This is general — differentiating a sinusoid multiplies its amplitude by $\omega$ and shifts it by a quarter of a period. The velocity is greatest as the oscillator passes through equilibrium ($\sin$ largest where $\cos$ vanishes) and zero at the ends: the motion stops to set off the other way. A second differentiation would give $a(t) = -0.80\cos(4t) = -16\,x(t)$, that is $x'' = -\omega^2 x$, the equation of the harmonic oscillator.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 3
+  transfer: 2
+  autonomy: 2

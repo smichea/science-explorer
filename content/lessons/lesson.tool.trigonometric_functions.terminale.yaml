@@ -1,0 +1,90 @@
+# Leçon narrée — fonctions trigonométriques en Terminale (profondeur 2) : dérivées de sinus et
+# cosinus, équations sur un intervalle, et lecture d'une grandeur sinusoïdale du temps.
+id: lesson.tool.trigonometric_functions.terminale
+nodeId: tool.trigonometric_functions
+depth: 2
+tools:
+  - id: circle
+    kind: unit_circle
+    title: { fr: "Le cercle et les solutions", en: "The circle and the solutions" }
+    parameters:
+      - { id: a, label: { fr: "angle a (rad)", en: "angle a (rad)" }, min: -3.2, max: 6.4, step: 0.05, value: 1.0472 }
+    angle: "a"
+    marks: true
+    curves: true
+  - id: plotter
+    kind: plotter
+    title: { fr: "Dériver, et lire une sinusoïde", en: "Differentiating, and reading a sinusoid" }
+    variable: x
+    view: { x: [-3.2, 6.4], y: [-2.2, 2.2] }
+    parameters:
+      - { id: w, label: { fr: "pulsation ω", en: "angular frequency ω" }, min: 0.5, max: 4, step: 0.1, value: 2 }
+      - { id: p, label: { fr: "phase φ", en: "phase φ" }, min: -3.14, max: 3.14, step: 0.05, value: 0 }
+    input: true
+steps:
+  - id: derivatives
+    title: { fr: "Sinus et cosinus se dérivent l'un dans l'autre", en: "Sine and cosine differentiate into each other" }
+    text:
+      fr: >-
+        La dérivée du sinus est le cosinus, la dérivée du cosinus est moins le sinus.
+        Sur le graphique, la courbe du sinus monte le plus vite en zéro, là où le cosinus vaut un ; elle est plate en pi sur deux, là où le cosinus s'annule.
+        Deux dérivations ramènent à moins la fonction de départ : c'est exactement l'équation d'un oscillateur, y seconde égale moins y.
+        Pour une fonction composée, la règle de la chaîne donne la dérivée de cosinus de oméga t plus phi : moins oméga fois sinus de oméga t plus phi — l'amplitude est multipliée par la pulsation.
+      en: >-
+        The derivative of the sine is the cosine, the derivative of the cosine is minus the sine.
+        On the graph, the sine curve rises fastest at zero, where the cosine is one; it is flat at pi over two, where the cosine vanishes.
+        Two differentiations bring back minus the original function: that is exactly the equation of an oscillator, y double prime equals minus y.
+        For a composite function, the chain rule gives the derivative of cosine of omega t plus phi: minus omega times the sine of omega t plus phi — the amplitude is multiplied by the angular frequency.
+    tool: plotter
+    actions:
+      - { at: 0, plot: { id: s, expr: "sin(x)", label: { fr: "sin x", en: "sin x" } } }
+      - { at: 1, plot: { id: c, expr: "cos(x)", dashed: true, label: { fr: "cos x = (sin)'", en: "cos x = (sin)'" } } }
+      - { at: 1, tangent: { id: t0, on: s, x: 0, label: { fr: "pente 1 en 0", en: "slope 1 at 0" } } }
+      - { at: 3, plot: { id: g, expr: "cos(w*x+p)", color: "#5ee6a8", label: { fr: "cos(ωt + φ)", en: "cos(ωt + φ)" } } }
+  - id: equations
+    title: { fr: "Résoudre cos x = a sur un intervalle", en: "Solving cos x = a on an interval" }
+    tool: circle
+    text:
+      fr: >-
+        Une équation trigonométrique n'a jamais une seule solution : le cercle en donne deux par tour, puis toutes les autres de deux pi en deux pi.
+        Cherchons cosinus de x égale un demi : le cercle montre les deux angles pi sur trois et moins pi sur trois, symétriques par rapport à l'axe des abscisses.
+        Sur l'intervalle de zéro à deux pi, les solutions sont donc pi sur trois et cinq pi sur trois — la seconde s'obtient en ajoutant deux pi à moins pi sur trois.
+        Pour un sinus, la symétrie change d'axe : les deux solutions sont x et pi moins x.
+      en: >-
+        A trigonometric equation never has a single solution: the circle gives two per turn, then all the others two pi apart.
+        Let us look for cosine of x equals one half: the circle shows the two angles pi over three and minus pi over three, symmetric about the horizontal axis.
+        On the interval from zero to two pi, the solutions are therefore pi over three and five pi over three — the second one obtained by adding two pi to minus pi over three.
+        For a sine, the symmetry changes axis: the two solutions are x and pi minus x.
+  - id: sinusoid
+    title: { fr: "Lire une grandeur sinusoïdale du temps", en: "Reading a quantity sinusoidal in time" }
+    tool: plotter
+    text:
+      fr: >-
+        Une tension alternative, l'élongation d'un pendule, la pression d'un son pur : toutes s'écrivent A cosinus de oméga t plus phi.
+        A est l'amplitude, la moitié de l'écart entre le maximum et le minimum ; oméga la pulsation, en radians par seconde ; phi la phase à l'origine, qui décale la courbe.
+        La période se lit sur la courbe et vaut deux pi sur oméga : doublez oméga et la courbe se resserre de moitié.
+        Faites varier la phase : la forme ne change pas, seule sa position glisse — deux signaux de même pulsation qui diffèrent par phi sont dits déphasés.
+      en: >-
+        An alternating voltage, the elongation of a pendulum, the pressure of a pure sound: all are written A cosine of omega t plus phi.
+        A is the amplitude, half the gap between the maximum and the minimum; omega the angular frequency, in radians per second; phi the phase at the origin, which shifts the curve.
+        The period is read on the curve and equals two pi over omega: double omega and the curve tightens by half.
+        Vary the phase: the shape does not change, only its position slides — two signals of the same angular frequency differing by phi are said to be out of phase.
+    actions:
+      - { at: 0, hide: [s, c, t0] }
+      - { at: 1, plot: { id: env, expr: "1+0*x", dashed: true, color: "#ffd166", label: { fr: "amplitude", en: "amplitude" } } }
+      - { at: 2, interval: { id: per, on: g, from: 0, to: "2*pi/w", label: { fr: "une période", en: "one period" } } }
+  - id: play
+    kind: play
+    title: { fr: "À vous", en: "Your turn" }
+    text:
+      fr: >-
+        Déplacez l'angle sur le cercle et lisez ses valeurs exactes ; réglez la pulsation et la phase, et vérifiez que la période vaut bien deux pi sur oméga.
+      en: >-
+        Move the angle on the circle and read its exact values; set the angular frequency and the phase, and check that the period really is two pi over omega.
+  - id: exercises
+    kind: exercises
+    title: { fr: "Deux calculs", en: "Two computations" }
+    text:
+      fr: "Une dérivée composée, une équation sur un intervalle."
+      en: "A composite derivative, an equation on an interval."
+    exercises: [exercise.trigonometric.derivative, exercise.trigonometric.equation]

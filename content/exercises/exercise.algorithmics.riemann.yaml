@@ -1,0 +1,73 @@
+# Algorithmique en Terminale — évaluer une somme de Riemann à la main, comme le ferait le programme.
+id: exercise.algorithmics.riemann
+type: numeric
+nodeId: tool.algorithmics
+depth: 3
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On approche l'aire sous la courbe de $g(x) = x^2$ entre $0$ et $2$ par une somme de Riemann à gauche avec $n = 4$ rectangles :
+
+    ```python
+    a, b, n = 0, 2, 4
+    pas = (b - a) / n
+    s = 0
+    for k in range(n):
+        s = s + g(a + k * pas) * pas
+    print(s)
+    ```
+
+    Quelle valeur est affichée ?
+  en: |-
+    The area under the curve of $g(x) = x^2$ between $0$ and $2$ is approached by a left Riemann sum with $n = 4$ rectangles:
+
+    ```python
+    a, b, n = 0, 2, 4
+    step = (b - a) / n
+    s = 0
+    for k in range(n):
+        s = s + g(a + k * step) * step
+    print(s)
+    ```
+
+    Which value is displayed?
+numeric:
+  value: 1.75
+  tolerance: { kind: absolute, value: 0.01 }
+  inputLabel: { fr: "valeur affichée", en: "displayed value" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: "Le pas vaut $0{,}5$ et `range(4)` donne $k = 0, 1, 2, 3$ : les abscisses lues sont $0$, $0{,}5$, $1$ et $1{,}5$ — jamais $2$."
+      en: "The step is $0.5$ and `range(4)` gives $k = 0, 1, 2, 3$: the abscissae read are $0$, $0.5$, $1$ and $1.5$ — never $2$."
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: "Chaque rectangle a pour aire $g(x_k) \\times 0{,}5$ ; additionnez les quatre."
+      en: "Each rectangle has area $g(x_k) \\times 0.5$; add the four."
+solution:
+  fr: |-
+    Le pas vaut $\dfrac{2 - 0}{4} = 0{,}5$. Les hauteurs lues au bord gauche sont $g(0) = 0$, $g(0{,}5) = 0{,}25$, $g(1) = 1$ et $g(1{,}5) = 2{,}25$.
+
+    La somme vaut $s = (0 + 0{,}25 + 1 + 2{,}25) \times 0{,}5 = 3{,}5 \times 0{,}5 = 1{,}75$.
+
+    L'aire exacte est $\displaystyle\int_0^2 x^2\,\mathrm{d}x = \left[\dfrac{x^3}{3}\right]_0^2 = \dfrac{8}{3} \approx 2{,}67$ : quatre rectangles à gauche sous-estiment de $34\ \%$.
+
+    **Interprétation.** La somme à gauche sous-estime toujours l'aire sous une fonction croissante, et la somme à droite la surestime : les deux encadrent l'intégrale, ce qui donne une barre d'erreur gratuite. L'écart diminue comme $1/n$ pour ces sommes, comme $1/n^2$ si l'on prend le milieu de chaque pas : avec quarante rectangles au milieu, l'erreur tombe sous le millième. C'est cette convergence que la définition de l'intégrale transforme en égalité.
+  en: |-
+    The step is $\dfrac{2 - 0}{4} = 0.5$. The heights read at the left edge are $g(0) = 0$, $g(0.5) = 0.25$, $g(1) = 1$ and $g(1.5) = 2.25$.
+
+    The sum is $s = (0 + 0.25 + 1 + 2.25) \times 0.5 = 3.5 \times 0.5 = 1.75$.
+
+    The exact area is $\displaystyle\int_0^2 x^2\,\mathrm{d}x = \left[\dfrac{x^3}{3}\right]_0^2 = \dfrac{8}{3} \approx 2.67$: four left rectangles underestimate it by $34\ \%$.
+
+    **Interpretation.** The left sum always underestimates the area under an increasing function, and the right sum overestimates it: the two bracket the integral, which gives a free error bar. The gap shrinks like $1/n$ for those sums, like $1/n^2$ if the middle of each step is taken: with forty middle rectangles, the error falls below one thousandth. It is that convergence which the definition of the integral turns into an equality.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 3
+  transfer: 2
+  autonomy: 2

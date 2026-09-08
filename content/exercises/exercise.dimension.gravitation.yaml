@@ -1,0 +1,69 @@
+# Dimension et unité en Terminale — trouver la dimension d'une constante par homogénéité.
+id: exercise.dimension.gravitation
+type: choice
+nodeId: concept.dimension_unit
+depth: 2
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    La loi de gravitation universelle s'écrit $F = G\,\dfrac{m_1 m_2}{d^2}$, où $F$ est une force, $m_1$ et $m_2$ des masses et $d$ une distance.
+
+    Quelle est la dimension de la constante $G$ ?
+  en: |-
+    The law of universal gravitation is written $F = G\,\dfrac{m_1 m_2}{d^2}$, where $F$ is a force, $m_1$ and $m_2$ are masses and $d$ a distance.
+
+    What is the dimension of the constant $G$?
+choice:
+  choices:
+    - id: a
+      text: { fr: "$\\mathrm{M^{-1} L^{3} T^{-2}}$", en: "$\\mathrm{M^{-1} L^{3} T^{-2}}$" }
+      correct: true
+      feedback:
+        fr: "Oui : $G = \\dfrac{F d^2}{m_1 m_2}$, donc $\\mathrm{(M L T^{-2}) \\times L^2 / M^2 = M^{-1} L^3 T^{-2}}$, en $\\mathrm{m^3 \\cdot kg^{-1} \\cdot s^{-2}}$."
+        en: "Yes: $G = \\dfrac{F d^2}{m_1 m_2}$, so $\\mathrm{(M L T^{-2}) \\times L^2 / M^2 = M^{-1} L^3 T^{-2}}$, in $\\mathrm{m^3 \\cdot kg^{-1} \\cdot s^{-2}}$."
+    - id: b
+      text: { fr: "$\\mathrm{M L T^{-2}}$ (celle d'une force)", en: "$\\mathrm{M L T^{-2}}$ (that of a force)" }
+      correct: false
+      feedback:
+        fr: "Non : $G$ n'est pas la force, c'est ce qui reste quand on isole $G$ dans la relation. Une constante d'une loi physique a rarement la dimension du membre de gauche."
+        en: "No: $G$ is not the force, it is what is left when $G$ is isolated in the relation. The constant of a physical law rarely has the dimension of the left-hand side."
+    - id: c
+      text: { fr: "Aucune : $G$ est un nombre sans dimension", en: "None: $G$ is a dimensionless number" }
+      correct: false
+      feedback:
+        fr: "Non : sans dimension, le membre de droite serait en $\\mathrm{M^2 L^{-2}}$, ce qui n'est pas une force. Seuls les arguments d'exponentielle, de logarithme ou de sinus sont nécessairement sans dimension."
+        en: "No: if it were dimensionless, the right-hand side would be in $\\mathrm{M^2 L^{-2}}$, which is not a force. Only the arguments of exponentials, logarithms or sines are necessarily dimensionless."
+    - id: d
+      text: { fr: "$\\mathrm{M^{-1} L^{2} T^{-2}}$", en: "$\\mathrm{M^{-1} L^{2} T^{-2}}$" }
+      correct: false
+      feedback:
+        fr: "Presque : il manque une puissance de longueur. La distance intervient au carré au dénominateur de la loi, donc $L^2$ passe au numérateur de $G$ et s'ajoute au $L$ de la force."
+        en: "Almost: one power of length is missing. The distance appears squared in the denominator of the law, so $L^2$ moves to the numerator of $G$ and adds to the $L$ of the force."
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: "Isolez $G$ : $G = \\dfrac{F d^2}{m_1 m_2}$, puis remplacez chaque grandeur par sa dimension."
+      en: "Isolate $G$: $G = \\dfrac{F d^2}{m_1 m_2}$, then replace each quantity by its dimension."
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: "Une force est $\\mathrm{M L T^{-2}}$ ; deux masses au dénominateur donnent $\\mathrm{M^{-2}}$."
+      en: "A force is $\\mathrm{M L T^{-2}}$; two masses in the denominator give $\\mathrm{M^{-2}}$."
+solution:
+  fr: |-
+    En isolant, $G = \dfrac{F d^2}{m_1 m_2}$. Dimension par dimension : $\dfrac{\mathrm{M L T^{-2}} \times \mathrm{L^2}}{\mathrm{M^2}} = \mathrm{M^{-1} L^{3} T^{-2}}$. L'unité SI correspondante est le $\mathrm{m^3 \cdot kg^{-1} \cdot s^{-2}}$, et la valeur mesurée est $G = 6{,}674 \times 10^{-11}$ dans cette unité.
+
+    **Interprétation.** La dimension d'une constante n'est jamais arbitraire : elle est imposée par la formule où elle apparaît, et elle en garde la trace. C'est aussi un contrôle : si un calcul d'orbite donne une période en $\mathrm{kg}$, l'erreur est dans le maniement de $G$. Le même raisonnement donne la dimension de la constante de Planck ($\mathrm{M L^2 T^{-1}}$, une énergie fois un temps) ou de la constante de Coulomb.
+  en: |-
+    Isolating, $G = \dfrac{F d^2}{m_1 m_2}$. Dimension by dimension: $\dfrac{\mathrm{M L T^{-2}} \times \mathrm{L^2}}{\mathrm{M^2}} = \mathrm{M^{-1} L^{3} T^{-2}}$. The corresponding SI unit is the $\mathrm{m^3 \cdot kg^{-1} \cdot s^{-2}}$, and the measured value is $G = 6.674 \times 10^{-11}$ in that unit.
+
+    **Interpretation.** The dimension of a constant is never arbitrary: it is forced by the formula it appears in, and it keeps the trace of it. It is also a check: if an orbit computation returns a period in $\mathrm{kg}$, the mistake is in the handling of $G$. The same reasoning gives the dimension of the Planck constant ($\mathrm{M L^2 T^{-1}}$, an energy times a time) or of the Coulomb constant.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 2
+  autonomy: 2

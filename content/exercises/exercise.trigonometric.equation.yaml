@@ -1,0 +1,51 @@
+# Fonctions trigonométriques en Terminale — résoudre une équation trigonométrique sur un intervalle.
+id: exercise.trigonometric.equation
+type: numeric
+nodeId: tool.trigonometric_functions
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    On résout l'équation $\cos x = \dfrac{1}{2}$ sur l'intervalle $[0\,;\,2\pi]$.
+
+    Combien de solutions cette équation admet-elle sur cet intervalle ?
+  en: |-
+    Solve the equation $\cos x = \dfrac{1}{2}$ on the interval $[0, 2\pi]$.
+
+    How many solutions does this equation have on that interval?
+numeric:
+  value: 2
+  tolerance: { kind: absolute, value: 0.001 }
+  inputLabel: { fr: "nombre de solutions", en: "number of solutions" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: "Sur le cercle trigonométrique, l'abscisse $\\frac{1}{2}$ est atteinte par deux points, symétriques par rapport à l'axe des abscisses."
+      en: "On the unit circle, the abscissa $\\frac{1}{2}$ is reached by two points, symmetric about the horizontal axis."
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: "Les deux angles correspondants sont $\\frac{\\pi}{3}$ et $-\\frac{\\pi}{3}$ ; ramenez le second dans $[0\\,;\\,2\\pi]$ en ajoutant $2\\pi$."
+      en: "The two corresponding angles are $\\frac{\\pi}{3}$ and $-\\frac{\\pi}{3}$; bring the second back into $[0, 2\\pi]$ by adding $2\\pi$."
+solution:
+  fr: |-
+    Sur le cercle, les points d'abscisse $\frac{1}{2}$ correspondent aux angles $\frac{\pi}{3}$ et $-\frac{\pi}{3}$, soit modulo $2\pi$ les valeurs $x = \frac{\pi}{3} + 2k\pi$ et $x = -\frac{\pi}{3} + 2k\pi$.
+
+    Dans $[0\,;\,2\pi]$, la première famille donne $\frac{\pi}{3} \approx 1{,}05$, la seconde $-\frac{\pi}{3} + 2\pi = \frac{5\pi}{3} \approx 5{,}24$. Il y a donc **deux** solutions.
+
+    **Interprétation.** Le nombre de solutions se lit sur le cercle avant tout calcul : une droite verticale d'abscisse $a$ coupe le cercle en deux points si $-1 < a < 1$, en un seul si $a = \pm 1$, en aucun au-delà. Sur un intervalle de longueur $2\pi$ il y a donc en général deux solutions, et l'erreur la plus fréquente est de n'en donner qu'une, celle que rend la calculatrice avec $\arccos$. Pour une équation en sinus, la symétrie est celle de l'axe vertical et les solutions sont $x$ et $\pi - x$.
+  en: |-
+    On the circle, the points of abscissa $\frac{1}{2}$ correspond to the angles $\frac{\pi}{3}$ and $-\frac{\pi}{3}$, that is, modulo $2\pi$, the values $x = \frac{\pi}{3} + 2k\pi$ and $x = -\frac{\pi}{3} + 2k\pi$.
+
+    In $[0, 2\pi]$, the first family gives $\frac{\pi}{3} \approx 1.05$, the second $-\frac{\pi}{3} + 2\pi = \frac{5\pi}{3} \approx 5.24$. There are therefore **two** solutions.
+
+    **Interpretation.** The number of solutions is read on the circle before any computation: a vertical line of abscissa $a$ cuts the circle at two points if $-1 < a < 1$, at one if $a = \pm 1$, at none beyond. On an interval of length $2\pi$ there are therefore generally two solutions, and the most frequent mistake is to give only one, the one the calculator returns with $\arccos$. For an equation in sine, the symmetry is that of the vertical axis and the solutions are $x$ and $\pi - x$.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 1
+  autonomy: 2

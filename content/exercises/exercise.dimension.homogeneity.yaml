@@ -1,0 +1,56 @@
+# Dimension et unité en Terminale — la constante de temps d'un circuit RC : homogénéité et conversion.
+id: exercise.dimension.homogeneity
+type: numeric
+nodeId: concept.dimension_unit
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Dans un circuit RC, la tension aux bornes du condensateur s'écrit $u(t) = E\left(1 - e^{-t/\tau}\right)$ avec $\tau = RC$.
+
+    Un montage utilise $R = 4{,}7\ \mathrm{k\Omega}$ et $C = 220\ \mathrm{nF}$. Quelle est la constante de temps $\tau$, en millisecondes ?
+  en: |-
+    In an RC circuit, the voltage across the capacitor is written $u(t) = E\left(1 - e^{-t/\tau}\right)$ with $\tau = RC$.
+
+    A setup uses $R = 4.7\ \mathrm{k\Omega}$ and $C = 220\ \mathrm{nF}$. What is the time constant $\tau$, in milliseconds?
+numeric:
+  value: 1.034
+  unit: "ms"
+  tolerance: { kind: relative, value: 0.02 }
+  inputLabel: { fr: "τ", en: "τ" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Repassez d'abord aux unités de base : $4{,}7\ \mathrm{k\Omega} = 4{,}7 \times 10^{3}\ \Omega$ et $220\ \mathrm{nF} = 220 \times 10^{-9}\ \mathrm{F}$.
+      en: |-
+        Go back to the base units first: $4.7\ \mathrm{k\Omega} = 4.7 \times 10^{3}\ \Omega$ and $220\ \mathrm{nF} = 220 \times 10^{-9}\ \mathrm{F}$.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Le produit donne des secondes ; une milliseconde vaut $10^{-3}\ \mathrm{s}$.
+      en: |-
+        The product gives seconds; one millisecond is $10^{-3}\ \mathrm{s}$.
+solution:
+  fr: |-
+    En unités de base, $\tau = RC = 4{,}7 \times 10^{3} \times 220 \times 10^{-9} = 1{,}034 \times 10^{-3}\ \mathrm{s}$, soit $\tau \approx 1{,}0\ \mathrm{ms}$.
+
+    L'homogénéité garantit que le produit $RC$ est bien un temps : l'argument $t/\tau$ de l'exponentielle doit être sans dimension, donc $\tau$ a la dimension d'un temps. Le calcul dimensionnel le confirme, $\Omega \times \mathrm{F} = \dfrac{\mathrm{V}}{\mathrm{A}} \times \dfrac{\mathrm{C}}{\mathrm{V}} = \dfrac{\mathrm{C}}{\mathrm{A}} = \mathrm{s}$.
+
+    **Interprétation.** L'ordre de grandeur est plus parlant que le chiffre : une milliseconde, c'est le temps que met ce condensateur à se charger aux deux tiers, et il faut environ $5\tau$, soit $5\ \mathrm{ms}$, pour le considérer chargé. C'est aussi le contrôle qui rattrape une erreur de préfixe : si l'on avait lu $220\ \mathrm{\mu F}$, on aurait trouvé $1\ \mathrm{s}$, mille fois trop long pour un circuit d'électronique rapide.
+  en: |-
+    In base units, $\tau = RC = 4.7 \times 10^{3} \times 220 \times 10^{-9} = 1.034 \times 10^{-3}\ \mathrm{s}$, that is $\tau \approx 1.0\ \mathrm{ms}$.
+
+    Homogeneity guarantees that the product $RC$ really is a time: the argument $t/\tau$ of the exponential must be dimensionless, so $\tau$ has the dimension of a time. The dimensional computation confirms it, $\Omega \times \mathrm{F} = \dfrac{\mathrm{V}}{\mathrm{A}} \times \dfrac{\mathrm{C}}{\mathrm{V}} = \dfrac{\mathrm{C}}{\mathrm{A}} = \mathrm{s}$.
+
+    **Interpretation.** The order of magnitude speaks louder than the figure: one millisecond is the time this capacitor takes to charge to two thirds, and about $5\tau$, that is $5\ \mathrm{ms}$, is needed before it counts as charged. It is also the check that catches a prefix mistake: had we read $220\ \mathrm{\mu F}$, we would have found $1\ \mathrm{s}$, a thousand times too long for a fast electronic circuit.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 1
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 2
+  autonomy: 2

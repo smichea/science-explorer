@@ -1,0 +1,76 @@
+# Leçon narrée — dimension et unité en Terminale (profondeur 2) : reconstruire une grandeur dérivée,
+# vérifier l'homogénéité d'une formule, et l'argument sans dimension d'une exponentielle.
+id: lesson.concept.dimension_unit.terminale
+nodeId: concept.dimension_unit
+depth: 2
+tools:
+  - id: dims
+    kind: dimensions
+    title: { fr: "Grandeurs et dimensions", en: "Quantities and dimensions" }
+    quantities:
+      - { id: length, symbol: "ℓ", label: { fr: "longueur", en: "length" }, unit: "m", dims: { L: 1 } }
+      - { id: mass, symbol: "m", label: { fr: "masse", en: "mass" }, unit: "kg", dims: { M: 1 } }
+      - { id: time, symbol: "t", label: { fr: "temps", en: "time" }, unit: "s", dims: { T: 1 } }
+      - { id: current, symbol: "I", label: { fr: "intensité", en: "current" }, unit: "A", dims: { I: 1 } }
+      - { id: force, symbol: "F", label: { fr: "force", en: "force" }, unit: "N", dims: { M: 1, L: 1, T: -2 }, base: false }
+      - { id: energy, symbol: "E", label: { fr: "énergie", en: "energy" }, unit: "J", dims: { M: 1, L: 2, T: -2 }, base: false }
+      - { id: power, symbol: "P", label: { fr: "puissance", en: "power" }, unit: "W", dims: { M: 1, L: 2, T: -3 }, base: false }
+      - { id: voltage, symbol: "U", label: { fr: "tension", en: "voltage" }, unit: "V", dims: { M: 1, L: 2, T: -3, I: -1 }, base: false }
+      - { id: capacitance, symbol: "C", label: { fr: "capacité", en: "capacitance" }, unit: "F", dims: { M: -1, L: -2, T: 4, I: 2 }, base: false }
+      - { id: rate, symbol: "k", label: { fr: "constante de vitesse (ordre 1)", en: "rate constant (first order)" }, unit: "s⁻¹", dims: { T: -1 }, base: false }
+      - { id: gravitation, symbol: "G", label: { fr: "constante de gravitation", en: "gravitational constant" }, unit: "m³·kg⁻¹·s⁻²", dims: { M: -1, L: 3, T: -2 }, base: false }
+steps:
+  - id: derived
+    title: { fr: "Toute grandeur se ramène aux grandeurs de base", en: "Every quantity comes back to the base quantities" }
+    text:
+      fr: >-
+        Sept grandeurs de base suffisent à écrire toutes les autres ; au lycée quatre suffisent : longueur, masse, temps, intensité.
+        Une force est une masse fois une accélération : sa dimension est M L T puissance moins deux, et son unité le newton.
+        Une puissance est une énergie par seconde, donc M L deux T moins trois, et une tension une puissance par ampère.
+        Reconstruisez la capacité à partir des grandeurs de base : c'est une charge par volt, donc M moins un, L moins deux, T quatre, I deux — le farad.
+      en: >-
+        Seven base quantities are enough to write all the others; at school four are enough: length, mass, time, current.
+        A force is a mass times an acceleration: its dimension is M L T to the minus two, and its unit the newton.
+        A power is an energy per second, so M L two T minus three, and a voltage a power per ampere.
+        Rebuild the capacitance from the base quantities: it is a charge per volt, so M minus one, L minus two, T four, I two — the farad.
+  - id: homogeneity
+    title: { fr: "Une formule fausse est souvent inhomogène", en: "A wrong formula is often inhomogeneous" }
+    text:
+      fr: >-
+        Une égalité entre grandeurs impose l'égalité des dimensions des deux membres : c'est le contrôle le moins cher de toute la physique.
+        Prenons la période d'un pendule, deux pi racine de L sur g : la racine d'une longueur divisée par une accélération donne racine de T carré, donc un temps. La formule est homogène.
+        Si l'on avait écrit racine de g sur L, on aurait obtenu l'inverse d'un temps : une fréquence, pas une période — l'erreur se voit sans rien calculer.
+        Attention : l'homogénéité ne prouve pas qu'une formule est juste, elle prouve seulement qu'elle peut l'être. Un facteur deux pi ne se détecte jamais ainsi.
+      en: >-
+        An equality between quantities forces the two sides to have the same dimension: it is the cheapest check in all of physics.
+        Take the period of a pendulum, two pi root of L over g: the root of a length divided by an acceleration gives the root of T squared, hence a time. The formula is homogeneous.
+        Had we written root of g over L, we would have obtained the inverse of a time: a frequency, not a period — the mistake shows without computing anything.
+        Careful: homogeneity does not prove a formula right, it only proves it could be. A factor of two pi is never caught this way.
+  - id: exponential
+    title: { fr: "Un argument d'exponentielle est toujours sans dimension", en: "The argument of an exponential is always dimensionless" }
+    text:
+      fr: >-
+        On ne peut pas élever un nombre à la puissance trois secondes : l'exponentielle, le logarithme, le sinus n'acceptent que des nombres purs.
+        Dans la décharge d'un condensateur, u de t égale E fois exponentielle de moins t sur tau, l'argument est un temps divisé par un temps : sans dimension, comme il se doit.
+        Cela impose la dimension de tau : c'est un temps, et le produit R C en est un — voilà pourquoi on l'appelle constante de temps.
+        Même règle pour la décroissance radioactive, où lambda t doit être sans dimension : lambda est donc l'inverse d'un temps, en secondes puissance moins un, comme la constante de vitesse d'ordre un.
+      en: >-
+        One cannot raise a number to the power three seconds: the exponential, the logarithm and the sine accept only pure numbers.
+        In the discharge of a capacitor, u of t equals E times the exponential of minus t over tau, the argument is a time divided by a time: dimensionless, as it must be.
+        That forces the dimension of tau: it is a time, and the product R C is one — which is why it is called the time constant.
+        Same rule for radioactive decay, where lambda t must be dimensionless: lambda is therefore the inverse of a time, in seconds to the minus one, like the first-order rate constant.
+  - id: play
+    kind: play
+    title: { fr: "À vous", en: "Your turn" }
+    text:
+      fr: >-
+        Reconstruisez la capacité, la constante de gravitation et la constante de vitesse à partir des grandeurs de base.
+      en: >-
+        Rebuild the capacitance, the gravitational constant and the rate constant from the base quantities.
+  - id: exercises
+    kind: exercises
+    title: { fr: "Deux contrôles", en: "Two checks" }
+    text:
+      fr: "Une dimension à trouver, une formule à trancher."
+      en: "A dimension to find, a formula to judge."
+    exercises: [exercise.dimension.gravitation, exercise.dimension.homogeneity]

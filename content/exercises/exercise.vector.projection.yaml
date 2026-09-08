@@ -1,0 +1,56 @@
+# Vecteur en Terminale — projeter le poids sur un plan incliné.
+id: exercise.vector.projection
+type: numeric
+nodeId: tool.vector
+depth: 2
+evidenceDimension: modelling_choice
+prompt:
+  fr: |-
+    Un chariot de masse $m = 12\ \mathrm{kg}$ est posé sur un plan incliné d'angle $\alpha = 25^\circ$ avec l'horizontale. On prend $g = 9{,}81\ \mathrm{N \cdot kg^{-1}}$ et on choisit un repère dont l'axe $Ox$ suit la ligne de plus grande pente, vers le bas.
+
+    Quelle est la valeur de la composante du poids le long du plan, $P_x$ ?
+  en: |-
+    A trolley of mass $m = 12\ \mathrm{kg}$ rests on a plane inclined at $\alpha = 25^\circ$ to the horizontal. Take $g = 9.81\ \mathrm{N \cdot kg^{-1}}$ and choose a frame whose axis $Ox$ follows the line of steepest slope, downwards.
+
+    What is the value of the component of the weight along the plane, $P_x$?
+numeric:
+  value: 49.7
+  unit: "N"
+  tolerance: { kind: relative, value: 0.02 }
+  inputLabel: { fr: "Px", en: "Px" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Le poids vaut $P = mg$ et reste vertical : c'est le repère qui change, pas la force.
+      en: |-
+        The weight is $P = mg$ and stays vertical: it is the frame that changes, not the force.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        Faites un croquis : l'angle entre le poids et la normale au plan vaut aussi $\alpha$. La composante le long du plan est donc $P\sin\alpha$, et non $P\cos\alpha$.
+      en: |-
+        Draw a sketch: the angle between the weight and the normal to the plane is also $\alpha$. The component along the plane is therefore $P\sin\alpha$, not $P\cos\alpha$.
+solution:
+  fr: |-
+    Le poids vaut $P = mg = 12 \times 9{,}81 = 117{,}7\ \mathrm{N}$. Dans le repère lié au plan, sa composante le long de la ligne de plus grande pente est $P_x = P\sin\alpha = 117{,}7 \times \sin 25^\circ = 117{,}7 \times 0{,}4226 = 49{,}7\ \mathrm{N}$, et sa composante normale $P_y = -P\cos\alpha = -106{,}7\ \mathrm{N}$, compensée par la réaction du support.
+
+    Contrôle : $\sqrt{49{,}7^2 + 106{,}7^2} = 117{,}7\ \mathrm{N}$, on retrouve bien le poids — la projection ne change pas la norme du vecteur, seulement sa lecture.
+
+    **Interprétation.** Le sinus et le cosinus s'échangent selon l'angle choisi : c'est l'erreur la plus fréquente. Le contrôle sûr est le cas limite — si $\alpha = 0$, le plan est horizontal et rien ne glisse, donc $P_x$ doit s'annuler : c'est bien $\sin$ et non $\cos$. Le choix du repère est un choix de modélisation, pas un calcul : bien orienté, il fait tomber la réaction du support hors de l'équation du mouvement le long du plan.
+  en: |-
+    The weight is $P = mg = 12 \times 9.81 = 117.7\ \mathrm{N}$. In the frame tied to the plane, its component along the line of steepest slope is $P_x = P\sin\alpha = 117.7 \times \sin 25^\circ = 117.7 \times 0.4226 = 49.7\ \mathrm{N}$, and its normal component $P_y = -P\cos\alpha = -106.7\ \mathrm{N}$, balanced by the reaction of the support.
+
+    Check: $\sqrt{49.7^2 + 106.7^2} = 117.7\ \mathrm{N}$, the weight is recovered — projecting does not change the norm of the vector, only the way it is read.
+
+    **Interpretation.** The sine and the cosine swap according to the angle chosen: that is the most frequent mistake. The safe check is the limiting case — if $\alpha = 0$, the plane is horizontal and nothing slides, so $P_x$ must vanish: it is indeed $\sin$ and not $\cos$. The choice of frame is a modelling choice, not a computation: well oriented, it drops the reaction of the support out of the equation of motion along the plane.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 2
+  calculationLength: 2
+  modellingOpenness: 2
+  linkedConcepts: 3
+  transfer: 2
+  autonomy: 2

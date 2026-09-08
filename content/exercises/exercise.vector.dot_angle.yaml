@@ -1,0 +1,52 @@
+# Vecteur en Terminale — calculer un angle à partir du produit scalaire.
+id: exercise.vector.dot_angle
+type: numeric
+nodeId: tool.vector
+depth: 2
+evidenceDimension: procedural_execution
+prompt:
+  fr: |-
+    Dans un repère orthonormé, $\vec{u}$ a pour coordonnées $(3\,;\,4)$ et $\vec{v}$ pour coordonnées $(5\,;\,0)$.
+
+    Quelle est la mesure de l'angle entre $\vec{u}$ et $\vec{v}$, en degrés ?
+  en: |-
+    In an orthonormal frame, $\vec{u}$ has coordinates $(3, 4)$ and $\vec{v}$ has coordinates $(5, 0)$.
+
+    What is the measure of the angle between $\vec{u}$ and $\vec{v}$, in degrees?
+numeric:
+  value: 53.13
+  unit: "°"
+  tolerance: { kind: absolute, value: 0.6 }
+  inputLabel: { fr: "angle", en: "angle" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: |-
+        Deux écritures du produit scalaire : $\vec{u} \cdot \vec{v} = x x' + y y'$ et $\vec{u} \cdot \vec{v} = \|\vec{u}\|\,\|\vec{v}\|\cos\theta$. Égalez-les.
+      en: |-
+        Two ways of writing the dot product: $\vec{u} \cdot \vec{v} = x x' + y y'$ and $\vec{u} \cdot \vec{v} = \|\vec{u}\|\,\|\vec{v}\|\cos\theta$. Set them equal.
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: |-
+        $\|\vec{u}\| = \sqrt{9 + 16} = 5$ et $\|\vec{v}\| = 5$ : le produit des normes vaut $25$.
+      en: |-
+        $\|\vec{u}\| = \sqrt{9 + 16} = 5$ and $\|\vec{v}\| = 5$: the product of the norms is $25$.
+solution:
+  fr: |-
+    Par les coordonnées, $\vec{u} \cdot \vec{v} = 3 \times 5 + 4 \times 0 = 15$. Par les normes, $\vec{u} \cdot \vec{v} = 5 \times 5 \times \cos\theta = 25\cos\theta$. En égalant : $\cos\theta = \dfrac{15}{25} = 0{,}60$, donc $\theta = \arccos(0{,}60) \approx 53{,}1^\circ$.
+
+    **Interprétation.** Le produit scalaire est le pont entre les coordonnées et la géométrie : il se calcule sans dessin et il rend un angle. Son signe suffit souvent : positif ici, donc l'angle est aigu. C'est le même calcul qui donne le travail d'une force, $W = \vec{F} \cdot \vec{d} = F d \cos\theta$ — nul quand la force est perpendiculaire au déplacement, ce qui explique pourquoi la réaction du support ne travaille jamais sur un plan incliné.
+  en: |-
+    From the coordinates, $\vec{u} \cdot \vec{v} = 3 \times 5 + 4 \times 0 = 15$. From the norms, $\vec{u} \cdot \vec{v} = 5 \times 5 \times \cos\theta = 25\cos\theta$. Setting them equal: $\cos\theta = \dfrac{15}{25} = 0.60$, so $\theta = \arccos(0.60) \approx 53.1^\circ$.
+
+    **Interpretation.** The dot product is the bridge between the coordinates and the geometry: it is computed without a drawing and it returns an angle. Its sign is often enough: positive here, so the angle is acute. It is the same computation that gives the work of a force, $W = \vec{F} \cdot \vec{d} = F d \cos\theta$ — zero when the force is perpendicular to the displacement, which is why the reaction of the support never does work on an inclined plane.
+difficulty:
+  mathematicalDepth: 2
+  conceptualNovelty: 1
+  calculationLength: 2
+  modellingOpenness: 1
+  linkedConcepts: 2
+  transfer: 2
+  autonomy: 2

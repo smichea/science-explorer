@@ -1,0 +1,55 @@
+# Titrage en Terminale — lire le pKa du couple titré au pH de la demi-équivalence.
+id: exercise.titration.pka
+type: numeric
+nodeId: method.titration
+depth: 2
+evidenceDimension: recognition_explanation
+prompt:
+  fr: |-
+    Le titrage pH-métrique d'un acide faible $\mathrm{HA}$ par la soude donne un volume équivalent $V_E = 18{,}0\ \mathrm{mL}$. On lit sur la courbe : pH $= 3{,}8$ pour $V = 9{,}0\ \mathrm{mL}$, et pH $= 8{,}4$ pour $V = 18{,}0\ \mathrm{mL}$.
+
+    Quel est le pKa du couple $\mathrm{HA}/\mathrm{A^-}$ ?
+  en: |-
+    Following the pH of the titration of a weak acid $\mathrm{HA}$ by sodium hydroxide gives an equivalence volume $V_E = 18.0\ \mathrm{mL}$. The curve reads: pH $= 3.8$ at $V = 9.0\ \mathrm{mL}$, and pH $= 8.4$ at $V = 18.0\ \mathrm{mL}$.
+
+    What is the pKa of the couple $\mathrm{HA}/\mathrm{A^-}$?
+numeric:
+  value: 3.8
+  tolerance: { kind: absolute, value: 0.05 }
+  inputLabel: { fr: "pKa", en: "pKa" }
+hints:
+  - id: h1
+    autonomy: 0.8
+    text:
+      fr: "$9{,}0\\ \\mathrm{mL}$, c'est la moitié de $18{,}0\\ \\mathrm{mL}$ : la demi-équivalence."
+      en: "$9.0\\ \\mathrm{mL}$ is half of $18.0\\ \\mathrm{mL}$: the half-equivalence."
+  - id: h2
+    autonomy: 0.6
+    text:
+      fr: "À la demi-équivalence, $[\\mathrm{HA}] = [\\mathrm{A^-}]$, donc $\\mathrm{pH} = \\mathrm{p}K_a + \\log 1$."
+      en: "At the half-equivalence, $[\\mathrm{HA}] = [\\mathrm{A^-}]$, so $\\mathrm{pH} = \\mathrm{p}K_a + \\log 1$."
+solution:
+  fr: |-
+    À $V = 9{,}0\ \mathrm{mL}$, la moitié du volume équivalent a été versée : la moitié de l'acide a réagi, donc $[\mathrm{HA}] = [\mathrm{A^-}]$.
+
+    La relation $\mathrm{pH} = \mathrm{p}K_a + \log\dfrac{[\mathrm{A^-}]}{[\mathrm{HA}]}$ devient alors $\mathrm{pH} = \mathrm{p}K_a + \log 1 = \mathrm{p}K_a$. On lit donc directement $\mathrm{p}K_a = 3{,}8$.
+
+    Le pH à l'équivalence, $8{,}4$, ne sert pas ici : il confirme seulement que l'acide est faible (un acide fort donnerait $7{,}0$).
+
+    **Interprétation.** Deux points d'une même courbe répondent à deux questions différentes : l'équivalence donne la **quantité** d'acide, la demi-équivalence donne son **identité**. Un pKa de $3{,}8$ oriente vers l'acide méthanoïque ($3{,}75$) plutôt que vers l'acide éthanoïque ($4{,}8$). C'est aussi le point où le pouvoir tampon est maximal : ajouter un peu d'acide ou de base ne fait presque pas bouger le pH, ce qui est exactement la propriété recherchée dans le sang ou dans un milieu de culture.
+  en: |-
+    At $V = 9.0\ \mathrm{mL}$, half the equivalence volume has been poured: half the acid has reacted, so $[\mathrm{HA}] = [\mathrm{A^-}]$.
+
+    The relation $\mathrm{pH} = \mathrm{p}K_a + \log\dfrac{[\mathrm{A^-}]}{[\mathrm{HA}]}$ then becomes $\mathrm{pH} = \mathrm{p}K_a + \log 1 = \mathrm{p}K_a$. The reading gives $\mathrm{p}K_a = 3.8$ directly.
+
+    The pH at the equivalence, $8.4$, is not needed here: it only confirms that the acid is weak (a strong acid would give $7.0$).
+
+    **Interpretation.** Two points of the same curve answer two different questions: the equivalence gives the **amount** of acid, the half-equivalence gives its **identity**. A pKa of $3.8$ points to methanoic acid ($3.75$) rather than ethanoic acid ($4.8$). It is also the point of greatest buffering power: adding a little acid or base barely moves the pH, which is exactly the property sought in blood or in a culture medium.
+difficulty:
+  mathematicalDepth: 1
+  conceptualNovelty: 2
+  calculationLength: 1
+  modellingOpenness: 2
+  linkedConcepts: 3
+  transfer: 2
+  autonomy: 2
