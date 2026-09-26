@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { CSS2DObject, CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
-import type { CompiledLayout, CompiledNode, Locale, Vec3 } from '$lib/content-schema';
+import type { CompiledLayout, Locale, Vec3 } from '$lib/content-schema';
 import type { GraphIndex } from '$lib/domain/graph';
 import type { PerformanceMode } from '$lib/persistence/localStorage';
 import {
@@ -13,15 +13,9 @@ import {
   type RouteKind,
   type RouteStyle,
 } from './styles';
-import {
-  FOCUS_DISTANCE,
-  LABEL_BUDGET,
-  MAX_CAMERA_DISTANCE,
-  groupDistance,
-  overviewDistance,
-  zoomLevelForDistance,
-  type ZoomLevel,
-} from './zoom';
+import { scientificModel } from './models';
+import { spatialLayout } from './spatial-layout';
+import { FOCUS_DISTANCE, LABEL_BUDGET, type ZoomLevel } from './zoom';
 
 /** What the primary drag (left button, one finger) does. */
 export type DragMode = 'rotate' | 'pan';
@@ -89,35 +83,6 @@ function easeInOutCubic(t: number): number {
   return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
 
-function geometryFor(node: CompiledNode): THREE.BufferGeometry {
-  switch (node.type) {
-    case 'mathematical_tool':
-      return new THREE.OctahedronGeometry(1, 0);
-    case 'mathematical_concept':
-      return new THREE.SphereGeometry(0.85, 20, 14);
-    case 'phenomenon':
-      return new THREE.IcosahedronGeometry(0.95, 0);
-    case 'law':
-      return new THREE.TetrahedronGeometry(1.1, 0);
-    case 'model':
-      return new THREE.BoxGeometry(1.3, 1.3, 1.3);
-    case 'method':
-      return new THREE.ConeGeometry(0.85, 1.6, 6);
-    case 'question':
-      return new THREE.TorusKnotGeometry(0.55, 0.2, 48, 8);
-    case 'person':
-      return new THREE.CapsuleGeometry(0.5, 0.8, 4, 10);
-    case 'place':
-      return new THREE.CylinderGeometry(0.9, 0.9, 0.35, 12);
-    case 'period':
-      return new THREE.TorusGeometry(0.8, 0.22, 8, 24);
-    case 'mission':
-      return new THREE.DodecahedronGeometry(1.15, 0);
-    default:
-      return new THREE.SphereGeometry(0.8, 16, 12);
-  }
-}
-
 function radialTexture(): THREE.Texture {
   const size = 256;
   const canvas = document.createElement('canvas');
@@ -173,6 +138,10 @@ export class AtlasScene {
   private dragMode: DragMode = 'rotate';
   /** Radius of the authored universe: frames the overview and bounds panning. */
   private universeRadius: number;
+  private regionRadii: Map<string, number>;
+  private worldRadii: Map<string, number>;
+  private regionDetails = new THREE.Group();
+  private activeFocus: FocusTarget = { kind: 'universe' };
 
   constructor(
     private container: HTMLElement,
@@ -183,6 +152,10 @@ export class AtlasScene {
     private reducedMotion: boolean,
     private callbacks: AtlasCallbacks
   ) {
+    const spatial = spatialLayout(graph, layout);
+    this.layout = spatial.layout;
+    this.regionRadii = spatial.regionRadii;
+    this.worldRadii = spatial.worldRadii;
     const width = container.clientWidth || 800;
     const height = container.clientHeight || 600;
     this.renderer = new THREE.WebGLRenderer({
@@ -205,15 +178,15 @@ export class AtlasScene {
     container.appendChild(labelDom);
 
     this.scene.background = new THREE.Color(0x070b17);
-    this.scene.fog = new THREE.FogExp2(0x070b17, 0.0028);
-    this.camera = new THREE.PerspectiveCamera(50, width / height, 0.5, 2500);
+    this.scene.fog = new THREE.FogExp2(0x070b17, 0.00045);
+    this.camera = new THREE.PerspectiveCamera(50, width / height, 0.5, 12000);
     this.camera.position.set(0, 120, 165);
-    this.universeRadius = Math.max(40, layout.bounds.radius);
+    this.universeRadius = Math.max(40, this.layout.bounds.radius);
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = !reducedMotion;
     this.controls.dampingFactor = 0.08;
     this.controls.minDistance = 5;
-    this.controls.maxDistance = MAX_CAMERA_DISTANCE;
+    this.controls.maxDistance = 6000;
     this.controls.maxPolarAngle = Math.PI * 0.85;
     // Panning slides the view parallel to the screen (map-like), never through the floor plane.
     this.controls.screenSpacePanning = true;
@@ -231,6 +204,7 @@ export class AtlasScene {
     this.buildLights();
     this.buildBackground();
     this.buildWorlds();
+    this.scene.add(this.regionDetails);
     this.buildRegions();
     this.buildNodes();
     this.scene.add(this.routeGroup);
@@ -271,7 +245,7 @@ export class AtlasScene {
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      const r = 520 + Math.random() * 420;
+      const r = 2800 + Math.random() * 1800;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
       positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
@@ -286,7 +260,7 @@ export class AtlasScene {
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
     const material = new THREE.PointsMaterial({
-      size: 1.6,
+      size: 3,
       vertexColors: true,
       transparent: true,
       opacity: 0.85,
@@ -310,7 +284,8 @@ export class AtlasScene {
       });
       const sprite = new THREE.Sprite(material);
       sprite.position.copy(toVec(centre));
-      sprite.scale.set(95, 95, 1);
+      const extent = this.worldRadii.get(world.id)! * 2.8;
+      sprite.scale.set(extent, extent, 1);
       this.scene.add(sprite);
       this.nebulae.push(sprite);
     }
@@ -364,14 +339,14 @@ export class AtlasScene {
       if (!centre) continue;
       const colour = new THREE.Color(world.color);
       const ring = new THREE.Mesh(
-        new THREE.TorusGeometry(19.5, 0.14, 8, 96),
+        new THREE.TorusGeometry(this.worldRadii.get(world.id)!, 0.25, 8, 128),
         new THREE.MeshBasicMaterial({ color: colour, transparent: true, opacity: 0.55 })
       );
       ring.rotation.x = Math.PI / 2;
       ring.position.copy(toVec(centre));
       this.scene.add(ring);
       const disc = new THREE.Mesh(
-        new THREE.CircleGeometry(19.5, 64),
+        new THREE.CircleGeometry(this.worldRadii.get(world.id)!, 96),
         new THREE.MeshBasicMaterial({
           color: colour,
           transparent: true,
@@ -385,7 +360,30 @@ export class AtlasScene {
       disc.userData = { id: world.id, kind: 'world' } satisfies Pickable;
       this.scene.add(disc);
       this.pickables.push(disc);
-      this.makeLabel(world.id, 'world', toVec(centre).add(new THREE.Vector3(0, 7.5, 0)), 100);
+      const monument = scientificModel(
+        world.id,
+        new THREE.MeshStandardMaterial({
+          color: colour,
+          emissive: colour,
+          emissiveIntensity: 0.3,
+          metalness: 0.45,
+          roughness: 0.3,
+        })
+      );
+      monument.position.copy(toVec(centre)).add(new THREE.Vector3(0, 16, 0));
+      monument.scale.setScalar(30);
+      monument.traverse((part) => {
+        part.userData = { id: world.id, kind: 'world' };
+      });
+      this.scene.add(monument);
+      this.pickables.push(monument);
+      const label = this.makeLabel(
+        world.id,
+        'world',
+        toVec(centre).add(new THREE.Vector3(0, 66, 0)),
+        1000
+      );
+      label.element.style.setProperty('--label-color', world.color);
     }
     // Bridge hub at the centre.
     const hub = new THREE.Mesh(
@@ -407,19 +405,16 @@ export class AtlasScene {
       if (!centre) continue;
       const colour = new THREE.Color(colorOfRegion(region, this.graph));
       const detailed = region.nodeIds.length > 0;
-      const geometry = new THREE.CylinderGeometry(
-        detailed ? 2.4 : 1.7,
-        detailed ? 2.6 : 1.9,
-        0.3,
-        6
-      );
+      const radius = this.regionRadii.get(region.id)!;
+      const geometry = new THREE.CylinderGeometry(radius, radius, 0.6, 64);
       const material = detailed
         ? new THREE.MeshStandardMaterial({
             color: colour,
             emissive: colour,
             emissiveIntensity: 0.25,
             transparent: true,
-            opacity: 0.85,
+            opacity: 0.12,
+            depthWrite: false,
             roughness: 0.7,
           })
         : new THREE.MeshBasicMaterial({
@@ -431,13 +426,20 @@ export class AtlasScene {
       const mesh = new THREE.Mesh(geometry, material);
       mesh.position.copy(toVec(centre)).add(new THREE.Vector3(0, -1.2, 0));
       mesh.userData = { id: region.id, kind: 'region' } satisfies Pickable;
-      this.scene.add(mesh);
+      this.regionDetails.add(mesh);
       this.pickables.push(mesh);
       this.regionMeshes.set(region.id, mesh);
+      const rim = new THREE.Mesh(
+        new THREE.TorusGeometry(radius, 0.09, 6, 80),
+        new THREE.MeshBasicMaterial({ color: colour, transparent: true, opacity: 0.35 })
+      );
+      rim.rotation.x = Math.PI / 2;
+      rim.position.copy(mesh.position);
+      this.regionDetails.add(rim);
       this.makeLabel(
         region.id,
         'region',
-        toVec(centre).add(new THREE.Vector3(0, detailed ? 2.2 : 1.6, 0)),
+        toVec(centre).add(new THREE.Vector3(0, 1, radius + 3)),
         detailed ? 55 : 22,
         detailed ? '' : 'atlas-label--silhouette'
       );
@@ -456,16 +458,21 @@ export class AtlasScene {
         metalness: 0.1,
         transparent: true,
       });
-      const mesh = new THREE.Mesh(geometryFor(node), material);
+      const mesh = scientificModel(
+        `${node.type === 'mission' || node.type === 'person' || node.type === 'place' || node.type === 'period' ? node.type : this.graph.worldOf(node)?.id}:${node.region}:${node.id}`,
+        material
+      );
       mesh.position.copy(toVec(position));
-      mesh.userData = { id: node.id, kind: 'node' } satisfies Pickable;
+      mesh.traverse((part) => {
+        part.userData = { id: node.id, kind: 'node' } satisfies Pickable;
+      });
       this.scene.add(mesh);
       this.pickables.push(mesh);
       this.nodeMeshes.set(node.id, mesh);
       this.makeLabel(
         node.id,
         'node',
-        toVec(position).add(new THREE.Vector3(0, 1.9, 0)),
+        toVec(position).add(new THREE.Vector3(0, 3.4, 0)),
         node.importance * 10
       );
     }
@@ -509,6 +516,7 @@ export class AtlasScene {
       }
     }
     this.buildRoutes(routes);
+    this.updateDetail();
     this.needsRender = true;
     this.updateLabels(true);
   }
@@ -594,7 +602,7 @@ export class AtlasScene {
     for (const route of routes) {
       const a = this.layout.positions[route.from];
       const b = this.layout.positions[route.to];
-      if (!a || !b) continue;
+      if (!a || !b || route.emphasis < 0.5) continue;
       const bucket = byKind.get(route.kind) ?? { positions: [], colors: [] };
       byKind.set(route.kind, bucket);
       const start = toVec(a);
@@ -691,19 +699,41 @@ export class AtlasScene {
   // Camera
   // ---------------------------------------------------------------------------
 
+  private fitDistance(radius: number): number {
+    const half = Math.atan(
+      Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2)) * Math.min(1, this.camera.aspect)
+    );
+    return Math.min(6000, radius / Math.sin(half));
+  }
+
+  private updateDetail() {
+    const overview = this.level === 'universe';
+    this.container.dataset.detail = this.level;
+    for (const [id, mesh] of this.nodeMeshes) {
+      const style = this.styles.get(id);
+      mesh.visible = !!style && (!overview || style.selected || style.highlighted);
+      for (const ring of this.nodeRings.get(id) ?? []) ring.visible = mesh.visible;
+    }
+    this.routeGroup.visible = !overview;
+  }
+
   private targetPosition(target: FocusTarget): { centre: THREE.Vector3; distance: number } | null {
     if (target.kind === 'universe')
       return {
         centre: new THREE.Vector3(0, 0, 0),
-        distance: overviewDistance(this.universeRadius, this.camera.fov, this.camera.aspect),
+        distance: this.fitDistance(this.universeRadius),
       };
     if (target.kind === 'world' && target.id) {
       const c = this.layout.worlds[target.id];
-      return c ? { centre: toVec(c), distance: FOCUS_DISTANCE.world } : null;
+      return c
+        ? { centre: toVec(c), distance: this.fitDistance(this.worldRadii.get(target.id)! + 8) }
+        : null;
     }
     if (target.kind === 'region' && target.id) {
       const c = this.layout.regions[target.id];
-      return c ? { centre: toVec(c), distance: FOCUS_DISTANCE.region } : null;
+      return c
+        ? { centre: toVec(c), distance: this.fitDistance(this.regionRadii.get(target.id)! + 6) }
+        : null;
     }
     if (target.kind === 'node' && target.id) {
       const c = this.layout.positions[target.id];
@@ -725,13 +755,14 @@ export class AtlasScene {
         .reduce((sum, p) => sum.add(p), new THREE.Vector3())
         .divideScalar(points.length);
       const radius = Math.max(...points.map((p) => p.distanceTo(centre))) + GROUP_MARGIN;
-      return { centre, distance: groupDistance(radius, this.camera.fov, this.camera.aspect) };
+      return { centre, distance: this.fitDistance(radius) };
     }
     return null;
   }
 
   focus(target: FocusTarget, animate = true): void {
     if (this.disposed) return;
+    this.activeFocus = target;
     const resolved = this.targetPosition(target);
     if (!resolved) return;
     const { centre, distance } = resolved;
@@ -744,9 +775,11 @@ export class AtlasScene {
     direction.normalize();
     const to = centre.clone().add(direction.multiplyScalar(distance));
     if (!animate || this.reducedMotion) {
+      this.tween = null;
       this.camera.position.copy(to);
       this.controls.target.copy(centre);
       this.controls.update();
+      this.updateLabels(true);
       this.needsRender = true;
       return;
     }
@@ -769,6 +802,7 @@ export class AtlasScene {
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height);
     this.labelRenderer.setSize(width, height);
+    this.focus(this.activeFocus, false);
     this.needsRender = true;
   }
 
@@ -784,8 +818,13 @@ export class AtlasScene {
 
   private pick(): Pickable | null {
     this.raycaster.setFromCamera(this.pointer, this.camera);
-    const hits = this.raycaster.intersectObjects(this.pickables, false);
+    const hits = this.raycaster.intersectObjects(this.pickables, true);
     for (const hit of hits) {
+      let visible = true;
+      for (let object: THREE.Object3D | null = hit.object; object; object = object.parent) {
+        if (!object.visible) visible = false;
+      }
+      if (!visible) continue;
       const data = hit.object.userData as Pickable;
       if (!data?.id) continue;
       if (data.kind === 'node') {
@@ -856,6 +895,7 @@ export class AtlasScene {
     const now = window.performance.now();
     if (!force && now - this.lastLabelUpdate < 120) return;
     this.lastLabelUpdate = now;
+    this.camera.updateMatrixWorld();
     const level = this.level;
     const compact = this.container.clientWidth < 600;
     const budget = compact ? Math.ceil(LABEL_BUDGET[level] * 0.55) : LABEL_BUDGET[level];
@@ -865,10 +905,19 @@ export class AtlasScene {
       let score = label.priority;
       const distance = label.position.distanceTo(target);
       if (label.kind === 'node') {
+        if (!this.nodeMeshes.get(label.id)?.visible) {
+          label.object.visible = false;
+          continue;
+        }
         const style = this.styles.get(label.id);
         const hovered = label.id === this.hovered;
         // Outside the selection a destination is named only while hovered.
-        if (style?.muted && !hovered) {
+        if (
+          (style?.muted || level === 'world') &&
+          !hovered &&
+          !style?.selected &&
+          !style?.highlighted
+        ) {
           label.object.visible = false;
           continue;
         }
@@ -879,7 +928,11 @@ export class AtlasScene {
           score *= 1 / (1 + distance / 40);
         }
       } else if (label.kind === 'region') {
-        if (level === 'universe') score *= 0.3;
+        if (level === 'universe') {
+          label.object.visible = false;
+          continue;
+        }
+        if (level === 'world') score *= 10;
         if (level === 'concept') score *= 0.4;
         if (label.element.classList.contains('atlas-label--silhouette')) score *= 0.5;
         score *= 1 / (1 + distance / 90);
@@ -890,23 +943,32 @@ export class AtlasScene {
     }
     candidates.sort((a, b) => b.score - a.score);
     const rect = this.renderer.domElement.getBoundingClientRect();
-    const occupied = new Set<string>();
+    const occupied: Array<{ x: number; y: number; width: number; height: number }> = [];
     let shown = 0;
     const tmp = new THREE.Vector3();
     for (const { label } of candidates) {
       let visible = shown < budget;
       if (visible) {
         tmp.copy(label.position).project(this.camera);
-        if (tmp.z > 1) visible = false;
+        if (tmp.z > 1 || tmp.z < -1 || Math.abs(tmp.x) > 1 || Math.abs(tmp.y) > 1) visible = false;
         else {
           const x = ((tmp.x + 1) / 2) * rect.width;
           const y = ((1 - tmp.y) / 2) * rect.height;
-          const key = `${Math.round(x / 150)}:${Math.round(y / 34)}`;
+          const width = label.element.offsetWidth || 170;
+          const height = label.element.offsetHeight || 28;
           const pinned =
             label.kind === 'node' &&
             (this.styles.get(label.id)?.selected || label.id === this.hovered);
-          if (occupied.has(key) && !pinned && label.kind !== 'world') visible = false;
-          else occupied.add(key);
+          if (
+            !pinned &&
+            occupied.some(
+              (box) =>
+                Math.abs(x - box.x) < (width + box.width) / 2 + 10 &&
+                Math.abs(y - box.y) < (height + box.height) / 2 + 8
+            )
+          )
+            visible = false;
+          if (visible) occupied.push({ x, y, width, height });
         }
       }
       label.object.visible = visible;
@@ -934,15 +996,25 @@ export class AtlasScene {
     }
     if (this.controls.enableDamping) this.controls.update();
     const distance = this.camera.position.distanceTo(this.controls.target);
-    const level = zoomLevelForDistance(distance);
+    const apparentRadius = distance / this.fitDistance(1);
+    const level: ZoomLevel =
+      apparentRadius > Math.max(...this.worldRadii.values()) * 1.25
+        ? 'universe'
+        : apparentRadius > Math.max(...this.regionRadii.values()) * 1.4
+          ? 'world'
+          : apparentRadius > 12
+            ? 'region'
+            : 'concept';
     if (level !== this.level) {
       this.level = level;
+      this.updateDetail();
       this.callbacks.onZoom(level);
       this.needsRender = true;
       this.updateLabels(true);
     }
     if (!this.needsRender) return;
     this.needsRender = false;
+    this.updateDetail();
     this.updateLabels();
     this.renderer.render(this.scene, this.camera);
     this.labelRenderer.render(this.scene, this.camera);

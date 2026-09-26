@@ -1,5 +1,8 @@
 import { expect, test } from '@playwright/test';
 
+// Use Chromium's software WebGL backend for repeatable headless rendering.
+test.use({ launchOptions: { args: ['--enable-unsafe-swiftshader'] } });
+
 test.describe('3D atlas', () => {
   test.beforeEach(() => {
     test.skip(
@@ -24,6 +27,17 @@ test.describe('3D atlas', () => {
     await expect(page.getByTestId('atlas-3d').locator('canvas')).toBeVisible();
     await expect(page.locator('.atlas-label--world')).toHaveCount(3);
     await expect(page.locator('.atlas-label').filter({ hasText: 'Mathématiques' })).toBeVisible();
+    await expect(page.getByTestId('atlas-3d')).toHaveAttribute('data-detail', 'universe');
+    await expect(page.locator('.atlas-label--node:visible')).toHaveCount(0);
+    await page.locator('.atlas-label--world').filter({ hasText: 'Mathématiques' }).click();
+    await expect(page.getByTestId('atlas-3d')).toHaveAttribute('data-detail', 'world');
+    await expect(page.locator('.atlas-label--node:visible')).toHaveCount(0);
+    const region = page.locator('.atlas-label--region').filter({ hasText: 'Fonctions et analyse' });
+    await expect(region).toBeVisible();
+    await region.click();
+    await expect(page).toHaveURL(/region\/region\.math\.functions_analysis/);
+    await expect(page.getByTestId('atlas-3d')).toHaveAttribute('data-detail', 'region');
+    await expect(page.locator('.atlas-label--node:visible').first()).toBeVisible();
     await page.goto('concept/tool.derivative');
     await expect(page.locator('.atlas-label.is-selected')).toContainText('Dérivée');
     // The scene occupies only the area left visible by the panel, so its centre is the visible centre.
@@ -36,11 +50,14 @@ test.describe('3D atlas', () => {
     await page.reload();
     await expect(page.getByTestId('drag-pan')).toHaveAttribute('aria-pressed', 'true');
     await expect(page.getByTestId('drag-rotate')).toHaveAttribute('aria-pressed', 'false');
-    await page
-      .locator('.atlas-label--node .atlas-label__text', { hasText: /^Fonction$/ })
-      .locator('..')
-      .dispatchEvent('pointerup');
-    await expect(page).toHaveURL(/concept\/concept\.function/);
+    // Select a destination that is actually visible in its region. Labels outside the
+    // camera frustum are detached by CSS2DRenderer rather than kept as hidden DOM targets.
+    await page.goto('region/region.math.functions_analysis');
+    const destination = page.locator('.atlas-label--node:visible').first();
+    await expect(destination).toBeVisible();
+    const destinationId = await destination.getAttribute('data-id');
+    await destination.click();
+    await expect(page).toHaveURL((url) => url.pathname.endsWith(`/concept/${destinationId}`));
     await page.getByRole('button', { name: /Vue d’ensemble/ }).click();
     await expect(page).toHaveURL(/universe/);
   });

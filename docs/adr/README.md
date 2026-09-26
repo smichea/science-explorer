@@ -19,3 +19,4 @@ Decisions that shape the implementation of the vertical slice. Each record state
 | [0013](0013-browser-speech-synthesis-for-guided-flights.md) | Browser speech synthesis for the bird's-eye flight |
 | [0014](0014-narrated-interactive-lessons.md) | Narrated, interactive lessons: slides, a tool that follows the words, free play, typed exercises |
 | [0015](0015-learner-relative-stage-and-foundations.md) | The stage of a destination is relative to the learner; foundations stay out of the flight unless asked for |
+| [0016](0016-spacious-3d-scientific-atlas.md) | Spaced 3D territories, progressive detail and scientific sculptures |

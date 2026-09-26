@@ -513,8 +513,10 @@ table.data td {
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  background: rgba(7, 11, 23, 0.55);
-  border-color: rgba(255, 255, 255, 0.25);
+  padding: 0.4rem 0.8rem;
+  background: rgba(7, 11, 23, 0.88);
+  border-color: var(--label-color);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--label-color) 16%, transparent);
 }
 .atlas-label--hub {
   font-size: 0.85rem;
