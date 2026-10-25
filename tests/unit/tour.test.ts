@@ -297,8 +297,12 @@ describe('bird’s-eye flight', () => {
       kind: 'world',
       id: 'world.mathematics',
     });
-    // Only the gradient is left in mathematics after the routes.
-    expect(maths?.kind === 'leg' && maths.nodeIds).toEqual(['tool.gradient']);
+    // The gradient and the independent lambda discovery remain after the school routes.
+    expect(maths?.kind === 'leg' && maths.nodeIds).toEqual([
+      'concept.lambda_calculus',
+      'concept.lambda_reduction_paths',
+      'tool.gradient',
+    ]);
     // A flight made of one automatic leg orders the whole world by itself.
     const mathsOnly: TourDefinition = {
       ...tour,

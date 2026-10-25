@@ -1,0 +1,60 @@
+id: lesson.concept.lambda_reduction_paths
+nodeId: concept.lambda_reduction_paths
+depth: 1
+tools:
+  - id: paths
+    kind: lambda_reductions
+    title: { fr: 'Les chemins en 3D', en: 'Paths in 3D' }
+    term: '(λx. x x) ((λy. y) (λz. z))'
+    maxDepth: 5
+    maxNodes: 60
+steps:
+  - id: vertices
+    title: { fr: 'Changer de graphe', en: 'A different graph' }
+    text:
+      fr: |-
+        Ici, chaque sommet représente un terme entier. Cliquez sur un sommet pour lire son expression et retrouver son diagramme de Tromp. Une flèche représente exactement une bêta-réduction. Faites tourner la vue : sa hauteur représente la taille du terme et sa profondeur le nombre minimal de pas depuis le départ. Ce n'est pas la longueur de tous les trajets : une boucle peut faire revenir à un sommet déjà visité.
+      en: |-
+        Here each vertex represents a whole term. Click a vertex to read its expression and see its Tromp diagram. An arrow represents exactly one beta reduction. Rotate the view: height represents term size and depth the minimum number of steps from the start. This is not the length of every path: a loop can return to an already visited vertex.
+  - id: order
+    title: { fr: 'Trois étapes ou quatre ?', en: 'Three steps or four?' }
+    text:
+      fr: |-
+        Notons $I=\lambda x.x$ et $D=\lambda x.x\,x$. Depuis $D\,(I\,I)$, calculez d'abord l'argument : $D\,(I\,I)\to D\,I\to I\,I\to I$. Trois pas suffisent. Recommencez avec l'application extérieure : $D\,(I\,I)\to(I\,I)\,(I\,I)\to I\,(I\,I)\to I\,I\to I$. Il faut quatre pas, parce que le calcul de l'argument a été recopié. Les deux stratégies de la liste permettent de suivre ces chemins avec « Un pas ».
+      en: |-
+        Write $I=\lambda x.x$ and $D=\lambda x.x\,x$. From $D\,(I\,I)$, compute the argument first: $D\,(I\,I)\to D\,I\to I\,I\to I$. Three steps suffice. Restart with the outer application: $D\,(I\,I)\to(I\,I)\,(I\,I)\to I\,(I\,I)\to I\,I\to I$. This takes four steps because the argument's computation was copied. The two strategies in the list let you follow these paths with “One step”.
+  - id: size
+    title: { fr: 'Calculer peut agrandir le terme', en: 'Computing can make a term larger' }
+    text:
+      fr: |-
+        Comptez une unité par variable, abstraction et application. Dans le dessin, ce sont les utilisations, les barres et les liens orange. Le terme de départ a une taille de 10. Copier l'argument en premier donne une taille de 11 ; calculer l'argument en premier donne 7. La taille du terme et la longueur du chemin mesurent donc des choses différentes. Le nombre de pas est une mesure abstraite, pas une durée en secondes sur un ordinateur.
+      en: |-
+        Count one unit per variable, abstraction and application. In the diagram these are uses, bars and orange links. The starting term has size 10. Copying its argument first gives size 11; computing the argument first gives 7. Term size and path length therefore measure different things. A step count is an abstract measure, not a duration in computer seconds.
+  - id: loop
+    title: { fr: 'Une flèche qui revient au départ', en: 'An arrow returning to its start' }
+    text:
+      fr: |-
+        Avec $\Omega=D\,D$, remplacer les deux utilisations redonne $D\,D$. La boucle est une vraie flèche du graphe. Cliquez plusieurs fois sur « Suivre » : le sommet reste le même, mais le trajet s'allonge. Aucun autre pas n'est possible, car le corps $x\,x$ de $D$ n'a pas une abstraction à gauche. Ce terme ne peut donc atteindre aucune forme normale.
+      en: |-
+        With $\Omega=D\,D$, replacing the two uses gives $D\,D$ again. The loop is a genuine graph edge. Click “Follow” several times: the vertex stays the same but the path grows. No other step is possible, because the body $x\,x$ of $D$ has no abstraction on the left. This term therefore cannot reach a normal form.
+    actions: [{ lambdaTerm: '(λx. x x) (λx. x x)' }]
+  - id: escape
+    title: { fr: 'Un chemin termine, un autre boucle', en: 'One path terminates, another loops' }
+    text:
+      fr: |-
+        Dans $(\lambda a.\lambda b.b)\,\Omega$, la première barre n'utilise jamais l'argument. L'application extérieure l'efface et donne $I$ en un pas. Réduire dans l'argument redonne le même terme et peut continuer indéfiniment. Un terme a une forme normale lorsqu'au moins un chemin y conduit ; cet exemple prouve que tous les choix ne doivent pas forcément y conduire. Essayez d'atteindre $I$ en exactement cinq pas.
+      en: |-
+        In $(\lambda a.\lambda b.b)\,\Omega$, the first bar never uses its argument. The outer application erases it and gives $I$ in one step. Reducing inside the argument returns the same term and can continue indefinitely. A term has a normal form when at least one path reaches it; this example proves that not every choice must do so. Try reaching $I$ in exactly five steps.
+    actions: [{ lambdaTerm: '(λa. λb. b) ((λx. x x) (λx. x x))' }]
+  - id: play
+    kind: play
+    title: { fr: 'Explorer sans confondre limite et conclusion', en: 'Explore without confusing a limit with a conclusion' }
+    text:
+      fr: |-
+        Choisissez une expression et changez la profondeur d'exploration. Les sommets pointillés ont des réductions non explorées ; seuls les sommets verts cochés sont en forme normale. Les termes identiques à renommage des paramètres près sont réunis. Essayez $I\,(I\,I)$ en écrivant les identités en entier : deux réductions distinctes mènent au même sommet, et l'outil garde les deux flèches. Un graphe limité n'est pas une preuve de terminaison ou de divergence.
+      en: |-
+        Choose an expression and change the exploration depth. Dashed vertices have unexplored reductions; only ticked green vertices are normal forms. Terms identical up to parameter renaming are merged. Try $I\,(I\,I)$, writing out the identities: two distinct reductions reach the same vertex, and the tool keeps both arrows. A bounded graph is not a proof of termination or divergence.
+  - id: exercises
+    kind: exercises
+    text: { fr: 'Construisez les chemins qui justifient vos réponses.', en: 'Construct paths that justify your answers.' }
+    exercises: [exercise.lambda.path_cost, exercise.lambda.size_growth, exercise.lambda.escape]

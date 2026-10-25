@@ -1,0 +1,21 @@
+id: exercise.lambda.capture
+nodeId: concept.lambda_calculus
+depth: 1
+type: choice
+evidenceDimension: recognition_explanation
+prompt:
+  fr: 'Quel résultat conserve les rattachements lors de la réduction de $(\lambda x.\lambda y.x)\,y$ ?'
+  en: 'Which result preserves bindings when reducing $(\lambda x.\lambda y.x)\,y$?'
+choice:
+  choices:
+    - id: free
+      text: { fr: '$\lambda z.y$', en: '$\lambda z.y$' }
+      correct: true
+    - id: captured
+      text: { fr: '$\lambda y.y$', en: '$\lambda y.y$' }
+    - id: variable
+      text: { fr: '$y$', en: '$y$' }
+solution:
+  fr: 'L’argument y est libre. On renomme le paramètre intérieur y en z : $(\lambda x.\lambda z.x)\,y\to\lambda z.y$. La barre intérieure reste présente mais aucun trait ne part d’elle. Écrire $\lambda y.y$ rattacherait à tort la variable libre à cette barre.'
+  en: 'The argument y is free. Rename the inner parameter y to z: $(\lambda x.\lambda z.x)\,y\to\lambda z.y$. The inner bar remains, but no line starts at it. Writing $\lambda y.y$ would incorrectly bind the free variable to that bar.'
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 3, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

@@ -4,6 +4,8 @@
  */
 export const en = {
   'app.name': 'Science Explorer',
+  'lesson.tool.lambda_diagram': 'Tromp diagrams',
+  'lesson.tool.lambda_reductions': 'Reduction paths in 3D',
   'app.tagline':
     'One universe of mathematics, physics, chemistry and their history — explored at your own pace.',
   'app.loading': 'Loading the universe…',

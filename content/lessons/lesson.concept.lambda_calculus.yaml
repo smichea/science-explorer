@@ -1,0 +1,61 @@
+id: lesson.concept.lambda_calculus
+nodeId: concept.lambda_calculus
+depth: 1
+tools:
+  - id: diagram
+    kind: lambda_diagram
+    title: { fr: 'Dessiner et réduire', en: 'Draw and reduce' }
+    term: 'λx. x'
+steps:
+  - id: read
+    title: { fr: 'Une barre, une utilisation', en: 'One bar, one use' }
+    text:
+      fr: |-
+        Voici le dessin de la fonction identité : une barre attend un argument et un trait part de cette barre. Le point indique le rattachement. La partie sous la barre décrit ce qui sera renvoyé : ici, l'argument lui-même. Une fonction peut être cet argument. Activez « Afficher les noms » pour relier le dessin à l'écriture $\lambda x.x$ ; il n'y a encore aucun calcul à effectuer.
+      en: |-
+        This is the identity function: a bar expects an argument and a line starts at that bar. The dot marks the binding. The part below the bar describes what is returned: here, the argument itself. That argument may be a function. Enable “Show names” to connect the diagram to $\lambda x.x$; no computation is available yet.
+    actions: [{ lambdaTerm: 'λx. x' }]
+  - id: apply
+    title: { fr: 'Appliquer : remplacer une utilisation', en: 'Apply: replace a use' }
+    text:
+      fr: |-
+        On place la fonction à gauche, l'argument à droite, puis on relie leurs sorties par un lien orange. Pour calculer, on remplace chaque utilisation attachée à la première barre de gauche par le dessin entier de l'argument ; on retire cette barre et le lien de l'application. Ce pas s'appelle une bêta-réduction. Cliquez sur « Un pas » : la barre qui reste vient de l'argument, pas de la fonction appliquée.
+      en: |-
+        Place the function on the left and its argument on the right, then connect their outputs with an orange link. To compute, replace each use bound to the first bar on the left by the whole argument diagram; remove that bar and the application link. This is one beta reduction. Click “One step”: the remaining bar comes from the argument, not the applied function.
+    actions: [{ lambdaTerm: '(λx. x) (λz. z)' }]
+  - id: copy
+    title: { fr: 'Deux utilisations, deux copies', en: 'Two uses, two copies' }
+    text:
+      fr: |-
+        Le bloc de gauche utilise son argument deux fois : comme fonction et comme argument. Il s'écrit $D=\lambda x.x\,x$. Lancez un pas et suivez les deux copies. Elles gardent chacune leur propre barre. Un second pas donne l'identité. Comptez les utilisations avant de lancer l'animation ; leur nombre explique la duplication.
+      en: |-
+        The left block uses its argument twice: as a function and as an argument. It is written $D=\lambda x.x\,x$. Run one step and follow the two copies. Each keeps its own bar. A second step gives the identity. Count the uses before starting the animation; their number explains duplication.
+    actions: [{ lambdaTerm: '(λx. x x) (λz. z)' }]
+  - id: erase
+    title: { fr: 'Aucune utilisation : effacer', en: 'No uses: erase' }
+    text:
+      fr: |-
+        Deux barres superposées attendent deux arguments successifs. Ici, le trait part de la seconde barre ; la première n'a aucune utilisation. En appliquant la fonction à l'argument de droite, on ne doit donc en faire aucune copie. Vérifiez qu'un seul pas laisse l'identité. Un croisement sans point ne change pas le rattachement d'un trait.
+      en: |-
+        Two stacked bars expect two successive arguments. Here the line starts at the second bar; the first has no uses. Applying the function to the right-hand argument therefore makes no copies. Check that one step leaves the identity. A crossing without a dot does not change a line's binding.
+    actions: [{ lambdaTerm: '(λa. λb. b) (λx. x x)' }]
+  - id: repeat
+    title: { fr: 'Recevoir une fonction et l’appliquer deux fois', en: 'Receive a function and apply it twice' }
+    text:
+      fr: |-
+        Deux traits partent de la barre de $f$, et un seul de celle de $x$. Le lien le plus haut construit $f\,x$ ; l'autre construit $f\,(f\,x)$. Si $f(t)=t+1$, deux applications donnent $x+2$ ; si $f(t)=2t$, elles donnent $4x$. Nous séparons ainsi le choix de la fonction de l'instruction « l'appliquer deux fois ». Les opérations arithmétiques de ces exemples servent à interpréter le dessin ; elles ne sont pas des symboles primitifs du calcul.
+      en: |-
+        Two lines start at the bar for $f$, and one at the bar for $x$. The upper link builds $f\,x$; the other builds $f\,(f\,x)$. If $f(t)=t+1$, two applications give $x+2$; if $f(t)=2t$, they give $4x$. We separate the choice of function from the instruction “apply it twice”. The arithmetic in these examples interprets the diagram; it is not primitive notation in the calculus.
+    actions: [{ lambdaTerm: 'λf. λx. f (f x)' }]
+  - id: play
+    kind: play
+    title: { fr: 'À vous de tracer', en: 'Draw your own term' }
+    text:
+      fr: |-
+        Saisissez $\lambda f.\lambda x.f\,(f\,(f\,x))$ et retrouvez trois utilisations de $f$. Essayez ensuite les exemples « Copier », « Effacer » et « Garder y libre ». Dans ce dernier, le paramètre intérieur est renommé pour que la variable libre reste libre. Les lettres I et D ne sont pas des raccourcis reconnus dans l'éditeur : écrivez leurs définitions. Le lien « Atelier en plein écran » ouvre les deux outils avec un espace de dessin plus grand.
+      en: |-
+        Enter $\lambda f.\lambda x.f\,(f\,(f\,x))$ and find three uses of $f$. Then try “Copy”, “Erase” and “Keep y free”. In the last example, the inner parameter is renamed so that the free variable remains free. I and D are not recognised abbreviations in the editor: write their definitions. “Full-page workbench” opens both tools with more drawing space.
+  - id: exercises
+    kind: exercises
+    text: { fr: 'Justifiez vos réponses avec les rattachements du dessin.', en: 'Justify your answers using the diagram’s bindings.' }
+    exercises: [exercise.lambda.copy, exercise.lambda.shadow, exercise.lambda.capture]

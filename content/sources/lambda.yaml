@@ -1,0 +1,11 @@
+sources:
+  - id: source.tromp.lambda_diagrams
+    kind: primary
+    title: Lambda Diagrams
+    authors: [John Tromp]
+    year: s.d.
+    url: https://tromp.github.io/cl/diagrams.html
+    language: en
+    note:
+      fr: Convention reliant les sorties les plus à gauche. Les couleurs, points de rattachement et animations de l'atelier sont des ajouts pédagogiques.
+      en: Convention connecting leftmost outputs. The workbench adds pedagogical colours, attachment dots and animations.

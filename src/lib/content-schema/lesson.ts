@@ -1,5 +1,19 @@
 import { z } from 'zod';
 import { Id, LocalisedText } from './common';
+import { parseLambda } from '../domain/lambda';
+
+const LambdaSource = z
+  .string()
+  .min(1)
+  .max(3000)
+  .refine((source) => {
+    try {
+      parseLambda(source);
+      return true;
+    } catch {
+      return false;
+    }
+  }, 'Invalid or oversized lambda term');
 
 const Range = z.tuple([z.number(), z.number()]);
 /** A number, or an expression of the tool's parameters (`a`, `a+h`). */
@@ -39,6 +53,8 @@ export type PlotterCurve = z.infer<typeof PlotterCurveSchema>;
  */
 export const PlotterActionSchema = z.object({
   at: z.number().int().min(0).default(0),
+  /** Replace the starting expression of either lambda workbench on this slide. */
+  lambdaTerm: LambdaSource.optional(),
   show: z.array(ItemId).default([]),
   hide: z.array(ItemId).default([]),
   clear: z.boolean().default(false),
@@ -434,6 +450,20 @@ export type Titration = z.infer<typeof TitrationSchema>;
 const ToolBase = { id: ItemId, title: LocalisedText.optional() };
 
 export const LessonToolSchema = z.discriminatedUnion('kind', [
+  z.object({
+    ...ToolBase,
+    kind: z.literal('lambda_diagram'),
+    term: LambdaSource,
+    strategy: z.enum(['normal', 'applicative']).default('normal'),
+    maxSteps: z.number().int().min(1).max(120).default(60),
+  }),
+  z.object({
+    ...ToolBase,
+    kind: z.literal('lambda_reductions'),
+    term: LambdaSource,
+    maxDepth: z.number().int().min(1).max(10).default(5),
+    maxNodes: z.number().int().min(2).max(100).default(60),
+  }),
   z.object({
     ...ToolBase,
     kind: z.literal('plotter'),

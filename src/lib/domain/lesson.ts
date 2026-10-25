@@ -157,6 +157,9 @@ export function nextLessonOnRoute(
   routes: RouteDefinition[],
   nodeById: (id: string) => CompiledNode | undefined
 ): CompiledNode | null {
+  // Unstaged discovery routes remain independent of the school programme.
+  const independent = routes.find((route) => !route.stage && route.nodes.includes(nodeId));
+  routes = independent ? [independent] : routes.filter((route) => route.stage);
   const at = routes.findIndex((r) => r.nodes.includes(nodeId));
   if (at < 0) return null;
   const candidates = [
@@ -237,6 +240,7 @@ export interface PlotterState {
 
 /** What every tool keeps between slides; the plotter also keeps its drawing. */
 export interface ToolState {
+  lambdaTerm?: string;
   params: Record<string, number>;
   /** Items declared hidden that a slide has shown. */
   shown: Set<string>;
@@ -283,6 +287,8 @@ export function initialToolState(tool: LessonTool): ToolState {
   const parameters = 'parameters' in tool ? tool.parameters : [];
   const plotter = tool.kind === 'plotter' ? initialPlotterState(tool) : null;
   return {
+    lambdaTerm:
+      tool.kind === 'lambda_diagram' || tool.kind === 'lambda_reductions' ? tool.term : undefined,
     params: plotter?.params ?? parameterDefaults(parameters),
     shown: new Set(),
     hidden: new Set(),
@@ -390,6 +396,7 @@ export function applyToolAction(state: ToolState, action: PlotterAction): ToolSt
   }
   const plotter = state.plotter ? applyPlotterAction(state.plotter, action) : null;
   return {
+    lambdaTerm: action.lambdaTerm ?? state.lambdaTerm,
     params: plotter?.params ?? (action.set ? { ...state.params, ...action.set } : state.params),
     shown,
     hidden,

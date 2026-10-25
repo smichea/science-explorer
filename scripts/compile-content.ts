@@ -1125,6 +1125,8 @@ for (const { file, data } of lessonFiles) {
   }
 
   function checkAction(tool: (typeof data.tools)[number], action: PlotterAction, where: string) {
+    if (action.lambdaTerm && tool.kind !== 'lambda_diagram' && tool.kind !== 'lambda_reductions')
+      error(`${where}: lambdaTerm needs a lambda tool`, file, data.id);
     const parameters = 'parameters' in tool ? tool.parameters.map((p) => p.id) : [];
     const items = itemsOf.get(tool.id) ?? new Set<string>();
     if (tool.kind === 'plotter') {

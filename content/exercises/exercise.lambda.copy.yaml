@@ -1,0 +1,18 @@
+id: exercise.lambda.copy
+nodeId: concept.lambda_calculus
+depth: 1
+type: numeric
+evidenceDimension: procedural_execution
+prompt:
+  fr: 'Dans $(\lambda x.x\,x)\,(\lambda z.z)$, combien de copies de l’argument faut-il placer lors du premier pas ?'
+  en: 'In $(\lambda x.x\,x)\,(\lambda z.z)$, how many copies of the argument must be placed in the first step?'
+numeric:
+  value: 2
+  tolerance: { kind: absolute, value: 0 }
+hints:
+  - id: uses
+    text: { fr: 'Comptez les utilisations rattachées à la barre de x.', en: 'Count the uses bound to the bar for x.' }
+solution:
+  fr: 'Le corps $x\,x$ contient deux utilisations du paramètre. Chacune reçoit une copie entière de $\lambda z.z$, avec sa propre barre. Le premier pas donne donc $(\lambda z.z)\,(\lambda z.z)$ : deux copies.'
+  en: 'The body $x\,x$ contains two uses of the parameter. Each receives a whole copy of $\lambda z.z$, with its own bar. The first step therefore gives $(\lambda z.z)\,(\lambda z.z)$: two copies.'
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }

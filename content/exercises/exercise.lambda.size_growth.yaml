@@ -1,0 +1,15 @@
+id: exercise.lambda.size_growth
+nodeId: concept.lambda_reduction_paths
+depth: 1
+type: numeric
+evidenceDimension: procedural_execution
+prompt:
+  fr: 'La taille compte les variables, abstractions et applications. Quelle est celle de $(I\,I)\,(I\,I)$, avec $I=\lambda x.x$ ?'
+  en: 'Size counts variables, abstractions and applications. What is the size of $(I\,I)\,(I\,I)$, with $I=\lambda x.x$?'
+numeric:
+  value: 11
+  tolerance: { kind: absolute, value: 0 }
+solution:
+  fr: 'Il y a quatre copies de I, chacune de taille 2, et trois applications. La taille est donc $4\times2+3=11$. Le dessin possède quatre barres, quatre utilisations et trois liens. Son prédécesseur $D\,(I\,I)$ a une taille de 10 : cette réduction agrandit le terme.'
+  en: 'There are four copies of I, each of size 2, and three applications. The size is $4\times2+3=11$. The diagram has four bars, four uses and three links. Its predecessor $D\,(I\,I)$ has size 10: this reduction makes the term larger.'
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 2, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

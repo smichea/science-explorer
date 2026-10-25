@@ -20,6 +20,8 @@
   import Plotter from './Plotter.svelte';
   import ArithmeticTool from './tools/ArithmeticTool.svelte';
   import DataTool from './tools/DataTool.svelte';
+  import LambdaDiagramTool from './tools/LambdaDiagramTool.svelte';
+  import LambdaReductionsTool from './tools/LambdaReductionsTool.svelte';
   import DimensionsTool from './tools/DimensionsTool.svelte';
   import EnergyLevelsTool from './tools/EnergyLevelsTool.svelte';
   import FieldTool from './tools/FieldTool.svelte';
@@ -374,6 +376,18 @@
               <ArithmeticTool {tool} interactive={lesson.interactive} />
             {:else if tool.kind === 'data'}
               <DataTool {tool} interactive={lesson.interactive} />
+            {:else if tool.kind === 'lambda_diagram'}
+              <LambdaDiagramTool
+                {tool}
+                source={toolState.lambdaTerm}
+                interactive={lesson.interactive}
+              />
+            {:else if tool.kind === 'lambda_reductions'}
+              <LambdaReductionsTool
+                {tool}
+                source={toolState.lambdaTerm}
+                interactive={lesson.interactive}
+              />
             {:else if tool.kind === 'random'}
               <RandomTool {tool} interactive={lesson.interactive} />
             {:else if tool.kind === 'sequence'}
@@ -398,6 +412,14 @@
               <SpaceTool {tool} tstate={toolState} interactive={lesson.interactive} />
             {:else if tool.kind === 'acid_base'}
               <AcidBaseTool {tool} tstate={toolState} interactive={lesson.interactive} />
+            {/if}
+            {#if tool.kind === 'lambda_diagram' || tool.kind === 'lambda_reductions'}
+              <a
+                class="btn btn--sm"
+                href="{base}/lambda{tool.kind === 'lambda_reductions' ? '?view=graph' : ''}"
+              >
+                {L({ fr: 'Atelier en plein écran', en: 'Full-page workbench' })}
+              </a>
             {/if}
             {#if lesson.interactive && (parameters.length || plotterTool)}
               <div class="stack-sm" data-testid="tool-controls">

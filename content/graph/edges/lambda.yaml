@@ -1,0 +1,10 @@
+edges:
+  - from: concept.function
+    to: concept.lambda_calculus
+    type: requires_recommended
+  - from: concept.lambda_calculus
+    to: tool.algorithmics
+    type: uses
+  - from: concept.lambda_calculus
+    to: concept.lambda_reduction_paths
+    type: requires_essentially

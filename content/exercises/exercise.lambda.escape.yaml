@@ -1,0 +1,21 @@
+id: exercise.lambda.escape
+nodeId: concept.lambda_reduction_paths
+depth: 1
+type: choice
+evidenceDimension: recognition_explanation
+prompt:
+  fr: 'Avec $\Omega=(\lambda x.x\,x)\,(\lambda x.x\,x)$, que peut-on affirmer sur les chemins issus de $(\lambda a.\lambda b.b)\,\Omega$ ?'
+  en: 'With $\Omega=(\lambda x.x\,x)\,(\lambda x.x\,x)$, what can be said about paths from $(\lambda a.\lambda b.b)\,\Omega$?'
+choice:
+  choices:
+    - id: all
+      text: { fr: Tous les chemins terminent en un pas, en: Every path terminates in one step }
+    - id: none
+      text: { fr: Aucun chemin ne termine, en: No path terminates }
+    - id: both
+      text: { fr: Il existe des chemins finis et un chemin infini, en: There are finite paths and an infinite path }
+      correct: true
+solution:
+  fr: 'L’application extérieure efface Ω et donne $\lambda b.b$ en un pas. On peut aussi réduire n fois dans Ω, qui se reproduit, puis l’effacer : ce chemin a n+1 pas. Enfin, réduire toujours dans Ω donne un chemin infini. On a ainsi construit les deux possibilités ; aucun raisonnement ne repose sur une limite d’exploration de l’outil.'
+  en: 'The outer application erases Ω and gives $\lambda b.b$ in one step. We can also reduce n times inside Ω, which reproduces itself, and then erase it: this path has n+1 steps. Finally, always reducing inside Ω gives an infinite path. This constructs both possibilities; the argument does not depend on an exploration limit in the tool.'
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 3, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 2, transfer: 1, autonomy: 2 }

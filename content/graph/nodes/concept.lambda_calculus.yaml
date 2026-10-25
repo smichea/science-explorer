@@ -1,0 +1,37 @@
+id: concept.lambda_calculus
+type: mathematical_concept
+world: world.mathematics
+region: region.math.numerical_methods
+importance: 2
+tags: [lambda, computation, tromp, enrichment]
+title: { fr: 'Lambda-calcul : dessiner un calcul', en: 'Lambda calculus: drawing a computation' }
+shortPurpose:
+  fr: Voir où un argument est utilisé, puis animer son remplacement dans un diagramme de Tromp.
+  en: See where an argument is used, then animate its substitution in a Tromp diagram.
+overview:
+  fr: Une fonction peut recevoir une autre fonction. Nous dessinons les arguments attendus et leurs utilisations, puis nous remplaçons un appel par le corps de la fonction. Une seule règle permet de renvoyer, copier ou effacer un argument.
+  en: A function can receive another function. We draw expected arguments and their uses, then replace a call by the function body. A single rule lets us return, copy or erase an argument.
+description:
+  fr: |-
+    Une **barre** attend un argument. Un **trait vertical** part de la barre à laquelle son utilisation est rattachée. Un **lien d'application** joint la fonction, à gauche, à son argument, à droite. Un croisement sans point n'est pas un rattachement.
+
+    Appliquer une abstraction consiste à remplacer les utilisations de son paramètre par l'argument, en conservant les rattachements. C'est la **bêta-réduction**. La leçon commence avec les dessins, puis introduit les écritures $\lambda x.M$ et $M\,N$.
+
+    L'**atelier lambda-calcul** est accessible depuis la leçon : saisie d'un terme, choix du lien à réduire, animation des copies, retour à l'étape précédente et comparaison de stratégies. Cette découverte est un approfondissement, hors des exigences du programme de terminale.
+  en: |-
+    A **bar** expects an argument. A **vertical line** starts at the bar binding that use. An **application link** joins the function, on the left, to its argument, on the right. A crossing without a dot is not an attachment.
+
+    Applying an abstraction replaces uses of its parameter with the argument, preserving bindings. This is **beta reduction**. The lesson starts with diagrams, then introduces the notations $\lambda x.M$ and $M\,N$.
+
+    The **lambda workbench** is available from the lesson: term input, selection of a reducible link, animated copies, undo and strategy comparison. This exploration is enrichment beyond the French Grade 12 curriculum requirements.
+aliases:
+  fr: [lambda, calcul lambda, diagrammes de Tromp, bêta-réduction]
+  en: [lambda, lambda calculus, Tromp diagrams, beta reduction]
+sources: [source.tromp.lambda_diagrams]
+depths:
+  - depth: 1
+    stage: terminale
+    role: discovery
+    outcomes:
+      fr: [Lire les rattachements d'un diagramme, Effectuer une bêta-réduction, Distinguer copie et effacement, Appliquer une fonction plusieurs fois]
+      en: [Read bindings in a diagram, Perform a beta reduction, Distinguish copying from erasure, Apply a function repeatedly]

@@ -1,0 +1,8 @@
+routes:
+  - id: route.lambda.discovery
+    kind: thematic
+    title: { fr: 'Lambda-calcul : des dessins aux chemins', en: 'Lambda calculus: from diagrams to paths' }
+    summary:
+      fr: 'Un parcours de découverte hors programme : manipuler des diagrammes de Tromp, puis comparer les chemins de calcul dans un graphe en 3D.'
+      en: 'An enrichment route beyond the curriculum: manipulate Tromp diagrams, then compare computation paths in a 3D graph.'
+    nodes: [concept.lambda_calculus, concept.lambda_reduction_paths]

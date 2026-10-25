@@ -48,6 +48,20 @@ The whole French upper-secondary programme is written — Grade 10, Grade 11 and
 
 ## Getting started
 
+The lambda-calculus discovery route adds two bilingual lessons and six corrected exercises,
+linked from the atlas. The standalone workbench at `/lambda` draws Tromp diagrams from a term
+and animates capture-avoiding beta substitution, including copying, erasure and parameter
+renaming. It supports manual redex selection, normal/applicative order, undo and an execution
+history. `/lambda?view=graph` explores a directed reduction multigraph modulo alpha equivalence,
+with rotatable 3D positions, separate parallel arrows, self loops and selectable paths. Node
+height represents term size and depth represents minimum distance from the starting term.
+Exploration is bounded; frontier nodes are distinguished from normal forms. The 3D projection
+uses SVG and works without WebGL. Both tools respect reduced-motion preferences.
+
+The route is an optional discovery path rather than an addition to the required school syllabus.
+Run its focused checks with `npx vitest run tests/unit/lambda.test.ts tests/unit/lambda-content.test.ts`
+and `npx playwright test tests/e2e/lambda.spec.ts`.
+
 Requirements: Node.js 22 and npm.
 
 ```bash

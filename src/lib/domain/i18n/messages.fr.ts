@@ -3,6 +3,8 @@ import type { MessageKey } from './messages.en';
 /** Chaînes d'interface (français). Typé sur les clés anglaises : une clé manquante casse la vérification. */
 export const fr: Record<MessageKey, string> = {
   'app.name': 'Science Explorer',
+  'lesson.tool.lambda_diagram': 'Diagrammes de Tromp',
+  'lesson.tool.lambda_reductions': 'Chemins de réduction en 3D',
   'app.tagline':
     'Un seul univers pour les mathématiques, la physique, la chimie et leur histoire — à explorer à son rythme.',
   'app.loading': 'Chargement de l’univers…',

@@ -1,0 +1,37 @@
+id: concept.lambda_reduction_paths
+type: mathematical_concept
+world: world.mathematics
+region: region.math.numerical_methods
+importance: 2
+tags: [lambda, reduction, graph, computation, enrichment]
+title: { fr: 'Lambda-calcul : les chemins de réduction', en: 'Lambda calculus: reduction paths' }
+shortPurpose:
+  fr: Explorer un graphe orienté en 3D pour comparer les choix de calcul, leur coût et leurs boucles.
+  en: Explore a directed graph in 3D to compare computation choices, their cost and their loops.
+overview:
+  fr: Un terme peut offrir plusieurs calculs à effectuer. Chaque sommet représente un terme et chaque flèche une réduction. Certains chemins se rejoignent, certains tournent en boucle, et leur longueur peut dépendre de l'ordre choisi.
+  en: A term may offer several computations to perform. Each vertex represents a term and each arrow a reduction. Some paths meet, some loop, and their length can depend on the chosen order.
+description:
+  fr: |-
+    Le **graphe des réductions** représente les termes accessibles depuis un terme de départ. Les termes identiques à un renommage des paramètres près partagent un sommet. Deux occurrences réductibles distinctes donnent deux flèches, même si elles aboutissent au même sommet.
+
+    Avec $I=\lambda x.x$ et $D=\lambda x.x\,x$, le terme $D\,(I\,I)$ atteint $I$ en trois ou quatre étapes selon le chemin. La taille peut passer de 10 à 11 lors de la première réduction : calculer ne signifie pas toujours raccourcir l'écriture.
+
+    Le terme $\Omega=D\,D$ se réduit à lui-même. Le terme $(\lambda a.\lambda b.b)\,\Omega$ peut au contraire atteindre $I$ en effaçant cet argument. L'existence d'une forme normale ne garantit donc pas que tous les chemins terminent. Une frontière d'exploration dans l'outil indique une limite de la vue, pas une forme normale.
+  en: |-
+    The **reduction graph** represents terms reachable from a starting term. Terms identical up to parameter renaming share a vertex. Two distinct reducible occurrences give two arrows, even when they lead to the same vertex.
+
+    With $I=\lambda x.x$ and $D=\lambda x.x\,x$, the term $D\,(I\,I)$ reaches $I$ in three or four steps depending on the path. Its size can grow from 10 to 11 in the first reduction: computing does not always shorten an expression.
+
+    The term $\Omega=D\,D$ reduces to itself. By contrast, $(\lambda a.\lambda b.b)\,\Omega$ can reach $I$ by erasing this argument. Having a normal form therefore does not guarantee that every path terminates. An exploration frontier in the tool indicates a limit of the view, not a normal form.
+aliases:
+  fr: [graphe de réduction, chemins de calcul, normalisation, divergence]
+  en: [reduction graph, computation paths, normalisation, divergence]
+sources: [source.tromp.lambda_diagrams]
+depths:
+  - depth: 1
+    stage: terminale
+    role: discovery
+    outcomes:
+      fr: [Comparer deux stratégies, Compter des étapes et mesurer une taille, Reconnaître une boucle, Distinguer forme normale et frontière d'exploration]
+      en: [Compare two strategies, Count steps and measure size, Recognise a loop, Distinguish a normal form from an exploration frontier]

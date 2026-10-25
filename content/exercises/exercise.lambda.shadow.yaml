@@ -1,0 +1,21 @@
+id: exercise.lambda.shadow
+nodeId: concept.lambda_calculus
+depth: 1
+type: choice
+evidenceDimension: recognition_explanation
+prompt:
+  fr: 'À quelle barre le dernier x est-il rattaché dans $\lambda x.\lambda x.x$ ?'
+  en: 'Which bar binds the final x in $\lambda x.\lambda x.x$?'
+choice:
+  choices:
+    - id: outer
+      text: { fr: À la première, en: The first }
+    - id: inner
+      text: { fr: À la seconde, en: The second }
+      correct: true
+    - id: both
+      text: { fr: Aux deux à la fois, en: Both at once }
+solution:
+  fr: 'Une utilisation est liée au paramètre de même nom le plus proche qui l’englobe : ici le second. Renommer sans changer les liens donne $\lambda u.\lambda v.v$. Le dessin a deux barres ; le trait part de celle du bas.'
+  en: 'A use is bound by the nearest enclosing parameter of the same name: here the second. Renaming without changing bindings gives $\lambda u.\lambda v.v$. The diagram has two bars; the line starts at the lower one.'
+difficulty: { mathematicalDepth: 1, conceptualNovelty: 2, calculationLength: 1, modellingOpenness: 1, linkedConcepts: 1, transfer: 1, autonomy: 2 }
