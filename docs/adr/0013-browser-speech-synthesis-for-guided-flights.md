@@ -10,7 +10,7 @@ The bird's-eye flight reads a short presentation of every remaining destination 
 ## Decision
 
 - Narration uses the browser's Web Speech API (`speechSynthesis`) through one small store (`src/lib/state/speech.svelte.ts`): a voice matching the interface language is picked when available, text is spoken sentence by sentence (long utterances are cut by some engines), and a watchdog based on an estimated reading time resolves every utterance even when the engine never reports its end.
-- Spoken text is derived from authored prose by `speakableText` (`src/lib/domain/speech.ts`): formulas become the word "formule"/"formula" and Markdown is stripped. Authors write a dedicated `overview` field in plain sentences; the compiler warns when it carries LaTeX or Markdown.
+- Spoken text is derived from authored prose by `speakableText` (`src/lib/domain/speech.ts`), shared by lessons, destination overviews and guided flights. Markdown is stripped; inline and display formulas are converted from KaTeX MathML to French or English speech with Speech Rule Engine (`src/lib/domain/mathSpeech.ts`). Both language rule sets ship in the application and its offline cache. Malformed TeX falls back to its notation instead of hiding the expression. Authors still write the dedicated `overview` field in plain sentences; the compiler warns when it carries LaTeX or Markdown.
 - The card always shows the text being read (caption); the voice can be muted (preference `tourVoice`) and, without a voice, the flight advances after the estimated reading time.
 - No recorded audio and no cloud text-to-speech: nothing leaves the device, nothing must be downloaded, and the bundle does not grow with content.
 
@@ -18,3 +18,4 @@ The bird's-eye flight reads a short presentation of every remaining destination 
 
 - Voice quality depends on the device (system voices); some browsers offer none, in which case the text alone carries the flight.
 - Numbers and abbreviations are written out in the overviews ("mille six cent quatre") so that every engine reads them the same way.
+- Mathematical reading adds a local rule engine to the bundle. Its stable 4.1.4 release is pinned; the `@xmldom/xmldom` override selects the patched 0.9.12 parser instead of the deprecated version pinned upstream. Browser integration tests cover all three narration entry points and French/English math after an offline reload.

@@ -3,14 +3,14 @@
  * Pure functions: no DOM, no timers.
  */
 
-const MATH_WORD: Record<string, string> = { fr: 'formule', en: 'formula' };
+import { spokenMath } from './mathSpeech';
 
 /** Turns Markdown + LaTeX prose into plain text a speech synthesiser can read. */
 export function speakableText(source: string | undefined | null, locale = 'fr'): string {
   if (!source) return '';
-  const math = ` ${MATH_WORD[locale] ?? MATH_WORD.fr} `;
+  const math = (_match: string, formula: string) => ` ${spokenMath(formula, locale)} `;
   let text = source.replace(/\r\n?/g, '\n');
-  text = text.replace(/\$\$[\s\S]*?\$\$/g, math).replace(/\$[^$\n]+\$/g, math);
+  text = text.replace(/\$\$([\s\S]*?)\$\$/g, math).replace(/\$([^$\n]+)\$/g, math);
   text = text.replace(/```[\s\S]*?```/g, ' ').replace(/`([^`]*)`/g, '$1');
   text = text.replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1');
   text = text.replace(/<[^>]+>/g, ' ');

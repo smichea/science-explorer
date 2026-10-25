@@ -23,6 +23,7 @@
     "idb": "^8.0.3",
     "katex": "^0.18.5",
     "marked": "^15.0.12",
+    "speech-rule-engine": "4.1.4",
     "three": "^0.185.1",
     "zod": "^4.5.4"
   },
@@ -53,5 +54,10 @@
   },
   "engines": {
     "node": ">=22"
+  },
+  "overrides": {
+    "speech-rule-engine": {
+      "@xmldom/xmldom": "0.9.12"
+    }
   }
 }
