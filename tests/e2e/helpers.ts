@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { ExerciseDefinition } from '../../src/lib/content-schema';
+import { packagePath } from '../../src/lib/domain/content/package';
 
 /**
  * Every journey runs on the 2D map with reduced motion, so the tests never depend on WebGL.
@@ -53,7 +54,7 @@ export async function openMap(page: Page) {
 
 const here = dirname(fileURLToPath(import.meta.url));
 export const exercises: ExerciseDefinition[] = JSON.parse(
-  readFileSync(join(here, '..', '..', 'static', 'content', 'core-0.1.0', 'exercises.json'), 'utf8')
+  readFileSync(join(packagePath(join(here, '..', '..', 'static')), 'exercises.json'), 'utf8')
 );
 export const exerciseById = (id: string) => exercises.find((e) => e.id === id)!;
 

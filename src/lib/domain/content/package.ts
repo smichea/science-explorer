@@ -19,7 +19,9 @@ import type {
   LessonDefinition,
 } from '../../content-schema';
 
-export const BUNDLED_PACKAGE = { id: 'core', version: '0.1.0' } as const;
+// Content URLs are immutable: bump this version whenever published content changes.
+// An older active service worker must not supply its cached lessons to a newer app.
+export const BUNDLED_PACKAGE = { id: 'core', version: '0.1.1' } as const;
 
 export function packagePath(base: string, id = BUNDLED_PACKAGE.id, version = BUNDLED_PACKAGE.version): string {
   return `${base}/content/${id}-${version}`;

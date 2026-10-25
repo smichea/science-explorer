@@ -4,7 +4,11 @@ Authored content lives under `content/` as YAML files whose learner-facing strin
 Markdown with `$…$` / `$$…$$` LaTeX. The compiler (`npm run content:validate` /
 `npm run content:compile`) validates every file against the zod schemas in
 `src/lib/content-schema/` and writes the immutable runtime package to
-`static/content/core-0.1.0/`.
+`static/content/core-<version>/`. The shared version is `BUNDLED_PACKAGE.version` in
+`src/lib/domain/content/package.ts`. Increment it whenever published content changes:
+an already open application can still have an older service worker serving the previous
+package from its offline cache. A new package URL keeps the app and its lessons in sync
+without clearing learner profiles or progress.
 
 Rules that make the build **fail**:
 

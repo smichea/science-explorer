@@ -15,8 +15,9 @@ import type {
   LessonDefinition,
 } from '../../src/lib/content-schema';
 import { GraphIndex } from '../../src/lib/domain/graph';
+import { packagePath } from '../../src/lib/domain/content/package';
 
-const ROOT = join(__dirname, '..', '..', 'static', 'content', 'core-0.1.0');
+const ROOT = packagePath(join(__dirname, '..', '..', 'static'));
 
 function read<T>(name: string): T {
   return JSON.parse(readFileSync(join(ROOT, name), 'utf8')) as T;

@@ -68,6 +68,7 @@ import {
   type ValidationReport,
 } from '../src/lib/content-schema/index';
 import { GraphIndex } from '../src/lib/domain/graph';
+import { BUNDLED_PACKAGE } from '../src/lib/domain/content/package';
 import { compileExpression } from '../src/lib/domain/answers';
 import { elementBySymbol } from '../src/lib/domain/lessonTools';
 import { computeLayout } from '../src/lib/domain/layout';
@@ -77,8 +78,8 @@ import { buildTour, prerequisiteInversions } from '../src/lib/domain/tour';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const CONTENT_DIR = join(ROOT, 'content');
-const PACKAGE_ID = 'core';
-const PACKAGE_VERSION = '0.1.0';
+const PACKAGE_ID = BUNDLED_PACKAGE.id;
+const PACKAGE_VERSION = BUNDLED_PACKAGE.version;
 const SCHEMA_VERSION = 1;
 
 const args = process.argv.slice(2);

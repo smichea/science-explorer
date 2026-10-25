@@ -2,10 +2,11 @@ import { spawnSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { packagePath } from '../../src/lib/domain/content/package';
 import type { CompiledGraph, ContentManifest, MissionDefinition, ValidationReport } from '../../src/lib/content-schema';
 
 const ROOT = join(__dirname, '..', '..');
-const OUT = join(ROOT, 'static', 'content', 'core-0.1.0');
+const OUT = packagePath(join(ROOT, 'static'));
 const read = <T>(name: string) => JSON.parse(readFileSync(join(OUT, name), 'utf8')) as T;
 
 describe('content package', () => {
